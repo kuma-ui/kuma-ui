@@ -1,0 +1,16 @@
+{
+  "name": "zero-styled",
+  "version": "1.0.0",
+  "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/types": "^7.21.3",
+    "@types/babel-plugin-macros": "^3.1.0",
+    "babel-plugin-macros": "^3.1.0"
+  }
+}
