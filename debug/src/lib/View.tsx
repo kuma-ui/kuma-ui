@@ -1,31 +1,37 @@
+/** @jsxImportSource ../styledSystemMacro */
 import React from "react";
-import styledSystemMacro from "./styledSystemMacro";
+import _jsx from "../styledSystemMacro/jsx-runtime";
+// import styledSystemMacro from "./styledSystemMacro";
+import styledSystem from "./styledSystemMacro";
 
-const View = ({
-  m = 0,
-  color = "black",
-  fontSize = "16px",
-  children,
-  ...props
-}) => {
-  const style = {
-    margin: m,
-    color: color,
-    fontSize: fontSize,
-  };
+// const View = ({
+//   m = 0,
+//   color = "black",
+//   fontSize = "16px",
+//   children,
+//   ...props
+// }) => {
 
-  return (
-    <div style={style} {...props}>
-      {children}
-    </div>
-  );
+//   return (
+//     <div {...props}>
+//       {children}
+//     </div>
+//   );
+// };
+
+export interface ViewProps extends React.HTMLAttributes<HTMLDivElement> {
+  m?: number | string;
+  fontSize?: number;
+  // Add any other custom props here
+}
+
+const View: React.FC<ViewProps> = ({ children, ...props }) => {
+  return <div {...props}>{children}</div>;
 };
 
 export default View;
 
 export const Test = () => {
-  //   console.log(styledSystemMacro);
-
-  // return <styledSystemMacro.View color="red">hello</styledSystemMacro.View>;
-  return <View color="red">hello</View>;
+  //   return <styledSystemMacro.View color="red">hello</styledSystemMacro.View>;
+  return <View>hello</View>;
 };

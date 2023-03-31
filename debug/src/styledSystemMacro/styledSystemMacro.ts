@@ -1,13 +1,11 @@
 import { createMacro, MacroHandler } from "babel-plugin-macros";
-
-// type Handler = Parameters<typeof createMacro>[0] extends (
-//   ...args: infer A
-// ) => any
-//   ? A
-//   : never;
+import fs from "fs";
+import path from "path";
 
 const styledSystemMacro: MacroHandler = ({ references, state, babel }) => {
   const { types: t } = babel;
+  const outputCSSPath = path.join(process.cwd(), "output.css");
+
   references.default.forEach((referencePath) => {
     if (referencePath?.parentPath?.type === "JSXOpeningElement") {
       const attrs = referencePath.parentPath.get("attributes") as any[];
@@ -21,7 +19,6 @@ const styledSystemMacro: MacroHandler = ({ references, state, babel }) => {
       const css = styleProps
         .map((prop) => {
           const propName = prop.node.name.name;
-          //   const propValue = prop.node.value.expression.value;
           const propValue = t.isLiteral(prop.node.value.expression)
             ? prop.node.value.expression.value
             : undefined;
@@ -29,19 +26,9 @@ const styledSystemMacro: MacroHandler = ({ references, state, babel }) => {
         })
         .join("\n");
 
-      // Inject the CSS into the document's head during development.
-      //   if (process.env.NODE_ENV === "development") {
-      if (true) {
-        const cssString = `.${uniqueClassName} {\n${css}\n}`;
-        const injectCss = t.jsxExpressionContainer(
-          t.callExpression(
-            t.memberExpression(t.identifier("document"), t.identifier("write")),
-            [t.stringLiteral(`<style>${cssString}</style>`)]
-          )
-        );
-
-        referencePath.parentPath.parentPath?.insertBefore(injectCss);
-      }
+      // Save CSS to the output file.
+      const cssString = `.${uniqueClassName} {\n${css}\n}`;
+      fs.appendFileSync(outputCSSPath, cssString);
 
       // Replace the styling props with the generated class name.
       styleProps.forEach((prop) => prop.remove());
