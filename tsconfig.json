@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "react",
+    "baseUrl": "./",
+    "paths": {
+      "styledSystemMacro/*": ["src/styledSystemMacro/*"]
+    },
+    "typeRoots": ["./src/types", "node_modules/@types"]
+  }
+}
