@@ -1,11 +1,10 @@
-import { Sheet } from "../utils/sheet";
+import { sheet } from "../core/sheet";
 import { relative, basename, join } from "path";
 import { readFileSync } from "fs";
 import { Core } from "../babel";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
 import { type TaggedTemplateExpression } from "@babel/types";
-
-const sheet = new Sheet();
+import { serializeTemplateLiteral } from "../utils/serialize";
 
 const plugin = ({ types: t, template }: Core): PluginObj => {
   return {
@@ -19,8 +18,8 @@ const plugin = ({ types: t, template }: Core): PluginObj => {
           Object.assign(state, { sheet });
 
           const templateLiteral = path.get("quasi");
-          const cssString = templateLiteral.node.quasis[0].value.raw;
-          const className = sheet.addRule(cssString);
+          const className = serializeTemplateLiteral(templateLiteral, sheet);
+          if (!className) return;
 
           path.replaceWith(t.stringLiteral(className));
 

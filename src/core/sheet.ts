@@ -1,4 +1,4 @@
-import { generateHash } from "./generateHash";
+import { generateHash } from "../utils/generateHash";
 
 export interface Rule {
   id: string;
@@ -35,3 +35,6 @@ export class Sheet {
     return this.rules.map((rule) => `.${rule.id} {${rule.css}}`).join("\n");
   }
 }
+
+// Export a single instance of the Sheet class
+export const sheet = new Sheet();
