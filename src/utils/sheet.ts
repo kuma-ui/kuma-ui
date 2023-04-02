@@ -18,7 +18,20 @@ export class Sheet {
     return id;
   }
 
+  removeDuplicates() {
+    const hashMap = new Map<string, string>();
+    for (const rule of this.rules) {
+      if (hashMap.has(rule.id)) continue;
+      else hashMap.set(rule.id, rule.css);
+    }
+    this.rules = Array.from(hashMap, (entry) => ({
+      id: entry[0],
+      css: entry[1],
+    }));
+  }
+
   getCSS(): string {
+    this.removeDuplicates();
     return this.rules.map((rule) => `.${rule.id} {${rule.css}}`).join("\n");
   }
 }
