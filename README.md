@@ -1,6 +1,6 @@
 # Zero-Styled
 
-Zero-Styled is a CSS-in-JS library that combines the best of utility-first and zero-runtime CSS extraction for blazing-fast performance. It provides a styled function to create dynamic styles and utility functions for common CSS properties.
+Zero-Styled is a CSS-in-JS library that combines the best of utility-first and zero-runtime CSS extraction for blazing-fast performance. It is inspired by styled-components and styled-system, but aims to provide a zero-runtime alternative with build-time CSS extraction. Zero-Styled allows you to create reusable, composable, and responsive design systems without the runtime overhead.
 
 # Roadmap
 
