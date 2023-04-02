@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react",
     "baseUrl": "./",
     "outDir": "./dist",
     "typeRoots": ["./src/types", "node_modules/@types"],
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

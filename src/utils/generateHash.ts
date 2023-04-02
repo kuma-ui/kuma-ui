@@ -1,5 +1,5 @@
 /**
- * The createHash function is a utility function that generates a hash value for a given input string using the MurmurHash algorithm.
+ * The generateHash function is a utility function that generates a hash value for a given input string using the MurmurHash algorithm.
  */
 
 export function generateHash(str: string) {

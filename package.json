@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
   "scripts": {
-    "build": "tsc",
-    "start": "yarn build && node dist/src/index.js",
-    "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+    "start": "tsc && babel src --out-dir dist --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js"
   },
-  "type": "module",
+  "type": "commonjs",
   "author": "",
   "license": "ISC",
   "devDependencies": {
