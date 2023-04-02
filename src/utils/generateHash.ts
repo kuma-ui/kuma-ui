@@ -1,3 +1,7 @@
+/**
+ * The createHash function is a utility function that generates a hash value for a given input string using the MurmurHash algorithm.
+ */
+
 export function generateHash(str: string) {
   const m = 0x5bd1e995;
   const r = 24;

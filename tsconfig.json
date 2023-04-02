@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
@@ -8,7 +9,8 @@
     "paths": {
       "styledSystemMacro/*": ["src/styledSystemMacro/*"]
     },
-    "typeRoots": ["./src/types", "node_modules/@types"]
+    "typeRoots": ["./src/types", "node_modules/@types"],
+    "outDir": "out"
   },
-  "include": ["src/*"]
+  "include": ["src/**/*", "src/utils/*"]
 }

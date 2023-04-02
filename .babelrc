@@ -1,3 +1,4 @@
 {
-  "plugins": ["macros"]
+  "plugins": ["macros"],
+  "presets": ["@babel/preset-typescript"]
 }
