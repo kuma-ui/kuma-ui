@@ -1,7 +1,7 @@
-import styled from "./macro";
+const styled = (strings: TemplateStringsArray) => strings[0];
 
-const className = styled`
-margin: 12px;
+const a = styled`
+  margin: 12px;
 `;
 
-console.log("Generated class name:", className);
+console.log(a);

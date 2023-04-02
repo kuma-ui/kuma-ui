@@ -2,12 +2,12 @@
   "name": "zero-styled",
   "version": "1.0.0",
   "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
-  "main": "index.js",
   "scripts": {
-    "start": "tsc src/index.ts && babel-node src/index.js",
-    "dev": "tsc src/index.ts && babel src/index.js --out-file out/index.js && node src/index.js",
-    "babel-ts": "babel-node --extensions '.ts' src/index.ts"
+    "build": "tsc",
+    "start": "yarn build && node dist/src/index.js",
+    "start:dev": "ts-node-dev --respawn --transpile-only src/index.ts"
   },
+  "type": "module",
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -17,11 +17,10 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.4",
     "@babel/types": "^7.21.4",
-    "@types/babel-plugin-macros": "^3.1.0",
     "@types/babel__core": "^7.20.0",
     "@types/node": "^18.15.11",
-    "babel-plugin-macros": "^3.1.0",
     "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.3"
   }
 }
