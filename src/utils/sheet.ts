@@ -1,7 +1,7 @@
 import { generateHash } from "./generateHash";
 
 export interface Rule {
-  id: number;
+  id: string;
   css: string;
 }
 
@@ -11,7 +11,7 @@ export class Sheet {
     this.rules = [];
   }
 
-  addRule(css: string): number {
+  addRule(css: string): string {
     const id = generateHash(css);
     const existingRule = this.rules.find((rule) => rule.id === id);
     if (!existingRule) this.rules.push({ id, css });

@@ -1,3 +1,7 @@
-import createZeroStyledMacro from "./macro";
+import styled from "./macro";
 
-export default createZeroStyledMacro;
+const className = styled`
+margin: 12px;
+`;
+
+console.log("Generated class name:", className);

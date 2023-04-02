@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "moduleResolution": "node",
+    "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "jsx": "react",
     "baseUrl": "./",
-    "paths": {
-      "styledSystemMacro/*": ["src/styledSystemMacro/*"]
-    },
-    "typeRoots": ["./src/types", "node_modules/@types"],
-    "outDir": "out"
+    "typeRoots": ["./src/types", "node_modules/@types"]
   },
-  "include": ["src/**/*", "src/utils/*"]
+  "include": ["src/**/*"]
 }

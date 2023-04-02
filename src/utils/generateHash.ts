@@ -24,5 +24,5 @@ export function generateHash(str: string) {
   h *= m;
   h ^= h >>> 15;
 
-  return h >>> 0; // convert to unsigned 32-bit integer
+  return (h >>> 0).toString(); // convert to unsigned 32-bit integer
 }
