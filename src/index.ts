@@ -1,7 +1,7 @@
 import { styled } from "./core/styled";
 
-const a = styled`
+const component = styled("div")`
   margin: 12px;
 `;
 
-console.log(a);
+console.log(component);

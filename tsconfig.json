@@ -12,6 +12,10 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/core/zeroStyled.tsx",
+    "src/core/zeroStyled.tsx"
+  ],
   "exclude": ["node_modules"]
 }

@@ -6,7 +6,7 @@ import { Sheet } from "../core/sheet";
 function isValidCSS(cssString: string): boolean {
   try {
     const sheet = parse(cssString, { silent: true });
-    if (sheet.stylesheet?.parsingErrors) throw Error;
+    // if (sheet.stylesheet?.parsingErrors) throw Error;
     return true;
   } catch (error) {
     return false;
@@ -26,3 +26,5 @@ export const serializeTemplateLiteral = (
     return null;
   }
 };
+
+export const serializeStyle = () => {};

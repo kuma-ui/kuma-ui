@@ -1,4 +1,4 @@
-import { generateHash } from "../utils/generateHash";
+import { generateHash } from "../utils/hash";
 
 export interface Rule {
   id: string;
