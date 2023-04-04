@@ -1,19 +1,5 @@
 import { toCssUnit } from "./util";
-type SpaceKeys =
-  | "m"
-  | "mt"
-  | "mr"
-  | "mb"
-  | "ml"
-  | "mx"
-  | "my"
-  | "p"
-  | "pt"
-  | "pr"
-  | "pb"
-  | "pl"
-  | "px"
-  | "py";
+import { SpaceKeys } from "./keys";
 
 export type SpaceProps = Partial<Record<SpaceKeys, string | number>>;
 

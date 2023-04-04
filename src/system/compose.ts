@@ -1,4 +1,10 @@
-type StyleFunction = (props: any) => string;
+import { SpaceProps } from "./space";
+import { TypographyProps } from "./typography";
+import { LayoutProps } from "./layout";
+
+export type StyledProps = SpaceProps & TypographyProps & LayoutProps;
+
+type StyleFunction = (props: StyledProps) => string;
 
 export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
   return (props: any): string => {
