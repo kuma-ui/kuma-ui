@@ -62,13 +62,6 @@ const plugin = ({ types: t, template }: Core): PluginObj => {
 
           if (dataAttribute) {
             const componentName = openingElement.node.name;
-            const componentIdentifier = t.identifier(
-              componentName.type === "JSXIdentifier" ? componentName.name : ""
-            );
-            const zeroStyledComponent = t.identifier("zeroStyled");
-            const zeroStyledCall = t.callExpression(zeroStyledComponent, [
-              componentIdentifier,
-            ]);
 
             // Get the generated className from zeroStyledCall
             const className = ""; // Replace this line with the actual className
