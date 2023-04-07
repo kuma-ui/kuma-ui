@@ -6,6 +6,7 @@ import type { NodePath, PluginPass, PluginObj } from "@babel/core";
 import { extractStylePropsFromAST } from "./extractStyleFromAST";
 import { JSXElement, JSXExpressionContainer } from "@babel/types";
 import { combinedStyles } from "../system";
+import { ensureReactImport } from "./ensureReactImport";
 
 let count = 0;
 
@@ -76,20 +77,7 @@ const plugin = ({ types: t, template }: Core): PluginObj => {
         }
       },
       Program(path) {
-        let hasReactImport = false;
-        path.node.body.forEach((node) => {
-          if (t.isImportDeclaration(node) && node.source.value === "react") {
-            hasReactImport = true;
-          }
-        });
-
-        if (!hasReactImport) {
-          const reactImportDeclaration = t.importDeclaration(
-            [t.importDefaultSpecifier(t.identifier("React"))],
-            t.stringLiteral("react")
-          );
-          path.unshiftContainer("body", reactImportDeclaration);
-        }
+        ensureReactImport(path, t);
       },
     },
   };

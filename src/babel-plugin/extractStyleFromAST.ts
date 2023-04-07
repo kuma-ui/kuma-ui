@@ -16,7 +16,6 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
   const styledProps: { [key: string]: string | number } = {};
 
   const filteredAttributes = openingElement.attributes.filter((attr) => {
-    console.log(attr);
     if (
       t.isJSXAttribute(attr) &&
       t.isJSXIdentifier(attr.name) &&
