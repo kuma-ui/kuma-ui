@@ -9,14 +9,15 @@ Zero-Styled is a CSS-in-JS library that combines the best of utility-first and z
 - Enhance helper functions to handle different types of values, such as strings, numbers, or even functions (e.g., when using theme props), and ensure accurate CSS string generation.
 - Update the Babel plugin to better handle the transformed CSS string with the interpolations resolved, considering edge cases and potential issues.
 
-### Implement utility functions similar to styled-system:
-- Identify a set of utility functions that are commonly used in CSS-in-JS libraries, such as functions for handling spacing, typography, layout, and colors.
-- Implement these utility functions as separate modules that can be imported and used in conjunction with the styled function. These utilities should also support dynamic values through props or variables.
-- Ensure that the Babel plugin and other parts of the library are compatible with the utility functions and can process them correctly.
+### Additional features and enhancements:
+- Add support for theming and custom configurations.
+- Improve developer experience with better error messages, debugging tools, and documentation.
 
-### Improve Babel plugin:
-- Refine the Babel plugin implementation to handle edge cases and improve code maintainability.
-- Add tests to ensure the Babel plugin works correctly with various code inputs.
+### Support theming, responsive design, and pseudo-elements:
+- Develop a theming system to enable users to provide custom themes, colors, and other design tokens.
+- Integrate responsive design capabilities into the utility functions, allowing users to define styles for different breakpoints.
+- Add support for pseudo-elements and pseudo-classes, such as :hover, :focus, ::before, and ::after.
+
 
 # Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
