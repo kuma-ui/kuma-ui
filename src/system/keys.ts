@@ -38,3 +38,10 @@ export type TypographyKeys = typeof styleKeys.typography[number];
 export type LayoutKeys = typeof styleKeys.layout[number];
 
 export type StyledKeyType = SpaceKeys | TypographyKeys | LayoutKeys;
+
+export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
+  const prop = _prop as StyledKeyType;
+  return Object.values(styleKeys).some((keyGroup) =>
+    (keyGroup as readonly string[]).includes(prop)
+  );
+};

@@ -2,7 +2,7 @@ import { space } from "./space";
 import { typography } from "./typography";
 import { layout } from "./layout";
 import { compose, StyledProps } from "./compose";
-export { StyledKeyType } from "./keys";
+export { StyledKeyType, isStyledProp } from "./keys";
 
 export const combinedStyles = compose(space, typography, layout);
 

@@ -1,4 +1,4 @@
-import { toCssUnit } from "./util";
+import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
 
 export type TypographyProps = Partial<Record<TypographyKeys, string | number>>;

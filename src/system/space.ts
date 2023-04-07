@@ -1,4 +1,4 @@
-import { toCssUnit } from "./util";
+import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
 
 export type SpaceProps = Partial<Record<SpaceKeys, string | number>>;

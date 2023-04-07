@@ -3,13 +3,9 @@ import { relative, basename, join } from "path";
 import { readFileSync } from "fs";
 import { Core } from "../babel";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
-import {
-  type TaggedTemplateExpression,
-  CallExpression,
-  Node,
-} from "@babel/types";
-import { serializeTemplateLiteral } from "../utils/serialize";
+import { extractStylePropsFromAST } from "./extractStyleFromAST";
 import { JSXElement, JSXExpressionContainer } from "@babel/types";
+import { combinedStyles } from "src/system";
 
 let count = 0;
 
@@ -55,25 +51,27 @@ const plugin = ({ types: t, template }: Core): PluginObj => {
         const openingElement = path.get("openingElement");
 
         if (t.isJSXOpeningElement(openingElement.node)) {
-          const dataAttribute = openingElement.node.attributes.find(
+          const dataAttribute = openingElement.node.attributes.some(
             (attr) =>
               t.isJSXAttribute(attr) && attr.name.name === "data-zero-styled"
           );
 
-          if (dataAttribute) {
-            const componentName = openingElement.node.name;
+          if (dataAttribute) return;
+          const { filteredAttributes, styledProps } = extractStylePropsFromAST(
+            openingElement.node
+          );
+          // Update the attributes of the opening element by removing the styled props,
+          // so that the styled props don't get passed down as regular HTML attributes.
+          openingElement.node.attributes = filteredAttributes;
 
-            // Get the generated className from zeroStyledCall
-            const className = ""; // Replace this line with the actual className
-
-            // Create a new JSXAttribute for the className
-            const classNameAttribute = t.jsxAttribute(
-              t.jsxIdentifier("className"),
-              t.stringLiteral(className)
+          if (Object.keys(styledProps).length > 0) {
+            const className = sheet.addRule(combinedStyles(styledProps));
+            openingElement.node.attributes.push(
+              t.jsxAttribute(
+                t.jsxIdentifier("className"),
+                t.stringLiteral(className)
+              )
             );
-
-            // Append the classNameAttribute to the openingElement.node.attributes
-            openingElement.node.attributes.push(classNameAttribute);
           }
         }
       },
