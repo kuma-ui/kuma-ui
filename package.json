@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
   "scripts": {
-    "start": "tsc && babel src --out-dir dist --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js"
+    "start": "tsc && babel src --out-dir dist --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js",
+    "start:jsx": "tsc && babel src --out-dir dist --copy-files --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js"
   },
   "type": "commonjs",
   "author": "",
@@ -13,6 +14,7 @@
     "@babel/core": "^7.21.4",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
     "@babel/types": "^7.21.4",
     "@types/babel__core": "^7.20.0",

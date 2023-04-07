@@ -1,6 +1,6 @@
 import { types as t } from "@babel/core";
 import type { JSXOpeningElement } from "@babel/types";
-import { isStyledProp } from "src/system";
+import { isStyledProp } from "../system";
 
 /**
  * Extracts style props from a JSX opening element and returns the filtered

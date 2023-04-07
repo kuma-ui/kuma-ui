@@ -5,7 +5,7 @@ import { Core } from "../babel";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
 import { extractStylePropsFromAST } from "./extractStyleFromAST";
 import { JSXElement, JSXExpressionContainer } from "@babel/types";
-import { combinedStyles } from "src/system";
+import { combinedStyles } from "../system";
 
 let count = 0;
 
