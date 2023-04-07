@@ -9,11 +9,14 @@ import React, {
   createElement,
 } from "react";
 import { dataAttributeName } from "../utils/assignDataAttribute";
-import { combinedStyles } from "../system";
+import { combinedStyles, StyledProps } from "../system";
 import { sheet } from "./sheet";
 
-type StyleProps = any;
-type CSSProperties = keyof CSSStyleDeclaration;
+type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
+  ? JSX.IntrinsicElements[T]
+  : T extends ComponentType<infer P>
+  ? P
+  : never;
 /**
  * A higher-order component that wraps a given component with styled-system
  * functionality and applies the data-zero-styled attribute.
@@ -27,33 +30,18 @@ type CSSProperties = keyof CSSStyleDeclaration;
 export function styled<
   T extends keyof JSX.IntrinsicElements | ComponentType<any>
 >(Component: T) {
-  return function <T extends readonly CSSProperties[] | undefined>(
+  return function <P extends Partial<StyledProps>>(
     strings: TemplateStringsArray,
-    ...interpolations: T[]
-  ): ReactElement {
-    let cssString = "";
-
-    strings.forEach((string, index) => {
-      cssString += string;
-
-      if (interpolations[index] !== undefined) {
-        const interpolation = interpolations[index];
-
-        if (
-          typeof interpolation === "string" ||
-          typeof interpolation === "number"
-        ) {
-          cssString += interpolation;
-        } else {
-          throw new Error("Dynamic values are not supported in Zero-Styled.");
-        }
-      }
-    });
-
-    const className = sheet.addRule(cssString);
-    return createElement(Component, {
-      "data-zero-styled": true,
-      className,
-    });
+    ...interpolations: ((props: P) => string)[]
+  ): React.FC<StyledComponentProps<T> & P> {
+    const StyledComponent: React.FC<StyledComponentProps<T> & P> = (props) => {
+      const className = sheet.addRule(combinedStyles(props));
+      return createElement(Component, {
+        "data-zero-styled": true,
+        className,
+        ...props,
+      });
+    };
+    return StyledComponent;
   };
 }
