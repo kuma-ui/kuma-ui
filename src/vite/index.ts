@@ -1,26 +1,28 @@
 import babel from "@babel/core";
 import zeroStyledPlugin from "../babel-plugin";
+import { Plugin } from "vite";
+import { sheet } from "../core/sheet";
+import { promises as fs } from "fs";
+import { join } from "path";
 
-export default function zeroStyled() {
+export default function zeroStyled(): Plugin {
   return {
     name: "zero-styled",
-    transform(code: string, id: string) {
-      if (
-        !id.endsWith(".js") &&
-        !id.endsWith(".jsx") &&
-        !id.endsWith(".ts") &&
-        !id.endsWith(".tsx")
-      ) {
-        return;
-      }
 
-      const result = babel.transformSync(code, {
+    async transform(code: string, id: string) {
+      if (!/\.(t|j)sx?$/.test(id)) return;
+
+      const result = await babel.transformAsync(code, {
         plugins: [zeroStyledPlugin],
         filename: id,
       });
       if (!result) return;
 
       return result.code;
+    },
+    async writeBundle() {
+      const css = sheet.getCSS();
+      await fs.writeFile(join(process.cwd(), "zero-styled.css"), css);
     },
   };
 }
