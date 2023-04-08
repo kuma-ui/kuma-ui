@@ -18,6 +18,9 @@ Zero-Styled is a CSS-in-JS library that combines the best of utility-first and z
 - Integrate responsive design capabilities into the utility functions, allowing users to define styles for different breakpoints.
 - Add support for pseudo-elements and pseudo-classes, such as :hover, :focus, ::before, and ::after.
 
+### Bundler support:
+- Ensure compatibility with popular bundlers like Webpack and Vite.
+- Provide configuration examples and documentation to help users set up Zero-Styled with their preferred bundler.
 
 # Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
