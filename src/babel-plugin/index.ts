@@ -1,4 +1,4 @@
-import { sheet } from "../core/sheet";
+import { sheet } from "../sheet";
 import { relative, basename, join } from "path";
 import { Core } from "../babel";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";

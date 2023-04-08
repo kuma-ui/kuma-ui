@@ -1,7 +1,7 @@
 import babel from "@babel/core";
 import zeroStyledPlugin from "../babel-plugin";
 import { Plugin } from "vite";
-import { sheet } from "../core/sheet";
+import { sheet } from "../sheet";
 import { join } from "path";
 const { transform } = require("@babel/standalone");
 

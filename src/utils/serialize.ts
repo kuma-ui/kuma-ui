@@ -1,7 +1,7 @@
 import { NodePath } from "@babel/traverse";
 import { TemplateLiteral } from "@babel/types";
 import { parse } from "css";
-import { Sheet } from "../core/sheet";
+import { Sheet } from "../sheet";
 
 function isValidCSS(cssString: string): boolean {
   try {

@@ -10,7 +10,7 @@ import React, {
 } from "react";
 import { dataAttributeName } from "../utils/assignDataAttribute";
 import { combinedStyles, StyledProps } from "../system";
-import { sheet } from "./sheet";
+import { sheet } from "../sheet";
 
 type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[T]
@@ -27,7 +27,7 @@ type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
  * @param Component - The component to be wrapped with styled-system functionality
  * @returns A new component with styled-system functionality and a unique data-zero-styled attribute
  */
-export function styled<
+export default function styled<
   T extends keyof JSX.IntrinsicElements | ComponentType<any>
 >(Component: T) {
   return function <P extends Partial<StyledProps>>(

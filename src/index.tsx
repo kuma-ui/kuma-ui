@@ -1,4 +1,4 @@
-import { styled } from "./core/styled";
+import styled from "./styled";
 import { space } from "./system";
 import React from "react";
 

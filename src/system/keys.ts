@@ -31,11 +31,13 @@ export const styleKeys = {
     "position",
     "zIndex",
   ] as const,
+  color: ["bg", "color"] as const,
 };
 
 export type SpaceKeys = typeof styleKeys.space[number];
 export type TypographyKeys = typeof styleKeys.typography[number];
 export type LayoutKeys = typeof styleKeys.layout[number];
+export type ColorKeys = typeof styleKeys.color[number];
 
 export type StyledKeyType = SpaceKeys | TypographyKeys | LayoutKeys;
 
