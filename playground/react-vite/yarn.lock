@@ -584,7 +584,12 @@
     "escalade" "^3.1.1"
     "picocolors" "^1.0.0"
 
-"vite@^4.1.0-beta.0", "vite@^4.2.0":
+"vite-plugin-babel@^1.1.3":
+  "integrity" "sha512-WE8ORQm8530kj0geiDL1r/+P2MaU0b+5wL5E8Jq07aounFwRIUeJXziGiMr2DFQs78vaefB5GRKh257M8Z6gFQ=="
+  "resolved" "https://registry.npmjs.org/vite-plugin-babel/-/vite-plugin-babel-1.1.3.tgz"
+  "version" "1.1.3"
+
+"vite@^2.7.0 || ^3.0.0 || ^4.0.0", "vite@^4.1.0-beta.0", "vite@^4.2.0":
   "integrity" "sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg=="
   "resolved" "https://registry.npmjs.org/vite/-/vite-4.2.1.tgz"
   "version" "4.2.1"

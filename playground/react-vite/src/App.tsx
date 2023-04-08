@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "zero-styled/dist/styled";
 import { space } from "zero-styled/dist/system";
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <A p="4px">hello</A>
-      <div>hello</div>
+      <div>hello world</div>
     </div>
   );
 }
