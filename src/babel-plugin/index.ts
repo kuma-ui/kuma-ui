@@ -1,6 +1,5 @@
 import { sheet } from "../core/sheet";
 import { relative, basename, join } from "path";
-import { readFileSync } from "fs";
 import { Core } from "../babel";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
 import { extractStylePropsFromAST } from "./extractStyleFromAST";

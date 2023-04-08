@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
   "scripts": {
-    "start": "tsc && babel src --out-dir dist --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js",
-    "start:jsx": "tsc && babel src --out-dir dist --copy-files --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js"
+    "start": "tsc --emitDeclarationOnly && babel src --out-dir dist --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js",
+    "start:jsx": "tsc --emitDeclarationOnly && babel src --out-dir dist --copy-files --extensions \".ts,.tsx\" --config-file ./babel.config.cjs && node dist/index.js",
+    "build": "yarn build:dist && yarn build:declarations",
+    "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
+    "build:dist": "tsup src --format cjs,esm",
+    "typecheck": "tsc --noEmit --composite false"
   },
+  "main": "dist/index.js",
   "type": "commonjs",
   "author": "",
   "license": "MIT",
@@ -16,6 +21,7 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
+    "@babel/standalone": "^7.21.4",
     "@babel/types": "^7.21.4",
     "@types/babel__core": "^7.20.0",
     "@types/css": "^0.0.33",
@@ -25,7 +31,11 @@
     "react": "^18.2.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
+    "tsup": "^6.7.0",
     "typescript": "^5.0.3",
     "vite": "^4.2.1"
+  },
+  "dependencies": {
+    "@types/webpack": "^5.28.1"
   }
 }

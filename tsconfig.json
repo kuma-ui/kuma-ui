@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "module": "CommonJS",
+    "target": "es2018",
+    "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "strict": true,
     "jsx": "react",
@@ -10,7 +11,9 @@
     "typeRoots": ["./src/types", "node_modules/@types"],
     "moduleResolution": "node",
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationDir": "dist"
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules"]
