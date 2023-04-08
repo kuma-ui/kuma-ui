@@ -18,10 +18,11 @@ export const layout = (props: LayoutProps): string => {
   for (const key in props) {
     const cssValue = props[key as LayoutKeys];
     if (cssValue) {
-      const properties = layoutMappings[cssValue as LayoutKeys].split(",");
-      for (const property of properties) {
-        styles += `${property}: ${toCssUnit(cssValue)}; `;
-      }
+      //   const properties = layoutMappings[cssValue as LayoutKeys].split(",");
+      //   for (const property of properties) {
+      //     styles += `${property}: ${toCssUnit(cssValue)}; `;
+      //   }
+      styles += `${key}: ${toCssUnit(cssValue)}; `;
     }
   }
 

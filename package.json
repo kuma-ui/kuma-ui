@@ -21,19 +21,22 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
-    "@babel/standalone": "^7.21.4",
     "@babel/types": "^7.21.4",
+    "@rollup/plugin-babel": "^6.0.3",
     "@types/babel__core": "^7.20.0",
     "@types/css": "^0.0.33",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.32",
+    "@types/webpack-sources": "^3.2.0",
     "css": "^3.0.0",
     "react": "^18.2.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.3",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "webpack": "^5.78.0",
+    "webpack-sources": "^3.2.3"
   },
   "dependencies": {
     "@types/webpack": "^5.28.1"

@@ -1,8 +1,12 @@
 import { SpaceProps } from "./space";
 import { TypographyProps } from "./typography";
 import { LayoutProps } from "./layout";
+import { ColorProps } from "./color";
 
-export type StyledProps = SpaceProps & TypographyProps & LayoutProps;
+export type StyledProps = SpaceProps &
+  TypographyProps &
+  LayoutProps &
+  ColorProps;
 
 type StyleFunction = (props: StyledProps) => string;
 
