@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "zero-styled/dist/styled";
-import { space } from "zero-styled/dist/system";
+import { space } from "zero-styled/dist/system/index";
 
 function App() {
   const [count, setCount] = useState(0);

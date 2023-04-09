@@ -11,16 +11,7 @@ import { resolve } from "path";
 export default defineConfig({
   plugins: [
     react({
-      babel: {
-        plugins: [
-          [
-            resolve(__dirname, "../../dist/babel-plugin/index.js"),
-            {
-              tagName: "styled",
-            },
-          ],
-        ],
-      },
+      jsxRuntime: "classic",
     }),
     zeroStyled(),
   ],
