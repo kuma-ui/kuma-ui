@@ -36,3 +36,40 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
 
   return { filteredAttributes, styledProps };
 }
+
+/**
+ * Extracts style props from an ObjectExpression in a React.createElement call
+ * and returns the filtered properties and the extracted style props.
+ *
+ * @param objectExpression - The ObjectExpression node from which style props are to be extracted
+ * @returns An object containing the filtered properties and the extracted style props
+ */
+export function extractStylePropsFromObjectExpression(
+  objectExpression: t.ObjectExpression
+): {
+  filteredProperties: t.ObjectProperty[];
+  styledProps: { [key: string]: string | number };
+} {
+  const styledProps: { [key: string]: string | number } = {};
+
+  const filteredProperties = objectExpression.properties.filter((prop) => {
+    if (
+      t.isObjectProperty(prop) &&
+      t.isIdentifier(prop.key) &&
+      isStyledProp(prop.key.name)
+    ) {
+      if (t.isStringLiteral(prop.value)) {
+        styledProps[prop.key.name] = prop.value.value;
+      } else if (
+        t.isNumericLiteral(prop.value) ||
+        t.isStringLiteral(prop.value)
+      ) {
+        styledProps[prop.key.name] = prop.value.value;
+      }
+      return false;
+    }
+    return true;
+  }) as t.ObjectProperty[];
+
+  return { filteredProperties, styledProps };
+}

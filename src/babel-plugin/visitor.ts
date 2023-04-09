@@ -1,13 +1,16 @@
-import { sheet } from "../sheet";
+import { Sheet, sheet } from "../sheet";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
 import { extractStylePropsFromAST } from "./extractStyleFromAST";
-import { JSXElement, JSXExpressionContainer } from "@babel/types";
+import {
+  JSXElement,
+  JSXExpressionContainer,
+  ObjectExpression,
+} from "@babel/types";
 import { combinedStyles } from "../system";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { insertStylesheetLink } from "./insertStylesheetLink";
-import { promises as fs } from "fs";
-import { join } from "path";
+import { processHTMLTag } from "./processHTMLTag";
 
 const v: PluginObj<PluginPass>["visitor"] = {};
 
@@ -43,7 +46,6 @@ export const visitor = ({ types: t, template }: Core) => {
       }
     },
     JSXElement(path: NodePath<JSXElement>) {
-      insertStylesheetLink(path, t);
       const openingElement = path.get("openingElement");
 
       if (t.isJSXOpeningElement(openingElement.node)) {
@@ -72,6 +74,21 @@ export const visitor = ({ types: t, template }: Core) => {
             )
           );
         }
+      }
+    },
+    CallExpression(path) {
+      const { node } = path;
+      if (
+        node.callee.type === "MemberExpression" &&
+        t.isIdentifier(node.callee.object) &&
+        node.callee.object.name === "React" &&
+        node.callee.property.type === "Identifier" &&
+        (node.callee.property.name === "createElement" ||
+          node.callee.property.name === "cloneElement")
+      ) {
+        processHTMLTag(false)(
+          path.get("arguments.1") as NodePath<ObjectExpression>
+        );
       }
     },
     Program(path) {

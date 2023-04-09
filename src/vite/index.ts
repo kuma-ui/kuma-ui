@@ -7,19 +7,18 @@ import {
 import { Plugin } from "vite";
 import { sheet } from "../sheet";
 import { join } from "path";
+import react from "@vitejs/plugin-react";
 
 export default function zeroStyled(): Plugin {
   return {
     name: "zero-styled",
     enforce: "post",
     async transform(code: string, id: string) {
+      requireReact(code, id);
+      if (id.includes("zero-styled/dist")) return;
       if (!/\.(t|j)sx?$/.test(id)) return;
-      transform(code, id);
-      // if (typeof process !== "undefined" && process.versions.node) {
-      //   const { transform } = await import("../babel-plugin/transform");
-      //   const result = transform(code, id);
-      //   return result.code;
-      // }
+      const result = await transform(code, id);
+      return result?.code;
     },
     async writeBundle() {
       const css = sheet.getCSS();
@@ -29,18 +28,16 @@ export default function zeroStyled(): Plugin {
         source: css,
       });
     },
-    configureServer(server) {
-      return () =>
-        server.middlewares.use((req, res, next) => {
-          if (req.url === "/zero-styled.css") {
-            const css = sheet.getCSS();
-            console.log(css);
-            res.setHeader("Content-Type", "text/css");
-            res.end(css);
-          } else {
-            return next();
-          }
-        });
-    },
   };
 }
+
+const requireReact = (code: string, id: string) => {
+  if (id.endsWith(".jsx") || id.endsWith(".tsx")) {
+    if (!/^\s*import\s+React\s+from\s+['"]react['"]/.test(code)) {
+      return {
+        code: "import React from 'react';\n" + code,
+        map: { mappings: "" },
+      };
+    }
+  }
+};

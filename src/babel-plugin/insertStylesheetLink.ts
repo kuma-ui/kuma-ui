@@ -6,7 +6,6 @@ export function insertStylesheetLink(
   t: typeof import("@babel/types")
 ) {
   const openingElement = path.get("openingElement");
-  console.log(path.get("openingElement").node.name);
   if (
     t.isJSXIdentifier(openingElement.node.name) &&
     openingElement.node.name.name === "head"
