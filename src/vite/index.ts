@@ -23,7 +23,6 @@ export default function zeroStyled(): Plugin {
     },
     async writeBundle() {
       const css = sheet.getCSS();
-      const { promises: fs } = await import("fs");
       this.emitFile({
         type: "asset",
         fileName: "zero-styled.css",
