@@ -1,34 +1,47 @@
 import babel from "@babel/core";
 import zeroStyledPlugin from "../babel-plugin";
-import { transform as zeroStyledTransform } from "../babel-plugin/transform";
+import {
+  transform,
+  transform as zeroStyledTransform,
+} from "../babel-plugin/transform";
 import { Plugin } from "vite";
 import { sheet } from "../sheet";
 import { join } from "path";
 
 export default function zeroStyled(): Plugin {
-  let mode = "";
   return {
     name: "zero-styled",
-    enforce: "pre",
+    enforce: "post",
     async transform(code: string, id: string) {
       if (!/\.(t|j)sx?$/.test(id)) return;
-      if (mode === "development") return;
-
-      if (typeof process !== "undefined" && process.versions.node) {
-        const { transform } = await import("../babel-plugin/transform");
-        const result = transform(code, id);
-        return result.code;
-      }
+      transform(code, id);
+      // if (typeof process !== "undefined" && process.versions.node) {
+      //   const { transform } = await import("../babel-plugin/transform");
+      //   const result = transform(code, id);
+      //   return result.code;
+      // }
     },
     async writeBundle() {
       const css = sheet.getCSS();
-      if (typeof process !== "undefined" && process.versions.node) {
-        const { promises: fs } = await import("fs");
-        await fs.writeFile(join(process.cwd(), "zero-styled.css"), css);
-      }
+      const { promises: fs } = await import("fs");
+      this.emitFile({
+        type: "asset",
+        fileName: "zero-styled.css",
+        source: css,
+      });
     },
-    configResolved(config) {
-      mode = config.mode;
+    configureServer(server) {
+      return () =>
+        server.middlewares.use((req, res, next) => {
+          if (req.url === "/zero-styled.css") {
+            const css = sheet.getCSS();
+            console.log(css);
+            res.setHeader("Content-Type", "text/css");
+            res.end(css);
+          } else {
+            return next();
+          }
+        });
     },
   };
 }

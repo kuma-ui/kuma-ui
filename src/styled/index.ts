@@ -34,14 +34,6 @@ export default function styled<
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => string)[]
   ): React.FC<StyledComponentProps<T> & P> {
-    const StyledComponent: React.FC<StyledComponentProps<T> & P> = (props) => {
-      const className = sheet.addRule(combinedStyles(props));
-      return createElement(Component, {
-        "data-zero-styled": true,
-        className,
-        ...props,
-      });
-    };
-    return StyledComponent;
+    throw Error('Using the "styled" tag in runtime is not supported.');
   };
 }

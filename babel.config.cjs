@@ -1,10 +1,5 @@
 const path = require("path");
 
-// module.exports = {
-//   presets: ["@babel/preset-typescript", "@babel/preset-env"],
-//   plugins: [path.resolve(__dirname, "dist/babel-plugin/index.js")],
-// };
-
 module.exports = {
   plugins: [
     [

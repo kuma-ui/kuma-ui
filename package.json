@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit --composite false"
   },
   "main": "dist/index.js",
-  "type": "commonjs",
+  "types": "dist/index.d.ts",
   "author": "",
   "license": "MIT",
   "devDependencies": {

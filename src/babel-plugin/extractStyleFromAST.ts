@@ -34,7 +34,5 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
     return true;
   }) as t.JSXAttribute[];
 
-  console.log(filteredAttributes);
-
   return { filteredAttributes, styledProps };
 }
