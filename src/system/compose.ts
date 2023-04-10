@@ -10,7 +10,7 @@ export type StyledProps = SpaceProps &
   ColorProps &
   FlexProps;
 
-type StyleFunction = (props: StyledProps) => string;
+export type StyleFunction = (props: StyledProps) => string;
 
 /**
  * Composes multiple style functions into a single style function.

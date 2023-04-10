@@ -1,7 +1,8 @@
 import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
+import { applyResponsiveStyles } from "./responsive";
 
-export type FlexProps = Partial<Record<FlexKeys, string>>;
+export type FlexProps = Partial<Record<FlexKeys, string | string[]>>;
 
 const flexMappings: Record<FlexKeys, string> = {
   flexDir: "flex-direction",
@@ -21,7 +22,8 @@ export const flex = (props: FlexProps): string => {
     const cssValue = props[key as FlexKeys];
     if (cssValue) {
       const cssProperty = flexMappings[key as FlexKeys];
-      styles += `${cssProperty}: ${cssValue}; `;
+      // styles += `${cssProperty}: ${cssValue}; `;
+      styles += applyResponsiveStyles(cssProperty, cssValue);
     }
   }
 

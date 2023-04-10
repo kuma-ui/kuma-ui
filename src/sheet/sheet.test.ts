@@ -1,10 +1,9 @@
-import { Sheet } from ".";
+import { Sheet, sheet } from ".";
 import { describe, expect, test, beforeEach } from "@jest/globals";
 
 describe("Sheet class", () => {
-  let sheet: Sheet;
   beforeEach(() => {
-    sheet = new Sheet();
+    sheet.reset();
   });
 
   test("addRule() should add a new rule with a generated ID", () => {

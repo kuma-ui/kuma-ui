@@ -15,7 +15,7 @@ describe("compose function", () => {
       width: "100%",
       bg: "red",
       color: "red",
-      flexDir: "column",
+      flexDir: ["column", "row"],
     };
     // Act
     const styles = combinedFunction(props);

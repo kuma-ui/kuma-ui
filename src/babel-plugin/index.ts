@@ -5,6 +5,10 @@ import { sheet } from "../sheet";
 import { writeCSSFile } from "./writeCSSfile";
 import path from "path";
 
+export type BabelPluginOption = {
+  breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
+};
+
 const plugin = (core: Core): PluginObj => {
   return {
     name: "zero-styled-plugin",

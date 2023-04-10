@@ -6,9 +6,14 @@ export interface Rule {
 }
 
 export class Sheet {
+  private static instance: Sheet;
   private rules: Rule[];
   constructor() {
     this.rules = [];
+    if (Sheet.instance) {
+      throw new Error("You can only create one instance!");
+    }
+    Sheet.instance = this;
   }
 
   addRule(css: string): string {
@@ -33,6 +38,10 @@ export class Sheet {
   getCSS(): string {
     this.removeDuplicates();
     return this.rules.map((rule) => `.${rule.id} {${rule.css}}`).join("\n");
+  }
+
+  reset() {
+    this.rules = [];
   }
 }
 
