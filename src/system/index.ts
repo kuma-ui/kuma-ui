@@ -9,5 +9,5 @@ export { StyledKeyType, isStyledProp } from "./keys";
 
 export const combinedStyles = compose(space, typography, layout, color, flex);
 
-export { space, typography, layout };
+export { space, typography, layout, color, flex };
 export type { StyledProps };

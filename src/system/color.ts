@@ -1,5 +1,4 @@
 import { ColorKeys } from "./keys";
-import { toCssUnit } from "./toCSS";
 
 export type ColorProps = Partial<Record<ColorKeys, string | number>>;
 
@@ -13,10 +12,8 @@ export const color = (props: ColorProps): string => {
   for (const key in colorMappings) {
     const cssValue = props[key as ColorKeys];
     if (cssValue) {
-      const properties = colorMappings[key as ColorKeys].split(",");
-      for (const property of properties) {
-        styles += `${property}: ${toCssUnit(cssValue)}; `;
-      }
+      const property = colorMappings[key as ColorKeys];
+      styles += `${property}: ${cssValue}; `;
     }
   }
 
