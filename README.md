@@ -2,6 +2,15 @@
 
 Zero-Styled is a CSS-in-JS library that combines the best of utility-first and zero-runtime CSS extraction for blazing-fast performance. It is inspired by styled-system, but aims to provide a zero-runtime alternative with build-time CSS extraction using a Babel plugin. Zero-Styled allows you to create reusable, composable, and responsive design systems without the runtime overhead.
 
+# Features
+
+- Zero-runtime CSS extraction for optimal performance
+- Build-time CSS generation using Babel or Vite plugins
+- Responsive design with breakpoints and media queries
+- Utility-first approach for rapid UI development
+- Customizable theming and design tokens
+- Compatible with popular bundlers like Webpack and Vite
+
 # Roadmap
 
 ### Improve Serialization and interpolation handling:
