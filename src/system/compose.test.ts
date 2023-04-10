@@ -21,7 +21,6 @@ describe("compose function", () => {
     // Act
     const styles = combinedFunction(props);
 
-    console.log(styles);
     // Assert
     expect(styles).toContain("margin: 8px");
     expect(styles).toContain("font-size: 16px");

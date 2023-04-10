@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled from "zero-styled/dist/styled";
-import { space } from "zero-styled/dist/system/index";
+import { space, combinedStyles } from "zero-styled/dist/system/index";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <A p="4px" m="2px">
+      <A p="4px" m="2px" fontSize="22px" display="flex">
         hello
       </A>
       <div>hello world</div>
@@ -18,5 +18,5 @@ function App() {
 export default App;
 
 const A = styled("div")`
-  ${space}
+  ${combinedStyles}
 `;
