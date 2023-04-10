@@ -16,8 +16,9 @@
     "declarationDir": "dist",
     "paths": {
       "@zero-styled/*": ["./src"]
-    }
+    },
+    "types": ["jest", "@types/jest", "node"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/**/*.test.ts"]
 }
