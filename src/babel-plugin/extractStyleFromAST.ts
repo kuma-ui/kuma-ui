@@ -1,6 +1,6 @@
-import { types as t } from "@babel/core";
-import type { JSXOpeningElement } from "@babel/types";
-import { isStyledProp } from "../system";
+import {types as t} from "@babel/core";
+import type {JSXOpeningElement} from "@babel/types";
+import {isStyledProp} from "../system";
 
 /**
  * Extracts style props from a JSX opening element and returns the filtered
@@ -11,9 +11,9 @@ import { isStyledProp } from "../system";
  */
 export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
   filteredAttributes: t.JSXAttribute[];
-  styledProps: { [key: string]: string | number };
+  styledProps: {[key: string]: string | number};
 } {
-  const styledProps: { [key: string]: string | number } = {};
+  const styledProps: {[key: string]: string | number} = {};
 
   const filteredAttributes = openingElement.attributes.filter((attr) => {
     if (
@@ -24,7 +24,7 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
       if (t.isStringLiteral(attr.value)) {
         styledProps[attr.name.name] = attr.value.value;
       } else if (t.isJSXExpressionContainer(attr.value)) {
-        const { expression } = attr.value;
+        const {expression} = attr.value;
         if (t.isNumericLiteral(expression) || t.isStringLiteral(expression)) {
           styledProps[attr.name.name] = expression.value;
         }
@@ -34,7 +34,7 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
     return true;
   }) as t.JSXAttribute[];
 
-  return { filteredAttributes, styledProps };
+  return {filteredAttributes, styledProps};
 }
 
 /**
@@ -48,9 +48,9 @@ export function extractStylePropsFromObjectExpression(
   objectExpression: t.ObjectExpression
 ): {
   filteredProperties: t.ObjectProperty[];
-  styledProps: { [key: string]: string | number };
+  styledProps: {[key: string]: string | number};
 } {
-  const styledProps: { [key: string]: string | number } = {};
+  const styledProps: {[key: string]: string | number} = {};
 
   const filteredProperties = objectExpression.properties.filter((prop) => {
     if (
@@ -71,5 +71,5 @@ export function extractStylePropsFromObjectExpression(
     return true;
   }) as t.ObjectProperty[];
 
-  return { filteredProperties, styledProps };
+  return {filteredProperties, styledProps};
 }

@@ -1,10 +1,10 @@
 import * as parser from "@babel/parser";
 import traverse from "@babel/traverse";
 import generate from "@babel/generator";
-import { sheet } from "../sheet";
-import { extractStylePropsFromAST } from "./extractStyleFromAST";
-import { combinedStyles } from "../system";
-import { visitor } from "./visitor";
+import {sheet} from "../sheet";
+import {extractStylePropsFromAST} from "./extractStyleFromAST";
+import {combinedStyles} from "../system";
+import {visitor} from "./visitor";
 import {
   template,
   types as t,
@@ -13,7 +13,7 @@ import {
   transformSync,
   transformAsync,
 } from "@babel/core";
-import type { ParseResult } from "@babel/core";
+import type {ParseResult} from "@babel/core";
 import zeroStyledPlugin from "./index";
 
 export async function transform(code: string, id: string) {
