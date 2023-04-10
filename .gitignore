@@ -3,3 +3,4 @@
 src/**/**.js
 /dist
 yarn-error.log
+/coverage
