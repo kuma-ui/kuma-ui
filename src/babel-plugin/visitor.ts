@@ -11,6 +11,7 @@ import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { insertStylesheetLink } from "./insertStylesheetLink";
 import { processHTMLTag } from "./processHTMLTag";
+import p from "path";
 
 const v: PluginObj<PluginPass>["visitor"] = {};
 
@@ -91,8 +92,14 @@ export const visitor = ({ types: t, template }: Core) => {
         );
       }
     },
-    Program(path) {
+    Program(path, pass) {
       ensureReactImport(path, t);
+      // if (this.filename) {
+      //   const relativePath = p.relative(
+      //     p.dirname(this.filename),
+      //     p.join(process.cwd(), "zero-styled.css")
+      //   );
+      // }
     },
   };
   return visitor;

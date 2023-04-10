@@ -6,8 +6,7 @@ import {
 } from "../babel-plugin/transform";
 import { Plugin } from "vite";
 import { sheet } from "../sheet";
-import { join } from "path";
-import react from "@vitejs/plugin-react";
+import path from "path";
 
 export default function zeroStyled(): Plugin {
   return {
@@ -18,7 +17,8 @@ export default function zeroStyled(): Plugin {
       if (id.includes("zero-styled/dist")) return;
       if (!/\.(t|j)sx?$/.test(id)) return;
       const result = await transform(code, id);
-      return result?.code;
+      if (!result?.code) return;
+      return importCSS(result?.code, id);
     },
     async writeBundle() {
       const css = sheet.getCSS();
@@ -39,5 +39,17 @@ const requireReact = (code: string, id: string) => {
         map: { mappings: "" },
       };
     }
+  }
+};
+
+const importCSS = (code: string, id: string) => {
+  if (id.endsWith(".jsx") || id.endsWith(".tsx")) {
+    const rootDir = process.cwd(); // the CSS file is in the root directory of the project (check writeCSSfile.ts)
+    const currentFileDir = path.dirname(id);
+    const relativePathToRoot = path.relative(currentFileDir, rootDir);
+    const cssImportPath = path
+      .join(relativePathToRoot, "zero-styled.css")
+      .replace(/\\/g, "/");
+    return `import '${cssImportPath}';\n${code}`;
   }
 };
