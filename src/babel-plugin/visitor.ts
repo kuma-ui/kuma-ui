@@ -93,12 +93,6 @@ export const visitor = ({ types: t, template }: Core) => {
     },
     Program(path, pass) {
       ensureReactImport(path, t);
-      // if (this.filename) {
-      //   const relativePath = p.relative(
-      //     p.dirname(this.filename),
-      //     p.join(process.cwd(), "zero-styled.css")
-      //   );
-      // }
     },
   };
   return visitor;

@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import styled from "zero-styled/dist/styled";
-import { space, combinedStyles } from "zero-styled/dist/system/index";
+import { typography, combinedStyles } from "zero-styled/dist/system/index";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
     <div>
-      <A p="4px" m="2px" fontSize="22px" display="flex">
+      <Box p="4px" m="2px" fontSize="22px" display="flex" color="red">
         hello
-      </A>
-      <div>hello world</div>
+      </Box>
+      <Text fontSize="40px">hello world</Text>
     </div>
   );
 }
 
 export default App;
 
-const A = styled("div")`
+const Box = styled("div")`
   ${combinedStyles}
+`;
+
+const Text = styled("p")`
+  ${typography}
 `;
