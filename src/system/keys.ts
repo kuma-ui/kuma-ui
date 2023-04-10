@@ -31,6 +31,16 @@ export const styleKeys = {
     "position",
     "zIndex",
   ] as const,
+  flex: [
+    "flexDir",
+    "justify",
+    "alignItems",
+    "alignContent",
+    "flexWrap",
+    "flexGrow",
+    "flexShrink",
+    "flexBasis",
+  ] as const,
   color: ["bg", "color"] as const,
 };
 
@@ -38,6 +48,7 @@ export type SpaceKeys = typeof styleKeys.space[number];
 export type TypographyKeys = typeof styleKeys.typography[number];
 export type LayoutKeys = typeof styleKeys.layout[number];
 export type ColorKeys = typeof styleKeys.color[number];
+export type FlexKeys = typeof styleKeys.flex[number];
 
 export type StyledKeyType = SpaceKeys | TypographyKeys | LayoutKeys;
 

@@ -15,10 +15,11 @@ const typographyMappings: Record<TypographyKeys, string> = {
 export const typography = (props: TypographyProps): string => {
   let styles = "";
 
-  for (const key in props) {
-    const cssValue = typographyMappings[key as TypographyKeys];
+  for (const key in typographyMappings) {
+    const cssProperty = typographyMappings[key as TypographyKeys];
+    const cssValue = props[key as TypographyKeys];
     if (cssValue) {
-      styles += `${key}: ${toCssUnit(cssValue)}; `;
+      styles += `${cssProperty}: ${toCssUnit(cssValue)}; `;
     }
   }
 
