@@ -1,19 +1,24 @@
 import { toCssUnit } from "./toCSS";
 import { LayoutKeys } from "./keys";
 
-export type LayoutProps = Partial<Record<LayoutKeys, string>>;
+export type LayoutProps = Partial<Record<LayoutKeys, string | number>>;
 
-const camelToKebab = (str: string): string =>
-  str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+const layoutMappings: Record<LayoutKeys, string> = {
+  width: "width",
+  height: "height",
+  display: "display",
+  overflow: "overflow",
+  position: "position",
+  zIndex: "z-index",
+};
 
 export const layout = (props: LayoutProps): string => {
   let styles = "";
-
-  for (const key in props) {
+  for (const key in layoutMappings) {
     const cssValue = props[key as LayoutKeys];
     if (cssValue) {
-      const cssProperty = camelToKebab(key);
-      styles += `${cssProperty}: ${cssValue}; `;
+      const property = layoutMappings[key as LayoutKeys];
+      styles += `${property}: ${toCssUnit(cssValue)}; `;
     }
   }
 

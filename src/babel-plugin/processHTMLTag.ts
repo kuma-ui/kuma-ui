@@ -56,6 +56,8 @@ const processReactCreateElementHTMLTag = (
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;
   if (Object.keys(styledProps).length > 0) {
+    console.log(styledProps);
+    console.log(combinedStyles(styledProps));
     const className = sheet.addRule(combinedStyles(styledProps));
     path.node.properties.push(
       t.objectProperty(t.identifier("className"), t.stringLiteral(className))

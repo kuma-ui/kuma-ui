@@ -9,7 +9,6 @@ import {
 import { combinedStyles } from "../system";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
-import { insertStylesheetLink } from "./insertStylesheetLink";
 import { processHTMLTag } from "./processHTMLTag";
 import p from "path";
 

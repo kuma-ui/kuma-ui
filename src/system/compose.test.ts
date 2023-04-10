@@ -17,7 +17,6 @@ describe("compose function", () => {
       color: "red",
       flexDir: "column",
     };
-
     // Act
     const styles = combinedFunction(props);
 
@@ -27,5 +26,15 @@ describe("compose function", () => {
     expect(styles).toContain("width: 100%");
     expect(styles).toContain("background-color: red");
     expect(styles).toContain("flex-direction: column");
+  });
+
+  test("should not include invalid keys in the resulting CSS", () => {
+    // Arrange
+    const props = { invalid: true };
+    // Act
+    const styles = compose(space)(props as any);
+
+    // Assert
+    expect(styles).toBe("");
   });
 });

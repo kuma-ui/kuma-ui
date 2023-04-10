@@ -1,6 +1,6 @@
 import { ColorKeys } from "./keys";
 
-export type ColorProps = Partial<Record<ColorKeys, string | number>>;
+export type ColorProps = Partial<Record<ColorKeys, string>>;
 
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background-color",
