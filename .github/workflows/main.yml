@@ -1,0 +1,31 @@
+name: testing
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    name: Node ${{ matrix.node_version }} testing
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [14]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup node ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: install packages
+        run: yarn install
+
+      - name: type check
+        run: yarn typecheck
+
+      - name: run test
+        run: yarn test
