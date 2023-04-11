@@ -3,18 +3,26 @@ import { describe, expect, test, beforeEach } from "@jest/globals";
 
 describe("flex utility function", () => {
   // Arrange
-  const testCases: Array<[FlexProps, string]> = [
-    [{ flexDir: "column" }, "flex-direction: column; "],
-    [{ justify: "center" }, "justify-content: center; "],
+  const testCases: Array<[FlexProps, string, string]> = [
+    [{ flexDir: "column" }, "flex-direction: column;", ""],
+    [{ justify: "center" }, "justify-content: center;", ""],
   ];
 
   test.each(testCases)(
     "should return the correct CSS styles for the given FlexProps",
-    (props, expectedStyles) => {
+    (props, expectedStyles, expectedMediaStyle) => {
       // Act
       const styles = flex(props);
+      const mediaString = Object.entries(styles.media)
+        .map(
+          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`
+        )
+        .join("");
       // Asert
-      expect(styles).toBe(expectedStyles);
+      expect(styles.base.replace(/\s/g, "")).toBe(
+        expectedStyles.replace(/\s/g, "")
+      );
+      expect(mediaString.replace(/\s/g, "")).toBe(expectedMediaStyle);
     }
   );
 
@@ -27,6 +35,6 @@ describe("flex utility function", () => {
 
     // Act
     const style = flex(invalidProps as any);
-    expect(style).toBe("");
+    expect(style.base.replace(/\s/g, "")).toBe("".replace(/\s/g, ""));
   });
 });

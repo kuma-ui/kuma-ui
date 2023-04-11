@@ -51,7 +51,6 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
       }
     }
   }
-
   return {
     base: baseStyles,
     media: mediaStyles,

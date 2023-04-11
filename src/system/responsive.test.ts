@@ -12,7 +12,8 @@ describe("applyResponsiveStyles", () => {
     const result = applyResponsiveStyles(cssProperty, cssValue);
 
     // Assert
-    expect(result).toBe(expected);
+    expect(result.base.replace(/\s/g, "")).toBe(expected.replace(/\s/g, ""));
+    expect(result.media).toEqual({});
   });
 
   test("returns a base CSS rule and media queries when given an array of values", () => {
@@ -24,6 +25,12 @@ describe("applyResponsiveStyles", () => {
     const result = applyResponsiveStyles(cssProperty, cssValues);
 
     // Assert
-    expect(result).toContain("@media");
+    expect(result.base).toBe("margin-top: 10px;");
+    expect(result.media[Object.keys(result.media)[0]]).toBe(
+      "margin-top: 20px;"
+    );
+    expect(result.media[Object.keys(result.media)[1]]).toBe(
+      "margin-top: 30px;"
+    );
   });
 });

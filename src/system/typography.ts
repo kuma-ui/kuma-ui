@@ -22,7 +22,19 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
     const cssValue = props[key as TypographyKeys];
     if (cssValue) {
       const property = typographyMappings[key as TypographyKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
+      const converter = [
+        typographyMappings.fontSize,
+        typographyMappings.fontWeight,
+        typographyMappings.lineHeight,
+        typographyMappings.letterSpacing,
+      ].includes(property)
+        ? toCssUnit
+        : undefined;
+      const responsiveStyles = applyResponsiveStyles(
+        property,
+        cssValue,
+        converter
+      );
       baseStyles += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
         if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
@@ -30,6 +42,5 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
       }
     }
   }
-
   return { base: baseStyles, media: mediaStyles };
 };

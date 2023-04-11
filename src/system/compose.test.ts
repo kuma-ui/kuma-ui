@@ -8,7 +8,7 @@ import { flex } from "./flex";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
-    const combinedFunction = compose(space);
+    const combinedFunction = compose(space, typography, layout, color, flex);
     const props: StyledProps = {
       m: 8,
       fontSize: 16,
