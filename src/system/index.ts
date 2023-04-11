@@ -6,6 +6,7 @@ import { color } from "./color";
 import { flex } from "./flex";
 import { border } from "./border";
 import { position } from "./position";
+import { shadow } from "./shadow";
 import { compose, StyledProps, ResponsiveStyle } from "./compose";
 export { StyledKeyType, isStyledProp } from "./keys";
 
@@ -16,7 +17,8 @@ export const combinedStyles = compose(
   color,
   flex,
   border,
-  position
+  position,
+  shadow
 );
 
 export { compose, space, typography, layout, color, flex, border, position };
