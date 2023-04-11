@@ -71,7 +71,6 @@ export function extractStylePropsFromObjectExpression(
       if (t.isStringLiteral(prop.value) || t.isStringLiteral(prop.value)) {
         styledProps[prop.key.name] = prop.value.value;
       } else if (t.isArrayExpression(prop.value)) {
-        console.log(prop.value);
         styledProps[prop.key.name] = prop.value.elements
           .map((e) => {
             if (e?.type === "NumericLiteral" || e?.type === "StringLiteral") {
