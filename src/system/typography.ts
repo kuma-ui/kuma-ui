@@ -1,5 +1,7 @@
 import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
+import { ResponsiveStyle } from "./compose";
+import { applyResponsiveStyles } from "./responsive";
 
 export type TypographyProps = Partial<Record<TypographyKeys, string | number>>;
 
@@ -12,16 +14,33 @@ const typographyMappings: Record<TypographyKeys, string> = {
   fontFamily: "font-family",
 };
 
-export const typography = (props: TypographyProps): string => {
-  let styles = "";
+export const typography = (props: TypographyProps): ResponsiveStyle => {
+  let baseStyles = "";
+  const mediaStyles: ResponsiveStyle["media"] = {};
 
   for (const key in typographyMappings) {
-    const cssProperty = typographyMappings[key as TypographyKeys];
     const cssValue = props[key as TypographyKeys];
     if (cssValue) {
-      styles += `${cssProperty}: ${toCssUnit(cssValue)}; `;
+      const property = typographyMappings[key as TypographyKeys];
+      const converter = [
+        typographyMappings.fontSize,
+        typographyMappings.fontWeight,
+        typographyMappings.lineHeight,
+        typographyMappings.letterSpacing,
+      ].includes(property)
+        ? toCssUnit
+        : undefined;
+      const responsiveStyles = applyResponsiveStyles(
+        property,
+        cssValue,
+        converter
+      );
+      baseStyles += responsiveStyles.base;
+      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
+        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
+        else mediaStyles[breakpoint] = css;
+      }
     }
   }
-
-  return styles;
+  return { base: baseStyles, media: mediaStyles };
 };

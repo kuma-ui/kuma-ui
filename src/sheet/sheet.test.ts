@@ -1,10 +1,9 @@
-import { Sheet } from ".";
+import { Sheet, sheet } from ".";
 import { describe, expect, test, beforeEach } from "@jest/globals";
 
 describe("Sheet class", () => {
-  let sheet: Sheet;
   beforeEach(() => {
-    sheet = new Sheet();
+    sheet.reset();
   });
 
   test("addRule() should add a new rule with a generated ID", () => {
@@ -26,6 +25,18 @@ describe("Sheet class", () => {
     expect(id1).toBe(id2);
   });
 
+  test("addMediaRule() should add a new media rule with a generated ID", () => {
+    // Arrange
+    const className = "zero12345";
+    const css = "padding: 8px;";
+    const breakpoint = "576px";
+    const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
+    // Act
+    const id = sheet.addMediaRule(className, css, breakpoint);
+    // Assert
+    expect(sheet.getCSS()).toContain(mediaCss.replace(/\s/g, ""));
+  });
+
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
     const css = "color: red;";
@@ -33,6 +44,6 @@ describe("Sheet class", () => {
     // Act
     const cssString = sheet.getCSS();
     // Assert
-    expect(cssString).toContain(`.${id} {${css}}`);
+    expect(cssString).toContain(`.${id} {${css}}`.replace(/\s/g, ""));
   });
 });

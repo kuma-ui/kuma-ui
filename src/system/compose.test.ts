@@ -15,17 +15,17 @@ describe("compose function", () => {
       width: "100%",
       bg: "red",
       color: "red",
-      flexDir: "column",
+      flexDir: ["column", "row"],
     };
     // Act
     const styles = combinedFunction(props);
 
     // Assert
-    expect(styles).toContain("margin: 8px");
-    expect(styles).toContain("font-size: 16px");
-    expect(styles).toContain("width: 100%");
-    expect(styles).toContain("background-color: red");
-    expect(styles).toContain("flex-direction: column");
+    expect(styles.base).toContain("margin: 8px");
+    expect(styles.base).toContain("font-size: 16px");
+    expect(styles.base).toContain("width: 100%");
+    expect(styles.base).toContain("background-color: red");
+    expect(styles.base).toContain("flex-direction: column");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
@@ -35,6 +35,6 @@ describe("compose function", () => {
     const styles = compose(space)(props as any);
 
     // Assert
-    expect(styles).toBe("");
+    expect(styles.base).toBe("");
   });
 });

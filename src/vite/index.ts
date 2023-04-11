@@ -1,14 +1,20 @@
 import babel from "@babel/core";
 import zeroStyledPlugin from "../babel-plugin";
-import {
-  transform,
-  transform as zeroStyledTransform,
-} from "../babel-plugin/transform";
+import { transform } from "../babel-plugin/transform";
 import { Plugin } from "vite";
 import { sheet } from "../sheet";
 import path from "path";
+import { theme } from "../theme";
 
-export default function zeroStyled(): Plugin {
+export type VitePluginOption = {
+  breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
+};
+
+export default function zeroStyled(options?: VitePluginOption): Plugin {
+  if (options?.breakpoints && Object.keys(options.breakpoints).length > 0) {
+    theme.setBreakpoints(options.breakpoints);
+  }
+
   return {
     name: "zero-styled",
     enforce: "post",

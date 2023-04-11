@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div>
-      <Box p="4px" m="2px" fontSize="22px" display="flex" color="red">
+      <Box p={[4, 8]} m="2px" fontSize="22px" display="flex" color="red">
         hello
       </Box>
       <Text fontSize="40px">hello world</Text>

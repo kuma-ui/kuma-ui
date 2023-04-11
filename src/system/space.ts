@@ -1,7 +1,11 @@
 import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
+import { applyResponsiveStyles } from "./responsive";
+import { ResponsiveStyle } from "./compose";
 
-export type SpaceProps = Partial<Record<SpaceKeys, string | number>>;
+export type SpaceProps = Partial<
+  Record<SpaceKeys, string | number | (string | number)[]>
+>;
 
 const spaceMappings: Record<SpaceKeys, string> = {
   m: "margin",
@@ -20,17 +24,35 @@ const spaceMappings: Record<SpaceKeys, string> = {
   py: "padding-top,padding-bottom",
 };
 
-export const space = (props: SpaceProps): string => {
-  let styles = "";
+export const space = (props: SpaceProps): ResponsiveStyle => {
+  let baseStyles = "";
+  const mediaStyles: { [breakpoint: string]: string } = {};
+
   for (const key in spaceMappings) {
     const cssValue = props[key as SpaceKeys];
     if (cssValue) {
       const properties = spaceMappings[key as SpaceKeys].split(",");
       for (const property of properties) {
-        styles += `${property}: ${toCssUnit(cssValue)}; `;
+        const responsiveStyles = applyResponsiveStyles(
+          property,
+          cssValue,
+          toCssUnit
+        );
+        baseStyles += responsiveStyles.base;
+        for (const [breakpoint, css] of Object.entries(
+          responsiveStyles.media
+        )) {
+          if (mediaStyles[breakpoint]) {
+            mediaStyles[breakpoint] += css;
+          } else {
+            mediaStyles[breakpoint] = css;
+          }
+        }
       }
     }
   }
-
-  return styles;
+  return {
+    base: baseStyles,
+    media: mediaStyles,
+  };
 };

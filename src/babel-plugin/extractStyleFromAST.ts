@@ -1,6 +1,6 @@
-import {types as t} from "@babel/core";
-import type {JSXOpeningElement} from "@babel/types";
-import {isStyledProp} from "../system";
+import { types as t } from "@babel/core";
+import type { JSXOpeningElement } from "@babel/types";
+import { isStyledProp } from "../system";
 
 /**
  * Extracts style props from a JSX opening element and returns the filtered
@@ -11,9 +11,10 @@ import {isStyledProp} from "../system";
  */
 export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
   filteredAttributes: t.JSXAttribute[];
-  styledProps: {[key: string]: string | number};
+  styledProps: { [key: string]: string | number | (string | number)[] };
 } {
-  const styledProps: {[key: string]: string | number} = {};
+  const styledProps: { [key: string]: string | number | (string | number)[] } =
+    {};
 
   const filteredAttributes = openingElement.attributes.filter((attr) => {
     if (
@@ -24,9 +25,17 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
       if (t.isStringLiteral(attr.value)) {
         styledProps[attr.name.name] = attr.value.value;
       } else if (t.isJSXExpressionContainer(attr.value)) {
-        const {expression} = attr.value;
+        const { expression } = attr.value;
         if (t.isNumericLiteral(expression) || t.isStringLiteral(expression)) {
           styledProps[attr.name.name] = expression.value;
+        } else if (t.isArrayExpression(expression)) {
+          styledProps[attr.name.name] = expression.elements
+            .map((e) => {
+              if (e?.type === "NumericLiteral" || e?.type === "StringLiteral") {
+                return e.value;
+              }
+            })
+            .filter(Boolean) as (string | number)[];
         }
       }
       return false;
@@ -34,7 +43,7 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
     return true;
   }) as t.JSXAttribute[];
 
-  return {filteredAttributes, styledProps};
+  return { filteredAttributes, styledProps };
 }
 
 /**
@@ -48,9 +57,10 @@ export function extractStylePropsFromObjectExpression(
   objectExpression: t.ObjectExpression
 ): {
   filteredProperties: t.ObjectProperty[];
-  styledProps: {[key: string]: string | number};
+  styledProps: { [key: string]: string | number | (string | number)[] };
 } {
-  const styledProps: {[key: string]: string | number} = {};
+  const styledProps: { [key: string]: string | number | (string | number)[] } =
+    {};
 
   const filteredProperties = objectExpression.properties.filter((prop) => {
     if (
@@ -58,18 +68,21 @@ export function extractStylePropsFromObjectExpression(
       t.isIdentifier(prop.key) &&
       isStyledProp(prop.key.name)
     ) {
-      if (t.isStringLiteral(prop.value)) {
+      if (t.isStringLiteral(prop.value) || t.isStringLiteral(prop.value)) {
         styledProps[prop.key.name] = prop.value.value;
-      } else if (
-        t.isNumericLiteral(prop.value) ||
-        t.isStringLiteral(prop.value)
-      ) {
-        styledProps[prop.key.name] = prop.value.value;
+      } else if (t.isArrayExpression(prop.value)) {
+        styledProps[prop.key.name] = prop.value.elements
+          .map((e) => {
+            if (e?.type === "NumericLiteral" || e?.type === "StringLiteral") {
+              return e.value;
+            }
+          })
+          .filter(Boolean) as (string | number)[];
       }
       return false;
     }
     return true;
   }) as t.ObjectProperty[];
 
-  return {filteredProperties, styledProps};
+  return { filteredProperties, styledProps };
 }
