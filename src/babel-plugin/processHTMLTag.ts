@@ -32,7 +32,11 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.attributes = filteredAttributes;
   if (Object.keys(styledProps).length > 0) {
-    const className = sheet.addRule(combinedStyles(styledProps));
+    const style = combinedStyles(styledProps);
+    const className = sheet.addRule(style.base);
+    for (const [breakpoint, css] of Object.entries(style.media)) {
+      sheet.addMediaRule(className, css, breakpoint);
+    }
     path.node.attributes.push(
       t.jsxAttribute(t.jsxIdentifier("className"), t.stringLiteral(className))
     );
@@ -56,8 +60,11 @@ const processReactCreateElementHTMLTag = (
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;
   if (Object.keys(styledProps).length > 0) {
-    console.log(combinedStyles(styledProps));
-    const className = sheet.addRule(combinedStyles(styledProps));
+    const style = combinedStyles(styledProps);
+    const className = sheet.addRule(style.base);
+    for (const [breakpoint, css] of Object.entries(style.media)) {
+      sheet.addMediaRule(className, css, breakpoint);
+    }
     path.node.properties.push(
       t.objectProperty(t.identifier("className"), t.stringLiteral(className))
     );

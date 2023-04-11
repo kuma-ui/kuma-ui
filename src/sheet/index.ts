@@ -8,8 +8,10 @@ export interface Rule {
 export class Sheet {
   private static instance: Sheet;
   private rules: Rule[];
+  private responsive: string[];
   private constructor() {
     this.rules = [];
+    this.responsive = [];
   }
 
   static getInstance() {
@@ -27,9 +29,13 @@ export class Sheet {
     return id;
   }
 
-  addMediaRule(className: string, css: string, breakpoint: string): string {
-    const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
-    return this.addRule(mediaCss);
+  addMediaRule(className: string, css: string, breakpoint: string): void {
+    const mediaCss =
+      `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`.replace(
+        /\s/g,
+        ""
+      );
+    this.responsive.push(mediaCss);
   }
 
   removeDuplicates() {
@@ -42,14 +48,17 @@ export class Sheet {
       id: entry[0],
       css: entry[1],
     }));
+    this.responsive = [...new Set(this.responsive)];
   }
 
   getCSS(): string {
     this.removeDuplicates();
-    return this.rules
-      .map((rule) => `.${rule.id} {${rule.css}}`)
-      .join("\n")
-      .replace(/\s/g, "");
+    return (
+      this.rules
+        .map((rule) => `.${rule.id} {${rule.css}}`)
+        .join("\n")
+        .replace(/\s/g, "") + this.responsive.join("")
+    );
   }
 
   reset() {

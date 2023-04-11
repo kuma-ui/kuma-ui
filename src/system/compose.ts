@@ -10,7 +10,12 @@ export type StyledProps = SpaceProps &
   ColorProps &
   FlexProps;
 
-export type StyleFunction = (props: StyledProps) => string;
+export type ResponsiveStyle = {
+  base: string;
+  media: { [breakpoint: string]: string };
+};
+
+export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
 /**
  * Composes multiple style functions into a single style function.
@@ -26,22 +31,36 @@ export type StyleFunction = (props: StyledProps) => string;
  * // The `styles` variable now contains a single style string combining all the applied style functions.
  */
 export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
-  return (props: any): string => {
+  return (props: any): ResponsiveStyle => {
     let outputProps = { ...props };
 
-    return styleFunctions.reduce((styles, styleFunction) => {
-      const newStyles = styleFunction(outputProps);
-      const processedProps = Object.keys(outputProps).filter((key) =>
-        newStyles.includes(`${outputProps[key]}:`)
-      );
-      outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
-        if (!processedProps.includes(key)) {
-          remainingProps[key] = outputProps[key];
+    const combinedStyles = styleFunctions.reduce(
+      (styles, styleFunction) => {
+        const newStyles = styleFunction(outputProps);
+        styles.base += newStyles.base;
+        for (const [breakpoint, css] of Object.entries(newStyles.media)) {
+          if (styles.media[breakpoint]) {
+            styles.media[breakpoint] += css;
+          } else {
+            styles.media[breakpoint] = css;
+          }
         }
-        return remainingProps;
-      }, {} as any);
 
-      return styles + newStyles;
-    }, "");
+        const processedProps = Object.keys(outputProps).filter((key) =>
+          newStyles.base.includes(`${outputProps[key]}:`)
+        );
+        outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
+          if (!processedProps.includes(key)) {
+            remainingProps[key] = outputProps[key];
+          }
+          return remainingProps;
+        }, {} as any);
+
+        return styles;
+      },
+      { base: "", media: {} } as ResponsiveStyle
+    );
+
+    return combinedStyles;
   };
 };

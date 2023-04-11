@@ -8,7 +8,7 @@ import { flex } from "./flex";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
-    const combinedFunction = compose(space, typography, layout, color, flex);
+    const combinedFunction = compose(space);
     const props: StyledProps = {
       m: 8,
       fontSize: 16,
@@ -21,11 +21,11 @@ describe("compose function", () => {
     const styles = combinedFunction(props);
 
     // Assert
-    expect(styles).toContain("margin: 8px");
-    expect(styles).toContain("font-size: 16px");
-    expect(styles).toContain("width: 100%");
-    expect(styles).toContain("background-color: red");
-    expect(styles).toContain("flex-direction: column");
+    expect(styles.base).toContain("margin: 8px");
+    expect(styles.base).toContain("font-size: 16px");
+    expect(styles.base).toContain("width: 100%");
+    expect(styles.base).toContain("background-color: red");
+    expect(styles.base).toContain("flex-direction: column");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
@@ -35,6 +35,6 @@ describe("compose function", () => {
     const styles = compose(space)(props as any);
 
     // Assert
-    expect(styles).toBe("");
+    expect(styles.base).toBe("");
   });
 });

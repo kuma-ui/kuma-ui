@@ -34,7 +34,6 @@ describe("Sheet class", () => {
     // Act
     const id = sheet.addMediaRule(className, css, breakpoint);
     // Assert
-    expect(id.startsWith("zero")).toBeTruthy();
     expect(sheet.getCSS()).toContain(mediaCss.replace(/\s/g, ""));
   });
 
