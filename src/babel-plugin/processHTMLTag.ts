@@ -46,7 +46,7 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
 const processReactCreateElementHTMLTag = (
   path: NodePath<t.ObjectExpression>
 ) => {
-  const dataAttribute = path.node.properties.some(
+  const dataAttribute = path.node.properties?.some(
     (prop) =>
       t.isObjectProperty(prop) &&
       t.isIdentifier(prop.key) &&

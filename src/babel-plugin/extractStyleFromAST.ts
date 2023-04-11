@@ -62,7 +62,7 @@ export function extractStylePropsFromObjectExpression(
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};
 
-  const filteredProperties = objectExpression.properties.filter((prop) => {
+  const filteredProperties = objectExpression.properties?.filter((prop) => {
     if (
       t.isObjectProperty(prop) &&
       t.isIdentifier(prop.key) &&
