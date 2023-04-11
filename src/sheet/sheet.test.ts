@@ -32,6 +32,6 @@ describe("Sheet class", () => {
     // Act
     const cssString = sheet.getCSS();
     // Assert
-    expect(cssString).toContain(`.${id} {${css}}`);
+    expect(cssString).toContain(`.${id} {${css}}`.replace(/\s/g, ""));
   });
 });

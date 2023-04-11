@@ -6,13 +6,6 @@ describe("Theme", () => {
     theme.reset();
   });
 
-  test("should only allow a single instance of the Theme class", () => {
-    // Act & Assert
-    expect(() => {
-      new Theme(); // This should throw an error
-    }).toThrowError("You can only create one instance!");
-  });
-
   test("should allow setting and getting breakpoints", () => {
     // Arrange
     const breakpoints = {

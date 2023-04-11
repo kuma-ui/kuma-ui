@@ -9,12 +9,15 @@ export class Theme {
   private static instance: Theme;
   private _breakpoints: Record<string, string>;
 
-  constructor() {
+  private constructor() {
     this._breakpoints = defaultBreakpoints;
-    if (Theme.instance) {
-      throw new Error("You can only create one instance!");
+  }
+
+  static getInstance() {
+    if (!Theme.instance) {
+      Theme.instance = new Theme();
     }
-    Theme.instance = this;
+    return Theme.instance;
   }
 
   setBreakpoints(breakpoints: Record<string, string>) {
@@ -30,4 +33,4 @@ export class Theme {
   }
 }
 
-export const theme = new Theme();
+export const theme = Theme.getInstance();

@@ -7,6 +7,10 @@ describe("space utility function", () => {
     [{ m: 8 }, "margin: 8px; "],
     [{ mt: "8px" }, "margin-top: 8px; "],
     [{ mx: 8 }, "margin-left: 8px; margin-right: 8px; "],
+    [
+      { mx: [4, 8] },
+      "margin-left: 4px; @media (min-width: 576px) { margin-left: 8px; }margin-right: 4px; @media (min-width: 576px) { margin-right: 8px; }",
+    ],
   ];
 
   test.each(testCases)(
@@ -15,7 +19,7 @@ describe("space utility function", () => {
       // Act
       const styles = space(props);
       // Asert
-      expect(styles).toBe(expectedStyles);
+      expect(styles.replace(/\s/g, "")).toBe(expectedStyles.replace(/\s/g, ""));
     }
   );
 

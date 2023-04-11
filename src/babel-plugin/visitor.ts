@@ -63,10 +63,6 @@ export const visitor = ({ types: t, template }: Core) => {
         openingElement.node.attributes = filteredAttributes;
         if (Object.keys(styledProps).length > 0) {
           const className = sheet.addRule(combinedStyles(styledProps));
-          // if (typeof process !== "undefined" && process.versions.node) {
-          //   const css = sheet.getCSS();
-          //   fs.writeFile(join(process.cwd(), "zero-styled.css"), css);
-          // }
           openingElement.node.attributes.push(
             t.jsxAttribute(
               t.jsxIdentifier("className"),

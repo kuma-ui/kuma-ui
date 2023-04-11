@@ -8,15 +8,19 @@ export interface Rule {
 export class Sheet {
   private static instance: Sheet;
   private rules: Rule[];
-  constructor() {
+  private constructor() {
     this.rules = [];
-    if (Sheet.instance) {
-      throw new Error("You can only create one instance!");
+  }
+
+  static getInstance() {
+    if (!Sheet.instance) {
+      Sheet.instance = new Sheet();
     }
-    Sheet.instance = this;
+    return Sheet.instance;
   }
 
   addRule(css: string): string {
+    css = css.replace(/\s/g, "");
     const id = "zero" + generateHash(css);
     const existingRule = this.rules.find((rule) => rule.id === id);
     if (!existingRule) this.rules.push({ id, css });
@@ -37,7 +41,10 @@ export class Sheet {
 
   getCSS(): string {
     this.removeDuplicates();
-    return this.rules.map((rule) => `.${rule.id} {${rule.css}}`).join("\n");
+    return this.rules
+      .map((rule) => `.${rule.id} {${rule.css}}`)
+      .join("\n")
+      .replace(/\s/g, "");
   }
 
   reset() {
@@ -46,4 +53,4 @@ export class Sheet {
 }
 
 // Export a single instance of the Sheet class
-export const sheet = new Sheet();
+export const sheet = Sheet.getInstance();

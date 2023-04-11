@@ -22,7 +22,6 @@ export const flex = (props: FlexProps): string => {
     const cssValue = props[key as FlexKeys];
     if (cssValue) {
       const cssProperty = flexMappings[key as FlexKeys];
-      // styles += `${cssProperty}: ${cssValue}; `;
       styles += applyResponsiveStyles(cssProperty, cssValue);
     }
   }

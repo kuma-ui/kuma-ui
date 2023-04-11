@@ -1,7 +1,10 @@
 import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
+import { applyResponsiveStyles } from "./responsive";
 
-export type SpaceProps = Partial<Record<SpaceKeys, string | number>>;
+export type SpaceProps = Partial<
+  Record<SpaceKeys, string | number | (string | number)[]>
+>;
 
 const spaceMappings: Record<SpaceKeys, string> = {
   m: "margin",
@@ -27,7 +30,7 @@ export const space = (props: SpaceProps): string => {
     if (cssValue) {
       const properties = spaceMappings[key as SpaceKeys].split(",");
       for (const property of properties) {
-        styles += `${property}: ${toCssUnit(cssValue)}; `;
+        styles += applyResponsiveStyles(property, cssValue, toCssUnit);
       }
     }
   }
