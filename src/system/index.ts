@@ -7,8 +7,7 @@ import { flex } from "./flex";
 import { compose, StyledProps, ResponsiveStyle } from "./compose";
 export { StyledKeyType, isStyledProp } from "./keys";
 
-// export const combinedStyles = compose(space, typography, layout, color, flex);
-export const combinedStyles = compose(space, typography);
+export const combinedStyles = compose(space, typography, layout, color, flex);
 
 export { space, typography, layout, color, flex };
 export type { StyledProps, ResponsiveStyle };

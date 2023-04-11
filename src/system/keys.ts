@@ -44,13 +44,18 @@ export const styleKeys = {
   color: ["bg", "color"] as const,
 };
 
-export type SpaceKeys = typeof styleKeys.space[number];
-export type TypographyKeys = typeof styleKeys.typography[number];
-export type LayoutKeys = typeof styleKeys.layout[number];
-export type ColorKeys = typeof styleKeys.color[number];
-export type FlexKeys = typeof styleKeys.flex[number];
+export type SpaceKeys = (typeof styleKeys.space)[number];
+export type TypographyKeys = (typeof styleKeys.typography)[number];
+export type LayoutKeys = (typeof styleKeys.layout)[number];
+export type ColorKeys = (typeof styleKeys.color)[number];
+export type FlexKeys = (typeof styleKeys.flex)[number];
 
-export type StyledKeyType = SpaceKeys | TypographyKeys | LayoutKeys;
+export type StyledKeyType =
+  | SpaceKeys
+  | TypographyKeys
+  | LayoutKeys
+  | ColorKeys
+  | FlexKeys;
 
 export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;

@@ -12,7 +12,7 @@ function App() {
         m="2px"
         fontSize={["22px", "44px"]}
         display="flex"
-        color="red"
+        color={["red", "blue"]}
       >
         hello
       </Box>

@@ -9,7 +9,7 @@ import React, {
   createElement,
 } from "react";
 import { dataAttributeName } from "../utils/assignDataAttribute";
-import { ResponsiveStyle, StyledProps } from "../system";
+import { ResponsiveStyle, StyledProps, StyledKeyType } from "../system";
 import { sheet } from "../sheet";
 
 type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
@@ -33,7 +33,7 @@ export default function styled<
   return function <P extends Partial<StyledProps>>(
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => ResponsiveStyle)[]
-  ): React.FC<StyledComponentProps<T> & P> {
+  ): React.FC<Omit<StyledComponentProps<T>, StyledKeyType> & P> {
     throw Error('Using the "styled" tag in runtime is not supported.');
   };
 }
