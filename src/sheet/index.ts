@@ -27,6 +27,11 @@ export class Sheet {
     return id;
   }
 
+  addMediaRule(className: string, css: string, breakpoint: string): string {
+    const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
+    return this.addRule(mediaCss);
+  }
+
   removeDuplicates() {
     const hashMap = new Map<string, string>();
     for (const rule of this.rules) {

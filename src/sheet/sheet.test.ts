@@ -25,6 +25,19 @@ describe("Sheet class", () => {
     expect(id1).toBe(id2);
   });
 
+  test("addMediaRule() should add a new media rule with a generated ID", () => {
+    // Arrange
+    const className = "zero12345";
+    const css = "padding: 8px;";
+    const breakpoint = "576px";
+    const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
+    // Act
+    const id = sheet.addMediaRule(className, css, breakpoint);
+    // Assert
+    expect(id.startsWith("zero")).toBeTruthy();
+    expect(sheet.getCSS()).toContain(mediaCss.replace(/\s/g, ""));
+  });
+
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
     const css = "color: red;";
