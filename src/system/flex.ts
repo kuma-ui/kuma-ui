@@ -14,6 +14,7 @@ const flexMappings: Record<FlexKeys, string> = {
   flexGrow: "flex-grow",
   flexShrink: "flex-shrink",
   flexBasis: "flex-basis",
+  gap: "gap",
 } as const;
 
 export const flex = (props: FlexProps): ResponsiveStyle => {
@@ -24,7 +25,12 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue) {
       const property = flexMappings[key as FlexKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
+      const converter = property === "gap" ? toCssUnit : undefined;
+      const responsiveStyles = applyResponsiveStyles(
+        property,
+        cssValue,
+        converter
+      );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
         if (media[breakpoint]) media[breakpoint] += css;

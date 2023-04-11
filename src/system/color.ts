@@ -7,6 +7,7 @@ export type ColorProps = Partial<Record<ColorKeys, string | string[]>>;
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background-color",
   color: "color",
+  borderColor: "border-color",
 };
 
 export const color = (props: ColorProps): ResponsiveStyle => {

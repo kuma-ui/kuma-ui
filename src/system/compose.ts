@@ -3,12 +3,16 @@ import { TypographyProps } from "./typography";
 import { LayoutProps } from "./layout";
 import { ColorProps } from "./color";
 import { FlexProps } from "./flex";
+import { BorderProps } from "./border";
+import { PositionProps } from "./position";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
   LayoutProps &
   ColorProps &
-  FlexProps;
+  FlexProps &
+  BorderProps &
+  PositionProps;
 
 export type ResponsiveStyle = {
   base: string;
