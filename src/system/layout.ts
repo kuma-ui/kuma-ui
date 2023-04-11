@@ -3,7 +3,9 @@ import { LayoutKeys } from "./keys";
 import { ResponsiveStyle } from "./compose";
 import { applyResponsiveStyles } from "./responsive";
 
-export type LayoutProps = Partial<Record<LayoutKeys, string | number>>;
+export type LayoutProps = Partial<
+  Record<LayoutKeys, string | number | (string | number)[]>
+>;
 
 const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",

@@ -2,7 +2,7 @@ import { ColorKeys } from "./keys";
 import { ResponsiveStyle } from "./compose";
 import { applyResponsiveStyles } from "./responsive";
 
-export type ColorProps = Partial<Record<ColorKeys, string>>;
+export type ColorProps = Partial<Record<ColorKeys, string | string[]>>;
 
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background-color",

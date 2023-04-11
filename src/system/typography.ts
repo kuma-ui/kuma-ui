@@ -3,7 +3,9 @@ import { TypographyKeys } from "./keys";
 import { ResponsiveStyle } from "./compose";
 import { applyResponsiveStyles } from "./responsive";
 
-export type TypographyProps = Partial<Record<TypographyKeys, string | number>>;
+export type TypographyProps = Partial<
+  Record<TypographyKeys, string | number | (string | number)[]>
+>;
 
 const typographyMappings: Record<TypographyKeys, string> = {
   fontSize: "font-size",
