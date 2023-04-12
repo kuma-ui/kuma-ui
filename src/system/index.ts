@@ -8,6 +8,7 @@ import { border } from "./border";
 import { position } from "./position";
 import { shadow } from "./shadow";
 import { compose, StyledProps, ResponsiveStyle } from "./compose";
+import { PseudoProps } from "./pseudo";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export const combinedStyles = compose(
@@ -22,4 +23,4 @@ export const combinedStyles = compose(
 );
 
 export { compose, space, typography, layout, color, flex, border, position };
-export type { StyledProps, ResponsiveStyle };
+export type { StyledProps, ResponsiveStyle, PseudoProps };

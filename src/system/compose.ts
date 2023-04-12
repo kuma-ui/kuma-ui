@@ -7,7 +7,7 @@ import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 
-export type StyledProps = SpaceProps &
+type StyledPropsWithoutPseudo = SpaceProps &
   TypographyProps &
   LayoutProps &
   ColorProps &
@@ -15,6 +15,14 @@ export type StyledProps = SpaceProps &
   BorderProps &
   PositionProps &
   ShadowProps;
+
+const pseudoKeys = ["_hover", "_focus"] as const;
+
+export type PseudoProps = {
+  [key in (typeof pseudoKeys)[number]]?: StyledPropsWithoutPseudo;
+};
+
+export type StyledProps = StyledPropsWithoutPseudo & PseudoProps;
 
 export type ResponsiveStyle = {
   base: string;

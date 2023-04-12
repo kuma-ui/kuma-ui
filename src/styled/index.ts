@@ -9,7 +9,12 @@ import React, {
   createElement,
 } from "react";
 import { dataAttributeName } from "../utils/assignDataAttribute";
-import { ResponsiveStyle, StyledProps, StyledKeyType } from "../system";
+import {
+  ResponsiveStyle,
+  StyledProps,
+  StyledKeyType,
+  PseudoProps,
+} from "../system";
 import { sheet } from "../sheet";
 
 type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
@@ -37,3 +42,5 @@ export default function styled<
     throw Error('Using the "styled" tag in runtime is not supported.');
   };
 }
+
+// interface A extends PseudoProps, StyledProps,  {}

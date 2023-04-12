@@ -9,9 +9,11 @@ export class Sheet {
   private static instance: Sheet;
   private rules: Rule[];
   private responsive: string[];
+  private pseudo: string[];
   private constructor() {
     this.rules = [];
     this.responsive = [];
+    this.pseudo = [];
   }
 
   static getInstance() {
@@ -38,6 +40,11 @@ export class Sheet {
     this.responsive.push(mediaCss);
   }
 
+  addPseudoRule(className: string, css: string, pseudo: string): void {
+    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(/\s/g, "");
+    this.pseudo.push(pseudoCss);
+  }
+
   removeDuplicates() {
     const hashMap = new Map<string, string>();
     for (const rule of this.rules) {
@@ -57,7 +64,9 @@ export class Sheet {
       this.rules
         .map((rule) => `.${rule.id} {${rule.css}}`)
         .join("\n")
-        .replace(/\s/g, "") + this.responsive.join("")
+        .replace(/\s/g, "") +
+      this.responsive.join("") +
+      this.pseudo.join("")
     );
   }
 
