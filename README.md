@@ -5,7 +5,7 @@ Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that delivers out
 
 ```tsx
 import styled from "zero-styled/styled";
-import { typography, all, compose, color } from "zero-styled/system;
+import { typography, all, compose, color } from "zero-styled/system";
 
 function App() {
   return (
