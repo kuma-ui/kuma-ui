@@ -11,7 +11,7 @@ import { compose, StyledProps, ResponsiveStyle } from "./compose";
 import { PseudoProps } from "./pseudo";
 export { StyledKeyType, isStyledProp } from "./keys";
 
-export const combinedStyles = compose(
+export const all = compose(
   space,
   typography,
   layout,
