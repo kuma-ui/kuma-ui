@@ -6,7 +6,6 @@ import {
   JSXExpressionContainer,
   ObjectExpression,
 } from "@babel/types";
-import { combinedStyles } from "../system";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";

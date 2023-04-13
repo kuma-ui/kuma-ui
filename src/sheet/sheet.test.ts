@@ -32,9 +32,21 @@ describe("Sheet class", () => {
     const breakpoint = "576px";
     const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
     // Act
-    const id = sheet.addMediaRule(className, css, breakpoint);
+    sheet.addMediaRule(className, css, breakpoint);
     // Assert
     expect(sheet.getCSS()).toContain(mediaCss.replace(/\s/g, ""));
+  });
+
+  test("addPseudoRule() should add a new pseudo rule with a generated ID", () => {
+    // Arrange
+    const className = "zero12345";
+    const css = "padding: 8px;";
+    const pseudo = ":hover";
+    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(/\s/g, "");
+    // Act
+    sheet.addPseudoRule(className, css, pseudo);
+    // Assert
+    expect(sheet.getCSS()).toContain(pseudoCss);
   });
 
   test("getCSS() should return the CSS string with unique rules", () => {

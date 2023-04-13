@@ -5,6 +5,8 @@ import { ColorProps } from "./color";
 import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
 import { PositionProps } from "./position";
+import { ShadowProps } from "./shadow";
+import { PseudoProps } from "./pseudo";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
@@ -12,11 +14,13 @@ export type StyledProps = SpaceProps &
   ColorProps &
   FlexProps &
   BorderProps &
-  PositionProps;
+  PositionProps &
+  ShadowProps;
 
 export type ResponsiveStyle = {
   base: string;
   media: { [breakpoint: string]: string };
+  // pseudo: PseudoProps;
 };
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;

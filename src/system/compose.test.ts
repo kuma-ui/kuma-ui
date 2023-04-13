@@ -5,10 +5,18 @@ import { layout } from "./layout";
 import { color } from "./color";
 import { describe, expect, test, beforeEach } from "@jest/globals";
 import { flex } from "./flex";
+import { shadow } from "./shadow";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
-    const combinedFunction = compose(space, typography, layout, color, flex);
+    const combinedFunction = compose(
+      space,
+      typography,
+      layout,
+      color,
+      flex,
+      shadow
+    );
     const props: StyledProps = {
       m: 8,
       fontSize: 16,
@@ -16,6 +24,7 @@ describe("compose function", () => {
       bg: "red",
       color: "red",
       flexDir: ["column", "row"],
+      boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2)",
     };
     // Act
     const styles = combinedFunction(props);
@@ -26,6 +35,9 @@ describe("compose function", () => {
     expect(styles.base).toContain("width: 100%");
     expect(styles.base).toContain("background-color: red");
     expect(styles.base).toContain("flex-direction: column");
+    expect(styles.base).toContain(
+      "box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)"
+    );
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
