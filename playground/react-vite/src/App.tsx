@@ -8,7 +8,6 @@ function App() {
       m="2px"
       display="flex"
       _hover={{
-        fontFamily: "test",
         m: 2,
       }}
     >
