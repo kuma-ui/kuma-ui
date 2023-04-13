@@ -6,8 +6,9 @@ import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
+import { PseudoProps } from "./pseudo";
 
-type StyledPropsWithoutPseudo = SpaceProps &
+export type StyledProps = SpaceProps &
   TypographyProps &
   LayoutProps &
   ColorProps &
@@ -16,17 +17,10 @@ type StyledPropsWithoutPseudo = SpaceProps &
   PositionProps &
   ShadowProps;
 
-const pseudoKeys = ["_hover", "_focus"] as const;
-
-export type PseudoProps = {
-  [key in (typeof pseudoKeys)[number]]?: StyledPropsWithoutPseudo;
-};
-
-export type StyledProps = StyledPropsWithoutPseudo & PseudoProps;
-
 export type ResponsiveStyle = {
   base: string;
   media: { [breakpoint: string]: string };
+  // pseudo: PseudoProps;
 };
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;

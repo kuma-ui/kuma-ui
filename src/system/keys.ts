@@ -75,8 +75,8 @@ export type StyledKeyType =
   | FlexKeys
   | BorderKeys
   | PositionKeys
-  | ShadowKeys;
-// | PseudoKeys;
+  | ShadowKeys
+  | PseudoKeys;
 
 export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;

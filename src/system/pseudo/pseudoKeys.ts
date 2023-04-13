@@ -2,8 +2,11 @@ import { StyledProps } from "../compose";
 
 const pseudoKeys = ["_hover", "_focus"] as const;
 
-// export type PseudoProps = Record<keyof typeof pseudoKeys, StyledProps>;
+const pseudoMappings = {
+  _hover: ":hover",
+  _focus: ":focus",
+} as const;
 
 export type PseudoProps = {
-  [key in (typeof pseudoKeys)[number]]?: StyledProps;
+  [key in keyof typeof pseudoMappings]?: StyledProps;
 };
