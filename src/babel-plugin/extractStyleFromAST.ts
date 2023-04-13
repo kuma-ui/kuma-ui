@@ -1,6 +1,7 @@
 import { types as t } from "@babel/core";
 import type { JSXOpeningElement } from "@babel/types";
 import { isStyledProp } from "../system";
+import { PseudoProps, isPseudoProps } from "src/system/pseudo";
 
 /**
  * Extracts style props from a JSX opening element and returns the filtered
@@ -12,9 +13,11 @@ import { isStyledProp } from "../system";
 export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
   filteredAttributes: t.JSXAttribute[];
   styledProps: { [key: string]: string | number | (string | number)[] };
+  pseudoProps: PseudoProps;
 } {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};
+  const pseudoProps: PseudoProps = {};
 
   const filteredAttributes = openingElement.attributes.filter((attr) => {
     if (
@@ -26,7 +29,7 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
         styledProps[attr.name.name] = attr.value.value;
       } else if (t.isJSXExpressionContainer(attr.value)) {
         const { expression } = attr.value;
-        if (t.isNumericLiteral(expression) || t.isStringLiteral(expression)) {
+        if (t.isStringLiteral(expression) || t.isNumericLiteral(expression)) {
           styledProps[attr.name.name] = expression.value;
         } else if (t.isArrayExpression(expression)) {
           styledProps[attr.name.name] = expression.elements
@@ -39,11 +42,22 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
         }
       }
       return false;
+    } else if (
+      t.isJSXAttribute(attr) &&
+      t.isJSXIdentifier(attr.name) &&
+      t.isObjectExpression(attr.value) &&
+      isPseudoProps(attr.name.name)
+    ) {
+      Object.assign(pseudoProps, {
+        ...pseudoProps,
+        [attr.name.name]: extractStylePropsFromAST(attr.value).styledProps,
+      });
+      return false;
     }
     return true;
   }) as t.JSXAttribute[];
 
-  return { filteredAttributes, styledProps };
+  return { filteredAttributes, styledProps, pseudoProps };
 }
 
 /**
@@ -58,9 +72,11 @@ export function extractStylePropsFromObjectExpression(
 ): {
   filteredProperties: t.ObjectProperty[];
   styledProps: { [key: string]: string | number | (string | number)[] };
+  pseudoProps: PseudoProps;
 } {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};
+  const pseudoProps: PseudoProps = {};
 
   const filteredProperties = objectExpression.properties?.filter((prop) => {
     if (
@@ -68,7 +84,7 @@ export function extractStylePropsFromObjectExpression(
       t.isIdentifier(prop.key) &&
       isStyledProp(prop.key.name)
     ) {
-      if (t.isStringLiteral(prop.value) || t.isStringLiteral(prop.value)) {
+      if (t.isStringLiteral(prop.value) || t.isNumericLiteral(prop.value)) {
         styledProps[prop.key.name] = prop.value.value;
       } else if (t.isArrayExpression(prop.value)) {
         styledProps[prop.key.name] = prop.value.elements
@@ -80,9 +96,21 @@ export function extractStylePropsFromObjectExpression(
           .filter(Boolean) as (string | number)[];
       }
       return false;
+    } else if (
+      t.isObjectProperty(prop) &&
+      t.isIdentifier(prop.key) &&
+      t.isObjectExpression(prop.value) &&
+      isPseudoProps(prop.key.name)
+    ) {
+      Object.assign(pseudoProps, {
+        ...pseudoProps,
+        [prop.key.name]: extractStylePropsFromObjectExpression(prop.value)
+          .styledProps,
+      });
+      return false;
     }
     return true;
   }) as t.ObjectProperty[];
 
-  return { filteredProperties, styledProps };
+  return { filteredProperties, styledProps, pseudoProps };
 }

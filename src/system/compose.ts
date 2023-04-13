@@ -6,7 +6,6 @@ import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
-import { PseudoProps } from "./pseudo";
 
 export type StyledProps = SpaceProps &
   TypographyProps &

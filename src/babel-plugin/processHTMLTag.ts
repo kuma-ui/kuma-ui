@@ -6,6 +6,7 @@ import {
 } from "./extractStyleFromAST";
 import { sheet } from "../sheet";
 import { all } from "../system";
+import { PseudoProps, pseudoMappings } from "src/system/pseudo";
 
 export const processHTMLTag =
   (isJSX: boolean) =>
@@ -54,7 +55,7 @@ const processReactCreateElementHTMLTag = (
   );
 
   if (dataAttribute) return;
-  const { filteredProperties, styledProps } =
+  const { filteredProperties, styledProps, pseudoProps } =
     extractStylePropsFromObjectExpression(path.node);
   // Update the properties of the object expression by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
@@ -65,6 +66,16 @@ const processReactCreateElementHTMLTag = (
     for (const [breakpoint, css] of Object.entries(style.media)) {
       sheet.addMediaRule(className, css, breakpoint);
     }
+
+    for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
+      const pseudoStyle = all(pseudoValue);
+      const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+      sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
+      for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
+        sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
+      }
+    }
+
     path.node.properties.push(
       t.objectProperty(t.identifier("className"), t.stringLiteral(className))
     );
