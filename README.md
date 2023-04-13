@@ -9,7 +9,7 @@ import { typography, all, compose, color } from "zero-styled/system";
 
 function App() {
   return (
-    <Box p={[4, 8]} m="2px" fontSize={["22px", "44px"]} display="flex" _hover={{ m: 1 }}>
+    <Box p={[4, 8]} m="2px" display="flex" _hover={{ m: 1 }}>
       <Text fontSize={40} color={["red", "blue"]}>
         hello world
       </Text>
