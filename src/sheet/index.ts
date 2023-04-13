@@ -56,6 +56,7 @@ export class Sheet {
       css: entry[1],
     }));
     this.responsive = [...new Set(this.responsive)];
+    this.pseudo = [...new Set(this.pseudo)];
   }
 
   getCSS(): string {
@@ -72,6 +73,8 @@ export class Sheet {
 
   reset() {
     this.rules = [];
+    this.responsive = [];
+    this.pseudo = [];
   }
 }
 
