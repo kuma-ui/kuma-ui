@@ -1,6 +1,6 @@
 {
   "name": "zero-styled",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that delivers outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "jest",
-    "build": "yarn build:dist && yarn build:declarations",
+    "build": "yarn build:dist && yarn build:declarations && cp package.json ./dist",
     "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
     "build:dist": "tsup src --format cjs,esm",
     "typecheck": "tsc --noEmit --composite false",
