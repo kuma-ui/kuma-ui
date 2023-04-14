@@ -11,7 +11,7 @@ function App() {
         m: 2,
       }}
     >
-      <Text fontSize={"40px"} color={["red", "blue"]}>
+      <Text fontSize={"40px"} color={["red", "orange"]}>
         hello world
       </Text>
     </Box>

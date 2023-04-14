@@ -38,7 +38,7 @@ export default function zeroStyled(options?: VitePluginOption): Plugin {
       const css = sheet.getCSS();
       cssLookup[cssFilename] = css;
       cssLookup[cssId] = css;
-      if (mode === "serve") return injectCSS(sheet.getCSS()) + result.code;
+      if (mode === "serve") return injectCSS(css) + result.code;
       return `import ${JSON.stringify(cssFilename)};\n` + result.code;
     },
     load(url: string) {
@@ -51,6 +51,13 @@ export default function zeroStyled(options?: VitePluginOption): Plugin {
         if (qsRaw?.length) return importeeUrl;
         return id;
       }
+    },
+    handleHotUpdate({ server, file }) {
+      sheet.reset();
+      server.ws.send({ type: "full-reload" });
+    },
+    configResolved(config) {
+      mode = config.command;
     },
   };
 }
