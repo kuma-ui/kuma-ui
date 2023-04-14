@@ -1,6 +1,6 @@
 {
   "name": "zero-styled",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that delivers outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
@@ -25,9 +25,12 @@
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
   "license": "MIT",
   "husky": {
     "hooks": {
