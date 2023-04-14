@@ -10,7 +10,10 @@
   "keywords": [
     "react",
     "css-in-js",
-    "zero-rumtime"
+    "zero-rumtime",
+    "front-end",
+    "design-system",
+    "styled-components"
   ],
   "scripts": {
     "start": "node dist/index.js",
