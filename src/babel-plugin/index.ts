@@ -13,10 +13,6 @@ const plugin = (core: Core): PluginObj => {
   return {
     name: "zero-styled-plugin",
     visitor: visitor(core),
-    post(state) {
-      const css = sheet.getCSS();
-      writeCSSFile(css);
-    },
   };
 };
 

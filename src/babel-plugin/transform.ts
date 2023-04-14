@@ -8,6 +8,8 @@ export async function transform(code: string, id: string) {
   if (!file) return;
 
   const result = await transformFromAstSync(file, code, {
+    filename: id,
+    sourceMaps: true,
     plugins: [require("./index").default],
   });
 
