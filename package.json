@@ -1,7 +1,17 @@
 {
   "name": "zero-styled",
-  "version": "1.0.0",
-  "description": "trying to make a CSS-in-JS library that combines the best of utility first and zero-runtime CSS extraction for blazing-fast performance",
+  "version": "0.0.1",
+  "description": "Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that delivers outstanding developer experience and optimized performance.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poteboy/zero-styled.git"
+  },
+  "author": "poteboy",
+  "keywords": [
+    "react",
+    "css-in-js",
+    "zero-rumtime"
+  ],
   "scripts": {
     "start": "node dist/index.js",
     "test": "jest",
@@ -15,7 +25,6 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "author": "",
   "license": "MIT",
   "husky": {
     "hooks": {

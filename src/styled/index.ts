@@ -32,9 +32,9 @@ type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
  * @param Component - The component to be wrapped with styled-system functionality
  * @returns A new component with styled-system functionality and a unique data-zero-styled attribute
  */
-export default function styled<
-  T extends keyof JSX.IntrinsicElements | ComponentType<any>
->(Component: T) {
+function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
+  Component: T
+) {
   return function <P extends Partial<StyledProps>>(
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => ResponsiveStyle)[]
@@ -44,3 +44,5 @@ export default function styled<
     throw Error('Using the "styled" tag in runtime is not supported.');
   };
 }
+
+export { styled };
