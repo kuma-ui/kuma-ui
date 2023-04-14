@@ -58,4 +58,24 @@ describe("Sheet class", () => {
     // Assert
     expect(cssString).toContain(`.${id} {${css}}`.replace(/\s/g, ""));
   });
+
+  test("getFromCache() should return undefined if no value is cached for the given key", () => {
+    // Arrange
+    const cacheKey = JSON.stringify({ color: "red" });
+    // Act
+    const cachedValue = sheet.getFromCache(cacheKey);
+    // Assert
+    expect(cachedValue).toBeUndefined();
+  });
+
+  test("addToCache() and getFromCache() should work correctly", () => {
+    // Arrange
+    const cacheKey = JSON.stringify({ color: "red" });
+    const styles = { base: "color: red;", media: {} };
+    // Act
+    sheet.addToCache(cacheKey, styles);
+    const cachedValue = sheet.getFromCache(cacheKey);
+    // Assert
+    expect(cachedValue).toEqual(styles);
+  });
 });

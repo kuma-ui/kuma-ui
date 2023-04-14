@@ -6,6 +6,8 @@ import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
+import { PseudoProps } from "./pseudo";
+import { sheet } from "src/sheet";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
@@ -39,7 +41,13 @@ export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
  */
 export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
   return (props: any): ResponsiveStyle => {
+    const cacheKey = JSON.stringify(props);
     let outputProps = { ...props };
+
+    const cachedStyles = sheet.getFromCache(cacheKey);
+    if (cachedStyles) {
+      return cachedStyles;
+    }
 
     const combinedStyles = styleFunctions.reduce(
       (styles, styleFunction) => {
@@ -67,6 +75,8 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
       },
       { base: "", media: {} } as ResponsiveStyle
     );
+
+    sheet.addToCache(cacheKey, combinedStyles);
 
     return combinedStyles;
   };

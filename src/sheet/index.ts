@@ -1,4 +1,5 @@
 import { generateHash } from "../utils/hash";
+import { ResponsiveStyle } from "src/system";
 
 export interface Rule {
   id: string;
@@ -10,10 +11,13 @@ export class Sheet {
   private rules: Rule[];
   private responsive: string[];
   private pseudo: string[];
+  private cache: Map<string, ResponsiveStyle>;
+
   private constructor() {
     this.rules = [];
     this.responsive = [];
     this.pseudo = [];
+    this.cache = new Map();
   }
 
   static getInstance() {
@@ -69,6 +73,14 @@ export class Sheet {
       this.responsive.join("") +
       this.pseudo.join("")
     );
+  }
+
+  getFromCache(key: string): ResponsiveStyle | undefined {
+    return this.cache.get(key);
+  }
+
+  addToCache(key: string, styles: ResponsiveStyle): void {
+    this.cache.set(key, styles);
   }
 
   reset() {
