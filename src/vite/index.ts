@@ -11,8 +11,14 @@ export type VitePluginOption = {
 };
 
 export default function zeroStyled(options?: VitePluginOption): Plugin {
+  let mode: "build" | "serve";
   if (options?.breakpoints && Object.keys(options.breakpoints).length > 0) {
     theme.setBreakpoints(options.breakpoints);
+  }
+  const cssLookup: { [key: string]: string } = {};
+
+  function filter(file: string) {
+    return /\.(t|j)(s|sx)?$/.test(file);
   }
 
   return {
@@ -21,18 +27,30 @@ export default function zeroStyled(options?: VitePluginOption): Plugin {
     async transform(code: string, id: string) {
       requireReact(code, id);
       if (id.includes("zero-styled/dist")) return;
-      if (!/\.(t|j)sx?$/.test(id)) return;
+      if (!filter(id)) return;
       const result = await transform(code, id);
       if (!result?.code) return;
-      return importCSS(result?.code, id);
-    },
-    async writeBundle() {
+      const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
+      const cssRelativePath = path
+        .relative(process.cwd(), cssFilename)
+        .replace(/\\/g, path.posix.sep);
+      const cssId = `/${cssRelativePath}`;
       const css = sheet.getCSS();
-      this.emitFile({
-        type: "asset",
-        fileName: "zero-styled.css",
-        source: css,
-      });
+      cssLookup[cssFilename] = css;
+      cssLookup[cssId] = css;
+      if (mode === "serve") return injectCSS(sheet.getCSS()) + result.code;
+      return `import ${JSON.stringify(cssFilename)};\n` + result.code;
+    },
+    load(url: string) {
+      const [id] = url.split("?");
+      return cssLookup[id];
+    },
+    resolveId(importeeUrl: string) {
+      const [id, qsRaw] = importeeUrl.split("?");
+      if (id in cssLookup) {
+        if (qsRaw?.length) return importeeUrl;
+        return id;
+      }
     },
   };
 }
@@ -48,14 +66,19 @@ const requireReact = (code: string, id: string) => {
   }
 };
 
-const importCSS = (code: string, id: string) => {
-  if (id.endsWith(".jsx") || id.endsWith(".tsx")) {
-    const rootDir = process.cwd(); // the CSS file is in the root directory of the project (check writeCSSfile.ts)
-    const currentFileDir = path.dirname(id);
-    const relativePathToRoot = path.relative(currentFileDir, rootDir);
-    const cssImportPath = path
-      .join(relativePathToRoot, "zero-styled.css")
-      .replace(/\\/g, "/");
-    return `import '${cssImportPath}';\n${code}`;
-  }
+const injectCSS = (cssContent: string) => {
+  return `
+  (function() {
+    const css = ${JSON.stringify(cssContent)};
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+    } else {
+      style.appendChild(document.createTextNode(css));
+    }
+    head.appendChild(style);
+  })();
+  `;
 };
