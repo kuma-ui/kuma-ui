@@ -17,19 +17,21 @@ import {
 
 function App() {
   return (
-    <Box p={[4, 8]} m="2px" display="flex">
+    <VStack p={[4, 8]} m="2px">
       <Text
-        fontSize={"40px"}
+        fontSize="40px"
         _hover={{ color: "orange"}}
       >
         hello world
       </Text>
-    </Box>
+    </VStack>
   );
 }
 
-export const Box = styled("div")<StyledProps>`
+export const VStack = styled("div")<StyledProps>`
   ${all}
+  display: flex;
+  flex-direction: column;
 `;
 
 const Text = styled("p")<TypographyProps & ColorProps>`
@@ -43,6 +45,40 @@ const Text = styled("p")<TypographyProps & ColorProps>`
 - Build-time CSS generation
 - Responsive design with breakpoints and media queries
 - Utility-first approach for rapid UI development
+
+# Installation
+
+```sh
+npm install zero-styled
+```
+
+or 
+
+```sh
+yarn add zero-styled
+```
+
+# Setup
+
+## Vite
+
+```js:vite.config.cjs
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import zeroStyled from "zero-styled/vite";
+
+export default defineConfig({
+  plugins: [
+    react({
+      jsxRuntime: "classic",
+    }),
+    zeroStyled(),
+  ],
+  optimizeDeps: {
+    include: ["@babel/core"],
+  },
+});
+```
 
 # Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
