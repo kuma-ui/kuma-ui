@@ -55,13 +55,14 @@ yarn add zero-styled
 
 ## Vite
 
-**vite.config.cjs**
+**vite.config.ts**
 
-```js:vite.config.cjs
+```js:vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import zeroStyled from "zero-styled/vite";
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react({
@@ -69,9 +70,6 @@ export default defineConfig({
     }),
     zeroStyled(),
   ],
-  optimizeDeps: {
-    include: ["@babel/core"],
-  },
 });
 ```
 

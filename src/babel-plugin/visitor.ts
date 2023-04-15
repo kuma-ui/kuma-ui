@@ -32,7 +32,6 @@ export const visitor = ({ types: t, template }: Core) => {
           .join("");
         const className = !!cssString ? sheet.addRule(cssString) : undefined;
         const styleFunctions = node.quasi.expressions;
-        console.log(styleFunctions);
         const key = generateHash(JSON.stringify(styleFunctions));
         styledFunctionsMap.set(key, styleFunctions);
 
