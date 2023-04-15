@@ -1,30 +1,21 @@
 import { styled } from "zero-styled/styled";
-import {
-  typography,
-  compose,
-  color,
-  all,
-  TypographyProps,
-  ColorProps,
-  StyledProps,
-} from "zero-styled/system";
+import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
 
 function App() {
   return (
-    <Box p={[4, 8]} m="2px" display="flex">
-      <Text fontSize={"40px"} _hover={{ color: "orange" }}>
+    <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
+      <Text fontSize="40px" color="orange">
         hello world
       </Text>
-    </Box>
+    </VStack>
   );
 }
 
-export const Box = styled("div")<StyledProps>`
-  ${all}
+export const VStack = styled("div")<StyledProps>`
+  display: flex;
+  flex-direction: column;
 `;
 
-const Text = styled("p")<TypographyProps & ColorProps>`
-  ${compose(color, typography)}
-`;
+const Text = styled("p")<ColorProps & TypographyProps>``;
 
 export default App;

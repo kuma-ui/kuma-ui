@@ -9,9 +9,11 @@ import {
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";
-import p from "path";
+import { combineClassNames } from "./combineClassNames";
+import { generateHash } from "../utils/hash";
+import { Node } from "@babel/core";
 
-const v: PluginObj<PluginPass>["visitor"] = {};
+export const styledFunctionsMap = new Map<string, Node[]>();
 
 export const visitor = ({ types: t, template }: Core) => {
   const visitor: PluginObj<PluginPass>["visitor"] = {
@@ -23,7 +25,16 @@ export const visitor = ({ types: t, template }: Core) => {
         t.isIdentifier(node.tag.callee, { name: "styled" })
       ) {
         const componentArg = node.tag.arguments[0];
-        const styleStringArg = node.quasi;
+        const cssStrings = node.quasi.quasis.map((quasi) => quasi.value.raw);
+        // Remove newlines and extra spaces from cssStrings, and concatenate them
+        const cssString = cssStrings
+          .map((str) => str.replace(/\s+/g, " ").trim())
+          .join("");
+        const className = !!cssString ? sheet.addRule(cssString) : undefined;
+        const styleFunctions = node.quasi.expressions;
+        console.log(styleFunctions);
+        const key = generateHash(JSON.stringify(styleFunctions));
+        styledFunctionsMap.set(key, styleFunctions);
 
         const component = t.isStringLiteral(componentArg)
           ? componentArg.value
@@ -32,14 +43,20 @@ export const visitor = ({ types: t, template }: Core) => {
           : "div";
         const createElementAst = template.expression.ast(
           `
-              (props) => React.${
-                typeof component === "string"
-                  ? `createElement("${component}"`
-                  : `cloneElement(${component}`
-              }, {
-                "data-zero-styled": true,
-                ...props,
-              })`
+              (props) => {
+                const existingClassName = props.className || "";
+                const newClassName = "${className || ""}";
+                const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
+                return React.${
+                  typeof component === "string"
+                    ? `createElement("${component}"`
+                    : `cloneElement(${component}`
+                }, {
+                  "data-zero-styled": "${key}",
+                  ...props,
+                  className: combinedClassName,
+                });
+              }`
         );
         path.replaceWith(createElementAst);
       }
