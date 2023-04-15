@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "CommonJS",
+    "module": "ESNext",
     "lib": ["esnext", "dom"],
     "esModuleInterop": true,
     "strict": true,
@@ -9,7 +9,7 @@
     "baseUrl": "./",
     "outDir": "./dist",
     "typeRoots": ["./src/types", "node_modules/@types"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
@@ -17,7 +17,7 @@
     "paths": {
       "@zero-styled/*": ["./src"]
     },
-    "types": ["jest", "node"]
+    "types": ["node"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "src/**/*.test.ts"]

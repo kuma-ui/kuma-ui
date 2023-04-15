@@ -5,23 +5,34 @@ Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that delivers out
 
 ```tsx
 import { styled } from "zero-styled/styled";
-import { typography, all, compose, color } from "zero-styled/system";
+import {
+  typography,
+  compose,
+  color,
+  all,
+  TypographyProps,
+  ColorProps,
+  StyledProps,
+} from "zero-styled/system";
 
 function App() {
   return (
-    <Box p={[4, 8]} m="2px" display="flex" _hover={{ m: 1 }}>
-      <Text fontSize={40} color={["red", "blue"]}>
+    <Box p={[4, 8]} m="2px" display="flex">
+      <Text
+        fontSize={"40px"}
+        _hover={{ color: "orange"}}
+      >
         hello world
       </Text>
     </Box>
   );
 }
 
-const Box = styled("div")`
+export const Box = styled("div")<StyledProps>`
   ${all}
 `;
 
-const Text = styled("p")`
+const Text = styled("p")<TypographyProps & ColorProps>`
   ${compose(color, typography)}
 `;
 ```
