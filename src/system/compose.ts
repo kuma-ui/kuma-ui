@@ -7,7 +7,7 @@ import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
-import { sheet } from "src/sheet";
+import { sheet } from "../sheet";
 
 export type StyledProps = SpaceProps &
   TypographyProps &

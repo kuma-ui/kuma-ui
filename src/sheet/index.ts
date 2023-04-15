@@ -1,5 +1,5 @@
 import { generateHash } from "../utils/hash";
-import { ResponsiveStyle } from "src/system";
+import { ResponsiveStyle } from "../system";
 
 export interface Rule {
   id: string;
