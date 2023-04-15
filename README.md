@@ -55,6 +55,8 @@ yarn add zero-styled
 
 ## Vite
 
+**vite.config.cjs**
+
 ```js:vite.config.cjs
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
