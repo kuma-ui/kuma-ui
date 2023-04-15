@@ -608,6 +608,4 @@
 
 "zero-styled@file:../..":
   "resolved" "file:../.."
-  "version" "1.0.0"
-  dependencies:
-    "@types/webpack" "^5.28.1"
+  "version" "0.0.10"

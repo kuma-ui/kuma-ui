@@ -1,6 +1,6 @@
-import { styled } from "zero-styled/";
-import { all } from "zero-styled/dist/system/index";
+import { styled } from "zero-styled/styled";
+import { all, StyledProps } from "zero-styled/system";
 
-export const Box = styled("div")`
+export const Box = styled("div")<StyledProps>`
   ${all}
 `;

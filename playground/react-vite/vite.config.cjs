@@ -1,6 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import zeroStyled from "zero-styled/dist/vite/index.js";
+import zeroStyled from "zero-styled/vite";
 import { resolve } from "path";
 
 // - Rename vite.config.js to vite.config.cjs to ensure the use of CommonJS module format.

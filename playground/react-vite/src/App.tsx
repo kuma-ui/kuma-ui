@@ -1,28 +1,29 @@
-import { styled } from "zero-styled";
-import { typography, compose, color } from "zero-styled/dist/system/index";
-import { Box } from "./Box";
+import { styled } from "zero-styled/styled";
+import {
+  typography,
+  compose,
+  color,
+  all,
+  TypographyProps,
+  ColorProps,
+  StyledProps,
+} from "zero-styled/system";
 
 function App() {
   return (
     <Box p={[4, 8]} m="2px" display="flex">
-      <Text
-        fontSize={"40px"}
-        color={["red", "orange"]}
-        _hover={{
-          m: 2,
-        }}
-      >
+      <Text fontSize={"40px"} _hover={{ color: "orange" }}>
         hello world
       </Text>
     </Box>
   );
 }
 
-// const Box = styled("div")`
-//   ${all}
-// `;
+export const Box = styled("div")<StyledProps>`
+  ${all}
+`;
 
-const Text = styled("p")`
+const Text = styled("p")<TypographyProps & ColorProps>`
   ${compose(color, typography)}
 `;
 
