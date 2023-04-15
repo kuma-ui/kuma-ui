@@ -1,13 +1,5 @@
 import { styled } from "zero-styled/styled";
-import {
-  typography,
-  compose,
-  color,
-  all,
-  TypographyProps,
-  ColorProps,
-  StyledProps,
-} from "zero-styled/system";
+import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
 
 function App() {
   return (
@@ -20,13 +12,10 @@ function App() {
 }
 
 export const VStack = styled("div")<StyledProps>`
-  ${all}
   display: flex;
   flex-direction: column;
 `;
 
-const Text = styled("p")<TypographyProps & ColorProps>`
-  ${compose(color, typography)}
-`;
+const Text = styled("p")<ColorProps & TypographyProps>``;
 
 export default App;

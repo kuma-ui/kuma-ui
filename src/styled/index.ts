@@ -35,7 +35,7 @@ type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
 function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
   Component: T
 ) {
-  return function <P extends Partial<StyledProps>>(
+  return function <P = StyledProps>(
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => ResponsiveStyle)[]
   ): React.FC<

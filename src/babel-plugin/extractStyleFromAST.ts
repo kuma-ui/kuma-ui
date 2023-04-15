@@ -108,6 +108,12 @@ export function extractStylePropsFromObjectExpression(
           .styledProps,
       });
       return false;
+    } else if (
+      t.isObjectProperty(prop) &&
+      prop.key.type === "StringLiteral" &&
+      prop.key.value === "data-zero-styled"
+    ) {
+      return false;
     }
     return true;
   }) as t.ObjectProperty[];
