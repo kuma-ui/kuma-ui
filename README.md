@@ -32,8 +32,11 @@ export default App;
 # Features
 
 🔥 &nbsp; Blazing-fast performance with zero-runtime CSS extraction
+
 🦄 &nbsp; Build-time CSS generation
+
 🌳 &nbsp; Responsive design with breakpoints and media queries
+
 🎨 &nbsp; Utility-first approach for rapid UI development
 
 # Installation
