@@ -39,6 +39,8 @@ export default App;
 
 🎨 &nbsp; Utility-first approach for rapid UI development
 
+👋 &nbsp; Support for pseudo-classes and pseudo-elements
+
 # Installation
 
 ```sh
