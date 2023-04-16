@@ -16,13 +16,27 @@ import { Node } from "@babel/core";
 export const styledFunctionsMap = new Map<string, Node[]>();
 
 export const visitor = ({ types: t, template }: Core) => {
+  // Keep track of the local name for the imported 'styled' function from 'zero-styled/styled'
+  // This is necessary to handle cases where the 'styled' function is imported with a different name
+  let importedStyledName: string;
+
   const visitor: PluginObj<PluginPass>["visitor"] = {
+    ImportSpecifier(path) {
+      const { node } = path;
+      if (
+        path.parentPath.node.type === "ImportDeclaration" &&
+        path.parentPath.node.source.value === "zero-styled/styled"
+      ) {
+        importedStyledName = node.local.name;
+      }
+    },
     TaggedTemplateExpression(path) {
       // Check if the tag is a CallExpression with the callee named 'styled'
       const { node } = path;
       if (
         t.isCallExpression(node.tag) &&
-        t.isIdentifier(node.tag.callee, { name: "styled" })
+        (t.isIdentifier(node.tag.callee, { name: "styled" }) ||
+          t.isIdentifier(node.tag.callee, { name: importedStyledName }))
       ) {
         const componentArg = node.tag.arguments[0];
         const cssStrings = node.quasi.quasis.map((quasi) => quasi.value.raw);
