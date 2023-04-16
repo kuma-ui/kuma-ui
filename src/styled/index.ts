@@ -35,7 +35,7 @@ type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
 function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
   Component: T
 ) {
-  return function <P = StyledProps>(
+  const fn = function <P = StyledProps>(
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => ResponsiveStyle)[]
   ): React.FC<
@@ -43,6 +43,8 @@ function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
   > {
     throw Error('Using the "styled" tag in runtime is not supported.');
   };
+  fn.__zeroStyled = true;
+  return fn;
 }
 
 export { styled };
