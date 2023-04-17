@@ -2,8 +2,19 @@ import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { ResponsiveStyle } from "./compose";
+import { CSSValue } from "./types";
 
-export type FlexProps = Partial<Record<FlexKeys, string | string[]>>;
+export type FlexProps = {
+  flexDir?: CSSValue<"flexDirection">;
+  justify?: CSSValue<"justifyContent">;
+  alignItems?: CSSValue<"alignItems">;
+  alignContent?: CSSValue<"alignContent">;
+  flexWrap?: CSSValue<"flexWrap">;
+  flexGrow?: CSSValue<"flexGrow">;
+  flexShrink?: CSSValue<"flexShrink">;
+  flexBasis?: CSSValue<"flexBasis">;
+  gap?: CSSValue<"gap">;
+};
 
 const flexMappings: Record<FlexKeys, string> = {
   flexDir: "flex-direction",
