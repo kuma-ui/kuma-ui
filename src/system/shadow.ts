@@ -1,8 +1,11 @@
-import { ResponsiveStyle } from "./types";
+import { CSSValue, ResponsiveStyle } from "./types";
 import { ShadowKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 
-export type ShadowProps = Partial<Record<ShadowKeys, string | string[]>>;
+export type ShadowProps = Partial<{
+  boxShadow: CSSValue<"boxShadow">;
+  textShadow: CSSValue<"textShadow">;
+}>;
 
 const shadowMappings: Record<ShadowKeys, string> = {
   boxShadow: "box-shadow",

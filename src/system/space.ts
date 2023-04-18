@@ -1,11 +1,24 @@
 import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { ResponsiveStyle } from "./types";
+import { CSSValue, ResponsiveStyle } from "./types";
 
-export type SpaceProps = Partial<
-  Record<SpaceKeys, string | number | (string | number)[]>
->;
+export type SpaceProps = Partial<{
+  m: CSSValue<"margin", true>;
+  mt: CSSValue<"marginTop", true>;
+  mr: CSSValue<"marginRight", true>;
+  mb: CSSValue<"marginBottom", true>;
+  ml: CSSValue<"marginLeft", true>;
+  mx: CSSValue<"marginLeft" | "marginRight", true>;
+  my: CSSValue<"marginTop" | "marginBottom", true>;
+  p: CSSValue<"padding", true>;
+  pt: CSSValue<"paddingTop", true>;
+  pr: CSSValue<"paddingRight", true>;
+  pb: CSSValue<"paddingBottom", true>;
+  pl: CSSValue<"paddingLeft", true>;
+  px: CSSValue<"paddingLeft" | "paddingRight", true>;
+  py: CSSValue<"paddingTop" | "paddingBottom", true>;
+}>;
 
 const spaceMappings: Record<SpaceKeys, string> = {
   m: "margin",

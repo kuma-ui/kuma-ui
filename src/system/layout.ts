@@ -1,11 +1,16 @@
 import { toCssUnit } from "./toCSS";
 import { LayoutKeys } from "./keys";
-import { ResponsiveStyle } from "./types";
+import { CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type LayoutProps = Partial<
-  Record<LayoutKeys, string | number | (string | number)[]>
->;
+export type LayoutProps = Partial<{
+  width: CSSValue<"width", true>;
+  height: CSSValue<"height", true>;
+  display: CSSValue<"display">;
+  overflow: CSSValue<"overflow">;
+  position: CSSValue<"position">;
+  zIndex: CSSValue<"zIndex", true>;
+}>;
 
 const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
@@ -23,9 +28,11 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     const cssValue = props[key as LayoutKeys];
     if (cssValue) {
       const property = layoutMappings[key as LayoutKeys];
-      const converter = [layoutMappings.height, layoutMappings.width].includes(
-        property
-      )
+      const converter = [
+        layoutMappings.height,
+        layoutMappings.width,
+        layoutMappings.zIndex,
+      ].includes(property)
         ? toCssUnit
         : undefined;
       const responsiveStyles = applyResponsiveStyles(

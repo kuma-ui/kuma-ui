@@ -1,8 +1,12 @@
 import { ColorKeys } from "./keys";
-import { ResponsiveStyle } from "./types";
+import { CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type ColorProps = Partial<Record<ColorKeys, string | string[]>>;
+export type ColorProps = Partial<{
+  bg: CSSValue<"backgroundColor">;
+  color: CSSValue<"color">;
+  borderColor: CSSValue<"borderColor">;
+}>;
 
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background-color",

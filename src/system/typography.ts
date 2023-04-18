@@ -1,11 +1,16 @@
 import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
-import { ResponsiveStyle } from "./types";
+import { ResponsiveStyle, CSSValue } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type TypographyProps = Partial<
-  Record<TypographyKeys, string | number | (string | number)[]>
->;
+export type TypographyProps = Partial<{
+  fontSize?: CSSValue<"fontSize", true>;
+  fontWeight?: CSSValue<"fontWeight", true>;
+  lineHeight?: CSSValue<"lineHeight", true>;
+  letterSpacing?: CSSValue<"letterSpacing", true>;
+  textAlign?: CSSValue<"textAlign">;
+  fontFamily?: CSSValue<"fontFamily">;
+}>;
 
 const typographyMappings: Record<TypographyKeys, string> = {
   fontSize: "font-size",
