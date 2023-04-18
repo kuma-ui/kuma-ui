@@ -1,4 +1,4 @@
-import { ResponsiveStyle } from "./compose";
+import { ResponsiveStyle } from "./types";
 import { ShadowKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 

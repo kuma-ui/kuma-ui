@@ -1,6 +1,5 @@
 import { theme } from "../theme";
-import { ResponsiveStyle } from "./compose";
-import { CSSProperty } from "./types";
+import { CSSProperty, ResponsiveStyle } from "./types";
 
 export const applyResponsiveStyles = (
   cssProperty: string,

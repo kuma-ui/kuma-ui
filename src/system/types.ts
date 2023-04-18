@@ -16,3 +16,8 @@ export type CSSValue<P extends keyof CSS.Properties> =
 export type UtilityCSSMapping<K extends StyledKeyType> = {
   [key in K]: keyof CSS.Properties;
 };
+
+export type ResponsiveStyle = {
+  base: string;
+  media: { [breakpoint: string]: string };
+};

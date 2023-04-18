@@ -1,8 +1,7 @@
 import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { ResponsiveStyle } from "./compose";
-import { CSSValue } from "./types";
+import { CSSValue, ResponsiveStyle } from "./types";
 
 export type FlexProps = {
   flexDir?: CSSValue<"flexDirection">;

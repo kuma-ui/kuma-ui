@@ -1,6 +1,6 @@
 import { BorderKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { ResponsiveStyle } from "./compose";
+import { ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type BorderProps = Partial<

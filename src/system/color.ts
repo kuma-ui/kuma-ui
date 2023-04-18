@@ -1,5 +1,5 @@
 import { ColorKeys } from "./keys";
-import { ResponsiveStyle } from "./compose";
+import { ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type ColorProps = Partial<Record<ColorKeys, string | string[]>>;

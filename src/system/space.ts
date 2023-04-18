@@ -1,7 +1,7 @@
 import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { ResponsiveStyle } from "./compose";
+import { ResponsiveStyle } from "./types";
 
 export type SpaceProps = Partial<
   Record<SpaceKeys, string | number | (string | number)[]>

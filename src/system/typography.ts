@@ -1,6 +1,6 @@
 import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
-import { ResponsiveStyle } from "./compose";
+import { ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type TypographyProps = Partial<

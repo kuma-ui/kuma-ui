@@ -7,7 +7,8 @@ import { flex, FlexProps } from "./flex";
 import { border, BorderProps } from "./border";
 import { position, PositionProps } from "./position";
 import { shadow, ShadowProps } from "./shadow";
-import { compose, StyledProps, ResponsiveStyle } from "./compose";
+import { compose, StyledProps } from "./compose";
+import { ResponsiveStyle } from "./types";
 import { PseudoProps } from "./pseudo";
 export { StyledKeyType, isStyledProp } from "./keys";
 
