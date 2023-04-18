@@ -3,7 +3,7 @@ import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
 
 function App() {
   return (
-    <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
+    <VStack p={[4, 8]} m={2} _hover={{ flexDir: "row" }}>
       <Text fontSize="40px" color="orange">
         hello world
       </Text>

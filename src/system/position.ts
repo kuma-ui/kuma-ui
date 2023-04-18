@@ -1,11 +1,15 @@
 import { PositionKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { ResponsiveStyle } from "./compose";
+import { CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type PositionProps = Partial<
-  Record<PositionKeys, string | number | (string | number)[]>
->;
+export type PositionProps = Partial<{
+  top: CSSValue<"top", true>;
+  right: CSSValue<"right", true>;
+  left: CSSValue<"left", true>;
+  bottom: CSSValue<"left", true>;
+  inset: CSSValue<"left", true>;
+}>;
 
 const positionMappings: Record<PositionKeys, string> = {
   top: "top",

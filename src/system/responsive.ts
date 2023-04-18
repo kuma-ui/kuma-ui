@@ -1,10 +1,10 @@
 import { theme } from "../theme";
-import { ResponsiveStyle } from "./compose";
+import { CSSProperty, ResponsiveStyle } from "./types";
 
 export const applyResponsiveStyles = (
   cssProperty: string,
-  cssValues: string | number | (string | number)[],
-  convertFn: (value: string | number) => string | number = (value) => value
+  cssValues: CSSProperty | number | (CSSProperty | number)[],
+  convertFn: (value: CSSProperty | number) => string | number = (value) => value
 ): ResponsiveStyle => {
   const breakpoints = theme.getBreakpoints();
   const media: ResponsiveStyle["media"] = {};

@@ -2,6 +2,7 @@ import { types as t } from "@babel/core";
 import type { JSXOpeningElement } from "@babel/types";
 import { isStyledProp } from "../system";
 import { PseudoProps, isPseudoProps } from "src/system/pseudo";
+import { CSSProperty } from "../system/types";
 
 /**
  * Extracts style props from a JSX opening element and returns the filtered
@@ -12,7 +13,9 @@ import { PseudoProps, isPseudoProps } from "src/system/pseudo";
  */
 export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
   filteredAttributes: t.JSXAttribute[];
-  styledProps: { [key: string]: string | number | (string | number)[] };
+  styledProps: {
+    [key: string]: CSSProperty | number | (CSSProperty | number)[];
+  };
   pseudoProps: PseudoProps;
 } {
   const styledProps: { [key: string]: string | number | (string | number)[] } =

@@ -7,6 +7,7 @@ import { BorderProps } from "./border";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
+import { ResponsiveStyle } from "./types";
 import { sheet } from "../sheet";
 
 export type StyledProps = SpaceProps &
@@ -17,12 +18,6 @@ export type StyledProps = SpaceProps &
   BorderProps &
   PositionProps &
   ShadowProps;
-
-export type ResponsiveStyle = {
-  base: string;
-  media: { [breakpoint: string]: string };
-  // pseudo: PseudoProps;
-};
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 

@@ -1,3 +1,5 @@
+import * as CSS from "csstype";
+
 export const styleKeys = {
   space: [
     "m",

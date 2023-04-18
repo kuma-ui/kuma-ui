@@ -1,11 +1,17 @@
 import { BorderKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { ResponsiveStyle } from "./compose";
+import { CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type BorderProps = Partial<
-  Record<BorderKeys, string | number | (string | number)[]>
->;
+export type BorderProps = Partial<{
+  borderTop: CSSValue<"borderTop">;
+  borderRight: CSSValue<"borderRight">;
+  borderLeft: CSSValue<"borderLeft">;
+  borderBottom: CSSValue<"borderBottom">;
+  borderRadius: CSSValue<"borderRadius", true>;
+  borderStyle: CSSValue<"borderStyle">;
+  borderWidth: CSSValue<"borderWidth", true>;
+}>;
 
 const borderMappings: Record<BorderKeys, string> = {
   borderTop: "border-top",
