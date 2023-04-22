@@ -89,6 +89,8 @@ export function extractStylePropsFromObjectExpression(
     ) {
       if (t.isStringLiteral(prop.value) || t.isNumericLiteral(prop.value)) {
         styledProps[prop.key.name] = prop.value.value;
+      } else if (t.isIdentifier(prop.value)) {
+        // DO SOMETHING
       } else if (t.isArrayExpression(prop.value)) {
         styledProps[prop.key.name] = prop.value.elements
           .map((e) => {
