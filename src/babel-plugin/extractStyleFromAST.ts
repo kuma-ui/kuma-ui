@@ -101,6 +101,54 @@ export function extractStylePropsFromObjectExpression(
             }
           }
         }
+      } else if (t.isMemberExpression(prop.value)) {
+        const dfs = (
+          objBinding: ReturnType<typeof path.scope.getBinding>,
+          propertyPath: string[]
+        ): t.Expression | null => {
+          if (!objBinding) return null;
+          const objDeclaration = objBinding.path.node;
+          if (
+            !t.isVariableDeclarator(objDeclaration) ||
+            !t.isObjectExpression(objDeclaration.init)
+          ) {
+            return null;
+          }
+          for (const prop of objDeclaration.init.properties) {
+            if (
+              t.isObjectProperty(prop) &&
+              t.isIdentifier(prop.key) &&
+              prop.key.name === propertyPath[0]
+            ) {
+              if (propertyPath.length === 1 && t.isExpression(prop.value)) {
+                return prop.value;
+              }
+              const newObjectBinding = path.scope.getBinding(prop.key.name);
+              const result = dfs(newObjectBinding, propertyPath.slice(1));
+              if (result) {
+                return result;
+              }
+            }
+          }
+          return null;
+        };
+
+        const objName = t.isIdentifier(prop.value.object)
+          ? prop.value.object.name
+          : undefined;
+        const propertyPath = t.isIdentifier(prop.value.property)
+          ? [prop.value.property.name]
+          : undefined;
+        if (!objName || !propertyPath) return;
+        const objBinding = path.scope.getBinding(objName);
+        const target = dfs(objBinding, propertyPath);
+
+        if (
+          target &&
+          (t.isStringLiteral(target) || t.isNumericLiteral(target))
+        ) {
+          styledProps[prop.key.name] = target.value;
+        }
       } else if (t.isArrayExpression(prop.value)) {
         styledProps[prop.key.name] = prop.value.elements
           .map((e) => {
@@ -135,9 +183,3 @@ export function extractStylePropsFromObjectExpression(
 
   return { filteredProperties, styledProps, pseudoProps };
 }
-
-const colors = {
-  main: {
-    dark: "orange",
-  },
-};
