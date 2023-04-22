@@ -74,13 +74,13 @@ export const visitor = ({ types: t, template }: Core) => {
         path.replaceWith(createElementAst);
       }
     },
-    JSXElement(path: NodePath<JSXElement>) {
-      const openingElement = path.get("openingElement");
+    // JSXElement(path: NodePath<JSXElement>) {
+    //   const openingElement = path.get("openingElement");
 
-      if (t.isJSXOpeningElement(openingElement.node)) {
-        processHTMLTag(true)(openingElement);
-      }
-    },
+    //   if (t.isJSXOpeningElement(openingElement.node)) {
+    //     processHTMLTag(true)(openingElement);
+    //   }
+    // },
     CallExpression(path) {
       const { node } = path;
       if (

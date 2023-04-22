@@ -58,7 +58,7 @@ const processReactCreateElementHTMLTag = (
   path: NodePath<t.ObjectExpression>
 ) => {
   const { filteredProperties, styledProps, pseudoProps } =
-    extractStylePropsFromObjectExpression(path.node);
+    extractStylePropsFromObjectExpression(path, path.node);
   // Update the properties of the object expression by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;

@@ -1,13 +1,19 @@
 import { styled } from "zero-styled/styled";
 import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
 
-function App() {
-  const color = "orange";
+const color = "orange";
+const colors = {
+  orange: "orange",
+};
 
+function App() {
   return (
     <VStack p={[4, 8]} m={2} _hover={{ flexDir: "row" }}>
       <Text fontSize="24px" color={color}>
         hello world
+      </Text>
+      <Text fontSize="24px" color={colors.orange}>
+        Member Expression
       </Text>
     </VStack>
   );

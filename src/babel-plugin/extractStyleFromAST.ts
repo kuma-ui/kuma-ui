@@ -1,4 +1,4 @@
-import { types as t } from "@babel/core";
+import { types as t, type NodePath } from "@babel/core";
 import type { JSXOpeningElement } from "@babel/types";
 import { isStyledProp } from "../system";
 import { PseudoProps, isPseudoProps } from "src/system/pseudo";
@@ -71,6 +71,7 @@ export function extractStylePropsFromAST(openingElement: JSXOpeningElement): {
  * @returns An object containing the filtered properties and the extracted style props
  */
 export function extractStylePropsFromObjectExpression(
+  path: NodePath<t.ObjectExpression>,
   objectExpression: t.ObjectExpression
 ): {
   filteredProperties: t.ObjectProperty[];
@@ -90,7 +91,16 @@ export function extractStylePropsFromObjectExpression(
       if (t.isStringLiteral(prop.value) || t.isNumericLiteral(prop.value)) {
         styledProps[prop.key.name] = prop.value.value;
       } else if (t.isIdentifier(prop.value)) {
-        // DO SOMETHING
+        const binding = path.scope.getBinding(prop.value.name);
+        if (binding && ["const", "let", "var"].includes(binding.kind)) {
+          const declaration = binding.path.node;
+          if (t.isVariableDeclarator(declaration)) {
+            const init = declaration.init;
+            if (t.isStringLiteral(init) || t.isNumericLiteral(init)) {
+              styledProps[prop.key.name] = init.value;
+            }
+          }
+        }
       } else if (t.isArrayExpression(prop.value)) {
         styledProps[prop.key.name] = prop.value.elements
           .map((e) => {
@@ -109,7 +119,7 @@ export function extractStylePropsFromObjectExpression(
     ) {
       Object.assign(pseudoProps, {
         ...pseudoProps,
-        [prop.key.name]: extractStylePropsFromObjectExpression(prop.value)
+        [prop.key.name]: extractStylePropsFromObjectExpression(path, prop.value)
           .styledProps,
       });
       return false;
@@ -125,3 +135,9 @@ export function extractStylePropsFromObjectExpression(
 
   return { filteredProperties, styledProps, pseudoProps };
 }
+
+const colors = {
+  main: {
+    dark: "orange",
+  },
+};
