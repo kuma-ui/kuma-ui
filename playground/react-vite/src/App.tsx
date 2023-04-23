@@ -3,7 +3,12 @@ import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
 
 const color = "orange";
 const colors = {
-  orange: "orange",
+  red: "red",
+  main: {
+    test: {
+      target: "orange",
+    },
+  },
 };
 
 function App() {
@@ -12,8 +17,11 @@ function App() {
       <Text fontSize="24px" color={color}>
         hello world
       </Text>
-      <Text fontSize="24px" color={colors.orange}>
-        Member Expression
+      <Text fontSize="24px" color={colors.red}>
+        Red
+      </Text>
+      <Text fontSize="24px" color={colors.main.test.target}>
+        Nested Member Expression
       </Text>
     </VStack>
   );

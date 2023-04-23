@@ -102,46 +102,67 @@ export function extractStylePropsFromObjectExpression(
           }
         }
       } else if (t.isMemberExpression(prop.value)) {
+        const getPropertyPath = (expr: t.Expression) => {
+          const path: string[] = [];
+          let currentExpr = expr;
+          while (t.isMemberExpression(currentExpr)) {
+            if (t.isIdentifier(currentExpr.property)) {
+              path.unshift(currentExpr.property.name);
+            }
+            currentExpr = currentExpr.object;
+          }
+          if (t.isIdentifier(currentExpr)) {
+            path.unshift(currentExpr.name);
+          }
+          return path;
+        };
         const dfs = (
-          objBinding: ReturnType<typeof path.scope.getBinding>,
+          objBinding:
+            | ReturnType<typeof path.scope.getBinding>
+            | t.ObjectExpression,
           propertyPath: string[]
         ): t.Expression | null => {
           if (!objBinding) return null;
-          const objDeclaration = objBinding.path.node;
+          const objDeclaration =
+            "path" in objBinding ? objBinding.path.node : objBinding;
           if (
-            !t.isVariableDeclarator(objDeclaration) ||
-            !t.isObjectExpression(objDeclaration.init)
+            !t.isVariableDeclarator(objDeclaration) &&
+            !t.isObjectExpression(objDeclaration)
           ) {
             return null;
           }
-          for (const prop of objDeclaration.init.properties) {
-            if (
-              t.isObjectProperty(prop) &&
-              t.isIdentifier(prop.key) &&
-              prop.key.name === propertyPath[0]
-            ) {
-              if (propertyPath.length === 1 && t.isExpression(prop.value)) {
-                return prop.value;
-              }
-              const newObjectBinding = path.scope.getBinding(prop.key.name);
-              const result = dfs(newObjectBinding, propertyPath.slice(1));
-              if (result) {
-                return result;
+          const objExpression =
+            "init" in objDeclaration ? objDeclaration.init : objDeclaration;
+          if (!t.isObjectExpression(objExpression)) return null;
+          const [nextProperty, ...remainingPath] = propertyPath;
+          for (const prop of objExpression.properties) {
+            if (t.isObjectProperty(prop) && t.isIdentifier(prop.key)) {
+              if (prop.key.name === nextProperty) {
+                if (remainingPath.length === 0 && t.isExpression(prop.value)) {
+                  return prop.value;
+                } else {
+                  if (t.isObjectExpression(prop.value)) {
+                    return dfs(prop.value, remainingPath);
+                  } else if (t.isIdentifier(prop.value)) {
+                    const nextObjBinding = path.scope.getBinding(
+                      prop.value.name
+                    );
+                    return dfs(nextObjBinding, remainingPath);
+                  } else {
+                    return null;
+                  }
+                }
               }
             }
           }
           return null;
         };
 
-        const objName = t.isIdentifier(prop.value.object)
-          ? prop.value.object.name
-          : undefined;
-        const propertyPath = t.isIdentifier(prop.value.property)
-          ? [prop.value.property.name]
-          : undefined;
-        if (!objName || !propertyPath) return;
-        const objBinding = path.scope.getBinding(objName);
-        const target = dfs(objBinding, propertyPath);
+        const propertyPath = getPropertyPath(prop.value);
+        if (propertyPath.length === 0) return;
+
+        const objBinding = path.scope.getBinding(propertyPath[0]);
+        const target = dfs(objBinding, propertyPath.slice(1));
 
         if (
           target &&
