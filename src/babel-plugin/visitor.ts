@@ -74,13 +74,13 @@ export const visitor = ({ types: t, template }: Core) => {
         path.replaceWith(createElementAst);
       }
     },
-    JSXElement(path: NodePath<JSXElement>) {
-      const openingElement = path.get("openingElement");
+    // JSXElement(path: NodePath<JSXElement>) {
+    //   const openingElement = path.get("openingElement");
 
-      if (t.isJSXOpeningElement(openingElement.node)) {
-        processHTMLTag(true)(openingElement);
-      }
-    },
+    //   if (t.isJSXOpeningElement(openingElement.node)) {
+    //     processHTMLTag(openingElement);
+    //   }
+    // },
     CallExpression(path) {
       const { node } = path;
       if (
@@ -91,9 +91,7 @@ export const visitor = ({ types: t, template }: Core) => {
         (node.callee.property.name === "createElement" ||
           node.callee.property.name === "cloneElement")
       ) {
-        processHTMLTag(false)(
-          path.get("arguments.1") as NodePath<ObjectExpression>
-        );
+        processHTMLTag(path.get("arguments.1") as NodePath<ObjectExpression>);
       }
     },
     Program(path, pass) {

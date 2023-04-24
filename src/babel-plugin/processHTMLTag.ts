@@ -1,24 +1,21 @@
 import { NodePath, PluginObj, types as t } from "@babel/core";
 import { CallExpression, JSXElement, JSXOpeningElement } from "@babel/types";
-import {
-  extractStylePropsFromAST,
-  extractStylePropsFromObjectExpression,
-} from "./extractStyleFromAST";
+import { extractStyleProps } from "./extractStyleFromAST";
 import { sheet } from "../sheet";
 import { all } from "../system";
 import { PseudoProps, pseudoMappings } from "src/system/pseudo";
 
-export const processHTMLTag =
-  (isJSX: boolean) =>
-  (path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>) => {
-    if (isJSX) {
-      return processJSXHTMLTag(path as NodePath<t.JSXOpeningElement>);
-    } else {
-      return processReactCreateElementHTMLTag(
-        path as NodePath<t.ObjectExpression>
-      );
-    }
-  };
+export const processHTMLTag = (
+  path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>
+) => {
+  if (t.isJSXOpeningElement(path.node)) {
+    return processJSXHTMLTag(path as NodePath<t.JSXOpeningElement>);
+  } else {
+    return processReactCreateElementHTMLTag(
+      path as NodePath<t.ObjectExpression>
+    );
+  }
+};
 
 const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   const dataAttribute = path.node.attributes.some(
@@ -27,7 +24,7 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
 
   if (dataAttribute) return;
   const { filteredAttributes, styledProps, pseudoProps } =
-    extractStylePropsFromAST(path.node);
+    extractStyleProps(path);
   // Update the attributes of the opening element by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.attributes = filteredAttributes;
@@ -58,7 +55,7 @@ const processReactCreateElementHTMLTag = (
   path: NodePath<t.ObjectExpression>
 ) => {
   const { filteredProperties, styledProps, pseudoProps } =
-    extractStylePropsFromObjectExpression(path.node);
+    extractStyleProps(path);
   // Update the properties of the object expression by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;
