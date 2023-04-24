@@ -78,7 +78,7 @@ export const visitor = ({ types: t, template }: Core) => {
     //   const openingElement = path.get("openingElement");
 
     //   if (t.isJSXOpeningElement(openingElement.node)) {
-    //     processHTMLTag(true)(openingElement);
+    //     processHTMLTag(openingElement);
     //   }
     // },
     CallExpression(path) {
@@ -91,9 +91,7 @@ export const visitor = ({ types: t, template }: Core) => {
         (node.callee.property.name === "createElement" ||
           node.callee.property.name === "cloneElement")
       ) {
-        processHTMLTag(false)(
-          path.get("arguments.1") as NodePath<ObjectExpression>
-        );
+        processHTMLTag(path.get("arguments.1") as NodePath<ObjectExpression>);
       }
     },
     Program(path, pass) {

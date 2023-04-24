@@ -8,17 +8,17 @@ import { sheet } from "../sheet";
 import { all } from "../system";
 import { PseudoProps, pseudoMappings } from "src/system/pseudo";
 
-export const processHTMLTag =
-  (isJSX: boolean) =>
-  (path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>) => {
-    if (isJSX) {
-      return processJSXHTMLTag(path as NodePath<t.JSXOpeningElement>);
-    } else {
-      return processReactCreateElementHTMLTag(
-        path as NodePath<t.ObjectExpression>
-      );
-    }
-  };
+export const processHTMLTag = (
+  path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>
+) => {
+  if (t.isJSXOpeningElement(path.node)) {
+    return processJSXHTMLTag(path as NodePath<t.JSXOpeningElement>);
+  } else {
+    return processReactCreateElementHTMLTag(
+      path as NodePath<t.ObjectExpression>
+    );
+  }
+};
 
 const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   const dataAttribute = path.node.attributes.some(
