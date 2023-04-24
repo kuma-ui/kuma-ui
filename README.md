@@ -7,10 +7,11 @@ Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that offers an ou
 import { styled } from "zero-styled/styled";
 import { TypographyProps, ColorProps } from "zero-styled/system";
 
+const color = 'orange'
 function App() {
   return (
     <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
-      <Text fontSize="40px" color="orange">
+      <Text fontSize="40px" color={color}>
         hello world
       </Text>
     </VStack>
