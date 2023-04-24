@@ -1,6 +1,5 @@
 import { Sheet, sheet } from "../sheet";
 import type { NodePath, PluginPass, PluginObj } from "@babel/core";
-import { extractStylePropsFromAST } from "./extractStyleFromAST";
 import {
   JSXElement,
   JSXExpressionContainer,
@@ -9,53 +8,47 @@ import {
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";
-import { combineClassNames } from "./combineClassNames";
 import { generateHash } from "../utils/hash";
 import { Node } from "@babel/core";
+import { collectImportedStyled } from "./collectImportedStyled";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
 export const visitor = ({ types: t, template }: Core) => {
   // Keep track of the local name for the imported 'styled' function from 'zero-styled/styled'
   // This is necessary to handle cases where the 'styled' function is imported with a different name
-  let importedStyledName: string;
+  let importedStyleFunctions: Record<string, string> = {};
 
   const visitor: PluginObj<PluginPass>["visitor"] = {
-    ImportSpecifier(path) {
-      const { node } = path;
-      if (
-        path.parentPath.node.type === "ImportDeclaration" &&
-        path.parentPath.node.source.value === "zero-styled/styled"
-      ) {
-        importedStyledName = node.local.name;
-      }
-    },
     TaggedTemplateExpression(path) {
       // Check if the tag is a CallExpression with the callee named 'styled'
       const { node } = path;
-      if (
-        t.isCallExpression(node.tag) &&
-        (t.isIdentifier(node.tag.callee, { name: "styled" }) ||
-          t.isIdentifier(node.tag.callee, { name: importedStyledName }))
-      ) {
-        const componentArg = node.tag.arguments[0];
-        const cssStrings = node.quasi.quasis.map((quasi) => quasi.value.raw);
-        // Remove newlines and extra spaces from cssStrings, and concatenate them
-        const cssString = cssStrings
-          .map((str) => str.replace(/\s+/g, " ").trim())
-          .join("");
-        const className = !!cssString ? sheet.addRule(cssString) : undefined;
-        const styleFunctions = node.quasi.expressions;
-        const key = generateHash(JSON.stringify(styleFunctions));
-        styledFunctionsMap.set(key, styleFunctions);
 
-        const component = t.isStringLiteral(componentArg)
-          ? componentArg.value
-          : t.isJSXElement(componentArg)
-          ? componentArg
-          : "div";
-        const createElementAst = template.expression.ast(
-          `
+      const hasStyled = Object.keys(importedStyleFunctions).some(
+        (key) =>
+          t.isCallExpression(node.tag) &&
+          t.isIdentifier(node.tag.callee) &&
+          importedStyleFunctions[key] === node.tag.callee.name
+      );
+      if (!(t.isCallExpression(node.tag) && hasStyled)) return;
+      const componentArg = node.tag.arguments[0];
+      const cssStrings = node.quasi.quasis.map((quasi) => quasi.value.raw);
+      // Remove newlines and extra spaces from cssStrings, and concatenate them
+      const cssString = cssStrings
+        .map((str) => str.replace(/\s+/g, " ").trim())
+        .join("");
+      const className = !!cssString ? sheet.addRule(cssString) : undefined;
+      const styleFunctions = node.quasi.expressions;
+      const key = generateHash(JSON.stringify(styleFunctions));
+      styledFunctionsMap.set(key, styleFunctions);
+
+      const component = t.isStringLiteral(componentArg)
+        ? componentArg.value
+        : t.isJSXElement(componentArg)
+        ? componentArg
+        : "div";
+      const createElementAst = template.expression.ast(
+        `
               (props) => {
                 const existingClassName = props.className || "";
                 const newClassName = "${className || ""}";
@@ -70,9 +63,8 @@ export const visitor = ({ types: t, template }: Core) => {
                   className: combinedClassName,
                 });
               }`
-        );
-        path.replaceWith(createElementAst);
-      }
+      );
+      path.replaceWith(createElementAst);
     },
     // JSXElement(path: NodePath<JSXElement>) {
     //   const openingElement = path.get("openingElement");
@@ -94,8 +86,12 @@ export const visitor = ({ types: t, template }: Core) => {
         processHTMLTag(path.get("arguments.1") as NodePath<ObjectExpression>);
       }
     },
-    Program(path, pass) {
-      ensureReactImport(path, t);
+    Program: {
+      enter(path) {
+        ensureReactImport(path, t);
+        // Reset the importedStyleFunctions
+        importedStyleFunctions = collectImportedStyled(path, t);
+      },
     },
   };
   return visitor;

@@ -1,5 +1,6 @@
 import { styled } from "zero-styled/styled";
 import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
+import { Box } from "./Box";
 
 const color = "orange";
 const colors = {
@@ -23,6 +24,7 @@ function App() {
       <Text fontSize="24px" color={colors.main.test.target}>
         Nested Member Expression
       </Text>
+      <Box color="red">hello</Box>
     </VStack>
   );
 }
