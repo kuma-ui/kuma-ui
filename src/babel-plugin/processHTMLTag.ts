@@ -1,6 +1,6 @@
 import { NodePath, PluginObj, types as t } from "@babel/core";
 import { CallExpression, JSXElement, JSXOpeningElement } from "@babel/types";
-import { extractStyleProps } from "./extractStyleFromAST";
+import { extractStyleProps } from "./extractStyleProps";
 import { sheet } from "../sheet";
 import { all } from "../system";
 import { PseudoProps, pseudoMappings } from "src/system/pseudo";

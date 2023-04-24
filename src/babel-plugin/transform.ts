@@ -1,7 +1,6 @@
 import { types as t, parseSync, transformFromAstSync } from "@babel/core";
 import type { ParseResult } from "@babel/core";
 import zeroStyledPlugin from "./index";
-import { BabelPluginOption } from "./index";
 
 export async function transform(code: string, id: string) {
   const file: ParseResult | null = parseSync(code);
