@@ -9,6 +9,7 @@ import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
 import { ResponsiveStyle } from "./types";
 import { sheet } from "../sheet";
+import { GridProps } from "./grid";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
@@ -17,7 +18,8 @@ export type StyledProps = SpaceProps &
   FlexProps &
   BorderProps &
   PositionProps &
-  ShadowProps;
+  ShadowProps &
+  GridProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
