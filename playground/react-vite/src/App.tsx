@@ -14,7 +14,13 @@ const colors = {
 
 function App() {
   return (
-    <VStack p={[4, 8]} m={2} _hover={{ flexDir: "row" }}>
+    <VStack
+      p={[4, 8]}
+      m={2}
+      _hover={{ flexDir: "row" }}
+      display="grid"
+      gridGap={1}
+    >
       <Text fontSize="24px" color={color}>
         hello world
       </Text>

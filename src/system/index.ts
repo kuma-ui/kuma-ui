@@ -10,6 +10,7 @@ import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
 import { PseudoProps } from "./pseudo";
+import { grid } from "./grid";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export const all = compose(
@@ -20,7 +21,8 @@ export const all = compose(
   flex,
   border,
   position,
-  shadow
+  shadow,
+  grid
 );
 
 export { compose, space, typography, layout, color, flex, border, position };
