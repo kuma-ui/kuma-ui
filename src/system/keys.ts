@@ -56,6 +56,26 @@ export const styleKeys = {
   ] as const,
   position: ["top", "right", "bottom", "left", "inset"] as const,
   shadow: ["textShadow", "boxShadow"] as const,
+  grid: [
+    "grid",
+    "gridArea",
+    "gridAutoColumns",
+    "gridAutoFlow",
+    "gridAutoRows",
+    "gridColumn",
+    "gridColumnEnd",
+    "gridColumnStart",
+    "gridRow",
+    "gridRowEnd",
+    "gridRowStart",
+    "gridTemplate",
+    "gridTemplateAreas",
+    "gridTemplateColumns",
+    "gridTemplateRows",
+    "gridGap",
+    "gridColumnGap",
+    "gridRowGap",
+  ] as const,
 };
 
 export type SpaceKeys = (typeof styleKeys.space)[number];
@@ -67,6 +87,8 @@ export type BorderKeys = (typeof styleKeys.border)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 
+export type GridKeys = (typeof styleKeys.grid)[number];
+
 export type StyledKeyType =
   | SpaceKeys
   | TypographyKeys
@@ -75,7 +97,8 @@ export type StyledKeyType =
   | FlexKeys
   | BorderKeys
   | PositionKeys
-  | ShadowKeys;
+  | ShadowKeys
+  | GridKeys;
 
 export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;
