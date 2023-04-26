@@ -30,19 +30,9 @@ type StyledComponent = React.FC<
     Partial<PseudoProps>
 >;
 
-const createStyledComponent = <T = "div">(
-  tag: keyof JSX.IntrinsicElements
-): StyledComponent => {
-  return {} as any;
-};
-
 const z: {
   [K in (typeof htmlTags)[number]]: StyledComponent;
 } = {} as any;
-
-for (const tag of htmlTags) {
-  z[tag] = createStyledComponent(tag);
-}
 
 export const isHTMLElement = (
   _tag: unknown
@@ -51,4 +41,4 @@ export const isHTMLElement = (
   return htmlTags.includes(tag);
 };
 
-export { z, createStyledComponent };
+export { z };

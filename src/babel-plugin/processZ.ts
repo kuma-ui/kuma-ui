@@ -1,5 +1,5 @@
 import { NodePath, Node, types, template } from "@babel/core";
-import { createStyledComponent, isHTMLElement } from "../core/z";
+import { isHTMLElement } from "../core/z";
 import { Program } from "@babel/types";
 
 export const processZ = (

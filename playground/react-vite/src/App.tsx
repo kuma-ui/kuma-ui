@@ -16,7 +16,7 @@ function App() {
     <VStack
       p={[4, 8]}
       m={2}
-      _hover={{ flexDir: "row" }}
+      // _hover={{ flexDir: "row" }}
       display="grid"
       gridGap={1}
     >
@@ -30,6 +30,7 @@ function App() {
         Nested Member Expression
       </Text>
       <z.div fontSize={50}>hello</z.div>
+      <z.a>hello</z.a>
     </VStack>
   );
 }
