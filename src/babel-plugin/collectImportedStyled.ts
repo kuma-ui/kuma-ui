@@ -14,7 +14,7 @@ export function collectImportedStyled(
   for (const importDeclaration of importDeclarations) {
     if (
       t.isImportDeclaration(importDeclaration.node) &&
-      importDeclaration.node.source.value === "zero-styled/styled"
+      importDeclaration.node.source.value === "zero-styled"
     ) {
       for (const specifier of importDeclaration.node.specifiers) {
         if (

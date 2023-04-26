@@ -11,11 +11,12 @@ import { processHTMLTag } from "./processHTMLTag";
 import { generateHash } from "../utils/hash";
 import { Node } from "@babel/core";
 import { collectImportedStyled } from "./collectImportedStyled";
+import { processZ } from "./processZ";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
 export const visitor = ({ types: t, template }: Core) => {
-  // Keep track of the local name for the imported 'styled' function from 'zero-styled/styled'
+  // Keep track of the local name for the imported 'styled' function from 'zero-styled'
   // This is necessary to handle cases where the 'styled' function is imported with a different name
   let importedStyleFunctions: Record<string, string> = {};
 
@@ -91,6 +92,7 @@ export const visitor = ({ types: t, template }: Core) => {
         ensureReactImport(path, t);
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
+        processZ(path, t, importedStyleFunctions);
       },
     },
   };

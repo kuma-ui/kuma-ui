@@ -30,19 +30,9 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./styled": {
-      "import": "./dist/styled/index.mjs",
-      "require": "./dist/styled/index.js",
-      "types": "./dist/styled/index.d.ts"
-    },
-    "./system": {
-      "import": "./dist/system/index.mjs",
-      "require": "./dist/system/index.js",
-      "types": "./dist/system/index.d.ts"
+      "import": "./dist/core/index.mjs",
+      "require": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
     },
     "./vite": {
       "import": "./dist/vite/index.mjs",
@@ -52,12 +42,6 @@
   },
   "typesVersions": {
     "*": {
-      "styled": [
-        "dist/styled/index.d.ts"
-      ],
-      "system": [
-        "dist/system/index.d.ts"
-      ],
       "vite": [
         "dist/vite/index.d.ts"
       ]

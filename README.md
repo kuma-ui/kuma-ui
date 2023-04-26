@@ -4,16 +4,15 @@ Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that offers an ou
 
 
 ```tsx
-import { styled } from "zero-styled/styled";
-import { TypographyProps, ColorProps } from "zero-styled/system";
+import { styled, z } from "zero-styled";
 
 const color = 'orange'
 function App() {
   return (
     <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
-      <Text fontSize="40px" color={color}>
+      <z.div fontSize="40px" color={color}>
         hello world
-      </Text>
+      </z.div>
     </VStack>
   );
 }
@@ -23,11 +22,7 @@ export const VStack = styled("div")`
   flex-direction: column;
 `;
 
-// You can also explicitly specify the StyledProps generic type like this:
-const Text = styled("p")<TypographyProps & ColorProps>``;
-
 export default App;
-
 ```
 
 # Features
