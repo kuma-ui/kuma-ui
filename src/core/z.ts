@@ -1,5 +1,6 @@
-import { styled } from "./styled";
-import { StyledProps } from "../system";
+import { StyledComponentProps } from "./styled";
+import React, { ComponentProps } from "react";
+import { StyledProps, StyledKeyType, PseudoProps } from "../system";
 
 const htmlTags: Array<Partial<keyof JSX.IntrinsicElements>> = [
   "div",
@@ -23,16 +24,31 @@ const htmlTags: Array<Partial<keyof JSX.IntrinsicElements>> = [
   "span",
 ];
 
-const createStyledComponent = (tag: keyof JSX.IntrinsicElements) => {
-  return styled(tag)<StyledProps>``;
+type StyledComponent = React.FC<
+  Omit<StyledComponentProps<"div">, StyledKeyType> &
+    StyledProps &
+    Partial<PseudoProps>
+>;
+
+const createStyledComponent = <T = "div">(
+  tag: keyof JSX.IntrinsicElements
+): StyledComponent => {
+  return {} as any;
 };
 
 const z: {
-  [K in (typeof htmlTags)[number]]: ReturnType<typeof createStyledComponent>;
+  [K in (typeof htmlTags)[number]]: StyledComponent;
 } = {} as any;
 
 for (const tag of htmlTags) {
   z[tag] = createStyledComponent(tag);
 }
+
+export const isHTMLElement = (
+  _tag: unknown
+): _tag is keyof JSX.IntrinsicElements => {
+  const tag = _tag as keyof JSX.IntrinsicElements;
+  return htmlTags.includes(tag);
+};
 
 export { z, createStyledComponent };

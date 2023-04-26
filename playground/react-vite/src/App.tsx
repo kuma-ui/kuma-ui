@@ -1,5 +1,4 @@
-import { styled } from "zero-styled/styled";
-import { TypographyProps, ColorProps, StyledProps } from "zero-styled/system";
+import { styled, z } from "zero-styled";
 import { Box } from "./Box";
 
 const color = "orange";
@@ -30,12 +29,12 @@ function App() {
       <Text fontSize="24px" color={colors.main.test.target}>
         Nested Member Expression
       </Text>
-      <Box color="red">hello</Box>
+      <z.div fontSize={50}>hello</z.div>
     </VStack>
   );
 }
 
-export const VStack = styled("div")<StyledProps>`
+export const VStack = styled("div")`
   display: flex;
   flex-direction: column;
   :hover {
@@ -43,6 +42,6 @@ export const VStack = styled("div")<StyledProps>`
   }
 `;
 
-const Text = styled("p")<ColorProps & TypographyProps>``;
+const Text = styled("p")``;
 
 export default App;

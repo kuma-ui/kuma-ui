@@ -17,7 +17,7 @@ import {
 } from "../system";
 import { sheet } from "../sheet";
 
-type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
+export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[T]
   : T extends ComponentType<infer P>
   ? P
