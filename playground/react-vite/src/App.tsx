@@ -30,7 +30,6 @@ function App() {
         Nested Member Expression
       </Text>
       <z.div fontSize={50}>hello</z.div>
-      <z.a>hello</z.a>
     </VStack>
   );
 }
