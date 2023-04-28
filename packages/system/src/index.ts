@@ -1,4 +1,3 @@
-import React from "react";
 import { space, SpaceProps } from "./space";
 import { typography, TypographyProps } from "./typography";
 import { layout, LayoutProps } from "./layout";

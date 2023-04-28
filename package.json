@@ -72,5 +72,8 @@
     "vite": "^4.2.1",
     "webpack": "^5.78.0",
     "webpack-sources": "^3.2.3"
+  },
+  "engines": {
+    "pnpm": ">=7.19.0"
   }
 }
