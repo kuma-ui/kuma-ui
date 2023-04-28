@@ -18,9 +18,9 @@
   "scripts": {
     "start": "node dist/index.js",
     "test": "jest",
-    "build": "yarn build:dist && yarn build:declarations && cp package.json ./dist",
+    "build": "yarn build:dist && yarn build:declarations",
     "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
-    "build:dist": "tsup src --format cjs,esm",
+    "build:dist": "tsup src --format cjs,esm --config rollup.config.js",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
@@ -42,6 +42,9 @@
   },
   "typesVersions": {
     "*": {
+      "*": [
+        "dist/core/index.d.ts"
+      ],
       "vite": [
         "dist/vite/index.d.ts"
       ]
@@ -86,6 +89,7 @@
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
     "react": "^18.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
     "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",

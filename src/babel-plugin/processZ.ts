@@ -29,7 +29,7 @@ export const processZ = (
           let htmlTag = t.isIdentifier(firstArg.node.property)
             ? firstArg.node.property.name
             : undefined;
-          htmlTag = isHTMLElement(htmlTag) ? htmlTag : "div";
+          htmlTag ||= "div";
           firstArg.replaceWith(t.stringLiteral(htmlTag));
         }
       }
