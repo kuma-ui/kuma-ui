@@ -34,6 +34,7 @@
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.1",
     "@jest/types": "^29.5.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@types/babel__core": "^7.20.0",
