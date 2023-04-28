@@ -8,9 +8,11 @@ import { position, PositionProps } from "./position";
 import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
-import { PseudoProps } from "./pseudo";
+import { PseudoProps, pseudoMappings, isPseudoProps } from "./pseudo";
 import { grid } from "./grid";
 export { StyledKeyType, isStyledProp } from "./keys";
+
+export * from "./types";
 
 export const all = compose(
   space,
@@ -24,7 +26,7 @@ export const all = compose(
   grid
 );
 
-export { compose, space, typography, layout, color, flex, border, position };
+export { pseudoMappings, isPseudoProps };
 export type {
   SpaceProps,
   TypographyProps,
@@ -34,5 +36,7 @@ export type {
   BorderProps,
   PositionProps,
   ShadowProps,
+  StyledProps,
+  ResponsiveStyle,
+  PseudoProps,
 };
-export type { StyledProps, ResponsiveStyle, PseudoProps };

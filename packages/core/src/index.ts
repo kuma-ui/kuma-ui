@@ -1,2 +1,2 @@
 export { styled } from "./styled";
-export { z } from "./z";
+export { k } from "./k";

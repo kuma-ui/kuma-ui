@@ -4,27 +4,6 @@ importers:
 
   .:
     devDependencies:
-      '@babel/cli':
-        specifier: ^7.21.0
-        version: 7.21.0(@babel/core@7.21.4)
-      '@babel/core':
-        specifier: ^7.21.4
-        version: 7.21.4
-      '@babel/node':
-        specifier: ^7.20.7
-        version: 7.20.7(@babel/core@7.21.4)
-      '@babel/preset-env':
-        specifier: ^7.21.4
-        version: 7.21.4(@babel/core@7.21.4)
-      '@babel/preset-react':
-        specifier: ^7.18.6
-        version: 7.18.6(@babel/core@7.21.4)
-      '@babel/preset-typescript':
-        specifier: ^7.21.4
-        version: 7.21.4(@babel/core@7.21.4)
-      '@babel/types':
-        specifier: ^7.21.4
-        version: 7.21.4
       '@jest/types':
         specifier: ^29.5.0
         version: 29.5.0
@@ -58,9 +37,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^3.1.0
         version: 3.1.0(vite@4.2.1)
-      css:
-        specifier: ^3.0.0
-        version: 3.0.0
       eslint:
         specifier: ^8.0.1
         version: 8.0.1
@@ -109,15 +85,43 @@ importers:
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
-      vite:
-        specifier: ^4.2.1
-        version: 4.2.1(@types/node@18.15.11)
       webpack:
         specifier: ^5.78.0
         version: 5.78.0(esbuild@0.17.18)
       webpack-sources:
         specifier: ^3.2.3
         version: 3.2.3
+
+  packages/babel-plugin:
+    dependencies:
+      '@kuma-ui/sheet':
+        specifier: workspace:^
+        version: link:../sheet
+      '@kuma-ui/system':
+        specifier: workspace:^
+        version: link:../system
+    devDependencies:
+      '@babel/cli':
+        specifier: ^7.21.0
+        version: 7.21.0(@babel/core@7.21.4)
+      '@babel/core':
+        specifier: ^7.21.4
+        version: 7.21.4
+      '@babel/node':
+        specifier: ^7.20.7
+        version: 7.20.7(@babel/core@7.21.4)
+      '@babel/preset-env':
+        specifier: ^7.21.4
+        version: 7.21.4(@babel/core@7.21.4)
+      '@babel/preset-react':
+        specifier: ^7.18.6
+        version: 7.18.6(@babel/core@7.21.4)
+      '@babel/preset-typescript':
+        specifier: ^7.21.4
+        version: 7.21.4(@babel/core@7.21.4)
+      '@babel/types':
+        specifier: ^7.21.4
+        version: 7.21.4
 
   packages/core:
     dependencies:
@@ -140,6 +144,19 @@ importers:
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
+
+  packages/vite:
+    dependencies:
+      '@kuma-ui/babel-plugin':
+        specifier: workspace:^
+        version: link:../babel-plugin
+      '@kuma-ui/sheet':
+        specifier: workspace:*
+        version: link:../sheet
+    devDependencies:
+      vite:
+        specifier: ^4.2.1
+        version: 4.2.1(@types/node@18.15.11)
 
 packages:
 
@@ -2731,12 +2748,6 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /atob@2.1.2:
-    resolution: {integrity: sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==}
-    engines: {node: '>= 4.5.0'}
-    hasBin: true
-    dev: true
-
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
     engines: {node: '>= 0.4'}
@@ -3132,14 +3143,6 @@ packages:
       which: 2.0.2
     dev: true
 
-  /css@3.0.0:
-    resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
-    dependencies:
-      inherits: 2.0.4
-      source-map: 0.6.1
-      source-map-resolve: 0.6.0
-    dev: true
-
   /csstype@3.1.2:
     resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==}
     dev: true
@@ -3165,11 +3168,6 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
-    dev: true
-
-  /decode-uri-component@0.2.2:
-    resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
-    engines: {node: '>=0.10'}
     dev: true
 
   /dedent@0.7.0:
@@ -5642,14 +5640,6 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /source-map-resolve@0.6.0:
-    resolution: {integrity: sha512-KXBr9d/fO/bWo97NXsPIAW1bFSBOuCnjbNTBMO7N59hsv5i9yzRDfcYwwt0l04+VqnKC+EwzvJZIP/qkuMgR/w==}
-    deprecated: See https://github.com/lydell/source-map-resolve#deprecated
-    dependencies:
-      atob: 2.1.2
-      decode-uri-component: 0.2.2
     dev: true
 
   /source-map-support@0.5.13:

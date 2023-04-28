@@ -34,13 +34,6 @@
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/node": "^7.20.7",
-    "@babel/preset-env": "^7.21.4",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.21.4",
-    "@babel/types": "^7.21.4",
     "@jest/types": "^29.5.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@types/babel__core": "^7.20.0",
@@ -52,7 +45,6 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^3.1.0",
-    "css": "^3.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
@@ -69,7 +61,6 @@
     "tsup": "^6.7.0",
     "turbo": "^1.9.3",
     "typescript": "^5.0.4",
-    "vite": "^4.2.1",
     "webpack": "^5.78.0",
     "webpack-sources": "^3.2.3"
   },

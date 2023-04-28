@@ -23,14 +23,14 @@ const htmlTags: Array<Partial<keyof JSX.IntrinsicElements>> = [
   "span",
 ];
 
-type StyledComponent = React.FC<
-  Omit<StyledComponentProps<"div">, StyledKeyType> &
+type StyledComponent<T extends (typeof htmlTags)[number]> = React.FC<
+  Omit<StyledComponentProps<T>, StyledKeyType> &
     StyledProps &
     Partial<PseudoProps>
 >;
 
-const z: {
-  [K in (typeof htmlTags)[number]]: StyledComponent;
+const k: {
+  [K in (typeof htmlTags)[number]]: StyledComponent<K>;
 } = {} as any;
 
 export const isHTMLElement = (
@@ -40,4 +40,4 @@ export const isHTMLElement = (
   return htmlTags.includes(tag);
 };
 
-export { z };
+export { k };
