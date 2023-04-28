@@ -1,6 +1,6 @@
-# Zero-Styled
+# Kuma UI
 
-Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
+🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.a
 
 
 ```tsx

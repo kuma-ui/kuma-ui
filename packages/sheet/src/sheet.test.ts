@@ -12,7 +12,7 @@ describe("Sheet class", () => {
     // Act
     const id = sheet.addRule(css);
     // Assert
-    expect(id.startsWith("zero")).toBeTruthy();
+    expect(id.startsWith("kuma-")).toBeTruthy();
   });
 
   test("addRule() should not add duplicate rules", () => {
@@ -27,7 +27,7 @@ describe("Sheet class", () => {
 
   test("addMediaRule() should add a new media rule with a generated ID", () => {
     // Arrange
-    const className = "zero12345";
+    const className = "kuma-12345";
     const css = "padding: 8px;";
     const breakpoint = "576px";
     const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
@@ -39,7 +39,7 @@ describe("Sheet class", () => {
 
   test("addPseudoRule() should add a new pseudo rule with a generated ID", () => {
     // Arrange
-    const className = "zero12345";
+    const className = "kuma-12345";
     const css = "padding: 8px;";
     const pseudo = ":hover";
     const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(/\s/g, "");

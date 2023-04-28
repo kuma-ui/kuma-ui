@@ -34,7 +34,7 @@ export class Sheet {
 
   addRule(css: string): string {
     css = css.replace(/\s/g, "");
-    const id = "zero" + generateHash(css);
+    const id = "kuma-" + generateHash(css);
     const existingRule = this.rules.find((rule) => rule.id === id);
     if (!existingRule) this.rules.push({ id, css });
     return id;

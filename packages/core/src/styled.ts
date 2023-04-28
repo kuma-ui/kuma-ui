@@ -13,13 +13,13 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   : never;
 /**
  * A higher-order component that wraps a given component with styled-system
- * functionality and applies the data-zero-styled attribute.
+ * functionality and applies the data-kuma attribute.
  *
  * the Babel plugin replaces the styled function with the hashed class name during the build process.
  * This is essentially a placeholder for the actual implementation that happens in the Babel plugin.
  *
  * @param Component - The component to be wrapped with styled-system functionality
- * @returns A new component with styled-system functionality and a unique data-zero-styled attribute
+ * @returns A new component with styled-system functionality and a unique data-kuma attribute
  */
 function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
   Component: T
