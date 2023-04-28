@@ -53,6 +53,10 @@ yarn add @kuma-ui/core
 
 ## Vite
 
+```sh
+yarn add @kuma-ui/vite
+```
+
 **vite.config.ts**
 
 ```js:vite.config.ts
