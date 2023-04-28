@@ -4,15 +4,15 @@ Zero-Styled is a utility-first, zero-runtime CSS-in-JS library that offers an ou
 
 
 ```tsx
-import { styled, z } from "zero-styled";
+import { styled, k } from "@kuma-ui/core";
 
 const color = 'orange'
 function App() {
   return (
     <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
-      <z.div fontSize="40px" color={color}>
+      <k.div fontSize="40px" color={color}>
         hello world
-      </z.div>
+      </k.div>
     </VStack>
   );
 }
@@ -40,13 +40,13 @@ export default App;
 # Installation
 
 ```sh
-npm install zero-styled
+npm install @kuma-ui/core
 ```
 
 or 
 
 ```sh
-yarn add zero-styled
+yarn add @kuma-ui/core
 ```
 
 # Setup
@@ -58,7 +58,7 @@ yarn add zero-styled
 ```js:vite.config.ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import zeroStyled from "zero-styled/vite";
+import KumaUI from "@kuma-ui/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -66,7 +66,7 @@ export default defineConfig({
     react({
       jsxRuntime: "classic",
     }),
-    zeroStyled(),
+    KumaUI(),
   ],
 });
 ```

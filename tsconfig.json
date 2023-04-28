@@ -15,10 +15,9 @@
     "declaration": true,
     "declarationDir": "dist",
     "paths": {
-      "@zero-styled/*": ["./src"]
+      "@kuma-ui/*": ["./packages/*/src"]
     },
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": ["node_modules", "src/**/*.test.ts"]
+  "exclude": ["node_modules", "**/*.test.ts", "packages/**/dist/**"]
 }

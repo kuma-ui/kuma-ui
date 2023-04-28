@@ -1,6 +1,8 @@
 /node_modules
 /test
 src/**/**.js
-/dist
 yarn-error.log
-/coverage
+.turbo
+dist/
+coverage/
+node_modules/
