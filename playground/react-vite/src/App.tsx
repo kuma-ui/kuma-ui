@@ -20,17 +20,16 @@ function App() {
       display="grid"
       gridGap={1}
     >
-      <Text fontSize="24px" color={color}>
+      <z.h1 fontSize="24px" color={color}>
         hello world
-      </Text>
-      <Text fontSize="24px" color={colors.red}>
+      </z.h1>
+      <z.p fontSize="24px" color={colors.red}>
         Red
-      </Text>
-      <Text fontSize="24px" color={colors.main.test.target}>
+      </z.p>
+      <z.p fontSize="24px" color={colors.main.test.target}>
         Nested Member Expression
-      </Text>
+      </z.p>
       <z.div fontSize={50}>hello</z.div>
-      <z.a>hello</z.a>
     </VStack>
   );
 }
@@ -42,7 +41,5 @@ export const VStack = styled("div")`
     color: red;
   }
 `;
-
-const Text = styled("p")``;
 
 export default App;

@@ -24,12 +24,12 @@ export const processZ = (
         if (
           t.isMemberExpression(firstArg.node) &&
           t.isIdentifier(firstArg.node.object) &&
-          firstArg.node.object.name === "z"
+          firstArg.node.object.name === importedStyleFunctions["z"]
         ) {
           let htmlTag = t.isIdentifier(firstArg.node.property)
             ? firstArg.node.property.name
             : undefined;
-          htmlTag = isHTMLElement(htmlTag) ? htmlTag : "div";
+          htmlTag ||= "div";
           firstArg.replaceWith(t.stringLiteral(htmlTag));
         }
       }
