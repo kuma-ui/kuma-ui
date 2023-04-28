@@ -25,8 +25,6 @@ describe("grid utility function", () => {
         )
         .join("");
 
-      console.log();
-
       // Assert
       expect(base.replace(/\s/g, "")).toBe(
         expectedBaseStyles.replace(/\s/g, "")

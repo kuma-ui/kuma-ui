@@ -30,6 +30,7 @@
   },
   "scripts": {
     "bootstrap": "pnpm install",
+    "test": "jest --config jest.config.ts --rootDir .",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'"
   },

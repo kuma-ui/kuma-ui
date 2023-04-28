@@ -21,11 +21,12 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: install packages
-        run: yarn install
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.19.0
 
-      - name: type check
-        run: yarn typecheck
+      - name: install packages
+        run: pnpm install
 
       - name: run test
-        run: yarn test
+        run: pnpm run test
