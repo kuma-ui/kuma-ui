@@ -1,6 +1,17 @@
 # Kuma UI
 
-🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.a
+ <div>
+    <a href='https://www.npmjs.com/package/@kuma-ui/core'>
+      <img src='https://img.shields.io/npm/v/@kuma-ui/core'>
+    </a>
+    <a href='https://bundlephobia.com/package/@kuma-ui/core'>
+      <img src='https://img.shields.io/bundlephobia/minzip/@kuma-ui/core'>
+    </a>
+  </div>
+  <br />
+</div>
+
+🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
 
 
 ```tsx
