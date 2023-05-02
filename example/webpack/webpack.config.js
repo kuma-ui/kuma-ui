@@ -1,8 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+const dev = process.env.NODE_ENV !== "production";
 
 module.exports = {
-  mode: "development",
+  mode: dev ? "development" : "production",
   entry: "./src/index.tsx",
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".json"],
@@ -17,6 +20,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
     }),
+    new MiniCssExtractPlugin({ filename: "styles.css" }),
   ],
   devServer: {
     static: {
@@ -30,14 +34,34 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: "babel-loader",
-            options: { presets: ["@babel/preset-env", "@babel/react"] },
+            loader: "@kuma-ui/webpack-loader",
           },
           {
-            loader: "ts-loader",
+            loader: "babel-loader",
             options: {
-              configFile: path.resolve(__dirname, "tsconfig.json"),
+              presets: [
+                "@babel/preset-env",
+                "@babel/preset-typescript",
+                [
+                  "@babel/preset-react",
+                  {
+                    runtime: "classic",
+                  },
+                ],
+              ],
             },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: "css-loader",
+            options: { sourceMap: dev },
           },
         ],
       },
