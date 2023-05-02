@@ -21,7 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "public", "index.html"),
     }),
-    new MiniCssExtractPlugin({ filename: "styles.css" }),
+    new MiniCssExtractPlugin({ filename: "kuma.css" }),
     new KumaUIWebpackPlugin({}),
   ],
   devServer: {
@@ -61,10 +61,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
           },
-          {
-            loader: "css-loader",
-            options: { sourceMap: dev },
-          },
+          "css-loader",
         ],
       },
     ],

@@ -1,11 +1,15 @@
-import type { Compilation, Compiler, NormalModule } from "webpack";
+import { Compilation, Compiler, NormalModule } from "webpack";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { transform } from "@kuma-ui/babel-plugin";
 import { RawSource, Source } from "webpack-sources";
+import path from "path";
+import { rm, mkdir, existsSync } from "fs";
 
 type WebpackPluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
 };
+
+export const tmpCSSDir = "kuma-temp-css";
 
 const pluginName = "KumaUIWebpackPlugin";
 
@@ -13,6 +17,8 @@ class KumaUIWebpackPlugin {
   options: WebpackPluginOption;
 
   static loader = require.resolve("./loader");
+
+  public tmpDir: string[] = [];
 
   constructor({ options = {} }) {
     this.options = options;
@@ -25,13 +31,25 @@ class KumaUIWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    compiler.hooks.emit.tapAsync(pluginName, (compilation, callback) => {
-      const kumaUiCss = sheet.getCSS();
-      const outputPath = "kuma-ui.css";
-      compilation.assets[outputPath] = new compiler.webpack.sources.RawSource(
-        kumaUiCss
-      );
-      callback();
+    // compiler.hooks.emit.tapAsync(pluginName, (compilation, callback) => {
+    //   const kumaUiCss = sheet.getCSS();
+    //   const outputPath = "kuma.css";
+    //   compilation.assets[outputPath] = new compiler.webpack.sources.RawSource(
+    //     kumaUiCss
+    //   );
+    //   callback();
+    // });
+
+    compiler.hooks.beforeCompile.tapAsync(pluginName, (_, callback) => {
+      console.log("before");
+      if (!existsSync(tmpCSSDir)) mkdir(tmpCSSDir, callback);
+      else callback();
+    });
+    compiler.hooks.done.tapAsync(pluginName, (_, callback) => {
+      console.log("after");
+      if (existsSync(tmpCSSDir)) {
+        rm(tmpCSSDir, { recursive: true, force: true }, callback);
+      } else callback();
     });
 
     compiler.hooks.compilation.tap(pluginName, (compilation) => {

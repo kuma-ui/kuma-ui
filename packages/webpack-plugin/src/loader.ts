@@ -2,12 +2,14 @@ import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import type { RawLoaderDefinitionFunction } from "webpack";
 import { sheet } from "@kuma-ui/sheet";
-import fs from "fs";
+import { writeFile, mkdtempSync } from "fs";
+import { tmpCSSDir } from "./plugin";
 
 const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
+  const tmpDir = "";
 
   if (
     id.includes("/node_modules/") ||
@@ -20,7 +22,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
 
   const outputPath = this._compiler?.options.output.path;
   if (!outputPath) throw Error("output path is not correctly set");
-  const cssFilename = "assets/kuma.css";
+  const cssFilename = "kuma.css";
   transform(source.toString(), id)
     .then(async (result) => {
       if (!result || !result.code) {
@@ -30,22 +32,24 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       const codeWithReact = requireReact(result.code, id);
       const css = sheet.getCSS();
       const codeWithInjectedCSS = injectCSS(css) + codeWithReact;
-      // Emit the CSS content to the kuma.css file
-      // this.emitFile(cssFilename, css);
+      const output = path.join(tmpCSSDir, "kuma.css");
+      writeFile(output, css, () => {});
 
-      // Calculate the relative path to the assets/kuma.css from the current file
-      // const relativePathToCss = path.relative(
-      //   path.dirname(id),
-      //   path.join(this.rootContext, cssFilename)
-      // );
+      const relativePathToRoot = path.relative(
+        path.dirname(id),
+        this.rootContext
+      );
+      const outputPath = path.join(relativePathToRoot, output);
+      const adjustedPath =
+        outputPath[0] !== "." ? `./${outputPath}` : outputPath;
 
-      // const stringifiedRequest = JSON.stringify(
-      //   this.utils.contextify(this.context, relativePathToCss)
-      // );
-      // const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire(${stringifiedRequest});`;
+      const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire("${adjustedPath}");`;
 
-      callback(null, codeWithInjectedCSS);
-      // callback(null, codeWithDynamicCssImport);
+      if (this._compiler?.options.mode === "production") {
+        callback(null, codeWithDynamicCssImport);
+      } else {
+        callback(null, codeWithInjectedCSS);
+      }
     })
     .catch((error) => {
       callback(error);
@@ -78,4 +82,12 @@ const injectCSS = (cssContent: string) => {
     head.appendChild(style);
   })();
   `;
+};
+
+const tmp = () => {
+  const css = sheet.getCSS();
+  const tempDir = "temp";
+  const output = path.join(mkdtempSync(tempDir), "kuma.css");
+  writeFile(output, css, () => {});
+  return output;
 };
