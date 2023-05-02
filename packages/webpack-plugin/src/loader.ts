@@ -69,6 +69,9 @@ const requireReact = (code: string, id: string) => {
 const injectCSS = (cssContent: string) => {
   return `
   (function() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const css = ${JSON.stringify(cssContent)};
     const head = document.head || document.getElementsByTagName('head')[0];
     const style = document.createElement('style');
