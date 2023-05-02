@@ -31,46 +31,35 @@ class KumaUIWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    // compiler.hooks.emit.tapAsync(pluginName, (compilation, callback) => {
-    //   const kumaUiCss = sheet.getCSS();
-    //   const outputPath = "kuma.css";
-    //   compilation.assets[outputPath] = new compiler.webpack.sources.RawSource(
-    //     kumaUiCss
-    //   );
-    //   callback();
-    // });
-
     compiler.hooks.beforeCompile.tapAsync(pluginName, (_, callback) => {
-      console.log("before");
       if (!existsSync(tmpCSSDir)) mkdir(tmpCSSDir, callback);
       else callback();
     });
     compiler.hooks.done.tapAsync(pluginName, (_, callback) => {
-      console.log("after");
       if (existsSync(tmpCSSDir)) {
         rm(tmpCSSDir, { recursive: true, force: true }, callback);
       } else callback();
     });
 
-    compiler.hooks.compilation.tap(pluginName, (compilation) => {
-      compilation.hooks.processAssets.tap(
-        {
-          name: pluginName,
-          stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
-        },
-        (assets) => {
-          Object.entries(assets).forEach(([pathname, source]) => {
-            if (pathname.includes(".css")) {
-              const css = sheet.getCSS();
-              compilation.updateAsset(
-                pathname,
-                new compiler.webpack.sources.RawSource(css)
-              );
-            }
-          });
-        }
-      );
-    });
+    // compiler.hooks.compilation.tap(pluginName, (compilation) => {
+    //   compilation.hooks.processAssets.tap(
+    //     {
+    //       name: pluginName,
+    //       stage: compiler.webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+    //     },
+    //     (assets) => {
+    //       Object.entries(assets).forEach(([pathname, source]) => {
+    //         if (pathname.includes(".css")) {
+    //           const css = sheet.getCSS();
+    //           compilation.updateAsset(
+    //             pathname,
+    //             new compiler.webpack.sources.RawSource(css)
+    //           );
+    //         }
+    //       });
+    //     }
+    //   );
+    // });
   }
 }
 

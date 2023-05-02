@@ -22,7 +22,6 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
 
   const outputPath = this._compiler?.options.output.path;
   if (!outputPath) throw Error("output path is not correctly set");
-  const cssFilename = "kuma.css";
   transform(source.toString(), id)
     .then(async (result) => {
       if (!result || !result.code) {
