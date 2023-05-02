@@ -1,6 +1,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const KumaUIWebpackPlugin = require("@kuma-ui/webpack-plugin").default;
 
 const dev = process.env.NODE_ENV !== "production";
 
@@ -21,6 +22,7 @@ module.exports = {
       template: path.join(__dirname, "public", "index.html"),
     }),
     new MiniCssExtractPlugin({ filename: "styles.css" }),
+    new KumaUIWebpackPlugin({}),
   ],
   devServer: {
     static: {
@@ -34,7 +36,7 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: "@kuma-ui/webpack-loader",
+            loader: KumaUIWebpackPlugin.loader,
           },
           {
             loader: "babel-loader",

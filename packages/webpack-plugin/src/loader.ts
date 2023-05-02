@@ -8,6 +8,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
+
   if (
     id.includes("/node_modules/") ||
     id.includes("@kuma-ui/core") ||
@@ -18,18 +19,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
   }
 
   const outputPath = this._compiler?.options.output.path;
-  const cssFilenameAbsolute = path.normalize(
-    `${id.replace(/\.[jt]sx?$/, "")}.css`
-  );
-  const cssFilenameRelativeToSrc = path.relative(
-    this.rootContext,
-    cssFilenameAbsolute
-  );
-  const cssFilenameRelativeToBuild =
-    path.relative(this.rootContext, outputPath || "build") +
-    "/" +
-    cssFilenameRelativeToSrc;
-
+  if (!outputPath) throw Error("output path is not correctly set");
+  const cssFilename = "assets/kuma.css";
   transform(source.toString(), id)
     .then(async (result) => {
       if (!result || !result.code) {
@@ -37,14 +28,24 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
         return;
       }
       const codeWithReact = requireReact(result.code, id);
-      const codeWithCssImport =
-        `import ${JSON.stringify("./" + cssFilenameRelativeToSrc)};\n` +
-        codeWithReact;
       const css = sheet.getCSS();
       const codeWithInjectedCSS = injectCSS(css) + codeWithReact;
+      // Emit the CSS content to the kuma.css file
+      // this.emitFile(cssFilename, css);
 
-      this.emitFile(cssFilenameRelativeToBuild, css);
+      // Calculate the relative path to the assets/kuma.css from the current file
+      // const relativePathToCss = path.relative(
+      //   path.dirname(id),
+      //   path.join(this.rootContext, cssFilename)
+      // );
+
+      // const stringifiedRequest = JSON.stringify(
+      //   this.utils.contextify(this.context, relativePathToCss)
+      // );
+      // const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire(${stringifiedRequest});`;
+
       callback(null, codeWithInjectedCSS);
+      // callback(null, codeWithDynamicCssImport);
     })
     .catch((error) => {
       callback(error);

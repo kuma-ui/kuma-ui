@@ -134,9 +134,6 @@ importers:
       '@kuma-ui/core':
         specifier: workspace:^
         version: link:../../packages/core
-      '@kuma-ui/webpack-loader':
-        specifier: workspace:^
-        version: link:../../packages/webpack-loader
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -159,6 +156,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.21.4
         version: 7.21.4(@babel/core@7.21.4)
+      '@kuma-ui/webpack-plugin':
+        specifier: workspace:^
+        version: link:../../packages/webpack-plugin
       '@types/react-dom':
         specifier: ^18.2.1
         version: 18.2.1
