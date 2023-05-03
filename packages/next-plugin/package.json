@@ -1,5 +1,5 @@
 {
-  "name": "@kuma-ui/system",
+  "name": "@kuma-ui/next-plugin",
   "version": "0.1.0",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
@@ -17,6 +17,11 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    "import": "./dist/index.mjs",
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+  },
   "files": [
     "dist"
   ],
@@ -29,10 +34,15 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
-    "@kuma-ui/sheet": "workspace:*"
+    "@babel/preset-env": "^7.21.4",
+    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-typescript": "^7.21.4",
+    "@kuma-ui/webpack-plugin": "workspace:^",
+    "babel-loader": "^9.1.2"
   },
   "devDependencies": {
-    "csstype": "^3.1.2"
+    "next": "^13.3.4",
+    "webpack": "^5.78.0"
   },
   "publishConfig": {
     "access": "public"

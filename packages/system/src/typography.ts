@@ -5,7 +5,7 @@ import { applyResponsiveStyles } from "./responsive";
 
 export type TypographyProps = Partial<{
   fontSize?: CSSValue<"fontSize", true>;
-  fontWeight?: CSSValue<"fontWeight", true>;
+  fontWeight?: CSSValue<"fontWeight">;
   lineHeight?: CSSValue<"lineHeight", true>;
   letterSpacing?: CSSValue<"letterSpacing", true>;
   textAlign?: CSSValue<"textAlign">;

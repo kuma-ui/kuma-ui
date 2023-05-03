@@ -20,7 +20,7 @@ class KumaUIWebpackPlugin {
 
   public tmpDir: string[] = [];
 
-  constructor({ options = {} }) {
+  constructor(options: WebpackPluginOption = {}) {
     this.options = options;
     if (
       this.options.breakpoints &&

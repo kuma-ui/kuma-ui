@@ -62,28 +62,6 @@ yarn add @kuma-ui/core
 
 # Setup
 
-## Next.js
-
-```sh
-yarn add @kuma-ui/next-plugin
-```
-
-**next.config.js**
-```js:next.config.js
-const { withKumUI } = require("@kuma-ui/next-plugin");
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
-
-module.exports = withKumUI({
-  webpack(config) {
-    return config;
-  },
-});
-```
-
 ## Vite
 
 ```sh
