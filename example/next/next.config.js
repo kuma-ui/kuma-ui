@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = withKumUI({
+module.exports = withKumaUI({
   webpack(config) {
     return config;
   },

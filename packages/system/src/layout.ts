@@ -5,7 +5,11 @@ import { applyResponsiveStyles } from "./responsive";
 
 export type LayoutProps = Partial<{
   width: CSSValue<"width", true>;
+  minWidth: CSSValue<"minWidth", true>;
+  maxWidth: CSSValue<"maxWidth", true>;
   height: CSSValue<"height", true>;
+  minHeight: CSSValue<"minHeight", true>;
+  maxHeight: CSSValue<"maxHeight", true>;
   display: CSSValue<"display">;
   overflow: CSSValue<"overflow">;
   position: CSSValue<"position">;
@@ -14,7 +18,11 @@ export type LayoutProps = Partial<{
 
 const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
+  minWidth: "min-width",
+  maxWidth: "max-width",
   height: "height",
+  minHeight: "min-height",
+  maxHeight: "max-height",
   display: "display",
   overflow: "overflow",
   position: "position",
@@ -29,8 +37,12 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     if (cssValue) {
       const property = layoutMappings[key as LayoutKeys];
       const converter = [
-        layoutMappings.height,
         layoutMappings.width,
+        layoutMappings.minWidth,
+        layoutMappings.maxWidth,
+        layoutMappings.height,
+        layoutMappings.minHeight,
+        layoutMappings.maxHeight,
         layoutMappings.zIndex,
       ].includes(property)
         ? toCssUnit

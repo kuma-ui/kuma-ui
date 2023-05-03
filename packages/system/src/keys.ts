@@ -25,7 +25,11 @@ export const styleKeys = {
   ] as const,
   layout: [
     "width",
+    "minWidth",
+    "maxWidth",
     "height",
+    "minHeight",
+    "maxHeight",
     "display",
     "overflow",
     "position",

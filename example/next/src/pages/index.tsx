@@ -1,13 +1,12 @@
 import Head from "next/head";
 import Image from "next/image";
 import { k } from "@kuma-ui/core";
+import { Header } from "@src/components";
 
 export default function Home() {
   return (
     <div>
-      <k.div fontSize={24} color="#dda03f">
-        hello
-      </k.div>
+      <Header />
     </div>
   );
 }
