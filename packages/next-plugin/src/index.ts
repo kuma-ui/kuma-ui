@@ -46,7 +46,7 @@ const kumaUiConfig = (
   };
 };
 
-export const withKumUI = (
+export const withKumaUI = (
   nextConfig: NextConfig,
   kumaConfig: KumaConfig = {}
 ) => {
