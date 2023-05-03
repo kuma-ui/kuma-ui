@@ -73,16 +73,26 @@ const requireReact = (code: string, id: string) => {
 const injectCSS = (cssContent: string) => {
   return `
   (function() {
+    if (typeof window === 'undefined') {
+      return;
+    }
     const css = ${JSON.stringify(cssContent)};
+    const kumaStyleId = 'kuma-ui-styles';
+    let style = document.getElementById(kumaStyleId);
     const head = document.head || document.getElementsByTagName('head')[0];
-    const style = document.createElement('style');
-    style.type = 'text/css';
+    
+    if (!style) {
+      style = document.createElement('style');
+      style.type = 'text/css';
+      style.id = kumaStyleId;
+      head.appendChild(style);
+    }
+
     if (style.styleSheet) {
       style.styleSheet.cssText = css;
     } else {
       style.appendChild(document.createTextNode(css));
     }
-    head.appendChild(style);
   })();
   `;
 };
