@@ -70,14 +70,14 @@ yarn add @kuma-ui/next-plugin
 
 **next.config.js**
 ```js:next.config.js
-const { withKumUI } = require("@kuma-ui/next-plugin");
+const { withKumaUI } = require("@kuma-ui/next-plugin");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = withKumUI({
+module.exports = withKumaUI({
   webpack(config) {
     return config;
   },
