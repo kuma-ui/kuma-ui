@@ -69,6 +69,7 @@ yarn add @kuma-ui/next-plugin
 ```
 
 **next.config.js**
+
 ```js:next.config.js
 const { withKumaUI } = require("@kuma-ui/next-plugin");
 

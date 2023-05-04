@@ -17,7 +17,7 @@
 ```tsx
 import { styled, k } from "@kuma-ui/core";
 
-const color = 'orange'
+const color = "orange"
 function App() {
   return (
     <VStack p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
@@ -62,28 +62,21 @@ yarn add @kuma-ui/core
 
 # Setup
 
-## Vite
-
 ```sh
-yarn add @kuma-ui/vite
+yarn add @kuma-ui/next-plugin
 ```
 
-**vite.config.ts**
+**next.config.js**
 
-```js:vite.config.ts
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import KumaUI from "@kuma-ui/vite";
+```js:next.config.js
+const { withKumaUI } = require("@kuma-ui/next-plugin");
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react({
-      jsxRuntime: "classic",
-    }),
-    KumaUI(),
-  ],
-});
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = withKumaUI(nextConfig);
 ```
 
 # Contributing
