@@ -1,5 +1,6 @@
 import { Sheet, sheet } from "./sheet";
 import { describe, expect, test, beforeEach } from "@jest/globals";
+import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
 
 describe("Sheet class", () => {
   beforeEach(() => {
@@ -34,7 +35,9 @@ describe("Sheet class", () => {
     // Act
     sheet.addMediaRule(className, css, breakpoint);
     // Assert
-    expect(sheet.getCSS()).toContain(mediaCss.replace(/\s/g, ""));
+    expect(sheet.getCSS()).toContain(
+      mediaCss.replace(removeSpacesExceptInPropertiesRegex, "")
+    );
   });
 
   test("addPseudoRule() should add a new pseudo rule with a generated ID", () => {
@@ -42,7 +45,10 @@ describe("Sheet class", () => {
     const className = "kuma-12345";
     const css = "padding: 8px;";
     const pseudo = ":hover";
-    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(/\s/g, "");
+    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(
+      removeSpacesExceptInPropertiesRegex,
+      ""
+    );
     // Act
     sheet.addPseudoRule(className, css, pseudo);
     // Assert
@@ -56,7 +62,9 @@ describe("Sheet class", () => {
     // Act
     const cssString = sheet.getCSS();
     // Assert
-    expect(cssString).toContain(`.${id} {${css}}`.replace(/\s/g, ""));
+    expect(cssString).toContain(
+      `.${id} {${css}}`.replace(cssPropertyRegex, "")
+    );
   });
 
   test("getFromCache() should return undefined if no value is cached for the given key", () => {
