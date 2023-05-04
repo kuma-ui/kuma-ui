@@ -82,7 +82,7 @@ export class Sheet {
       this.rules
         .map((rule) => `.${rule.id} {${rule.css}}`)
         .join("\n")
-        .replace(/\s/g, "") +
+        .replace(cssPropertyRegex, "") +
       this.responsive.join("") +
       this.pseudo.join("")
     );

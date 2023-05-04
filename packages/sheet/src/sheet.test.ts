@@ -1,6 +1,6 @@
 import { Sheet, sheet } from "./sheet";
 import { describe, expect, test, beforeEach } from "@jest/globals";
-import { removeSpacesExceptInPropertiesRegex } from "./regex";
+import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
 
 describe("Sheet class", () => {
   beforeEach(() => {
@@ -62,7 +62,9 @@ describe("Sheet class", () => {
     // Act
     const cssString = sheet.getCSS();
     // Assert
-    expect(cssString).toContain(`.${id} {${css}}`.replace(/\s/g, ""));
+    expect(cssString).toContain(
+      `.${id} {${css}}`.replace(cssPropertyRegex, "")
+    );
   });
 
   test("getFromCache() should return undefined if no value is cached for the given key", () => {
