@@ -164,11 +164,7 @@ importers:
         specifier: ^5.78.0
         version: 5.78.0(esbuild@0.17.18)
 
-  packages/sheet:
-    devDependencies:
-      '@kuma-ui/system':
-        specifier: workspace:^
-        version: link:../system
+  packages/sheet: {}
 
   packages/system:
     dependencies:

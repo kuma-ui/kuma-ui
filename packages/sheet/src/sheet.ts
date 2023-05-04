@@ -1,6 +1,13 @@
 import { generateHash } from "./hash";
-import type { ResponsiveStyle } from "@kuma-ui/system";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
+
+// to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
+type ResponsiveStyle = {
+  base: string;
+  media: {
+    [breakpoint: string]: string;
+  };
+};
 
 export interface Rule {
   id: string;
