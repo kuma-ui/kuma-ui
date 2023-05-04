@@ -77,11 +77,7 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = withKumaUI({
-  webpack(config) {
-    return config;
-  },
-});
+module.exports = withKumaUI(nextConfig);
 ```
 
 ## Vite
