@@ -33,11 +33,4 @@ const k: {
   [K in (typeof htmlTags)[number]]: StyledComponent<K>;
 } = {} as any;
 
-export const isHTMLElement = (
-  _tag: unknown
-): _tag is keyof JSX.IntrinsicElements => {
-  const tag = _tag as keyof JSX.IntrinsicElements;
-  return htmlTags.includes(tag);
-};
-
 export { k };
