@@ -1,5 +1,13 @@
 # @kuma-ui/babel-plugin
 
+## 0.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.0.3
+  - @kuma-ui/system@0.1.1
+
 ## 0.0.3
 
 ### Patch Changes

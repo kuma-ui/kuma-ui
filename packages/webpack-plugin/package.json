@@ -1,6 +1,6 @@
 {
   "name": "@kuma-ui/webpack-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
