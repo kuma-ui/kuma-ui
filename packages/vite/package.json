@@ -34,8 +34,8 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
-    "@kuma-ui/babel-plugin": "workspace:*",
-    "@kuma-ui/sheet": "workspace:*"
+    "@kuma-ui/babel-plugin": "workspace:^",
+    "@kuma-ui/sheet": "workspace:^"
   },
   "devDependencies": {
     "vite": "^4.2.1"
