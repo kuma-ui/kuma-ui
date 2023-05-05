@@ -26,9 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn build:dist && yarn build:declarations",
-    "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
-    "build:dist": "tsup src --config ../../tsup.config.ts",
+    "build": "tsup src --config ../../tsup.config.ts",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
