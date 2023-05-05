@@ -5,10 +5,6 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "build:declarations": {
-      "dependsOn": ["^build:declarations"],
-      "outputs": ["types/**"]
-    },
     "lint": {},
     "lint:fix": {},
     "typecheck": {}
