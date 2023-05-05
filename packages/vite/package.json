@@ -26,14 +26,16 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "yarn build:dist && yarn build:declarations",
+    "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
+    "build:dist": "tsup src --format cjs,esm --config ../../rollup.config.js",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
-    "@kuma-ui/babel-plugin": "workspace:*",
-    "@kuma-ui/sheet": "workspace:*"
+    "@kuma-ui/babel-plugin": "workspace:^",
+    "@kuma-ui/sheet": "workspace:^"
   },
   "devDependencies": {
     "vite": "^4.2.1"
