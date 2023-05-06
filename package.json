@@ -34,8 +34,7 @@
     "test": "turbo run test",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'",
-    "prepare": "turbo run build --output-logs=new-only",
-    "release": "pnpm run prepare && pnpm changeset publish"
+    "release": "pnpm run build && pnpm changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
