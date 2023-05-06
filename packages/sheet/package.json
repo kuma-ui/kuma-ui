@@ -22,11 +22,18 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts",
+    "test": "jest",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.5.0",
+    "@jest/types": "^29.1.0",
+    "@kuma-ui/jest-preset": "workspace:*",
+    "jest": "^29.1.0"
   }
 }

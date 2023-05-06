@@ -5,6 +5,9 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
+    "test": {
+      "dependsOn": ["^build"]
+    },
     "lint": {},
     "lint:fix": {},
     "typecheck": {}

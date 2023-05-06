@@ -7,12 +7,6 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.1
         version: 2.26.1
-      '@jest/globals':
-        specifier: ^29.5.0
-        version: 29.5.0
-      '@jest/types':
-        specifier: ^29.1.0
-        version: 29.5.0
       '@rollup/plugin-babel':
         specifier: ^6.0.3
         version: 6.0.3(@babel/core@7.21.4)(@types/babel__core@7.20.0)
@@ -58,9 +52,6 @@ importers:
       husky:
         specifier: ^8.0.3
         version: 8.0.3
-      jest:
-        specifier: ^29.1.0
-        version: 29.5.0(@types/node@18.15.11)(ts-node@10.9.1)
       lint-staged:
         specifier: ^13.2.1
         version: 13.2.1
@@ -70,9 +61,6 @@ importers:
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      ts-jest:
-        specifier: ^29.1.0
-        version: 29.1.0(@babel/core@7.21.4)(@jest/types@29.5.0)(esbuild@0.17.18)(jest@29.5.0)(typescript@5.0.4)
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@18.15.11)(typescript@5.0.4)
@@ -171,7 +159,20 @@ importers:
         specifier: ^5.78.0
         version: 5.78.0(esbuild@0.17.18)
 
-  packages/sheet: {}
+  packages/sheet:
+    devDependencies:
+      '@jest/globals':
+        specifier: ^29.5.0
+        version: 29.5.0
+      '@jest/types':
+        specifier: ^29.1.0
+        version: 29.5.0
+      '@kuma-ui/jest-preset':
+        specifier: workspace:*
+        version: link:../../configs/jest-preset
+      jest:
+        specifier: ^29.1.0
+        version: 29.5.0(@types/node@18.15.11)(ts-node@10.9.1)
 
   packages/system:
     dependencies:
@@ -179,9 +180,21 @@ importers:
         specifier: workspace:*
         version: link:../sheet
     devDependencies:
+      '@jest/globals':
+        specifier: ^29.5.0
+        version: 29.5.0
+      '@jest/types':
+        specifier: ^29.1.0
+        version: 29.5.0
+      '@kuma-ui/jest-preset':
+        specifier: workspace:*
+        version: link:../../configs/jest-preset
       csstype:
         specifier: ^3.1.2
         version: 3.1.2
+      jest:
+        specifier: ^29.1.0
+        version: 29.5.0(@types/node@18.15.11)(ts-node@10.9.1)
 
   packages/vite:
     dependencies:
