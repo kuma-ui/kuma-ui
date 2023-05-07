@@ -1,7 +1,7 @@
 import { NodePath, Node, types, template } from "@babel/core";
 import { Program } from "@babel/types";
 
-export const processZ = (
+export const processK = (
   node: NodePath<Program>,
   t: typeof types,
   importedStyleFunctions: Record<string, string>

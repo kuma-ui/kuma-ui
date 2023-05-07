@@ -10,7 +10,7 @@ import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";
 import { Node } from "@babel/core";
 import { collectImportedStyled } from "./collectImportedStyled";
-import { processZ } from "./processZ";
+import { processK } from "./processK";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -88,7 +88,7 @@ export const visitor = ({ types: t, template }: Core) => {
         ensureReactImport(path, t);
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
-        processZ(path, t, importedStyleFunctions);
+        processK(path, t, importedStyleFunctions);
       },
     },
   };
