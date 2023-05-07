@@ -27,7 +27,8 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "devDependencies": {
-    "@kuma-ui/system": "workspace:*"
+    "@kuma-ui/system": "workspace:*",
+    "@types/react": "^18.0.32"
   },
   "peerDependencies": {
     "react": ">=18.2.0"
