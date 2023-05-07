@@ -38,16 +38,12 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
-    "@rollup/plugin-babel": "^6.0.3",
     "@types/babel__core": "^7.20.0",
-    "@types/css": "^0.0.33",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.32",
-    "@types/webpack": "^5.28.1",
     "@types/webpack-sources": "^3.2.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react": "^3.1.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.27.5",
@@ -55,14 +51,9 @@
     "husky": "^8.0.3",
     "lint-staged": "^13.2.1",
     "prettier": "^2.8.7",
-    "react": "^18.2.0",
-    "ts-node": "^10.9.1",
-    "ts-node-dev": "^2.0.0",
     "tsup": "^6.7.0",
     "turbo": "^1.9.3",
-    "typescript": "^5.0.4",
-    "webpack": "^5.78.0",
-    "webpack-sources": "^3.2.3"
+    "typescript": "^5.0.4"
   },
   "engines": {
     "pnpm": ">=7.19.0"
