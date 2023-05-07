@@ -1,5 +1,13 @@
 # @kuma-ui/system
 
+## 0.1.2
+
+### Patch Changes
+
+- Overriding styles defined within tagged template literals using style props
+- Updated dependencies
+  - @kuma-ui/sheet@0.0.4
+
 ## 0.1.1
 
 ### Patch Changes
