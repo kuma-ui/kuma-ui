@@ -7,18 +7,9 @@ importers:
       '@changesets/cli':
         specifier: ^2.26.1
         version: 2.26.1
-      '@types/babel__core':
-        specifier: ^7.20.0
-        version: 7.20.0
       '@types/node':
         specifier: ^18.15.11
         version: 18.15.11
-      '@types/react':
-        specifier: ^18.0.32
-        version: 18.0.32
-      '@types/webpack-sources':
-        specifier: ^3.2.0
-        version: 3.2.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.57.1
         version: 5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.0.1)(typescript@5.0.4)
@@ -96,6 +87,9 @@ importers:
       '@babel/types':
         specifier: ^7.21.4
         version: 7.21.4
+      '@types/babel__core':
+        specifier: ^7.20.0
+        version: 7.20.0
 
   packages/core:
     dependencies:
@@ -106,6 +100,9 @@ importers:
       '@kuma-ui/system':
         specifier: workspace:*
         version: link:../system
+      '@types/react':
+        specifier: ^18.0.32
+        version: 18.0.32
 
   packages/next-plugin:
     dependencies:
@@ -191,6 +188,9 @@ importers:
         specifier: workspace:^
         version: link:../sheet
     devDependencies:
+      '@types/webpack-sources':
+        specifier: ^3.2.0
+        version: 3.2.0
       webpack:
         specifier: ^5.78.0
         version: 5.78.0(esbuild@0.17.18)

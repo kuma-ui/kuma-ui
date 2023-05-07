@@ -38,10 +38,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
-    "@types/babel__core": "^7.20.0",
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.32",
-    "@types/webpack-sources": "^3.2.0",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.0.1",
