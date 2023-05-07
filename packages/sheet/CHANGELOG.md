@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 0.0.4
+
+### Patch Changes
+
+- Overriding styles defined within tagged template literals using style props
+
 ## 0.0.3
 
 ### Patch Changes
