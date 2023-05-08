@@ -5,9 +5,8 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**"]
     },
-    "build:declarations": {
-      "dependsOn": ["^build:declarations"],
-      "outputs": ["types/**"]
+    "test": {
+      "dependsOn": ["^build"]
     },
     "lint": {},
     "lint:fix": {},

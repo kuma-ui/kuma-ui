@@ -27,3 +27,6 @@ jobs:
 
       - name: install packages
         run: pnpm install
+
+      - name: Run test
+        run: pnpm test

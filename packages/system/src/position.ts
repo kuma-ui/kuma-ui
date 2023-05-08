@@ -7,8 +7,8 @@ export type PositionProps = Partial<{
   top: CSSValue<"top", true>;
   right: CSSValue<"right", true>;
   left: CSSValue<"left", true>;
-  bottom: CSSValue<"left", true>;
-  inset: CSSValue<"left", true>;
+  bottom: CSSValue<"bottom", true>;
+  inset: CSSValue<"inset", true>;
 }>;
 
 const positionMappings: Record<PositionKeys, string> = {

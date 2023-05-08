@@ -1,6 +1,6 @@
 {
   "name": "@kuma-ui/vite",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
@@ -26,9 +26,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "yarn build:dist && yarn build:declarations",
-    "build:declarations": "tsc --emitDeclarationOnly --outDir dist",
-    "build:dist": "tsup src --format cjs,esm --config ../../rollup.config.js",
+    "build": "tsup --config ../../tsup.config.ts",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"

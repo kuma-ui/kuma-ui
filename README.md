@@ -69,6 +69,7 @@ yarn add @kuma-ui/next-plugin
 ```
 
 **next.config.js**
+
 ```js:next.config.js
 const { withKumaUI } = require("@kuma-ui/next-plugin");
 
@@ -77,11 +78,7 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-module.exports = withKumaUI({
-  webpack(config) {
-    return config;
-  },
-});
+module.exports = withKumaUI(nextConfig);
 ```
 
 ## Vite

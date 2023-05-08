@@ -1,9 +1,12 @@
 import { generateHash } from "./hash";
-// import { ResponsiveStyle } from "../system"; //　モノレポ化により後ほど対応
+import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
 
+// to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
   base: string;
-  media: { [breakpoint: string]: string };
+  media: {
+    [breakpoint: string]: string;
+  };
 };
 
 export interface Rule {
@@ -33,7 +36,7 @@ export class Sheet {
   }
 
   addRule(css: string): string {
-    css = css.replace(/\s/g, "");
+    css = css.replace(cssPropertyRegex, "");
     const id = "kuma-" + generateHash(css);
     const existingRule = this.rules.find((rule) => rule.id === id);
     if (!existingRule) this.rules.push({ id, css });
@@ -41,16 +44,21 @@ export class Sheet {
   }
 
   addMediaRule(className: string, css: string, breakpoint: string): void {
+    css = css.replace(cssPropertyRegex, "");
     const mediaCss =
       `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`.replace(
-        /\s/g,
+        removeSpacesExceptInPropertiesRegex,
         ""
       );
     this.responsive.push(mediaCss);
   }
 
   addPseudoRule(className: string, css: string, pseudo: string): void {
-    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(/\s/g, "");
+    css = css.replace(cssPropertyRegex, "");
+    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(
+      removeSpacesExceptInPropertiesRegex,
+      ""
+    );
     this.pseudo.push(pseudoCss);
   }
 
@@ -74,7 +82,7 @@ export class Sheet {
       this.rules
         .map((rule) => `.${rule.id} {${rule.css}}`)
         .join("\n")
-        .replace(/\s/g, "") +
+        .replace(cssPropertyRegex, "") +
       this.responsive.join("") +
       this.pseudo.join("")
     );
