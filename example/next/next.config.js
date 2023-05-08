@@ -1,12 +1,6 @@
 const { withKumaUI } = require("@kuma-ui/next-plugin");
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
+const nextConfig = {};
 
-module.exports = withKumaUI({
-  webpack(config) {
-    return config;
-  },
-});
+module.exports = withKumaUI(nextConfig);

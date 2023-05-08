@@ -5,8 +5,11 @@ import { RawSource, Source } from "webpack-sources";
 import path from "path";
 import { rm, mkdir, existsSync } from "fs";
 
+type Framework = "react" | "next-pageDir" | "next-appDir";
+
 type WebpackPluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
+  framework?: Framework;
 };
 
 export const tmpCSSDir = "kuma-temp-css";
@@ -20,7 +23,7 @@ class KumaUIWebpackPlugin {
 
   public tmpDir: string[] = [];
 
-  constructor(options: WebpackPluginOption = {}) {
+  constructor(options: WebpackPluginOption = { framework: "react" }) {
     this.options = options;
     if (
       this.options.breakpoints &&
@@ -37,7 +40,8 @@ class KumaUIWebpackPlugin {
     });
     compiler.hooks.done.tapAsync(pluginName, (_, callback) => {
       if (existsSync(tmpCSSDir)) {
-        rm(tmpCSSDir, { recursive: true, force: true }, callback);
+        // rm(tmpCSSDir, { recursive: true, force: true }, callback);
+        callback();
       } else callback();
     });
 

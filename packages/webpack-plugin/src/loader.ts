@@ -47,7 +47,9 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       if (this._compiler?.options.mode === "production") {
         callback(null, codeWithDynamicCssImport);
       } else {
-        callback(null, codeWithInjectedCSS);
+        // testing nextjs v13.4
+        callback(null, codeWithDynamicCssImport);
+        // callback(null, codeWithInjectedCSS);
       }
     })
     .catch((error) => {
