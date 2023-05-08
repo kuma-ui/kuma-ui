@@ -1,8 +1,12 @@
 import { StyledProps } from "./compose";
 
 export const pseudoMappings = {
+  _active: ":active",
+  _disabled: ":disabled",
   _hover: ":hover",
   _focus: ":focus",
+  _focusVisible: ":focus_visible",
+  _focusWithin: ":focus-within",
 } as const;
 
 export type PseudoProps = {
