@@ -349,6 +349,12 @@ importers:
 
   website:
     dependencies:
+      '@kuma-ui/core':
+        specifier: workspace:^
+        version: link:../packages/core
+      '@kuma-ui/next-plugin':
+        specifier: workspace:^
+        version: link:../packages/next-plugin
       '@types/node':
         specifier: ^18.15.11
         version: 18.15.11
@@ -365,7 +371,7 @@ importers:
         specifier: 13.4.1
         version: 13.4.1(eslint@8.38.0)(typescript@5.0.4)
       next:
-        specifier: ^13.4.1
+        specifier: 13.4.1
         version: 13.4.1(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: 18.2.0
