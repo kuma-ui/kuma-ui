@@ -37,7 +37,7 @@ export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
  * // The `styles` variable now contains a single style string combining all the applied style functions.
  */
 export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
-  return (props: any): ResponsiveStyle => {
+  return (props: StyledProps): ResponsiveStyle => {
     const cacheKey = JSON.stringify(props);
     let outputProps = { ...props };
 
@@ -59,11 +59,11 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
-          newStyles.base.includes(`${outputProps[key]}:`)
+          newStyles.base.includes(`${outputProps[key as keyof StyledProps]}:`)
         );
         outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
           if (!processedProps.includes(key)) {
-            remainingProps[key] = outputProps[key];
+            remainingProps[key] = outputProps[key as keyof StyledProps];
           }
           return remainingProps;
         }, {} as any);
