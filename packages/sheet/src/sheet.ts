@@ -88,14 +88,6 @@ export class Sheet {
     );
   }
 
-  getFromCache(key: string): ResponsiveStyle | undefined {
-    return this.cache.get(key);
-  }
-
-  addToCache(key: string, styles: ResponsiveStyle): void {
-    this.cache.set(key, styles);
-  }
-
   reset() {
     this.rules = [];
     this.responsive = [];

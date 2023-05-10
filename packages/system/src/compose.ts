@@ -8,7 +8,7 @@ import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
 import { ResponsiveStyle } from "./types";
-import { sheet } from "@kuma-ui/sheet";
+import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 
 export type StyledProps = SpaceProps &
@@ -41,7 +41,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
     const cacheKey = JSON.stringify(props);
     let outputProps = { ...props };
 
-    const cachedStyles = sheet.getFromCache(cacheKey);
+    const cachedStyles = styleCache.get(cacheKey);
     if (cachedStyles) {
       return cachedStyles;
     }
@@ -73,7 +73,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
       { base: "", media: {} } as ResponsiveStyle
     );
 
-    sheet.addToCache(cacheKey, combinedStyles);
+    styleCache.set(cacheKey, combinedStyles);
 
     return combinedStyles;
   };
