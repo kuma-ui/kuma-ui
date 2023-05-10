@@ -9,7 +9,7 @@ type WebpackPluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
 };
 
-export const tmpCSSDir = "kuma-temp-css";
+export const tmpCSSDir = ".kuma";
 
 const pluginName = "KumaUIWebpackPlugin";
 

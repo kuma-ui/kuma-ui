@@ -99,9 +99,5 @@ export class Sheet {
  * The Sheet singleton class is responsible for managing the CSS rules, responsive
  * styles, and pseudo-classes used by Kuma-UI. It provides methods to add and retrieve
  * rules, and generates the final CSS output.
- *
- * Note that with the introduction of the StyleMap class, Sheet is no longer
- * responsible for handling the accumulation of unnecessary CSS during HMR.
- * Instead, it focuses on converting the given styles into appropriate CSS.
  */
 export const sheet = Sheet.getInstance();
