@@ -110,7 +110,6 @@ export class Sheet {
  *
  * Note that with the introduction of the StyleMap class, Sheet is no longer
  * responsible for handling the accumulation of unnecessary CSS during HMR.
- * Instead, it focuses on converting the given styles into appropriate CSS and
- * managing the cache for the compose function.
+ * Instead, it focuses on converting the given styles into appropriate CSS.
  */
 export const sheet = Sheet.getInstance();

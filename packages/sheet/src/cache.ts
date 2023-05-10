@@ -6,7 +6,13 @@ type ResponsiveStyle = {
   };
 };
 
-class StyleCache {
+export interface ICache<T> {
+  get: (key: string) => T | undefined;
+  set: (key: string, value: T) => void;
+  reset: () => void;
+}
+
+class StyleCache implements ICache<ResponsiveStyle> {
   private static instance: StyleCache;
   private cache: Map<string, ResponsiveStyle>;
 

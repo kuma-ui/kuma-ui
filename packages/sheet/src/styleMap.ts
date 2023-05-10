@@ -1,4 +1,6 @@
-class StyleMap {
+import { ICache } from "./cache";
+
+class StyleMap implements ICache<string> {
   private static instance: StyleMap;
   private map: Map<string, string>;
 
@@ -17,15 +19,19 @@ class StyleMap {
   // In the future, we might use an id to associate the HTML tag
   // with the corresponding CSS (by using the data-kuma-ui attribute)
   // and improve performance by removing duplicate CSS across different files.
-  addStyle(fileName: string, css: string): void {
+  set(fileName: string, css: string): void {
     this.map.set(fileName, css);
   }
 
-  resetFile(fileName: string) {
+  get(fileName: string): string | undefined {
+    return this.map.get(fileName);
+  }
+
+  delete(fileName: string) {
     this.map.delete(fileName);
   }
 
-  resetAll() {
+  reset() {
     this.map.clear();
   }
 }
