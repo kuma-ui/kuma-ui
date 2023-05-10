@@ -8,7 +8,7 @@ import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
 import { ResponsiveStyle } from "./types";
-import { sheet } from "@kuma-ui/sheet";
+import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 
 export type StyledProps = SpaceProps &
@@ -37,11 +37,11 @@ export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
  * // The `styles` variable now contains a single style string combining all the applied style functions.
  */
 export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
-  return (props: any): ResponsiveStyle => {
+  return (props: StyledProps): ResponsiveStyle => {
     const cacheKey = JSON.stringify(props);
     let outputProps = { ...props };
 
-    const cachedStyles = sheet.getFromCache(cacheKey);
+    const cachedStyles = styleCache.get(cacheKey);
     if (cachedStyles) {
       return cachedStyles;
     }
@@ -59,11 +59,11 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
-          newStyles.base.includes(`${outputProps[key]}:`)
+          newStyles.base.includes(`${outputProps[key as keyof StyledProps]}:`)
         );
         outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
           if (!processedProps.includes(key)) {
-            remainingProps[key] = outputProps[key];
+            remainingProps[key] = outputProps[key as keyof StyledProps];
           }
           return remainingProps;
         }, {} as any);
@@ -73,7 +73,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
       { base: "", media: {} } as ResponsiveStyle
     );
 
-    sheet.addToCache(cacheKey, combinedStyles);
+    styleCache.set(cacheKey, combinedStyles);
 
     return combinedStyles;
   };
