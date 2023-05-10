@@ -1,5 +1,18 @@
 # @kuma-ui/webpack-plugin
 
+## 0.2.0
+
+### Minor Changes
+
+- - Improved HMR handling
+  - Fixed CSS accumulation
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.1.0
+  - @kuma-ui/babel-plugin@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes
