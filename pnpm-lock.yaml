@@ -92,9 +92,6 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
 
   example/vite:
     dependencies:
@@ -141,9 +138,6 @@ importers:
       tsup:
         specifier: ^6.7.0
         version: 6.7.0(ts-node@10.9.1)(typescript@5.0.4)
-      typescript:
-        specifier: ^5.0.2
-        version: 5.0.4
       vite:
         specifier: ^4.3.3
         version: 4.3.3(@types/node@18.15.11)
