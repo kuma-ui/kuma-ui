@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@kuma-ui/core": "workspace:^",
-    "@kuma-ui/next-plugin": "workspace:^",
+    "@kuma-ui/core": "workspace:*",
+    "@kuma-ui/next-plugin": "workspace:*",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.32",
     "@types/react-dom": "18.2.1",
