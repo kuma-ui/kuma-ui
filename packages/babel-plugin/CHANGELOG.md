@@ -1,5 +1,15 @@
 # @kuma-ui/babel-plugin
 
+## 0.1.1
+
+### Patch Changes
+
+- - Improved HMR handling
+  - Fixed CSS accumulation
+- Updated dependencies
+  - @kuma-ui/system@0.2.0
+  - @kuma-ui/sheet@0.1.0
+
 ## 0.1.0
 
 ### Minor Changes

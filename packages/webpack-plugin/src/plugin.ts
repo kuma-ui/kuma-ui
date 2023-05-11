@@ -12,7 +12,7 @@ type WebpackPluginOption = {
   framework?: Framework;
 };
 
-export const tmpCSSDir = "kuma-temp-css";
+export const tmpCSSDir = ".kuma";
 
 const pluginName = "KumaUIWebpackPlugin";
 

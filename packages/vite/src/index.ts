@@ -35,7 +35,8 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
       const css = sheet.getCSS();
       cssLookup[cssFilename] = css;
       cssLookup[cssId] = css;
-      if (mode === "serve") return injectCSS(css) + result.code;
+      sheet.reset();
+      if (mode === "serve") return injectCSS(css, cssId) + result.code;
       return `import ${JSON.stringify(cssFilename)};\n` + result.code;
     },
     load(url: string) {
@@ -70,14 +71,14 @@ const requireReact = (code: string, id: string) => {
   }
 };
 
-const injectCSS = (cssContent: string) => {
+const injectCSS = (cssContent: string, fileId: string) => {
   return `
   (function() {
     if (typeof window === 'undefined') {
       return;
     }
     const css = ${JSON.stringify(cssContent)};
-    const kumaStyleId = 'kuma-ui-styles';
+    const kumaStyleId = 'kuma-ui-styles-' + ${JSON.stringify(fileId)};
     let style = document.getElementById(kumaStyleId);
     const head = document.head || document.getElementsByTagName('head')[0];
     
@@ -87,12 +88,7 @@ const injectCSS = (cssContent: string) => {
       style.id = kumaStyleId;
       head.appendChild(style);
     }
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
+    style.textContent = css;
   })();
   `;
 };

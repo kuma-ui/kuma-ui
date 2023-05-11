@@ -1,7 +1,7 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import type { RawLoaderDefinitionFunction } from "webpack";
-import { sheet } from "@kuma-ui/sheet";
+import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
 import { tmpCSSDir } from "./plugin";
 
@@ -30,8 +30,14 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       }
       const codeWithReact = requireReact(result.code, id);
       const css = sheet.getCSS();
-      const codeWithInjectedCSS = injectCSS(css) + codeWithReact;
-      const output = path.join(tmpCSSDir, "kuma.css");
+      styleMap.set(id, css);
+      const codeWithInjectedCSS = injectCSS(css, id) + codeWithReact;
+
+      const outputFileName = id
+        .replace(/\//g, "-")
+        .replace(/\.[^.]+$/, ".kuma-ui.css");
+      const output = path.join(tmpCSSDir, outputFileName);
+
       writeFile(output, css, () => {});
 
       const relativePathToRoot = path.relative(
@@ -40,9 +46,10 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       );
       const outputPath = path.join(relativePathToRoot, output);
       const adjustedPath =
-        outputPath[0] !== "." ? `./${outputPath}` : outputPath;
+        outputPath[0] !== "." ? `./${outputPath}` : "./" + outputPath;
 
       const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire("${adjustedPath}");`;
+      sheet.reset();
 
       if (this._compiler?.options.mode === "production") {
         callback(null, codeWithDynamicCssImport);
@@ -68,14 +75,14 @@ const requireReact = (code: string, id: string) => {
   return code;
 };
 
-const injectCSS = (cssContent: string) => {
+const injectCSS = (cssContent: string, fileId: string) => {
   return `
   (function() {
     if (typeof window === 'undefined') {
       return;
     }
     const css = ${JSON.stringify(cssContent)};
-    const kumaStyleId = 'kuma-ui-styles';
+    const kumaStyleId = 'kuma-ui-styles-' + ${JSON.stringify(fileId)};
     let style = document.getElementById(kumaStyleId);
     const head = document.head || document.getElementsByTagName('head')[0];
     
@@ -85,12 +92,7 @@ const injectCSS = (cssContent: string) => {
       style.id = kumaStyleId;
       head.appendChild(style);
     }
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
+    style.textContent = css;
   })();
   `;
 };

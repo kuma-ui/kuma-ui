@@ -7,7 +7,7 @@ function App() {
         hello
       </k.div>
       <Text color="blue">world</Text>
-      <k.button p="8px 12px" fontSize={16} disabled>
+      <k.button p="10px 12px" fontSize={16} disabled>
         button
       </k.button>
     </div>
