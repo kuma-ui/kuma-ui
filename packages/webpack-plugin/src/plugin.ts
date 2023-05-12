@@ -31,16 +31,6 @@ class KumaUIWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    compiler.hooks.beforeCompile.tapAsync(pluginName, (_, callback) => {
-      if (!existsSync(tmpCSSDir)) mkdir(tmpCSSDir, callback);
-      else callback();
-    });
-    compiler.hooks.done.tapAsync(pluginName, (_, callback) => {
-      if (existsSync(tmpCSSDir)) {
-        rm(tmpCSSDir, { recursive: true, force: true }, callback);
-      } else callback();
-    });
-
     // compiler.hooks.compilation.tap(pluginName, (compilation) => {
     //   compilation.hooks.processAssets.tap(
     //     {
