@@ -3,7 +3,10 @@ import path from "path";
 import type { RawLoaderDefinitionFunction } from "webpack";
 import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
-import { tmpCSSDir } from "./plugin";
+
+const virtualLoaderPath = require.resolve("./virtualLoader");
+
+export const DUMMY_CSS_FILE_PATH = require.resolve("../assets/kuma.css");
 
 const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
   // tell Webpack this loader is async
@@ -31,31 +34,22 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       const codeWithReact = requireReact(result.code, id);
       const css = sheet.getCSS();
       styleMap.set(id, css);
-      const codeWithInjectedCSS = injectCSS(css, id) + codeWithReact;
-
-      const outputFileName = id
-        .replace(/\//g, "-")
-        .replace(/\.[^.]+$/, ".kuma-ui.css");
-      const output = path.join(tmpCSSDir, outputFileName);
-
-      writeFile(output, css, () => {});
-
-      const relativePathToRoot = path.relative(
-        path.dirname(id),
-        this.rootContext
-      );
-      const outputPath = path.join(relativePathToRoot, output);
-      const adjustedPath =
-        outputPath[0] !== "." ? `./${outputPath}` : "./" + outputPath;
-
-      const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire("${adjustedPath}");`;
       sheet.reset();
+      let filePrefix = "";
+      if (css) {
+        const virtualResourceLoader = `${virtualLoaderPath}?${JSON.stringify({
+          src: css,
+        })}`;
 
-      if (this._compiler?.options.mode === "production") {
-        callback(null, codeWithDynamicCssImport);
-      } else {
-        callback(null, codeWithInjectedCSS);
+        filePrefix = `import ${JSON.stringify(
+          this.utils.contextify(
+            this.context || this.rootContext,
+            `kuma.css!=!${virtualResourceLoader}!${DUMMY_CSS_FILE_PATH}`
+          )
+        )};`;
       }
+
+      callback(null, `${filePrefix}\n${codeWithReact}`);
     })
     .catch((error) => {
       callback(error);
@@ -83,7 +77,7 @@ const injectCSS = (cssContent: string, fileId: string) => {
     const kumaStyleId = 'kuma-ui-styles-' + ${JSON.stringify(fileId)};
     let style = document.getElementById(kumaStyleId);
     const head = document.head || document.getElementsByTagName('head')[0];
-    
+
     if (!style) {
       style = document.createElement('style');
       style.type = 'text/css';
