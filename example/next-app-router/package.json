@@ -1,0 +1,23 @@
+{
+  "name": "next-app-router",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next build && next export",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@kuma-ui/core": "workspace:*",
+    "@kuma-ui/next-plugin": "workspace:*",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.32",
+    "@types/react-dom": "18.2.1",
+    "eslint-config-next": "13.3.4",
+    "next": "^13.3.4",
+    "react": "^18.2.0",
+    "react-dom": "18.2.0"
+  }
+}
