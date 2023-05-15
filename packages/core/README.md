@@ -128,6 +128,19 @@ export default defineConfig({
 });
 ```
 
+# Responsive Design
+
+Kuma UI supports responsive design. Use arrays to specify different styles for different viewport widths. For example, <k.div fontSize={[16, 24]} /> changes the font size from 16px to 24px based on the window size.
+
+Define the breakpoints in your config file:
+```js:vite.config.ts
+import kumaUI from "@kuma-ui/vite";
+
+kumaUI({
+  breakpoints: { sm: "400px", md: "700px" },
+});
+```
+
 # Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
 
