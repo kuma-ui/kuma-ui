@@ -48,6 +48,8 @@ export default App;
 
 👋 &nbsp; Support for pseudo-classes and pseudo-elements
 
+🔬 &nbsp; Experimental support for Next.js 13.4 App router & React server components(RSC).
+
 # Installation
 
 ```sh
@@ -61,6 +63,46 @@ yarn add @kuma-ui/core
 ```
 
 # Setup
+
+## Next.js
+
+```sh
+yarn add @kuma-ui/next-plugin
+```
+
+### Traditional Pages Directory Version
+
+**next.config.js**
+
+```js:next.config.js
+const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+};
+
+module.exports = withKumaUI(nextConfig);
+```
+
+### App Router Version (Experimental)
+
+```js:next.config.js
+const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+  experimental: {
+    appDir: true
+  }
+};
+
+module.exports = withKumaUI(nextConfig);
+```
+
+Please note that as of now, App Router is an experimental feature. A `.kuma` directory will be produced in the process, which should be added to your `.gitignore` file. If you delete the `.kuma` directory, make sure to also clear the `.next` cache.
+
 
 ## Vite
 
