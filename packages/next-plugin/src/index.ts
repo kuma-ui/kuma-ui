@@ -25,6 +25,7 @@ const kumaUiConfig = (
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
+      const appDir = nextConfig.experimental?.appDir === true;
 
       const cssRules = (
         config.module?.rules?.find(
@@ -40,6 +41,13 @@ const kumaUiConfig = (
         ) as RuleSetRule
       )?.oneOf;
 
+      const appDirOptions = appDir
+        ? {
+            hasAppDir: true,
+            experimental: { appDir: true },
+          }
+        : {};
+
       cssRules?.push({
         test: /.css$/i,
         sideEffects: true,
@@ -50,12 +58,13 @@ const kumaUiConfig = (
             isServer,
             isDevelopment: dev,
             experimental: {},
+            future: nextConfig.future || {},
+            ...appDirOptions,
           } as ConfigurationContext,
           () => lazyPostCSS(dir, getSupportedBrowsers(dir, dev), undefined),
           []
         ),
       });
-
 
       config.module?.rules?.push({
         test: /\.(tsx|ts|js|mjs|jsx)$/,
@@ -63,6 +72,9 @@ const kumaUiConfig = (
         use: [
           {
             loader: KumaUIWebpackPlugin.loader,
+            options: {
+              virtualLoader: !appDir,
+            },
           },
           {
             loader: "babel-loader",
