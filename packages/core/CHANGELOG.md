@@ -1,5 +1,11 @@
 # @kuma-ui/core
 
+## 0.1.0
+
+### Minor Changes
+
+- experimental support for Next.js 13.4 App Router and React Server Components
+
 ## 0.0.4
 
 ### Patch Changes

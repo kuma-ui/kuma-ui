@@ -1,5 +1,11 @@
 # @kuma-ui/webpack-plugin
 
+## 0.3.0
+
+### Minor Changes
+
+- experimental support for Next.js 13.4 App Router and React Server Components
+
 ## 0.2.0
 
 ### Minor Changes
