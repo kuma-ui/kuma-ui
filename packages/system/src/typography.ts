@@ -10,6 +10,7 @@ export type TypographyProps = Partial<{
   letterSpacing?: CSSValue<"letterSpacing", true>;
   textAlign?: CSSValue<"textAlign">;
   fontFamily?: CSSValue<"fontFamily">;
+  textDecoration?: CSSValue<"textDecoration">;
 }>;
 
 const typographyMappings: Record<TypographyKeys, string> = {
@@ -19,6 +20,7 @@ const typographyMappings: Record<TypographyKeys, string> = {
   letterSpacing: "letter-spacing",
   textAlign: "text-align",
   fontFamily: "font-family",
+  textDecoration: "text-decoration",
 };
 
 export const typography = (props: TypographyProps): ResponsiveStyle => {
@@ -31,7 +33,6 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
       const property = typographyMappings[key as TypographyKeys];
       const converter = [
         typographyMappings.fontSize,
-        typographyMappings.fontWeight,
         typographyMappings.lineHeight,
         typographyMappings.letterSpacing,
       ].includes(property)
