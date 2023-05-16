@@ -1,5 +1,24 @@
 # @kuma-ui/webpack-plugin
 
+## 0.3.0
+
+### Minor Changes
+
+- experimental support for Next.js 13.4 App Router and React Server Components
+
+## 0.2.0
+
+### Minor Changes
+
+- - Improved HMR handling
+  - Fixed CSS accumulation
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.1.0
+  - @kuma-ui/babel-plugin@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes

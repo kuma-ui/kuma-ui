@@ -1,15 +1,30 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
+import fs from "fs";
 import type { RawLoaderDefinitionFunction } from "webpack";
-import { sheet } from "@kuma-ui/sheet";
+import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
+import { createHash } from "crypto";
 import { tmpCSSDir } from "./plugin";
 
-const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
+const virtualLoaderPath = require.resolve("./virtualLoader");
+
+export const DUMMY_CSS_FILE_PATH = require.resolve("../assets/kuma.css");
+
+type Options = {
+  virtualLoader?: boolean;
+};
+
+const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
+  source: Buffer
+) {
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
   const tmpDir = "";
+
+  const options = this.getOptions();
+  const isVirtualLoader = options.virtualLoader ?? true;
 
   if (
     id.includes("/node_modules/") ||
@@ -30,25 +45,33 @@ const kumaUiLoader: RawLoaderDefinitionFunction = function (source: Buffer) {
       }
       const codeWithReact = requireReact(result.code, id);
       const css = sheet.getCSS();
-      const codeWithInjectedCSS = injectCSS(css) + codeWithReact;
-      const output = path.join(tmpCSSDir, "kuma.css");
-      writeFile(output, css, () => {});
-
-      const relativePathToRoot = path.relative(
-        path.dirname(id),
-        this.rootContext
-      );
-      const outputPath = path.join(relativePathToRoot, output);
-      const adjustedPath =
-        outputPath[0] !== "." ? `./${outputPath}` : outputPath;
-
-      const codeWithDynamicCssImport = `${codeWithReact}\n\nrequire("${adjustedPath}");`;
-
-      if (this._compiler?.options.mode === "production") {
-        callback(null, codeWithDynamicCssImport);
-      } else {
-        callback(null, codeWithInjectedCSS);
+      styleMap.set(id, css);
+      sheet.reset();
+      let filePrefix = "";
+      if (css) {
+        if (isVirtualLoader) {
+          const virtualResourceLoader = `${virtualLoaderPath}?${JSON.stringify({
+            src: css,
+          })}`;
+          filePrefix = `import ${JSON.stringify(
+            this.utils.contextify(
+              this.context || this.rootContext,
+              `kuma.css!=!${virtualResourceLoader}!${DUMMY_CSS_FILE_PATH}`
+            )
+          )};`;
+          callback(null, `${codeWithReact}${filePrefix}`);
+          return;
+        } else {
+          if (!fs.existsSync(tmpCSSDir)) fs.mkdirSync(tmpCSSDir);
+          const hash = createHash("md5").update(css).digest("hex");
+          const cssPath = path.join(tmpCSSDir, `${hash}.css`);
+          fs.writeFileSync(cssPath, css);
+          const filePrefix = `import "${cssPath}";`;
+          callback(null, `${codeWithReact}\n${filePrefix}`);
+          return;
+        }
       }
+      callback(null, `${codeWithReact}`);
     })
     .catch((error) => {
       callback(error);
@@ -60,43 +83,9 @@ export default kumaUiLoader;
 const requireReact = (code: string, id: string) => {
   if (id.endsWith(".jsx") || id.endsWith(".tsx")) {
     if (!/^\s*import\s+React\s+from\s+['"]react['"]/.test(code)) {
-      return "import React from 'react';\n" + code;
+      // return "import React from 'react';\n" + code;
+      return code;
     }
   }
   return code;
-};
-
-const injectCSS = (cssContent: string) => {
-  return `
-  (function() {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const css = ${JSON.stringify(cssContent)};
-    const kumaStyleId = 'kuma-ui-styles';
-    let style = document.getElementById(kumaStyleId);
-    const head = document.head || document.getElementsByTagName('head')[0];
-    
-    if (!style) {
-      style = document.createElement('style');
-      style.type = 'text/css';
-      style.id = kumaStyleId;
-      head.appendChild(style);
-    }
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
-  })();
-  `;
-};
-
-const tmp = () => {
-  const css = sheet.getCSS();
-  const tempDir = "temp";
-  const output = path.join(mkdtempSync(tempDir), "kuma.css");
-  writeFile(output, css, () => {});
-  return output;
 };

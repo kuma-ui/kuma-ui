@@ -88,14 +88,6 @@ export class Sheet {
     );
   }
 
-  getFromCache(key: string): ResponsiveStyle | undefined {
-    return this.cache.get(key);
-  }
-
-  addToCache(key: string, styles: ResponsiveStyle): void {
-    this.cache.set(key, styles);
-  }
-
   reset() {
     this.rules = [];
     this.responsive = [];
@@ -103,5 +95,9 @@ export class Sheet {
   }
 }
 
-// Export a single instance of the Sheet class
+/**
+ * The Sheet singleton class is responsible for managing the CSS rules, responsive
+ * styles, and pseudo-classes used by Kuma-UI. It provides methods to add and retrieve
+ * rules, and generates the final CSS output.
+ */
 export const sheet = Sheet.getInstance();

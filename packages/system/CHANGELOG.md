@@ -1,5 +1,17 @@
 # @kuma-ui/system
 
+## 0.2.0
+
+### Minor Changes
+
+- - Improved HMR handling
+  - Fixed CSS accumulation
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.1.0
+
 ## 0.1.2
 
 ### Patch Changes
