@@ -20,7 +20,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         with:
-          version: 7.19.0
+          version: 8.5.1
 
       - name: install packages
         run: pnpm install
