@@ -1,16 +1,14 @@
-import * as CSS from "csstype";
 import { toCssUnit } from "./toCSS";
 import { GridKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { CSSValue, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle } from "./types";
 
 const unitKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type UnitKeys = (typeof unitKeys)[number];
 
 export type GridProps = Partial<
-  Record<Exclude<GridKeys, UnitKeys>, CSSValue<GridKeys>>
-> &
-  Partial<Record<UnitKeys, CSSValue<GridKeys, true>>>;
+  CSSProperties<Exclude<GridKeys, UnitKeys>> & CSSProperties<UnitKeys, true>
+>;
 
 const gridMappings: Record<GridKeys, string> = {
   grid: "grid",
