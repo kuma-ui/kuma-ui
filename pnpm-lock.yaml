@@ -254,9 +254,21 @@ importers:
       '@babel/types':
         specifier: ^7.21.4
         version: 7.21.4
+      '@jest/globals':
+        specifier: ^29.5.0
+        version: 29.5.0
+      '@jest/types':
+        specifier: ^29.1.0
+        version: 29.5.0
+      '@kuma-ui/jest-preset':
+        specifier: workspace:^
+        version: link:../../configs/jest-preset
       '@types/babel__core':
         specifier: ^7.20.0
         version: 7.20.0
+      jest:
+        specifier: ^29.1.0
+        version: 29.1.0(@types/node@18.15.11)(ts-node@10.9.1)
 
   packages/core:
     dependencies:
@@ -626,7 +638,7 @@ packages:
       '@babel/helper-function-name': 7.21.0
       '@babel/template': 7.20.7
       '@babel/traverse': 7.21.5
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
     transitivePeerDependencies:
       - supports-color
 
@@ -3260,7 +3272,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@babel/template': 7.20.7
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
       '@types/babel__core': 7.20.0
       '@types/babel__traverse': 7.18.5
 
@@ -5796,7 +5808,7 @@ packages:
       '@babel/plugin-syntax-jsx': 7.21.4(@babel/core@7.21.4)
       '@babel/plugin-syntax-typescript': 7.21.4(@babel/core@7.21.4)
       '@babel/traverse': 7.21.5
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
       '@jest/expect-utils': 29.5.0
       '@jest/transform': 29.5.0
       '@jest/types': 29.5.0
@@ -5880,7 +5892,7 @@ packages:
         optional: true
     dependencies:
       '@jest/core': 29.5.0(ts-node@10.9.1)
-      '@jest/types': 29.1.0
+      '@jest/types': 29.5.0
       import-local: 3.1.0
       jest-cli: 29.5.0(@types/node@18.15.11)(ts-node@10.9.1)
     transitivePeerDependencies:
