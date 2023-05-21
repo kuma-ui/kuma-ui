@@ -1,20 +1,14 @@
 import { toCssUnit } from "./toCSS";
 import { LayoutKeys } from "./keys";
-import { CSSValue, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type LayoutProps = Partial<{
-  width: CSSValue<"width", true>;
-  minWidth: CSSValue<"minWidth", true>;
-  maxWidth: CSSValue<"maxWidth", true>;
-  height: CSSValue<"height", true>;
-  minHeight: CSSValue<"minHeight", true>;
-  maxHeight: CSSValue<"maxHeight", true>;
-  display: CSSValue<"display">;
-  overflow: CSSValue<"overflow">;
-  position: CSSValue<"position">;
-  zIndex: CSSValue<"zIndex", true>;
-}>;
+export type LayoutProps = Partial<
+  CSSProperties<"width" | "minWidth" | "maxWidth", true> &
+    CSSProperties<"height" | "minHeight" | "maxHeight", true> &
+    CSSProperties<"display" | "overflow" | "position"> &
+    CSSProperties<"zIndex">
+>;
 
 const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",

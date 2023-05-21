@@ -1,19 +1,24 @@
 import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { CSSValue, ResponsiveStyle } from "./types";
+import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 
-export type FlexProps = Partial<{
-  flexDir: CSSValue<"flexDirection">;
-  justify: CSSValue<"justifyContent">;
-  alignItems: CSSValue<"alignItems">;
-  alignContent: CSSValue<"alignContent">;
-  flexWrap: CSSValue<"flexWrap">;
-  flexGrow: CSSValue<"flexGrow">;
-  flexShrink: CSSValue<"flexShrink">;
-  flexBasis: CSSValue<"flexBasis">;
-  gap: CSSValue<"gap">;
-}>;
+export type FlexProps = Partial<
+  {
+    /**
+     * @see flexDirection
+     */
+    flexDir: CSSValue<"flexDirection">;
+  } & {
+    /**
+     * @see justifyContent
+     */
+    justify: CSSValue<"justifyContent">;
+  } & CSSProperties<"alignItems" | "alignContent"> &
+    CSSProperties<"flexWrap" | "flexGrow"> &
+    CSSProperties<"flexShrink" | "flexBasis"> &
+    CSSProperties<"gap">
+>;
 
 const flexMappings: Record<FlexKeys, string> = {
   flexDir: "flex-direction",
