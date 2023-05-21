@@ -28,7 +28,6 @@ export function processCSS(
   nodePath.traverse({
     CallExpression(path) {
       const { node } = path;
-      // importedStyleFunctions["k"]
       const isCSS =
         t.isIdentifier(node.callee) &&
         node.callee.name === importedStyleFunctions["css"];
