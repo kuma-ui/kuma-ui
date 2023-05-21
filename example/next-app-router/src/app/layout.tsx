@@ -1,4 +1,7 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from "react";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children?: ReactNode;
