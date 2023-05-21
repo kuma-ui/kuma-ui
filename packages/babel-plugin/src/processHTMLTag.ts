@@ -29,9 +29,6 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.attributes = filteredAttributes;
   if (Object.keys(styledProps).length > 0) {
-    // FIXME: Currently, the style functions are applied directly using 'all' function.
-    // In the future, we might want to look up the functions from the styledFunctionsMap
-    // by using the hashed key stored in the data-kuma-ui property.
     const style = all(styledProps);
     const className = sheet.addRule(style.base);
     for (const [breakpoint, css] of Object.entries(style.media)) {
@@ -60,9 +57,6 @@ const processReactCreateElementHTMLTag = (
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;
   if (Object.keys(styledProps).length > 0) {
-    // FIXME: Currently, the style functions are applied directly using 'all' function.
-    // In the future, we might want to look up the functions from the styledFunctionsMap
-    // by using the hashed key stored in the data-kuma-ui property.
     const style = all(styledProps);
     const className = sheet.addRule(style.base);
     for (const [breakpoint, css] of Object.entries(style.media)) {

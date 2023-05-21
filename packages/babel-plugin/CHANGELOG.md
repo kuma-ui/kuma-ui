@@ -1,5 +1,17 @@
 # @kuma-ui/babel-plugin
 
+## 0.2.0
+
+### Minor Changes
+
+- Added js-doc to css props type & Add css Function
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/system@0.3.0
+  - @kuma-ui/sheet@0.1.1
+
 ## 0.1.2
 
 ### Patch Changes

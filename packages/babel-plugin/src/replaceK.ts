@@ -10,7 +10,7 @@ import { Program } from "@babel/types";
  * @param {typeof types} t - The Babel types object.
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
-export const processK = (
+export const replaceK = (
   node: NodePath<Program>,
   t: typeof types,
   importedStyleFunctions: Record<string, string>

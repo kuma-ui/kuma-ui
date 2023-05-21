@@ -1,5 +1,16 @@
 # @kuma-ui/next-plugin
 
+## 0.3.0
+
+### Minor Changes
+
+- Added js-doc to css props type & Add css Function
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/webpack-plugin@0.3.2
+
 ## 0.2.1
 
 ### Patch Changes

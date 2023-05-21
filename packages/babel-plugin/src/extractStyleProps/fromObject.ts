@@ -1,9 +1,10 @@
 import { types as t, type NodePath } from "@babel/core";
 import { isStyledProp, PseudoProps, isPseudoProps } from "@kuma-ui/system";
 import { ExtractedStyleProps } from ".";
+import { CallExpression } from "@babel/types";
 
 export function extractStylePropsFromObjectExpression(
-  path: NodePath<t.ObjectExpression>,
+  path: NodePath<t.ObjectExpression | CallExpression>,
   objectExpression: t.ObjectExpression
 ): ExtractedStyleProps<NodePath<t.ObjectExpression>> {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
