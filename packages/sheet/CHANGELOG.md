@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 0.1.1
+
+### Patch Changes
+
+- Added js-doc to css props type & Add css Function
+
 ## 0.1.0
 
 ### Minor Changes

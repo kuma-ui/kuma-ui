@@ -1,5 +1,11 @@
 # @kuma-ui/core
 
+## 0.2.0
+
+### Minor Changes
+
+- Added js-doc to css props type & Add css Function
+
 ## 0.1.0
 
 ### Minor Changes
