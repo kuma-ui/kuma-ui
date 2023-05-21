@@ -10,8 +10,9 @@ import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";
 import { Node } from "@babel/core";
 import { collectImportedStyled } from "./collectImportedStyled";
-import { processK } from "./processK";
+import { replaceK } from "./replaceK";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
+import { processCSS } from "./processCSS";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -48,7 +49,9 @@ export const visitor = ({ types: t, template }: Core) => {
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
         // Replace the 'k' function from '@kuma-ui/core' with the corresponding HTML tag
-        processK(path, t, importedStyleFunctions);
+        replaceK(path, t, importedStyleFunctions);
+        // Process CSS function calls and generate the hashed classNames
+        processCSS(path, t, template, importedStyleFunctions);
         // Process TaggedTemplateExpressions with styled components and generate the hashed classNames
         processTaggedTemplateExpression(
           path,
