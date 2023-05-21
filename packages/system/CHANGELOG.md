@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 0.2.1
+
+### Patch Changes
+
+- Fix fontWeight property and add textDecoration
+
 ## 0.2.0
 
 ### Minor Changes

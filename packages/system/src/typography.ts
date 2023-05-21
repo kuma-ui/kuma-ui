@@ -1,16 +1,17 @@
 import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
-import { ResponsiveStyle, CSSValue } from "./types";
+import { ResponsiveStyle, CSSProperties } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type TypographyProps = Partial<{
-  fontSize?: CSSValue<"fontSize", true>;
-  fontWeight?: CSSValue<"fontWeight">;
-  lineHeight?: CSSValue<"lineHeight", true>;
-  letterSpacing?: CSSValue<"letterSpacing", true>;
-  textAlign?: CSSValue<"textAlign">;
-  fontFamily?: CSSValue<"fontFamily">;
-}>;
+export type TypographyProps = Partial<
+  CSSProperties<"fontSize", true> &
+    CSSProperties<"fontWeight"> &
+    CSSProperties<"lineHeight", true> &
+    CSSProperties<"letterSpacing", true> &
+    CSSProperties<"textAlign"> &
+    CSSProperties<"fontFamily"> &
+    CSSProperties<"textDecoration">
+>;
 
 const typographyMappings: Record<TypographyKeys, string> = {
   fontSize: "font-size",
@@ -19,6 +20,7 @@ const typographyMappings: Record<TypographyKeys, string> = {
   letterSpacing: "letter-spacing",
   textAlign: "text-align",
   fontFamily: "font-family",
+  textDecoration: "text-decoration",
 };
 
 export const typography = (props: TypographyProps): ResponsiveStyle => {
@@ -31,7 +33,6 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
       const property = typographyMappings[key as TypographyKeys];
       const converter = [
         typographyMappings.fontSize,
-        typographyMappings.fontWeight,
         typographyMappings.lineHeight,
         typographyMappings.letterSpacing,
       ].includes(property)

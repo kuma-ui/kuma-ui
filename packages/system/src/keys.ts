@@ -22,6 +22,7 @@ export const styleKeys = {
     "letterSpacing",
     "textAlign",
     "fontFamily",
+    "textDecoration",
   ] as const,
   layout: [
     "width",
