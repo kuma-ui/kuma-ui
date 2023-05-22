@@ -28,6 +28,20 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   // Update the attributes of the opening element by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.attributes = filteredAttributes;
+  const existingClassName = (() => {
+    for (const attr of filteredAttributes) {
+      if (
+        t.isJSXAttribute(attr) &&
+        t.isJSXIdentifier(attr.name) &&
+        attr.name.name === "className" &&
+        t.isStringLiteral(attr.value)
+      ) {
+        return attr.value.value;
+      }
+    }
+    return null;
+  })();
+
   if (Object.keys(styledProps).length > 0) {
     const style = all(styledProps);
     const className = sheet.addRule(style.base);
@@ -42,8 +56,14 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
       }
     }
+    const combinedClassName = [existingClassName, className]
+      .filter(Boolean)
+      .join(" ");
     path.node.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier("className"), t.stringLiteral(className))
+      t.jsxAttribute(
+        t.jsxIdentifier("className"),
+        t.stringLiteral(combinedClassName)
+      )
     );
   }
 };
@@ -56,6 +76,21 @@ const processReactCreateElementHTMLTag = (
   // Update the properties of the object expression by removing the styled props,
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.properties = filteredProperties;
+
+  const existingClassName = (() => {
+    for (const prop of filteredProperties) {
+      if (
+        t.isObjectProperty(prop) &&
+        t.isIdentifier(prop.key) &&
+        prop.key.name === "className" &&
+        t.isStringLiteral(prop.value)
+      ) {
+        return prop.value.value;
+      }
+    }
+    return null;
+  })();
+
   if (Object.keys(styledProps).length > 0) {
     const style = all(styledProps);
     const className = sheet.addRule(style.base);
@@ -71,9 +106,14 @@ const processReactCreateElementHTMLTag = (
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
       }
     }
-
+    const combinedClassName = [existingClassName, className]
+      .filter(Boolean)
+      .join(" ");
     path.node.properties.push(
-      t.objectProperty(t.identifier("className"), t.stringLiteral(className))
+      t.objectProperty(
+        t.identifier("className"),
+        t.stringLiteral(combinedClassName)
+      )
     );
   }
 };

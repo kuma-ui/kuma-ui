@@ -10,7 +10,7 @@ export function extractStylePropsFromJSX(
     {};
   const pseudoProps: PseudoProps = {};
 
-  const filteredAttributes = openingElement.attributes.filter((attr) => {
+  const filteredAttributes = (openingElement.attributes.filter((attr) => {
     if (
       t.isJSXAttribute(attr) &&
       t.isJSXIdentifier(attr.name) &&
@@ -46,7 +46,7 @@ export function extractStylePropsFromJSX(
       return false;
     }
     return true;
-  }) as t.JSXAttribute[];
+  }) || []) as t.JSXAttribute[];
 
   return { filteredAttributes, styledProps, pseudoProps };
 }

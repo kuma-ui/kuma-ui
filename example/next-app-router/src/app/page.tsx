@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import { k } from "@kuma-ui/core";
-// import { Header } from "@src/components";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -14,6 +16,7 @@ export default function Home() {
           fontFamily="quicksand"
           mx="auto"
           color="green"
+          className={inter.className}
         >
           Kuma UI
         </k.div>
