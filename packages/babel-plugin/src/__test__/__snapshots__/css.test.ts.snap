@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`css function Snapshot tests basic usage should match snapshot 1`] = `
+"import React from "react";
+import { css } from '@kuma-ui/core';
+const style = "kuma-3383855968";"
+`;
+
+exports[`css function Snapshot tests using pseudo props should match snapshot 1`] = `
+"import React from "react";
+import { css } from '@kuma-ui/core';
+const style = "kuma-1234644783";"
+`;
+
+exports[`css function Snapshot tests using space props should match snapshot 1`] = `
+"import React from "react";
+import { css } from '@kuma-ui/core';
+const style = "kuma-110275621";"
+`;
