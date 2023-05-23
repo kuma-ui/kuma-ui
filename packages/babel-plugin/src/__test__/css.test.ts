@@ -1,5 +1,9 @@
 import { describe, expect, test } from "@jest/globals";
 import { babelTransform } from "./testUtils";
+import { pluginTester } from "babel-plugin-tester";
+import { types, template } from "@babel/core";
+import plugin from "../";
+import path from "path";
 
 describe("css function", () => {
   describe("Snapshot tests", () => {
@@ -39,4 +43,21 @@ describe("css function", () => {
       expect(code).toMatchSnapshot();
     });
   });
+});
+
+pluginTester({
+  plugin: () => plugin({ types, template }),
+  babelOptions: {
+    presets: [
+      "@babel/preset-typescript",
+      [
+        "@babel/preset-react",
+        {
+          runtime: "classic",
+        },
+      ],
+    ],
+  },
+  filename: "test.tsx",
+  fixtures: path.join(__dirname, "__fixtures__"),
 });
