@@ -1,5 +1,6 @@
 import type { FC, ReactNode } from "react";
 import { Inter } from "next/font/google";
+import { k } from "@kuma-ui/core";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,11 @@ const Layout: FC<Props> = ({ children }) => {
       <head>
         <title></title>
       </head>
-      <body>{children}</body>
+      <body>
+        <k.div bg={'red'} className={inter.className}>
+          {children}
+        </k.div>
+      </body>
     </html>
   );
 };
