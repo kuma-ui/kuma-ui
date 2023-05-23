@@ -1,31 +1,11 @@
 import { describe, expect, test } from "@jest/globals";
 import { babelTransform } from "./testUtils";
+import { pluginTester } from "babel-plugin-tester";
+import { types, template } from "@babel/core";
+import plugin from "../";
+import path from "path";
 
 describe("css function", () => {
-  test("should contain CSS prefix unique to Kuma UI", () => {
-    // Arrange
-    const inputCode = `
-        import { css } from '@kuma-ui/core'
-        const style = css({ color: 'red' })
-    `;
-    // Act
-    const { code } = babelTransform(inputCode);
-    // Assert
-    expect(code).toContain("kuma-");
-  });
-
-  test("should work correctly when css function is renamed", () => {
-    // Arrange
-    const inputCode = `
-        import { css as c } from '@kuma-ui/core'
-        const style = c({ color: 'red' })
-    `;
-    // Act
-    const { code } = babelTransform(inputCode);
-    // Assert
-    expect(code).toContain("kuma-");
-  });
-
   describe("Snapshot tests", () => {
     test("basic usage should match snapshot", () => {
       // Arrange
@@ -63,4 +43,21 @@ describe("css function", () => {
       expect(code).toMatchSnapshot();
     });
   });
+});
+
+pluginTester({
+  plugin: () => plugin({ types, template }),
+  babelOptions: {
+    presets: [
+      "@babel/preset-typescript",
+      [
+        "@babel/preset-react",
+        {
+          runtime: "classic",
+        },
+      ],
+    ],
+  },
+  filename: "test.tsx",
+  fixtures: path.join(__dirname, "__fixtures__"),
 });
