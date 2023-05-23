@@ -42,8 +42,41 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
       }
     }
+
+    const classNameAttrs: t.Expression[] = [t.stringLiteral(className)];
+
+    for (const attr of filteredAttributes) {
+      if (
+        t.isJSXAttribute(attr) &&
+        t.isJSXIdentifier(attr.name) &&
+        attr.name.name === "className"
+      ) {
+        if (t.isStringLiteral(attr.value)) {
+          classNameAttrs.push(attr.value);
+        } else if (
+          t.isJSXExpressionContainer(attr.value) &&
+          t.isExpression(attr.value.expression)
+        ) {
+          classNameAttrs.push(attr.value.expression);
+        }
+        return attr.value;
+      }
+    }
+
     path.node.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier("className"), t.stringLiteral(className))
+      // className={["kuma-*", defaultClassNameValue].join(' ')}
+      t.jsxAttribute(
+        t.jsxIdentifier("className"),
+        t.jSXExpressionContainer(
+          t.callExpression(
+            t.memberExpression(
+              t.arrayExpression(classNameAttrs),
+              t.identifier("join")
+            ),
+            [t.stringLiteral(" ")]
+          )
+        )
+      )
     );
   }
 };
@@ -72,8 +105,31 @@ const processReactCreateElementHTMLTag = (
       }
     }
 
+    const classNameProps: t.Expression[] = [t.stringLiteral(className)];
+
+    for (const prop of filteredProperties) {
+      if (
+        t.isObjectProperty(prop) &&
+        t.isIdentifier(prop.key) &&
+        prop.key.name === "className" &&
+        t.isExpression(prop.value)
+      ) {
+        classNameProps.push(prop.value);
+      }
+    }
+
     path.node.properties.push(
-      t.objectProperty(t.identifier("className"), t.stringLiteral(className))
+      // className: ["kuma-*", defaultClassNameValue].join(' ')
+      t.objectProperty(
+        t.identifier("className"),
+        t.callExpression(
+          t.memberExpression(
+            t.arrayExpression(classNameProps),
+            t.identifier("join")
+          ),
+          [t.stringLiteral(" ")]
+        )
+      )
     );
   }
 };
