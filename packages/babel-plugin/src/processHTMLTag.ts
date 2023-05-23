@@ -62,7 +62,9 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
         return attr.value;
       }
     }
-
+    // Combine existing and new classNames. This respects user-specified class names
+    // and works with non-StringLiterals, as they'll be resolved at runtime.
+    // E.g., <k.div className={styles.someClass} fontSize={24} /> keeps both classes.
     path.node.attributes.push(
       // className={["kuma-*", defaultClassNameValue].join(' ')}
       t.jsxAttribute(
