@@ -368,6 +368,36 @@ importers:
         specifier: ^3.2.3
         version: 3.2.3
 
+  website:
+    dependencies:
+      '@kuma-ui/core':
+        specifier: workspace:*
+        version: link:../packages/core
+      '@kuma-ui/next-plugin':
+        specifier: workspace:*
+        version: link:../packages/next-plugin
+      '@types/node':
+        specifier: ^18.15.11
+        version: 18.15.11
+      '@types/react':
+        specifier: ^18.0.32
+        version: 18.0.32
+      '@types/react-dom':
+        specifier: 18.2.1
+        version: 18.2.1
+      eslint-config-next:
+        specifier: 13.3.4
+        version: 13.3.4(eslint@8.0.1)(typescript@5.0.4)
+      next:
+        specifier: ^13.3.4
+        version: 13.3.4(@babel/core@7.21.4)(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: 18.2.0
+        version: 18.2.0(react@18.2.0)
+
 packages:
 
   /@ampproject/remapping@2.2.1:
