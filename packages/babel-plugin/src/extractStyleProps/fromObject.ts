@@ -11,7 +11,7 @@ export function extractStylePropsFromObjectExpression(
     {};
   const pseudoProps: PseudoProps = {};
 
-  const filteredProperties = objectExpression.properties?.filter((prop) => {
+  const filteredProperties = (objectExpression.properties?.filter((prop) => {
     if (
       t.isObjectProperty(prop) &&
       t.isIdentifier(prop.key) &&
@@ -129,7 +129,7 @@ export function extractStylePropsFromObjectExpression(
       return false;
     }
     return true;
-  }) as t.ObjectProperty[];
+  }) || []) as t.ObjectProperty[];
 
   return { filteredProperties, styledProps, pseudoProps };
 }
