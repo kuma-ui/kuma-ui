@@ -1,7 +1,10 @@
 import React, { type FC, memo } from "react";
-import { k, styled } from "@kuma-ui/core";
+import { css, k, styled } from "@kuma-ui/core";
 import Link from "next/link";
 import { Logo } from "./logo";
+import { Inter, Rubik } from "next/font/google";
+
+const rubik = Rubik({ weight: "500", subsets: ["hebrew"] });
 
 export const Header: FC = memo(() => {
   return (
@@ -11,7 +14,7 @@ export const Header: FC = memo(() => {
       width="100%"
       height={64}
       p="8px 16px"
-      borderBottom="1px solid #dadde1"
+      borderBottom={["1px solid #dadde1", "initial"]}
     >
       <k.div
         maxWidth={1200}
@@ -22,21 +25,15 @@ export const Header: FC = memo(() => {
         alignItems="center"
       >
         <Link
-          href=""
-          style={{
+          href="/"
+          className={css({
             display: "flex",
             alignItems: "center",
             gap: "8px",
             textDecoration: "none",
-          }}
+          })}
         >
-          <Logo width={32} />
-          <k.div
-            color="black"
-            fontWeight="700"
-            fontFamily="Quicksand"
-            fontSize={32}
-          >
+          <k.div className={rubik.className} color="black" fontSize={28}>
             Kuma UI
           </k.div>
         </Link>
