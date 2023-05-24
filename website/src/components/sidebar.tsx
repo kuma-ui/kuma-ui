@@ -4,44 +4,20 @@ import Link from "next/link";
 
 export const Sidebar: React.FC<{}> = React.memo(() => {
   return (
-    <k.aside>
-      <k.nav position="sticky" width="256px" top={0} left={0}>
+    <k.aside mt="1rem">
+      <k.nav position="sticky" width="256px" top="calc(56px + 1rem)" left={0}>
         <k.ul>
-          <k.li mt="1rem">
+          <k.li>
             <Link
               href="/"
-              className={css({
-                p: "8px 16px",
-                textDecoration: "none",
-                color: "black",
-                borderRadius: "0.375rem",
-                fontSize: "16px",
-                fontWeight: 600,
-                _hover: {
-                  bg: "#EDF7FF",
-                  color: "#2d7fbd",
-                },
-              })}
+              className={listItem}
+              style={{ color: "#2d7fbd", background: "#EDF7FF" }}
             >
               Getting Started
             </Link>
           </k.li>
           <k.li mt="1rem">
-            <Link
-              href="/"
-              className={css({
-                p: "8px 16px",
-                textDecoration: "none",
-                color: "black",
-                borderRadius: "0.375rem",
-                fontSize: "16px",
-                fontWeight: 600,
-                _hover: {
-                  bg: "#EDF7FF",
-                  color: "#2d7fbd",
-                },
-              })}
-            >
+            <Link href="/" className={listItem}>
               API
             </Link>
           </k.li>
@@ -49,4 +25,16 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
       </k.nav>
     </k.aside>
   );
+});
+
+const listItem = css({
+  display: "block",
+  width: "80%",
+  p: "8px 16px",
+  textDecoration: "none",
+  borderRadius: "0.375rem",
+  fontSize: "16px",
+  fontWeight: 600,
+  color: "black",
+  _hover: { bg: "#EDF7FF", color: "#2d7fbd" },
 });
