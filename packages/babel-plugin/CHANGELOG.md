@@ -1,5 +1,11 @@
 # @kuma-ui/babel-plugin
 
+## 0.3.0
+
+### Minor Changes
+
+- Fix Overwriting of Existing ClassNames
+
 ## 0.2.0
 
 ### Minor Changes
