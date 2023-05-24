@@ -8,13 +8,14 @@ export type ColorProps = Partial<
      * @see backgroundColor
      */
     bg: CSSValue<"backgroundColor">;
-  } & CSSProperties<"borderColor" | "color">
+  } & CSSProperties<"borderColor" | "color" | "opacity">
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background-color",
   color: "color",
   borderColor: "border-color",
+  opacity: "opacity",
 };
 
 export const color = (props: ColorProps): ResponsiveStyle => {

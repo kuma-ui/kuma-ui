@@ -25,6 +25,7 @@ describe("compose function", () => {
       color: "red",
       flexDir: ["column", "row"],
       boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2)",
+      opacity: 0.5,
     };
     // Act
     const styles = combinedFunction(props);
@@ -38,6 +39,7 @@ describe("compose function", () => {
     expect(styles.base).toContain(
       "box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)"
     );
+    expect(styles.base).toContain("opacity: 0.5");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
