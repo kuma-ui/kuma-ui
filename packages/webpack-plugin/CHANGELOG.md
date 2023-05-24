@@ -1,5 +1,12 @@
 # @kuma-ui/webpack-plugin
 
+## 0.3.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/babel-plugin@0.3.0
+
 ## 0.3.2
 
 ### Patch Changes
