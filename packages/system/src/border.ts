@@ -1,5 +1,5 @@
 import { BorderKeys } from "./keys";
-import { toCssUnit } from "./toCSS";
+import { toCssUnitWithPx } from "./toCSS";
 import { CSSProperties, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -31,7 +31,7 @@ export const border = (props: BorderProps): ResponsiveStyle => {
         borderMappings.borderWidth,
         borderMappings.borderRadius,
       ].includes(property)
-        ? toCssUnit
+        ? toCssUnitWithPx
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,

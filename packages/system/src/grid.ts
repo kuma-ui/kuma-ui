@@ -1,4 +1,4 @@
-import { toCssUnit } from "./toCSS";
+import { toCssUnitWithPx } from "./toCSS";
 import { GridKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { CSSProperties, ResponsiveStyle } from "./types";
@@ -40,7 +40,7 @@ export const grid = (props: GridProps): ResponsiveStyle => {
     if (cssValue) {
       const property = gridMappings[key as GridKeys];
       const converter = unitKeys.includes(key as UnitKeys)
-        ? toCssUnit
+        ? toCssUnitWithPx
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,

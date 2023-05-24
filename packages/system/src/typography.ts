@@ -1,4 +1,4 @@
-import { toCssUnit } from "./toCSS";
+import { toCssUnitWithPx } from "./toCSS";
 import { TypographyKeys } from "./keys";
 import { ResponsiveStyle, CSSProperties } from "./types";
 import { applyResponsiveStyles } from "./responsive";
@@ -36,7 +36,7 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
         typographyMappings.lineHeight,
         typographyMappings.letterSpacing,
       ].includes(property)
-        ? toCssUnit
+        ? toCssUnitWithPx
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,

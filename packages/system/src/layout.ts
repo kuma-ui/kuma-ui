@@ -1,7 +1,17 @@
-import { toCssUnit } from "./toCSS";
+import { toCssUnit, toCssUnitWithPx } from "./toCSS";
 import { LayoutKeys } from "./keys";
 import { CSSProperties, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
+
+const withPxUnitKeys: string[] = [
+  "width",
+  "minWidth",
+  "maxWidth",
+  "height",
+  "minHeight",
+  "maxHeight",
+];
+const unitKeys: string[] = ["zIndex"];
 
 export type LayoutProps = Partial<
   CSSProperties<"width" | "minWidth" | "maxWidth", true> &
@@ -30,15 +40,9 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     const cssValue = props[key as LayoutKeys];
     if (cssValue) {
       const property = layoutMappings[key as LayoutKeys];
-      const converter = [
-        layoutMappings.width,
-        layoutMappings.minWidth,
-        layoutMappings.maxWidth,
-        layoutMappings.height,
-        layoutMappings.minHeight,
-        layoutMappings.maxHeight,
-        layoutMappings.zIndex,
-      ].includes(property)
+      const converter = withPxUnitKeys.includes(property)
+        ? toCssUnitWithPx
+        : unitKeys.includes(property)
         ? toCssUnit
         : undefined;
       const responsiveStyles = applyResponsiveStyles(

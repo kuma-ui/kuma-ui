@@ -1,4 +1,4 @@
-import { toCssUnit } from "./toCSS";
+import { toCssUnitWithPx } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
@@ -40,7 +40,7 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue) {
       const property = flexMappings[key as FlexKeys];
-      const converter = property === "gap" ? toCssUnit : undefined;
+      const converter = property === "gap" ? toCssUnitWithPx : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
