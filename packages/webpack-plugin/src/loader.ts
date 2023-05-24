@@ -64,7 +64,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
         } else {
           if (!fs.existsSync(tmpCSSDir)) fs.mkdirSync(tmpCSSDir);
           const hash = createHash("md5").update(css).digest("hex");
-          const cssPath = path.join(tmpCSSDir, `${hash}.css`);
+          const cssPath = path.posix.join(tmpCSSDir, `${hash}.css`);
           fs.writeFileSync(cssPath, css);
           const filePrefix = `import "${cssPath}";`;
           callback(null, `${codeWithReact}\n${filePrefix}`);
