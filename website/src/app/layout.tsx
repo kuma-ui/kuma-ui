@@ -1,6 +1,7 @@
 import React from "react";
 import { Header, Sidebar } from "@src/components";
 import { css, k } from "@kuma-ui/core";
+import "./reset.css";
 export const metadata = {
   title: "Kuma UI - Zero-Runtime CSS-in-JS with type-safe utility props",
   description:

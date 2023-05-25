@@ -1,4 +1,3 @@
-import "./reset.css";
 import { NextPage } from "next";
 import { redirect } from "next/navigation";
 
