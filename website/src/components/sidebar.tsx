@@ -6,12 +6,21 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
   return (
     <k.aside mt="1rem">
       <k.nav position="sticky" width="256px" top="calc(56px + 1rem)" left={0}>
-        <k.ul>
-          <k.li>
+        <k.ul style={{ listStyleType: "none" }}>
+          <k.li mt="1rem">
             <Link
               href="/"
               className={listItem}
               style={{ color: "#2d7fbd", background: "#EDF7FF" }}
+            >
+              Introduction
+            </Link>
+          </k.li>
+          <k.li mt="1rem">
+            <Link
+              href="/"
+              className={listItem}
+              //   style={{ color: "#2d7fbd", background: "#EDF7FF" }}
             >
               Getting Started
             </Link>
@@ -26,6 +35,21 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
     </k.aside>
   );
 });
+
+const listItems = [
+  {
+    title: "Introduction",
+    path: "/",
+  },
+  {
+    title: "Getting Started",
+    path: "getting-started",
+  },
+  {
+    title: "API",
+    path: "API",
+  },
+];
 
 const listItem = css({
   display: "block",

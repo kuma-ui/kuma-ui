@@ -1,5 +1,13 @@
 import "./reset.css";
+import { NextPage } from "next";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return <div style={{ height: "200vh" }}>hello</div>;
-}
+type PageProps = {
+  params: {
+    slug: string[];
+  };
+};
+
+const Home: NextPage = (props) => redirect("/docs");
+
+export default Home;

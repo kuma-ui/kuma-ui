@@ -1,3 +1,4 @@
+import React from "react";
 import { Header, Sidebar } from "@src/components";
 import { css, k } from "@kuma-ui/core";
 export const metadata = {
