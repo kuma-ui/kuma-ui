@@ -25,6 +25,7 @@ export const Markdown = ({ source }: { source: string }) => {
             />
           );
         },
+        a: (props) => <Anchor {...props} />,
       }}
     />
   );
@@ -44,4 +45,9 @@ const H2 = styled("h2")`
   font-size: 1.5rem;
   letter-spacing: -0.025em;
   scroll-margin-block: 6.875rem;
+`;
+
+const Anchor = styled("a")`
+  color: #327eb9;
+  text-decoration: none;
 `;
