@@ -50,7 +50,13 @@ export const Header: FC = memo(() => {
             textDecoration: "none",
           })}
         >
-          <k.img src="/kuma.png" alt="" width={40} height={40} />
+          <k.img
+            src="/kuma.png"
+            alt=""
+            width={40}
+            height={40}
+            role="presentation"
+          />
           <k.span color="black" fontSize={[20, 24]} fontWeight={600}>
             Kuma UI
           </k.span>
@@ -60,6 +66,10 @@ export const Header: FC = memo(() => {
             href="https://github.com/poteboy/kuma-ui"
             target="__blank"
             aria-label="Kuma UI GitHub"
+            className={css({
+              display: "flex",
+              alignItems: "center",
+            })}
           >
             <GitHubIcon />
           </Link>
