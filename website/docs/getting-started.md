@@ -3,77 +3,41 @@ title: "Getting started"
 description: Kuma UI - zero-runtime CSS-in-JS with type-safe utility props
 ---
 
-🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
 
-## Features
-
-🔥 &nbsp; Blazing-fast performance with zero-runtime CSS extraction
-
-🦄 &nbsp; Build-time CSS generation
-
-🌳 &nbsp; Responsive design with breakpoints and media queries
-
-🎨 &nbsp; Utility-first approach for rapid UI development
-
-👋 &nbsp; Support for pseudo-classes and pseudo-elements
-
-🔬 &nbsp; Experimental support for Next.js 13.4 App router & React server components(RSC).
+Welcome to the Kuma UI! This guide will help you get up and running with Kuma UI in your project, whether you're using Next.js or Vite.
 
 ## Installation
 
-```sh
+To get started with Kuma UI, first, you need to install the core package in your project. This can be done using either npm or yarn. Here's how:
+
+```bash
 npm install @kuma-ui/core
 ```
 
-or
+or 
 
-```sh
+```bash
 yarn add @kuma-ui/core
 ```
 
-## Usage
+One of the great advantages of Kuma UI is its **incredibly lightweight** footprint. The minified and gzipped size of `@kuma-ui/core` is only 273 bytes! Check it out on [Bundlephobia](https://bundlephobia.com/package/@kuma-ui/core@0.2.0).
 
-### k object
+Once the core package is successfully installed, you can proceed to set up Kuma UI for your specific framework (Next.js or Vite) as detailed in the next section.
 
-The `k` object is a key part of Kuma UI's API. It provides pre-styled HTML elements that you can use as components in your application. These elements can be styled using utility props for inline styling. The utility props are type-safe and make it easy to write responsive styles.
 
-```tsx
-import { k } from "@kuma-ui/core";
+## Setting Up Kuma UI
 
-function App() {
-  return (
-    <k.div p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
-      hello world
-    </k.div>
-  );
-}
+### For Next.js Applications
+
+First, you need to add the Kuma UI Next.js plugin to your project. You can do this by running the following command:
+
+```bash
+yarn add -D @kuma-ui/next-plugin
 ```
 
-### css function
+Once you've installed the plugin, you need to configure it in your Next.js project. You can do this in the `next.config.js` file:
 
-The `css` function is another way to style your components. It takes an object of styles and returns a string of hashed classNames that you can apply to your component using the `className` prop.
-
-```tsx
-import { css } from "@kuma-ui/core";
-
-const styles = css({ color: "red", fontSize: "24px" });
-
-function App() {
-  return <div className={styles}>Hello, world!</div>;
-}
-```
-
-## Setup
-
-### Next.js
-
-```sh
-yarn add @kuma-ui/next-plugin
-```
-
-#### Pages Directory Version
-
-**next.config.js**
+#### Pages Directory
 
 ```js
 const { withKumaUI } = require("@kuma-ui/next-plugin");
@@ -86,9 +50,7 @@ const nextConfig = {
 module.exports = withKumaUI(nextConfig);
 ```
 
-#### App Router Version (Experimental)
-
-**next.config.js**
+#### App Router (Experimental)
 
 ```js
 const { withKumaUI } = require("@kuma-ui/next-plugin");
@@ -97,29 +59,30 @@ const { withKumaUI } = require("@kuma-ui/next-plugin");
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    appDir: true,
-  },
+    appDir: true
+  }
 };
 
 module.exports = withKumaUI(nextConfig);
 ```
 
-Please note that as of now, App Router is an experimental feature. A `.kuma` directory will be produced in the process, which should be added to your `.gitignore` file. If you delete the `.kuma` directory, make sure to also clear the `.next` cache.
+Please note that as of now, App Router is an experimental feature. During the build process, a `.kuma` directory will be created, which should be added to your `.gitignore` file. If you delete the `.kuma` directory, make sure to also clear the `.next` cache.
 
-### Vite
+### For Vite Applications
 
-```sh
-yarn add @kuma-ui/vite
+Add the Kuma UI Vite plugin to your project:
+
+```bash
+yarn add -D @kuma-ui/vite
 ```
 
-**vite.config.ts**
+After installation, you need to configure it in your Vite project. You can do this in the `vite.config.ts` file:
 
-```js
+```ts
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import KumaUI from "@kuma-ui/vite";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react({
@@ -130,24 +93,4 @@ export default defineConfig({
 });
 ```
 
-## Responsive Design
-
-Kuma UI supports responsive design. Use arrays to specify different styles for different viewport widths. For example, <k.div fontSize={[16, 24]} /> changes the font size from 16px to 24px based on the window size.
-
-Define the breakpoints in your config file:
-
-```js
-import kumaUI from "@kuma-ui/vite";
-
-kumaUI({
-  breakpoints: { sm: "400px", md: "700px" },
-});
-```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
-
-## License
-
-MIT
+With this, you are now ready to start using Kuma UI in your Next.js or Vite application. Happy coding! 🎉

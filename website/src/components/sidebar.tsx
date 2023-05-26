@@ -29,6 +29,9 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
                   href={`/docs/${item.path}`}
                   className={listItem}
                   style={focused}
+                  aria-current={
+                    item.path.trim() === segment.trim() ? "page" : undefined
+                  }
                 >
                   {item.title}
                 </Link>
@@ -59,7 +62,15 @@ const listItems = [
   },
   {
     title: "API",
-    path: "API",
+    path: "api",
+  },
+  {
+    title: "Styled System",
+    path: "styled-system",
+  },
+  {
+    title: "Responsive Styles",
+    path: "responsive-styles",
   },
 ];
 
