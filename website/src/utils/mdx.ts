@@ -1,24 +1,17 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
 
 const docsDirectory = path.join(process.cwd(), "docs");
 
 // Get content from mdx file
-export async function getMdxContent(slug: string) {
+export async function getMdContent(slug: string) {
   try {
-    const fullPath = path.join(docsDirectory, `${slug}.mdx`);
+    const fullPath = path.join(docsDirectory, `${slug}.md`);
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const matterResult = matter(fileContents);
-    const processedContent = await remark()
-      .use(html)
-      .process(matterResult.content);
-
-    // Combine the data with the id and contentHtml
     return {
-      contentHtml: processedContent.value,
+      contentHtml: matterResult.content,
       title: matterResult.data.title,
       description: matterResult.data.description,
     };
@@ -56,5 +49,5 @@ export function getAllDocPaths() {
     },
   }));
 
-  return paths;
+  return fileNames;
 }

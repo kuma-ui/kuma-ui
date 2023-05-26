@@ -1,6 +1,8 @@
-import { getAllDocPaths, getMdxContent } from "@src/utils/mdx";
+import { getAllDocPaths, getMdContent } from "@src/utils/mdx";
 import { redirect } from "next/navigation";
 import type { Metadata } from "next";
+import { Markdown } from "@src/components";
+import { css } from "@kuma-ui/core";
 
 interface DocProps {
   params: {
@@ -11,7 +13,7 @@ interface DocProps {
 export async function generateMetadata({
   params,
 }: DocProps): Promise<Metadata> {
-  const page = await getMdxContent(params.slug[0]);
+  const page = await getMdContent(params.slug[0]);
 
   if (!page) {
     return {};
@@ -24,15 +26,16 @@ export async function generateMetadata({
 }
 
 export default async function Documentation(props: DocProps) {
-  const content = await getMdxContent(props.params.slug[0]);
+  const content = await getMdContent(props.params.slug[0]);
   if (!content) redirect("/doc/introduction");
 
   return (
-    <div>
-      <div
-        dangerouslySetInnerHTML={{ __html: content.contentHtml.toString() }}
-        style={{ maxWidth: "700px" }}
-      />
+    <div
+      className={css({
+        maxWidth: "650px",
+      })}
+    >
+      <Markdown source={content.contentHtml.toString()} />
     </div>
   );
 }

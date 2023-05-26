@@ -2,6 +2,7 @@ import React from "react";
 import { Header, Sidebar } from "@src/components";
 import { css, k } from "@kuma-ui/core";
 import "./reset.css";
+import { getAllDocPaths } from "@src/utils/mdx";
 export const metadata = {
   title: "Kuma UI - Zero-Runtime CSS-in-JS with type-safe utility props",
   description:
@@ -25,7 +26,7 @@ export default function RootLayout({
           <Header />
           <k.div className={flexRow} maxWidth={1200} mx="auto" width="100%">
             <Sidebar />
-            <main>{children}</main>
+            <main className={layout}>{children}</main>
           </k.div>
         </k.div>
       </body>
@@ -34,6 +35,11 @@ export default function RootLayout({
 }
 
 const flexRow = css({
-  display: "flex",
+  display: ["block", "flex"],
   flexDir: "row",
+});
+
+const layout = css({
+  m: ["40px 20px", "0 auto"],
+  width: ["initial", "800px"],
 });

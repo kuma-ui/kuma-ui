@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 export const Sidebar: React.FC<{}> = React.memo(() => {
   const segment = getLastPathSegment(usePathname());
   return (
-    <k.aside>
+    <k.aside display={["none", "block"]}>
       <k.nav
         position="sticky"
         width="256px"

@@ -51,7 +51,7 @@ export const Header: FC = memo(() => {
           })}
         >
           <k.img src="/kuma.png" alt="" width={40} height={40} />
-          <k.span className={rubik.className} color="black" fontSize={24}>
+          <k.span color="black" fontSize={[20, 24]} fontWeight={600}>
             Kuma UI
           </k.span>
         </Link>
