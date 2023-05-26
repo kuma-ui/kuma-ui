@@ -24,7 +24,7 @@ export default function RootLayout({
           minHeight="100vh"
         >
           <Header />
-          <k.div className={flexRow} maxWidth={1200} mx="auto" width="100%">
+          <k.div className={flexRow} maxWidth="90rem" mx="auto" width="100%">
             <Sidebar />
             <main className={layout}>{children}</main>
           </k.div>
@@ -40,6 +40,6 @@ const flexRow = css({
 });
 
 const layout = css({
-  m: ["40px 20px", "0 auto"],
-  width: ["initial", "800px"],
+  m: ["40px 20px", "0 auto 0 0"],
+  width: ["initial", "746px"],
 });

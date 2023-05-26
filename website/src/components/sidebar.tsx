@@ -11,10 +11,11 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
     <k.aside display={["none", "block"]}>
       <k.nav
         position="sticky"
-        width="256px"
+        width="280px"
         top="calc(56px + 1rem)"
         left={0}
-        px="10px"
+        pl="24px"
+        pr="32px"
       >
         <k.ul style={{ listStyleType: "none" }}>
           {listItems.map((item) => {

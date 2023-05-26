@@ -23,7 +23,6 @@ export const Header: FC = memo(() => {
       top="0px"
       width="100%"
       height={64}
-      p="8px 16px"
       borderBottom={["1px solid #dadde1", "initial"]}
       zIndex="1"
       bg="white"
@@ -34,7 +33,8 @@ export const Header: FC = memo(() => {
       }
     >
       <k.div
-        maxWidth={1200}
+        maxWidth="90rem"
+        px="1.5rem"
         mx="auto"
         height="100%"
         display="flex"
