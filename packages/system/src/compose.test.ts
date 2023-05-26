@@ -33,7 +33,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("margin: 8px");
     expect(styles.base).toContain("font-size: 16px");
     expect(styles.base).toContain("width: 100%");
-    expect(styles.base).toContain("background-color: red");
+    expect(styles.base).toContain("background: red");
     expect(styles.base).toContain("flex-direction: column");
     expect(styles.base).toContain(
       "box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)"
