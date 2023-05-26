@@ -47,7 +47,7 @@ export const styleKeys = {
     "flexBasis",
     "gap",
   ] as const,
-  color: ["bg", "color", "borderColor"] as const,
+  color: ["bg", "color", "borderColor", "opacity"] as const,
   border: [
     "borderWidth",
     "borderStyle",
