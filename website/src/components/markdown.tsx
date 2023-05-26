@@ -12,10 +12,11 @@ export const Markdown = ({ source }: { source: string }) => {
       children={source}
       remarkPlugins={[remarkGfm]}
       components={{
-        h2: (props) => <H2 {...props} className={rubik.className} />,
-        p: (props) => <P {...props} className={rubik.className} />,
+        h2: ({ node, ...props }) => (
+          <H2 {...props} className={rubik.className} />
+        ),
+        p: ({ node, ...props }) => <P {...props} className={rubik.className} />,
         code: (props) => {
-          console.log(props);
           return (
             <SyntaxHighlight
               language={props.className?.replace("language-", "") || "tsx"}
