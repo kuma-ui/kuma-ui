@@ -7,12 +7,17 @@ export type ColorProps = Partial<
     /**
      * @see backgroundColor
      */
-    bg: CSSValue<"backgroundColor">;
+    bg: CSSValue<"background">;
+    /**
+     * @see backgroundColor
+     */
+    bgColor: CSSValue<"backgroundColor">;
   } & CSSProperties<"borderColor" | "color">
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
-  bg: "background-color",
+  bg: "background",
+  bgColor: "ackground-color",
   color: "color",
   borderColor: "border-color",
 };
