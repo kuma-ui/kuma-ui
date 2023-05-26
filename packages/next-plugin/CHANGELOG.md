@@ -1,5 +1,11 @@
 # @kuma-ui/next-plugin
 
+## 0.3.1
+
+### Patch Changes
+
+- @kuma-ui/webpack-plugin@0.3.3
+
 ## 0.3.0
 
 ### Minor Changes
