@@ -36,6 +36,10 @@ export const Markdown = ({ source }: { source: string }) => {
         },
         a: (props) => <Anchor {...props} />,
         pre: (props) => <pre className={css({ mt: "1.25rem" })} {...props} />,
+        table: (props) => <Table {...props} />,
+        thead: (props) => <Thead {...props} />,
+        th: (props) => <Th {...props} />,
+        td: (props) => <Td {...props} />,
       }}
     />
   );
@@ -70,4 +74,36 @@ const H3 = styled("h3")`
 const Anchor = styled("a")`
   color: #327eb9;
   text-decoration: none;
+`;
+
+const Table = styled("table")`
+  margin: 1.2rem auto;
+  width: auto;
+  border-collapse: collapse;
+  font-size: 0.95em;
+  line-height: 1.5;
+  word-break: normal;
+  display: block;
+  overflow: auto;
+`;
+
+const Thead = styled("thead")`
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+`;
+
+const Th = styled("th")`
+  font-weight: 700;
+  background: #edf2f7;
+  padding: 0.5rem;
+  border: 1px solid #cfdce6;
+`;
+
+const Td = styled("td")`
+  padding: 0.5rem;
+  border: 1px solid #cfdce6;
+  background: #fff;
+  width: 1%;
+  white-space: break-spaces;
 `;
