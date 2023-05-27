@@ -24,10 +24,12 @@ describe("compose function", () => {
       fontSize: 16,
       width: "100%",
       bg: "red",
+      opacity: 0.5,
       color: "red",
       flexDir: ["column", "row"],
       boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2)",
       listStyle: "square",
+      zIndex: 9999,
     };
     // Act
     const styles = combinedFunction(props);
@@ -37,11 +39,13 @@ describe("compose function", () => {
     expect(styles.base).toContain("font-size: 16px");
     expect(styles.base).toContain("width: 100%");
     expect(styles.base).toContain("background-color: red");
+    expect(styles.base).toContain("opacity: 0.5;");
     expect(styles.base).toContain("flex-direction: column");
     expect(styles.base).toContain(
       "box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)"
     );
     expect(styles.base).toContain("list-style: square;");
+    expect(styles.base).toContain("z-index: 9999;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {

@@ -37,7 +37,6 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
         layoutMappings.height,
         layoutMappings.minHeight,
         layoutMappings.maxHeight,
-        layoutMappings.zIndex,
       ].includes(property)
         ? toCssUnit
         : undefined;
