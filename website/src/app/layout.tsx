@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <k.div role="presentation" display={["none", "initial"]}>
+        <k.div role="presentation" display={["none", "initial"]} bg="white">
           <k.div
             style={{
               background:

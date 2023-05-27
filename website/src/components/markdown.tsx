@@ -40,6 +40,8 @@ export const Markdown = ({ source }: { source: string }) => {
         thead: (props) => <Thead {...props} />,
         th: (props) => <Th {...props} />,
         td: (props) => <Td {...props} />,
+        ul: (props) => <Ul {...props} />,
+        li: (props) => <Li {...props} />,
       }}
     />
   );
@@ -106,4 +108,16 @@ const Td = styled("td")`
   background: #fff;
   width: 1%;
   white-space: break-spaces;
+`;
+
+const Ul = styled("ul")`
+  margin-top: 0.5rem;
+  margin-left: 1.25rem;
+  list-style-type: initial;
+`;
+
+const Li = styled("li")`
+  font-size: 1.1rem;
+  line-height: 1.7;
+  padding-bottom: 12px;
 `;

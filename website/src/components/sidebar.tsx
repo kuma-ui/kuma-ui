@@ -72,6 +72,10 @@ const listItems = [
     title: "Responsive Styles",
     path: "responsive-styles",
   },
+  {
+    title: "Contributing",
+    path: "contributing",
+  },
 ];
 
 const listItem = css({
