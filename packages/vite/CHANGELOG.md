@@ -1,5 +1,16 @@
 # @kuma-ui/vite
 
+## 0.3.0
+
+### Minor Changes
+
+- improve Style Props
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/babel-plugin@0.4.0
+
 ## 0.2.3
 
 ### Patch Changes
