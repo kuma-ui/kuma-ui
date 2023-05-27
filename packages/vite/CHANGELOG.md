@@ -1,5 +1,11 @@
 # @kuma-ui/vite
 
+## 0.3.1
+
+### Patch Changes
+
+- @kuma-ui/babel-plugin@0.4.1
+
 ## 0.3.0
 
 ### Minor Changes
