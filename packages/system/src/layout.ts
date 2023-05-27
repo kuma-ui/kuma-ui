@@ -7,7 +7,8 @@ export type LayoutProps = Partial<
   CSSProperties<"width" | "minWidth" | "maxWidth", true> &
     CSSProperties<"height" | "minHeight" | "maxHeight", true> &
     CSSProperties<"display" | "overflow" | "position"> &
-    CSSProperties<"zIndex">
+    CSSProperties<"zIndex", true> &
+    CSSProperties<"cursor">
 >;
 
 const layoutMappings: Record<LayoutKeys, string> = {
@@ -21,6 +22,7 @@ const layoutMappings: Record<LayoutKeys, string> = {
   overflow: "overflow",
   position: "position",
   zIndex: "z-index",
+  cursor: "cursor",
 } as const;
 
 export const layout = (props: LayoutProps): ResponsiveStyle => {

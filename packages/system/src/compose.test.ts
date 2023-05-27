@@ -30,6 +30,7 @@ describe("compose function", () => {
       boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2)",
       listStyle: "square",
       zIndex: 9999,
+      cursor: "pointer",
     };
     // Act
     const styles = combinedFunction(props);
@@ -46,6 +47,7 @@ describe("compose function", () => {
     );
     expect(styles.base).toContain("list-style: square;");
     expect(styles.base).toContain("z-index: 9999;");
+    expect(styles.base).toContain("cursor: pointer;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {

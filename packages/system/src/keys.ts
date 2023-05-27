@@ -35,6 +35,7 @@ export const styleKeys = {
     "overflow",
     "position",
     "zIndex",
+    "cursor",
   ] as const,
   flex: [
     "flexDir",
