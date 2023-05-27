@@ -37,9 +37,10 @@
     "@kuma-ui/sheet": "workspace:^"
   },
   "devDependencies": {
-    "@types/webpack-sources": "^3.2.0",
-    "webpack": "^5.78.0",
-    "webpack-sources": "^3.2.3"
+    "webpack": "^5.78.0"
+  },
+  "peerDependencies": {
+    "webpack": "^5"
   },
   "publishConfig": {
     "access": "public"
