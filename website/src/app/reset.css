@@ -87,3 +87,8 @@
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+p {
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, Helvetica, Arial,
+    sans-serif, apple color emoji, segoe ui emoji;
+}
