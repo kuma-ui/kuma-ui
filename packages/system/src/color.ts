@@ -5,14 +5,19 @@ import { applyResponsiveStyles } from "./responsive";
 export type ColorProps = Partial<
   {
     /**
+     * @see background
+     */
+    bg: CSSValue<"background">;
+    /**
      * @see backgroundColor
      */
-    bg: CSSValue<"backgroundColor">;
+    bgColor: CSSValue<"backgroundColor">;
   } & CSSProperties<"borderColor" | "color" | "opacity">
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
-  bg: "background-color",
+  bg: "background",
+  bgColor: "ackground-color",
   color: "color",
   borderColor: "border-color",
   opacity: "opacity",
