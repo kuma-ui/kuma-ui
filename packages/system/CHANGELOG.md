@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 0.4.1
+
+### Patch Changes
+
+- Add 'cursor' CSS support
+
 ## 0.4.0
 
 ### Minor Changes
