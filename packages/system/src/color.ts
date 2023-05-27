@@ -5,7 +5,7 @@ import { applyResponsiveStyles } from "./responsive";
 export type ColorProps = Partial<
   {
     /**
-     * @see backgroundColor
+     * @see background
      */
     bg: CSSValue<"background">;
     /**
