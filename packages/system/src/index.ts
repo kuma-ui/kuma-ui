@@ -10,6 +10,7 @@ import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
 import { PseudoProps, pseudoMappings, isPseudoProps } from "./pseudo";
 import { grid } from "./grid";
+import { list } from "./list";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -23,7 +24,8 @@ export const all = compose(
   border,
   position,
   shadow,
-  grid
+  grid,
+  list
 );
 
 export { pseudoMappings, isPseudoProps };
