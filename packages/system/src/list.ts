@@ -4,8 +4,7 @@ import { applyResponsiveStyles } from "./responsive";
 
 export type ListProps = Partial<
   CSSProperties<
-    "listStyle" | "listStyleImage" | "listStylePosition" | "listStyleType",
-    true
+    "listStyle" | "listStyleImage" | "listStylePosition" | "listStyleType"
   >
 >;
 
