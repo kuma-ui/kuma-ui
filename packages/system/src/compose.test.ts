@@ -6,6 +6,7 @@ import { color } from "./color";
 import { describe, expect, test, beforeEach } from "@jest/globals";
 import { flex } from "./flex";
 import { shadow } from "./shadow";
+import { list } from "./list";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -15,7 +16,8 @@ describe("compose function", () => {
       layout,
       color,
       flex,
-      shadow
+      shadow,
+      list
     );
     const props: StyledProps = {
       m: 8,
@@ -25,6 +27,7 @@ describe("compose function", () => {
       color: "red",
       flexDir: ["column", "row"],
       boxShadow: "12px 12px 2px 1px rgba(0, 0, 255, .2)",
+      listStyle: "square",
     };
     // Act
     const styles = combinedFunction(props);
@@ -38,6 +41,7 @@ describe("compose function", () => {
     expect(styles.base).toContain(
       "box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2)"
     );
+    expect(styles.base).toContain("list-style: square;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
