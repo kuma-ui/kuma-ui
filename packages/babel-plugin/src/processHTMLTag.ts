@@ -2,7 +2,7 @@ import { NodePath, types as t } from "@babel/core";
 import { extractStyleProps } from "./extractStyleProps";
 import { sheet } from "@kuma-ui/sheet";
 import { all, PseudoProps } from "@kuma-ui/system";
-import { pseudoMappings } from "@kuma-ui/system/dist/pseudo";
+import { pseudoMappings } from "@kuma-ui/system";
 
 export const processHTMLTag = (
   path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>

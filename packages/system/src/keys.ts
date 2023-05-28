@@ -60,6 +60,12 @@ export const styleKeys = {
   ] as const,
   position: ["top", "right", "bottom", "left", "inset"] as const,
   shadow: ["textShadow", "boxShadow"] as const,
+  list: [
+    "listStyle",
+    "listStyleImage",
+    "listStylePosition",
+    "listStyleType",
+  ] as const,
   grid: [
     "grid",
     "gridArea",
@@ -80,11 +86,14 @@ export const styleKeys = {
     "gridColumnGap",
     "gridRowGap",
   ] as const,
-  list: [
-    "listStyle",
-    "listStyleImage",
-    "listStylePosition",
-    "listStyleType",
+  effect: [
+    "transition",
+    "transitionDuration",
+    "transitionProperty",
+    "transitionTimingFunction",
+    "transitionDelay",
+    "transform",
+    "transformOrigin",
   ] as const,
 };
 
@@ -97,8 +106,9 @@ export type BorderKeys = (typeof styleKeys.border)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 export type ListKeys = (typeof styleKeys.list)[number];
-
 export type GridKeys = (typeof styleKeys.grid)[number];
+
+export type EffectKeys = (typeof styleKeys.effect)[number];
 
 export type StyledKeyType =
   | SpaceKeys
@@ -110,7 +120,8 @@ export type StyledKeyType =
   | PositionKeys
   | ShadowKeys
   | ListKeys
-  | GridKeys;
+  | GridKeys
+  | EffectKeys;
 
 export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;
