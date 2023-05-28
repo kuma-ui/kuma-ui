@@ -60,13 +60,7 @@ export const Header: FC = memo(() => {
               textDecoration: "none",
             })}
           >
-            <k.img
-              src="/kuma.png"
-              alt=""
-              width={40}
-              height={40}
-              role="presentation"
-            />
+            <k.img src="/kuma.png" alt="Kuma UI Logo" width={40} height={40} />
             <k.span color="black" fontSize={[20, 24]} fontWeight={600}>
               Kuma UI
             </k.span>
@@ -112,6 +106,7 @@ export const Header: FC = memo(() => {
               p="4px"
               style={{ border: "none" }}
               onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+              aria-label="Menu Open"
             >
               <MenuIcon />
             </k.button>
@@ -154,6 +149,7 @@ const ArrowIcon = () => (
     })}
     fill="#959595"
   >
+    <title>Menu Open</title>
     <path d="M0 0h24v24H0V0z" fill="none"></path>
     <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path>
   </svg>
@@ -163,7 +159,7 @@ const MenuIcon = () => (
   <svg
     stroke="currentColor"
     fill="currentColor"
-    stroke-width="0"
+    strokeWidth="0"
     viewBox="0 0 1024 1024"
     aria-hidden="true"
     focusable="false"
@@ -203,20 +199,52 @@ const MobileSidebar: React.FC<{
       <k.div
         position="absolute"
         role="dialog"
-        width="80vw"
+        width="70vw"
         height="100vh"
         bg="white"
+        right="0px"
         transitionProperty="opacity,visibility,transform"
         aria-modal={true}
         transition="transform .6s cubic-bezier(0.215, 0.61, 0.355, 1)"
         style={{
-          transform: open ? "none" : `translateX(-100%)`,
+          transform: open ? "none" : `translateX(100%)`,
         }}
+        p="32px"
         onClick={(e) => e.stopPropagation()}
       >
-        <div>
-          <button onClick={onClose}>close</button>
-        </div>
+        {open && (
+          <nav>
+            {listItems.map((item, index) => {
+              const group = css({
+                borderTop: "1px solid rgba(60, 60, 67, .12)",
+                pt: "10px",
+              });
+              return (
+                <div
+                  className={index !== 0 ? group : undefined}
+                  key={item.title}
+                >
+                  <k.div pb={10}>
+                    <Link
+                      href={`/docs/${item.path}`}
+                      className={css({
+                        py: 4,
+                        textDecoration: "none",
+                        color: "black",
+                        fontWeight: 600,
+                        display: "block",
+                        width: "100%",
+                      })}
+                      onClick={(e) => onClose()}
+                    >
+                      {item.title}
+                    </Link>
+                  </k.div>
+                </div>
+              );
+            })}
+          </nav>
+        )}
       </k.div>
     </k.div>,
     document.body
