@@ -1,19 +1,18 @@
 import { sheet } from "@kuma-ui/sheet";
 import type { NodePath, types, template as Template } from "@babel/core";
-import { Program } from "@babel/types";
 
 /**
  * Processes a TaggedTemplateExpression and creates a new React component based on the styled function.
  * This function should be called before processing CallExpressions to ensure that the styles
  * defined within the tagged template literal are overridden by style props.
  *
- * @param {NodePath<Program>} nodePath - The NodePath object representing the Program node.
+ * @param {NodePath<types.Program>} nodePath - The NodePath object representing the Program node.
  * @param {typeof types} t - The Babel types object.
  * @param {typeof Template} template - The Babel template object.
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
 export const processTaggedTemplateExpression = (
-  nodePath: NodePath<Program>,
+  nodePath: NodePath<types.Program>,
   t: typeof types,
   template: typeof Template,
   importedStyleFunctions: Record<string, string>

@@ -1,10 +1,5 @@
 import { sheet } from "@kuma-ui/sheet";
-import type { NodePath, PluginPass, PluginObj } from "@babel/core";
-import {
-  JSXElement,
-  JSXExpressionContainer,
-  ObjectExpression,
-} from "@babel/types";
+import type { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { processHTMLTag } from "./processHTMLTag";
@@ -39,7 +34,7 @@ export const visitor = ({ types: t, template }: Core) => {
         (node.callee.property.name === "createElement" ||
           node.callee.property.name === "cloneElement")
       ) {
-        processHTMLTag(path.get("arguments.1") as NodePath<ObjectExpression>);
+        processHTMLTag(path.get("arguments.1") as NodePath<t.ObjectExpression>);
       }
     },
     Program: {

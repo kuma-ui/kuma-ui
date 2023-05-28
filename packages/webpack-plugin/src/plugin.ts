@@ -1,7 +1,7 @@
 import { Compilation, Compiler, NormalModule } from "webpack";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { transform } from "@kuma-ui/babel-plugin";
-import { RawSource, Source } from "webpack-sources";
+// import { RawSource, Source } from "webpack-sources";
 import path from "path";
 import { rm, mkdir, existsSync } from "fs";
 

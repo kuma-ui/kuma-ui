@@ -35,6 +35,7 @@ export const styleKeys = {
     "overflow",
     "position",
     "zIndex",
+    "cursor",
   ] as const,
   flex: [
     "flexDir",
@@ -47,7 +48,7 @@ export const styleKeys = {
     "flexBasis",
     "gap",
   ] as const,
-  color: ["bg", "color", "borderColor", "opacity"] as const,
+  color: ["bg", "bgColor", "color", "borderColor", "opacity"] as const,
   border: [
     "borderWidth",
     "borderStyle",
@@ -79,6 +80,12 @@ export const styleKeys = {
     "gridColumnGap",
     "gridRowGap",
   ] as const,
+  list: [
+    "listStyle",
+    "listStyleImage",
+    "listStylePosition",
+    "listStyleType",
+  ] as const,
 };
 
 export type SpaceKeys = (typeof styleKeys.space)[number];
@@ -89,6 +96,7 @@ export type FlexKeys = (typeof styleKeys.flex)[number];
 export type BorderKeys = (typeof styleKeys.border)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
+export type ListKeys = (typeof styleKeys.list)[number];
 
 export type GridKeys = (typeof styleKeys.grid)[number];
 
@@ -101,6 +109,7 @@ export type StyledKeyType =
   | BorderKeys
   | PositionKeys
   | ShadowKeys
+  | ListKeys
   | GridKeys;
 
 export const isStyledProp = (_prop: string): _prop is StyledKeyType => {

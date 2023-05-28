@@ -1,6 +1,6 @@
 {
   "name": "@kuma-ui/system",
-  "version": "0.3.0",
+  "version": "0.4.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
@@ -28,13 +28,13 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
-    "@kuma-ui/sheet": "workspace:*"
+    "@kuma-ui/sheet": "workspace:*",
+    "csstype": "^3.1.2"
   },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@jest/types": "^29.1.0",
     "@kuma-ui/jest-preset": "workspace:*",
-    "csstype": "^3.1.2",
     "jest": "^29.1.0"
   },
   "publishConfig": {

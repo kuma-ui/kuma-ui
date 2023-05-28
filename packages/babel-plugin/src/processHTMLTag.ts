@@ -1,5 +1,4 @@
 import { NodePath, types as t } from "@babel/core";
-import { JSXOpeningElement } from "@babel/types";
 import { extractStyleProps } from "./extractStyleProps";
 import { sheet } from "@kuma-ui/sheet";
 import { all, PseudoProps } from "@kuma-ui/system";

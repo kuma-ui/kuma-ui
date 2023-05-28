@@ -1,10 +1,9 @@
 import { types as t, type NodePath } from "@babel/core";
-import type { JSXOpeningElement } from "@babel/types";
 import { isStyledProp, PseudoProps, isPseudoProps } from "@kuma-ui/system";
 import { ExtractedStyleProps } from ".";
 
 export function extractStylePropsFromJSX(
-  openingElement: JSXOpeningElement
+  openingElement: t.JSXOpeningElement
 ): ExtractedStyleProps<NodePath<t.JSXOpeningElement>> {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};

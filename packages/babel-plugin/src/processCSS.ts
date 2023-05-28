@@ -1,5 +1,4 @@
 import { type NodePath, template as Template, types } from "@babel/core";
-import type { Program } from "@babel/types";
 import { extractStylePropsFromObjectExpression } from "./extractStyleProps/fromObject";
 import { sheet } from "@kuma-ui/sheet";
 import { all, pseudoMappings, type PseudoProps } from "@kuma-ui/system";
@@ -14,13 +13,13 @@ import { all, pseudoMappings, type PseudoProps } from "@kuma-ui/system";
  * // After
  * const text = 'hashed_class_name';
  *
- * @param {NodePath<Program>} nodePath - The current node in the AST being traversed.
+ * @param {NodePath<types.Program>} nodePath - The current node in the AST being traversed.
  * @param {typeof t} t - Babel types.
  * @param {template} template - Babel template function.
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
 export function processCSS(
-  nodePath: NodePath<Program>,
+  nodePath: NodePath<types.Program>,
   t: typeof types,
   template: typeof Template,
   importedStyleFunctions: Record<string, string>

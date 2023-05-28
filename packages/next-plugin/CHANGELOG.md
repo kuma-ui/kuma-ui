@@ -1,5 +1,22 @@
 # @kuma-ui/next-plugin
 
+## 0.4.1
+
+### Patch Changes
+
+- @kuma-ui/webpack-plugin@0.4.1
+
+## 0.4.0
+
+### Minor Changes
+
+- improve Style Props
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/webpack-plugin@0.4.0
+
 ## 0.3.1
 
 ### Patch Changes

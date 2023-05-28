@@ -26,11 +26,14 @@
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
+  "dependencies": {
+    "@kuma-ui/system": "workspace:*"
+  },
   "devDependencies": {
-    "@kuma-ui/system": "workspace:*",
     "@types/react": "^18.0.32"
   },
   "peerDependencies": {
+    "@types/react": "^18.0.32",
     "react": ">=18.2.0"
   },
   "publishConfig": {
