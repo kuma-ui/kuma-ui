@@ -226,6 +226,9 @@ importers:
 
   packages/babel-plugin:
     dependencies:
+      '@babel/core':
+        specifier: ^7.21.4
+        version: 7.21.4
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
@@ -236,9 +239,6 @@ importers:
       '@babel/cli':
         specifier: ^7.21.0
         version: 7.21.0(@babel/core@7.21.4)
-      '@babel/core':
-        specifier: ^7.21.4
-        version: 7.21.4
       '@babel/node':
         specifier: ^7.20.7
         version: 7.20.7(@babel/core@7.21.4)
@@ -251,9 +251,6 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.21.4
         version: 7.21.4(@babel/core@7.21.4)
-      '@babel/types':
-        specifier: ^7.21.4
-        version: 7.21.4
       '@jest/globals':
         specifier: ^29.5.0
         version: 29.5.0
@@ -275,13 +272,13 @@ importers:
 
   packages/core:
     dependencies:
+      '@kuma-ui/system':
+        specifier: workspace:*
+        version: link:../system
       react:
         specifier: '>=18.2.0'
         version: 18.2.0
     devDependencies:
-      '@kuma-ui/system':
-        specifier: workspace:*
-        version: link:../system
       '@types/react':
         specifier: ^18.0.32
         version: 18.0.32
@@ -334,6 +331,9 @@ importers:
       '@kuma-ui/sheet':
         specifier: workspace:*
         version: link:../sheet
+      csstype:
+        specifier: ^3.1.2
+        version: 3.1.2
     devDependencies:
       '@jest/globals':
         specifier: ^29.5.0
@@ -344,9 +344,6 @@ importers:
       '@kuma-ui/jest-preset':
         specifier: workspace:*
         version: link:../../configs/jest-preset
-      csstype:
-        specifier: ^3.1.2
-        version: 3.1.2
       jest:
         specifier: ^29.1.0
         version: 29.1.0(@types/node@18.15.11)(ts-node@10.9.1)
@@ -373,15 +370,9 @@ importers:
         specifier: workspace:^
         version: link:../sheet
     devDependencies:
-      '@types/webpack-sources':
-        specifier: ^3.2.0
-        version: 3.2.0
       webpack:
         specifier: ^5.78.0
         version: 5.78.0(esbuild@0.17.19)(webpack-cli@5.0.2)
-      webpack-sources:
-        specifier: ^3.2.3
-        version: 3.2.3
 
 packages:
 
@@ -2683,20 +2674,8 @@ packages:
     dependencies:
       '@types/node': 18.15.11
 
-  /@types/source-list-map@0.1.2:
-    resolution: {integrity: sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==}
-    dev: true
-
   /@types/stack-utils@2.0.1:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
-
-  /@types/webpack-sources@3.2.0:
-    resolution: {integrity: sha512-Ft7YH3lEVRQ6ls8k4Ff1oB4jN6oy/XmU6tQISKdhfh+1mR+viZFphS6WL0IrtDOzvefmJg5a0s7ZQoRXwqTEFg==}
-    dependencies:
-      '@types/node': 18.15.11
-      '@types/source-list-map': 0.1.2
-      source-map: 0.7.4
-    dev: true
 
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
@@ -7477,11 +7456,6 @@ packages:
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
-
-  /source-map@0.7.4:
-    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
-    engines: {node: '>= 8'}
-    dev: true
 
   /source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
