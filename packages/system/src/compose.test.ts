@@ -1,12 +1,13 @@
-import {calculateKey, compose, StyledProps} from "./compose";
+import { calculateKey, compose, StyledProps } from "./compose";
 import { space } from "./space";
 import { typography } from "./typography";
 import { layout } from "./layout";
 import { color } from "./color";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "@jest/globals";
 import { flex } from "./flex";
 import { shadow } from "./shadow";
 import { list } from "./list";
+
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -68,11 +69,11 @@ describe("calculate key", () => {
       width: "100%",
     };
     // Act
-    const key1 = calculateKey(props)
-    const key2 = calculateKey(props)
+    const key1 = calculateKey(props);
+    const key2 = calculateKey(props);
 
     // Assert
-    expect(key1).toBe(key2)
+    expect(key1).toBe(key2);
   });
 
   test("should return the different key if props are different", () => {
@@ -91,15 +92,15 @@ describe("calculate key", () => {
       m: 8,
       fontSize: 16,
       height: "99%", // different key
-    }
+    };
     // Act
-    const key1 = calculateKey(props1)
-    const key2 = calculateKey(props2)
-    const key3 = calculateKey(props3)
+    const key1 = calculateKey(props1);
+    const key2 = calculateKey(props2);
+    const key3 = calculateKey(props3);
 
     // Assert
-    expect(key1).not.toBe(key2)
-    expect(key1).not.toBe(key3)
-    expect(key2).not.toBe(key3)
+    expect(key1).not.toBe(key2);
+    expect(key1).not.toBe(key3);
+    expect(key2).not.toBe(key3);
   });
-})
+});
