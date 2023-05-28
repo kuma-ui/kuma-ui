@@ -54,7 +54,7 @@ function getLastPathSegment(urlString: string | null) {
   return pathSegments[pathSegments.length - 1];
 }
 
-const listItems = [
+export const listItems = [
   {
     title: "Introduction",
     path: "introduction",

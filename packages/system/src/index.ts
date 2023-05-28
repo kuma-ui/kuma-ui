@@ -11,6 +11,7 @@ import { ResponsiveStyle } from "./types";
 import { PseudoProps, pseudoMappings, isPseudoProps } from "./pseudo";
 import { grid } from "./grid";
 import { list } from "./list";
+import { effect } from "./effect";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -25,7 +26,8 @@ export const all = compose(
   position,
   shadow,
   grid,
-  list
+  list,
+  effect
 );
 
 export { pseudoMappings, isPseudoProps };

@@ -11,6 +11,7 @@ import { ResponsiveStyle } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 import { ListProps } from "./list";
+import { EffectProps } from "./effect";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
@@ -21,7 +22,8 @@ export type StyledProps = SpaceProps &
   PositionProps &
   ShadowProps &
   GridProps &
-  ListProps;
+  ListProps &
+  EffectProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 

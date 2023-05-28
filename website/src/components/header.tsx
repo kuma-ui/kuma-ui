@@ -1,14 +1,23 @@
 "use client";
-import React, { type FC, memo, useState, useEffect } from "react";
+import React, {
+  type FC,
+  memo,
+  useState,
+  useEffect,
+  CSSProperties,
+  createRef,
+} from "react";
 import { css, k, styled } from "@kuma-ui/core";
 import Link from "next/link";
 import { Inter, Rubik } from "next/font/google";
-import Image from "next/image";
+import { createPortal } from "react-dom";
+import { listItems } from "./sidebar";
 
 const rubik = Rubik({ weight: "500", subsets: ["hebrew"] });
 
 export const Header: FC = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 56);
     document.addEventListener("scroll", handleScroll);
@@ -18,89 +27,102 @@ export const Header: FC = memo(() => {
   }, []);
 
   return (
-    <k.header
-      position="sticky"
-      top="0px"
-      width="100%"
-      height={64}
-      borderBottom={["1px solid #dadde1", "initial"]}
-      zIndex="1"
-      bg="white"
-      className={
-        isScrolled
-          ? css({ boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)" })
-          : undefined
-      }
-    >
-      <k.div
-        maxWidth="90rem"
-        px="1.5rem"
-        mx="auto"
-        height="100%"
-        display="flex"
-        justify="space-between"
-        alignItems="center"
+    <React.Fragment>
+      <k.header
+        position="sticky"
+        top="0px"
+        width="100%"
+        height={64}
+        borderBottom={["1px solid #dadde1", "initial"]}
+        zIndex="1"
+        bg="white"
+        className={
+          isScrolled
+            ? css({ boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)" })
+            : undefined
+        }
       >
-        <Link
-          href="/"
-          className={css({
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            textDecoration: "none",
-          })}
+        <k.div
+          maxWidth="90rem"
+          px="1.5rem"
+          mx="auto"
+          height="100%"
+          display="flex"
+          justify="space-between"
+          alignItems="center"
         >
-          <k.img
-            src="/kuma.png"
-            alt=""
-            width={40}
-            height={40}
-            role="presentation"
-          />
-          <k.span color="black" fontSize={[20, 24]} fontWeight={600}>
-            Kuma UI
-          </k.span>
-        </Link>
-        <k.div display="flex" flexDir="row" gap="32px">
           <Link
-            href="https://github.com/poteboy/kuma-ui/tree/main/example"
-            target="__blank"
-            className={css({
-              display: ["none", "flex"],
-              alignItems: "center",
-              textDecoration: "none",
-              flexDir: "row",
-              gap: "4px",
-            })}
-          >
-            <k.div
-              color="black"
-              fontWeight={600}
-              style={{
-                transition: "color .25s",
-              }}
-              _hover={{
-                color: "#2d7fbd",
-              }}
-            >
-              Examples
-            </k.div>
-            <ArrowIcon />
-          </Link>
-          <Link
-            href="https://github.com/poteboy/kuma-ui"
-            target="__blank"
-            aria-label="Kuma UI GitHub"
+            href="/"
             className={css({
               display: "flex",
               alignItems: "center",
+              gap: "8px",
+              textDecoration: "none",
             })}
           >
-            <GitHubIcon />
+            <k.img
+              src="/kuma.png"
+              alt=""
+              width={40}
+              height={40}
+              role="presentation"
+            />
+            <k.span color="black" fontSize={[20, 24]} fontWeight={600}>
+              Kuma UI
+            </k.span>
           </Link>
+          <k.div display="flex" flexDir="row" gap={["16px", "32px"]}>
+            <Link
+              href="https://github.com/poteboy/kuma-ui/tree/main/example"
+              target="__blank"
+              className={css({
+                display: ["none", "flex"],
+                alignItems: "center",
+                textDecoration: "none",
+                flexDir: "row",
+                gap: "4px",
+              })}
+            >
+              <k.div
+                color="black"
+                fontWeight={600}
+                transition='"color .25s"'
+                _hover={{
+                  color: "#2d7fbd",
+                }}
+              >
+                Examples
+              </k.div>
+              <ArrowIcon />
+            </Link>
+            <Link
+              href="https://github.com/poteboy/kuma-ui"
+              target="__blank"
+              aria-label="Kuma UI GitHub"
+              className={css({
+                display: "flex",
+                alignItems: "center",
+              })}
+            >
+              <GitHubIcon />
+            </Link>
+            <k.button
+              display={["block", "none"]}
+              bg="transparent"
+              p="4px"
+              style={{ border: "none" }}
+              onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+            >
+              <MenuIcon />
+            </k.button>
+          </k.div>
         </k.div>
-      </k.div>
-    </k.header>
+      </k.header>
+      <MobileSidebar
+        open={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      />
+    </React.Fragment>
   );
 });
 
@@ -136,3 +158,67 @@ const ArrowIcon = () => (
     <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path>
   </svg>
 );
+
+const MenuIcon = () => (
+  <svg
+    stroke="currentColor"
+    fill="currentColor"
+    stroke-width="0"
+    viewBox="0 0 1024 1024"
+    aria-hidden="true"
+    focusable="false"
+    height="1.25em"
+    width="1.25em"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z"></path>
+  </svg>
+);
+
+const MobileSidebar: React.FC<{
+  open: boolean;
+  onClose: () => void;
+}> = memo(({ open, onClose }) => {
+  useEffect(() => {
+    const resize = () => {
+      if (window.innerWidth >= 700) onClose();
+    };
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+  return createPortal(
+    <k.div
+      style={{
+        visibility: open ? "visible" : "hidden",
+        zIndex: open ? 10 : -1,
+        pointerEvents: open ? "auto" : "none",
+      }}
+      role="presentation"
+      position="fixed"
+      inset="0px"
+      bg="rgba(0, 0, 0, 0.4)"
+      display={["initial", "none"]}
+      onClick={onClose}
+    >
+      <k.div
+        position="absolute"
+        role="dialog"
+        width="80vw"
+        height="100vh"
+        bg="white"
+        transitionProperty="opacity,visibility,transform"
+        aria-modal={true}
+        transition="transform .6s cubic-bezier(0.215, 0.61, 0.355, 1)"
+        style={{
+          transform: open ? "none" : `translateX(-100%)`,
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div>
+          <button onClick={onClose}>close</button>
+        </div>
+      </k.div>
+    </k.div>,
+    document.body
+  );
+});

@@ -17,7 +17,7 @@ export type ColorProps = Partial<
 
 const colorMappings: Record<ColorKeys, string> = {
   bg: "background",
-  bgColor: "ackground-color",
+  bgColor: "background-color",
   color: "color",
   borderColor: "border-color",
   opacity: "opacity",

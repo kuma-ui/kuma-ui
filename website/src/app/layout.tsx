@@ -19,10 +19,7 @@ export default function RootLayout({
       <body>
         <k.div role="presentation" display={["none", "initial"]} bg="white">
           <k.div
-            style={{
-              background:
-                "radial-gradient(circle at 75% 50%, hsl(186 70% 90%), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at 60% 30%, hsl(200 70% 90%), rgba(255, 255, 255, 0) 10%)",
-            }}
+            bg="radial-gradient(circle at 75% 50%, hsl(186 70% 90%), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at 60% 30%, hsl(200 70% 90%), rgba(255, 255, 255, 0) 10%)"
             position="fixed"
             inset="100px"
             zIndex="-1"
