@@ -35,6 +35,7 @@ export default async function Documentation(props: DocProps) {
     <div
       className={css({
         maxWidth: "650px",
+        mb: "80px",
       })}
     >
       <h1

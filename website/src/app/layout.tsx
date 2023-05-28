@@ -51,6 +51,6 @@ const flexRow = css({
 });
 
 const layout = css({
-  m: ["40px 20px", "0 auto 100px 0"],
+  m: ["40px 20px", "0 auto 0 64px"],
   width: ["initial", "746px"],
 });

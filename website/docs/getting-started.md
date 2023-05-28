@@ -1,6 +1,6 @@
 ---
 title: "Getting started"
-description: Kuma UI - zero-runtime CSS-in-JS with type-safe utility props
+description: Learn how to quickly set up and start using Kuma UI, the incredibly lightweight zero-runtime CSS-in-JS library, in your Next.js or Vite project.
 ---
 
 

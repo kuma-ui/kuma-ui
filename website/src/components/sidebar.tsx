@@ -28,7 +28,10 @@ export const Sidebar: React.FC<{}> = React.memo(() => {
                 <Link
                   href={`/docs/${item.path}`}
                   className={listItem}
-                  style={focused}
+                  style={{
+                    ...focused,
+                    transition: "color .25s, background .25s",
+                  }}
                   aria-current={
                     item.path.trim() === segment.trim() ? "page" : undefined
                   }

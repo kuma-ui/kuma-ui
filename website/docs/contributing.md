@@ -1,6 +1,6 @@
 ---
 title: Contributing to Kuma UI
-description: Kuma UI - zero-runtime CSS-in-JS with type-safe utility props
+description: Interested in contributing to Kuma UI? Learn how you can help improve this lightweight, zero-runtime CSS-in-JS library - from code contributions to blog posts.
 ---
 
 First of all, thank you for considering contributing to Kuma UI 💕 Whether you're looking to fix bugs, add new features, or improve documentation, all contributions are greatly appreciated. Here are a few guidelines that should help you as you prepare your contribution.

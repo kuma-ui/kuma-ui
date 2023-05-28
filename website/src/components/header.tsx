@@ -61,7 +61,32 @@ export const Header: FC = memo(() => {
             Kuma UI
           </k.span>
         </Link>
-        <k.div>
+        <k.div display="flex" flexDir="row" gap="32px">
+          <Link
+            href="https://github.com/poteboy/kuma-ui/tree/main/example"
+            target="__blank"
+            className={css({
+              display: ["none", "flex"],
+              alignItems: "center",
+              textDecoration: "none",
+              flexDir: "row",
+              gap: "4px",
+            })}
+          >
+            <k.div
+              color="black"
+              fontWeight={600}
+              style={{
+                transition: "color .25s",
+              }}
+              _hover={{
+                color: "#2d7fbd",
+              }}
+            >
+              Examples
+            </k.div>
+            <ArrowIcon />
+          </Link>
           <Link
             href="https://github.com/poteboy/kuma-ui"
             target="__blank"
@@ -92,3 +117,22 @@ const GitHubIcon = () => {
     </svg>
   );
 };
+
+const ArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+    focusable="false"
+    viewBox="0 0 24 24"
+    data-v-f3ed0000=""
+    className={css({
+      display: "inline-block",
+      width: "12px",
+      height: "12px",
+    })}
+    fill="#959595"
+  >
+    <path d="M0 0h24v24H0V0z" fill="none"></path>
+    <path d="M9 5v2h6.59L4 18.59 5.41 20 17 8.41V15h2V5H9z"></path>
+  </svg>
+);

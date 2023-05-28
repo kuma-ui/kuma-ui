@@ -1,6 +1,6 @@
 ---
 title: "API"
-description: Kuma UI - zero-runtime CSS-in-JS with type-safe utility props
+description: Explore Kuma UI's main APIs - k, css, and styled - and learn how they provide a flexible, efficient workflow for styling React applications.
 ---
 
 Kuma UI provides three main APIs that you can use to style your React components: `k`, `css`, and `styled`.
