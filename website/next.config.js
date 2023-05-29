@@ -7,6 +7,15 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/docs/introduction",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = withKumaUI(nextConfig, {

@@ -7,6 +7,6 @@ type PageProps = {
   };
 };
 
-const Home: NextPage = (props) => redirect("/docs/introduction");
+const Home: NextPage = (props) => <></>;
 
 export default Home;
