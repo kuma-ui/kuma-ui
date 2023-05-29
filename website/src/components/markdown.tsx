@@ -38,12 +38,12 @@ export const Markdown = ({ source }: { source: string }) => {
         pre: ({ node, ...props }) => (
           <pre className={css({ mt: "1.25rem" })} {...props} />
         ),
-        table: ({ node, ...props }) => <Table {...props} />,
-        thead: ({ node, ...props }) => <Thead {...props} />,
-        th: ({ node, ...props }) => <Th {...props} />,
-        td: ({ node, ...props }) => <Td {...props} />,
-        ul: ({ node, ...props }) => <Ul {...props} />,
-        li: ({ node, ...props }) => <Li {...props} />,
+        table: ({ node, ...props }) => <Table children={props.children} />,
+        thead: ({ node, ...props }) => <Thead children={props.children} />,
+        th: ({ node, ...props }) => <Th children={props.children} />,
+        td: ({ node, ...props }) => <Td children={props.children} />,
+        ul: ({ node, ...props }) => <Ul children={props.children} />,
+        li: ({ node, ...props }) => <Li children={props.children} />,
       }}
     />
   );

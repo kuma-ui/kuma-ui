@@ -113,7 +113,7 @@ Position-related style props let you adjust the position of your components.
 | `top`   | top          |
 | `right` | right        |
 | `bottom`| bottom       |
-| left`  | left         |
+| `left`  | left         |
 | `inset` | inset |
 
 # Shadow
