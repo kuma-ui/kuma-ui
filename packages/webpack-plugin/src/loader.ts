@@ -44,9 +44,11 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
         return;
       }
       const codeWithReact = requireReact(result.code, id);
-      const css = sheet.getCSS();
-      styleMap.set(id, css);
-      sheet.reset();
+      // const css = sheet.getCSS();
+      // styleMap.set(id, css);
+      // sheet.reset();
+
+      const css = (result.metadata as unknown as { css: string }).css as string || '';
       let filePrefix = "";
       if (css) {
         if (isVirtualLoader) {
