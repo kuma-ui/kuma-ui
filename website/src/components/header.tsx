@@ -1,12 +1,5 @@
 "use client";
-import React, {
-  type FC,
-  memo,
-  useState,
-  useEffect,
-  CSSProperties,
-  createRef,
-} from "react";
+import React, { type FC, memo, useState, useEffect, useReducer } from "react";
 import { css, k, styled } from "@kuma-ui/core";
 import Link from "next/link";
 import { Inter, Rubik } from "next/font/google";
@@ -18,8 +11,10 @@ const rubik = Rubik({ weight: "500", subsets: ["hebrew"] });
 export const Header: FC = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [rendered, setRendered] = useReducer(() => true, false);
   useEffect(() => {
-    if (!document) return;
+    if (typeof document === "undefined") return;
+    setRendered();
     const handleScroll = () => setIsScrolled(window.scrollY > 56);
     document.addEventListener("scroll", handleScroll);
     return () => {
@@ -114,7 +109,7 @@ export const Header: FC = memo(() => {
           </k.div>
         </k.div>
       </k.header>
-      {typeof document !== 'undefined' && (
+      {rendered && (
         <MobileSidebar
           open={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
@@ -179,6 +174,7 @@ const MobileSidebar: React.FC<{
   onClose: () => void;
 }> = memo(({ open, onClose }) => {
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const resize = () => {
       if (window.innerWidth >= 700) onClose();
     };
