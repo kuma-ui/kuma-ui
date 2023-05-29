@@ -7,7 +7,18 @@ Kuma UI supports responsive design out of the box. This framework allows you to 
 
 ## Configuring Breakpoints
 
-Breakpoints for responsive styles are defined in the configuration of Kuma UI. These breakpoints are then used as the trigger points for applying different style values.
+Breakpoints for responsive styles are defined in the configuration of Kuma UI. These breakpoints are then used as the trigger points for applying different style values. If you don't explicitly specify breakpoints in your configuration, Kuma UI uses the following default breakpoints:
+
+```js
+{
+  sm: "576px",
+  md: "768px",
+  lg: "992px",
+  xl: "1200px",
+}
+```
+
+You can override these defaults by setting custom values in your Kuma UI plugin configuration.
 
 ### Configuring Breakpoints in Vite
 

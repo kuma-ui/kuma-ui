@@ -7,6 +7,12 @@ export const metadata = {
   title: "Kuma UI - Zero-Runtime CSS-in-JS with type-safe utility props",
   description:
     "Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
+  twitter: {
+    card: "summary_large_image",
+    title: "Kuma UI",
+    description:
+      "Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
+  },
 };
 
 export default function RootLayout({

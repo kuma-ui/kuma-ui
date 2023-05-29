@@ -19,6 +19,7 @@ export const Header: FC = memo(() => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   useEffect(() => {
+    if (!document) return;
     const handleScroll = () => setIsScrolled(window.scrollY > 56);
     document.addEventListener("scroll", handleScroll);
     return () => {
@@ -113,10 +114,12 @@ export const Header: FC = memo(() => {
           </k.div>
         </k.div>
       </k.header>
-      <MobileSidebar
-        open={isDrawerOpen}
-        onClose={() => setIsDrawerOpen(false)}
-      />
+      {document && (
+        <MobileSidebar
+          open={isDrawerOpen}
+          onClose={() => setIsDrawerOpen(false)}
+        />
+      )}
     </React.Fragment>
   );
 });

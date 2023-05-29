@@ -76,6 +76,10 @@ export const listItems = [
     path: "responsive-styles",
   },
   {
+    title: "Benchmarks",
+    path: "benchmarks",
+  },
+  {
     title: "Contributing",
     path: "contributing",
   },
