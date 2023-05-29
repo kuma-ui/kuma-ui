@@ -34,14 +34,16 @@ export const Markdown = ({ source }: { source: string }) => {
             />
           );
         },
-        a: (props) => <Anchor {...props} />,
-        pre: (props) => <pre className={css({ mt: "1.25rem" })} {...props} />,
-        table: (props) => <Table {...props} />,
-        thead: (props) => <Thead {...props} />,
-        th: (props) => <Th {...props} />,
-        td: (props) => <Td {...props} />,
-        ul: (props) => <Ul {...props} />,
-        li: (props) => <Li {...props} />,
+        a: ({ node, ...props }) => <Anchor {...props} />,
+        pre: ({ node, ...props }) => (
+          <pre className={css({ mt: "1.25rem" })} {...props} />
+        ),
+        table: ({ node, ...props }) => <Table {...props} />,
+        thead: ({ node, ...props }) => <Thead {...props} />,
+        th: ({ node, ...props }) => <Th {...props} />,
+        td: ({ node, ...props }) => <Td {...props} />,
+        ul: ({ node, ...props }) => <Ul {...props} />,
+        li: ({ node, ...props }) => <Li {...props} />,
       }}
     />
   );
