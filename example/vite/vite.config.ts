@@ -8,6 +8,8 @@ export default defineConfig({
     react({
       jsxRuntime: "classic",
     }),
-    kumaUI(),
+    kumaUI({
+      breakpoints: { sm: "400px", md: "700px" },
+    }),
   ],
 });
