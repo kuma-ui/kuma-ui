@@ -1,5 +1,16 @@
 # @kuma-ui/core
 
+## 0.3.0
+
+### Minor Changes
+
+- Documentation site
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/system@0.5.0
+
 ## 0.2.0
 
 ### Minor Changes
