@@ -10,7 +10,7 @@
 }
 :where(html) {
   -webkit-text-size-adjust: none;
-  color-scheme: dark light;
+  color-scheme: light;
 }
 @supports not (min-block-size: 100dvb) {
   :where(html) {
