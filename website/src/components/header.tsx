@@ -114,7 +114,7 @@ export const Header: FC = memo(() => {
           </k.div>
         </k.div>
       </k.header>
-      {typeof document !== "undefined" && (
+      {typeof document !== 'undefined' && (
         <MobileSidebar
           open={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}

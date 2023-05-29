@@ -55,6 +55,10 @@ export const visitor = ({ types: t, template }: Core) => {
           importedStyleFunctions
         );
       },
+      exit() {
+        (this.file.metadata as {css: string }).css = sheet.getCSS();
+        sheet.reset();
+      },
     },
   };
   return visitor;

@@ -32,7 +32,8 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
         .relative(process.cwd(), cssFilename)
         .replace(/\\/g, path.posix.sep);
       const cssId = `/${cssRelativePath}`;
-      const css = sheet.getCSS();
+      // const css = sheet.getCSS();
+      const css = (result.metadata as unknown as { css: string }).css as string || '';
       cssLookup[cssFilename] = css;
       cssLookup[cssId] = css;
       sheet.reset();
@@ -81,7 +82,7 @@ const injectCSS = (cssContent: string, fileId: string) => {
     const kumaStyleId = 'kuma-ui-styles-' + ${JSON.stringify(fileId)};
     let style = document.getElementById(kumaStyleId);
     const head = document.head || document.getElementsByTagName('head')[0];
-    
+
     if (!style) {
       style = document.createElement('style');
       style.type = 'text/css';
