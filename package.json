@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/poteboy/kuma-ui.git"
   },
+  "homepage": "https://www.kuma-ui.com",
   "private": true,
   "workspaces": [
     "packages/*"

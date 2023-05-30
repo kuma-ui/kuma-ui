@@ -1,5 +1,17 @@
 # @kuma-ui/vite
 
+## 0.4.0
+
+### Minor Changes
+
+- Documentation site
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/babel-plugin@0.5.0
+  - @kuma-ui/sheet@0.2.0
+
 ## 0.3.1
 
 ### Patch Changes

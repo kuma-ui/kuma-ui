@@ -1,5 +1,16 @@
 # @kuma-ui/next-plugin
 
+## 0.5.0
+
+### Minor Changes
+
+- Documentation site
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/webpack-plugin@0.5.0
+
 ## 0.4.1
 
 ### Patch Changes
