@@ -1,4 +1,11 @@
-# Kuma UI
+<div align="center">
+  <img src="media/logo.webp" alt="Kuma UI logo" width="300" />
+</div>
+
+<h1 align='center'>Ultra Fast, Zero Runtime, Utility-First CSS-in-JS</h1>
+
+
+**[Documentation](https://kuma-ui.com)**
 
  <div>
     <a href='https://www.npmjs.com/package/@kuma-ui/core'>
@@ -11,7 +18,7 @@
   <br />
 </div>
 
-🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
+🐻‍❄️ Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
 
 
 ## Features
