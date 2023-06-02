@@ -36,5 +36,8 @@
     "@jest/types": "^29.1.0",
     "@kuma-ui/jest-preset": "workspace:*",
     "jest": "^29.1.0"
+  },
+  "dependencies": {
+    "stylis": "^4.2.0"
   }
 }
