@@ -75,3 +75,21 @@ This array is interpreted in relation to the breakpoints defined in the Kuma UI 
 - `300px`: From 0em upwards
 - `400px`: From the configured "sm" breakpoint upwards
 - `500px`: From the configured "md" breakpoint upwards
+
+## Responsive Styles with styled API
+
+With `styled` API, you can write media queries in your CSS as you would do traditionally. This can be useful when you want to declare styles that don't depend on the pre-defined breakpoints.
+
+Here's an example:
+
+```tsx
+const Box = styled("div")`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 768px) {
+      flex-direction: column;
+  }
+`;
+```
+
+In this example, we used CSS media query `@media (max-width: 768px)` inside the styled component to make styles responsive. When the viewport is less than or equal to 768px, flex-direction changes to column. This makes Kuma UI a powerful tool for building responsive design layouts.
