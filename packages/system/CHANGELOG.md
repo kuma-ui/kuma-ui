@@ -1,5 +1,12 @@
 # @kuma-ui/system
 
+## 0.5.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.3.0
+
 ## 0.5.0
 
 ### Minor Changes
