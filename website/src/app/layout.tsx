@@ -2,7 +2,7 @@ import React from "react";
 import { Header, Sidebar } from "@src/components";
 import { css, k } from "@kuma-ui/core";
 import "./reset.css";
-import { getAllDocPaths } from "@src/utils/mdx";
+import { Analytics } from "@vercel/analytics/react";
 export const metadata = {
   title: "Kuma UI - Zero-Runtime CSS-in-JS with type-safe utility props",
   description:
@@ -43,6 +43,7 @@ export default function RootLayout({
             <main className={layout}>{children}</main>
           </k.div>
         </k.div>
+        <Analytics />
       </body>
     </html>
   );

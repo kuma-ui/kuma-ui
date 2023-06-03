@@ -55,6 +55,24 @@ describe("Sheet class", () => {
     expect(sheet.getCSS()).toContain(pseudoCss);
   });
 
+  test("parseCSS() should parse given styles to valid CSS and returns a generated ID", () => {
+    // Arrange
+    const style = `
+      display: flex;
+      flex-direction: row;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      &:after {
+        content: " 🦄";
+      }`;
+    // Act
+    const className = sheet.parseCSS(style);
+    // Assert
+    const expectedCSS = `.${className}{display:flex;flex-direction:row;}@media (max-width: 768px){.${className}{flex-direction:column;}}.${className}:after{content:" 🦄";}`;
+    expect(sheet.getCSS()).toContain(expectedCSS);
+  });
+
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
     const css = "color: red;";
