@@ -29,7 +29,22 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   path.node.attributes = filteredAttributes;
   if (Object.keys(styledProps).length > 0) {
     const style = all(styledProps);
-    const className = sheet.addRule(style.base);
+    const className = sheet.addRule(
+      style.base,
+      style.base +
+        Object.entries(style.media)
+          .map(([key, value]) => key + value)
+          .join("") +
+        Object.entries(pseudoProps)
+          .map(
+            ([key, value]) =>
+              key +
+              Object.entries(value)
+                .map(([key, value]) => key + value)
+                .join("")
+          )
+          .join("")
+    );
     for (const [breakpoint, css] of Object.entries(style.media)) {
       sheet.addMediaRule(className, css, breakpoint);
     }
@@ -91,7 +106,23 @@ const processReactCreateElementHTMLTag = (
   path.node.properties = filteredProperties;
   if (Object.keys(styledProps).length > 0) {
     const style = all(styledProps);
-    const className = sheet.addRule(style.base);
+    const className = sheet.addRule(
+      style.base,
+      style.base +
+        Object.entries(style.media)
+          .map(([key, value]) => key + value)
+          .join("") +
+        Object.entries(pseudoProps)
+          .map(
+            ([key, value]) =>
+              key +
+              Object.entries(value)
+                .map(([key, value]) => key + value)
+                .join("")
+          )
+          .join("")
+    );
+
     for (const [breakpoint, css] of Object.entries(style.media)) {
       sheet.addMediaRule(className, css, breakpoint);
     }

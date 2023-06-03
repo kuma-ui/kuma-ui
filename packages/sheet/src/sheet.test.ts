@@ -11,7 +11,7 @@ describe("Sheet class", () => {
     // Arrange
     const css = "color: red;";
     // Act
-    const id = sheet.addRule(css);
+    const id = sheet.addRule(css, css);
     // Assert
     expect(id.startsWith("kuma-")).toBeTruthy();
   });
@@ -20,8 +20,8 @@ describe("Sheet class", () => {
     // Arrange
     const css = "color: red;";
     // Act
-    const id1 = sheet.addRule(css);
-    const id2 = sheet.addRule(css);
+    const id1 = sheet.addRule(css, css);
+    const id2 = sheet.addRule(css, css);
     // Assert
     expect(id1).toBe(id2);
   });
@@ -58,7 +58,7 @@ describe("Sheet class", () => {
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
     const css = "color: red;";
-    const id = sheet.addRule(css);
+    const id = sheet.addRule(css, css);
     // Act
     const cssString = sheet.getCSS();
     // Assert

@@ -46,7 +46,7 @@ export function processCSS(
         node.arguments[0]
       );
       const style = all(styleObject.styledProps);
-      const className = sheet.addRule(style.base);
+      const className = sheet.addRule(style.base, style.base);
       for (const [breakpoint, css] of Object.entries(style.media)) {
         sheet.addMediaRule(className, css, breakpoint);
       }

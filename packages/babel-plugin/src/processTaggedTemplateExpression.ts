@@ -35,7 +35,7 @@ export const processTaggedTemplateExpression = (
       const cssString = cssStrings
         .map((str) => str.replace(/\s+/g, " ").trim())
         .join("");
-      const className = !!cssString ? sheet.addRule(cssString) : undefined;
+      const className = !!cssString ? sheet.addRule(cssString, cssString) : undefined;
 
       const component = t.isStringLiteral(componentArg)
         ? componentArg.value

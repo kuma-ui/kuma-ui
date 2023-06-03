@@ -35,9 +35,9 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addRule(css: string): string {
+  addRule(css: string, key: string): string {
     css = css.replace(cssPropertyRegex, "");
-    const id = "kuma-" + generateHash(css);
+    const id = "kuma-" + generateHash(key);
     const existingRule = this.rules.find((rule) => rule.id === id);
     if (!existingRule) this.rules.push({ id, css });
     return id;
