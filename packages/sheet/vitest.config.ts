@@ -1,11 +1,3 @@
-import { defineConfig } from "vitest/config";
+import { configShared } from "../../vitest.shared";
 
-export default defineConfig({
-  test: {
-    environment: "node",
-    coverage: {
-      enabled: true,
-      reporter: ["clover", "json", "lcov"],
-    },
-  },
-});
+export default configShared;
