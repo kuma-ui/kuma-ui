@@ -1,5 +1,5 @@
-import { Sheet, sheet } from "./sheet";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { sheet } from "./sheet";
+import { describe, expect, test, beforeEach } from "vitest";
 import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
 
 describe("Sheet class", () => {
