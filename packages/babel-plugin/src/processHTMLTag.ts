@@ -35,7 +35,7 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
     }
     for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
       const pseudoStyle = all(pseudoValue);
-      const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+      const pseudo = pseudoMappings[pseudoKey as keyof typeof pseudoMappings];
       sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
       for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
@@ -98,7 +98,7 @@ const processReactCreateElementHTMLTag = (
 
     for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
       const pseudoStyle = all(pseudoValue);
-      const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+      const pseudo = pseudoMappings[pseudoKey as keyof typeof pseudoMappings];
       sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
       for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);

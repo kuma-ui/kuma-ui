@@ -29,6 +29,7 @@ export default function RootLayout({
             position="fixed"
             inset="100px"
             zIndex="-1"
+            _nth-last-child={{ bg: "red" }}
           />
         </k.div>
         <k.div

@@ -54,7 +54,7 @@ export function processCSS(
         styleObject.pseudoProps
       )) {
         const pseudoStyle = all(pseudoValue);
-        const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+        const pseudo = pseudoMappings[pseudoKey as keyof typeof pseudoMappings];
         sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
         for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
           sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);

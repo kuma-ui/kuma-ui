@@ -1,4 +1,5 @@
 import { StyledProps } from "./compose";
+import { Pseudos } from "csstype";
 
 export const pseudoMappings = {
   _active: ":active",
@@ -9,13 +10,20 @@ export const pseudoMappings = {
   _focusWithin: ":focus-within",
 } as const;
 
+type RemoveColon<T extends string> = T extends `${infer R}${infer R2}`
+  ? R extends ":"
+    ? RemoveColon<R2>
+    : `${R}${R2}`
+  : T;
+
+type ExcludeHyphen<T extends string> = Exclude<T, `-${string}`>;
+
 export type PseudoProps = {
-  [key in keyof typeof pseudoMappings]?: StyledProps;
+  [key in
+    | keyof typeof pseudoMappings
+    | `_${ExcludeHyphen<RemoveColon<Pseudos>>}`]?: StyledProps;
 };
 
-export const isPseudoProps = (
-  _props: unknown
-): _props is keyof typeof pseudoMappings => {
-  const props = _props as keyof typeof pseudoMappings;
-  return Object.keys(pseudoMappings).includes(props);
+export const isPseudoProps = (props: unknown): props is keyof PseudoProps => {
+  return `${props}`.startsWith("_");
 };
