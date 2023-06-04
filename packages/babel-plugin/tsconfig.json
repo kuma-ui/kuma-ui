@@ -3,9 +3,9 @@
   "compilerOptions": {
     "paths": {},
     "rootDir": "src/",
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "declaration": true,
     "declarationDir": "dist"
   },
-  "include": ["src/**/*.ts", "../jest.config.ts"]
+  "include": ["src/**/*.ts"]
 }
