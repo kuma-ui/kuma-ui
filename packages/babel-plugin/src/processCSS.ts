@@ -1,7 +1,7 @@
 import { type NodePath, template as Template, types } from "@babel/core";
 import { extractStylePropsFromObjectExpression } from "./extractStyleProps/fromObject";
 import { sheet } from "@kuma-ui/sheet";
-import { all, pseudoMappings, type PseudoProps } from "@kuma-ui/system";
+import { all, normalizePseudo, type PseudoProps } from "@kuma-ui/system";
 
 /**
  * Processes CSS function calls in the AST, extracts styles defined as JavaScript objects,
@@ -54,7 +54,7 @@ export function processCSS(
         styleObject.pseudoProps
       )) {
         const pseudoStyle = all(pseudoValue);
-        const pseudo = pseudoMappings[pseudoKey as keyof typeof pseudoMappings];
+        const pseudo = normalizePseudo(pseudoKey);
         sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
         for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
           sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);

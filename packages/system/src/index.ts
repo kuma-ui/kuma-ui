@@ -8,7 +8,12 @@ import { position, PositionProps } from "./position";
 import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
-import { PseudoProps, pseudoMappings, isPseudoProps } from "./pseudo";
+import {
+  PseudoProps,
+  pseudoMappings,
+  normalizePseudo,
+  isPseudoProps,
+} from "./pseudo";
 import { grid } from "./grid";
 import { list } from "./list";
 import { effect } from "./effect";
@@ -30,7 +35,7 @@ export const all = compose(
   effect
 );
 
-export { pseudoMappings, isPseudoProps };
+export { pseudoMappings, normalizePseudo, isPseudoProps };
 export type {
   SpaceProps,
   TypographyProps,

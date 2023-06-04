@@ -24,6 +24,10 @@ export type PseudoProps = {
     | `_${ExcludeHyphen<RemoveColon<Pseudos>>}`]?: StyledProps;
 };
 
+export const normalizePseudo = (props: string) => {
+  return props.replace("_", ":");
+};
+
 export const isPseudoProps = (props: unknown): props is keyof PseudoProps => {
   return `${props}`.startsWith("_");
 };

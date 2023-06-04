@@ -4,7 +4,9 @@ function App() {
   return (
     <div>
       <div className={text}>hello</div>
-      <Text color="blue">world</Text>
+      <Text color="blue" _after={{}} _hover={{ bg: "red" }}>
+        world
+      </Text>
       <k.button p="10px 12px" fontSize={16} disabled>
         button
       </k.button>
