@@ -1,5 +1,5 @@
-import { Theme, theme, defaultBreakpoints } from "./theme";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { theme, defaultBreakpoints } from "./theme";
+import { describe, expect, test, beforeEach } from "vitest";
 
 describe("Theme", () => {
   beforeEach(() => {

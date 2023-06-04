@@ -1,5 +1,5 @@
 import { space, SpaceProps } from "./space";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("space utility function", () => {
   // Arrange

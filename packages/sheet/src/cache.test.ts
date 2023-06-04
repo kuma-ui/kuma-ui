@@ -1,4 +1,4 @@
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, beforeEach, test, expect } from "vitest";
 import { styleCache } from "./cache";
 
 describe("Sheet class", () => {
