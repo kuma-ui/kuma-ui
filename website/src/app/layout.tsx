@@ -36,8 +36,6 @@ export default function RootLayout({
           gridTemplateRows="auto 1fr auto"
           gridTemplateColumns="100%"
           minHeight="100vh"
-          _hover={{ bg: "red" }}
-          _after={{ bg: "red" }}
         >
           <Header />
           <k.div className={flexRow} maxWidth="90rem" mx="auto" width="100%">
