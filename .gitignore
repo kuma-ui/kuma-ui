@@ -7,4 +7,3 @@ dist/
 coverage/
 node_modules/
 .vscode
-.kuma/
