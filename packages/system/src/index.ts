@@ -10,7 +10,6 @@ import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
 import {
   PseudoProps,
-  pseudoMappings,
   normalizePseudo,
   isPseudoProps,
 } from "./pseudo";
@@ -35,7 +34,7 @@ export const all = compose(
   effect
 );
 
-export { pseudoMappings, normalizePseudo, isPseudoProps };
+export { normalizePseudo, isPseudoProps };
 export type {
   SpaceProps,
   TypographyProps,
