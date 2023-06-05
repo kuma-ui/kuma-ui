@@ -1,5 +1,5 @@
 import { applyResponsiveStyles } from "./responsive";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("applyResponsiveStyles", () => {
   test("returns a single CSS rule when given a single value", () => {

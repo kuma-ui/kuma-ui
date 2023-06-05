@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 0.3.0
+
+### Minor Changes
+
+- Enable parsing of @media and pseudo elements/classes in styled function
+
 ## 0.2.0
 
 ### Minor Changes

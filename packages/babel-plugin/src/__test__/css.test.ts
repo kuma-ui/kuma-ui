@@ -1,4 +1,6 @@
-import { describe, expect, test } from "@jest/globals";
+// for babel-plugin-tester; see: https://github.com/babel-utils/babel-plugin-tester#vitest
+/// <reference types="vitest/globals" />
+
 import { babelTransform } from "./testUtils";
 import { pluginTester } from "babel-plugin-tester";
 import { types, template } from "@babel/core";

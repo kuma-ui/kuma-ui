@@ -48,18 +48,23 @@ In this example, the `css` function takes an object of styles and returns a clas
 The `styled` API works just like `styled-components` or `Emotion`, allowing you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with these libraries.
 
 ```tsx
-const H2 = styled("h2")`
-  margin-top: 2rem;
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-  font-weight: 600;
-  font-size: 1.5rem;
-  letter-spacing: -0.025em;
-  scroll-margin-block: 6.875rem;
+const Box = styled("div")`
+  position: relative;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(255, 0, 0, 0.5);
+  &:hover {
+    background-color: rgba(0, 0, 255, 0.5);
+  }
+  @media (max-width: 768px) {
+        flex-direction: column;
+  }
 `;
 
 // Then use it like so:
-<H2>{title}</H2>
+<Box>{title}</Box>
 ```
 
-In this example, we've defined a styled H2 component with a set of CSS properties and then used it just like any other React component.
+In this example, we've defined a styled `Box` component with a set of CSS properties which include pseudo-classes, pseudo-elements, and media queries and then used it just like any other React component.
+
+Using the three main APIs provided by Kuma UI, you can mix and match styles in different ways to fit your needs. The `k`, `css`, and `styled` APIs allow for a flexible, efficient workflow when it comes to styling your React components. Whether you prefer inline utility props, JavaScript object-based styles, or tagged template literals, Kuma UI has you covered.

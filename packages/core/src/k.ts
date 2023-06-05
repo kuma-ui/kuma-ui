@@ -9,6 +9,13 @@ type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
 
 const k: {
   [K in keyof JSX.IntrinsicElements]: StyledComponent<K>;
-} = Error('Using the "k" in runtime is not supported.') as any;
+} = new Proxy(
+  {},
+  {
+    get() {
+      throw new Error('Using the "k" in runtime is not supported.');
+    },
+  }
+) as any;
 
 export { k };

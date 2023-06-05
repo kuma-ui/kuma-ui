@@ -1,5 +1,6 @@
 import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
+import { compile, serialize, stringify } from "stylis";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
@@ -19,13 +20,14 @@ export class Sheet {
   private rules: Rule[];
   private responsive: string[];
   private pseudo: string[];
-  private cache: Map<string, ResponsiveStyle>;
+
+  private css: string[];
 
   private constructor() {
     this.rules = [];
     this.responsive = [];
     this.pseudo = [];
-    this.cache = new Map();
+    this.css = [];
   }
 
   static getInstance() {
@@ -62,6 +64,17 @@ export class Sheet {
     this.pseudo.push(pseudoCss);
   }
 
+  /**
+   * parseCSS takes in raw CSS and parses it to valid CSS using Stylis.
+   * It's useful for handling complex CSS such as media queries and pseudo selectors.
+   */
+  parseCSS(style: string): string {
+    const id = "kuma-" + generateHash(style);
+    const css = serialize(compile(`.${id}{${style}}`), stringify);
+    this.css.push(css);
+    return id;
+  }
+
   removeDuplicates() {
     const hashMap = new Map<string, string>();
     for (const rule of this.rules) {
@@ -74,6 +87,7 @@ export class Sheet {
     }));
     this.responsive = [...new Set(this.responsive)];
     this.pseudo = [...new Set(this.pseudo)];
+    this.css = [...new Set(this.css)];
   }
 
   getCSS(): string {
@@ -84,7 +98,8 @@ export class Sheet {
         .join("\n")
         .replace(cssPropertyRegex, "") +
       this.responsive.join("") +
-      this.pseudo.join("")
+      this.pseudo.join("") +
+      this.css.join("")
     );
   }
 
@@ -92,6 +107,7 @@ export class Sheet {
     this.rules = [];
     this.responsive = [];
     this.pseudo = [];
+    this.css = [];
   }
 }
 

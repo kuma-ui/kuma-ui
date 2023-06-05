@@ -1,5 +1,5 @@
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("regex", () => {
   describe("cssPropertyRegex", () => {

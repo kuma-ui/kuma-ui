@@ -1,5 +1,17 @@
 # @kuma-ui/babel-plugin
 
+## 0.6.0
+
+### Minor Changes
+
+- Enable parsing of @media and pseudo elements/classes in styled function
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/sheet@0.3.0
+  - @kuma-ui/system@0.5.1
+
 ## 0.5.0
 
 ### Minor Changes
