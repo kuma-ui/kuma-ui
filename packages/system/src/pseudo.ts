@@ -1,3 +1,4 @@
+import { ExcludeHyphen, RemoveColon } from ".";
 import { StyledProps } from "./compose";
 import { Pseudos } from "csstype";
 
@@ -9,14 +10,6 @@ export const pseudoMappings = {
   _focusVisible: ":focus_visible",
   _focusWithin: ":focus-within",
 } as const;
-
-type RemoveColon<T extends string> = T extends `${infer R}${infer R2}`
-  ? R extends ":"
-    ? RemoveColon<R2>
-    : `${R}${R2}`
-  : T;
-
-type ExcludeHyphen<T extends string> = Exclude<T, `-${string}`>;
 
 export type PseudoProps = {
   [key in

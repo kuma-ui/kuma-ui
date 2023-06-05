@@ -9,6 +9,14 @@ export type CSSProperty = Exclude<
   undefined
 >;
 
+export type RemoveColon<T extends string> = T extends `${infer R}${infer R2}`
+  ? R extends ":"
+    ? RemoveColon<R2>
+    : `${R}${R2}`
+  : T;
+
+export type ExcludeHyphen<T extends string> = Exclude<T, `-${string}`>;
+
 // A type representing a single CSS property value or an array of them, with an optional number type if Q is true
 export type CSSValue<
   P extends keyof CSS.Properties,
