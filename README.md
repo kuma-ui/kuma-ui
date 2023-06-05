@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="media/logo.webp" alt="Kuma UI logo" width="300" />
+  <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 
 <h1 align='center'>Ultra Fast, Zero Runtime, Utility-First CSS-in-JS</h1>
@@ -48,6 +48,27 @@ yarn add @kuma-ui/core
 ```
 
 ## Usage
+
+## styled API
+
+The styled API works just like styled-components or Emotion, allowing you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with these libraries.
+
+```tsx
+import { styled } from "@kuma-ui/core";
+
+const Box = styled("div")`
+  position: relative;
+  &:hover {
+    background-color: rgba(0, 0, 255, 0.5);
+  }
+  @media (max-width: 768px) {
+        flex-direction: column;
+  }
+`;
+
+// Then use it like so:
+<Box>Hello, world!</Box>
+```
 
 ### k object
 
@@ -159,6 +180,11 @@ kumaUI({
   breakpoints: { sm: "400px", md: "700px" },
 });
 ```
+
+## Roadmap
+
+Our ultimate goal is to develop **a zero-runtime headless component library**. We're currently focusing on enhancing the core and expanding our range of components. We aim to create a unique library that allows users to pass style props, operates with zero runtime, and remains accessible. In the future, we plan to introduce a `kuma.config.js` that allows users to define their own variants, making Kuma UI a go-to tool for creating design systems with high performance.
+
 
 ## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.

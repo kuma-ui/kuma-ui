@@ -83,6 +83,10 @@ export const listItems = [
     title: "Contributing",
     path: "contributing",
   },
+  {
+    title: "Roadmap",
+    path: "roadmap",
+  },
 ];
 
 const listItem = css({
