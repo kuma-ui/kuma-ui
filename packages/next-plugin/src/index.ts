@@ -74,6 +74,7 @@ const kumaUiConfig = (
             loader: KumaUIWebpackPlugin.loader,
             options: {
               virtualLoader: !appDir,
+              cssOutputDir: './.next/cache/kuma'
             },
           },
           {
