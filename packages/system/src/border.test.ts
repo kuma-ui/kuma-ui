@@ -1,5 +1,5 @@
 import { border, BorderProps } from "./border";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("border utility function", () => {
   // Arrange

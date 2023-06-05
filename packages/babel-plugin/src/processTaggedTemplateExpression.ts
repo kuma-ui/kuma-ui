@@ -35,7 +35,8 @@ export const processTaggedTemplateExpression = (
       const cssString = cssStrings
         .map((str) => str.replace(/\s+/g, " ").trim())
         .join("");
-      const className = !!cssString ? sheet.addRule(cssString) : undefined;
+      // Use the parseCSS function to process the CSS string and get the class name.
+      const className = !!cssString ? sheet.parseCSS(cssString) : undefined;
 
       const component = t.isStringLiteral(componentArg)
         ? componentArg.value

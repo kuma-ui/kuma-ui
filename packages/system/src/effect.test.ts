@@ -1,6 +1,6 @@
 // animation.test.ts
 import { effect, EffectProps } from "./effect";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("effects utility function", () => {
   // Arrange

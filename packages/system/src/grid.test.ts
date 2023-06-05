@@ -1,5 +1,5 @@
 import { grid, GridProps } from "./grid";
-import { describe, expect, test } from "@jest/globals";
+import { describe, expect, test } from "vitest";
 
 describe("grid utility function", () => {
   // Arrange

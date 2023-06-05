@@ -1,5 +1,5 @@
-import { Sheet, sheet } from "./sheet";
-import { describe, expect, test, beforeEach } from "@jest/globals";
+import { sheet } from "./sheet";
+import { describe, expect, test, beforeEach } from "vitest";
 import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
 
 describe("Sheet class", () => {
@@ -53,6 +53,24 @@ describe("Sheet class", () => {
     sheet.addPseudoRule(className, css, pseudo);
     // Assert
     expect(sheet.getCSS()).toContain(pseudoCss);
+  });
+
+  test("parseCSS() should parse given styles to valid CSS and returns a generated ID", () => {
+    // Arrange
+    const style = `
+      display: flex;
+      flex-direction: row;
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      &:after {
+        content: " 🦄";
+      }`;
+    // Act
+    const className = sheet.parseCSS(style);
+    // Assert
+    const expectedCSS = `.${className}{display:flex;flex-direction:row;}@media (max-width: 768px){.${className}{flex-direction:column;}}.${className}:after{content:" 🦄";}`;
+    expect(sheet.getCSS()).toContain(expectedCSS);
   });
 
   test("getCSS() should return the CSS string with unique rules", () => {
