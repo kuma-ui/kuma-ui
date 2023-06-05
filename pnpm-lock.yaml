@@ -266,6 +266,12 @@ importers:
       '@types/react':
         specifier: ^18.0.32
         version: 18.0.32
+      '@vitest/coverage-c8':
+        specifier: ^0.31.4
+        version: 0.31.4(vitest@0.31.4)
+      vitest:
+        specifier: ^0.31.4
+        version: 0.31.4
 
   packages/next-plugin:
     dependencies:
