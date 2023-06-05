@@ -1,5 +1,16 @@
 # @kuma-ui/core
 
+## 0.4.0
+
+### Minor Changes
+
+- Fully support RSC & Fully support pseudo elements & classes & throw an error when accessing any property of 'k' at runtime
+
+### Patch Changes
+
+- Updated dependencies
+  - @kuma-ui/system@0.6.0
+
 ## 0.3.1
 
 ### Patch Changes
