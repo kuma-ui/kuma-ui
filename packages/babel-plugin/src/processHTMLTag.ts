@@ -2,7 +2,7 @@ import { NodePath, types as t } from "@babel/core";
 import { extractStyleProps } from "./extractStyleProps";
 import { sheet } from "@kuma-ui/sheet";
 import { all, PseudoProps } from "@kuma-ui/system";
-import { pseudoMappings } from "@kuma-ui/system";
+import { normalizePseudo } from "@kuma-ui/system";
 
 export const processHTMLTag = (
   path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>
@@ -35,7 +35,7 @@ const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
     }
     for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
       const pseudoStyle = all(pseudoValue);
-      const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+      const pseudo = normalizePseudo(pseudoKey);
       sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
       for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
@@ -96,9 +96,10 @@ const processReactCreateElementHTMLTag = (
       sheet.addMediaRule(className, css, breakpoint);
     }
 
+
     for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
       const pseudoStyle = all(pseudoValue);
-      const pseudo = pseudoMappings[pseudoKey as keyof PseudoProps];
+      const pseudo = normalizePseudo(pseudoKey);
       sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
       for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
         sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);

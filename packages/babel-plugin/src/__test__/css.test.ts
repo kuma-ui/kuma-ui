@@ -33,6 +33,18 @@ describe("css function", () => {
       expect(code).toMatchSnapshot();
     });
 
+    test("using pseudo elements should match snapshot", () => {
+      // Arrange
+      const inputCode = `
+        import { css } from '@kuma-ui/core'
+        const style = css({ _after: { color: 'blue' } })
+      `;
+      // Act
+      const { code } = babelTransform(inputCode);
+      // Assert
+      expect(code).toMatchSnapshot();
+    });
+
     test("using pseudo props should match snapshot", () => {
       // Arrange
       const inputCode = `
