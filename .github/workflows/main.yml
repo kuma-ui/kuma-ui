@@ -26,7 +26,7 @@ jobs:
           version: 8.5.1
 
       - name: install packages
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Run test
         run: pnpm test
