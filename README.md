@@ -4,7 +4,6 @@
 
 <h1 align='center'>Ultra Fast, Zero Runtime, Utility-First CSS-in-JS</h1>
 
-
 **[Documentation](https://kuma-ui.com)**
 
  <div>
@@ -19,7 +18,6 @@
 </div>
 
 🐻‍❄️ Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
-
 
 ## Features
 
@@ -41,7 +39,7 @@
 npm install @kuma-ui/core
 ```
 
-or 
+or
 
 ```sh
 yarn add @kuma-ui/core
@@ -62,12 +60,12 @@ const Box = styled("div")`
     background-color: rgba(0, 0, 255, 0.5);
   }
   @media (max-width: 768px) {
-        flex-direction: column;
+    flex-direction: column;
   }
 `;
 
 // Then use it like so:
-<Box>Hello, world!</Box>
+<Box>Hello, world!</Box>;
 ```
 
 ### k object
@@ -93,7 +91,7 @@ The `css` function is another way to style your components. It takes an object o
 ```tsx
 import { css } from "@kuma-ui/core";
 
-const styles = css({ color: 'red', fontSize: '24px' });
+const styles = css({ color: "red", fontSize: "24px" });
 
 function App() {
   return <div className={styles}>Hello, world!</div>;
@@ -185,6 +183,13 @@ Our ultimate goal is to develop **a zero-runtime headless component library**. W
 
 ## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
+
+### Adding a changeset
+Don't forget to include a changeset as well, by running this command at the root of the project:
+
+```sh
+pnpm changeset
+```
 
 ## License
 MIT
