@@ -1,6 +1,81 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`k api > Snapshot tests > basic usage should match snapshot 1`] = `
+exports[`k api > Snapshot tests (runtime: automatic) > basic usage should match snapshot 1`] = `
+"
+.kuma-1119741946 {font-size:24px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    className: [\\"kuma-1119741946\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using pseudo props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"span\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using responsive props should match snapshot 1`] = `
+"
+.kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"a\\", {
+    className: [\\"kuma-4054065355\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using space props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: classic) > basic usage should match snapshot 1`] = `
 "
 .kuma-1119741946 {font-size:24px;}
 
@@ -14,7 +89,7 @@ function App() {
 "
 `;
 
-exports[`k api > Snapshot tests > using pseudo elements should match snapshot 1`] = `
+exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}
 
@@ -28,7 +103,7 @@ function App() {
 "
 `;
 
-exports[`k api > Snapshot tests > using pseudo props should match snapshot 1`] = `
+exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}
 
@@ -42,7 +117,7 @@ function App() {
 "
 `;
 
-exports[`k api > Snapshot tests > using responsive props should match snapshot 1`] = `
+exports[`k api > Snapshot tests (runtime: classic) > using responsive props should match snapshot 1`] = `
 "
 .kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}
 
@@ -56,7 +131,7 @@ function App() {
 "
 `;
 
-exports[`k api > Snapshot tests > using space props should match snapshot 1`] = `
+exports[`k api > Snapshot tests (runtime: classic) > using space props should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}
 

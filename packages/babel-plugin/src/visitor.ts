@@ -36,6 +36,9 @@ export const visitor = ({ types: t, template }: Core) => {
       ) {
         processHTMLTag(path.get("arguments.1") as NodePath<t.ObjectExpression>);
       }
+      if (node.callee.type === "Identifier" && node.callee.name === "_jsx") {
+        processHTMLTag(path.get("arguments.1") as NodePath<t.ObjectExpression>);
+      }
     },
     Program: {
       enter(path) {
