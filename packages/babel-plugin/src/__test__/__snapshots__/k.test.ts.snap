@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`k api > Snapshot tests > basic usage should match snapshot 1`] = `
+"
+.kuma-1119741946 {font-size:24px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: [\\"kuma-1119741946\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using pseudo elements should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using pseudo props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return /*#__PURE__*/React.createElement(\\"span\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using responsive props should match snapshot 1`] = `
+"
+.kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return /*#__PURE__*/React.createElement(\\"a\\", {
+    className: [\\"kuma-4054065355\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using space props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;

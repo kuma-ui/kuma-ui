@@ -66,8 +66,6 @@ const nextConfig = {
 module.exports = withKumaUI(nextConfig);
 ```
 
-Please note that as of now, App Router is an experimental feature. During the build process, a `.kuma` directory will be created, which should be added to your `.gitignore` file. If you delete the `.kuma` directory, make sure to also clear the `.next` cache.
-
 ### For Vite Applications
 
 Add the Kuma UI Vite plugin to your project:

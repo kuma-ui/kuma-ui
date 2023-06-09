@@ -13,6 +13,7 @@ export const DUMMY_CSS_FILE_PATH = require.resolve("../assets/kuma.css");
 
 type Options = {
   virtualLoader?: boolean;
+  cssOutputDir?: string;
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
@@ -64,9 +65,10 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           callback(null, `${codeWithReact}${filePrefix}`);
           return;
         } else {
-          if (!fs.existsSync(tmpCSSDir)) fs.mkdirSync(tmpCSSDir);
+          const outDir = options.cssOutputDir ?? '.kuma'
+          if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
           const hash = createHash("md5").update(css).digest("hex");
-          const cssPath = path.posix.join(tmpCSSDir, `${hash}.css`);
+          const cssPath = path.posix.join(outDir, `${hash}.css`);
           fs.writeFileSync(cssPath, css);
           const filePrefix = `import "${cssPath}";`;
           callback(null, `${codeWithReact}\n${filePrefix}`);

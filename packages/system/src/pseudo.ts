@@ -1,21 +1,15 @@
+import { ExcludeHyphen, RemoveColon } from ".";
 import { StyledProps } from "./compose";
-
-export const pseudoMappings = {
-  _active: ":active",
-  _disabled: ":disabled",
-  _hover: ":hover",
-  _focus: ":focus",
-  _focusVisible: ":focus_visible",
-  _focusWithin: ":focus-within",
-} as const;
+import { Pseudos } from "csstype";
 
 export type PseudoProps = {
-  [key in keyof typeof pseudoMappings]?: StyledProps;
+  [key in `_${ExcludeHyphen<RemoveColon<Pseudos>>}`]?: StyledProps;
 };
 
-export const isPseudoProps = (
-  _props: unknown
-): _props is keyof typeof pseudoMappings => {
-  const props = _props as keyof typeof pseudoMappings;
-  return Object.keys(pseudoMappings).includes(props);
+export const normalizePseudo = (props: string) => {
+  return props.replace("_", ":");
+};
+
+export const isPseudoProps = (props: unknown): props is keyof PseudoProps => {
+  return `${props}`.startsWith("_");
 };
