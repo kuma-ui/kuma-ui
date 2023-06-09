@@ -24,7 +24,7 @@ exports[`k api > Snapshot tests > using pseudo props should match snapshot 1`] =
 "import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(\\"span\\", {
     className: [\\"kuma-110275621\\"].join(\\" \\")
   });
 }"
@@ -34,7 +34,7 @@ exports[`k api > Snapshot tests > using responsive props should match snapshot 1
 "import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(\\"a\\", {
     className: [\\"kuma-4054065355\\"].join(\\" \\")
   });
 }"
