@@ -1,0 +1,114 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`k api > Snapshot tests > basic usage should match snapshot 1`] = `
+"
+.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return React.createElement(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/React.createElement(Box, null, \\"test\\");
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using pseudo elements should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return React.createElement(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/React.createElement(Box, {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  }, \\"test\\");
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using pseudo props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return React.createElement(\\"span\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/React.createElement(Box, {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  }, \\"test\\");
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using responsive props should match snapshot 1`] = `
+"
+.kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return React.createElement(\\"a\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/React.createElement(Box, {
+    className: [\\"kuma-4054065355\\"].join(\\" \\")
+  }, \\"test\\");
+}
+"
+`;
+
+exports[`k api > Snapshot tests > using space props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return React.createElement(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/React.createElement(Box, {
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  }, \\"test\\");
+}
+"
+`;
