@@ -32,5 +32,13 @@ export function babelTransform(
   if (result === null || result.code == null)
     throw new Error(`Could not transform`);
 
-  return { result: result, code: result.code };
+  return result;
+}
+
+export function getExpectSnapshot(result: BabelFileResult) {
+  return `
+${(result.metadata as { css: string } | undefined)?.css}
+
+${result.code}
+`;
 }

@@ -1,4 +1,4 @@
-import { babelTransform } from "./testUtils";
+import { babelTransform, getExpectSnapshot } from "./testUtils";
 
 describe("k api", () => {
   describe("Snapshot tests", () => {
@@ -11,9 +11,9 @@ describe("k api", () => {
         }
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using responsive props should match snapshot", () => {
@@ -25,9 +25,9 @@ describe("k api", () => {
         }
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using space props should match snapshot", () => {
@@ -39,9 +39,9 @@ describe("k api", () => {
         }
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using pseudo elements should match snapshot", () => {
@@ -53,9 +53,9 @@ describe("k api", () => {
         }
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using pseudo props should match snapshot", () => {
@@ -67,9 +67,9 @@ describe("k api", () => {
         }
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
   });
 });

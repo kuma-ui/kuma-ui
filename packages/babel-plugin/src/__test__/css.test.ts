@@ -1,7 +1,7 @@
 // for babel-plugin-tester; see: https://github.com/babel-utils/babel-plugin-tester#vitest
 /// <reference types="vitest/globals" />
 
-import { babelTransform } from "./testUtils";
+import { babelTransform, getExpectSnapshot } from "./testUtils";
 import { pluginTester } from "babel-plugin-tester";
 import { types, template } from "@babel/core";
 import plugin from "../";
@@ -16,9 +16,9 @@ describe("css function", () => {
         const style = css({ color: 'red' })
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using space props should match snapshot", () => {
@@ -28,9 +28,9 @@ describe("css function", () => {
         const style = css({ p: 2 })
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using pseudo elements should match snapshot", () => {
@@ -40,9 +40,9 @@ describe("css function", () => {
         const style = css({ _after: { color: 'blue' } })
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
     test("using pseudo props should match snapshot", () => {
@@ -52,9 +52,9 @@ describe("css function", () => {
         const style = css({ _hover: { color: 'red' } })
       `;
       // Act
-      const { code } = babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
-      expect(code).toMatchSnapshot();
+      expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
   });
 });
