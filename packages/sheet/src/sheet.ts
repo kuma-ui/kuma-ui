@@ -1,6 +1,7 @@
 import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
 import { compile, serialize, stringify } from "stylis";
+import { SystemStyle } from "@kuma-ui/core";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
@@ -18,6 +19,8 @@ export interface Rule {
 export class Sheet {
   private static instance: Sheet;
   private rules: Rule[];
+
+  private base: string[];
   private responsive: string[];
   private pseudo: string[];
 
@@ -25,6 +28,7 @@ export class Sheet {
 
   private constructor() {
     this.rules = [];
+    this.base = [];
     this.responsive = [];
     this.pseudo = [];
     this.css = [];
@@ -35,6 +39,22 @@ export class Sheet {
       Sheet.instance = new Sheet();
     }
     return Sheet.instance;
+  }
+
+  _addeBase(className: string, css: string) {
+    this.base.push(`.${className}{${css}}`);
+  }
+
+  _addMedia(className: string, css: string) {
+    // this.
+  }
+
+  addStyle(style: SystemStyle) {
+    const className = "kuma-" + generateHash(JSON.stringify(style));
+    this._addeBase(className, style.base);
+    for (const [breakpoint, css] of Object.entries(style.responsive)) {
+      sheet.addMediaRule(className, css, breakpoint);
+    }
   }
 
   addRule(css: string, key: string): string {
