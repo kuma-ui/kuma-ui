@@ -36,13 +36,13 @@
 ## Installation
 
 ```sh
-npm install @kuma-ui/core
+npm install -D @kuma-ui/core
 ```
 
 or
 
 ```sh
-yarn add @kuma-ui/core
+yarn add @kuma-ui/core -D
 ```
 
 ## Usage
@@ -103,7 +103,7 @@ function App() {
 ### Next.js
 
 ```sh
-yarn add @kuma-ui/next-plugin
+yarn add @kuma-ui/next-plugin -D
 ```
 
 #### Pages Directory Version
@@ -142,7 +142,7 @@ module.exports = withKumaUI(nextConfig);
 ### Vite
 
 ```sh
-yarn add @kuma-ui/vite
+yarn add @kuma-ui/vite -D
 ```
 
 **vite.config.ts**
