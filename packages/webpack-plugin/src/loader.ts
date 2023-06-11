@@ -1,6 +1,7 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
+import eval from "eval";
 import type { RawLoaderDefinitionFunction } from "webpack";
 import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";

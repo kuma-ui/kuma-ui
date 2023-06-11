@@ -1,9 +1,12 @@
 import { Compilation, Compiler, NormalModule } from "webpack";
 import { theme, sheet } from "@kuma-ui/sheet";
+import { buildSync } from "esbuild";
+import eval from "eval";
 import { transform } from "@kuma-ui/babel-plugin";
 // import { RawSource, Source } from "webpack-sources";
 import path from "path";
 import { rm, mkdir, existsSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 
 type WebpackPluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
@@ -21,6 +24,37 @@ class KumaUIWebpackPlugin {
   public tmpDir: string[] = [];
 
   constructor(options: WebpackPluginOption = {}) {
+    const dir = readdirSync(".");
+    let configPath: string | undefined;
+    dir.forEach((filePath) => {
+      if (filePath.startsWith("kuma.config.")) {
+        configPath = filePath;
+      }
+    });
+
+    if (configPath) {
+      // const s = readFileSync(path.join('.', configPath));
+      // console.log(path.join('.', configPath));
+      const filename = path.join(process.cwd(), configPath);
+      const x = buildSync({
+        bundle: true,
+        target: "es2017",
+        write: false,
+        platform: "node",
+        absWorkingDir: process.cwd(),
+        outfile: filename + ".out",
+        entryPoints: [filename],
+        logLevel: "silent",
+      });
+
+      const config = eval(
+        x.outputFiles[0].text,
+        configPath
+      ) as { default: unknown };
+
+      console.log(config.default);
+    }
+
     this.options = options;
     if (
       this.options.breakpoints &&

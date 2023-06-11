@@ -2,6 +2,8 @@ import * as CSS from "csstype";
 import { StyledKeyType } from "./keys";
 
 type If<C extends boolean, T, F> = C extends true ? T : F;
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type AutPrefixString = string & {};
 
 // A type for non-undefined CSS property values
 export type CSSProperty = Exclude<
@@ -20,16 +22,18 @@ export type ExcludeHyphen<T extends string> = Exclude<T, `-${string}`>;
 // A type representing a single CSS property value or an array of them, with an optional number type if Q is true
 export type CSSValue<
   P extends keyof CSS.Properties,
-  Q extends boolean = false
-> = CSSProperties<P, Q>[P];
+  Q extends boolean = false,
+  AutPrefix extends string = AutPrefixString
+> = CSSProperties<P, Q, AutPrefix>[P];
 
 export type CSSProperties<
   P extends keyof CSS.Properties,
-  Q extends boolean = false
+  Q extends boolean = false,
+  AutPrefix extends string = AutPrefixString
 > = If<
   Q,
   Pick<CSS.PropertiesFallback<number>, P>,
-  Pick<CSS.PropertiesFallback, P>
+  Pick<CSS.PropertiesFallback<AutPrefix>, P>
 >;
 
 // // A utility type that maps a set of style keys to corresponding CSS property keys

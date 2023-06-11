@@ -2,17 +2,18 @@ import { ColorKeys } from "./keys";
 import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
-export type ColorProps = Partial<
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
   {
     /**
      * @see background
      */
-    bg: CSSValue<"background">;
+    bg: CSSValue<"background"> | AutoPrefix;
     /**
      * @see backgroundColor
      */
-    bgColor: CSSValue<"backgroundColor">;
-  } & CSSProperties<"borderColor" | "color" | "opacity">
+    bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+  } & CSSProperties<"borderColor" | "color" | "opacity", false, AutoPrefix>
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
