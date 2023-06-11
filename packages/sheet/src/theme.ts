@@ -5,9 +5,16 @@ export const defaultBreakpoints = Object.freeze({
   xl: "1200px",
 });
 
+type UserTheme = {
+  colors: Record<string, string> | undefined;
+}
+
 export class Theme {
   private static instance: Theme;
   private _breakpoints: Record<string, string>;
+  private _userTheme: UserTheme = {
+    colors: undefined,
+  };
 
   private constructor() {
     this._breakpoints = defaultBreakpoints;
@@ -26,6 +33,14 @@ export class Theme {
 
   getBreakpoints(): Record<string, string> {
     return this._breakpoints;
+  }
+
+  setUserTheme(userTheme: UserTheme) {
+  this._userTheme = userTheme;
+  }
+
+  getUserTheme() {
+    return this._userTheme;
   }
 
   reset() {

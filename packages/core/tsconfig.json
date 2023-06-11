@@ -6,5 +6,6 @@
     "types": ["node"],
     "declaration": true,
     "declarationDir": "dist"
-  }
+  },
+  "include": ["src"],
 }

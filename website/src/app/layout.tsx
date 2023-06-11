@@ -25,8 +25,6 @@ export default function RootLayout({
       <body>
         <k.div role="presentation" display={["none", "initial"]} bg="white">
           <k.div
-            color={""}
-            bgColor={"colors.red.red.red.red.red"}
             bg="radial-gradient(circle at 75% 50%, hsl(186 70% 90%), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at 60% 30%, hsl(200 70% 90%), rgba(255, 255, 255, 0) 10%)"
             position="fixed"
             inset="100px"
@@ -34,6 +32,8 @@ export default function RootLayout({
           />
         </k.div>
         <k.div
+          color={'colors.red.red.red.red.100'}
+          bgColor={'colors.red.red.red.red.red'}
           display="grid"
           gridTemplateRows="auto 1fr auto"
           gridTemplateColumns="100%"

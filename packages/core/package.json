@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts",
-    "test": "vitest run",
+    "test": "vitest run && vitest typecheck --run",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"

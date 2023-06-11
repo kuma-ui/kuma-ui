@@ -1,0 +1,46 @@
+import { UnionToIntersection } from "./types";
+
+type ObjectKey = string | number;
+
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type Pretty<T> = { [P in keyof T]: T[P] } & {};
+
+export type NestedObject<T = unknown> = {
+  [_: ObjectKey]: T | NestedObject<T>;
+};
+
+export function flattenObject<const T, T2 extends NestedObject<T>>(
+  object: T2
+): FlattenObject<T2> {
+  const result = {} as FlattenObject<T2>;
+  for (const key in object) {
+    if (!object.hasOwnProperty(key)) continue;
+    const value = object[key];
+
+    if (typeof value == "object" && value !== null) {
+      const _object = flattenObject(value as NestedObject);
+      for (const _key in _object) {
+        if (!_object.hasOwnProperty(_key)) continue;
+        //@ts-expect-error type
+        result[key + "." + _key] = _object[_key];
+      }
+    } else {
+      //@ts-expect-error type
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+export type FlattenObject<
+  T extends NestedObject,
+  RestKey extends string = ""
+> = UnionToIntersection<
+  T extends Record<infer Key, unknown>
+    ? Key extends ObjectKey
+      ? T[Key] extends NestedObject
+        ? FlattenObject<T[Key], RestKey extends "" ? Key : `${RestKey}.${Key}`>
+        : Record<RestKey extends "" ? Key : `${RestKey}.${Key}`, T[Key]>
+      : Record<Key, T[Key]>
+    : never
+>;

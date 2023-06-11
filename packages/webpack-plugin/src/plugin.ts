@@ -33,10 +33,8 @@ class KumaUIWebpackPlugin {
     });
 
     if (configPath) {
-      // const s = readFileSync(path.join('.', configPath));
-      // console.log(path.join('.', configPath));
       const filename = path.join(process.cwd(), configPath);
-      const x = buildSync({
+      const result = buildSync({
         bundle: true,
         target: "es2017",
         write: false,
@@ -47,12 +45,13 @@ class KumaUIWebpackPlugin {
         logLevel: "silent",
       });
 
-      const config = eval(
-        x.outputFiles[0].text,
-        configPath
-      ) as { default: unknown };
+      const config = eval(result.outputFiles[0].text, configPath) as {
+        default: unknown;
+      };
 
-      console.log(config.default);
+      if (config.default) {
+        theme.setUserTheme(config.default as any);
+      }
     }
 
     this.options = options;

@@ -8,7 +8,7 @@ const theme = createTheme({
       red:{
         red: {
           red: {
-            red: 'red'
+            100: '#ff1111'
           }
         }
       }
@@ -18,10 +18,10 @@ const theme = createTheme({
   },
 });
 
-type Theme = typeof theme;
+type UserTheme = typeof theme;
 
 declare module "@kuma-ui/core" {
-  export interface ThemeInput extends Theme {}
+  export interface Theme extends UserTheme {}
 }
 
 export default theme;
