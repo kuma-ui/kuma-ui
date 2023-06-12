@@ -3,6 +3,7 @@ import { extractStyleProps } from "./extractStyleProps";
 import { sheet } from "@kuma-ui/sheet";
 import { all, PseudoProps } from "@kuma-ui/system";
 import { normalizePseudo } from "@kuma-ui/system";
+import { SystemStyle } from "@kuma-ui/core";
 
 export const processHTMLTag = (
   path: NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>
@@ -106,36 +107,37 @@ const processReactCreateElementHTMLTag = (
   path.node.properties = filteredProperties;
   if (Object.keys(styledProps).length > 0) {
     const style = all(styledProps);
-    const className = sheet.addRule(
-      style.base,
-      style.base +
-        Object.entries(style.media)
-          .map(([key, value]) => key + value)
-          .join("") +
-        Object.entries(pseudoProps)
-          .map(
-            ([key, value]) =>
-              key +
-              Object.entries(value)
-                .map(([key, value]) => key + value)
-                .join("")
-          )
-          .join("")
-    );
+    const className = "";
 
-    for (const [breakpoint, css] of Object.entries(style.media)) {
-      sheet.addMediaRule(className, css, breakpoint);
-    }
+    // const className = sheet.addRule(
+    //   style.base,
+    //   style.base +
+    //     Object.entries(style.media)
+    //       .map(([key, value]) => key + value)
+    //       .join("") +
+    //     Object.entries(pseudoProps)
+    //       .map(
+    //         ([key, value]) =>
+    //           key +
+    //           Object.entries(value)
+    //             .map(([key, value]) => key + value)
+    //             .join("")
+    //       )
+    //       .join("")
+    // );
 
+    // for (const [breakpoint, css] of Object.entries(style.media)) {
+    //   sheet.addMediaRule(className, css, breakpoint);
+    // }
 
-    for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
-      const pseudoStyle = all(pseudoValue);
-      const pseudo = normalizePseudo(pseudoKey);
-      sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
-      for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
-        sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
-      }
-    }
+    // for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
+    //   const pseudoStyle = all(pseudoValue);
+    //   const pseudo = normalizePseudo(pseudoKey);
+    //   sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
+    //   for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
+    //     sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
+    //   }
+    // }
 
     const classNameProps: t.Expression[] = [t.stringLiteral(className)];
 

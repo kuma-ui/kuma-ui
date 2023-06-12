@@ -244,6 +244,9 @@ importers:
       '@babel/preset-typescript':
         specifier: ^7.21.4
         version: 7.21.4(@babel/core@7.21.4)
+      '@kuma-ui/core':
+        specifier: workspace:^
+        version: link:../core
       '@types/babel__core':
         specifier: ^7.20.0
         version: 7.20.0
