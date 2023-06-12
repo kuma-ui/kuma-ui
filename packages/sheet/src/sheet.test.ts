@@ -1,4 +1,4 @@
-import { sheet } from "./sheet";
+import { sheet, SystemStyle } from "./sheet";
 import { describe, expect, test, beforeEach } from "vitest";
 import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
 
@@ -7,52 +7,52 @@ describe("Sheet class", () => {
     sheet.reset();
   });
 
-  test("addRule() should add a new rule with a generated ID", () => {
-    // Arrange
-    const css = "color: red;";
+  // // Arrange
+  const style: SystemStyle = {
+    base: "color: red;",
+    responsive: {
+      "768px": "color: blue;",
+    },
+    pseudo: [
+      {
+        key: ":hover",
+        base: "color: green;",
+        responsive: {
+          "768px": "color: yellow;",
+        },
+      },
+    ],
+  };
+
+  test("addRule() should handle SystemStyle correctly", () => {
     // Act
-    const id = sheet.addRule(css, css);
+    const className = sheet.addRule(style);
+    const cssString = sheet.getCSS();
     // Assert
-    expect(id.startsWith("kuma-")).toBeTruthy();
+    expect(className.startsWith("kuma-")).toBeTruthy();
+    expect(cssString).toContain(
+      `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
+    );
+    console.log(cssString);
+    expect(cssString).toContain(
+      `@media (min-width:768px){.${className}{${style.responsive[
+        "768px"
+      ].replace(cssPropertyRegex, "")}}}`
+    );
+    expect(cssString).toContain(
+      `.${className}${style.pseudo[0].key}{${style.pseudo[0].base.replace(
+        cssPropertyRegex,
+        ""
+      )}}`
+    );
   });
 
   test("addRule() should not add duplicate rules", () => {
-    // Arrange
-    const css = "color: red;";
     // Act
-    const id1 = sheet.addRule(css, css);
-    const id2 = sheet.addRule(css, css);
+    const id1 = sheet.addRule(style);
+    const id2 = sheet.addRule(style);
     // Assert
     expect(id1).toBe(id2);
-  });
-
-  test("addMediaRule() should add a new media rule with a generated ID", () => {
-    // Arrange
-    const className = "kuma-12345";
-    const css = "padding: 8px;";
-    const breakpoint = "576px";
-    const mediaCss = `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`;
-    // Act
-    sheet.addMediaRule(className, css, breakpoint);
-    // Assert
-    expect(sheet.getCSS()).toContain(
-      mediaCss.replace(removeSpacesExceptInPropertiesRegex, "")
-    );
-  });
-
-  test("addPseudoRule() should add a new pseudo rule with a generated ID", () => {
-    // Arrange
-    const className = "kuma-12345";
-    const css = "padding: 8px;";
-    const pseudo = ":hover";
-    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(
-      removeSpacesExceptInPropertiesRegex,
-      ""
-    );
-    // Act
-    sheet.addPseudoRule(className, css, pseudo);
-    // Assert
-    expect(sheet.getCSS()).toContain(pseudoCss);
   });
 
   test("parseCSS() should parse given styles to valid CSS and returns a generated ID", () => {
@@ -75,13 +75,12 @@ describe("Sheet class", () => {
 
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
-    const css = "color: red;";
-    const id = sheet.addRule(css, css);
+    const id = sheet.addRule(style);
     // Act
     const cssString = sheet.getCSS();
     // Assert
     expect(cssString).toContain(
-      `.${id} {${css}}`.replace(cssPropertyRegex, "")
+      `.${id}{${style.base}}`.replace(cssPropertyRegex, "")
     );
   });
 });
