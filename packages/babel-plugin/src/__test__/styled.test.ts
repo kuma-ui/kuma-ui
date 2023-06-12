@@ -1,10 +1,12 @@
 import { babelTransform, getExpectSnapshot } from "./testUtils";
 
 describe("styled function", () => {
-  describe("Snapshot tests", () => {
-    test("basic usage should match snapshot", () => {
-      // Arrange
-      const inputCode = `
+  describe.each([["classic" as const], ["automatic" as const]])(
+    "Snapshot tests (runtime: %s)",
+    (runtime) => {
+      test("basic usage should match snapshot", () => {
+        // Arrange
+        const inputCode = `
         import { styled } from '@kuma-ui/core'
         const Box = styled('div')\`
           position: relative;
@@ -22,15 +24,15 @@ describe("styled function", () => {
           return <Box>test</Box>
         }
       `;
-      // Act
-      const result = babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
 
-    test("using responsive props should match snapshot", () => {
-      // Arrange
-      const inputCode = `
+      test("using responsive props should match snapshot", () => {
+        // Arrange
+        const inputCode = `
         import { styled } from '@kuma-ui/core'
         const Box = styled('a')\`
           position: relative;
@@ -48,15 +50,15 @@ describe("styled function", () => {
           return <Box fontSize={[16, 24]}>test</Box>
         }
       `;
-      // Act
-      const result = babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
 
-    test("using space props should match snapshot", () => {
-      // Arrange
-      const inputCode = `
+      test("using space props should match snapshot", () => {
+        // Arrange
+        const inputCode = `
         import { styled } from '@kuma-ui/core'
         const Box = styled('div')\`
           position: relative;
@@ -74,15 +76,15 @@ describe("styled function", () => {
           return <Box p={2}>test</Box>
         }
       `;
-      // Act
-      const result = babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
 
-    test("using pseudo elements should match snapshot", () => {
-      // Arrange
-      const inputCode = `
+      test("using pseudo elements should match snapshot", () => {
+        // Arrange
+        const inputCode = `
         import { styled } from '@kuma-ui/core'
         const Box = styled('div')\`
           position: relative;
@@ -100,15 +102,15 @@ describe("styled function", () => {
           return <Box p={2} _after={{ color: 'blue' }}>test</Box>
         }
       `;
-      // Act
-      const result = babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
 
-    test("using pseudo props should match snapshot", () => {
-      // Arrange
-      const inputCode = `
+      test("using pseudo props should match snapshot", () => {
+        // Arrange
+        const inputCode = `
         import { styled } from '@kuma-ui/core'
         const Box = styled('span')\`
           position: relative;
@@ -126,10 +128,11 @@ describe("styled function", () => {
           return <Box p={2} _hover={{ color: 'red' }}>test</Box>
         }
       `;
-      // Act
-      const result = babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
-  });
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+    }
+  );
 });

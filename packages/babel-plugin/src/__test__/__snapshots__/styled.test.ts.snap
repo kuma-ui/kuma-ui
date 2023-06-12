@@ -1,6 +1,130 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`styled function > Snapshot tests > basic usage should match snapshot 1`] = `
+exports[`styled function > Snapshot tests (runtime: automatic) > basic usage should match snapshot 1`] = `
+"
+.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/_jsx(Box, {
+    children: \\"test\\"
+  });
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/_jsx(Box, {
+    children: \\"test\\",
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return /*#__PURE__*/_jsx(\\"span\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/_jsx(Box, {
+    children: \\"test\\",
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: automatic) > using responsive props should match snapshot 1`] = `
+"
+.kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return /*#__PURE__*/_jsx(\\"a\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/_jsx(Box, {
+    children: \\"test\\",
+    className: [\\"kuma-4054065355\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: automatic) > using space props should match snapshot 1`] = `
+"
+.kuma-110275621 {padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+const Box = props => {
+  const existingClassName = props.className || \\"\\";
+  const newClassName = \\"kuma-686274543\\";
+  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    ...props,
+    className: combinedClassName
+  });
+};
+function App() {
+  return /*#__PURE__*/_jsx(Box, {
+    children: \\"test\\",
+    className: [\\"kuma-110275621\\"].join(\\" \\")
+  });
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: classic) > basic usage should match snapshot 1`] = `
 "
 .kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
@@ -23,7 +147,7 @@ function App() {
 "
 `;
 
-exports[`styled function > Snapshot tests > using pseudo elements should match snapshot 1`] = `
+exports[`styled function > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
@@ -48,7 +172,7 @@ function App() {
 "
 `;
 
-exports[`styled function > Snapshot tests > using pseudo props should match snapshot 1`] = `
+exports[`styled function > Snapshot tests (runtime: classic) > using pseudo props should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
@@ -73,7 +197,7 @@ function App() {
 "
 `;
 
-exports[`styled function > Snapshot tests > using responsive props should match snapshot 1`] = `
+exports[`styled function > Snapshot tests (runtime: classic) > using responsive props should match snapshot 1`] = `
 "
 .kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
@@ -98,7 +222,7 @@ function App() {
 "
 `;
 
-exports[`styled function > Snapshot tests > using space props should match snapshot 1`] = `
+exports[`styled function > Snapshot tests (runtime: classic) > using space props should match snapshot 1`] = `
 "
 .kuma-110275621 {padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
