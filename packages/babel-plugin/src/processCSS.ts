@@ -1,6 +1,6 @@
 import { type NodePath, template as Template, types } from "@babel/core";
 import { extractStylePropsFromObjectExpression } from "./extractStyleProps/fromObject";
-import { sheet } from "@kuma-ui/sheet";
+import { sheet, SystemStyle } from "@kuma-ui/sheet";
 import { all, normalizePseudo, type PseudoProps } from "@kuma-ui/system";
 
 /**
@@ -45,21 +45,25 @@ export function processCSS(
         path,
         node.arguments[0]
       );
-      const style = all(styleObject.styledProps);
-      const className = sheet.addRule(style.base, style.base);
-      for (const [breakpoint, css] of Object.entries(style.media)) {
-        sheet.addMediaRule(className, css, breakpoint);
-      }
-      for (const [pseudoKey, pseudoValue] of Object.entries(
+      const convertedPseudoProps: SystemStyle["pseudo"] = Object.entries(
         styleObject.pseudoProps
-      )) {
+      ).map(([pseudoKey, pseudoValue]) => {
         const pseudoStyle = all(pseudoValue);
-        const pseudo = normalizePseudo(pseudoKey);
-        sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
-        for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
-          sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
-        }
-      }
+        return {
+          key: normalizePseudo(pseudoKey),
+          base: pseudoStyle.base,
+          responsive: pseudoStyle.media,
+        };
+      });
+
+      const style: SystemStyle = {
+        base: all(styleObject.styledProps).base,
+        responsive: all(styleObject.styledProps).media,
+        pseudo: convertedPseudoProps,
+      };
+
+      // Add the style rule to the sheet and get the generated class name.
+      const className = sheet.addRule(style);
       path.replaceWith(t.stringLiteral(className));
       return;
     },

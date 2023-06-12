@@ -1,7 +1,26 @@
 import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
 import { compile, serialize, stringify } from "stylis";
-import { SystemStyle } from "@kuma-ui/core";
+
+// to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
+type ResponsiveStyle = {
+  base: string;
+  media: {
+    [breakpoint: string]: string;
+  };
+};
+
+type SystemStyle = {
+  base: ResponsiveStyle["base"];
+  responsive: ResponsiveStyle["media"];
+  pseudo: {
+    key: string;
+    base: ResponsiveStyle["base"];
+    responsive: ResponsiveStyle["media"];
+  }[];
+};
+
+export { SystemStyle };
 
 export class Sheet {
   private static instance: Sheet;
@@ -25,7 +44,7 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addStyle(style: SystemStyle) {
+  addRule(style: SystemStyle) {
     const className = "kuma-" + generateHash(JSON.stringify(style));
     this._addeBaseRule(className, style.base);
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
@@ -34,6 +53,7 @@ export class Sheet {
     for (const [_, pseudo] of Object.entries(style.pseudo)) {
       this._addPseudoRule(className, pseudo);
     }
+    return className;
   }
 
   private _addeBaseRule(className: string, css: string) {

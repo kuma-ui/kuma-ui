@@ -39,7 +39,6 @@
     "@babel/preset-env": "^7.21.4",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.21.4",
-    "@kuma-ui/core": "workspace:^",
     "@types/babel__core": "^7.20.0",
     "@vitest/coverage-c8": "^0.31.4",
     "babel-plugin-tester": "^11.0.4",
