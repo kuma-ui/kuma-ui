@@ -250,6 +250,9 @@ importers:
       '@vitest/coverage-c8':
         specifier: ^0.31.4
         version: 0.31.4(vitest@0.31.4)
+      babel-plugin-jsx:
+        specifier: ^1.2.0
+        version: 1.2.0
       babel-plugin-tester:
         specifier: ^11.0.4
         version: 11.0.4(@babel/core@7.21.4)
@@ -3196,6 +3199,12 @@ packages:
       find-cache-dir: 3.3.2
       schema-utils: 4.0.1
       webpack: 5.78.0(esbuild@0.17.19)(webpack-cli@5.0.2)
+
+  /babel-plugin-jsx@1.2.0:
+    resolution: {integrity: sha512-eYeaFsGl0BecHxx5dowVCeGZPXJJZNTyFwyNgf9RFU9Ya3WkpRPZow+kOzWZ++RerDiKpcUGfYFp6ovWCWzXcg==}
+    dependencies:
+      esutils: 2.0.3
+    dev: true
 
   /babel-plugin-polyfill-corejs2@0.3.3(@babel/core@7.21.4):
     resolution: {integrity: sha512-8hOdmFYFSZhqg2C/JgLUQ+t52o5nirNwaWM2B9LWteozwIvM14VSwdsCAUET10qT+kmySAlseadmfeeSWFCy+Q==}

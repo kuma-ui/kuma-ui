@@ -49,16 +49,13 @@ export const processTaggedTemplateExpression = (
             const existingClassName = props.className || "";
             const newClassName = "${className || ""}";
             const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
-            return React.${
-              typeof component === "string"
-                ? `createElement("${component}"`
-                : `cloneElement(${component}`
-            }, {
-            "data-kuma-ui": "${true}",
-            ...props,
-            className: combinedClassName,
-            });
-        }`
+            return (
+              <${component} data-kuma-ui="${true}" {...props} className={combinedClassName} />
+            );
+        }`,
+        {
+          plugins: ["jsx"],
+        }
       );
       path.replaceWith(createElementAst);
     },
