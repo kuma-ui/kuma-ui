@@ -27,15 +27,15 @@ export const replaceK = (
           name: importedStyleFunctions["k"],
         })
       ) {
-        openingElement.name = openingElement.name.property;
-      }
-      if (
-        closingElement &&
-        t.isJSXMemberExpression(openingElement.name) &&
-        t.isJSXIdentifier(openingElement.name.object, {
-          name: importedStyleFunctions["k"],
-        })
-      ) {
+        if (
+          closingElement &&
+          t.isJSXMemberExpression(closingElement.name) &&
+          t.isJSXIdentifier(closingElement.name.object, {
+            name: importedStyleFunctions["k"],
+          })
+        ) {
+          closingElement.name = openingElement.name.property;
+        }
         openingElement.name = openingElement.name.property;
       }
     },
