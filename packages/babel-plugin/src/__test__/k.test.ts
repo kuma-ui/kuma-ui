@@ -2,7 +2,7 @@ import { babelTransform, getExpectSnapshot } from "./testUtils";
 
 describe("k api", () => {
   describe.each([["classic" as const], ["automatic" as const]])(
-    "Snapshot tests",
+    "Snapshot tests (runtime: %s)",
     (runtime) => {
       test("basic usage should match snapshot", () => {
         // Arrange
