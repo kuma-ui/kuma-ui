@@ -9,6 +9,7 @@ export function babelTransform(
   const filename = "test.tsx";
   let result: BabelFileResult | null = null;
   result = transformSync(code, {
+    plugins: [plugin({ types, template })],
     presets: [
       "@babel/preset-typescript",
       [
@@ -18,14 +19,6 @@ export function babelTransform(
         },
       ],
     ],
-    filename,
-  });
-
-  if (result === null || result.code == null)
-    throw new Error(`Could not transform`);
-
-  result = transformSync(result.code, {
-    plugins: [plugin({ types, template })],
     filename,
   });
 
