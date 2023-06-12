@@ -344,6 +344,12 @@ importers:
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
+      esbuild:
+        specifier: ^0.18.0
+        version: 0.18.0
+      eval:
+        specifier: ^0.1.8
+        version: 0.1.8
     devDependencies:
       vite:
         specifier: ^4.2.1

@@ -1,7 +1,10 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import { Plugin } from "vite";
 import path from "path";
+import {buildSync} from "esbuild";
+import _eval from "eval";
 import { theme, sheet } from "@kuma-ui/sheet";
+import { readdirSync } from "fs";
 
 export type VitePluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
@@ -9,6 +12,35 @@ export type VitePluginOption = {
 
 export default function kumaUI(options?: VitePluginOption): Plugin {
   let mode: "build" | "serve";
+
+  const dir = readdirSync(".");
+  let configPath: string | undefined;
+  dir.forEach((filePath) => {
+    if (filePath.startsWith("kuma.config.")) configPath = filePath;
+  });
+  
+  if (configPath) {
+    const filename = path.join(process.cwd(), configPath);
+    const result = buildSync({
+      bundle: true,
+      target: "es2017",
+      write: false,
+      platform: "node",
+      absWorkingDir: process.cwd(),
+      outfile: filename + ".out",
+      entryPoints: [filename],
+      logLevel: "silent",
+    });
+
+    const config = _eval(result.outputFiles[0].text, configPath) as {
+      default: unknown;
+    };
+
+    if (config.default) {
+      theme.setUserTheme(config.default as any);
+    }
+  }
+
   if (options?.breakpoints && Object.keys(options.breakpoints).length > 0) {
     theme.setBreakpoints(options.breakpoints);
   }

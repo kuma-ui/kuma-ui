@@ -4,6 +4,7 @@ import {
   Pretty,
   flattenObject,
 } from "./utils/object";
+import { If, IsAny, Stringify, _String } from "./utils/types";
 
 type ThemeInput = {
   colors?: NestedObject<string>;
@@ -19,7 +20,11 @@ type ThemeResult<T extends ThemeInput> = Pretty<{
 export interface Theme {}
 
 //　@ts-expect-error type
-export type ThemeColors = Theme['colors'];
+type ThemeColors = Theme["colors"];
+
+export type ThemeSystem = {
+  colors: If<IsAny<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
+};
 
 export function createTheme<const T extends ThemeInput>(
   theme: T

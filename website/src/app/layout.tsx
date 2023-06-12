@@ -32,8 +32,6 @@ export default function RootLayout({
           />
         </k.div>
         <k.div
-          color={'colors.red.red.red.red.100'}
-          bgColor={'colors.red.red.red.red.red'}
           display="grid"
           gridTemplateRows="auto 1fr auto"
           gridTemplateColumns="100%"
