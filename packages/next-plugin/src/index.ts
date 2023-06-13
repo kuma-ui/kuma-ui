@@ -71,13 +71,6 @@ const kumaUiConfig = (
         exclude: /node_modules/,
         use: [
           {
-            loader: KumaUIWebpackPlugin.loader,
-            options: {
-              virtualLoader: !appDir,
-              cssOutputDir: './.next/cache/kuma'
-            },
-          },
-          {
             loader: "babel-loader",
             options: {
               presets: [
@@ -89,6 +82,13 @@ const kumaUiConfig = (
                   },
                 ],
               ],
+            },
+          },
+          {
+            loader: KumaUIWebpackPlugin.loader,
+            options: {
+              virtualLoader: !appDir,
+              cssOutputDir: './.next/cache/kuma'
             },
           },
         ],
