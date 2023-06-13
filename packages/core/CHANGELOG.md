@@ -1,5 +1,12 @@
 # @kuma-ui/core
 
+## 0.4.1
+
+### Patch Changes
+
+- 558823e: fix classname hash
+  - @kuma-ui/system@0.6.1
+
 ## 0.4.0
 
 ### Minor Changes

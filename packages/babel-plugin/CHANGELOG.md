@@ -1,5 +1,19 @@
 # @kuma-ui/babel-plugin
 
+## 0.8.0
+
+### Minor Changes
+
+- 558823e: fix classname hash
+
+### Patch Changes
+
+- 05467cf: test(babel-plugin): add styled function test
+- 8c7f34d: test(babel-plugin): add generated css to snapshots
+- Updated dependencies [558823e]
+  - @kuma-ui/sheet@0.5.0
+  - @kuma-ui/system@0.6.1
+
 ## 0.7.0
 
 ### Minor Changes
