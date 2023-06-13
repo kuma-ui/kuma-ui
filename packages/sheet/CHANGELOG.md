@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 0.5.0
+
+### Minor Changes
+
+- 558823e: fix classname hash
+
 ## 0.4.0
 
 ### Minor Changes
