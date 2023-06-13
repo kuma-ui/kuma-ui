@@ -7,18 +7,17 @@ const plugin = (core: Core): PluginObj => {
   return {
     name: "kuma-ui-plugin",
     manipulateOptions(opts, parserOpts) {
-      if (!process.env.BABEL_8_BREAKING) {
-        // If the Typescript plugin already ran, it will have decided whether
-        // or not this is a TSX file.
+      const addPluginIfNotExists = (pluginName: string) => {
         if (
-          parserOpts.plugins.some(
-            (p: unknown) => (Array.isArray(p) ? p[0] : p) === "typescript"
+          !parserOpts.plugins.some(
+            (p: unknown) => (Array.isArray(p) ? p[0] : p) === pluginName
           )
         ) {
-          return;
+          parserOpts.plugins.push(pluginName);
         }
-      }
-      parserOpts.plugins.push("jsx");
+      };
+      addPluginIfNotExists("jsx");
+      addPluginIfNotExists("typescript");
     },
     visitor: visitor(core),
   };
