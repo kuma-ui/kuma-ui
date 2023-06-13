@@ -36,9 +36,6 @@ module.exports = {
         test: /\.(ts|tsx)$/,
         use: [
           {
-            loader: KumaUIWebpackPlugin.loader,
-          },
-          {
             loader: "babel-loader",
             options: {
               presets: [
@@ -52,6 +49,9 @@ module.exports = {
                 ],
               ],
             },
+          },
+          {
+            loader: KumaUIWebpackPlugin.loader,
           },
         ],
       },
