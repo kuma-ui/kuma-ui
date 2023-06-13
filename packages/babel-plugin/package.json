@@ -41,7 +41,6 @@
     "@babel/preset-typescript": "^7.21.4",
     "@types/babel__core": "^7.20.0",
     "@vitest/coverage-c8": "^0.31.4",
-    "babel-plugin-jsx": "^1.2.0",
     "babel-plugin-tester": "^11.0.4",
     "vitest": "^0.31.4"
   },

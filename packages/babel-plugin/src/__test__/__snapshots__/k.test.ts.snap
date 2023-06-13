@@ -5,7 +5,6 @@ exports[`k api > Snapshot tests (runtime: automatic) > basic usage should match 
 .kuma-1119741946 {font-size:24px;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
@@ -20,7 +19,6 @@ exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements sho
 .kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
@@ -35,7 +33,6 @@ exports[`k api > Snapshot tests (runtime: automatic) > using pseudo props should
 .kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"span\\", {
@@ -50,7 +47,6 @@ exports[`k api > Snapshot tests (runtime: automatic) > using responsive props sh
 .kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"a\\", {
@@ -65,7 +61,6 @@ exports[`k api > Snapshot tests (runtime: automatic) > using space props should 
 .kuma-110275621 {padding:2px;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
@@ -80,7 +75,6 @@ exports[`k api > Snapshot tests (runtime: classic) > basic usage should match sn
 .kuma-1119741946 {font-size:24px;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
     className: [\\"kuma-1119741946\\"].join(\\" \\")
@@ -94,7 +88,6 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements shoul
 .kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
     className: [\\"kuma-110275621\\"].join(\\" \\")
@@ -108,7 +101,6 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should m
 .kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 function App() {
   return /*#__PURE__*/React.createElement(\\"span\\", {
     className: [\\"kuma-110275621\\"].join(\\" \\")
@@ -122,7 +114,6 @@ exports[`k api > Snapshot tests (runtime: classic) > using responsive props shou
 .kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 function App() {
   return /*#__PURE__*/React.createElement(\\"a\\", {
     className: [\\"kuma-4054065355\\"].join(\\" \\")
@@ -136,7 +127,6 @@ exports[`k api > Snapshot tests (runtime: classic) > using space props should ma
 .kuma-110275621 {padding:2px;}
 
 import React from \\"react\\";
-import { k } from '@kuma-ui/core';
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
     className: [\\"kuma-110275621\\"].join(\\" \\")

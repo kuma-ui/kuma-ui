@@ -2,7 +2,7 @@ import { sheet } from "@kuma-ui/sheet";
 import type { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
-import { processHTMLTag } from "./processHTMLTag";
+import { processJSXHTMLTag } from "./processJSXHTMLTag";
 import { Node } from "@babel/core";
 import { collectImportedStyled } from "./collectImportedStyled";
 import { replaceK } from "./replaceK";
@@ -17,28 +17,8 @@ export const visitor = ({ types: t, template }: Core) => {
   let importedStyleFunctions: Record<string, string> = {};
 
   const visitor: PluginObj<PluginPass>["visitor"] = {
-    // JSXElement(path: NodePath<JSXElement>) {
-    //   const openingElement = path.get("openingElement");
-
-    //   if (t.isJSXOpeningElement(openingElement.node)) {
-    //     processHTMLTag(openingElement);
-    //   }
-    // },
-    CallExpression(path) {
-      const { node } = path;
-      if (
-        node.callee.type === "MemberExpression" &&
-        t.isIdentifier(node.callee.object) &&
-        node.callee.object.name === "React" &&
-        node.callee.property.type === "Identifier" &&
-        (node.callee.property.name === "createElement" ||
-          node.callee.property.name === "cloneElement")
-      ) {
-        processHTMLTag(path.get("arguments.1") as NodePath<t.ObjectExpression>);
-      }
-      if (node.callee.type === "Identifier" && node.callee.name === "_jsx") {
-        processHTMLTag(path.get("arguments.1") as NodePath<t.ObjectExpression>);
-      }
+    JSXOpeningElement(path: NodePath<t.JSXOpeningElement>) {
+      processJSXHTMLTag(path);
     },
     Program: {
       enter(path) {
