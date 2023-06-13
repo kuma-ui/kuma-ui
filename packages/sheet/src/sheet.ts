@@ -10,21 +10,28 @@ type ResponsiveStyle = {
   };
 };
 
-export interface Rule {
-  id: string;
-  css: string;
-}
+type SystemStyle = {
+  base: ResponsiveStyle["base"];
+  responsive: ResponsiveStyle["media"];
+  pseudo: {
+    key: string;
+    base: ResponsiveStyle["base"];
+    responsive: ResponsiveStyle["media"];
+  }[];
+};
+
+export { SystemStyle };
 
 export class Sheet {
   private static instance: Sheet;
-  private rules: Rule[];
+  private base: string[];
   private responsive: string[];
   private pseudo: string[];
 
   private css: string[];
 
   private constructor() {
-    this.rules = [];
+    this.base = [];
     this.responsive = [];
     this.pseudo = [];
     this.css = [];
@@ -37,15 +44,28 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addRule(css: string): string {
-    css = css.replace(cssPropertyRegex, "");
-    const id = "kuma-" + generateHash(css);
-    const existingRule = this.rules.find((rule) => rule.id === id);
-    if (!existingRule) this.rules.push({ id, css });
-    return id;
+  addRule(style: SystemStyle) {
+    const className = "kuma-" + generateHash(JSON.stringify(style));
+    this._addeBaseRule(className, style.base);
+    for (const [breakpoint, css] of Object.entries(style.responsive)) {
+      this._addMediaRule(className, css, breakpoint);
+    }
+    for (const [_, pseudo] of Object.entries(style.pseudo)) {
+      this._addPseudoRule(className, pseudo);
+    }
+    return className;
   }
 
-  addMediaRule(className: string, css: string, breakpoint: string): void {
+  private _addeBaseRule(className: string, css: string) {
+    css = css.replace(cssPropertyRegex, "");
+    this.base.push(`.${className}{${css}}`);
+  }
+
+  private _addMediaRule(
+    className: string,
+    css: string,
+    breakpoint: string
+  ): void {
     css = css.replace(cssPropertyRegex, "");
     const mediaCss =
       `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`.replace(
@@ -55,13 +75,19 @@ export class Sheet {
     this.responsive.push(mediaCss);
   }
 
-  addPseudoRule(className: string, css: string, pseudo: string): void {
-    css = css.replace(cssPropertyRegex, "");
-    const pseudoCss = `.${className}${pseudo} { ${css} }`.replace(
+  private _addPseudoRule(
+    className: string,
+    pseudo: SystemStyle["pseudo"][number]
+  ) {
+    const css = pseudo.base.replace(cssPropertyRegex, "");
+    const pseudoCss = `.${className}${pseudo.key} { ${css} }`.replace(
       removeSpacesExceptInPropertiesRegex,
       ""
     );
     this.pseudo.push(pseudoCss);
+    for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {
+      this._addMediaRule(`${className}${pseudo.key}`, _css, breakpoint);
+    }
   }
 
   /**
@@ -76,15 +102,7 @@ export class Sheet {
   }
 
   removeDuplicates() {
-    const hashMap = new Map<string, string>();
-    for (const rule of this.rules) {
-      if (hashMap.has(rule.id)) continue;
-      else hashMap.set(rule.id, rule.css);
-    }
-    this.rules = Array.from(hashMap, (entry) => ({
-      id: entry[0],
-      css: entry[1],
-    }));
+    this.base = [...new Set(this.base)];
     this.responsive = [...new Set(this.responsive)];
     this.pseudo = [...new Set(this.pseudo)];
     this.css = [...new Set(this.css)];
@@ -93,10 +111,7 @@ export class Sheet {
   getCSS(): string {
     this.removeDuplicates();
     return (
-      this.rules
-        .map((rule) => `.${rule.id} {${rule.css}}`)
-        .join("\n")
-        .replace(cssPropertyRegex, "") +
+      this.base.join("") +
       this.responsive.join("") +
       this.pseudo.join("") +
       this.css.join("")
@@ -104,7 +119,7 @@ export class Sheet {
   }
 
   reset() {
-    this.rules = [];
+    this.base = [];
     this.responsive = [];
     this.pseudo = [];
     this.css = [];

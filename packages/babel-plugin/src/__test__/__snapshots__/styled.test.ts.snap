@@ -23,7 +23,7 @@ function App() {
 
 exports[`styled function > Snapshot tests > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-110275621 {padding:2px;}.kuma-110275621:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
@@ -38,7 +38,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-110275621\\"].join(\\" \\")
+    className: [\\"kuma-2631981251\\"].join(\\" \\")
   }, \\"test\\");
 }
 "
@@ -46,7 +46,7 @@ function App() {
 
 exports[`styled function > Snapshot tests > using pseudo props should match snapshot 1`] = `
 "
-.kuma-110275621 {padding:2px;}.kuma-110275621:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
@@ -61,7 +61,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-110275621\\"].join(\\" \\")
+    className: [\\"kuma-2131929892\\"].join(\\" \\")
   }, \\"test\\");
 }
 "
@@ -69,7 +69,7 @@ function App() {
 
 exports[`styled function > Snapshot tests > using responsive props should match snapshot 1`] = `
 "
-.kuma-4054065355 {font-size:16px;}@media (min-width:576px){.kuma-4054065355{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
@@ -84,7 +84,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-4054065355\\"].join(\\" \\")
+    className: [\\"kuma-401969115\\"].join(\\" \\")
   }, \\"test\\");
 }
 "
@@ -92,7 +92,7 @@ function App() {
 
 exports[`styled function > Snapshot tests > using space props should match snapshot 1`] = `
 "
-.kuma-110275621 {padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.kuma-3206633536{padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
@@ -107,7 +107,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-110275621\\"].join(\\" \\")
+    className: [\\"kuma-3206633536\\"].join(\\" \\")
   }, \\"test\\");
 }
 "
