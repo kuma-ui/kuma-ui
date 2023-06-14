@@ -20,7 +20,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
 
   return {
     name: "kuma-ui",
-    enforce: "post",
+    enforce: "pre",
     async transform(code: string, id: string) {
       requireReact(code, id);
       if (id.includes("@kuma-ui")) return;
