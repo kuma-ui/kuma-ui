@@ -1,6 +1,6 @@
 import { NodePath, types as t } from "@babel/core";
 import { extractStyleProps } from "./extractStyleProps";
-import { sheet } from "@kuma-ui/sheet";
+import { sheet, SystemStyle } from "@kuma-ui/sheet";
 import { all } from "@kuma-ui/system";
 import { normalizePseudo } from "@kuma-ui/system";
 
@@ -11,19 +11,25 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   // so that the styled props don't get passed down as regular HTML attributes.
   path.node.attributes = filteredAttributes;
   if (Object.keys(styledProps).length > 0) {
-    const style = all(styledProps);
-    const className = sheet.addRule(style.base);
-    for (const [breakpoint, css] of Object.entries(style.media)) {
-      sheet.addMediaRule(className, css, breakpoint);
-    }
-    for (const [pseudoKey, pseudoValue] of Object.entries(pseudoProps)) {
+    const convertedPseudoProps: SystemStyle["pseudo"] = Object.entries(
+      pseudoProps
+    ).map(([pseudoKey, pseudoValue]) => {
       const pseudoStyle = all(pseudoValue);
-      const pseudo = normalizePseudo(pseudoKey);
-      sheet.addPseudoRule(className, pseudoStyle.base, pseudo);
-      for (const [breakpoint, css] of Object.entries(pseudoStyle.media)) {
-        sheet.addMediaRule(`${className}${pseudo}`, css, breakpoint);
-      }
-    }
+      return {
+        key: normalizePseudo(pseudoKey),
+        base: pseudoStyle.base,
+        responsive: pseudoStyle.media,
+      };
+    });
+
+    const style: SystemStyle = {
+      base: all(styledProps).base,
+      responsive: all(styledProps).media,
+      pseudo: convertedPseudoProps,
+    };
+
+    // Add the style rule to the sheet and get the generated class name.
+    const className = sheet.addRule(style);
 
     const classNameAttrs: t.Expression[] = [t.stringLiteral(className)];
 
