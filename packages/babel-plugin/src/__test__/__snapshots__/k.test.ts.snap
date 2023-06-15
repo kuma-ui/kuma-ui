@@ -134,3 +134,63 @@ function App() {
 }
 "
 `;
+
+exports[`k api > Snapshot tests (runtime: undefined) > basic usage should match snapshot 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <div className={[\\"kuma-4229161508\\"].join(\\" \\")}></div>;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using pseudo elements should match snapshot 1`] = `
+"
+.kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <div className={[\\"kuma-2631981251\\"].join(\\" \\")} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using pseudo props should match snapshot 1`] = `
+"
+.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <span className={[\\"kuma-2131929892\\"].join(\\" \\")} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using responsive props should match snapshot 1`] = `
+"
+.kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <a className={[\\"kuma-401969115\\"].join(\\" \\")} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using space props should match snapshot 1`] = `
+"
+.kuma-3206633536{padding:2px;}
+
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <div className={[\\"kuma-3206633536\\"].join(\\" \\")} />;
+}
+"
+`;

@@ -1,7 +1,7 @@
 import { babelTransform, getExpectSnapshot } from "./testUtils";
 
 describe("k api", () => {
-  describe.each([["classic" as const], ["automatic" as const]])(
+  describe.each([[undefined], ["classic" as const], ["automatic" as const]])(
     "Snapshot tests (runtime: %s)",
     (runtime) => {
       test("basic usage should match snapshot", () => {

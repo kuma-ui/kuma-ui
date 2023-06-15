@@ -3,7 +3,7 @@ import plugin from "../";
 
 export function babelTransform(
   code: string,
-  runtime: "classic" | "automatic" = "classic"
+  runtime?: "classic" | "automatic"
 ): BabelFileResult {
   const filename = "test.tsx";
   const result1 = transformSync(code, {
@@ -13,6 +13,10 @@ export function babelTransform(
 
   if (result1 === null || result1.code == null)
     throw new Error(`Could not transform`);
+
+  if (!runtime) {
+    return result1;
+  }
 
   const result2 = transformSync(result1.code, {
     presets: [

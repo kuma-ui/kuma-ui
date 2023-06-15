@@ -4,8 +4,9 @@ exports[`css function > Snapshot tests > basic usage should match snapshot 1`] =
 
 .kuma-944610715{color:red;}
 
+import React from "react";
+import { css } from '@kuma-ui/core';
 const style = "kuma-944610715";
-export {};
 
 `;
 
@@ -13,8 +14,9 @@ exports[`css function > Snapshot tests > using pseudo elements should match snap
 
 .kuma-3353610691{}.kuma-3353610691:after{color:blue;}
 
+import React from "react";
+import { css } from '@kuma-ui/core';
 const style = "kuma-3353610691";
-export {};
 
 `;
 
@@ -22,8 +24,9 @@ exports[`css function > Snapshot tests > using pseudo props should match snapsho
 
 .kuma-400375226{}.kuma-400375226:hover{color:red;}
 
+import React from "react";
+import { css } from '@kuma-ui/core';
 const style = "kuma-400375226";
-export {};
 
 `;
 
@@ -31,7 +34,8 @@ exports[`css function > Snapshot tests > using space props should match snapshot
 
 .kuma-3206633536{padding:2px;}
 
+import React from "react";
+import { css } from '@kuma-ui/core';
 const style = "kuma-3206633536";
-export {};
 
 `;
