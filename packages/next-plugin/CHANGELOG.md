@@ -1,5 +1,15 @@
 # @kuma-ui/next-plugin
 
+## 0.7.0
+
+### Minor Changes
+
+- 59b643c: feat(babel-plugin): support jsx runtime automatic
+
+### Patch Changes
+
+- @kuma-ui/webpack-plugin@0.6.2
+
 ## 0.6.1
 
 ### Patch Changes

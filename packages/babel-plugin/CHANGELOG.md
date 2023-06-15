@@ -1,5 +1,11 @@
 # @kuma-ui/babel-plugin
 
+## 0.9.0
+
+### Minor Changes
+
+- 59b643c: feat(babel-plugin): support jsx runtime automatic
+
 ## 0.8.0
 
 ### Minor Changes
