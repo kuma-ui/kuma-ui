@@ -71,20 +71,6 @@ const kumaUiConfig = (
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-typescript",
-                [
-                  "@babel/preset-react",
-                  {
-                    runtime: "classic",
-                  },
-                ],
-              ],
-            },
-          },
-          {
             loader: KumaUIWebpackPlugin.loader,
             options: {
               virtualLoader: !appDir,
