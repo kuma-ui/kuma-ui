@@ -1,4 +1,3 @@
-import React from "react";
 import type { FC, ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { k } from "@kuma-ui/core";
