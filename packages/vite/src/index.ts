@@ -14,17 +14,14 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
   }
   const cssLookup: { [key: string]: string } = {};
 
-  function filter(file: string) {
-    return /\.(t|j)(s|sx)?$/.test(file);
-  }
-
   return {
     name: "kuma-ui",
-    enforce: "post",
+    enforce: "pre",
     async transform(code: string, id: string) {
-      requireReact(code, id);
       if (id.includes("@kuma-ui")) return;
-      if (!filter(id)) return;
+      if (!/\.(t|j)(s|sx)?$/.test(id)) return;
+      if (!/import\s+.+\s+from\s+['"]\@kuma-ui\/core['"]/.test(code)) return;
+      requireReact(code, id);
       const result = await transform(code, id);
       if (!result?.code) return;
       const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);

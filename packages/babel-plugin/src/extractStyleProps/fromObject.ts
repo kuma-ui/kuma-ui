@@ -3,7 +3,7 @@ import { isStyledProp, PseudoProps, isPseudoProps } from "@kuma-ui/system";
 import { ExtractedStyleProps } from ".";
 
 export function extractStylePropsFromObjectExpression(
-  path: NodePath<t.ObjectExpression | t.CallExpression>,
+  path: NodePath<t.ObjectExpression | t.CallExpression | t.JSXOpeningElement>,
   objectExpression: t.ObjectExpression
 ): ExtractedStyleProps<NodePath<t.ObjectExpression>> {
   const styledProps: { [key: string]: string | number | (string | number)[] } =

@@ -77,20 +77,6 @@ const kumaUiConfig = (
               cssOutputDir: './.next/cache/kuma'
             },
           },
-          {
-            loader: "babel-loader",
-            options: {
-              presets: [
-                "@babel/preset-typescript",
-                [
-                  "@babel/preset-react",
-                  {
-                    runtime: "classic",
-                  },
-                ],
-              ],
-            },
-          },
         ],
       });
 
