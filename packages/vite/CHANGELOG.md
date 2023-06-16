@@ -1,5 +1,25 @@
 # @kuma-ui/vite
 
+## 0.5.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/babel-plugin@0.9.1
+  - @kuma-ui/sheet@0.5.1
+
+## 0.5.0
+
+### Minor Changes
+
+- 59b643c: feat(babel-plugin): support jsx runtime automatic
+
+### Patch Changes
+
+- Updated dependencies [59b643c]
+  - @kuma-ui/babel-plugin@0.9.0
+
 ## 0.4.3
 
 ### Patch Changes
