@@ -1,5 +1,13 @@
 # @kuma-ui/next-plugin
 
+## 0.7.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/webpack-plugin@0.6.3
+
 ## 0.7.0
 
 ### Minor Changes

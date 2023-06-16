@@ -1,5 +1,14 @@
 # @kuma-ui/babel-plugin
 
+## 0.9.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/system@0.6.2
+  - @kuma-ui/sheet@0.5.1
+
 ## 0.9.0
 
 ### Minor Changes
