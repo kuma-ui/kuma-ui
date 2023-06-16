@@ -1,11 +1,17 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
-  "changelog": ["@changesets/changelog-github", "poteboy/kuma-ui"],
-  "commit": false,
+  "changelog": ["@changesets/changelog-github", { "repo": "poteboy/kuma-ui" }],
+  "commit": true,
   "fixed": [],
   "linked": [],
-  "access": "restricted",
+  "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "next",
+    "website",
+    "next-app-router",
+    "react-vite-example",
+    "webpack"
+  ]
 }
