@@ -47,25 +47,33 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
         ) {
           classNameAttrs.push(attr.value.expression);
         }
-        return attr.value;
       }
     }
     // Combine existing and new classNames. This respects user-specified class names
     // and works with non-StringLiterals, as they'll be resolved at runtime.
     // E.g., <k.div className={styles.someClass} fontSize={24} /> keeps both classes.
-    path.node.attributes.push(
-      t.jsxAttribute(
-        t.jsxIdentifier("className"),
-        t.jSXExpressionContainer(
-          t.callExpression(
-            t.memberExpression(
-              t.arrayExpression(classNameAttrs),
-              t.identifier("join")
-            ),
-            [t.stringLiteral(" ")]
-          )
-        )
+    const joinedClassNameAttr = t.jSXExpressionContainer(
+      t.callExpression(
+        t.memberExpression(
+          t.arrayExpression(classNameAttrs),
+          t.identifier("join")
+        ),
+        [t.stringLiteral(" ")]
       )
     );
+    const existsClassNameAttr = path.node.attributes.find(
+      (attr): attr is t.JSXAttribute =>
+        t.isJSXAttribute(attr) && t.isJSXIdentifier(attr.name, { name: 'className' })
+    );
+    if (existsClassNameAttr) {
+      existsClassNameAttr.value = joinedClassNameAttr
+    } else {
+      path.node.attributes.push(
+        t.jsxAttribute(
+          t.jsxIdentifier("className"),
+          joinedClassNameAttr
+        )
+      );
+    }
   }
 };

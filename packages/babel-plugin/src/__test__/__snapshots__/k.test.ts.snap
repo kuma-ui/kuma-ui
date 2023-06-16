@@ -14,6 +14,20 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
+  });
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
@@ -83,6 +97,19 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+function App() {
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
+  });
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
@@ -143,6 +170,18 @@ import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
   return <div className={[\\"kuma-4229161508\\"].join(\\" \\")}></div>;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+import { k, css } from '@kuma-ui/core';
+function App() {
+  return <div className={[\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")} />;
 }
 "
 `;
