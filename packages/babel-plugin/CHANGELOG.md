@@ -1,5 +1,11 @@
 # @kuma-ui/babel-plugin
 
+## 0.10.0
+
+### Minor Changes
+
+- [#116](https://github.com/poteboy/kuma-ui/pull/116) [`9fc5b53`](https://github.com/poteboy/kuma-ui/commit/9fc5b53bc98e041496a9ea2e31265663fe986814) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix(babel-plugin): fix issue with rewriting className attribute in processJSXHTMLTag function
+
 ## 0.9.1
 
 ### Patch Changes
