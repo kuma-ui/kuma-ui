@@ -1,5 +1,13 @@
 # @kuma-ui/core
 
+## 0.4.2
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/system@0.6.2
+
 ## 0.4.1
 
 ### Patch Changes
