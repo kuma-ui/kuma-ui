@@ -7,11 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "next",
-    "website",
-    "next-app-router",
-    "react-vite-example",
-    "webpack"
-  ]
+  "ignore": []
 }
