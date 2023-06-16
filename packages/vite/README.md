@@ -1,9 +1,8 @@
 <div align="center">
-  <img src="media/logo.webp" alt="Kuma UI logo" width="300" />
+  <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 
 <h1 align='center'>Ultra Fast, Zero Runtime, Utility-First CSS-in-JS</h1>
-
 
 **[Documentation](https://kuma-ui.com)**
 
@@ -19,7 +18,6 @@
 </div>
 
 🐻‍❄️ Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
-
 
 ## Features
 
@@ -38,16 +36,37 @@
 ## Installation
 
 ```sh
-npm install @kuma-ui/core
+npm install -D @kuma-ui/core
 ```
 
-or 
+or
 
 ```sh
-yarn add @kuma-ui/core
+yarn add @kuma-ui/core -D
 ```
 
 ## Usage
+
+## styled API
+
+The styled API works just like styled-components or Emotion, allowing you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with these libraries.
+
+```tsx
+import { styled } from "@kuma-ui/core";
+
+const Box = styled("div")`
+  position: relative;
+  &:hover {
+    background-color: rgba(0, 0, 255, 0.5);
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+// Then use it like so:
+<Box>Hello, world!</Box>;
+```
 
 ### k object
 
@@ -72,7 +91,7 @@ The `css` function is another way to style your components. It takes an object o
 ```tsx
 import { css } from "@kuma-ui/core";
 
-const styles = css({ color: 'red', fontSize: '24px' });
+const styles = css({ color: "red", fontSize: "24px" });
 
 function App() {
   return <div className={styles}>Hello, world!</div>;
@@ -84,7 +103,7 @@ function App() {
 ### Next.js
 
 ```sh
-yarn add @kuma-ui/next-plugin
+yarn add @kuma-ui/next-plugin -D
 ```
 
 #### Pages Directory Version
@@ -123,7 +142,7 @@ module.exports = withKumaUI(nextConfig);
 ### Vite
 
 ```sh
-yarn add @kuma-ui/vite
+yarn add @kuma-ui/vite -D
 ```
 
 **vite.config.ts**
@@ -136,9 +155,7 @@ import KumaUI from "@kuma-ui/vite";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react({
-      jsxRuntime: "classic",
-    }),
+    react(),
     KumaUI(),
   ],
 });
@@ -157,8 +174,20 @@ kumaUI({
 });
 ```
 
+## Roadmap
+
+Our ultimate goal is to develop **a zero-runtime headless component library**. We're currently focusing on enhancing the core and expanding our range of components. We aim to create a unique library that allows users to pass style props, operates with zero runtime, and remains accessible. In the future, we plan to introduce a `kuma.config.js` that allows users to define their own variants, making Kuma UI a go-to tool for creating design systems with high performance.
+
+
 ## Contributing
 Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
+
+### Adding a changeset
+Don't forget to include a changeset as well, by running this command at the root of the project:
+
+```sh
+pnpm changeset
+```
 
 ## License
 MIT
