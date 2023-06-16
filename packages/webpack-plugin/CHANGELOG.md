@@ -1,5 +1,12 @@
 # @kuma-ui/webpack-plugin
 
+## 0.6.4
+
+### Patch Changes
+
+- Updated dependencies [[`9fc5b53`](https://github.com/poteboy/kuma-ui/commit/9fc5b53bc98e041496a9ea2e31265663fe986814)]:
+  - @kuma-ui/babel-plugin@0.10.0
+
 ## 0.6.3
 
 ### Patch Changes
