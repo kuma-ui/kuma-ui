@@ -14,7 +14,8 @@ export function collectImportedStyled(
   for (const importDeclaration of importDeclarations) {
     if (
       t.isImportDeclaration(importDeclaration.node) &&
-      importDeclaration.node.source.value === "@kuma-ui/core"
+      (importDeclaration.node.source.value === "@kuma-ui/core" ||
+        importDeclaration.node.source.value === "@kuma-ui/kit")
     ) {
       for (const specifier of importDeclaration.node.specifiers) {
         if (

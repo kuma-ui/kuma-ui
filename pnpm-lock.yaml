@@ -222,12 +222,18 @@ importers:
       '@babel/core':
         specifier: ^7.21.4
         version: 7.21.4
+      '@kuma-ui/kit':
+        specifier: workspace:^
+        version: link:../kit
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
       '@kuma-ui/system':
         specifier: workspace:^
         version: link:../system
+      ts-pattern:
+        specifier: ^5.0.1
+        version: 5.0.1
     devDependencies:
       '@babel/cli':
         specifier: ^7.21.0
@@ -275,6 +281,19 @@ importers:
       vitest:
         specifier: ^0.31.4
         version: 0.31.4
+
+  packages/kit:
+    dependencies:
+      '@kuma-ui/system':
+        specifier: workspace:^
+        version: link:../system
+    devDependencies:
+      '@types/react':
+        specifier: ^18.2.12
+        version: 18.2.12
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
 
   packages/next-plugin:
     dependencies:
@@ -2545,10 +2564,17 @@ packages:
   /@types/react-dom@18.2.1:
     resolution: {integrity: sha512-8QZEV9+Kwy7tXFmjJrp3XUKQSs9LTnE0KnoUb0YCguWBiNW0Yfb2iBMYZ08WPg35IR6P3Z0s00B15SwZnO26+w==}
     dependencies:
-      '@types/react': 18.0.32
+      '@types/react': 18.2.12
 
   /@types/react@18.0.32:
     resolution: {integrity: sha512-gYGXdtPQ9Cj0w2Fwqg5/ak6BcK3Z15YgjSqtyDizWUfx7mQ8drs0NBUzRRsAdoFVTO8kJ8L2TL8Skm7OFPnLUw==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.3
+      csstype: 3.1.2
+
+  /@types/react@18.2.12:
+    resolution: {integrity: sha512-ndmBMLCgn38v3SntMeoJaIrO6tGHYKMEBohCUmw8HoLLQdRMOIGXfeYaBTLe2lsFaSB3MOK1VXscYFnmLtTSmw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.3
@@ -8120,6 +8146,10 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
+
+  /ts-pattern@5.0.1:
+    resolution: {integrity: sha512-ZyNm28Lsg34Co5DS3e9DVyjlX2Y+2exkI4jqTKyU+9/OL6Y2fKOOuL8i+7no71o74C6mVS+UFoP3ekM3iCT1HQ==}
+    dev: false
 
   /tsconfig-paths@3.14.2:
     resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==}
