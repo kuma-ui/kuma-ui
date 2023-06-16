@@ -92,7 +92,7 @@ describe("k api", () => {
         const result = babelTransform(inputCode, runtime);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
-      })
+      });
     }
   );
 });

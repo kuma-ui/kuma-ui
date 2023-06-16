@@ -29,50 +29,43 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
     };
 
     // Add the style rule to the sheet and get the generated class name.
-    const className = sheet.addRule(style);
+    const generatedClassName = sheet.addRule(style);
 
-    const classNameAttrs: t.Expression[] = [t.stringLiteral(className)];
+    const generatedClassNameAttr = t.stringLiteral(generatedClassName);
+    const classNameAttrs: t.Expression[] = [generatedClassNameAttr];
 
-    for (const attr of filteredAttributes) {
-      if (
+    const existsClassNameAttr = path.node.attributes.find(
+      (attr): attr is t.JSXAttribute =>
         t.isJSXAttribute(attr) &&
-        t.isJSXIdentifier(attr.name) &&
-        attr.name.name === "className"
+        t.isJSXIdentifier(attr.name, { name: "className" })
+    );
+    if (existsClassNameAttr) {
+      if (t.isStringLiteral(existsClassNameAttr.value)) {
+        classNameAttrs.push(existsClassNameAttr.value);
+      }
+      if (
+        t.isJSXExpressionContainer(existsClassNameAttr.value) &&
+        t.isExpression(existsClassNameAttr.value.expression)
       ) {
-        if (t.isStringLiteral(attr.value)) {
-          classNameAttrs.push(attr.value);
-        } else if (
-          t.isJSXExpressionContainer(attr.value) &&
-          t.isExpression(attr.value.expression)
-        ) {
-          classNameAttrs.push(attr.value.expression);
-        }
+        classNameAttrs.push(existsClassNameAttr.value.expression);
       }
     }
     // Combine existing and new classNames. This respects user-specified class names
     // and works with non-StringLiterals, as they'll be resolved at runtime.
     // E.g., <k.div className={styles.someClass} fontSize={24} /> keeps both classes.
-    const joinedClassNameAttr = t.jSXExpressionContainer(
-      t.callExpression(
-        t.memberExpression(
-          t.arrayExpression(classNameAttrs),
-          t.identifier("join")
-        ),
-        [t.stringLiteral(" ")]
-      )
-    );
-    const existsClassNameAttr = path.node.attributes.find(
-      (attr): attr is t.JSXAttribute =>
-        t.isJSXAttribute(attr) && t.isJSXIdentifier(attr.name, { name: 'className' })
-    );
     if (existsClassNameAttr) {
-      existsClassNameAttr.value = joinedClassNameAttr
+      existsClassNameAttr.value = t.jSXExpressionContainer(
+        t.callExpression(
+          t.memberExpression(
+            t.arrayExpression(classNameAttrs),
+            t.identifier("join")
+          ),
+          [t.stringLiteral(" ")]
+        )
+      );
     } else {
       path.node.attributes.push(
-        t.jsxAttribute(
-          t.jsxIdentifier("className"),
-          joinedClassNameAttr
-        )
+        t.jsxAttribute(t.jsxIdentifier("className"), generatedClassNameAttr)
       );
     }
   }

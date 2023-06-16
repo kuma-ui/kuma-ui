@@ -64,7 +64,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/_jsx(Box, {
-    className: [\\"kuma-2631981251\\"].join(\\" \\"),
+    className: \\"kuma-2631981251\\",
     children: \\"test\\"
   });
 }
@@ -88,7 +88,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/_jsx(Box, {
-    className: [\\"kuma-2131929892\\"].join(\\" \\"),
+    className: \\"kuma-2131929892\\",
     children: \\"test\\"
   });
 }
@@ -112,7 +112,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/_jsx(Box, {
-    className: [\\"kuma-401969115\\"].join(\\" \\"),
+    className: \\"kuma-401969115\\",
     children: \\"test\\"
   });
 }
@@ -136,7 +136,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/_jsx(Box, {
-    className: [\\"kuma-3206633536\\"].join(\\" \\"),
+    className: \\"kuma-3206633536\\",
     children: \\"test\\"
   });
 }
@@ -201,7 +201,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-2631981251\\"].join(\\" \\")
+    className: \\"kuma-2631981251\\"
   }, \\"test\\");
 }
 "
@@ -223,7 +223,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-2131929892\\"].join(\\" \\")
+    className: \\"kuma-2131929892\\"
   }, \\"test\\");
 }
 "
@@ -245,7 +245,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-401969115\\"].join(\\" \\")
+    className: \\"kuma-401969115\\"
   }, \\"test\\");
 }
 "
@@ -267,7 +267,7 @@ const Box = props => {
 };
 function App() {
   return /*#__PURE__*/React.createElement(Box, {
-    className: [\\"kuma-3206633536\\"].join(\\" \\")
+    className: \\"kuma-3206633536\\"
   }, \\"test\\");
 }
 "
@@ -324,7 +324,7 @@ const Box = props => {
   return <div {...props} className={combinedClassName} />;
 };
 function App() {
-  return <Box className={[\\"kuma-2631981251\\"].join(\\" \\")}>test</Box>;
+  return <Box className=\\"kuma-2631981251\\">test</Box>;
 }
 "
 `;
@@ -342,7 +342,7 @@ const Box = props => {
   return <span {...props} className={combinedClassName} />;
 };
 function App() {
-  return <Box className={[\\"kuma-2131929892\\"].join(\\" \\")}>test</Box>;
+  return <Box className=\\"kuma-2131929892\\">test</Box>;
 }
 "
 `;
@@ -360,7 +360,7 @@ const Box = props => {
   return <a {...props} className={combinedClassName} />;
 };
 function App() {
-  return <Box className={[\\"kuma-401969115\\"].join(\\" \\")}>test</Box>;
+  return <Box className=\\"kuma-401969115\\">test</Box>;
 }
 "
 `;
@@ -378,7 +378,7 @@ const Box = props => {
   return <div {...props} className={combinedClassName} />;
 };
 function App() {
-  return <Box className={[\\"kuma-3206633536\\"].join(\\" \\")}>test</Box>;
+  return <Box className=\\"kuma-3206633536\\">test</Box>;
 }
 "
 `;
