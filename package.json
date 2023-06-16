@@ -27,7 +27,8 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx}": "yarn lint:fix"
+    "src/**/*.{ts,tsx}": "yarn lint:fix",
+    "./README.md": "node scripts/sync-files.js"
   },
   "scripts": {
     "bootstrap": "pnpm install",
