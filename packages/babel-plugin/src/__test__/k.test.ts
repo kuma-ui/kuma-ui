@@ -73,6 +73,26 @@ describe("k api", () => {
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
+
+      test("using className prop should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { k, css } from '@kuma-ui/core'
+        function App() {
+          return (
+            <k.div
+              p={2}
+              _hover={{ color: 'red' }}
+              className={css({ boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)' })}
+            />
+          )
+        }
+        `;
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
     }
   );
 });

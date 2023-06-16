@@ -8,7 +8,21 @@ import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
-    className: [\\"kuma-4229161508\\"].join(\\" \\")
+    className: \\"kuma-4229161508\\"
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(\\"div\\", {
+    className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
   });
 }
 "
@@ -22,7 +36,7 @@ import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
-    className: [\\"kuma-2631981251\\"].join(\\" \\")
+    className: \\"kuma-2631981251\\"
   });
 }
 "
@@ -36,7 +50,7 @@ import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"span\\", {
-    className: [\\"kuma-2131929892\\"].join(\\" \\")
+    className: \\"kuma-2131929892\\"
   });
 }
 "
@@ -50,7 +64,7 @@ import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"a\\", {
-    className: [\\"kuma-401969115\\"].join(\\" \\")
+    className: \\"kuma-401969115\\"
   });
 }
 "
@@ -64,7 +78,7 @@ import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
   return /*#__PURE__*/_jsx(\\"div\\", {
-    className: [\\"kuma-3206633536\\"].join(\\" \\")
+    className: \\"kuma-3206633536\\"
   });
 }
 "
@@ -77,7 +91,20 @@ exports[`k api > Snapshot tests (runtime: classic) > basic usage should match sn
 import React from \\"react\\";
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
-    className: [\\"kuma-4229161508\\"].join(\\" \\")
+    className: \\"kuma-4229161508\\"
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+function App() {
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
   });
 }
 "
@@ -90,7 +117,7 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements shoul
 import React from \\"react\\";
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
-    className: [\\"kuma-2631981251\\"].join(\\" \\")
+    className: \\"kuma-2631981251\\"
   });
 }
 "
@@ -103,7 +130,7 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should m
 import React from \\"react\\";
 function App() {
   return /*#__PURE__*/React.createElement(\\"span\\", {
-    className: [\\"kuma-2131929892\\"].join(\\" \\")
+    className: \\"kuma-2131929892\\"
   });
 }
 "
@@ -116,7 +143,7 @@ exports[`k api > Snapshot tests (runtime: classic) > using responsive props shou
 import React from \\"react\\";
 function App() {
   return /*#__PURE__*/React.createElement(\\"a\\", {
-    className: [\\"kuma-401969115\\"].join(\\" \\")
+    className: \\"kuma-401969115\\"
   });
 }
 "
@@ -129,7 +156,7 @@ exports[`k api > Snapshot tests (runtime: classic) > using space props should ma
 import React from \\"react\\";
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
-    className: [\\"kuma-3206633536\\"].join(\\" \\")
+    className: \\"kuma-3206633536\\"
   });
 }
 "
@@ -142,7 +169,19 @@ exports[`k api > Snapshot tests (runtime: undefined) > basic usage should match 
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className={[\\"kuma-4229161508\\"].join(\\" \\")}></div>;
+  return <div className=\\"kuma-4229161508\\"></div>;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using className prop should match snapshot 1`] = `
+"
+.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
+
+import React from \\"react\\";
+import { k, css } from '@kuma-ui/core';
+function App() {
+  return <div className={[\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")} />;
 }
 "
 `;
@@ -154,7 +193,7 @@ exports[`k api > Snapshot tests (runtime: undefined) > using pseudo elements sho
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className={[\\"kuma-2631981251\\"].join(\\" \\")} />;
+  return <div className=\\"kuma-2631981251\\" />;
 }
 "
 `;
@@ -166,7 +205,7 @@ exports[`k api > Snapshot tests (runtime: undefined) > using pseudo props should
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <span className={[\\"kuma-2131929892\\"].join(\\" \\")} />;
+  return <span className=\\"kuma-2131929892\\" />;
 }
 "
 `;
@@ -178,7 +217,7 @@ exports[`k api > Snapshot tests (runtime: undefined) > using responsive props sh
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <a className={[\\"kuma-401969115\\"].join(\\" \\")} />;
+  return <a className=\\"kuma-401969115\\" />;
 }
 "
 `;
@@ -190,7 +229,7 @@ exports[`k api > Snapshot tests (runtime: undefined) > using space props should 
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className={[\\"kuma-3206633536\\"].join(\\" \\")} />;
+  return <div className=\\"kuma-3206633536\\" />;
 }
 "
 `;
