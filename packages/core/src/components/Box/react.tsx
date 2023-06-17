@@ -9,6 +9,12 @@ type BoxProps = StyledProps &
 
 type BoxComponent<T extends As = "div"> = ComponentWithAs<T, BoxProps>;
 
+/**
+ * Box is the most abstract component in Kuma UI, providing a base upon which all other components are built.
+ * It renders a div element by default, and can accept any system style properties for extensive customization.
+ *
+ * @see — Further documentation will be available in the future.
+ */
 const Box: BoxComponent = <T extends As = "div">({
   as: Component = "div",
   children,
