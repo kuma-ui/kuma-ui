@@ -1,14 +1,24 @@
 import { BabelFileResult, transformSync } from "@babel/core";
 import plugin from "../";
-import { types, template } from "@babel/core";
 
 export function babelTransform(
   code: string,
-  runtime: "classic" | "automatic" = "classic"
-) {
+  runtime?: "classic" | "automatic"
+): BabelFileResult {
   const filename = "test.tsx";
-  let result: BabelFileResult | null = null;
-  result = transformSync(code, {
+  const result1 = transformSync(code, {
+    plugins: [plugin],
+    filename,
+  });
+
+  if (result1 === null || result1.code == null)
+    throw new Error(`Could not transform`);
+
+  if (!runtime) {
+    return result1;
+  }
+
+  const result2 = transformSync(result1.code, {
     presets: [
       "@babel/preset-typescript",
       [
@@ -21,18 +31,13 @@ export function babelTransform(
     filename,
   });
 
-  if (result === null || result.code == null)
+  if (result2 === null || result2.code == null)
     throw new Error(`Could not transform`);
 
-  result = transformSync(result.code, {
-    plugins: [plugin({ types, template })],
-    filename,
-  });
-
-  if (result === null || result.code == null)
-    throw new Error(`Could not transform`);
-
-  return result;
+  return {
+    metadata: result1.metadata,
+    code: result2.code,
+  };
 }
 
 export function getExpectSnapshot(result: BabelFileResult) {

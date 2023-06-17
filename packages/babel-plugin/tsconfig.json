@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {},
     "rootDir": "src/",
-    "types": ["node", "vitest/globals"],
+    "types": ["node"],
     "declaration": true,
     "declarationDir": "dist"
   },

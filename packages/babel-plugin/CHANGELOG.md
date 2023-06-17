@@ -1,5 +1,40 @@
 # @kuma-ui/babel-plugin
 
+## 0.10.0
+
+### Minor Changes
+
+- [#116](https://github.com/poteboy/kuma-ui/pull/116) [`9fc5b53`](https://github.com/poteboy/kuma-ui/commit/9fc5b53bc98e041496a9ea2e31265663fe986814) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix(babel-plugin): fix issue with rewriting className attribute in processJSXHTMLTag function
+
+## 0.9.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/system@0.6.2
+  - @kuma-ui/sheet@0.5.1
+
+## 0.9.0
+
+### Minor Changes
+
+- 59b643c: feat(babel-plugin): support jsx runtime automatic
+
+## 0.8.0
+
+### Minor Changes
+
+- 558823e: fix classname hash
+
+### Patch Changes
+
+- 05467cf: test(babel-plugin): add styled function test
+- 8c7f34d: test(babel-plugin): add generated css to snapshots
+- Updated dependencies [558823e]
+  - @kuma-ui/sheet@0.5.0
+  - @kuma-ui/system@0.6.1
+
 ## 0.7.0
 
 ### Minor Changes

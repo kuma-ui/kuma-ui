@@ -31,9 +31,7 @@ import kumaUI from "@kuma-ui/vite";
 
 export default defineConfig({
   plugins: [
-    react({
-      jsxRuntime: "classic",
-    }),
+    react(),
     kumaUI({
       breakpoints: { sm: "400px", md: "700px" },
     }),

@@ -25,7 +25,10 @@ export function extractStyleProps<
   T extends NodePath<t.JSXOpeningElement> | NodePath<t.ObjectExpression>
 >(path: T): ExtractedStyleProps<T> {
   if (t.isJSXOpeningElement(path.node)) {
-    return extractStylePropsFromJSX(path.node) as ExtractedStyleProps<T>;
+    return extractStylePropsFromJSX(
+      path as NodePath<t.JSXOpeningElement>,
+      path.node
+    ) as ExtractedStyleProps<T>;
   } else {
     return extractStylePropsFromObjectExpression(
       path as NodePath<t.ObjectExpression>,

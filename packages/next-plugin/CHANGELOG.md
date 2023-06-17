@@ -1,5 +1,36 @@
 # @kuma-ui/next-plugin
 
+## 0.7.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @kuma-ui/webpack-plugin@0.6.4
+
+## 0.7.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/webpack-plugin@0.6.3
+
+## 0.7.0
+
+### Minor Changes
+
+- 59b643c: feat(babel-plugin): support jsx runtime automatic
+
+### Patch Changes
+
+- @kuma-ui/webpack-plugin@0.6.2
+
+## 0.6.1
+
+### Patch Changes
+
+- @kuma-ui/webpack-plugin@0.6.1
+
 ## 0.6.0
 
 ### Minor Changes

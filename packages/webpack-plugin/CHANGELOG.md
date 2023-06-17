@@ -1,5 +1,38 @@
 # @kuma-ui/webpack-plugin
 
+## 0.6.4
+
+### Patch Changes
+
+- Updated dependencies [[`9fc5b53`](https://github.com/poteboy/kuma-ui/commit/9fc5b53bc98e041496a9ea2e31265663fe986814)]:
+  - @kuma-ui/babel-plugin@0.10.0
+
+## 0.6.3
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+- Updated dependencies [8af4f8d]
+  - @kuma-ui/babel-plugin@0.9.1
+  - @kuma-ui/sheet@0.5.1
+
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies [59b643c]
+  - @kuma-ui/babel-plugin@0.9.0
+
+## 0.6.1
+
+### Patch Changes
+
+- Updated dependencies [558823e]
+- Updated dependencies [05467cf]
+- Updated dependencies [8c7f34d]
+  - @kuma-ui/babel-plugin@0.8.0
+  - @kuma-ui/sheet@0.5.0
+
 ## 0.6.0
 
 ### Minor Changes

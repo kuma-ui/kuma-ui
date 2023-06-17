@@ -1,5 +1,17 @@
 # @kuma-ui/sheet
 
+## 0.5.1
+
+### Patch Changes
+
+- 8af4f8d: chore: Automate synchronization of README.md across packages.
+
+## 0.5.0
+
+### Minor Changes
+
+- 558823e: fix classname hash
+
 ## 0.4.0
 
 ### Minor Changes
