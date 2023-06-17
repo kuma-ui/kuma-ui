@@ -1,0 +1,23 @@
+{
+  "github_link": {
+    "title": "Kuma UI",
+    "href": "https://github.com/poteboy/kuma-ui",
+    "newWindow": true
+  },
+  "index": {
+    "title": "Home",
+    "type": "page"
+  },
+  "frameworks": {
+    "title": "Frameworks",
+    "type": "page"
+  },
+  "fruits": {
+    "title": "Fruits",
+    "type": "page"
+  },
+  "about": {
+    "title": "About",
+    "type": "page"
+  }
+}

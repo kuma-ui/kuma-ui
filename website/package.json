@@ -3,25 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3147",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@kuma-ui/core": "workspace:*",
-    "@kuma-ui/next-plugin": "workspace:*",
     "@types/node": "^18.15.11",
-    "@types/react": "^18.0.32",
-    "@types/react-dom": "18.2.1",
-    "@vercel/analytics": "^1.0.1",
+    "@types/react": "18.2.12",
+    "@types/react-dom": "18.2.5",
+    "eslint": "^8.0.1",
     "eslint-config-next": "13.3.4",
-    "gray-matter": "^4.0.3",
-    "highlight.js": "^11.8.0",
-    "next": "^13.4.4",
+    "next": "^13.3.4",
+    "nextra": "^2.7.1",
+    "nextra-theme-docs": "^2.7.1",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
-    "react-markdown": "^8.0.7",
-    "remark-gfm": "^3.0.1"
+    "typescript": "^5.0.4"
   }
 }
