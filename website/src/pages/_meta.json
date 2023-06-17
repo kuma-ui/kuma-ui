@@ -5,19 +5,7 @@
     "newWindow": true
   },
   "index": {
-    "title": "Home",
-    "type": "page"
-  },
-  "frameworks": {
-    "title": "Frameworks",
-    "type": "page"
-  },
-  "fruits": {
-    "title": "Fruits",
-    "type": "page"
-  },
-  "about": {
-    "title": "About",
+    "title": "Docs",
     "type": "page"
   }
 }
