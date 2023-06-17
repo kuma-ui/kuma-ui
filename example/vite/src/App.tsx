@@ -1,16 +1,10 @@
-import { k, styled, css } from "@kuma-ui/core";
+import { k, styled, css, Box } from "@kuma-ui/core";
 
 function App() {
   return (
-    <ResponsiveTest>
-      <div className={text}>hello</div>
-      <Text color="blue" _hover={{ bg: "red" }}>
-        world
-      </Text>
-      <k.button p="10px 12px" fontSize={16} disabled>
-        button
-      </k.button>
-    </ResponsiveTest>
+    <div>
+      <Box fontSize={24}>hello</Box>
+    </div>
   );
 }
 
