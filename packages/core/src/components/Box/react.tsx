@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
