@@ -3,7 +3,9 @@ import { k, styled, css, Box } from "@kuma-ui/core";
 function App() {
   return (
     <div>
-      <Box fontSize={24}>hello</Box>
+      <Box as="a" href="">
+        hello
+      </Box>
     </div>
   );
 }

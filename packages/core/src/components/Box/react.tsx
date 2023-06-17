@@ -1,21 +1,20 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
-import { componentList } from "../componentList";
+import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
 
-type BoxProps<T extends keyof JSX.IntrinsicElements> = {
-  as?: T;
-  children?: ReactNode;
-} & JSX.IntrinsicElements[T] &
-  StyledProps &
-  Partial<PseudoProps>;
+type BoxProps = StyledProps &
+  Partial<PseudoProps> & {
+    children?: ReactNode;
+  };
 
-function Box<T extends keyof JSX.IntrinsicElements = "div">({
-  as,
+type BoxComponent<T extends As = "div"> = ComponentWithAs<T, BoxProps>;
+
+const Box: BoxComponent = <T extends As = "div">({
+  as: Component = "div",
   children,
   ...props
-}: BoxProps<T>) {
-  const Component = as || "div";
-  return React.createElement(Component, props, children);
-}
+}: MergeWithAs<PropsOf<T>, BoxProps>) =>
+  React.createElement(Component, props, children);
 
-export { Box, type BoxProps };
+export { Box, type BoxComponent, BoxProps };
