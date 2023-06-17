@@ -4,6 +4,7 @@ export type UnionToIntersection<U> = (
   ? I
   : never;
 
+// Preserving autocompletion with the String type
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type _String = string & {};
 

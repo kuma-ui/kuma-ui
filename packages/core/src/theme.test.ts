@@ -2,7 +2,7 @@ import { createTheme } from "./theme";
 import { describe, expect, test, expectTypeOf } from "vitest";
 
 describe("createTheme", () => {
-  test("", () => {
+  test("should convert color theme object to expected format", () => {
     const theme = createTheme({
       colors: {
         red: "#red",
@@ -49,7 +49,7 @@ describe("createTheme", () => {
     }>();
   });
 
-  test("", () => {
+  test("should return an empty theme when no colors are provided", () => {
     const theme = createTheme({});
 
     expect(theme).toEqual({

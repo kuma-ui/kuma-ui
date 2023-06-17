@@ -19,7 +19,7 @@ type ThemeResult<T extends ThemeInput> = Pretty<{
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Theme {}
 
-//　@ts-expect-error type
+//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
 type ThemeColors = Theme["colors"];
 
 export type ThemeSystem = {

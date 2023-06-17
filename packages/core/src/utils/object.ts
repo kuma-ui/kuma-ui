@@ -9,6 +9,18 @@ export type NestedObject<T = unknown> = {
   [_: ObjectKey]: T | NestedObject<T>;
 };
 
+/**
+ * Flattening an object
+ * input
+ * const a = {
+ *   b: { c: 'd' }
+ * }
+ *
+ * output
+ * const a = {
+ *   b.c: 'd'
+ * }
+ */
 export function flattenObject<const T, T2 extends NestedObject<T>>(
   object: T2
 ): FlattenObject<T2> {
@@ -32,6 +44,18 @@ export function flattenObject<const T, T2 extends NestedObject<T>>(
   return result;
 }
 
+/**
+ * Flattening an object
+ * input
+ * const a = {
+ *   b: { c: 'd' }
+ * }
+ *
+ * output
+ * const a = {
+ *   b.c: 'd'
+ * }
+ */
 export type FlattenObject<
   T extends NestedObject,
   RestKey extends string = ""

@@ -2,7 +2,7 @@ import { flattenObject } from "./object";
 import { describe, expect, test, expectTypeOf } from "vitest";
 
 describe("flattenObject", () => {
-  test("", () => {
+  test("should flatten the object and map properties correctly", () => {
     const flatten = flattenObject({
       colors: {
         red: "#red",
