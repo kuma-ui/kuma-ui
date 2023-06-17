@@ -1,4 +1,4 @@
-import { Box, Flex, Spacer } from "@kuma-ui/core";
+import { Box, Flex, Spacer, Text } from "@kuma-ui/core";
 
 function App() {
   return (
@@ -7,7 +7,11 @@ function App() {
         hello
       </Box>
       <Spacer size={4} />
-      <Flex>hello</Flex>
+      <Flex flexDir="row">
+        <Text as="p">hello</Text>
+        <Spacer size={8} horizontal />
+        <Text>hello</Text>
+      </Flex>
     </div>
   );
 }
