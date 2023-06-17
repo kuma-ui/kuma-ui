@@ -8,7 +8,7 @@ import { collectImportedStyled } from "./collectImportedStyled";
 import { replaceK } from "./replaceK";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 import { processCSS } from "./processCSS";
-import { processKit } from "./kit/processKit";
+import { processComponents } from "./components/processComponents";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -39,7 +39,7 @@ export const visitor = ({ types: t, template }: Core) => {
           importedStyleFunctions
         );
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
-        processKit(path, importedStyleFunctions);
+        processComponents(path, importedStyleFunctions);
       },
       exit() {
         (this.file.metadata as { css: string }).css = sheet.getCSS();

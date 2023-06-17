@@ -222,9 +222,9 @@ importers:
       '@babel/core':
         specifier: ^7.21.4
         version: 7.21.4
-      '@kuma-ui/kit':
+      '@kuma-ui/core':
         specifier: workspace:^
-        version: link:../kit
+        version: link:../core
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet

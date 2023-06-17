@@ -18,6 +18,4 @@ function Box<T extends keyof JSX.IntrinsicElements = "div">({
   return React.createElement(Component, props, children);
 }
 
-Box.name = componentList["Box"];
-
 export { Box, type BoxProps };

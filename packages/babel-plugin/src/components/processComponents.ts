@@ -1,9 +1,9 @@
 import { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
-import { componentList } from "@kuma-ui/kit";
+import { componentList } from "@kuma-ui/core/dist/components/componentList";
 import { match } from "ts-pattern";
 import { handleBox } from "./handlers";
 
-export const processKit = (
+export const processComponents = (
   nodePath: NodePath<t.Program>,
   importedStyleFunctions: Record<string, string>
 ) => {
