@@ -6,7 +6,7 @@ type SpacerProps = StyledProps &
   Partial<PseudoProps> & {
     children?: ReactNode;
   } & {
-    size?: number | string;
+    size?: number;
     horizontal?: boolean;
   };
 

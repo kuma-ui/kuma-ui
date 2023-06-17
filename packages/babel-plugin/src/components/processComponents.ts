@@ -7,6 +7,7 @@ import {
   handleSpacer,
   handleText,
   handleButton,
+  handleHeading,
 } from "./handlers";
 
 export const processComponents = (
@@ -28,7 +29,8 @@ export const processComponents = (
             .with("Flex", () => handleFlex(path))
             .with("Spacer", () => handleSpacer(path))
             .with("Text", () => handleText(path))
-            .with("Button", () => handleButton(path));
+            .with("Button", () => handleButton(path))
+            .with("Heading", () => handleHeading(path));
         }
       }
     },
