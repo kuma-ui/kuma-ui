@@ -1,7 +1,7 @@
 import { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
 import { componentList } from "@kuma-ui/core/dist/components/componentList";
 import { match } from "ts-pattern";
-import { handleBox, handleFlex } from "./handlers";
+import { handleBox, handleFlex, handleSpacer } from "./handlers";
 
 export const processComponents = (
   nodePath: NodePath<t.Program>,
@@ -19,7 +19,8 @@ export const processComponents = (
         if (componentType) {
           match(componentType)
             .with("Box", () => handleBox(path))
-            .with("Flex", () => handleFlex(path));
+            .with("Flex", () => handleFlex(path))
+            .with("Spacer", () => handleSpacer(path));
         }
       }
     },
