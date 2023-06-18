@@ -1,54 +1,44 @@
-import { k, styled, css } from "@kuma-ui/core";
+import {
+  Box,
+  Flex,
+  Spacer,
+  Text,
+  Button,
+  Heading,
+  styled,
+  k,
+} from "@kuma-ui/core";
+
+const className = "hello";
+const row = "row";
 
 function App() {
   return (
-    <ResponsiveTest>
-      <div className={text}>hello</div>
-      <Text color="blue" _hover={{ bg: "red" }}>
-        world
-      </Text>
-      <k.button p="10px 12px" fontSize={16} disabled>
-        button
-      </k.button>
-    </ResponsiveTest>
+    <Box
+      as="main"
+      display="flex"
+      flexDir={["column", "row"]}
+      className={className}
+    >
+      <Heading as="h3" className="hello">
+        hello
+      </Heading>
+      <Spacer size={4} />
+      <Flex flexDir={`column`}>
+        <Text as="p" fontSize={24}>
+          hello
+        </Text>
+        <Spacer size={8} horizontal />
+        <Text>hello</Text>
+        <Button>hello</Button>
+      </Flex>
+      <HelloWorld>hello world</HelloWorld>
+    </Box>
   );
 }
 
-export default App;
-
-const Text = styled("p")`
+const HelloWorld = styled("p")`
   color: red;
 `;
 
-const text = css({
-  color: "red",
-  p: [2, 4],
-  _hover: {
-    color: "black",
-  },
-});
-
-const ResponsiveTest = styled("div")`
-  position: relative;
-  width: 300px;
-  height: 300px;
-  background-color: rgba(255, 0, 0, 0.5);
-
-  &:hover {
-    background-color: rgba(0, 0, 255, 0.5);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    border-top: 5px solid red;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top: 5px solid blue;
-  }
-`;
+export default App;
