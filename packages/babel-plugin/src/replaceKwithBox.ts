@@ -18,7 +18,6 @@ export const replaceKwithBox = (
   importedStyleFunctions: Record<string, string>
 ) => {
   let boxName: string = importedStyleFunctions["Box"];
-  let isImportBox = false;
 
   node.traverse({
     JSXElement(path) {
@@ -30,17 +29,19 @@ export const replaceKwithBox = (
           name: importedStyleFunctions["k"],
         })
       ) {
-        if(!isImportBox) {
-          if (!boxName) {
-            const localBoxName = "__Box";
-            const reactImportDeclaration = t.importDeclaration(
-              [t.importSpecifier(t.identifier(localBoxName), t.identifier("Box"))],
-              t.stringLiteral("@kuma-ui/core")
-            );
-            node.unshiftContainer("body", reactImportDeclaration);
-            boxName = localBoxName;
-          }
-          isImportBox = true
+        if (!boxName) {
+          const localBoxName = "__Box";
+          const reactImportDeclaration = t.importDeclaration(
+            [
+              t.importSpecifier(
+                t.identifier(localBoxName),
+                t.identifier("Box")
+              ),
+            ],
+            t.stringLiteral("@kuma-ui/core")
+          );
+          node.unshiftContainer("body", reactImportDeclaration);
+          boxName = localBoxName;
         }
         if (
           closingElement &&

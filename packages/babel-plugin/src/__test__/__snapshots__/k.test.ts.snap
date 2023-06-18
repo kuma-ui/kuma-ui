@@ -16,6 +16,26 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: automatic) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\",
+    children: /*#__PURE__*/_jsx(__Box, {
+      as: \\"div\\",
+      className: \\"kuma-4229161508\\"
+    })
+  });
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
@@ -111,6 +131,24 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: classic) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+function App() {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\"
+  }, /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\"
+  }));
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
@@ -195,6 +233,19 @@ import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
   return <__Box as=\\"div\\" className=\\"kuma-4229161508\\"></__Box>;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <__Box as=\\"div\\" className=\\"kuma-4229161508\\"><__Box as=\\"div\\" className=\\"kuma-4229161508\\"></__Box></__Box>;
 }
 "
 `;
