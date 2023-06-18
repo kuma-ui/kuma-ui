@@ -12,21 +12,36 @@ import printAST from "ast-pretty-print";
  * @param {typeof types} t - The Babel types object.
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
-export const replaceK = (
+export const replaceKwithBox = (
   node: NodePath<types.Program>,
   t: typeof types,
   importedStyleFunctions: Record<string, string>
 ) => {
+  let boxName: string = importedStyleFunctions["Box"];
+  let isImportBox = false;
+
   node.traverse({
     JSXElement(path) {
       const { openingElement, closingElement } = path.node;
-
+      importedStyleFunctions["Box"];
       if (
         t.isJSXMemberExpression(openingElement.name) &&
         t.isJSXIdentifier(openingElement.name.object, {
           name: importedStyleFunctions["k"],
         })
       ) {
+        if(!isImportBox) {
+          if (!boxName) {
+            const localBoxName = "__Box";
+            const reactImportDeclaration = t.importDeclaration(
+              [t.importSpecifier(t.identifier(localBoxName), t.identifier("Box"))],
+              t.stringLiteral("@kuma-ui/core")
+            );
+            node.unshiftContainer("body", reactImportDeclaration);
+            boxName = localBoxName;
+          }
+          isImportBox = true
+        }
         if (
           closingElement &&
           t.isJSXMemberExpression(closingElement.name) &&
@@ -34,9 +49,16 @@ export const replaceK = (
             name: importedStyleFunctions["k"],
           })
         ) {
-          closingElement.name = openingElement.name.property;
+          closingElement.name = t.jsxIdentifier(boxName);
         }
-        openingElement.name = openingElement.name.property;
+        openingElement.attributes = [
+          t.jsxAttribute(
+            t.jsxIdentifier("as"),
+            t.stringLiteral(openingElement.name.property.name)
+          ),
+          ...openingElement.attributes,
+        ];
+        openingElement.name = t.jsxIdentifier(boxName);
       }
     },
   });
