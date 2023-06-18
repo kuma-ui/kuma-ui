@@ -5,7 +5,7 @@ import type { Core } from "./core";
 import { processJSXHTMLTag } from "./processJSXHTMLTag";
 import { Node } from "@babel/core";
 import { collectImportedStyled } from "./collectImportedStyled";
-import { replaceK } from "./replaceK";
+import { replaceKwithBox } from "./replaceKwithBox";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 import { processCSS } from "./processCSS";
 import { processComponents } from "./components/processComponents";
@@ -28,7 +28,7 @@ export const visitor = ({ types: t, template }: Core) => {
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
         // Replace the 'k' function from '@kuma-ui/core' with the corresponding HTML tag
-        replaceK(path, t, importedStyleFunctions);
+        replaceKwithBox(path, t, importedStyleFunctions);
         // Process CSS function calls and generate the hashed classNames
         processCSS(path, t, template, importedStyleFunctions);
         // Process TaggedTemplateExpressions with styled components and generate the hashed classNames

@@ -282,19 +282,6 @@ importers:
         specifier: ^0.31.4
         version: 0.31.4
 
-  packages/kit:
-    dependencies:
-      '@kuma-ui/system':
-        specifier: workspace:^
-        version: link:../system
-    devDependencies:
-      '@types/react':
-        specifier: ^18.2.12
-        version: 18.2.12
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-
   packages/next-plugin:
     dependencies:
       '@babel/preset-env':
