@@ -1,5 +1,12 @@
-import { Project, Node } from "ts-morph";
+import {
+  Project,
+  Node,
+  SyntaxKind,
+  JsxOpeningElement,
+  JsxSelfClosingElement,
+} from "ts-morph";
 import { PseudoProps, isStyledProp, isPseudoProps } from "@kuma-ui/system";
+import { collectPropsFromJsx } from "./collector/props";
 
 const project = new Project({});
 
@@ -8,10 +15,27 @@ const extract = (
   id: string,
   bindings: Record<string, string>
 ) => {
-  const sourceFile = project.createSourceFile(id, code, { overwrite: true });
-  sourceFile.forEachDescendant((node: Node) => {});
+  const source = project.createSourceFile(id, code, { overwrite: true });
+  source.forEachDescendant((node) => {
+    if (
+      node.getKind() === SyntaxKind.JsxElement ||
+      node.getKind() === SyntaxKind.JsxSelfClosingElement
+    ) {
+      let openingElement: JsxOpeningElement | JsxSelfClosingElement;
+      if (node.getKind() === SyntaxKind.JsxElement) {
+        const jsxElement = node.asKindOrThrow(SyntaxKind.JsxElement);
+        openingElement = jsxElement.getOpeningElement();
+      } else {
+        openingElement = node.asKindOrThrow(SyntaxKind.JsxSelfClosingElement);
+      }
+      const jsxTagName = openingElement.getTagNameNode().getText();
+      // Check if the current JSX element is a Kuma component
+      if (!Object.values(bindings).includes(jsxTagName)) return;
+      collectPropsFromJsx(openingElement);
+    }
+  });
 
-  return { code, id };
+  return { code: source.getFullText(), id };
 };
 
 type Extracted = {
@@ -24,15 +48,5 @@ const extracted: Extracted = {
   pseudoProps: {},
   filteredAttributes: {},
 };
-
-function assignValueToProp(prop: string, value: any): void {
-  if (isStyledProp(prop)) {
-    extracted.styledProps[prop] = value;
-  } else if (isPseudoProps(prop)) {
-    extracted.pseudoProps[prop] = value;
-  } else {
-    extracted.filteredAttributes[prop] = value;
-  }
-}
 
 export { extract };
