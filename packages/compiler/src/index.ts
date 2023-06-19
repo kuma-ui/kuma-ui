@@ -3,10 +3,15 @@ import { PseudoProps, isStyledProp, isPseudoProps } from "@kuma-ui/system";
 
 const project = new Project({});
 
-const compile = (code: string, id: string) => {
+const extract = (
+  code: string,
+  id: string,
+  bindings: Record<string, string>
+) => {
   const sourceFile = project.createSourceFile(id, code, { overwrite: true });
-
   sourceFile.forEachDescendant((node: Node) => {});
+
+  return { code, id };
 };
 
 type Extracted = {
@@ -30,4 +35,4 @@ function assignValueToProp(prop: string, value: any): void {
   }
 }
 
-export { compile };
+export { extract };
