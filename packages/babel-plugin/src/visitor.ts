@@ -43,6 +43,8 @@ export const visitor = ({ types: t, template }: Core) => {
       },
       exit() {
         (this.file.metadata as { css: string }).css = sheet.getCSS();
+        (this.file.metadata as { bindings: Record<string, string> }).bindings =
+          importedStyleFunctions;
         sheet.reset();
       },
     },
