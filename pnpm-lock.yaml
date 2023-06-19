@@ -265,6 +265,9 @@ importers:
 
   packages/compiler:
     dependencies:
+      '@kuma-ui/system':
+        specifier: workspace:^
+        version: link:../system
       ts-morph:
         specifier: ^19.0.0
         version: 19.0.0
