@@ -7,6 +7,8 @@ import {
 } from "ts-morph";
 import { PseudoProps, isStyledProp, isPseudoProps } from "@kuma-ui/system";
 import { collectPropsFromJsx } from "./collector/props";
+import { componentList } from "@kuma-ui/core/dist/components/componentList";
+import { handleComponent } from "./handlers";
 
 const project = new Project({});
 
@@ -31,22 +33,20 @@ const extract = (
       const jsxTagName = openingElement.getTagNameNode().getText();
       // Check if the current JSX element is a Kuma component
       if (!Object.values(bindings).includes(jsxTagName)) return;
-      collectPropsFromJsx(openingElement);
+      const originalComponentName = Object.keys(bindings).find(
+        (key) =>
+          bindings[key] === jsxTagName &&
+          Object.values(componentList).some((c) => c === key)
+      );
+      if (!originalComponentName) return;
+      const componentName =
+        originalComponentName as (typeof componentList)[keyof typeof componentList];
+      const extractedPropsMap = collectPropsFromJsx(openingElement);
+      handleComponent(componentName, openingElement, extractedPropsMap);
     }
   });
 
   return { code: source.getFullText(), id };
-};
-
-type Extracted = {
-  styledProps: { [key: string]: any };
-  pseudoProps: PseudoProps;
-  filteredAttributes: { [key: string]: any };
-};
-const extracted: Extracted = {
-  styledProps: {},
-  pseudoProps: {},
-  filteredAttributes: {},
 };
 
 export { extract };

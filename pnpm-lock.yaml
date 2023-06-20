@@ -130,6 +130,9 @@ importers:
       ts-morph:
         specifier: ^19.0.0
         version: 19.0.0
+      ts-pattern:
+        specifier: ^5.0.1
+        version: 5.0.1
     devDependencies:
       '@types/react':
         specifier: ^18.0.28
@@ -271,12 +274,18 @@ importers:
 
   packages/compiler:
     dependencies:
+      '@kuma-ui/core':
+        specifier: workspace:^
+        version: link:../core
       '@kuma-ui/system':
         specifier: workspace:^
         version: link:../system
       ts-morph:
         specifier: ^19.0.0
         version: 19.0.0
+      ts-pattern:
+        specifier: ^5.0.1
+        version: 5.0.1
 
   packages/core:
     dependencies:

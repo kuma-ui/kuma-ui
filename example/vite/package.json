@@ -14,7 +14,8 @@
     "@kuma-ui/vite": "workspace:^",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "ts-morph": "^19.0.0"
+    "ts-morph": "^19.0.0",
+    "ts-pattern": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

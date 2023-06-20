@@ -18,9 +18,9 @@ export const visitor = ({ types: t, template }: Core) => {
   let importedStyleFunctions: Record<string, string> = {};
 
   const visitor: PluginObj<PluginPass>["visitor"] = {
-    JSXOpeningElement(path: NodePath<t.JSXOpeningElement>) {
-      processJSXHTMLTag(path);
-    },
+    // JSXOpeningElement(path: NodePath<t.JSXOpeningElement>) {
+    //   processJSXHTMLTag(path);
+    // },
     Program: {
       enter(path) {
         // Ensure that 'React' is imported in the file
@@ -39,13 +39,13 @@ export const visitor = ({ types: t, template }: Core) => {
           importedStyleFunctions
         );
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
-        processComponents(path, importedStyleFunctions);
+        // processComponents(path, importedStyleFunctions);
       },
       exit() {
-        (this.file.metadata as { css: string }).css = sheet.getCSS();
+        // (this.file.metadata as { css: string }).css = sheet.getCSS();
         (this.file.metadata as { bindings: Record<string, string> }).bindings =
           importedStyleFunctions;
-        sheet.reset();
+        // sheet.reset();
       },
     },
   };

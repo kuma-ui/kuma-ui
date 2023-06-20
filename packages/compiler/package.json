@@ -28,8 +28,10 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
+    "@kuma-ui/core": "workspace:^",
     "@kuma-ui/system": "workspace:^",
-    "ts-morph": "^19.0.0"
+    "ts-morph": "^19.0.0",
+    "ts-pattern": "^5.0.1"
   },
   "publishConfig": {
     "access": "public"
