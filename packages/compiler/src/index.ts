@@ -12,7 +12,7 @@ import { handleComponent } from "./handlers";
 
 const project = new Project({});
 
-const extract = (
+const compile = (
   code: string,
   id: string,
   bindings: Record<string, string>
@@ -49,4 +49,4 @@ const extract = (
   return { code: source.getFullText(), id };
 };
 
-export { extract };
+export { compile };
