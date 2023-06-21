@@ -1,4 +1,4 @@
-import { transform } from "packages/compiler/dist";
+import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
 import type { RawLoaderDefinitionFunction } from "webpack";

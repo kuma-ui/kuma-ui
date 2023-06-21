@@ -6,7 +6,6 @@ import {
   JsxSelfClosingElement,
   JsxAttribute,
 } from "ts-morph";
-import { isPseudoProps, isStyledProp } from "packages/system/dist";
 import { match } from "ts-pattern";
 import { decode } from "./decode";
 import { handleJsxExpression } from "./expression";
