@@ -1,13 +1,13 @@
 import { Box, Flex, Spacer, Text, Button, Heading } from "@kuma-ui/core";
 
-const flexDir = "column";
-
 function App() {
   return (
-    <Box as="main" display="flex" flexDir={[flexDir, "row"]}>
-      <Heading as="h3">hello</Heading>
+    <Box as="main" display="flex" flexDir={["column", "row"]} className="hello">
+      <Heading as="h3" className="hello">
+        hello
+      </Heading>
       <Spacer size={4} />
-      <Flex flexDir="row">
+      <Flex flexDir="column">
         <Text as="p" fontSize={24}>
           hello
         </Text>
