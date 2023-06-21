@@ -8,6 +8,8 @@ import {
 } from "ts-morph";
 import { isPseudoProps, isStyledProp } from "packages/system/dist";
 import { match } from "ts-pattern";
+import { decode } from "./decode";
+import { handleJsxExpression } from "./expression";
 
 export const collectPropsFromJsx = (
   node: JsxOpeningElement | JsxSelfClosingElement
@@ -43,8 +45,9 @@ const extractAttribute = (jsxAttribute: JsxAttribute) => {
       .when(Node.isJsxExpression, (initializer) => {
         const expression = initializer.getExpression();
         if (!expression) return;
-        // TODO
-        return expression.getFullText();
+
+        const decodedNode = decode(expression);
+        return handleJsxExpression(decodedNode);
       })
       .otherwise(() => undefined)
   );

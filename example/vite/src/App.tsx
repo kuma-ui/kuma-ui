@@ -7,7 +7,7 @@ function App() {
         hello
       </Heading>
       <Spacer size={4} />
-      <Flex flexDir="column">
+      <Flex flexDir={`column`}>
         <Text as="p" fontSize={24}>
           hello
         </Text>

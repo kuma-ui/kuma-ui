@@ -63,7 +63,6 @@ export const extractProps = (
     classNameAttr.remove();
   }
 
-  // remove props if statically analizable
   for (const styledPropKey of Object.keys(styledProps)) {
     jsx.getAttribute(styledPropKey)?.remove();
   }
