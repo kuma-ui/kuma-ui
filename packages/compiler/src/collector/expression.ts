@@ -16,6 +16,17 @@ export const handleJsxExpression = (node: Node<ts.Node>) => {
       .when(Node.isNoSubstitutionTemplateLiteral, (literal) => {
         return literal.getLiteralValue().trim();
       })
+      // fontSize={['24px', '32px']}
+      .when(Node.isArrayLiteralExpression, (array) => {
+        const arrayExpression = array.getElements().map((elm) => {
+          return handleJsxExpression(elm);
+        }) as (string | number | undefined)[];
+        // If the arrayExpression includes undefined, it means some of its elements
+        // could not be statically analyzed, hence handle it at runtime.
+        return arrayExpression.includes(undefined)
+          ? undefined
+          : arrayExpression;
+      })
       // fontSize={{xl: '2rem'}['xl']}
       .when(Node.isObjectLiteralExpression, (obj) => {
         // TODO

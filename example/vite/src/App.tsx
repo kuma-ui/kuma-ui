@@ -1,6 +1,7 @@
 import { Box, Flex, Spacer, Text, Button, Heading } from "@kuma-ui/core";
 
 const className = "hello";
+const row = "row";
 
 function App() {
   return (
