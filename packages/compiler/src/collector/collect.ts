@@ -21,7 +21,7 @@ export const collectPropsFromJsx = (
       const propName = jsxAttribute.getNameNode().getFullText();
       const isStyled = isStyledProp(propName);
       const isPseudo = isPseudoProps(propName);
-      if (!isStyled && isPseudo) return;
+      if (!isStyled && !isPseudo) return;
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
       const propValue = extractAttribute(jsxAttribute);
       if (!propValue) return;
