@@ -5,7 +5,6 @@ import {
   JsxOpeningElement,
   JsxSelfClosingElement,
 } from "ts-morph";
-import { componentList } from "@kuma-ui/core/dist/components/componentList";
 import {
   isStyledProp,
   isPseudoProps,
@@ -54,13 +53,27 @@ export const extractProps = (
   const generatedClassName = sheet.addRule(style);
   const classNameAttr = jsx.getAttribute("className");
   let newClassName = generatedClassName;
+  let newClassNameInitializer = "";
 
+  // Check if a className attribute already exists
   if (classNameAttr && Node.isJsxAttribute(classNameAttr)) {
-    const existingClassName = classNameAttr
-      .getFirstChildByKind(SyntaxKind.StringLiteral)
-      ?.getLiteralText();
-    if (existingClassName) newClassName += " " + existingClassName;
+    const initializer = classNameAttr.getInitializer();
+    // If the initializer is a string literal, simply concatenate the new className (i.e., className="hoge")
+    if (Node.isStringLiteral(initializer)) {
+      const existingClassName = initializer.getLiteralText();
+      if (existingClassName) newClassName += " " + existingClassName;
+      newClassNameInitializer = `"${newClassName}"`;
+    }
+    // If the initializer is a JsxExpression, create a template literal to combine the classNames at runtime (i.e., className={hoge})
+    else if (Node.isJsxExpression(initializer)) {
+      const expression = initializer.getExpression();
+      if (expression) {
+        newClassNameInitializer = `\`${newClassName} \${${expression.getText()}}\``;
+      }
+    }
     classNameAttr.remove();
+  } else {
+    newClassNameInitializer = `"${newClassName}"`;
   }
 
   for (const styledPropKey of Object.keys(styledProps)) {
@@ -73,6 +86,6 @@ export const extractProps = (
 
   jsx.addAttribute({
     name: "className",
-    initializer: `"${newClassName}"`,
+    initializer: `{${newClassNameInitializer}}`,
   });
 };
