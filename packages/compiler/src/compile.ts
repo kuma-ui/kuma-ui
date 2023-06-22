@@ -7,7 +7,7 @@ import {
 } from "ts-morph";
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
-import { componentList } from "@kuma-ui/core/dist/components/componentList";
+import { componentList } from "@kuma-ui/core";
 
 const project = new Project({});
 
@@ -31,6 +31,7 @@ const compile = (
       }
       const jsxTagName = openingElement.getTagNameNode().getText();
       // Check if the current JSX element is a Kuma component
+      console.log(bindings, jsxTagName);
       if (!Object.values(bindings).includes(jsxTagName)) return;
       const originalComponentName = Object.keys(bindings).find(
         (key) =>
@@ -42,9 +43,10 @@ const compile = (
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);
       extractProps(openingElement, extractedPropsMap);
+      console.log(`---------${id} pre----------`);
     }
   });
-
+  console.log(`---------${id} post----------`);
   return { code: source.getFullText(), id };
 };
 

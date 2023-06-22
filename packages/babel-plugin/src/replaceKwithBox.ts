@@ -1,12 +1,12 @@
 import { NodePath, Node, types, template } from "@babel/core";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import printAST from "ast-pretty-print";
 
 /**
- * Processes the CallExpression nodes in the AST and replaces the 'k' function from '@kuma-ui/core'
- * with the corresponding HTML tag. This allows usage of the 'k' function as a shorthand for creating
- * styled components, e.g. <k.div> instead of <div>.
+ * Processes the JSXElement nodes in the AST and replaces the 'k' syntax from '@kuma-ui/core'
+ * with corresponding 'Box' component. This allows usage of the 'k' syntax as a shorthand for creating
+ * styled components, e.g. <k.div> is transformed to <Box as="div">.
+ *
+ * If the 'Box' component is not imported, this function will create a new import statement for the 'Box' component
+ * from '@kuma-ui/core' with the local name '__Box'.
  *
  * @param {NodePath<types.Program>} node - The NodePath object representing the Program node.
  * @param {typeof types} t - The Babel types object.
@@ -41,6 +41,7 @@ export const replaceKwithBox = (
             t.stringLiteral("@kuma-ui/core")
           );
           node.unshiftContainer("body", reactImportDeclaration);
+          importedStyleFunctions["Box"] = localBoxName;
           boxName = localBoxName;
         }
         if (
