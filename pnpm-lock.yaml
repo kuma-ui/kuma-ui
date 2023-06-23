@@ -370,6 +370,12 @@ importers:
 
   website:
     dependencies:
+      '@kuma-ui/core':
+        specifier: workspace:^
+        version: link:../packages/core
+      '@kuma-ui/next-plugin':
+        specifier: workspace:^
+        version: link:../packages/next-plugin
       '@types/node':
         specifier: ^18.15.11
         version: 18.15.11

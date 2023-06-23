@@ -1,3 +1,6 @@
+import { useRouter } from "next/router";
+import { useConfig } from "nextra-theme-docs";
+
 export default {
   logo: () => {
     return (
@@ -138,5 +141,55 @@ export default {
   },
   chat: {
     link: "https://discord.gg/QrsQ4EPp7G",
+  },
+  head: () => {
+    const { asPath, pathname } = useRouter();
+    const { frontMatter } = useConfig();
+
+    const ogConfig = {
+      title: "Kuma UI",
+      description:
+        "The Modern Headless & Zero Runtime UI Component Library 🐻‍❄️✨",
+      author: {
+        twitter: "_poteboy_",
+      },
+      favicon: "/favicon.svg",
+    };
+    const favicon = String(ogConfig.favicon);
+    const title = String(frontMatter.title || ogConfig.title);
+    const description = String(frontMatter.description || ogConfig.description);
+    const canonical = new URL(asPath, "https://kuma-ui.com").toString();
+
+    const ogUrl = `https://repository-images.githubusercontent.com/621481721/33116785-e75f-434d-8335-e495413792b3`;
+
+    return (
+      <>
+        <meta property="og:url" content={canonical} />
+        <link rel="canonical" href={canonical} />
+
+        <meta name="description" content={description} />
+        <meta property="og:description" content={description} />
+        <meta name="twitter:site" content={`@${ogConfig.author.twitter}`} />
+        <meta name="twitter:creator" content={`@${ogConfig.author.twitter}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content={ogUrl} />
+        <meta property="og:image" content={ogUrl} />
+
+        <link rel="shortcut icon" href={favicon} type="image/svg+xml" />
+        <link rel="apple-touch-icon" href={favicon} type="image/svg+xml" />
+        <meta name="apple-mobile-web-app-title" content={title} />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+          rel="stylesheet"
+        />
+      </>
+    );
   },
 };
