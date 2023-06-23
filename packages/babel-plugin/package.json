@@ -30,8 +30,10 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.4",
+    "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
-    "@kuma-ui/system": "workspace:^"
+    "@kuma-ui/system": "workspace:^",
+    "ts-pattern": "^5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

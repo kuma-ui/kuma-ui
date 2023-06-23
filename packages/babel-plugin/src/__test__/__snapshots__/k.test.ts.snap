@@ -4,11 +4,33 @@ exports[`k api > Snapshot tests (runtime: automatic) > basic usage should match 
 "
 .kuma-4229161508{font-size:24px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     className: \\"kuma-4229161508\\"
+  });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { jsx as _jsx } from \\"react/jsx-runtime\\";
+function App() {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\",
+    children: /*#__PURE__*/_jsx(__Box, {
+      as: \\"div\\",
+      className: \\"kuma-4229161508\\"
+    })
   });
 }
 "
@@ -18,10 +40,12 @@ exports[`k api > Snapshot tests (runtime: automatic) > using className prop shou
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
   });
 }
@@ -32,10 +56,12 @@ exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements sho
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     className: \\"kuma-2631981251\\"
   });
 }
@@ -46,10 +72,12 @@ exports[`k api > Snapshot tests (runtime: automatic) > using pseudo props should
 "
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"span\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"span\\",
     className: \\"kuma-2131929892\\"
   });
 }
@@ -60,10 +88,12 @@ exports[`k api > Snapshot tests (runtime: automatic) > using responsive props sh
 "
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"a\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"a\\",
     className: \\"kuma-401969115\\"
   });
 }
@@ -74,10 +104,12 @@ exports[`k api > Snapshot tests (runtime: automatic) > using space props should 
 "
 .kuma-3206633536{padding:2px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 function App() {
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     className: \\"kuma-3206633536\\"
   });
 }
@@ -88,11 +120,31 @@ exports[`k api > Snapshot tests (runtime: classic) > basic usage should match sn
 "
 .kuma-4229161508{font-size:24px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
     className: \\"kuma-4229161508\\"
   });
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: classic) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+function App() {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\"
+  }, /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
+    className: \\"kuma-4229161508\\"
+  }));
 }
 "
 `;
@@ -101,9 +153,11 @@ exports[`k api > Snapshot tests (runtime: classic) > using className prop should
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
     className: [\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")
   });
 }
@@ -114,9 +168,11 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements shoul
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
     className: \\"kuma-2631981251\\"
   });
 }
@@ -127,9 +183,11 @@ exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should m
 "
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"span\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"span\\",
     className: \\"kuma-2131929892\\"
   });
 }
@@ -140,9 +198,11 @@ exports[`k api > Snapshot tests (runtime: classic) > using responsive props shou
 "
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"a\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"a\\",
     className: \\"kuma-401969115\\"
   });
 }
@@ -153,9 +213,11 @@ exports[`k api > Snapshot tests (runtime: classic) > using space props should ma
 "
 .kuma-3206633536{padding:2px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 function App() {
-  return /*#__PURE__*/React.createElement(\\"div\\", {
+  return /*#__PURE__*/React.createElement(__Box, {
+    as: \\"div\\",
     className: \\"kuma-3206633536\\"
   });
 }
@@ -166,10 +228,24 @@ exports[`k api > Snapshot tests (runtime: undefined) > basic usage should match 
 "
 .kuma-4229161508{font-size:24px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className=\\"kuma-4229161508\\"></div>;
+  return <__Box as=\\"div\\" className=\\"kuma-4229161508\\"></__Box>;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > should match snapshot when k is used more than once 1`] = `
+"
+.kuma-4229161508{font-size:24px;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <__Box as=\\"div\\" className=\\"kuma-4229161508\\"><__Box as=\\"div\\" className=\\"kuma-4229161508\\"></__Box></__Box>;
 }
 "
 `;
@@ -178,10 +254,11 @@ exports[`k api > Snapshot tests (runtime: undefined) > using className prop shou
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <div className={[\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")} />;
+  return <__Box as=\\"div\\" className={[\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")} />;
 }
 "
 `;
@@ -190,10 +267,11 @@ exports[`k api > Snapshot tests (runtime: undefined) > using pseudo elements sho
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className=\\"kuma-2631981251\\" />;
+  return <__Box as=\\"div\\" className=\\"kuma-2631981251\\" />;
 }
 "
 `;
@@ -202,10 +280,11 @@ exports[`k api > Snapshot tests (runtime: undefined) > using pseudo props should
 "
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <span className=\\"kuma-2131929892\\" />;
+  return <__Box as=\\"span\\" className=\\"kuma-2131929892\\" />;
 }
 "
 `;
@@ -214,10 +293,11 @@ exports[`k api > Snapshot tests (runtime: undefined) > using responsive props sh
 "
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <a className=\\"kuma-401969115\\" />;
+  return <__Box as=\\"a\\" className=\\"kuma-401969115\\" />;
 }
 "
 `;
@@ -226,10 +306,11 @@ exports[`k api > Snapshot tests (runtime: undefined) > using space props should 
 "
 .kuma-3206633536{padding:2px;}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <div className=\\"kuma-3206633536\\" />;
+  return <__Box as=\\"div\\" className=\\"kuma-3206633536\\" />;
 }
 "
 `;
