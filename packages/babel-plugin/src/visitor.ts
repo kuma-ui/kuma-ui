@@ -9,6 +9,7 @@ import { replaceKwithBox } from "./replaceKwithBox";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 import { processCSS } from "./processCSS";
 import { processComponents } from "./components/processComponents";
+import { importBox } from "./importBox";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -27,6 +28,8 @@ export const visitor = ({ types: t, template }: Core) => {
         ensureReactImport(path, t);
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
+        // Create an import statement for the 'Box' component from '@kuma-ui/core'
+        importBox(path, importedStyleFunctions);
         // Replace the 'k' function from '@kuma-ui/core' with the corresponding HTML tag
         replaceKwithBox(path, t, importedStyleFunctions);
         // Process CSS function calls and generate the hashed classNames

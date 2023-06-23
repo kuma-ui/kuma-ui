@@ -277,6 +277,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > basic usage sho
 "
 .kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
@@ -295,6 +296,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using className
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
 const Box = props => {
@@ -315,6 +317,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using pseudo el
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
@@ -333,6 +336,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using pseudo pr
 "
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
@@ -351,6 +355,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using responsiv
 "
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
@@ -369,6 +374,7 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using space pro
 "
 .kuma-3206633536{padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
