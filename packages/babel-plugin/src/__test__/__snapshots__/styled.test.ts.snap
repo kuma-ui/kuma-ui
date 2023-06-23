@@ -4,13 +4,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > basic usage sho
 "
 .kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     ...props,
     className: combinedClassName
   });
@@ -27,13 +29,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using className
 "
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"span\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"span\\",
     ...props,
     className: combinedClassName
   });
@@ -51,13 +55,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo el
 "
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     ...props,
     className: combinedClassName
   });
@@ -75,13 +81,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo pr
 "
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"span\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"span\\",
     ...props,
     className: combinedClassName
   });
@@ -99,13 +107,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using responsiv
 "
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"a\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"a\\",
     ...props,
     className: combinedClassName
   });
@@ -123,13 +133,15 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using space pro
 "
 .kuma-3206633536{padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { jsx as _jsx } from \\"react/jsx-runtime\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/_jsx(\\"div\\", {
+  return /*#__PURE__*/_jsx(__Box, {
+    as: \\"div\\",
     ...props,
     className: combinedClassName
   });
@@ -148,12 +160,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > basic usage shoul
 .kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"div\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"div\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -168,12 +183,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > using className p
 .kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"span\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"span\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -190,12 +208,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > using pseudo elem
 .kuma-2631981251{padding:2px;}.kuma-2631981251:after{color:blue;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"div\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"div\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -212,12 +233,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > using pseudo prop
 .kuma-2131929892{padding:2px;}.kuma-2131929892:hover{color:red;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"span\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"span\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -234,12 +258,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > using responsive 
 .kuma-401969115{font-size:16px;}@media (min-width:576px){.kuma-401969115{font-size:24px;}}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"a\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"a\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -256,12 +283,15 @@ exports[`styled function > Snapshot tests (runtime: classic) > using space props
 .kuma-3206633536{padding:2px;}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
 
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return /*#__PURE__*/React.createElement(\\"div\\", _extends({}, props, {
+  return /*#__PURE__*/React.createElement(__Box, _extends({
+    as: \\"div\\"
+  }, props, {
     className: combinedClassName
   }));
 };
@@ -284,7 +314,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <div {...props} className={combinedClassName} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -303,7 +333,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <span {...props} className={combinedClassName} />;
+  return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className={[\\"kuma-2131929892\\", \\"kuma-1440123820\\"].join(\\" \\")}>
@@ -324,7 +354,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <div {...props} className={combinedClassName} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className=\\"kuma-2631981251\\">test</Box>;
@@ -343,7 +373,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <span {...props} className={combinedClassName} />;
+  return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className=\\"kuma-2131929892\\">test</Box>;
@@ -362,7 +392,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <a {...props} className={combinedClassName} />;
+  return <__Box as=\\"a\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className=\\"kuma-401969115\\">test</Box>;
@@ -381,7 +411,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <div {...props} className={combinedClassName} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className=\\"kuma-3206633536\\">test</Box>;

@@ -21,9 +21,7 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
  * @param Component - The component to be wrapped with styled-system functionality
  * @returns A new component with styled-system functionality and a unique data-kuma-ui attribute
  */
-function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
-  Component: T
-) {
+function styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn = function <P = StyledProps>(
     strings: TemplateStringsArray,
     ...interpolations: ((props: P) => ResponsiveStyle)[]
