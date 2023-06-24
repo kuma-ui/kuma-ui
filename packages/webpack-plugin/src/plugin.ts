@@ -2,6 +2,7 @@ import { Compilation, Compiler, NormalModule } from "webpack";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { buildSync } from "esbuild";
 import eval from "eval";
+import fs from "fs";
 import { transform } from "@kuma-ui/babel-plugin";
 // import { RawSource, Source } from "webpack-sources";
 import path from "path";
@@ -13,6 +14,7 @@ type WebpackPluginOption = {
 };
 
 export const tmpCSSDir = ".kuma";
+export const themeFilename = path.join(__dirname, "./theme.js");
 
 const pluginName = "KumaUIWebpackPlugin";
 
@@ -24,6 +26,18 @@ class KumaUIWebpackPlugin {
   public tmpDir: string[] = [];
 
   constructor(options: WebpackPluginOption = {}) {
+
+    fs.writeFileSync(
+      themeFilename,
+      `
+      'use client';
+      (() => {
+        console.log("FFFFFFgargreaga");
+        if(typeof window !== 'undefined') window.THEME = {}
+      })()
+      `
+    );
+
     const dir = readdirSync(".");
     let configPath: string | undefined;
     dir.forEach((filePath) => {
@@ -50,6 +64,13 @@ class KumaUIWebpackPlugin {
       };
 
       if (config.default) {
+        fs.writeFileSync(
+          themeFilename,
+          `
+          'use client';
+          globalThis.THEME = ${JSON.stringify(config.default)}
+        `
+        );
         theme.setUserTheme(config.default as any);
       }
     }

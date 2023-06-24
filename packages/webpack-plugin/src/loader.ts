@@ -6,7 +6,7 @@ import type { RawLoaderDefinitionFunction } from "webpack";
 import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
 import { createHash } from "crypto";
-import { tmpCSSDir } from "./plugin";
+import { themeFilename, tmpCSSDir } from "./plugin";
 
 const virtualLoaderPath = require.resolve("./virtualLoader");
 
@@ -72,11 +72,11 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           const cssPath = path.posix.join(outDir, `${hash}.css`);
           fs.writeFileSync(cssPath, css);
           const filePrefix = `import "${cssPath}";`;
-          callback(null, `${codeWithReact}\n${filePrefix}`);
+          callback(null, `${codeWithReact};\nimport "${themeFilename}";\n${filePrefix}`);
           return;
         }
       }
-      callback(null, `${codeWithReact}`);
+      callback(null, `${codeWithReact};\nimport "${themeFilename}";`);
     })
     .catch((error) => {
       callback(error);

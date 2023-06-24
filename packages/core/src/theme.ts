@@ -21,9 +21,17 @@ export interface Theme {}
 
 //　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
 type ThemeColors = Theme["colors"];
+//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
+type ThemeComponents = Theme["components"];
 
 export type ThemeSystem = {
   colors: If<IsAny<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
+  components: {
+    baseStyle: "Style",
+    variants: {
+      [key: string]: "Style"
+    }
+  }
 };
 
 export function createTheme<const T extends ThemeInput>(
