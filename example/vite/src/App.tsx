@@ -1,4 +1,13 @@
-import { Box, Flex, Spacer, Text, Button, Heading } from "@kuma-ui/core";
+import {
+  Box,
+  Flex,
+  Spacer,
+  Text,
+  Button,
+  Heading,
+  styled,
+  k,
+} from "@kuma-ui/core";
 
 const className = "hello";
 const row = "row";
@@ -23,8 +32,13 @@ function App() {
         <Text>hello</Text>
         <Button>hello</Button>
       </Flex>
+      <HelloWorld>hello world</HelloWorld>
     </Box>
   );
 }
+
+const HelloWorld = styled("p")`
+  color: red;
+`;
 
 export default App;
