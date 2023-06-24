@@ -1,11 +1,11 @@
 {
-  "github_link": {
-    "title": "Kuma UI",
-    "href": "https://github.com/poteboy/kuma-ui",
-    "newWindow": true
-  },
   "index": {
-    "title": "Docs",
+    "title": "Home",
     "type": "page"
+  },
+  "docs": {
+    "title": "Documentation",
+    "type": "page",
+    "href": "/docs"
   }
 }
