@@ -9,6 +9,7 @@ import { replaceKwithBox } from "./replaceKwithBox";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 import { processCSS } from "./processCSS";
 import { processComponents } from "./components/processComponents";
+import { importBox } from "./importBox";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -18,28 +19,37 @@ export const visitor = ({ types: t, template }: Core) => {
   let importedStyleFunctions: Record<string, string> = {};
 
   const visitor: PluginObj<PluginPass>["visitor"] = {
-    JSXOpeningElement(path: NodePath<t.JSXOpeningElement>) {
-      processJSXHTMLTag(path);
-    },
     Program: {
       enter(path) {
         // Ensure that 'React' is imported in the file
         ensureReactImport(path, t);
         // Reset the importedStyleFunctions
         importedStyleFunctions = collectImportedStyled(path, t);
+        // Create an import statement for the 'Box' component from '@kuma-ui/core'
+        importBox(path, importedStyleFunctions);
         // Replace the 'k' function from '@kuma-ui/core' with the corresponding HTML tag
         replaceKwithBox(path, t, importedStyleFunctions);
         // Process CSS function calls and generate the hashed classNames
         processCSS(path, t, template, importedStyleFunctions);
         // Process TaggedTemplateExpressions with styled components and generate the hashed classNames
-        processTaggedTemplateExpression(
-          path,
-          t,
-          template,
-          importedStyleFunctions
-        );
+        processTaggedTemplateExpression(path, template, importedStyleFunctions);
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
         processComponents(path, importedStyleFunctions);
+
+        // Traversal over JSX opening elements, identifying Kuma-UI components and extracting their style props.
+        path.traverse({
+          JSXOpeningElement(path) {
+            if (
+              Object.values(importedStyleFunctions).some((f) => {
+                if (path.node.name.type === "JSXIdentifier") {
+                  return path.node.name.name === f;
+                }
+              })
+            ) {
+              processJSXHTMLTag(path);
+            }
+          },
+        });
       },
       exit() {
         (this.file.metadata as { css: string }).css = sheet.getCSS();

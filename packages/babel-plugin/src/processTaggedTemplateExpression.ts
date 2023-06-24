@@ -1,5 +1,6 @@
 import { sheet } from "@kuma-ui/sheet";
-import type { NodePath, types, template as Template } from "@babel/core";
+import type { NodePath, template as Template } from "@babel/core";
+import { types as t } from "@babel/core";
 
 /**
  * Processes a TaggedTemplateExpression and creates a new React component based on the styled function.
@@ -12,8 +13,7 @@ import type { NodePath, types, template as Template } from "@babel/core";
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
 export const processTaggedTemplateExpression = (
-  nodePath: NodePath<types.Program>,
-  t: typeof types,
+  nodePath: NodePath<t.Program>,
   template: typeof Template,
   importedStyleFunctions: Record<string, string>
 ) => {
@@ -40,8 +40,6 @@ export const processTaggedTemplateExpression = (
 
       const component = t.isStringLiteral(componentArg)
         ? componentArg.value
-        : t.isJSXElement(componentArg)
-        ? componentArg
         : "div";
       const createElementAst = template.expression.ast(
         `
@@ -50,7 +48,9 @@ export const processTaggedTemplateExpression = (
             const newClassName = "${className || ""}";
             const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
             return (
-              <${component} data-kuma-ui="${true}" {...props} className={combinedClassName} />
+              <${
+                importedStyleFunctions["Box"]
+              } as="${component}" {...props} className={combinedClassName} />
             );
         }`,
         {
