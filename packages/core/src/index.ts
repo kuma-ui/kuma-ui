@@ -1,4 +1,4 @@
 export { styled } from "./styled";
 export { k } from "./k";
 export { css } from "./css";
-export * from "./components";
+export { Box } from "./components";
