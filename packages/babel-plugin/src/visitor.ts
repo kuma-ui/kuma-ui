@@ -34,7 +34,7 @@ export const visitor = ({ types: t, template }: Core) => {
         // Process TaggedTemplateExpressions with styled components and generate the hashed classNames
         processTaggedTemplateExpression(path, template, importedStyleFunctions);
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
-        processComponents(path, importedStyleFunctions);
+        // processComponents(path, importedStyleFunctions);
 
         // Traversal over JSX opening elements, identifying Kuma-UI components and extracting their style props.
         path.traverse({
