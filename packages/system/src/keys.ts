@@ -123,9 +123,17 @@ export type StyledKeyType =
   | GridKeys
   | EffectKeys;
 
-export const isStyledProp = (_prop: string): _prop is StyledKeyType => {
+function memo<T>(fn: (value: string) => T): (value: string) => T {
+  const cache = Object.create(null);
+  return (arg: string) => {
+    if (cache[arg] === undefined) cache[arg] = fn(arg);
+    return cache[arg];
+  };
+}
+
+export const isStyledProp = memo((_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;
   return Object.values(styleKeys).some((keyGroup) =>
     (keyGroup as readonly string[]).includes(prop)
   );
-};
+});
