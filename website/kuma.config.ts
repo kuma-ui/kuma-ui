@@ -2,9 +2,14 @@ import { createTheme } from "@kuma-ui/core";
 
 const theme = createTheme({
   colors: {
-    red: 'red',
+    red: {
+      100: 'red'
+    },
     blue: "blue",
     green: "green",
+  },
+  breakpoints: {
+    sm: '1000px'
   },
 });
 

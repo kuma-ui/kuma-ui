@@ -43,14 +43,13 @@ export interface Theme {}
 type ThemeColors = Theme["colors"];
 //　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
 type ThemeComponents = Theme["components"];
+//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
+type ThemeBreakPoints = Theme["breakPoints"];
 
 export type ThemeSystem = {
   colors: If<IsAny<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
-  components: If<
-    IsAny<ThemeComponents>,
-    _String,
-    Stringify<keyof ThemeComponents>
-  >;
+  components: If<IsAny<ThemeComponents>, unknown, ThemeComponents>;
+  breakpoints: If<IsAny<ThemeBreakPoints>, unknown, ThemeBreakPoints>;
 };
 
 export function createTheme<const T extends ThemeInput>(
@@ -58,26 +57,7 @@ export function createTheme<const T extends ThemeInput>(
 ): ThemeResult<T> {
   return {
     colors: theme.colors ? flattenObject({ colors: theme.colors }) : undefined,
-    components: theme.colors
-      ? flattenObject({ colors: theme.colors })
-      : undefined,
+    components: theme.components,
+    breakpoints: theme.breakpoints,
   } as unknown as ThemeResult<T>;
 }
-
-const s = createTheme({
-  colors: {
-    red: "red",
-  },
-  components: {
-    Box: {
-      base: {
-        color: "red",
-      },
-      variants: {
-        primary: {
-          color: "red",
-        },
-      },
-    },
-  },
-});

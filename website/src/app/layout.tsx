@@ -3,6 +3,7 @@ import { Header, Sidebar } from "@src/components";
 import { css, k } from "@kuma-ui/core";
 import "./reset.css";
 import { Analytics } from "@vercel/analytics/react";
+
 export const metadata = {
   title: "Kuma UI - Zero-Runtime CSS-in-JS with type-safe utility props",
   description:
@@ -32,6 +33,7 @@ export default function RootLayout({
           />
         </k.div>
         <k.div
+          color={["colors.red.100", "colors.blue"]}
           display="grid"
           gridTemplateRows="auto 1fr auto"
           gridTemplateColumns="100%"

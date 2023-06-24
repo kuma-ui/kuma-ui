@@ -18,7 +18,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
   dir.forEach((filePath) => {
     if (filePath.startsWith("kuma.config.")) configPath = filePath;
   });
-  
+
   if (configPath) {
     const filename = path.join(process.cwd(), configPath);
     const result = buildSync({
@@ -26,6 +26,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
       target: "es2017",
       write: false,
       platform: "node",
+      format: typeof require !== 'undefined' ? 'cjs' : 'esm',
       absWorkingDir: process.cwd(),
       outfile: filename + ".out",
       entryPoints: [filename],

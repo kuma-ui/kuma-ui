@@ -27,16 +27,6 @@ class KumaUIWebpackPlugin {
 
   constructor(options: WebpackPluginOption = {}) {
 
-    fs.writeFileSync(
-      themeFilename,
-      `
-      'use client';
-      (() => {
-        console.log("FFFFFFgargreaga");
-        if(typeof window !== 'undefined') window.THEME = {}
-      })()
-      `
-    );
 
     const dir = readdirSync(".");
     let configPath: string | undefined;
@@ -53,6 +43,7 @@ class KumaUIWebpackPlugin {
         target: "es2017",
         write: false,
         platform: "node",
+        format: typeof require !== 'undefined' ? 'cjs' : 'esm',
         absWorkingDir: process.cwd(),
         outfile: filename + ".out",
         entryPoints: [filename],
@@ -64,13 +55,6 @@ class KumaUIWebpackPlugin {
       };
 
       if (config.default) {
-        fs.writeFileSync(
-          themeFilename,
-          `
-          'use client';
-          globalThis.THEME = ${JSON.stringify(config.default)}
-        `
-        );
         theme.setUserTheme(config.default as any);
       }
     }

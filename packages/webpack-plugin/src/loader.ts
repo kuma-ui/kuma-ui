@@ -72,11 +72,11 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           const cssPath = path.posix.join(outDir, `${hash}.css`);
           fs.writeFileSync(cssPath, css);
           const filePrefix = `import "${cssPath}";`;
-          callback(null, `${codeWithReact};\nimport "${themeFilename}";\n${filePrefix}`);
+          callback(null, `${codeWithReact}\n${filePrefix}`);
           return;
         }
       }
-      callback(null, `${codeWithReact};\nimport "${themeFilename}";`);
+      callback(null, `${codeWithReact}`);
     })
     .catch((error) => {
       callback(error);

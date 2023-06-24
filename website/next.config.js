@@ -18,9 +18,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withKumaUI(nextConfig, {
-  breakpoints: {
-    sm: "700px",
-    md: "1200px",
-  },
-});
+module.exports = withKumaUI(nextConfig, { });
