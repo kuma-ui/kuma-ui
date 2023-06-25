@@ -1,21 +1,8 @@
 const { withKumaUI } = require("@kuma-ui/next-plugin");
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    appDir: true,
-  },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/docs/introduction",
-        permanent: true,
-      },
-    ];
-  },
-};
+const withNextra = require("nextra")({
+  theme: "nextra-theme-docs",
+  themeConfig: "./theme.config.jsx",
+});
 
-module.exports = withKumaUI(nextConfig, { });
+module.exports = withKumaUI(withNextra());

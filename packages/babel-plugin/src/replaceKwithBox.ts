@@ -1,7 +1,4 @@
 import { NodePath, Node, types, template } from "@babel/core";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import printAST from "ast-pretty-print";
 
 /**
  * Processes the JSXElement nodes in the AST and replaces the 'k' syntax from '@kuma-ui/core'

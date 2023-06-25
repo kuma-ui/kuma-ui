@@ -19,8 +19,9 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
        * @see backgroundColor
        */
       bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
-    } & CSSProperties<"borderColor" | "color" | "opacity", false>,
+    } & CSSProperties<"borderColor" | "color" | "accentColor" | "caretColor" | "opacity", false>,
     AutoPrefix
+
   >
 >;
 
@@ -29,6 +30,8 @@ const colorMappings: Record<ColorKeys, string> = {
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",
+  accentColor: "accent-color",
+  caretColor: "caret-color",
   opacity: "opacity",
 };
 

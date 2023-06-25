@@ -1,0 +1,112 @@
+---
+title: "Installation"
+description: "The Modern Headless & Zero Runtime UI Component Library 🐻‍❄️✨"
+---
+
+import { Callout, Tabs, Tab, Steps } from "nextra-theme-docs";
+
+# Installation
+
+<Callout type="info">
+  Kuma UI is compatible with React 18 and above. If you're using an older
+  version of React, [you'll need to upgrade
+  first](https://react.dev/blog/2022/03/08/react-18-upgrade-guide).
+</Callout>
+
+### Install packages
+
+To install Kuma UI in your project, run one of the following commands in your terminal:
+
+<Tabs items={["npm", "pnpm", "yarn"]} storageKey="selected-pkg-manager">
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  npm install @kuma-ui/core
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install @kuma-ui/core
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  yarn add @kuma-ui/core
+  ```
+  </Tab>
+</Tabs>
+
+Once the `@kuma-ui/core` package is successfully installed, you can proceed to install a plugin for your specific framework (Next.js or Vite) as below.
+
+<Tabs items={["next.js", "vite"]} storageKey="selected-framework">
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D @kuma-ui/next-plugin
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D @kuma-ui/vite
+  ```
+  </Tab>
+</Tabs>
+
+## Setting Up Kuma UI
+
+Once you've installed the plugin, you need to configure it in your configuration file.
+
+<Tabs
+  items={["next.js pages dir", "next.js app router", "vite"]}
+  storageKey="selected-config"
+>
+  {/* prettier-ignore */}
+  <Tab>
+    ```js filename="next.config.js"
+    const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+    /** @type {import('next').NextConfig} */
+    const nextConfig = {
+    reactStrictMode: true,
+    };
+
+    module.exports = withKumaUI(nextConfig);
+    ```
+
+</Tab>
+{/* prettier-ignore */}
+<Tab>
+    ```js filename="next.config.js"
+    const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+    /** @type {import('next').NextConfig} */
+    const nextConfig = {
+    reactStrictMode: true,
+    experimental: {
+        appDir: true
+        }
+    };
+
+    module.exports = withKumaUI(nextConfig);
+    ```
+
+  </Tab>
+  <Tab>
+    ```js filename="vite.config.js"
+    import { defineConfig } from "vite";
+    import react from "@vitejs/plugin-react";
+    import KumaUI from "@kuma-ui/vite";
+
+    export default defineConfig({
+        plugins: [
+        react(),
+        KumaUI(),
+        ],
+    });
+    ```
+
+  </Tab>
+</Tabs>
