@@ -21,18 +21,12 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
  * @param Component - The component to be wrapped with styled-system functionality
  * @returns A new component with styled-system functionality and a unique data-kuma-ui attribute
  */
-function styled<T extends keyof JSX.IntrinsicElements | ComponentType<any>>(
-  Component: T
-) {
-  const fn = function <P = StyledProps>(
-    strings: TemplateStringsArray,
-    ...interpolations: ((props: P) => ResponsiveStyle)[]
-  ): React.FC<
-    Omit<StyledComponentProps<T>, StyledKeyType> & P & Partial<PseudoProps>
-  > {
-    throw Error('Using the "styled" tag in runtime is not supported.');
+function styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
+  const fn = (
+    strings: TemplateStringsArray
+  ): React.FC<React.ComponentProps<T>> => {
+    throw Error('Using the "styled" tag in runtime is not supported.') as any;
   };
-  fn.__zeroStyled = true;
   return fn;
 }
 
