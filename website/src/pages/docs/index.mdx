@@ -1,0 +1,42 @@
+---
+title: "Overview"
+description: Kuma UI - A new era of CSS-in-JS with Hybrid CSS-in-JS, Theming and Universal UI Components
+---
+
+# Overview
+
+Named after the Japanese word for 'bear', Kuma UI embodies the spirit of the **"熊" (kuma 🐻‍❄️)** - strong, reliable, and efficient.
+
+## Why Kuma UI? 🤔
+
+### From Runtime CSS-in-JS to Zero-Runtime CSS-in-JS 🔄
+
+Initially, runtime CSS-in-JS allowed developers to express CSS entirely in JavaScript. It was powerful, but the need to inject styles into the DOM at runtime led to performance issues. Moreover, these libraries were incompatible with React Server Components (RSC).
+
+Zero-runtime CSS-in-JS emerged as a solution to this challenge. It statically analyzes CSS written in JS during the build process, thereby extracting CSS ahead of time and overcoming the performance issues of runtime CSS-in-JS.
+
+However, zero-runtime CSS-in-JS had its drawbacks. Since CSS was extracted statically at build time, it became impossible to make dynamic style changes—something easily achieved with runtime CSS-in-JS. This restricted JavaScript's expressive power.
+
+### The Hybrid Approach 🌐
+
+Enter Kuma UI, adopting a **Hybrid approach**. Our solution is to statically extract styles that can be determined at build time and to perform a static "dirty check" on styles that may change dynamically, injecting them at runtime.
+
+This way, Kuma UI brings together **the performance benefits of zero-runtime CSS-in-JS and the expressive power of runtime CSS-in-JS**.
+
+With Kuma UI, you can harness the full power of JavaScript for styling without compromising on performance or compatibility with modern technologies like RSC.
+
+## Hybrid CSS-in-JS 🚀
+
+Kuma UI now adopts a **Hybrid CSS-in-JS approach** to further improve performance and developer experience. It combines the flexibility of runtime CSS-in-JS with the performance advantages of zero-runtime CSS-in-JS. This allows us to handle dynamic properties more seamlessly without compromising on performance or compatibility with React Server Components (RSC) and App Router.
+
+## Theming 🎨
+
+We have introduced a theme feature to improve customizability and overall developer experience. Users can now define their own theme in a configuration file (`kuma.config.ts`) and use it throughout their project. Moreover, we generate types from these theme settings, enhancing the development experience through type inference when accessing theme properties.
+
+## Universal UI Components 🌍
+
+Finally, we are introducing Universal UI Components in @kuma-ui/core. The core package now includes components tailored for different JSX libraries such as React and Solid. Depending on the chosen jsxMode, the import paths for these components will be adjusted using Babel. This allows users to keep all their logic within the core component library, ensuring idiomatic and smooth development in each respective library.
+
+## Developer Experience: Familiar Yet Revolutionary 🛠️
+
+We're passionate about providing a familiar and intuitive developer experience. If you've used [Chakra UI](https://chakra-ui.com/), [Styled System](https://styled-system.com/), or [xstyled](https://xstyled.dev/), you'll feel right at home with Kuma UI. However, with Kuma UI, you enjoy superior performance, greater flexibility, and a system that adapts to the evolving needs of modern web development.
