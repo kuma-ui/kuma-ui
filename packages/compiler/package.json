@@ -1,6 +1,6 @@
 {
-  "name": "@kuma-ui/babel-plugin",
-  "version": "0.11.0",
+  "name": "@kuma-ui/compiler",
+  "version": "0.0.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
@@ -24,28 +24,15 @@
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts",
     "typecheck": "tsc --noEmit --composite false",
-    "test": "vitest run",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
-    "@babel/core": "^7.21.4",
-    "@kuma-ui/compiler": "workspace:^",
     "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
     "@kuma-ui/system": "workspace:^",
+    "ts-morph": "^19.0.0",
     "ts-pattern": "^5.0.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/node": "^7.20.7",
-    "@babel/preset-env": "^7.21.4",
-    "@babel/preset-react": "^7.18.6",
-    "@babel/preset-typescript": "^7.21.4",
-    "@types/babel__core": "^7.20.0",
-    "@vitest/coverage-c8": "^0.31.4",
-    "babel-plugin-tester": "^11.0.4",
-    "vitest": "^0.31.4"
   },
   "publishConfig": {
     "access": "public"
