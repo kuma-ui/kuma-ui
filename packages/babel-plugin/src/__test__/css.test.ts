@@ -9,50 +9,50 @@ import path from "path";
 
 describe("css function", () => {
   describe("Snapshot tests", () => {
-    test("basic usage should match snapshot", () => {
+    test("basic usage should match snapshot", async () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css({ color: 'red' })
       `;
       // Act
-      const result = babelTransform(inputCode);
+      const result = await babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
-    test("using space props should match snapshot", () => {
+    test("using space props should match snapshot", async () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css({ p: 2 })
       `;
       // Act
-      const result = babelTransform(inputCode);
+      const result = await babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
-    test("using pseudo elements should match snapshot", () => {
+    test("using pseudo elements should match snapshot", async () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css({ _after: { color: 'blue' } })
       `;
       // Act
-      const result = babelTransform(inputCode);
+      const result = await babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
-    test("using pseudo props should match snapshot", () => {
+    test("using pseudo props should match snapshot", async () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css({ _hover: { color: 'red' } })
       `;
       // Act
-      const result = babelTransform(inputCode);
+      const result = await babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
