@@ -18,7 +18,7 @@ export class ServerStyleSheet implements StyleSheet {
   }
 
   public inject(): void {
-    if (!this.injected) {
+    if (this.injected) {
       throw new Error("ServerStyleSheet: sheet already injected");
     }
 

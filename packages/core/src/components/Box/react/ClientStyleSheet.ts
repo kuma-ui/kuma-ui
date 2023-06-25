@@ -19,12 +19,12 @@ export class ClientStyleSheet implements StyleSheet {
   }
 
   public inject(): void {
-    if (!this.injected) {
+    if (this.injected) {
       throw new Error("ClientStyleSheet: sheet already injected");
     }
 
     if (this.speedy) {
-      this.tags[0] = this.makeStyleTag(this.name);
+      this.tags[0] = this.makeStyleTag();
       this.speedy = "insertRule" in this.getLatestSheet();
       if (!this.speedy) {
         if (!isProduction) {
