@@ -271,6 +271,9 @@ importers:
       react:
         specifier: '>=18.2.0'
         version: 18.2.0
+      ts-pattern:
+        specifier: ^5.0.1
+        version: 5.0.1
     devDependencies:
       '@types/react':
         specifier: ^18.0.32
