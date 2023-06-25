@@ -34,9 +34,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _hover={{
-    color: 'red'
-  }} className={\`kuma-3206633536 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`kuma-2131929892 \${\\"kuma-1440123820\\"}\`} />;
 }
 "
 `;
@@ -49,9 +47,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _after={{
-    color: 'blue'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"div\\" className={\\"kuma-2631981251\\"} />;
 }
 "
 `;
@@ -64,9 +60,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" _hover={{
-    color: 'red'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"span\\" className={\\"kuma-2131929892\\"} />;
 }
 "
 `;
@@ -131,9 +125,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _hover={{
-    color: 'red'
-  }} className={\`kuma-3206633536 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`kuma-2131929892 \${\\"kuma-1440123820\\"}\`} />;
 }
 "
 `;
@@ -146,9 +138,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _after={{
-    color: 'blue'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"div\\" className={\\"kuma-2631981251\\"} />;
 }
 "
 `;
@@ -161,9 +151,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" _hover={{
-    color: 'red'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"span\\" className={\\"kuma-2131929892\\"} />;
 }
 "
 `;
@@ -228,9 +216,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _hover={{
-    color: 'red'
-  }} className={\`kuma-3206633536 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`kuma-2131929892 \${\\"kuma-1440123820\\"}\`} />;
 }
 "
 `;
@@ -243,9 +229,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" _after={{
-    color: 'blue'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"div\\" className={\\"kuma-2631981251\\"} />;
 }
 "
 `;
@@ -258,9 +242,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" _hover={{
-    color: 'red'
-  }} className={\\"kuma-3206633536\\"} />;
+  return <__Box as=\\"span\\" className={\\"kuma-2131929892\\"} />;
 }
 "
 `;

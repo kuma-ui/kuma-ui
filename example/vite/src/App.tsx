@@ -19,6 +19,9 @@ function App() {
       display="flex"
       flexDir={["column", "row"]}
       className={className}
+      _hover={{
+        bg: "red",
+      }}
     >
       <Heading as="h3" className="hello">
         hello
