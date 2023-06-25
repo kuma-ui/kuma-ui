@@ -1,4 +1,9 @@
 <div align="center">
+
+  :construction: :rotating_light: **BIG NEWS!** :rotating_light: :construction:
+
+  We are taking Kuma UI to the next level. The ultimate CSS-in-JS solution is under development and we're aiming to drop the updates on **July 16th, 2023**. Until then, new releases will be paused. Stay tuned and get ready for the revolution 🐻‍❄️
+
   <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 

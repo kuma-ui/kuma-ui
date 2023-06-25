@@ -4,9 +4,9 @@ import { NodePath, Node, types, template } from "@babel/core";
 import printAST from "ast-pretty-print";
 
 /**
- * Processes the CallExpression nodes in the AST and replaces the 'k' function from '@kuma-ui/core'
- * with the corresponding HTML tag. This allows usage of the 'k' function as a shorthand for creating
- * styled components, e.g. <k.div> instead of <div>.
+ * Processes the JSXElement nodes in the AST and replaces the 'k' syntax from '@kuma-ui/core'
+ * with corresponding 'Box' component. This allows usage of the 'k' syntax as a shorthand for creating
+ * styled components, e.g. <k.div> is transformed to <Box as="div">.
  *
  * @param {NodePath<types.Program>} node - The NodePath object representing the Program node.
  * @param {typeof types} t - The Babel types object.
@@ -17,32 +17,15 @@ export const replaceKwithBox = (
   t: typeof types,
   importedStyleFunctions: Record<string, string>
 ) => {
-  let boxName: string = importedStyleFunctions["Box"];
-
   node.traverse({
     JSXElement(path) {
       const { openingElement, closingElement } = path.node;
-      importedStyleFunctions["Box"];
       if (
         t.isJSXMemberExpression(openingElement.name) &&
         t.isJSXIdentifier(openingElement.name.object, {
           name: importedStyleFunctions["k"],
         })
       ) {
-        if (!boxName) {
-          const localBoxName = "__Box";
-          const reactImportDeclaration = t.importDeclaration(
-            [
-              t.importSpecifier(
-                t.identifier(localBoxName),
-                t.identifier("Box")
-              ),
-            ],
-            t.stringLiteral("@kuma-ui/core")
-          );
-          node.unshiftContainer("body", reactImportDeclaration);
-          boxName = localBoxName;
-        }
         if (
           closingElement &&
           t.isJSXMemberExpression(closingElement.name) &&
@@ -50,7 +33,7 @@ export const replaceKwithBox = (
             name: importedStyleFunctions["k"],
           })
         ) {
-          closingElement.name = t.jsxIdentifier(boxName);
+          closingElement.name = t.jsxIdentifier(importedStyleFunctions["Box"]);
         }
         openingElement.attributes = [
           t.jsxAttribute(
@@ -59,7 +42,7 @@ export const replaceKwithBox = (
           ),
           ...openingElement.attributes,
         ];
-        openingElement.name = t.jsxIdentifier(boxName);
+        openingElement.name = t.jsxIdentifier(importedStyleFunctions["Box"]);
       }
     },
   });
