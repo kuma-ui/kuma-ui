@@ -53,8 +53,8 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
     async transform(code: string, id: string) {
       if (id.includes("@kuma-ui")) return;
       if (!/\.(t|j)(s|sx)?$/.test(id)) return;
-      if (!/import\s+.+\s+from\s+['"]\@kuma-ui\/core['"]/.test(code)) return;
-      console.log("vite xxxx");
+      if (/node_modules/.test(id)) return;
+      if (!code.includes("@kuma-ui/core")) return;
 
       requireReact(code, id);
       const result = await transform(code, id);

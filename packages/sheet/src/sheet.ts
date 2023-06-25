@@ -1,6 +1,7 @@
+import { theme } from ".";
 import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
-import { compile, serialize, stringify } from "stylis";
+import { compile, serialize, stringify, Element } from "stylis";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
@@ -96,7 +97,39 @@ export class Sheet {
    */
   parseCSS(style: string): string {
     const id = "kuma-" + generateHash(style);
-    const css = serialize(compile(`.${id}{${style}}`), stringify);
+
+    const elements: Element[] = [];
+
+    compile(`.${id}{${style}}`).forEach((element) => {
+      // console.log(element);
+      const breakpoint = theme.getBreakpoints();
+      if (element.type === "@media") {
+        const props = Array.isArray(element.props)
+          ? element.props
+          : [element.props];
+        const newProps: string[] = [];
+        let newValue = element.value;
+        for (const key in breakpoint) {
+          newValue = newValue.replaceAll(key, breakpoint[key]);
+        }
+        props.forEach((prop) => {
+          for (const key in breakpoint) {
+            newProps.push(prop.replaceAll(key, breakpoint[key]));
+            break;
+          }
+        });
+        element.props = newProps;
+        element.value = newValue;
+      }
+      console.log(element);
+      elements.push(element);
+    });
+
+    console.log(elements);
+
+    const css = serialize(elements, stringify);
+    console.log(css);
+
     this.css.push(css);
     return id;
   }
