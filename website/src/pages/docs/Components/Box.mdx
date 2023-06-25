@@ -1,0 +1,60 @@
+import {
+  ThisIsTheBox,
+  ExampleContainer,
+  ThisIsTheButton,
+} from "../../../components/example";
+
+# Box
+
+The Box is the most fundamental component from which all other Kuma UI components are constructed. It typically generates a `div` element and can incorporate any system style properties for comprehensive customization, serving as the default.
+
+## Import
+
+```tsx copy
+import { Box } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <ThisIsTheBox />
+</ExampleContainer>
+
+```tsx copy
+const ThisIsTheBox = () => {
+  return (
+    <Box p={8} bg="blue" color="white">
+      Hello world
+    </Box>
+  );
+};
+```
+
+## props
+
+### as
+
+The `as` prop allows you to alter the rendered element, similar to the functionality offered in Chakra UI.
+
+<ExampleContainer>
+  <ThisIsTheButton />
+</ExampleContainer>
+
+```tsx copy
+const ThisIsTheButton = () => {
+  return (
+    <Box
+      as="button"
+      p={8}
+      bg="black"
+      color="white"
+      borderRadius={4}
+      _hover={{
+        opacity: 0.8,
+      }}
+    >
+      Hello world
+    </Box>
+  );
+};
+```
