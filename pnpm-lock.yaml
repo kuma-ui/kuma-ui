@@ -2554,15 +2554,6 @@ packages:
     dependencies:
       tslib: 2.5.2
 
-<<<<<<< HEAD
-  /@ts-morph/common@0.20.0:
-    resolution: {integrity: sha512-7uKjByfbPpwuzkstL3L5MQyuXPSKdoNG93Fmi2JoDcTf3pEP731JdRFAduRVkOs8oqxPsXKA+ScrWkdQ8t/I+Q==}
-    dependencies:
-      fast-glob: 3.2.12
-      minimatch: 7.4.6
-      mkdirp: 2.1.6
-      path-browserify: 1.0.1
-=======
   /@theguild/remark-mermaid@0.0.1(react@18.2.0):
     resolution: {integrity: sha512-MbLi7CIn25r0MypN1yaTrvuQHBE/UXy/DKfVjaLlXx5ut4PasOwzGIJihzM4d9kqNADJKilHpQWcd66ivbvJEQ==}
     peerDependencies:
@@ -2573,7 +2564,15 @@ packages:
       unist-util-visit: 4.1.2
     transitivePeerDependencies:
       - supports-color
->>>>>>> 8dcbbf0f34a91fefd00ce6b5a96df6ae89d7ebff
+    dev: false
+
+  /@ts-morph/common@0.20.0:
+    resolution: {integrity: sha512-7uKjByfbPpwuzkstL3L5MQyuXPSKdoNG93Fmi2JoDcTf3pEP731JdRFAduRVkOs8oqxPsXKA+ScrWkdQ8t/I+Q==}
+    dependencies:
+      fast-glob: 3.2.12
+      minimatch: 7.4.6
+      mkdirp: 2.1.6
+      path-browserify: 1.0.1
     dev: false
 
   /@tsconfig/node10@1.0.9:
@@ -3891,14 +3890,13 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
-<<<<<<< HEAD
-  /code-block-writer@12.0.0:
-    resolution: {integrity: sha512-q4dMFMlXtKR3XNBHyMHt/3pwYNA69EDk00lloMOaaUMKPUXBw6lpXtbu3MMVG6/uOihGnRDOlkyqsONEUj60+w==}
-=======
   /clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
     engines: {node: '>=6'}
->>>>>>> 8dcbbf0f34a91fefd00ce6b5a96df6ae89d7ebff
+    dev: false
+
+  /code-block-writer@12.0.0:
+    resolution: {integrity: sha512-q4dMFMlXtKR3XNBHyMHt/3pwYNA69EDk00lloMOaaUMKPUXBw6lpXtbu3MMVG6/uOihGnRDOlkyqsONEUj60+w==}
     dev: false
 
   /color-convert@1.9.3:

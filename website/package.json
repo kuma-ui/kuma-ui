@@ -3,11 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-<<<<<<< HEAD
-    "dev": "next dev -p 1000",
-=======
     "dev": "next dev -p 3147",
->>>>>>> 8dcbbf0f34a91fefd00ce6b5a96df6ae89d7ebff
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
