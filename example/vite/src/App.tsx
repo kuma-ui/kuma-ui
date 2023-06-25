@@ -7,6 +7,7 @@ import {
   Heading,
   styled,
   k,
+  css,
 } from "@kuma-ui/core";
 
 const className = "hello";
@@ -20,6 +21,16 @@ function App() {
       flexDir={["column", "row"]}
       className={className}
     >
+      <div
+        className={css`
+          color: red;
+          @media screen (max-width: xs) {
+            color: red
+          }
+        `}
+      >
+        12345
+      </div>
       <Heading as="h3" className="hello">
         hello
       </Heading>
