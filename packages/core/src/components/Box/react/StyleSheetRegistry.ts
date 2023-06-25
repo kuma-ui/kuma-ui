@@ -5,16 +5,9 @@ export class StyleSheetRegistry {
   private sheet: StyleSheet;
   private indices: Record<string, number> = {};
 
-  constructor({
-    styleSheet = null,
-    speedy = isProduction,
-  }: { styleSheet?: StyleSheet | null; speedy?: boolean } = {}) {
-    this.sheet = styleSheet || new StyleSheet("kuma-ui", speedy);
-
+  constructor() {
+    this.sheet = new StyleSheet("kuma-ui", true);
     this.sheet.inject();
-    if (styleSheet) {
-      this.sheet.setSpeedy(speedy);
-    }
   }
 
   public add(id: string, rule: string): void {
