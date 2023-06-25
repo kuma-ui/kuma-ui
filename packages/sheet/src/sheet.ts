@@ -44,8 +44,9 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addRule(style: SystemStyle) {
-    const className = "kuma-" + generateHash(JSON.stringify(style));
+  addRule(style: SystemStyle, isDynamic = false) {
+    const classNamePrefix = isDynamic ? "kuma-dynamic-" : "kuma-";
+    const className = classNamePrefix + generateHash(JSON.stringify(style));
     this._addeBaseRule(className, style.base);
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
       this._addMediaRule(className, css, breakpoint);
