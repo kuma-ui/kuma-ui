@@ -34,26 +34,28 @@ export const visitor = ({ types: t, template }: Core) => {
         // Process TaggedTemplateExpressions with styled components and generate the hashed classNames
         processTaggedTemplateExpression(path, template, importedStyleFunctions);
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
-        processComponents(path, importedStyleFunctions);
+        // processComponents(path, importedStyleFunctions);
 
         // Traversal over JSX opening elements, identifying Kuma-UI components and extracting their style props.
-        path.traverse({
-          JSXOpeningElement(path) {
-            if (
-              Object.values(importedStyleFunctions).some((f) => {
-                if (path.node.name.type === "JSXIdentifier") {
-                  return path.node.name.name === f;
-                }
-              })
-            ) {
-              processJSXHTMLTag(path);
-            }
-          },
-        });
+        // path.traverse({
+        //   JSXOpeningElement(path) {
+        //     if (
+        //       Object.values(importedStyleFunctions).some((f) => {
+        //         if (path.node.name.type === "JSXIdentifier") {
+        //           return path.node.name.name === f;
+        //         }
+        //       })
+        //     ) {
+        //       processJSXHTMLTag(path);
+        //     }
+        //   },
+        // });
       },
       exit() {
-        (this.file.metadata as { css: string }).css = sheet.getCSS();
-        sheet.reset();
+        // (this.file.metadata as { css: string }).css = sheet.getCSS();
+        (this.file.metadata as { bindings: Record<string, string> }).bindings =
+          importedStyleFunctions;
+        // sheet.reset();
       },
     },
   };

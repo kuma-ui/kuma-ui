@@ -1,0 +1,1 @@
+export { extractProps } from "./extract";
