@@ -93,6 +93,20 @@ describe("k api", () => {
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
+
+      test("should match snapshot when k is used more than once", () => {
+        // Arrange
+        const inputCode = `
+        import { k } from '@kuma-ui/core'
+        function App() {
+          return <k.div fontSize={24}><k.div fontSize={24}></k.div></k.div>
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode, runtime);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
     }
   );
 });

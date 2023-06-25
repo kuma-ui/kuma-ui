@@ -4,15 +4,15 @@ import { NodePath, Node, types, template } from "@babel/core";
 import printAST from "ast-pretty-print";
 
 /**
- * Processes the CallExpression nodes in the AST and replaces the 'k' function from '@kuma-ui/core'
- * with the corresponding HTML tag. This allows usage of the 'k' function as a shorthand for creating
- * styled components, e.g. <k.div> instead of <div>.
+ * Processes the JSXElement nodes in the AST and replaces the 'k' syntax from '@kuma-ui/core'
+ * with corresponding 'Box' component. This allows usage of the 'k' syntax as a shorthand for creating
+ * styled components, e.g. <k.div> is transformed to <Box as="div">.
  *
  * @param {NodePath<types.Program>} node - The NodePath object representing the Program node.
  * @param {typeof types} t - The Babel types object.
  * @param {Record<string, string>} importedStyleFunctions - An object containing the imported styled functions.
  */
-export const replaceK = (
+export const replaceKwithBox = (
   node: NodePath<types.Program>,
   t: typeof types,
   importedStyleFunctions: Record<string, string>
@@ -20,7 +20,6 @@ export const replaceK = (
   node.traverse({
     JSXElement(path) {
       const { openingElement, closingElement } = path.node;
-
       if (
         t.isJSXMemberExpression(openingElement.name) &&
         t.isJSXIdentifier(openingElement.name.object, {
@@ -34,9 +33,16 @@ export const replaceK = (
             name: importedStyleFunctions["k"],
           })
         ) {
-          closingElement.name = openingElement.name.property;
+          closingElement.name = t.jsxIdentifier(importedStyleFunctions["Box"]);
         }
-        openingElement.name = openingElement.name.property;
+        openingElement.attributes = [
+          t.jsxAttribute(
+            t.jsxIdentifier("as"),
+            t.stringLiteral(openingElement.name.property.name)
+          ),
+          ...openingElement.attributes,
+        ];
+        openingElement.name = t.jsxIdentifier(importedStyleFunctions["Box"]);
       }
     },
   });

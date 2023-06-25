@@ -18,6 +18,18 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./components/componentList": {
+      "types": "./dist/components/componentList.d.ts",
+      "require": "./dist/components/componentList.js",
+      "import": "./dist/components/componentList.mjs"
+    }
+  },
   "files": [
     "dist"
   ],

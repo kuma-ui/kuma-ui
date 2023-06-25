@@ -4,9 +4,9 @@ function App() {
   return (
     <ResponsiveTest>
       <div className={text}>hello</div>
-      <Text color="blue" _hover={{ bg: "red" }}>
+      <k.p color="blue" _hover={{ bg: "red" }}>
         world
-      </Text>
+      </k.p>
       <k.button p="10px 12px" fontSize={16} disabled>
         button
       </k.button>
@@ -15,10 +15,6 @@ function App() {
 }
 
 export default App;
-
-const Text = styled("p")`
-  color: red;
-`;
 
 const text = css({
   color: "red",
