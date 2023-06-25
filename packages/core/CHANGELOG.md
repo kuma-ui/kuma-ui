@@ -1,5 +1,11 @@
 # @kuma-ui/core
 
+## 0.5.0
+
+### Minor Changes
+
+- [#139](https://github.com/poteboy/kuma-ui/pull/139) [`6d0ba6d`](https://github.com/poteboy/kuma-ui/commit/6d0ba6db946f38de2bb3ea51b288daddfbb67196) Thanks [@poteboy](https://github.com/poteboy)! - Pre-release Bug Fix: Limit style props extraction to Kuma UI components
+
 ## 0.4.2
 
 ### Patch Changes
