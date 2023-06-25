@@ -1,7 +1,6 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 
-type CSSFunction = (styles: StyledProps & PseudoProps) => string;
-
-export const css: CSSFunction = () => {
+export const css = (_strings: TemplateStringsArray): string => {
   throw Error('Using the "css" in runtime is not supported.');
 };
+
