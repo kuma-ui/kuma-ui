@@ -53,6 +53,7 @@ export const styleKeys = {
     "bgColor",
     "color",
     "borderColor",
+    "outlineColor",
     "accentColor",
     "caretColor",
     "opacity",
@@ -65,6 +66,12 @@ export const styleKeys = {
     "borderRight",
     "borderBottom",
     "borderLeft",
+  ] as const,
+  outline: [
+    "outline",
+    "outlineWidth",
+    "outlineStyle",
+    "outlineOffset",
   ] as const,
   position: ["top", "right", "bottom", "left", "inset"] as const,
   shadow: ["textShadow", "boxShadow"] as const,
@@ -111,6 +118,7 @@ export type LayoutKeys = (typeof styleKeys.layout)[number];
 export type ColorKeys = (typeof styleKeys.color)[number];
 export type FlexKeys = (typeof styleKeys.flex)[number];
 export type BorderKeys = (typeof styleKeys.border)[number];
+export type OutlineKeys = (typeof styleKeys.outline)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 export type ListKeys = (typeof styleKeys.list)[number];
@@ -125,6 +133,7 @@ export type StyledKeyType =
   | ColorKeys
   | FlexKeys
   | BorderKeys
+  | OutlineKeys
   | PositionKeys
   | ShadowKeys
   | ListKeys

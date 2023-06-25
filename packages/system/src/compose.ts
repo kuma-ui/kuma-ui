@@ -4,6 +4,7 @@ import { LayoutProps } from "./layout";
 import { ColorProps } from "./color";
 import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
+import { OutlineProps } from "./outline";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
@@ -19,6 +20,7 @@ export type StyledProps = SpaceProps &
   ColorProps &
   FlexProps &
   BorderProps &
+  OutlineProps &
   PositionProps &
   ShadowProps &
   GridProps &
