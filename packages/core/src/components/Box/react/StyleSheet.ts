@@ -1,3 +1,13 @@
+import { ClientStyleSheet } from "./ClientStyleSheet";
+import { ServerStyleSheet } from "./ServerStyleSheet";
+import { isBrowser } from "./isBrowser";
+
+export type FakeCSSStyleSheet = {
+  cssRules: { cssText: string }[];
+  insertRule: CSSStyleSheet["insertRule"];
+  deleteRule: CSSStyleSheet["deleteRule"];
+};
+
 export interface StyleSheet {
   inject(): void;
   isSpeedy(): boolean;
@@ -8,8 +18,10 @@ export interface StyleSheet {
   cssRules(): (CSSRule | null)[];
 }
 
-export type FakeCSSStyleSheet = {
-  cssRules: { cssText: string }[];
-  insertRule: CSSStyleSheet["insertRule"];
-  deleteRule: CSSStyleSheet["deleteRule"];
-};
+export class StyleSheet implements StyleSheet {
+  constructor(name: string, speedy = false) {
+    return isBrowser
+      ? new ClientStyleSheet(name, speedy)
+      : new ServerStyleSheet(name, speedy);
+  }
+}

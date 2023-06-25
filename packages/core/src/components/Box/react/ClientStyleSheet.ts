@@ -1,8 +1,7 @@
+import { isProduction } from "./isProduction";
 import { StyleSheet } from "./StyleSheet";
 
-const isProd = process.env.NODE_ENV === "production";
-
-export default class ClientStyleSheet implements StyleSheet {
+export class ClientStyleSheet implements StyleSheet {
   private name: string;
   private deletedRulePlaceholder: string;
   private speedy: boolean;
@@ -10,7 +9,7 @@ export default class ClientStyleSheet implements StyleSheet {
   private injected: boolean;
   private rulesCount: number;
 
-  constructor({ name, speedy = isProd }: { name: string; speedy?: boolean }) {
+  constructor(name: string, speedy = false) {
     this.name = name;
     this.deletedRulePlaceholder = `#${name}-deleted-rule{}`;
     this.speedy = speedy;
@@ -28,7 +27,7 @@ export default class ClientStyleSheet implements StyleSheet {
       this.tags[0] = this.makeStyleTag(this.name);
       this.speedy = "insertRule" in this.getLatestSheet();
       if (!this.speedy) {
-        if (!isProd) {
+        if (!isProduction) {
           console.warn(
             "ClientStyleSheet: speedy mode not supported falling back to standard mode."
           );

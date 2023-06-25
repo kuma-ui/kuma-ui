@@ -1,8 +1,6 @@
 import { StyleSheet, FakeCSSStyleSheet } from "./StyleSheet";
 
-const isProd = process.env.NODE_ENV === "production";
-
-export default class ServerStyleSheet implements StyleSheet {
+export class ServerStyleSheet implements StyleSheet {
   private name: string;
   private deletedRulePlaceholder: string;
   private speedy: boolean;
@@ -10,7 +8,7 @@ export default class ServerStyleSheet implements StyleSheet {
   private injected: boolean;
   private rulesCount: number;
 
-  constructor({ name, speedy = isProd }: { name: string; speedy?: boolean }) {
+  constructor(name: string, speedy = false) {
     this.name = name;
     this.deletedRulePlaceholder = `#${name}-deleted-rule{}`;
     this.speedy = speedy;
