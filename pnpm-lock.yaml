@@ -127,6 +127,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      string-hash:
+        specifier: ^1.1.3
+        version: 1.1.3
     devDependencies:
       '@types/react':
         specifier: ^18.0.28
@@ -265,6 +268,9 @@ importers:
 
   packages/core:
     dependencies:
+      '@kuma-ui/sheet':
+        specifier: workspace:*
+        version: link:../sheet
       '@kuma-ui/system':
         specifier: workspace:*
         version: link:../system
@@ -7756,6 +7762,10 @@ packages:
     resolution: {integrity: sha512-aqD2Q0144Z+/RqG52NeHEkZauTAUWJO8c6yTftGJKO3Tja5tUgIfmIl6kExvhtxSDP7fXB6DvzkfMpCd/F3G+Q==}
     engines: {node: '>=0.6.19'}
     dev: true
+
+  /string-hash@1.1.3:
+    resolution: {integrity: sha512-kJUvRUFK49aub+a7T1nNE66EJbZBMnBgoC1UbCZ5n6bsZKBRga4KgBRTMn/pFkeCZSYtNeSyMxPDM0AXWELk2A==}
+    dev: false
 
   /string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}

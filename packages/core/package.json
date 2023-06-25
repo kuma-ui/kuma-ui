@@ -41,6 +41,7 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
+    "@kuma-ui/sheet": "workspace:*",
     "@kuma-ui/system": "workspace:*"
   },
   "devDependencies": {
