@@ -66,7 +66,7 @@ export class ClientStyleSheet implements StyleSheet {
       try {
         sheet.insertRule(rule, index);
       } catch (error) {
-        if (!isProd) {
+        if (!isProduction) {
           console.warn(
             `ClientStyleSheet: illegal rule: \n\n${rule}\n\nSee https://stackoverflow.com/q/20007992 for more info`
           );
