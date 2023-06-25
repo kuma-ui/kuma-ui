@@ -1,3 +1,3 @@
-import type { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
+// import type { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
 
-export const handleText = (path: NodePath<t.JSXElement>) => {};
+export const handleText = () => {};
