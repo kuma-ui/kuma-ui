@@ -5,7 +5,7 @@ export class ClientStyleSheet implements StyleSheet {
   private name: string;
   private deletedRulePlaceholder: string;
   private speedy: boolean;
-  private tags: HTMLStyleElement[];
+  private tags: (HTMLStyleElement | undefined)[];
   private injected: boolean;
   private rulesCount: number;
 
@@ -103,17 +103,17 @@ export class ClientStyleSheet implements StyleSheet {
     this.tags = [];
   }
 
-  public cssRules(): (CSSRule | null)[] {
+  public cssRules(): ReturnType<StyleSheet["cssRules"]> {
     return this.tags.reduce((rules, tag) => {
       if (tag) {
         return rules.concat(
           Array.from(this.getSheet(tag).cssRules, (rule) =>
-            rule.cssText === this.deletedRulePlaceholder ? null : rule
+            rule.cssText === this.deletedRulePlaceholder ? undefined : rule
           )
         );
       }
-      return rules.concat(null);
-    }, [] as (CSSRule | null)[]);
+      return rules;
+    }, [] as ReturnType<StyleSheet["cssRules"]>);
   }
 
   private makeStyleTag(

@@ -3,9 +3,9 @@ import { ServerStyleSheet } from "./ServerStyleSheet";
 import { isBrowser } from "./isBrowser";
 
 export type FakeCSSStyleSheet = {
-  cssRules: { cssText: string }[];
   insertRule: CSSStyleSheet["insertRule"];
   deleteRule: CSSStyleSheet["deleteRule"];
+  cssRules: ({ cssText: string } | undefined)[];
 };
 
 export interface StyleSheet {
@@ -15,7 +15,7 @@ export interface StyleSheet {
   insertRule(rule: string, index?: number): number;
   deleteRule(index: number): void;
   flush(): void;
-  cssRules(): (CSSRule | null)[];
+  cssRules(): (CSSRule | undefined)[];
 }
 
 export class StyleSheet implements StyleSheet {

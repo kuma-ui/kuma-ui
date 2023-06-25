@@ -15,7 +15,7 @@ export function StyleRegistry({
   children,
 }: {
   registry?: StyleSheetRegistry | null;
-  children: React.ReactElement;
+  children: React.ReactNode;
 }): React.ReactElement {
   const rootRegistry = React.useContext(StyleSheetContext);
   const [registry] = React.useState(

@@ -5,26 +5,29 @@ import type { BoxComponent } from "./types";
 import { isBrowser } from "./isBrowser";
 import { useStyleRegistry, createStyleRegistry } from "./StyleRegistry";
 
-const defaultRegistry = isBrowser ? createStyleRegistry() : null;
-
 const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
 
-// TODO: support SSR
+// TODO: generate id and rule
+const id = "test";
+const rule = "div { color: red }";
+
 export const DynamicBox: BoxComponent = ({
   as: Component = "div",
   children,
   ...props
 }) => {
+  const rootRegistry = useStyleRegistry();
+  const [registry] = React.useState(
+    () => rootRegistry || createStyleRegistry()
+  );
   const box = React.createElement(Component, props, children);
-  const registry = defaultRegistry ? defaultRegistry : useStyleRegistry();
+
+  if (!isBrowser) {
+    registry.add(id, rule);
+    return box;
+  }
 
   useInsertionEffect(() => {
-    if (registry === null) {
-      return;
-    }
-    // TODO: generate id and rule
-    const id = "test";
-    const rule = "div { color: red }";
     registry.add(id, rule);
     return () => {
       registry.remove(id);

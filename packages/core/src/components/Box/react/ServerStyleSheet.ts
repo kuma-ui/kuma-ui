@@ -74,8 +74,8 @@ export class ServerStyleSheet implements StyleSheet {
     this.getSheet().cssRules = [];
   }
 
-  public cssRules(): (CSSRule | null)[] {
-    return this.getSheet().cssRules as (CSSRule | null)[];
+  public cssRules(): ReturnType<StyleSheet["cssRules"]> {
+    return this.getSheet().cssRules as ReturnType<StyleSheet["cssRules"]>;
   }
 
   private getSheet(): FakeCSSStyleSheet {
