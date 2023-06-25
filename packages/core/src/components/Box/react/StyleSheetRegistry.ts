@@ -28,7 +28,7 @@ export class StyleSheetRegistry {
 
   public remove(id: string): void {
     if (id in this.indices) {
-      throw new Error(`StyleSheetRegistry: styleId: \`${styleId}\` not found.`);
+      throw new Error(`StyleSheetRegistry: id: \`${id}\` not found.`);
     }
 
     this.sheet.deleteRule(this.indices[id]);
