@@ -7,10 +7,10 @@ import { ThisIsTheKDiv, ExampleContainer } from "../../../components/example";
 
 # k
 
-The k API allows you to use utility style props directly on a React component. These elements accept utility props for inline styling that are type-safe and intuitively named. This means you can apply styles directly on the components while maintaining code readability and ease of use.
+The `k` API allows you to use utility style props directly on a React component. These elements accept utility props for inline styling that are type-safe and intuitively named. This means you can apply styles directly on the components while maintaining code readability and ease of use.
 
 `<k.div />` under the hood is converted into `<Box as="div" />
-`. The difference between when to use Box and when to use k is that the variant applied
+`. The difference between when to use `Box` and when to use `k` is that the variant applied
 to the Box component in `kuma.config.ts` does not apply when using k. In other words,
 users can use the Style Props provided by Kuma for a plain HTML element without any
 pre-attached styles.

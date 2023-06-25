@@ -28,7 +28,7 @@ function App() {
         className={css`
           color: red;
           @media screen (max-width: xs) {
-            color: red
+            color: red;
           }
         `}
       >
