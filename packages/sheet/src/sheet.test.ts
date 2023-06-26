@@ -33,7 +33,7 @@ describe("Sheet class", () => {
     expect(cssString).toContain(
       `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
     );
-    console.log(cssString);
+
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${style.responsive[
         "768px"

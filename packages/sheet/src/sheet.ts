@@ -101,7 +101,6 @@ export class Sheet {
     const elements: Element[] = [];
 
     compile(`.${id}{${style}}`).forEach((element) => {
-      // console.log(element);
       const breakpoint = theme.getBreakpoints();
       if (element.type === "@media") {
         const props = Array.isArray(element.props)
@@ -121,14 +120,10 @@ export class Sheet {
         element.props = newProps;
         element.value = newValue;
       }
-      console.log(element);
       elements.push(element);
     });
 
-    console.log(elements);
-
     const css = serialize(elements, stringify);
-    console.log(css);
 
     this.css.push(css);
     return id;
