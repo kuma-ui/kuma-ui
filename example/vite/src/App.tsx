@@ -20,6 +20,9 @@ function App() {
       display="flex"
       flexDir={["column", "row"]}
       className={className}
+      _hover={{
+        bg: "red",
+      }}
     >
       <div
         className={css`

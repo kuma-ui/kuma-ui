@@ -9,6 +9,7 @@ import {
 import { match } from "ts-pattern";
 import { decode } from "./decode";
 import { handleJsxExpression } from "./expression";
+import { extractPseudoAttribute } from "./pseudo";
 
 export const collectPropsFromJsx = (
   node: JsxOpeningElement | JsxSelfClosingElement
@@ -18,8 +19,15 @@ export const collectPropsFromJsx = (
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {
       const propName = jsxAttribute.getNameNode().getFullText();
+      let propValue;
+      // If the propName starts with underscore, use extractPseudoAttribute
+      if (propName.trim().startsWith("_")) {
+        console.log(propName);
+        propValue = extractPseudoAttribute(jsxAttribute);
+      } else {
+        propValue = extractAttribute(jsxAttribute);
+      }
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
-      const propValue = extractAttribute(jsxAttribute);
       if (!propValue) return;
       extracted[propName] = propValue;
     }

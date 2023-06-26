@@ -65,7 +65,8 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
         .replace(/\\/g, path.posix.sep);
       const cssId = `/${cssRelativePath}`;
       // const css = sheet.getCSS();
-      const css = (result.metadata as unknown as { css: string }).css as string || '';
+      const css =
+        ((result.metadata as unknown as { css: string }).css as string) || "";
       cssLookup[cssFilename] = css;
       cssLookup[cssId] = css;
       sheet.reset();

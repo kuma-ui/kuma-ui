@@ -1,42 +1,15 @@
 import { BabelFileResult, transformSync } from "@babel/core";
-import plugin from "../";
+import { transform } from "../transform";
 
-export function babelTransform(
-  code: string,
-  runtime?: "classic" | "automatic"
-): BabelFileResult {
+export async function babelTransform(code: string): Promise<BabelFileResult> {
   const filename = "test.tsx";
-  const result1 = transformSync(code, {
-    plugins: [plugin],
-    filename,
-  });
+  const result = await transform(code, filename);
 
-  if (result1 === null || result1.code == null)
-    throw new Error(`Could not transform`);
-
-  if (!runtime) {
-    return result1;
-  }
-
-  const result2 = transformSync(result1.code, {
-    presets: [
-      "@babel/preset-typescript",
-      [
-        "@babel/preset-react",
-        {
-          runtime,
-        },
-      ],
-    ],
-    filename,
-  });
-
-  if (result2 === null || result2.code == null)
-    throw new Error(`Could not transform`);
+  if (!result) throw Error("transform failed");
 
   return {
-    metadata: result1.metadata,
-    code: result2.code,
+    metadata: result.metadata,
+    code: result.code,
   };
 }
 
