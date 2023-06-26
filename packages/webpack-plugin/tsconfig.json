@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "paths": {},
+    "target": "ES2018",
     "rootDir": "src/",
     "types": ["node"],
     "declaration": true,
