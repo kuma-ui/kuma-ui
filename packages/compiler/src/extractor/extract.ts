@@ -12,24 +12,33 @@ import {
   all,
 } from "@kuma-ui/system";
 import { sheet, SystemStyle } from "@kuma-ui/sheet";
+import { componentList, isComponentProps } from "@kuma-ui/core";
 
 export const extractProps = (
+  componentName: keyof typeof componentList,
   jsx: JsxOpeningElement | JsxSelfClosingElement,
   propsMap: Record<string, any>
 ) => {
   const styledProps: { [key: string]: any } = {};
   const pseudoProps: { [key: string]: any } = {};
+  const componentProps: { [key: string]: any } = {};
 
   for (const [propName, propValue] of Object.entries(propsMap)) {
     if (isStyledProp(propName.trim())) {
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
+    } else if (isComponentProps(componentName)(propName.trim())) {
+      componentProps[propName.trim()] = propValue;
     }
   }
 
   if (
-    !(!!Object.keys(styledProps).length || !!Object.keys(pseudoProps).length)
+    !(
+      !!Object.keys(styledProps).length ||
+      !!Object.keys(pseudoProps).length ||
+      !!Object.keys(componentProps).length
+    )
   ) {
     return;
   }

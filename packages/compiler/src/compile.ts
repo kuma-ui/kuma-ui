@@ -41,7 +41,7 @@ const compile = (
       const componentName =
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);
-      extractProps(openingElement, extractedPropsMap);
+      extractProps(componentName, openingElement, extractedPropsMap);
     }
   });
   return { code: source.getFullText(), id };
