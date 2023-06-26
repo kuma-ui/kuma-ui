@@ -1,0 +1,82 @@
+---
+title: "Breakpoints"
+description: "This page explains how to configure and use breakpoints with Kuma UI for responsive design."
+---
+
+# Breakpoints
+
+Kuma UI supports responsive design by providing a flexible way to define breakpoints. These breakpoints can then be used in your components to apply different styles based on the viewport size. You can either use the default breakpoints provided by Kuma UI or define your own.
+
+## Default Breakpoints
+
+If no breakpoints are explicitly defined, Kuma UI uses the following default breakpoints:
+
+```ts
+export const defaultBreakpoints = Object.freeze({
+  sm: "576px",
+  md: "768px",
+  lg: "992px",
+  xl: "1200px",
+});
+```
+
+## Customizing Breakpoints
+
+```ts filename="kuma.config.ts"
+import { createTheme } from "@kuma-ui/core";
+
+const theme = createTheme({
+  breakpoints: {
+    small: "500px",
+    medium: "800px",
+    large: "1100px",
+    xlarge: "1400px",
+  },
+  // rest of your theme configuration...
+});
+```
+
+Note that the breakpoint names (the keys of the breakpoints object) can be anything you like, and there's no limit to the number of breakpoints you can have. It's recommended to name your breakpoints according to your design system for consistency.
+
+## Using Breakpoints in Components
+
+In your components, you can apply different styles based on the viewport size using an array syntax. For example, the following Box component will have a different color at different viewport sizes:
+
+```tsx
+<Box color={["red", "blue", "green"]} />
+```
+
+In this example, the Box will have a 'red' color on small viewports, 'blue' color on medium viewports, and 'green' on large and above viewports.
+
+## Using Breakpoints with the `styled` and `css` APIs
+
+Both the `styled` and `css` APIs support the breakpoints defined in your theme. This allows you to use the breakpoint names directly in your media queries.
+
+Here is an example of how to use them in the `styled` API:
+
+```ts
+export const ResponsiveBox = styled("div")`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: medium) {
+    flex-direction: column;
+  }
+`;
+```
+
+In the above example, the `flex-direction` changes to `column` when the viewport width is less than the `medium` breakpoint.
+
+You can also use breakpoints in the `css` API:
+
+```ts
+export const responsiveStyles = css`
+  color: red;
+  @media (max-width: sm) {
+    color: blue;
+  }
+`;
+```
+
+In this example, the color changes to 'blue' when the viewport width is less than the `sm` breakpoint.
+
+These techniques provide a powerful way to write maintainable and consistent media queries in your styles, ensuring that your Kuma UI application is responsive and adapts to various viewport sizes.
