@@ -13,7 +13,12 @@ export type ColorProps = Partial<
      */
     bgColor: CSSValue<"backgroundColor">;
   } & CSSProperties<
-    "borderColor" | "color" | "accentColor" | "caretColor" | "opacity"
+    | "borderColor"
+    | "outlineColor"
+    | "color"
+    | "accentColor"
+    | "caretColor"
+    | "opacity"
   >
 >;
 
@@ -22,6 +27,7 @@ const colorMappings: Record<ColorKeys, string> = {
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",
+  outlineColor: "outline-color",
   accentColor: "accent-color",
   caretColor: "caret-color",
   opacity: "opacity",
