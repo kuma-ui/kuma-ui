@@ -1,11 +1,12 @@
 import { OutlineKeys } from "./keys";
 import { CSSProperties, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "./toCSS";
 
 export type OutlineProps = Partial<
   CSSProperties<"outline"> &
-    CSSProperties<"outlineOffset"> &
-    CSSProperties<"outlineWidth"> &
+    CSSProperties<"outlineOffset", true> &
+    CSSProperties<"outlineWidth", true> &
     CSSProperties<"outlineStyle">
 >;
 
@@ -24,10 +25,16 @@ export const outline = (props: OutlineProps): ResponsiveStyle => {
     const cssValue = props[key as OutlineKeys];
     if (cssValue) {
       const property = outlineMappings[key as OutlineKeys];
+      const converter = [
+        outlineMappings.outlineWidth,
+        outlineMappings.outlineOffset,
+      ].includes(property)
+        ? toCssUnit
+        : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        undefined
+        converter
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

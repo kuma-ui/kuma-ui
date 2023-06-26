@@ -4,8 +4,9 @@ import { describe, expect, test } from "vitest";
 describe("outline utility function", () => {
   const testCases: Array<[OutlineProps, string, string]> = [
     [{ outline: "1px solid red" }, "outline: 1px solid red;", ""],
-    [{ outlineOffset: "1px" }, "outline-offset: 1px;", ""],
+    [{ outlineOffset: 1 }, "outline-offset: 1px;", ""],
     [{ outlineStyle: "dotted" }, "outline-style: dotted;", ""],
+    [{ outlineWidth: 1 }, "outline-width: 1px;", ""],
     [{ outlineWidth: "thin" }, "outline-width: thin;", ""],
   ];
 
