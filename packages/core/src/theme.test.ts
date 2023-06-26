@@ -46,6 +46,8 @@ describe("createTheme", () => {
         "colors.purple.100": "#purple_100";
         "colors.purple.200": "#purple_200";
       };
+      components: unknown;
+      breakpoints: unknown;
     }>();
   });
 
@@ -58,6 +60,8 @@ describe("createTheme", () => {
 
     expectTypeOf(theme).toEqualTypeOf<{
       colors: undefined;
+      components: unknown;
+      breakpoints: unknown;
     }>();
   });
 });
