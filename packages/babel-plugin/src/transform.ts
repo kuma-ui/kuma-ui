@@ -1,12 +1,13 @@
 import { transformSync } from "@babel/core";
 import { compile } from "@kuma-ui/compiler";
 import { sheet } from "@kuma-ui/sheet";
+import pluin from ".";
 
 export async function transform(code: string, id: string) {
   const result = await transformSync(code, {
     filename: id,
     sourceMaps: true,
-    plugins: [require("./index").default],
+    plugins: [pluin],
   });
   if (!result || !result.code) return;
 

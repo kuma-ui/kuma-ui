@@ -7,5 +7,9 @@ export const configShared = defineConfig({
       enabled: true,
       reporter: ["clover", "json", "lcov"],
     },
+    typecheck: {
+      checker: 'tsc',
+      include: ['./**/*.test.*'],
+    }
   },
 });
