@@ -108,7 +108,9 @@ export const styleKeys = {
     "transitionTimingFunction",
     "transitionDelay",
     "transform",
+    "transformBox",
     "transformOrigin",
+    "transformStyle",
   ] as const,
 };
 
