@@ -9,25 +9,17 @@ import path from "path";
 import { rm, mkdir, existsSync } from "fs";
 import { readFileSync, readdirSync } from "fs";
 
-type WebpackPluginOption = {
-  breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
-};
-
 export const tmpCSSDir = ".kuma";
 export const themeFilename = path.join(__dirname, "./theme.js");
 
 const pluginName = "KumaUIWebpackPlugin";
 
 class KumaUIWebpackPlugin {
-  options: WebpackPluginOption;
-
   static loader = require.resolve("./loader");
 
   public tmpDir: string[] = [];
 
-  constructor(options: WebpackPluginOption = {}) {
-
-
+  constructor() {
     const dir = readdirSync(".");
     let configPath: string | undefined;
     dir.forEach((filePath) => {
@@ -43,7 +35,7 @@ class KumaUIWebpackPlugin {
         target: "es2017",
         write: false,
         platform: "node",
-        format: typeof require !== 'undefined' ? 'cjs' : 'esm',
+        format: typeof require !== "undefined" ? "cjs" : "esm",
         absWorkingDir: process.cwd(),
         outfile: filename + ".out",
         entryPoints: [filename],
@@ -57,14 +49,6 @@ class KumaUIWebpackPlugin {
       if (config.default) {
         theme.setUserTheme(config.default as any);
       }
-    }
-
-    this.options = options;
-    if (
-      this.options.breakpoints &&
-      Object.keys(this.options.breakpoints).length > 0
-    ) {
-      theme.setBreakpoints(this.options.breakpoints);
     }
   }
 

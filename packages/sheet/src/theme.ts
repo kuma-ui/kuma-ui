@@ -36,16 +36,15 @@ export class Theme {
     return Theme.instance;
   }
 
-  setBreakpoints(breakpoints: Record<string, string>) {
-    this._userTheme.breakpoints = breakpoints;
-  }
-
   getBreakpoints(): Record<string, string> {
     return this._userTheme.breakpoints;
   }
 
   setUserTheme(userTheme: UserTheme) {
     this._userTheme = userTheme;
+    if (!this._userTheme.breakpoints) {
+      this._userTheme.breakpoints = defaultBreakpoints;
+    }
   }
 
   getUserTheme() {
