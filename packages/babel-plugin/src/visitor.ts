@@ -1,5 +1,6 @@
 import { sheet } from "@kuma-ui/sheet";
-import type { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
+import type { NodePath, PluginPass, PluginObj } from "@babel/core";
+import { types as t, template } from "@babel/core";
 import { ensureReactImport } from "./ensureReactImport";
 import type { Core } from "./core";
 import { processJSXHTMLTag } from "./processJSXHTMLTag";
@@ -10,6 +11,7 @@ import { processTaggedTemplateExpression } from "./processTaggedTemplateExpressi
 import { processCSS } from "./processCSS";
 import { processComponents } from "./components/processComponents";
 import { importBox } from "./importBox";
+import { theme } from "@kuma-ui/sheet";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -35,6 +37,7 @@ export const visitor = ({ types: t, template }: Core) => {
         processTaggedTemplateExpression(path, template, importedStyleFunctions);
         // Traversal over the JSX elements in the Program node to identify Kuma-UI components,
         // processComponents(path, importedStyleFunctions);
+        executeCreateTheme(path);
 
         // Traversal over JSX opening elements, identifying Kuma-UI components and extracting their style props.
         // path.traverse({
@@ -61,3 +64,24 @@ export const visitor = ({ types: t, template }: Core) => {
   };
   return visitor;
 };
+
+export function executeCreateTheme(programPath: NodePath<t.Program>) {
+  const importDeclaration = t.importDeclaration(
+    [
+      t.importSpecifier(
+        t.identifier("createTheme"),
+        t.identifier("createTheme")
+      ),
+    ],
+    t.stringLiteral("@kuma-ui/core")
+  );
+  const callExpression = template.expression(
+    `
+  createTheme(THEME)
+`,
+    { preserveComments: true }
+  )({ THEME: t.valueToNode(theme.getUserTheme()) });
+  const callStatement = t.expressionStatement(callExpression);
+
+  programPath.node.body.unshift(callStatement, importDeclaration);
+}

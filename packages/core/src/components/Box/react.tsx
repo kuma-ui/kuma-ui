@@ -1,6 +1,7 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import { t } from "../../theme";
 
 type BoxProps = StyledProps &
   Partial<PseudoProps> & {
@@ -19,7 +20,9 @@ const Box: BoxComponent = <T extends As = "div">({
   as: Component = "div",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, BoxProps>) =>
-  React.createElement(Component, props, children);
+}: MergeWithAs<PropsOf<T>, BoxProps>) => {
+  console.log(t);
+  return React.createElement(Component, props, children);
+};
 
 export { Box, type BoxComponent, BoxProps };

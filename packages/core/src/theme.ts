@@ -7,6 +7,8 @@ import {
 import { If, IsAny, Stringify, _String } from "./utils/types";
 import { componentList } from "./components/componentList";
 
+export let t: ThemeInput;
+
 type ThemeInput = {
   colors?: NestedObject<string>;
   breakpoints?: Record<string, string>;
@@ -55,6 +57,7 @@ export type ThemeSystem = {
 export function createTheme<const T extends ThemeInput>(
   theme: T
 ): ThemeResult<T> {
+  if (!t) t = theme;
   return {
     colors: theme.colors ? flattenObject({ colors: theme.colors }) : undefined,
     components: theme.components,
