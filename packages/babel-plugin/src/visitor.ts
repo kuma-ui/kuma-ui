@@ -83,5 +83,5 @@ export function executeCreateTheme(programPath: NodePath<t.Program>) {
   )({ THEME: t.valueToNode(theme.getUserTheme()) });
   const callStatement = t.expressionStatement(callExpression);
 
-  programPath.node.body.unshift(importDeclaration, callStatement);
+  programPath.node.body.unshift(callStatement, importDeclaration);
 }
