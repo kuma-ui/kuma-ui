@@ -15,15 +15,7 @@ export const styleKeys = {
     "px",
     "py",
   ] as const,
-  typography: [
-    "fontSize",
-    "fontWeight",
-    "lineHeight",
-    "letterSpacing",
-    "textAlign",
-    "fontFamily",
-    "textDecoration",
-  ] as const,
+  typography: ["lineHeight", "letterSpacing"] as const,
   fontKeys: [
     "font",
     "fontFamily",

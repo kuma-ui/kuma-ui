@@ -10,6 +10,7 @@ import { list } from "./list";
 import { effect } from "./effect";
 import { border } from "./border";
 import { outline } from "./outline";
+import { font } from "./font";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -23,7 +24,8 @@ describe("compose function", () => {
       flex,
       shadow,
       list,
-      effect
+      effect,
+      font
     );
     const props: StyledProps = {
       m: 8,

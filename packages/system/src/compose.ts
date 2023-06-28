@@ -13,9 +13,13 @@ import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 import { ListProps } from "./list";
 import { EffectProps } from "./effect";
+import { TextProps } from "./text";
+import { FontProps } from "./font";
 
 export type StyledProps = SpaceProps &
   TypographyProps &
+  TextProps &
+  FontProps &
   LayoutProps &
   ColorProps &
   FlexProps &

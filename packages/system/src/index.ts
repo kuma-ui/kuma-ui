@@ -13,6 +13,8 @@ import { PseudoProps, normalizePseudo, isPseudoProps } from "./pseudo";
 import { grid } from "./grid";
 import { list } from "./list";
 import { effect } from "./effect";
+import { text } from "./text";
+import { font } from "./font";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -29,7 +31,9 @@ export const all = compose(
   shadow,
   grid,
   list,
-  effect
+  effect,
+  text,
+  font
 );
 
 export { normalizePseudo, isPseudoProps };
