@@ -24,6 +24,30 @@ export const styleKeys = {
     "fontFamily",
     "textDecoration",
   ] as const,
+  fontKeys: [
+    "font",
+    "fontFamily",
+    "fontFeatureSettings",
+    "fontKerning",
+    "fontLanguageOverride",
+    "fontOpticalSizing",
+    "fontPalette",
+    "fontSize",
+    "fontSizeAdjust",
+    "fontStretch",
+    "fontStyle",
+    "fontSynthesis",
+    "fontVariant",
+    "fontVariantAlternates",
+    "fontVariantCaps",
+    "fontVariantEastAsian",
+    "fontVariantEmoji",
+    "fontVariantLigatures",
+    "fontVariantNumeric",
+    "fontVariantPosition",
+    "fontVariationSettings",
+    "fontWeight",
+  ] as const,
   layout: [
     "width",
     "minWidth",
@@ -116,6 +140,7 @@ export const styleKeys = {
 
 export type SpaceKeys = (typeof styleKeys.space)[number];
 export type TypographyKeys = (typeof styleKeys.typography)[number];
+export type FontKeys = (typeof styleKeys.fontKeys)[number];
 export type LayoutKeys = (typeof styleKeys.layout)[number];
 export type ColorKeys = (typeof styleKeys.color)[number];
 export type FlexKeys = (typeof styleKeys.flex)[number];
