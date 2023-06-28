@@ -12,7 +12,7 @@ export type FontProps = Partial<
     CSSProperties<"fontOpticalSizing"> &
     CSSProperties<"fontPalette"> &
     CSSProperties<"fontSize", true> &
-    CSSProperties<"fontSizeAdjust", true> &
+    CSSProperties<"fontSizeAdjust"> &
     CSSProperties<"fontStretch"> &
     CSSProperties<"fontStyle"> &
     CSSProperties<"fontSynthesis"> &
@@ -61,13 +61,7 @@ export const font = (props: FontProps): ResponsiveStyle => {
     const cssValue = props[key as FontKeys];
     if (cssValue) {
       const property = fontMappings[key as FontKeys];
-      const converter = [
-        fontMappings.font,
-        fontMappings.fontPalette,
-        fontMappings.fontSize,
-        fontMappings.fontSizeAdjust,
-        fontMappings.fontWeight,
-      ].includes(property)
+      const converter = [fontMappings.fontSize].includes(property)
         ? toCssUnit
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
