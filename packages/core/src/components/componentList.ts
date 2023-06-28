@@ -24,7 +24,7 @@ export const isComponentProps =
 
 export const componentHandler =
   (componentName: ComponentName) =>
-  (props: Record<string, any>): string | undefined => {
+  (props: Record<string, any>): string => {
     return match(componentName)
       .with("Box", () => handleBoxProps(props as any))
       .otherwise(() => undefined);
