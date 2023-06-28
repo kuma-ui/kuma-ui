@@ -61,3 +61,11 @@ export function createTheme<const T extends ThemeInput>(
     breakpoints: theme.breakpoints,
   } as unknown as ThemeResult<T>;
 }
+
+export class GlobalTheme {
+  private theme;
+
+  private constructor(theme: ThemeInput) {
+    this.theme = theme;
+  }
+}

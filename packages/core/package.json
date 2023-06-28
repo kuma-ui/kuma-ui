@@ -25,10 +25,15 @@
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
-    "./components/componentList": {
+    "./componentList": {
       "types": "./dist/components/componentList.d.ts",
       "require": "./dist/components/componentList.js",
       "import": "./dist/components/componentList.mjs"
+    },
+    "./theme": {
+      "types": "./dist/theme.d.ts",
+      "require": "./dist/theme.js",
+      "import": "./dist/theme.mjs"
     }
   },
   "files": [
