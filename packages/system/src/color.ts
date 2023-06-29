@@ -8,23 +8,20 @@ type AddProperty<T, T2> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorProps = Partial<
-  {
-    /**
-     * @see background
-     */
-    bg: CSSValue<"background">;
-    /**
-     * @see backgroundColor
-     */
-    bgColor: CSSValue<"backgroundColor">;
-  } & CSSProperties<
-    | "borderColor"
-    | "outlineColor"
-    | "color"
-    | "accentColor"
-    | "caretColor"
-    | "opacity"
+export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
+  AddProperty<
+    {
+      /**
+       * @see background
+       */
+      bg: CSSValue<"background"> | AutoPrefix;
+      /**
+       * @see backgroundColor
+       */
+      bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+    } & CSSProperties<"borderColor" | "color" | "accentColor" | "caretColor" | "opacity", false>,
+    AutoPrefix
+
   >
 >;
 
@@ -33,7 +30,6 @@ const colorMappings: Record<ColorKeys, string> = {
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",
-  outlineColor: "outline-color",
   accentColor: "accent-color",
   caretColor: "caret-color",
   opacity: "opacity",

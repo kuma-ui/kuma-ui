@@ -15,54 +15,14 @@ export const styleKeys = {
     "px",
     "py",
   ] as const,
-  typography: ["lineHeight", "letterSpacing"] as const,
-  fontKeys: [
-    "font",
-    "fontFamily",
-    "fontFeatureSettings",
-    "fontKerning",
-    "fontLanguageOverride",
-    "fontOpticalSizing",
-    "fontPalette",
+  typography: [
     "fontSize",
-    "fontSizeAdjust",
-    "fontStretch",
-    "fontStyle",
-    "fontSynthesis",
-    "fontVariant",
-    "fontVariantAlternates",
-    "fontVariantCaps",
-    "fontVariantEastAsian",
-    "fontVariantEmoji",
-    "fontVariantLigatures",
-    "fontVariantNumeric",
-    "fontVariantPosition",
-    "fontVariationSettings",
     "fontWeight",
-  ] as const,
-  textKeys: [
+    "lineHeight",
+    "letterSpacing",
     "textAlign",
-    "textAlignLast",
-    "textCombineUpright",
+    "fontFamily",
     "textDecoration",
-    "textDecorationColor",
-    "textDecorationLine",
-    "textDecorationSkipInk",
-    "textDecorationStyle",
-    "textDecorationThickness",
-    "textEmphasis",
-    "textEmphasisColor",
-    "textEmphasisPosition",
-    "textEmphasisStyle",
-    "textIndent",
-    "textJustify",
-    "textOrientation",
-    "textOverflow",
-    "textRendering",
-    "textShadow",
-    "textTransform",
-    "textUnderlineOffset",
-    "textUnderlinePosition",
   ] as const,
   layout: [
     "width",
@@ -93,7 +53,6 @@ export const styleKeys = {
     "bgColor",
     "color",
     "borderColor",
-    "outlineColor",
     "accentColor",
     "caretColor",
     "opacity",
@@ -106,12 +65,6 @@ export const styleKeys = {
     "borderRight",
     "borderBottom",
     "borderLeft",
-  ] as const,
-  outline: [
-    "outline",
-    "outlineWidth",
-    "outlineStyle",
-    "outlineOffset",
   ] as const,
   position: ["top", "right", "bottom", "left", "inset"] as const,
   shadow: ["textShadow", "boxShadow"] as const,
@@ -148,21 +101,16 @@ export const styleKeys = {
     "transitionTimingFunction",
     "transitionDelay",
     "transform",
-    "transformBox",
     "transformOrigin",
-    "transformStyle",
   ] as const,
 };
 
 export type SpaceKeys = (typeof styleKeys.space)[number];
 export type TypographyKeys = (typeof styleKeys.typography)[number];
-export type FontKeys = (typeof styleKeys.fontKeys)[number];
-export type TextKeys = (typeof styleKeys.textKeys)[number];
 export type LayoutKeys = (typeof styleKeys.layout)[number];
 export type ColorKeys = (typeof styleKeys.color)[number];
 export type FlexKeys = (typeof styleKeys.flex)[number];
 export type BorderKeys = (typeof styleKeys.border)[number];
-export type OutlineKeys = (typeof styleKeys.outline)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 export type ListKeys = (typeof styleKeys.list)[number];
@@ -177,7 +125,6 @@ export type StyledKeyType =
   | ColorKeys
   | FlexKeys
   | BorderKeys
-  | OutlineKeys
   | PositionKeys
   | ShadowKeys
   | ListKeys
