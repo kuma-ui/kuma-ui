@@ -4,23 +4,12 @@ import { ResponsiveStyle, CSSProperties } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type TypographyProps = Partial<
-  CSSProperties<"fontSize", true> &
-    CSSProperties<"fontWeight"> &
-    CSSProperties<"lineHeight", true> &
-    CSSProperties<"letterSpacing", true> &
-    CSSProperties<"textAlign"> &
-    CSSProperties<"fontFamily"> &
-    CSSProperties<"textDecoration">
+  CSSProperties<"lineHeight", true> & CSSProperties<"letterSpacing", true>
 >;
 
 const typographyMappings: Record<TypographyKeys, string> = {
-  fontSize: "font-size",
-  fontWeight: "font-weight",
   lineHeight: "line-height",
   letterSpacing: "letter-spacing",
-  textAlign: "text-align",
-  fontFamily: "font-family",
-  textDecoration: "text-decoration",
 };
 
 export const typography = (props: TypographyProps): ResponsiveStyle => {
@@ -32,7 +21,6 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
     if (cssValue) {
       const property = typographyMappings[key as TypographyKeys];
       const converter = [
-        typographyMappings.fontSize,
         typographyMappings.lineHeight,
         typographyMappings.letterSpacing,
       ].includes(property)
