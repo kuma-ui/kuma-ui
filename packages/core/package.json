@@ -35,7 +35,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup --config ../../tsup.config.ts",
+    "build": "tsup && npm run add-mjs-ext",
+    "add-mjs-ext": "ts-node --esm -P scripts/tsconfig.json scripts/add-mjs-ext.mts",
     "test": "vitest run && vitest typecheck --run",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
@@ -49,6 +50,8 @@
   "devDependencies": {
     "@types/react": "^18.0.32",
     "@vitest/coverage-c8": "^0.31.4",
+    "globby": "^13.2.0",
+    "ts-node": "^10.9.1",
     "vitest": "^0.31.4"
   },
   "peerDependencies": {
