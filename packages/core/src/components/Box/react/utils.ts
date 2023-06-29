@@ -32,9 +32,11 @@ export function extractStyledProps(props: any): {
   Object.keys(props).forEach((key) => {
     if (isStyledProp(key)) {
       styledProps[key] = props[key];
+      return;
     }
     if (isPseudoProps(key)) {
       pseudoProps[key] = extractStyledProps(props[key]).styledProps;
+      return;
     }
     restProps[key] = props[key];
   });

@@ -20,27 +20,23 @@ export class StyleSheetRegistry {
   public add(id: string, rule: string): void {
     if (isBrowser && this.serverSideRenderedStyles === null) {
       this.serverSideRenderedStyles = this.getServerSideRenderedStyles();
-      this.indices[id] = -1;
-      this.instancesCounts = Object.keys(this.serverSideRenderedStyles).reduce(
-        (instancesCounts, id) => {
-          instancesCounts[id] = 1 + (instancesCounts[id] ?? 0);
-          return instancesCounts;
-        },
-        {} as Record<string, number | undefined>
-      );
-      return;
+      Object.keys(this.serverSideRenderedStyles).forEach((id) => {
+        this.instancesCounts[id] = 0;
+        this.indices[id] = -1;
+      });
     }
 
-    if (this.indices[id] === undefined) {
+    this.instancesCounts[id] = 1 + (this.instancesCounts[id] ?? 0);
+    const serverSideRenderedStyle = this.serverSideRenderedStyles?.[id];
+    if (this.instancesCounts[id] === 1 && !serverSideRenderedStyle) {
       this.indices[id] = this.sheet.insertRule(rule, this.indices[id]);
     }
-    this.instancesCounts[id] = 1 + (this.instancesCounts[id] ?? 0);
   }
 
   public remove(id: string): void {
     if (
-      this.indices[id] !== undefined &&
-      this.instancesCounts[id] !== undefined
+      this.indices[id] === undefined ||
+      this.instancesCounts[id] === undefined
     ) {
       throw new Error(`StyleSheetRegistry: id: \`${id}\` not found.`);
     }

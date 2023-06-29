@@ -7,6 +7,7 @@ import { useStyleRegistry, createStyleRegistry } from "./StyleRegistry";
 import { extractStyledProps, getStyle } from "./utils";
 import { sheet } from "@kuma-ui/sheet";
 
+const defaultRegistry = createStyleRegistry();
 const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
 
 export const DynamicBox: BoxComponent = ({
@@ -14,10 +15,7 @@ export const DynamicBox: BoxComponent = ({
   children,
   ...props
 }) => {
-  const rootRegistry = useStyleRegistry();
-  const [registry] = React.useState(
-    () => rootRegistry || createStyleRegistry()
-  );
+  const registry = useStyleRegistry() || defaultRegistry;
   const styledProps = extractStyledProps(props);
   const { className, rule } = useMemo(() => {
     const style = getStyle(styledProps);
