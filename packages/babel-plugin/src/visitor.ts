@@ -10,6 +10,7 @@ import { processTaggedTemplateExpression } from "./processTaggedTemplateExpressi
 import { processCSS } from "./processCSS";
 import { processComponents } from "./components/processComponents";
 import { importBox } from "./importBox";
+import { hasCoreImportDeclaration } from "./hasCoreImportDeclaration";
 
 export const styledFunctionsMap = new Map<string, Node[]>();
 
@@ -21,6 +22,9 @@ export const visitor = ({ types: t, template }: Core) => {
   const visitor: PluginObj<PluginPass>["visitor"] = {
     Program: {
       enter(path) {
+        if (!hasCoreImportDeclaration(path)) {
+          return;
+        }
         // Ensure that 'React' is imported in the file
         ensureReactImport(path, t);
         // Reset the importedStyleFunctions
