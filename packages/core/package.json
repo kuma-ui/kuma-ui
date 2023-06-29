@@ -18,6 +18,7 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -35,14 +36,15 @@
   ],
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts",
-    "test": "vitest run",
+    "test": "vitest run && vitest typecheck --run",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
   },
   "dependencies": {
     "@kuma-ui/sheet": "workspace:*",
-    "@kuma-ui/system": "workspace:*"
+    "@kuma-ui/system": "workspace:*",
+    "ts-pattern": "^5.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.32",

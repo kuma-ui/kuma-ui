@@ -1,11 +1,12 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
+import eval from "eval";
 import type { RawLoaderDefinitionFunction } from "webpack";
 import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
 import { createHash } from "crypto";
-import { tmpCSSDir } from "./plugin";
+import { themeFilename, tmpCSSDir } from "./plugin";
 
 const virtualLoaderPath = require.resolve("./virtualLoader");
 
@@ -49,7 +50,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
       // styleMap.set(id, css);
       // sheet.reset();
 
-      const css = (result.metadata as unknown as { css: string }).css as string || '';
+      const css =
+        ((result.metadata as unknown as { css: string }).css as string) || "";
       let filePrefix = "";
       if (css) {
         if (isVirtualLoader) {
@@ -65,7 +67,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           callback(null, `${codeWithReact}${filePrefix}`);
           return;
         } else {
-          const outDir = options.cssOutputDir ?? '.kuma'
+          const outDir = options.cssOutputDir ?? ".kuma";
           if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
           const hash = createHash("md5").update(css).digest("hex");
           const cssPath = path.posix.join(outDir, `${hash}.css`);

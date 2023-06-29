@@ -22,12 +22,26 @@ export const processTaggedTemplateExpression = (
       // Check if the tag is a CallExpression with the callee named 'styled'
       const { node } = path;
 
+      // css``
+      if (
+        t.isIdentifier(node.tag) &&
+        importedStyleFunctions["css"] === node.tag.name
+      ) {
+        const cssString = node.quasi.quasis
+          .map((quasi) => quasi.value.raw)
+          .join("");
+        const className = cssString ? sheet.parseCSS(cssString) : undefined;
+        if (className) path.replaceWith(t.stringLiteral(className));
+        return;
+      }
+
       const hasStyled = Object.keys(importedStyleFunctions).some(
         (key) =>
           t.isCallExpression(node.tag) &&
           t.isIdentifier(node.tag.callee) &&
           importedStyleFunctions[key] === node.tag.callee.name
       );
+
       if (!(t.isCallExpression(node.tag) && hasStyled)) return;
       const componentArg = node.tag.arguments[0];
       const cssStrings = node.quasi.quasis.map((quasi) => quasi.value.raw);
