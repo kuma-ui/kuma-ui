@@ -25,18 +25,61 @@ This way, Kuma UI brings together **the performance benefits of zero-runtime CSS
 
 With Kuma UI, you can harness the full power of JavaScript for styling without compromising on performance or compatibility with modern technologies like RSC.
 
-## Hybrid CSS-in-JS
+### Headless UI Components
 
-Kuma UI now adopts a **Hybrid CSS-in-JS approach** to further improve performance and developer experience. It combines the flexibility of runtime CSS-in-JS with the performance advantages of zero-runtime CSS-in-JS. This allows us to handle dynamic properties more seamlessly without compromising on performance or compatibility with React Server Components (RSC) and App Router.
+Kuma UI is a headless component library. This means that every component in the library is unstyled, providing the utmost flexibility for users to apply their own styles. This doesn't mean you're left alone to grapple with styles. **Kuma UI is equipped with a powerful theming capability**, allowing you to combine your own design tokens as you please. Here's how you can write your components with Kuma UI:
 
-## Theming
+```tsx
+function App() {
+  return (
+    <Box as="main" display="flex" flexDir={["column", "row"]}>
+      <Heading
+        as="h3"
+        className={css`
+          color: red;
+          @media (max-width: sm) {
+            color: blue;
+          }
+        `}
+      >
+        Kuma UI
+      </Heading>
+      <Spacer size={4} />
+      <Flex flexDir={`column`}>
+        <Text as="p" fontSize={24}>
+          Zero Runtime UI Component Library
+        </Text>
+        <Button>Getting Started</Button>
+      </Flex>
+    </Box>
+  );
+}
+```
 
-We have introduced a theme feature to improve customizability and overall developer experience. Users can now define their own theme in a configuration file (`kuma.config.ts`) and use it throughout their project. Moreover, we generate types from these theme settings, enhancing the development experience through type inference when accessing theme properties.
+### Familiar Developer Experience
 
-## Universal UI Components
+At Kuma UI, we're passionate about providing a familiar and intuitive developer experience. If you've used [Chakra UI](https://chakra-ui.com/), [Styled System](https://styled-system.com/), or [Native Base](https://nativebase.io/), you'll feel right at home with Kuma UI. However, the benefit with Kuma UI is that while you're in familiar territory, you get to enjoy superior performance, greater flexibility, and a system that adapts to the evolving needs of modern web development.
 
-Finally, we are introducing Universal UI Components in @kuma-ui/core. The core package now includes components tailored for different JSX libraries such as React and Solid. Depending on the chosen jsxMode, the import paths for these components will be adjusted using Babel. This allows users to keep all their logic within the core component library, ensuring idiomatic and smooth development in each respective library.
+## Inspirations
 
-## Developer Experience: Familiar Yet Revolutionary
+Kuma UI is standing on the shoulders of giants. We've drawn inspiration from some of the most innovative libraries in the CSS-in-JS ecosystem.
 
-We're passionate about providing a familiar and intuitive developer experience. If you've used [Chakra UI](https://chakra-ui.com/), [Styled System](https://styled-system.com/), or [xstyled](https://xstyled.dev/), you'll feel right at home with Kuma UI. However, with Kuma UI, you enjoy superior performance, greater flexibility, and a system that adapts to the evolving needs of modern web development.
+- **[Chakra UI](https://chakra-ui.com/):** From Chakra UI, we've learned the power of simplicity and intuitive API design.
+
+- **[Styled System](https://styled-system.com/):** The concept of system props in Kuma UI is heavily inspired by Styled System.
+
+- **[Native Base](https://nativebase.io/):** Native Base's philosophy of a completely customizable and themeable library aligns with our own.
+
+- **[Panda CSS](https://panda-css.com/):** The simplicity and directness of Panda CSS have influenced our approach to Hybrid CSS-in-JS.
+
+- **[Linaria](https://github.com/callstack/linaria):** The static extraction concept in Kuma UI is inspired by Linaria.
+
+- **[Vanilla Extract](https://vanilla-extract.style/):** From Vanilla Extract, we learned about the possibility of theming and zero-runtime CSS in TypeScript.
+
+Each of these libraries brought something unique to the table, and we've incorporated their best features into Kuma UI. It's our way of saying "thank you" to these incredible open-source projects, and our way of giving back to the community.
+
+## What's Next?
+
+Now that you have a sense of what Kuma UI is all about, dive into the documentation to explore in detail. You can start by learning about our [theming system](/docs/Theme/CustomizingTheme), or jump straight into our [component docs](/docs/Components/Box).
+
+Welcome to Kuma UI. We can't wait to see what you build with it 🐻‍❄️
