@@ -11,6 +11,7 @@ import { effect } from "./effect";
 import { border } from "./border";
 import { outline } from "./outline";
 import { font } from "./font";
+import { mask } from "./mask";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -25,7 +26,8 @@ describe("compose function", () => {
       shadow,
       list,
       effect,
-      font
+      font,
+      mask
     );
     const props: StyledProps = {
       m: 8,
@@ -42,6 +44,7 @@ describe("compose function", () => {
       transition: "all 0.5s ease-in-out",
       outline: "none",
       borderTop: "1px solid red",
+      maskRepeat: "no-repeat",
     };
     // Act
     const styles = combinedFunction(props);
@@ -62,6 +65,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("transition: all 0.5s ease-in-out;");
     expect(styles.base).toContain("outline: none;");
     expect(styles.base).toContain("border-top: 1px solid red;");
+    expect(styles.base).toContain("mask-repeat: no-repeat;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
