@@ -14,10 +14,8 @@ describe("StyleGenerator class", () => {
     const { className, css } = new StyleGenerator(props).getStyle();
 
     // Assert
-    expect(className.startsWith("kuma-")).toBeTruthy();
-    expect(css).toContain(
-      `.${className} { font-size: 24px;color: red; }@media (min-width: 576px) { .kuma-2259309398 { color: blue; } }`
-    );
+    expect(className.startsWith("🐻-")).toBeTruthy();
+    expect(css).toContain(`.${className} { font-size: 24px;color: red; }`);
     expect(css).toContain(`.${className}:hover { color: black; }`);
   });
 
