@@ -9,7 +9,7 @@ export class StyleGenerator {
   private style: SystemStyle;
   private className: string;
 
-  constructor(props: StyledProps & PseudoProps) {
+  constructor(props: StyledProps & PseudoProps, isDynamic = false) {
     const styledProps: { [key: string]: any } = {};
     const pseudoProps: { [key: string]: any } = {};
 
@@ -37,8 +37,9 @@ export class StyleGenerator {
       responsive: all(styledProps).media,
       pseudo: convertedPseudoProps,
     };
+    const prefix = isDynamic ? "🦄-" : "🐻-";
 
-    this.className = "kuma-" + generateHash(JSON.stringify(this.style));
+    this.className = prefix + generateHash(JSON.stringify(this.style));
   }
 
   getClassName() {
