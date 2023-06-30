@@ -1,3 +1,4 @@
+import { AnimationProps } from "./animation";
 import { SpaceProps } from "./space";
 import { TypographyProps } from "./typography";
 import { LayoutProps } from "./layout";
@@ -16,7 +17,8 @@ import { EffectProps } from "./effect";
 import { TextProps } from "./text";
 import { FontProps } from "./font";
 
-export type StyledProps = SpaceProps &
+export type StyledProps = AnimationProps &
+  SpaceProps &
   TypographyProps &
   TextProps &
   FontProps &

@@ -1,4 +1,17 @@
 export const styleKeys = {
+  animation: [
+    "animation",
+    "animationComposition",
+    "animationDelay",
+    "animationDirection",
+    "animationDuration",
+    "animationFillMode",
+    "animationIterationCount",
+    "animationName",
+    "animationPlayState",
+    "animationTimeline",
+    "animationTimingFunction",
+  ] as const,
   space: [
     "m",
     "mt",
@@ -154,6 +167,7 @@ export const styleKeys = {
   ] as const,
 };
 
+export type AnimationKeys = (typeof styleKeys.animation)[number];
 export type SpaceKeys = (typeof styleKeys.space)[number];
 export type TypographyKeys = (typeof styleKeys.typography)[number];
 export type FontKeys = (typeof styleKeys.fontKeys)[number];
@@ -171,6 +185,7 @@ export type GridKeys = (typeof styleKeys.grid)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 
 export type StyledKeyType =
+  | AnimationKeys
   | SpaceKeys
   | TypographyKeys
   | LayoutKeys
