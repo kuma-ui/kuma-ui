@@ -14,21 +14,28 @@ export type FlexProps = Partial<
      * @see justifyContent
      */
     justify: CSSValue<"justifyContent">;
-  } & CSSProperties<"alignItems" | "alignContent"> &
-    CSSProperties<"flexWrap" | "flexGrow"> &
-    CSSProperties<"flexShrink" | "flexBasis"> &
-    CSSProperties<"gap">
+  } & CSSProperties<"alignContent" | "alignItems" | "alignSelf"> &
+    CSSProperties<"flexWrap" | "flexFlow"> &
+    CSSProperties<"flexBasis", true> &
+    CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
+    CSSProperties<"justifyItems" | "justifySelf"> &
+    CSSProperties<"gap", true>
 >;
 
 const flexMappings: Record<FlexKeys, string> = {
   flexDir: "flex-direction",
   justify: "justify-content",
-  alignItems: "align-items",
   alignContent: "align-content",
-  flexWrap: "flex-wrap",
+  alignItems: "align-items",
+  alignSelf: "align-self",
+  flex: "flex",
+  flexBasis: "flex-basis",
+  flexFlow: "flex-flow",
   flexGrow: "flex-grow",
   flexShrink: "flex-shrink",
-  flexBasis: "flex-basis",
+  flexWrap: "flex-wrap",
+  justifyItems: "justify-items",
+  justifySelf: "justify-self",
   gap: "gap",
 } as const;
 
@@ -40,7 +47,11 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue) {
       const property = flexMappings[key as FlexKeys];
-      const converter = property === "gap" ? toCssUnit : undefined;
+      const converter = [flexMappings.flexBasis, flexMappings.gap].includes(
+        property
+      )
+        ? toCssUnit
+        : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
