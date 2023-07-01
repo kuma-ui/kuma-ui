@@ -3,7 +3,6 @@ import type { BoxComponent, BoxProps } from "./types";
 import { DynamicBox } from "./DynamicBox";
 import { StaticBox } from "./StaticBox";
 import { hasStyledOrPseudoProps } from "./utils";
-import { StyleRegistry, createStyleRegistry } from "./StyleRegistry";
 
 /**
  * Box is the most abstract component in Kuma UI, providing a base upon which all other components are built.
@@ -18,4 +17,4 @@ const Box: BoxComponent = ({ children, ...props }) => {
   return React.createElement(StaticBox, props, children);
 };
 
-export { Box, type BoxComponent, BoxProps, StyleRegistry, createStyleRegistry };
+export { Box, type BoxComponent, BoxProps };

@@ -1,4 +1,4 @@
-import { isProduction } from "./isProduction";
+import { isProduction } from "../../utils/isProduction";
 import { StyleSheet } from "./StyleSheet";
 
 export class ClientStyleSheet implements StyleSheet {

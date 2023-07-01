@@ -2,8 +2,11 @@
 
 import React, { useMemo } from "react";
 import type { BoxComponent } from "./types";
-import { isBrowser } from "./isBrowser";
-import { useStyleRegistry, createStyleRegistry } from "./StyleRegistry";
+import { isBrowser } from "../../../utils/isBrowser";
+import {
+  useStyleRegistry,
+  createStyleRegistry,
+} from "../../../registry/StyleRegistry";
 import { extractStyledProps, getStyle } from "./utils";
 import { sheet } from "@kuma-ui/sheet";
 

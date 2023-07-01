@@ -1,7 +1,7 @@
-import { isProduction } from "./isProduction";
-import { StyleSheet } from "./StyleSheet";
 import React from "react";
-import { isBrowser } from "./isBrowser";
+import { StyleSheet } from "./sheet/StyleSheet";
+import { isBrowser } from "../utils/isBrowser";
+import { isProduction } from "../utils/isProduction";
 
 const STYLE_ID_PREFIX = "__";
 

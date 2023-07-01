@@ -1,6 +1,6 @@
 import { ClientStyleSheet } from "./ClientStyleSheet";
 import { ServerStyleSheet } from "./ServerStyleSheet";
-import { isBrowser } from "./isBrowser";
+import { isBrowser } from "../../utils/isBrowser";
 
 export type FakeCSSStyleSheet = {
   insertRule: CSSStyleSheet["insertRule"];
