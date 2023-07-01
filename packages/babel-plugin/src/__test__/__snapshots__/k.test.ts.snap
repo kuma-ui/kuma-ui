@@ -28,13 +28,13 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"\\\\uD83D\\\\uDC3B-1440123820\\"}\`} />;
 }
 "
 `;
@@ -119,13 +119,13 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"\\\\uD83D\\\\uDC3B-1440123820\\"}\`} />;
 }
 "
 `;
@@ -210,13 +210,13 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: undefined) > using className prop should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"kuma-1440123820\\"}\`} />;
+  return <__Box as=\\"div\\" className={\`🐻-2131929892 \${\\"\\\\uD83D\\\\uDC3B-1440123820\\"}\`} />;
 }
 "
 `;
