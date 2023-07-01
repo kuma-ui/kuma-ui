@@ -2,44 +2,44 @@
 
 exports[`css function > Snapshot tests > basic usage should match snapshot 1`] = `
 
-.kuma-944610715{color:red;}
+.🐻-944610715{color:red;}
 
 import { Box as __Box } from "@kuma-ui/core";
 import React from "react";
 import { css } from '@kuma-ui/core';
-const style = "kuma-944610715";
+const style = "\\uD83D\\uDC3B-944610715";
 
 `;
 
 exports[`css function > Snapshot tests > using pseudo elements should match snapshot 1`] = `
 
-.kuma-3353610691{}.kuma-3353610691:after{color:blue;}
+.🐻-3353610691{}.🐻-3353610691:after{color:blue;}
 
 import { Box as __Box } from "@kuma-ui/core";
 import React from "react";
 import { css } from '@kuma-ui/core';
-const style = "kuma-3353610691";
+const style = "\\uD83D\\uDC3B-3353610691";
 
 `;
 
 exports[`css function > Snapshot tests > using pseudo props should match snapshot 1`] = `
 
-.kuma-400375226{}.kuma-400375226:hover{color:red;}
+.🐻-400375226{}.🐻-400375226:hover{color:red;}
 
 import { Box as __Box } from "@kuma-ui/core";
 import React from "react";
 import { css } from '@kuma-ui/core';
-const style = "kuma-400375226";
+const style = "\\uD83D\\uDC3B-400375226";
 
 `;
 
 exports[`css function > Snapshot tests > using space props should match snapshot 1`] = `
 
-.kuma-3206633536{padding:2px;}
+.🐻-3206633536{padding:2px;}
 
 import { Box as __Box } from "@kuma-ui/core";
 import React from "react";
 import { css } from '@kuma-ui/core';
-const style = "kuma-3206633536";
+const style = "\\uD83D\\uDC3B-3206633536";
 
 `;

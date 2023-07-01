@@ -8,6 +8,7 @@ import {
   styled,
   css,
 } from "@kuma-ui/core";
+import { Dynamic } from "./Dynamic";
 
 function App() {
   return (
@@ -38,6 +39,9 @@ function App() {
         <Spacer size={8} horizontal />
         <Button>Getting Started</Button>
       </Flex>
+      <HelloWorld>hello world</HelloWorld>
+      <Dynamic key={1} />
+      <Dynamic key={2} />
     </Box>
   );
 }

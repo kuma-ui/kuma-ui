@@ -29,7 +29,7 @@ describe("Sheet class", () => {
     const className = sheet.addRule(style);
     const cssString = sheet.getCSS();
     // Assert
-    expect(className.startsWith("kuma-")).toBeTruthy();
+    expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
       `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
     );

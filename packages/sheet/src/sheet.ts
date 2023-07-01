@@ -3,6 +3,8 @@ import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
 import { compile, serialize, stringify, Element } from "stylis";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
   base: string;
@@ -45,8 +47,12 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addRule(style: SystemStyle) {
-    const className = "kuma-" + generateHash(JSON.stringify(style));
+  addRule(style: SystemStyle, isDynamic = false) {
+    const classNamePrefix = (() => {
+      if (isProduction) return "kuma-";
+      return isDynamic ? "🦄-" : "🐻-";
+    })();
+    const className = classNamePrefix + generateHash(JSON.stringify(style));
     this._addeBaseRule(className, style.base);
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
       this._addMediaRule(className, css, breakpoint);
