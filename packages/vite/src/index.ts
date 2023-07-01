@@ -56,7 +56,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
   };
 
   for (const componentKey in userTheme.components) {
-    const component = userTheme.components[componentKey];
+    const component = userTheme.components[componentKey as keyof typeof userTheme.components];
     const componentVariants = {};
     let componentBase = undefined;
     const style = new StyleGenerator(component?.base);
