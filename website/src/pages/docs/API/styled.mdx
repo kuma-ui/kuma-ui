@@ -1,0 +1,77 @@
+---
+title: "styled"
+description: "Styled API allows you to create styled React components using tagged template literals. "
+---
+
+import {
+  ThisIsStyledComponent,
+  ExampleContainer,
+} from "../../../components/example";
+import { Callout } from "nextra-theme-docs";
+
+# Styled
+
+Kuma UI's `styled` API allows you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with libraries like styled-components or Emotion.
+
+<Callout type="warning">
+  Please note that the styled API does not currently support interpolations in
+  the same way as libraries like styled-components or Emotion do. However, we
+  are actively working to incorporate this feature, so stay tuned for updates.
+</Callout>
+
+## Import
+
+```tsx copy
+import { styled } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <ThisIsStyledComponent>hello world</ThisIsStyledComponent>
+</ExampleContainer>
+
+```tsx copy
+export const ThisIsStyledComponent = styled("div")`
+  padding: 8px;
+  color: white;
+  background: black;
+  @media (max-width: 500px) {
+    color: blue;
+  }
+`;
+
+// Then use it like so:
+const Component = () => (
+  <ThisIsStyledComponent>hello world</ThisIsStyledComponent>
+);
+```
+
+In this example, we define a styled component `ThisIsStyledComponent` that changes the color of the text based on the viewport width. When the viewport width drops below 500px, the text color changes to blue.
+
+## Configuring and Using Breakpoints
+
+The `styled` API also accepts shared media query breakpoints defined in your Kuma configuration (`kuma.config.ts`). For instance, if you have the following configuration:
+
+```ts copy
+export default createTheme({
+  breakpoints: {
+    sm: "500px",
+    md: "700px",
+  },
+});
+```
+
+You can use these breakpoints in your styled components like so:
+
+```tsx copy
+export const ThisIsStyledComponent = styled("div")`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: sm) {
+    flex-direction: column;
+  }
+`;
+```
+
+In the above example, the `flex-directin` changes to `column` when the viewport width falls below the 'sm' breakpoint value defined in the configuration. Thus, you can leverage the power of these shared media query breakpoints to write more maintainable and consistent media queries in your styles.

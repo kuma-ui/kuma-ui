@@ -7,6 +7,7 @@ describe("color utility function", () => {
     [{ bgColor: "red" }, "background-color: red;", ""],
     [{ color: "red" }, "color: red;", ""],
     [{ borderColor: "red" }, "border-color: red;", ""],
+    [{ outlineColor: "red" }, "outline-color: red;", ""],
     [{ accentColor: "red" }, "accent-color: red;", ""],
     [{ caretColor: "red" }, "caret-color: red;", ""],
     [{ opacity: 0.5 }, "opacity: 0.5;", ""],

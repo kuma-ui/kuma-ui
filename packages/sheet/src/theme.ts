@@ -5,16 +5,19 @@ export const defaultBreakpoints = Object.freeze({
   xl: "1200px",
 });
 
-type UserTheme = {
+// to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/core
+type ComponentName = "Box" | "Flex" | "Spacer" | "Text" | "Button" | "Heading";
+
+export type UserTheme = {
   colors: Record<string, string> | undefined;
   breakpoints: Record<string, string>;
   components?: {
-    [_ in string]?: {
+    [_ in ComponentName]?: {
       base?: any;
       variants?: { [key: string]: any };
     };
   };
-}
+};
 
 type RuntimeUserTheme = {
   components: Record<string, Record<string, string>>;
@@ -32,7 +35,7 @@ export class Theme {
   private _userTheme: UserTheme = {
     colors: undefined,
     breakpoints: defaultBreakpoints,
-    components: undefined
+    components: undefined,
   };
 
   private constructor() {}
@@ -45,7 +48,7 @@ export class Theme {
   }
 
   setUserTheme(userTheme: UserTheme) {
-  this._userTheme = userTheme;
+    this._userTheme = userTheme;
   }
 
   setRuntimeUserTheme(runtimeUserTheme: RuntimeUserTheme) {
@@ -80,7 +83,7 @@ export class Theme {
     this._userTheme = {
       colors: undefined,
       breakpoints: defaultBreakpoints,
-      components: undefined
+      components: undefined,
     };
   }
 }

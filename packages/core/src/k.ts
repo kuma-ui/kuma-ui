@@ -8,6 +8,9 @@ type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
     Partial<PseudoProps<ThemeSystem>>
 >;
 
+/**
+ * The `k` API allows you to use utility style props directly on a React component. These elements accept utility props for inline styling that are type-safe and intuitively named. This means you can apply styles directly on the components while maintaining code readability and ease of use.
+ */
 const k: {
   [K in keyof JSX.IntrinsicElements]: StyledComponent<K>;
 } = new Proxy(

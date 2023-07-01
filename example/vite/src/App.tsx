@@ -6,12 +6,8 @@ import {
   Button,
   Heading,
   styled,
-  k,
   css,
 } from "@kuma-ui/core";
-
-const className = "hello";
-const row = "row";
 
 function App() {
   return (
@@ -19,12 +15,12 @@ function App() {
       as="main"
       display="flex"
       flexDir={["column", "row"]}
-      className={className}
       _hover={{
         bg: "red",
       }}
     >
-      <div
+      <Heading
+        as="h3"
         className={css`
           color: red;
           @media (max-width: sm) {
@@ -32,21 +28,16 @@ function App() {
           }
         `}
       >
-        12345
-      </div>
-      <Heading as="h3" className="hello">
-        hello
+        Kuma UI
       </Heading>
       <Spacer size={4} />
       <Flex flexDir={`column`}>
         <Text as="p" fontSize={24}>
-          hello
+          Zero Runtime UI Component Library
         </Text>
         <Spacer size={8} horizontal />
-        <Text>hello</Text>
-        <Button>hello</Button>
+        <Button>Getting Started</Button>
       </Flex>
-      <HelloWorld>hello world</HelloWorld>
     </Box>
   );
 }

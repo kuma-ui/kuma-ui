@@ -11,8 +11,8 @@ export default {
         viewBox="0 0 270 77"
         fill="none"
         style={{
-          width: "175px",
-          height: "55px",
+          width: "150px",
+          height: "42px",
         }}
       >
         <mask
@@ -142,6 +142,7 @@ export default {
   chat: {
     link: "https://discord.gg/QrsQ4EPp7G",
   },
+  docsRepositoryBase: "https://github.com/poteboy/kuma-ui/tree/main/website/",
   navbar: {
     extraContent: (
       <>
@@ -169,6 +170,15 @@ export default {
         </a>
       </>
     ),
+  },
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+
+    if (["/", "/docs"].includes(asPath)) {
+      return { titleTemplate: "Kuma UI" };
+    }
+
+    return { titleTemplate: `%s | Kuma UI` };
   },
   head: () => {
     const { asPath, pathname } = useRouter();

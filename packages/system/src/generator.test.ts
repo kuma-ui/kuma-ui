@@ -15,7 +15,13 @@ describe("StyleGenerator class", () => {
 
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
-    expect(css).toContain(`.${className} { font-size: 24px;color: red; }`);
+    console.log(css);
+    expect(css.replace(/\s/g, "")).toContain(
+      `.${className} { color: red;font-size: 24px; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
+        /\s/g,
+        ""
+      )
+    );
     expect(css).toContain(`.${className}:hover { color: black; }`);
   });
 
