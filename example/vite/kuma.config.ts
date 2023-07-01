@@ -9,9 +9,21 @@ const theme = createTheme({
     green: "green",
   },
   breakpoints: {
-    xs: "100px",
+    sm: "100px",
     xl: "1000px",
   },
+  components: {
+    Box: {
+      base: {
+        color: "Boxbase",
+      },
+    variants: {
+      action: {
+        color: "ActionBOx"
+      }
+    }
+    }
+  }
 });
 
 type UserTheme = typeof theme;

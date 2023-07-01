@@ -66,21 +66,26 @@ const kumaUiConfig = (
         ),
       });
 
-      config.module?.rules?.push({
-        test: /\.(tsx|ts|js|mjs|jsx)$/,
-        exclude: /node_modules/,
-        use: [
-          {
-            loader: KumaUIWebpackPlugin.loader,
-            options: {
-              virtualLoader: !appDir,
-              cssOutputDir: './.next/cache/kuma'
-            },
-          },
-        ],
-      });
+      // config.module?.rules?.push({
+      //   test: /\.(tsx|ts|js|mjs|jsx)$/,
+      //   exclude: /node_modules/,
+      //   use: [
+      //     {
+      //       loader: KumaUIWebpackPlugin.loader,
+      //       options: {
+      //         virtualLoader: !appDir,
+      //         cssOutputDir: "./.next/cache/kuma",
+      //       },
+      //     },
+      //   ],
+      // });
 
-      config.plugins?.push(new KumaUIWebpackPlugin(kumaConfig));
+      config.plugins?.push(
+        new KumaUIWebpackPlugin({
+          virtualLoader: !appDir,
+          cssOutputDir: "./.next/cache/kuma",
+        })
+      );
       if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }

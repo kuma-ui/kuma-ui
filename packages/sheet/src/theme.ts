@@ -19,8 +19,19 @@ export type UserTheme = {
   };
 };
 
+type RuntimeUserTheme = {
+  components: Record<string, Record<string, string>>;
+  tokens: Record<string, string>;
+  breakpoints: Record<string, string>;
+};
+
 export class Theme {
   private static instance: Theme;
+  private _runtimeUserTheme: RuntimeUserTheme = {
+    breakpoints: {},
+    components: {},
+    tokens: {}
+  }
   private _userTheme: UserTheme = {
     colors: undefined,
     breakpoints: defaultBreakpoints,
@@ -36,20 +47,36 @@ export class Theme {
     return Theme.instance;
   }
 
-  setBreakpoints(breakpoints: Record<string, string>) {
-    this._userTheme.breakpoints = breakpoints;
-  }
-
-  getBreakpoints(): Record<string, string> {
-    return this._userTheme.breakpoints;
-  }
-
   setUserTheme(userTheme: UserTheme) {
     this._userTheme = userTheme;
   }
 
+  setRuntimeUserTheme(runtimeUserTheme: RuntimeUserTheme) {
+    this._runtimeUserTheme = runtimeUserTheme;
+  }
+
   getUserTheme() {
     return this._userTheme;
+  }
+
+  getRuntimeUserTheme() {
+    return this._runtimeUserTheme;
+  }
+
+
+  getVariants(
+    componentName: string
+  ): Record<string /*VariantKey*/, string /*VariantKey*/> {
+    return this._runtimeUserTheme.components[componentName] || {};
+  }
+
+  getTokens(): Record<string, string> {
+    return this._runtimeUserTheme.tokens || {};
+  }
+
+
+  getBreakPoints(): Record<string, string> {
+    return this._runtimeUserTheme.breakpoints || {};
   }
 
   reset() {
