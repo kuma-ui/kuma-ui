@@ -18,5 +18,6 @@ export async function transform(code: string, id: string) {
   result.code = compiled.code;
   (result.metadata as unknown as { css: string }).css =
     sheet.getCSS() + compiled.css;
+  sheet.reset();
   return result;
 }

@@ -2,7 +2,7 @@
 
 exports[`k api > Snapshot tests (runtime: automatic) > basic usage should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-4229161508 { font-size: 24px; }
+.🐻-4229161508 { font-size: 24px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -15,7 +15,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > should match snapshot when k is used more than once 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
+.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -41,7 +41,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
+.🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -54,7 +54,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > using pseudo props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
+.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -67,7 +67,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > using responsive props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-401969115 { font-size: 16px; }@media (min-width: 576px) { .🐻-401969115 { font-size: 24px; } }
+.🐻-401969115 { font-size: 16px; }@media (min-width: 576px) { .🐻-401969115 { font-size: 24px; } }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -80,7 +80,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: automatic) > using space props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-3206633536 { padding: 2px; }
+.🐻-3206633536 { padding: 2px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -93,7 +93,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > basic usage should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-4229161508 { font-size: 24px; }
+.🐻-4229161508 { font-size: 24px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -106,7 +106,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > should match snapshot when k is used more than once 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
+.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -132,7 +132,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
+.🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -145,7 +145,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
+.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -158,7 +158,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > using responsive props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-401969115 { font-size: 16px; }@media (min-width: 576px) { .🐻-401969115 { font-size: 24px; } }
+.🐻-401969115 { font-size: 16px; }@media (min-width: 576px) { .🐻-401969115 { font-size: 24px; } }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -171,7 +171,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: classic) > using space props should match snapshot 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-3206633536 { padding: 2px; }
+.🐻-3206633536 { padding: 2px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
@@ -197,7 +197,7 @@ function App() {
 
 exports[`k api > Snapshot tests (runtime: undefined) > should match snapshot when k is used more than once 1`] = `
 "
-.kuma-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
+.🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
