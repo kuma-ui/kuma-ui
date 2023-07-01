@@ -10,8 +10,9 @@ import {
   isPseudoProps,
   normalizePseudo,
   all,
+  SystemStyle,
+  StyleGenerator,
 } from "@kuma-ui/system";
-import { sheet, SystemStyle } from "@kuma-ui/sheet";
 
 export const extractProps = (
   jsx: JsxOpeningElement | JsxSelfClosingElement,
@@ -33,24 +34,10 @@ export const extractProps = (
   ) {
     return;
   }
-  const convertedPseudoProps: SystemStyle["pseudo"] = Object.keys(pseudoProps)
-    .length
-    ? Object.entries(pseudoProps).map(([pseudoKey, pseudoValue]) => {
-        const pseudoStyle = all(pseudoValue);
-        return {
-          key: normalizePseudo(pseudoKey),
-          base: pseudoStyle.base,
-          responsive: pseudoStyle.media,
-        };
-      })
-    : [];
-  const style: SystemStyle = {
-    base: all(styledProps).base,
-    responsive: all(styledProps).media,
-    pseudo: convertedPseudoProps,
-  };
-
-  const generatedClassName = sheet.addRule(style);
+  const combinedProps = { ...styledProps, ...pseudoProps };
+  const { className: generatedClassName, css } = new StyleGenerator(
+    combinedProps
+  ).getStyle();
   const classNameAttr = jsx.getAttribute("className");
   let newClassName = generatedClassName;
   let newClassNameInitializer = "";
@@ -88,4 +75,5 @@ export const extractProps = (
     name: "className",
     initializer: `{${newClassNameInitializer}}`,
   });
+  return { css };
 };
