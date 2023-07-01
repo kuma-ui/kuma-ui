@@ -1,4 +1,5 @@
 import { k } from "@kuma-ui/core";
+import { Button } from "./button";
 import { Dynamic } from "./dynamic";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
           mx="auto"
           color="green"
         >
+          <Button></Button>
           Kuma UI
         </k.div>
       </k.header>
