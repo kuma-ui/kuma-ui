@@ -8,11 +8,7 @@ import { position, PositionProps } from "./position";
 import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
-import {
-  PseudoProps,
-  normalizePseudo,
-  isPseudoProps,
-} from "./pseudo";
+import { PseudoProps, normalizePseudo, isPseudoProps } from "./pseudo";
 import { grid } from "./grid";
 import { list } from "./list";
 import { effect } from "./effect";
@@ -48,3 +44,4 @@ export type {
   ResponsiveStyle,
   PseudoProps,
 };
+export * from "./generator";

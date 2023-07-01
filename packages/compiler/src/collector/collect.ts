@@ -22,7 +22,6 @@ export const collectPropsFromJsx = (
       let propValue;
       // If the propName starts with underscore, use extractPseudoAttribute
       if (propName.trim().startsWith("_")) {
-        console.log(propName);
         propValue = extractPseudoAttribute(jsxAttribute);
       } else {
         propValue = extractAttribute(jsxAttribute);
