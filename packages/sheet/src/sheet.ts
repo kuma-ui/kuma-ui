@@ -101,19 +101,19 @@ export class Sheet {
     const elements: Element[] = [];
 
     compile(`.${id}{${style}}`).forEach((element) => {
-      const breakpoint = theme.getBreakpoints();
+      const { breakpoints } = theme.getUserTheme();
       if (element.type === "@media") {
         const props = Array.isArray(element.props)
           ? element.props
           : [element.props];
         const newProps: string[] = [];
         let newValue = element.value;
-        for (const key in breakpoint) {
-          newValue = newValue.replaceAll(key, breakpoint[key]);
+        for (const key in breakpoints) {
+          newValue = newValue.replaceAll(key, breakpoints[key]);
         }
         props.forEach((prop) => {
-          for (const key in breakpoint) {
-            newProps.push(prop.replaceAll(key, breakpoint[key]));
+          for (const key in breakpoints) {
+            newProps.push(prop.replaceAll(key, breakpoints[key]));
             break;
           }
         });

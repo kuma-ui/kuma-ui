@@ -5,9 +5,10 @@ import {buildSync} from "esbuild";
 import _eval from "eval";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
+import { StyleGenerator } from "packages/system";
 
 export type VitePluginOption = {
-  breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
+  // breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
 };
 
 export default function kumaUI(options?: VitePluginOption): Plugin {
@@ -42,21 +43,62 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
     }
   }
 
-  if (options?.breakpoints && Object.keys(options.breakpoints).length > 0) {
-    theme.setBreakpoints(options.breakpoints);
-  }
   const cssLookup: { [key: string]: string } = {};
+
+  const userTheme = theme.getUserTheme();
+
+  let themeCss = "";
+
+  const runtimeTheme = {
+    components: {},
+    tokens: userTheme.colors || {},
+    breakpoints: userTheme.breakpoints || {}
+  };
+
+  for (const componentKey in userTheme.components) {
+    const component = userTheme.components[componentKey];
+    const componentVariants = {};
+    let componentBase = undefined;
+    const style = new StyleGenerator(component?.base);
+      themeCss += style.getCSS();
+      componentBase = style.getClassName()
+
+    for (const variantKey in component?.variants) {
+      const variant = component?.variants[variantKey];
+      const style = new StyleGenerator(variant);
+      themeCss += style.getCSS();
+
+      Object.assign(componentVariants, {
+        [variantKey]: style.getClassName(),
+      });
+    }
+
+    Object.assign(runtimeTheme.components, {
+      [componentKey]: {
+        base: componentBase,
+        variants: componentVariants,
+      },
+    });
+  }
+
+theme.setRuntimeUserTheme(runtimeTheme);
 
   return {
     name: "kuma-ui",
     enforce: "pre",
+    config(config) {
+      if (!config.define) config.define = {}
+      config.define = Object.assign(config.define, {
+        "globalThis.KUMA_USER_THEME": JSON.stringify(runtimeTheme),
+      })
+      return config
+    },
     async transform(code: string, id: string) {
       if (id.includes("@kuma-ui")) return;
       if (!/\.(t|j)(s|sx)?$/.test(id)) return;
       if (/node_modules/.test(id)) return;
       if (!code.includes("@kuma-ui/core")) return;
 
-      requireReact(code, id);
       const result = await transform(code, id);
       if (!result?.code) return;
       const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
@@ -67,10 +109,10 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
       // const css = sheet.getCSS();
       const css =
         ((result.metadata as unknown as { css: string }).css as string) || "";
-      cssLookup[cssFilename] = css;
-      cssLookup[cssId] = css;
+      cssLookup[cssFilename] = css + themeCss;
+      cssLookup[cssId] = css + themeCss;
       sheet.reset();
-      if (mode === "serve") return injectCSS(css, cssId) + result.code;
+      if (mode === "serve") return injectCSS(css + themeCss, cssId) + result.code;
       return `import ${JSON.stringify(cssFilename)};\n` + result.code;
     },
     load(url: string) {
@@ -93,17 +135,6 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
     },
   };
 }
-
-const requireReact = (code: string, id: string) => {
-  if (id.endsWith(".jsx") || id.endsWith(".tsx")) {
-    if (!/^\s*import\s+React\s+from\s+['"]react['"]/.test(code)) {
-      return {
-        code: "import React from 'react';\n" + code,
-        map: { mappings: "" },
-      };
-    }
-  }
-};
 
 const injectCSS = (cssContent: string, fileId: string) => {
   return `

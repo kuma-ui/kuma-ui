@@ -371,6 +371,9 @@ importers:
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
+      '@kuma-ui/system':
+        specifier: workspace:^
+        version: link:../system
       esbuild:
         specifier: ^0.18.0
         version: 0.18.0
@@ -390,6 +393,9 @@ importers:
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
+      '@kuma-ui/system':
+        specifier: workspace:^
+        version: link:../system
       esbuild:
         specifier: ^0.18.0
         version: 0.18.0

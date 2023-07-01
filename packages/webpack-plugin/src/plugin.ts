@@ -2,6 +2,7 @@ import { Compilation, Compiler, NormalModule } from "webpack";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { buildSync } from "esbuild";
 import eval from "eval";
+import { StyleGenerator } from "@kuma-ui/system";
 import { createHash } from "crypto";
 import fs from "fs";
 import { transform } from "@kuma-ui/babel-plugin";
@@ -62,22 +63,52 @@ class KumaUIWebpackPlugin {
     }
 
     this.options = options;
-    if (
-      this.options.breakpoints &&
-      Object.keys(this.options.breakpoints).length > 0
-    ) {
-      theme.setBreakpoints(this.options.breakpoints);
-    }
   }
 
   apply(compiler: Compiler) {
+    const userTheme = theme.getUserTheme();
+
+    let css = "";
+
+    const runtimeTheme = {
+      components: {},
+      tokens: userTheme.colors || {},
+      breakpoints: userTheme.breakpoints || {}
+    };
+
+    for (const componentKey in userTheme.components) {
+      const component = userTheme.components[componentKey];
+      const componentVariants = {};
+      let componentBase = undefined;
+      const style = new StyleGenerator(component?.base);
+        css += style.getCSS();
+        componentBase = style.getClassName()
+
+      for (const variantKey in component?.variants) {
+        const variant = component?.variants[variantKey];
+        const style = new StyleGenerator(variant);
+        css += style.getCSS();
+
+        Object.assign(componentVariants, {
+          [variantKey]: style.getClassName(),
+        });
+      }
+
+      Object.assign(runtimeTheme.components, {
+        [componentKey]: {
+          base: componentBase,
+          variants: componentVariants,
+        },
+      });
+    }
+
+  theme.setRuntimeUserTheme(runtimeTheme);
+
     compiler.options.plugins.push(
       new compiler.webpack.DefinePlugin({
-        "globalThis.USER_THEME": JSON.stringify(theme.getUserTheme()),
+        "globalThis.KUMA_USER_THEME": JSON.stringify(runtimeTheme),
       })
     );
-
-    const css = ".red{color:taishi}";
 
     const outDir = this.options.cssOutputDir ?? ".kuma";
 
