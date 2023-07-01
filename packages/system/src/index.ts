@@ -4,18 +4,18 @@ import { layout, LayoutProps } from "./layout";
 import { color, ColorProps } from "./color";
 import { flex, FlexProps } from "./flex";
 import { border, BorderProps } from "./border";
+import { outline, OutlineProps } from "./outline";
 import { position, PositionProps } from "./position";
 import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
-import {
-  PseudoProps,
-  normalizePseudo,
-  isPseudoProps,
-} from "./pseudo";
-import { grid } from "./grid";
-import { list } from "./list";
-import { effect } from "./effect";
+import { PseudoProps, normalizePseudo, isPseudoProps } from "./pseudo";
+import { grid, GridProps } from "./grid";
+import { list, ListProps } from "./list";
+import { effect, EffectProps } from "./effect";
+import { text, TextProps } from "./text";
+import { font, FontProps } from "./font";
+import { column, ColumnProps } from "./column";
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -27,11 +27,15 @@ export const all = compose(
   color,
   flex,
   border,
+  outline,
   position,
   shadow,
   grid,
   list,
-  effect
+  column,
+  effect,
+  text,
+  font
 );
 
 export { normalizePseudo, isPseudoProps };
@@ -42,9 +46,17 @@ export type {
   ColorProps,
   FlexProps,
   BorderProps,
+  OutlineProps,
   PositionProps,
   ShadowProps,
+  GridProps,
+  ListProps,
+  ColumnProps,
+  EffectProps,
+  TextProps,
+  FontProps,
   StyledProps,
   ResponsiveStyle,
   PseudoProps,
 };
+export * from "./generator";

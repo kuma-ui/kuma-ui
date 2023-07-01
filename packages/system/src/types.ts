@@ -48,3 +48,13 @@ export type ResponsiveStyle = {
   base: string;
   media: { [breakpoint: string]: string };
 };
+
+export type SystemStyle = {
+  base: ResponsiveStyle["base"];
+  responsive: ResponsiveStyle["media"];
+  pseudo: {
+    key: string;
+    base: ResponsiveStyle["base"];
+    responsive: ResponsiveStyle["media"];
+  }[];
+};

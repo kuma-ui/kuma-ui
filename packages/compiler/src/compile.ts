@@ -16,6 +16,7 @@ const compile = (
   id: string,
   bindings: Record<string, string>
 ) => {
+  const css: string[] = [];
   const source = project.createSourceFile(id, code, { overwrite: true });
   source.forEachDescendant((node) => {
     if (
@@ -41,10 +42,11 @@ const compile = (
       const componentName =
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);
-      extractProps(openingElement, extractedPropsMap);
+      const result = extractProps(openingElement, extractedPropsMap);
+      if (result) css.push(result.css);
     }
   });
-  return { code: source.getFullText(), id };
+  return { code: source.getFullText(), id, css: css.join(" ") };
 };
 
 export { compile };

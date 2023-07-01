@@ -4,6 +4,7 @@ import { LayoutProps } from "./layout";
 import { ColorProps } from "./color";
 import { FlexProps } from "./flex";
 import { BorderProps } from "./border";
+import { OutlineProps } from "./outline";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
@@ -12,17 +13,24 @@ import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 import { ListProps } from "./list";
 import { EffectProps } from "./effect";
+import { TextProps } from "./text";
+import { FontProps } from "./font";
+import { ColumnProps } from ".";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProps &
   TypographyProps &
+  TextProps &
+  FontProps &
   LayoutProps &
   ColorProps<T["colors"]> &
   FlexProps &
   BorderProps &
+  OutlineProps &
   PositionProps &
   ShadowProps &
   GridProps &
   ListProps &
+  ColumnProps &
   EffectProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;

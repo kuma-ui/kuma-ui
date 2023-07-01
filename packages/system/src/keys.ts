@@ -15,14 +15,54 @@ export const styleKeys = {
     "px",
     "py",
   ] as const,
-  typography: [
-    "fontSize",
-    "fontWeight",
-    "lineHeight",
-    "letterSpacing",
-    "textAlign",
+  typography: ["lineHeight", "letterSpacing"] as const,
+  fontKeys: [
+    "font",
     "fontFamily",
+    "fontFeatureSettings",
+    "fontKerning",
+    "fontLanguageOverride",
+    "fontOpticalSizing",
+    "fontPalette",
+    "fontSize",
+    "fontSizeAdjust",
+    "fontStretch",
+    "fontStyle",
+    "fontSynthesis",
+    "fontVariant",
+    "fontVariantAlternates",
+    "fontVariantCaps",
+    "fontVariantEastAsian",
+    "fontVariantEmoji",
+    "fontVariantLigatures",
+    "fontVariantNumeric",
+    "fontVariantPosition",
+    "fontVariationSettings",
+    "fontWeight",
+  ] as const,
+  textKeys: [
+    "textAlign",
+    "textAlignLast",
+    "textCombineUpright",
     "textDecoration",
+    "textDecorationColor",
+    "textDecorationLine",
+    "textDecorationSkipInk",
+    "textDecorationStyle",
+    "textDecorationThickness",
+    "textEmphasis",
+    "textEmphasisColor",
+    "textEmphasisPosition",
+    "textEmphasisStyle",
+    "textIndent",
+    "textJustify",
+    "textOrientation",
+    "textOverflow",
+    "textRendering",
+    "textShadow",
+    "textTransform",
+    "textUnderlineOffset",
+    "textUnderlinePosition",
   ] as const,
   layout: [
     "width",
@@ -53,6 +93,7 @@ export const styleKeys = {
     "bgColor",
     "color",
     "borderColor",
+    "outlineColor",
     "accentColor",
     "caretColor",
     "opacity",
@@ -65,6 +106,12 @@ export const styleKeys = {
     "borderRight",
     "borderBottom",
     "borderLeft",
+  ] as const,
+  outline: [
+    "outline",
+    "outlineWidth",
+    "outlineStyle",
+    "outlineOffset",
   ] as const,
   position: ["top", "right", "bottom", "left", "inset"] as const,
   shadow: ["textShadow", "boxShadow"] as const,
@@ -94,6 +141,18 @@ export const styleKeys = {
     "gridColumnGap",
     "gridRowGap",
   ] as const,
+  column: [
+    "columnCount",
+    "columnFill",
+    "columnGap",
+    "columnRule",
+    "columnRuleColor",
+    "columnRuleStyle",
+    "columnRuleWidth",
+    "columnSpan",
+    "columnWidth",
+    "columns",
+  ] as const,
   effect: [
     "transition",
     "transitionDuration",
@@ -101,21 +160,26 @@ export const styleKeys = {
     "transitionTimingFunction",
     "transitionDelay",
     "transform",
+    "transformBox",
     "transformOrigin",
+    "transformStyle",
   ] as const,
 };
 
 export type SpaceKeys = (typeof styleKeys.space)[number];
 export type TypographyKeys = (typeof styleKeys.typography)[number];
+export type FontKeys = (typeof styleKeys.fontKeys)[number];
+export type TextKeys = (typeof styleKeys.textKeys)[number];
 export type LayoutKeys = (typeof styleKeys.layout)[number];
 export type ColorKeys = (typeof styleKeys.color)[number];
 export type FlexKeys = (typeof styleKeys.flex)[number];
 export type BorderKeys = (typeof styleKeys.border)[number];
+export type OutlineKeys = (typeof styleKeys.outline)[number];
 export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 export type ListKeys = (typeof styleKeys.list)[number];
 export type GridKeys = (typeof styleKeys.grid)[number];
-
+export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 
 export type StyledKeyType =
@@ -125,10 +189,12 @@ export type StyledKeyType =
   | ColorKeys
   | FlexKeys
   | BorderKeys
+  | OutlineKeys
   | PositionKeys
   | ShadowKeys
   | ListKeys
   | GridKeys
+  | ColumnKeys
   | EffectKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {

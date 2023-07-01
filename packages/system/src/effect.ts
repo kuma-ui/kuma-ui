@@ -10,7 +10,9 @@ export type EffectProps = Partial<
     | "transitionTimingFunction"
     | "transitionDelay"
     | "transform"
+    | "transformBox"
     | "transformOrigin"
+    | "transformStyle"
   >
 >;
 
@@ -21,7 +23,9 @@ const effectMappings: Record<EffectKeys, string> = {
   transitionTimingFunction: "transition-timing-function",
   transitionDelay: "transition-delay",
   transform: "transform",
+  transformBox: "transform-box",
   transformOrigin: "transform-origin",
+  transformStyle: "transform-style",
 } as const;
 
 export const effect = (props: EffectProps): ResponsiveStyle => {

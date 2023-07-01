@@ -1,7 +1,7 @@
 import { transformSync } from "@babel/core";
 import { compile } from "@kuma-ui/compiler";
-import { sheet } from "@kuma-ui/sheet";
 import pluin from ".";
+import { sheet } from "@kuma-ui/sheet";
 
 export async function transform(code: string, id: string) {
   const result = await transformSync(code, {
@@ -14,8 +14,10 @@ export async function transform(code: string, id: string) {
   const bindings = (
     result.metadata as unknown as { bindings: Record<string, string> }
   ).bindings;
-  result.code = compile(result.code, id, bindings).code;
-  (result.metadata as unknown as { css: string }).css = sheet.getCSS();
+  const compiled = compile(result.code, id, bindings);
+  result.code = compiled.code;
+  (result.metadata as unknown as { css: string }).css =
+    sheet.getCSS() + compiled.css;
   sheet.reset();
   return result;
 }
