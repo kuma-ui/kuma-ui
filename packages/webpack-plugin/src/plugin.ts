@@ -77,12 +77,9 @@ class KumaUIWebpackPlugin {
       })
     );
 
-    const css = "";
+    const css = ".red{color:taishi}";
+
     const outDir = this.options.cssOutputDir ?? ".kuma";
-    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
-    const hash = createHash("md5").update(css).digest("hex");
-    const cssPath = path.posix.join(outDir, `${hash}.css`);
-    fs.writeFileSync(cssPath, css);
 
     compiler.options.module?.rules?.push({
       test: /\.(tsx|ts|js|mjs|jsx)$/,
@@ -93,7 +90,7 @@ class KumaUIWebpackPlugin {
           options: {
             virtualLoader: this.options.virtualLoader ?? true,
             cssOutputDir: path.posix.join(process.cwd(), outDir),
-            cssPath: path.posix.join(process.cwd(), cssPath),
+            cssSrc: css,
           },
         },
       ],

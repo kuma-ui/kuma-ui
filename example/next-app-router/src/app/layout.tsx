@@ -15,7 +15,7 @@ const Layout: FC<Props> = ({ children }) => {
         <title></title>
       </head>
       <body>
-        <k.div bg={'red'} className={inter.className}>
+        <k.div bg={'colors.green'} className={inter.className}>
           {children}
         </k.div>
       </body>
