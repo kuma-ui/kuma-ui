@@ -9,6 +9,7 @@ import {
   k,
   css,
 } from "@kuma-ui/core";
+import { Dynamic } from "./Dynamic";
 
 const className = "hello";
 const row = "row";
@@ -47,6 +48,8 @@ function App() {
         <Button>hello</Button>
       </Flex>
       <HelloWorld>hello world</HelloWorld>
+      <Dynamic key={1} />
+      <Dynamic key={2} />
     </Box>
   );
 }
