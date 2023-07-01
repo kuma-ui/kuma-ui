@@ -1,5 +1,5 @@
 import { k } from "@kuma-ui/core";
-import { Client } from "./client";
+import { Dynamic } from "./dynamic";
 
 export default function Home() {
   return (
@@ -16,8 +16,8 @@ export default function Home() {
           Kuma UI
         </k.div>
       </k.header>
-      <Client />
-      <Client />
+      <Dynamic key={1} />
+      <Dynamic key={2} />
     </div>
   );
 }
