@@ -8,23 +8,27 @@ type AddProperty<T, T2> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorProps = Partial<
-  {
-    /**
-     * @see background
-     */
-    bg: CSSValue<"background">;
-    /**
-     * @see backgroundColor
-     */
-    bgColor: CSSValue<"backgroundColor">;
-  } & CSSProperties<
-    | "borderColor"
-    | "outlineColor"
-    | "color"
-    | "accentColor"
-    | "caretColor"
-    | "opacity"
+export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
+  AddProperty<
+    {
+      /**
+       * @see background
+       */
+      bg: CSSValue<"background"> | AutoPrefix;
+      /**
+       * @see backgroundColor
+       */
+      bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+    } & CSSProperties<
+      | "borderColor"
+      | "outlineColor"
+      | "color"
+      | "accentColor"
+      | "caretColor"
+      | "opacity",
+      false
+    >,
+    AutoPrefix
   >
 >;
 
