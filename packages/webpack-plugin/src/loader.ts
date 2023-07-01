@@ -2,11 +2,11 @@ import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
 import eval from "eval";
-import type { RawLoaderDefinitionFunction } from "webpack";
+import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
 import { sheet, styleMap } from "@kuma-ui/sheet";
 import { writeFile, mkdtempSync } from "fs";
 import { createHash } from "crypto";
-import { themeFilename, tmpCSSDir } from "./plugin";
+import { tmpCSSDir } from "./plugin";
 
 const virtualLoaderPath = require.resolve("./virtualLoader");
 
@@ -15,6 +15,7 @@ export const DUMMY_CSS_FILE_PATH = require.resolve("../assets/kuma.css");
 type Options = {
   virtualLoader?: boolean;
   cssOutputDir?: string;
+  cssPath: string;
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
@@ -23,7 +24,6 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
-  const tmpDir = "";
 
   const options = this.getOptions();
   const isVirtualLoader = options.virtualLoader ?? true;
@@ -46,9 +46,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
         return;
       }
       const codeWithReact = requireReact(result.code, id);
-      // const css = sheet.getCSS();
-      // styleMap.set(id, css);
-      // sheet.reset();
+
+      console.log(virtualLoaderX("12345", this));
 
       const css =
         ((result.metadata as unknown as { css: string }).css as string) || "";
@@ -67,17 +66,27 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           callback(null, `${codeWithReact}${filePrefix}`);
           return;
         } else {
-          const outDir = options.cssOutputDir ?? ".kuma";
+          const outDir = options.cssOutputDir ?? "kuma";
           if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
           const hash = createHash("md5").update(css).digest("hex");
           const cssPath = path.posix.join(outDir, `${hash}.css`);
           fs.writeFileSync(cssPath, css);
           const filePrefix = `import "${cssPath}";`;
-          callback(null, `${codeWithReact}\n${filePrefix}`);
+          callback(
+            null,
+            `${codeWithReact}\n${filePrefix};${
+              options.cssPath ? `import "${options.cssPath}"` : ""
+            }`
+          );
           return;
         }
       }
-      callback(null, `${codeWithReact}`);
+      callback(
+        null,
+        `${codeWithReact};${
+          options.cssPath ? `import "${options.cssPath}"` : ""
+        }`
+      );
     })
     .catch((error) => {
       callback(error);
@@ -95,3 +104,14 @@ const requireReact = (code: string, id: string) => {
   }
   return code;
 };
+
+function virtualLoaderX(src: string, context: LoaderContext<unknown>) {
+  const options = JSON.stringify({ src: src });
+  const virtualResourceLoader = `${virtualLoaderPath}?${options}`;
+  return `${JSON.stringify(
+    context.utils.contextify(
+      context.context || context.rootContext,
+      `kuma.css!=!${virtualResourceLoader}!${DUMMY_CSS_FILE_PATH}`
+    ) 
+  )};`;
+}

@@ -47,9 +47,9 @@ module.exports = {
               ],
             },
           },
-          {
-            loader: KumaUIWebpackPlugin.loader,
-          },
+          // {
+          //   loader: KumaUIWebpackPlugin.loader,
+          // },
         ],
       },
       {
