@@ -1,5 +1,11 @@
-import { Flex, Spacer, Text, Button, Heading } from "./index";
-import { Box, isBoxProps, boxHandler } from "./Box";
+import { Flex, Spacer, Text, Heading } from "./index";
+import { Box, isBoxProps, boxHandler, boxDefaultProps } from "./Box";
+import {
+  Button,
+  isButtonProps,
+  buttonHandler,
+  buttonDefaultProps,
+} from "./Button";
 import { match } from "ts-pattern";
 
 export const componentList = Object.freeze({
@@ -21,9 +27,17 @@ export const isComponentProps =
     // .exhaustive();
   };
 
+export const componentDefaultProps = (componentName: ComponentName) => {
+  return match(componentName)
+    .with("Box", () => boxDefaultProps)
+    .with("Button", () => buttonDefaultProps)
+    .otherwise(() => ({}));
+};
+
 export const componentHandler =
   (componentName: ComponentName) => (props: Record<string, any>) => {
     return match(componentName)
       .with("Box", boxHandler)
+      .with("Button", buttonHandler)
       .otherwise(() => ({}));
   };

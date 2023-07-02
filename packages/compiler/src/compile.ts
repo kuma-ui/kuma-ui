@@ -42,7 +42,11 @@ const compile = (
       const componentName =
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);
-      const result = extractProps(openingElement, extractedPropsMap);
+      const result = extractProps(
+        componentName,
+        openingElement,
+        extractedPropsMap
+      );
       if (result) css.push(result.css);
     }
   });

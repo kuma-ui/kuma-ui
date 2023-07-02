@@ -13,15 +13,22 @@ import {
   SystemStyle,
   StyleGenerator,
 } from "@kuma-ui/system";
+import { componentDefaultProps, componentList } from "@kuma-ui/core";
 
 export const extractProps = (
+  componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
   propsMap: Record<string, any>
 ) => {
   const styledProps: { [key: string]: any } = {};
   const pseudoProps: { [key: string]: any } = {};
 
-  for (const [propName, propValue] of Object.entries(propsMap)) {
+  const defaultProps = componentDefaultProps(componentName);
+
+  for (const [propName, propValue] of Object.entries({
+    ...defaultProps,
+    ...propsMap,
+  })) {
     if (isStyledProp(propName.trim())) {
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
