@@ -1,11 +1,11 @@
-import { Flex, Spacer, Text, Heading } from "./index";
-import { Box, isBoxProps, boxHandler, boxDefaultProps } from "./Box";
+import { Box, Button, Flex, Spacer, Text, Heading } from "./index";
+import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
-  Button,
   isButtonProps,
   buttonHandler,
   buttonDefaultProps,
-} from "./Button";
+} from "./Button/handler";
+import { isFlexProps, flexHandler, flexDefaultProps } from "./Flex/handler";
 import { match } from "ts-pattern";
 
 export const componentList = Object.freeze({
@@ -23,6 +23,8 @@ export const isComponentProps =
   (componentName: ComponentName) => (propName: string) => {
     return match(componentName)
       .with("Box", isBoxProps)
+      .with("Button", isButtonProps)
+      .with("Flex", isFlexProps)
       .otherwise(() => false);
     // .exhaustive();
   };
@@ -31,6 +33,7 @@ export const componentDefaultProps = (componentName: ComponentName) => {
   return match(componentName)
     .with("Box", () => boxDefaultProps)
     .with("Button", () => buttonDefaultProps)
+    .with("Flex", () => flexDefaultProps)
     .otherwise(() => ({}));
 };
 
@@ -39,5 +42,6 @@ export const componentHandler =
     return match(componentName)
       .with("Box", boxHandler)
       .with("Button", buttonHandler)
+      .with("Flex", flexHandler)
       .otherwise(() => ({}));
   };

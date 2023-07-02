@@ -11,6 +11,7 @@ import {
 import { Dynamic } from "./Dynamic";
 
 function App() {
+  const red = "red";
   return (
     <Box
       as="main"
@@ -37,7 +38,7 @@ function App() {
           Zero Runtime UI Component Library
         </Text>
         <Spacer size={8} horizontal />
-        <Button>Getting Started</Button>
+        <Button color={red}>Getting Started</Button>
       </Flex>
       <HelloWorld>hello world</HelloWorld>
       <Dynamic key={1} />
