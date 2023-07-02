@@ -1,11 +1,13 @@
-const boxSpecificProps = ["variant"] as const;
+import { theme } from "@kuma-ui/sheet";
+import { StyleGenerator } from "@kuma-ui/system";
 
-const boxSpecificPropMap = new Map(
-  boxSpecificProps.map((prop) => [prop, true])
-);
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type BoxSpecificProps = {};
 
-type BoxSpecificProp = (typeof boxSpecificProps)[number];
+const boxSpecificProps: (keyof BoxSpecificProps)[] = [];
 
-export const isBoxProps = (propName: unknown): propName is BoxSpecificProp => {
-  return Object.keys(boxSpecificPropMap).some((k) => k === propName);
+export const isBoxProps = (propName: unknown): propName is BoxSpecificProps => {
+  return boxSpecificProps.some((k) => k === propName);
 };
+
+export const boxHandler = (props: BoxSpecificProps) => ({});
