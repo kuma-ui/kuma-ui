@@ -20,7 +20,7 @@ export const Hero = () => {
           className={css`
             letter-spacing: -0.025em;
             line-height: 1;
-            @media (max-width: 560px) {
+            @media (max-width: sm) {
               line-height: 2.5rem;
             }
           `}
@@ -57,6 +57,7 @@ export const Hero = () => {
               line-height: 45px;
               border-radius: 6px;
               height: 3rem;
+              text-align: center;
               cursor: pointer;
               &:hover {
                 opacity: 0.9;
