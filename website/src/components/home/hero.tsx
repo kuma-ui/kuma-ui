@@ -47,26 +47,25 @@ export const Hero = () => {
           justify="center"
           gap="1rem"
         >
-          <Link href="/docs">
-            <Box
-              className={css`
-                background: #292e32;
-                color: white;
-                padding-left: 1.5rem;
-                padding-right: 1.5rem;
-                line-height: 45px;
-                border-radius: 6px;
-                height: 3rem;
-                text-align: center;
-                cursor: pointer;
-                &:hover {
-                  opacity: 0.9;
-                }
-              `}
-            >
-              Get Started
-            </Box>
-          </Link>
+          <a
+            href="/docs"
+            className={css`
+              background: #292e32;
+              color: white;
+              padding-left: 1.5rem;
+              padding-right: 1.5rem;
+              line-height: 45px;
+              border-radius: 6px;
+              height: 3rem;
+              text-align: center;
+              cursor: pointer;
+              &:hover {
+                opacity: 0.9;
+              }
+            `}
+          >
+            Get Started
+          </a>
         </Box>
       </Box>
       <Box as="section" mt="5rem">
