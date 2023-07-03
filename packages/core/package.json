@@ -48,9 +48,13 @@
     "ts-pattern": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.32",
     "@vitest/coverage-c8": "^0.31.4",
     "globby": "^13.2.0",
+    "happy-dom": "^9.20.3",
+    "jsdom": "^22.1.0",
     "ts-node": "^10.9.1",
     "vitest": "^0.31.4"
   },

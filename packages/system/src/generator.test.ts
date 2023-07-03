@@ -56,4 +56,12 @@ describe("StyleGenerator class", () => {
     // Assert
     expect(className1).toBe(className2);
   });
+
+  test("should return an empty string for the classname and css if props are empty", () => {
+    const props = {};
+    const { className, css } = new StyleGenerator(props).getStyle();
+
+    expect(className).toBe("");
+    expect(css).toBe("");
+  });
 });
