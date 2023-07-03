@@ -3,5 +3,5 @@ export { k } from "./k";
 export { css } from "./css";
 export { createTheme, type Theme, type ThemeSystem } from "./theme";
 export * from "./components";
-export { componentList } from "./components/componentList";
+export * from "./components/componentList";
 export * from "./registry";

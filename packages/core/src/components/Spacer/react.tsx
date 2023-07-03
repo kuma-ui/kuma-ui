@@ -1,14 +1,13 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import { Box } from "../Box";
+import { SpacerSpecificProps, spacerHandler } from "./handler";
 
 type SpacerProps = StyledProps &
   Partial<PseudoProps> & {
     children?: ReactNode;
-  } & {
-    size?: number;
-    horizontal?: boolean;
-  };
+  } & SpacerSpecificProps;
 
 type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 
@@ -21,8 +20,16 @@ type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 const Spacer: SpacerComponent = <T extends As = "div">({
   as: Component = "div",
   children,
+  size,
+  horizontal,
   ...props
-}: MergeWithAs<PropsOf<T>, SpacerProps>) =>
-  React.createElement(Component, props, children);
+}: MergeWithAs<PropsOf<T>, SpacerProps>) => {
+  props = {
+    ...spacerHandler({ size, horizontal }),
+    ...props,
+  };
+
+  return <Box as={Component} {...props} children={children} />;
+};
 
 export { Spacer, type SpacerComponent, SpacerProps };

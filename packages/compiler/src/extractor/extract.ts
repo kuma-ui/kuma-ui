@@ -13,31 +13,53 @@ import {
   SystemStyle,
   StyleGenerator,
 } from "@kuma-ui/system";
+import { componentDefaultProps, componentList } from "@kuma-ui/core";
+import { isComponentProps, componentHandler } from "packages/core/dist";
 
 export const extractProps = (
+  componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
   propsMap: Record<string, any>
 ) => {
   const styledProps: { [key: string]: any } = {};
   const pseudoProps: { [key: string]: any } = {};
+  const componentProps: { [key: string]: any } = {};
 
-  for (const [propName, propValue] of Object.entries(propsMap)) {
+  const defaultProps = componentDefaultProps(componentName);
+
+  for (const [propName, propValue] of Object.entries({
+    ...defaultProps,
+    ...propsMap,
+  })) {
     if (isStyledProp(propName.trim())) {
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
+    } else if (isComponentProps(componentName)(propName.trim())) {
+      componentProps[propName.trim()] = propValue;
     }
   }
 
   if (
-    !(!!Object.keys(styledProps).length || !!Object.keys(pseudoProps).length)
+    !(
+      !!Object.keys(styledProps).length ||
+      !!Object.keys(pseudoProps).length ||
+      !!Object.keys(componentProps)
+    )
   ) {
     return;
   }
-  const combinedProps = { ...styledProps, ...pseudoProps };
+
+  const specificProps = componentHandler(componentName)(componentProps);
+
+  const combinedProps = { ...specificProps, ...styledProps, ...pseudoProps };
   const { className: generatedClassName, css } = new StyleGenerator(
     combinedProps
   ).getStyle();
+
+  // If no generatedClassName is returned, the component should remain intact
+  if (!generatedClassName) return { css };
+
   const classNameAttr = jsx.getAttribute("className");
   let newClassName = generatedClassName;
   let newClassNameInitializer = "";
@@ -69,6 +91,10 @@ export const extractProps = (
 
   for (const pseudoPropKey of Object.keys(pseudoProps)) {
     jsx.getAttribute(pseudoPropKey)?.remove();
+  }
+
+  for (const componentPropsKey of Object.keys(componentProps)) {
+    jsx.getAttribute(componentPropsKey)?.remove();
   }
 
   jsx.addAttribute({
