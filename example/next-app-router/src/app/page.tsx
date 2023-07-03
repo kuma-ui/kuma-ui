@@ -18,8 +18,10 @@ export default function Home() {
       </k.header>
       <Dynamic key={1} />
       <Dynamic key={2} />
+      <Box bg={(() => "yellow")()}>dynamic</Box>
+      <Box color={(() => "colors.blue")()}>dynamic</Box>
       <Box p={[8, 16]} color="colors.green">
-        test
+        static
       </Box>
     </div>
   );
