@@ -51,7 +51,7 @@ importers:
         version: 5.0.4
       vitest:
         specifier: ^0.31.4
-        version: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+        version: 0.31.4(jsdom@22.1.0)
 
   example/next:
     dependencies:
@@ -267,7 +267,7 @@ importers:
         version: 11.0.4(@babel/core@7.21.4)
       vitest:
         specifier: ^0.31.4
-        version: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+        version: 0.31.4(jsdom@22.1.0)
 
   packages/compiler:
     dependencies:
@@ -314,9 +314,6 @@ importers:
       globby:
         specifier: ^13.2.0
         version: 13.2.0
-      happy-dom:
-        specifier: ^9.20.3
-        version: 9.20.3
       jsdom:
         specifier: ^22.1.0
         version: 22.1.0
@@ -325,7 +322,7 @@ importers:
         version: 10.9.1(@types/node@18.15.11)(typescript@5.0.4)
       vitest:
         specifier: ^0.31.4
-        version: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+        version: 0.31.4(jsdom@22.1.0)
 
   packages/next-plugin:
     dependencies:
@@ -369,7 +366,7 @@ importers:
         version: 0.31.4(vitest@0.31.4)
       vitest:
         specifier: ^0.31.4
-        version: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+        version: 0.31.4(jsdom@22.1.0)
 
   packages/system:
     dependencies:
@@ -385,7 +382,7 @@ importers:
         version: 0.31.4(vitest@0.31.4)
       vitest:
         specifier: ^0.31.4
-        version: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+        version: 0.31.4(jsdom@22.1.0)
 
   packages/vite:
     dependencies:
@@ -3396,7 +3393,7 @@ packages:
       magic-string: 0.30.0
       picocolors: 1.0.0
       std-env: 3.3.3
-      vitest: 0.31.4(happy-dom@9.20.3)(jsdom@22.1.0)
+      vitest: 0.31.4(jsdom@22.1.0)
     dev: true
 
   /@vitest/expect@0.31.4:
@@ -6247,17 +6244,6 @@ packages:
 
   /handle-thing@2.0.1:
     resolution: {integrity: sha512-9Qn4yBxelxoh2Ow62nP+Ka/kMnOXRi8BXnRaUwezLNhqelnN49xKz4F/dPP8OYLxLxq6JDtZb2i9XznUQbNPTg==}
-
-  /happy-dom@9.20.3:
-    resolution: {integrity: sha512-eBsgauT435fXFvQDNcmm5QbGtYzxEzOaX35Ia+h6yP/wwa4xSWZh1CfP+mGby8Hk6Xu59mTkpyf72rUXHNxY7A==}
-    dependencies:
-      css.escape: 1.5.1
-      entities: 4.5.0
-      iconv-lite: 0.6.3
-      webidl-conversions: 7.0.0
-      whatwg-encoding: 2.0.0
-      whatwg-mimetype: 3.0.0
-    dev: true
 
   /hard-rejection@2.1.0:
     resolution: {integrity: sha512-VIZB+ibDhx7ObhAe7OVtoEbuP4h/MuOTHJ+J8h/eBXotJYl0fBgR72xDFCKgIh22OJZIOVNxBMWuhAr10r8HdA==}
@@ -10818,7 +10804,7 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.31.4(happy-dom@9.20.3)(jsdom@22.1.0):
+  /vitest@0.31.4(jsdom@22.1.0):
     resolution: {integrity: sha512-GoV0VQPmWrUFOZSg3RpQAPN+LPmHg2/gxlMNJlyxJihkz6qReHDV6b0pPDcqFLNEPya4tWJ1pgwUNP9MLmUfvQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -10863,7 +10849,6 @@ packages:
       chai: 4.3.7
       concordance: 5.0.4
       debug: 4.3.4
-      happy-dom: 9.20.3
       jsdom: 22.1.0
       local-pkg: 0.4.3
       magic-string: 0.30.0
