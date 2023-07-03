@@ -1,5 +1,6 @@
 {
   "Box": "Box",
   "Flex": "Flex",
-  "Button": "Button"
+  "Button": "Button",
+  "Spacer": "Spacer"
 }
