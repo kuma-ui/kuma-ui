@@ -50,16 +50,16 @@ export const extractProps = (
     return;
   }
 
-  if (componentName === "Spacer") {
-    console.log(propsMap);
-  }
-
   const specificProps = componentHandler(componentName)(componentProps);
 
   const combinedProps = { ...specificProps, ...styledProps, ...pseudoProps };
   const { className: generatedClassName, css } = new StyleGenerator(
     combinedProps
   ).getStyle();
+
+  // If no generatedClassName is returned, the component should remain intact
+  if (!generatedClassName) return { css };
+
   const classNameAttr = jsx.getAttribute("className");
   let newClassName = generatedClassName;
   let newClassNameInitializer = "";

@@ -11,7 +11,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -30,7 +30,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"span\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className={\\"\\\\uD83D\\\\uDC3B-1440123820\\"}>
@@ -51,7 +51,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -70,7 +70,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -89,7 +89,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"span\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className={\\"\\\\uD83D\\\\uDC3B-1440123820\\"}>
@@ -110,7 +110,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -129,7 +129,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
@@ -148,7 +148,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"span\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box className={\\"\\\\uD83D\\\\uDC3B-1440123820\\"}>
@@ -169,7 +169,7 @@ const Box = props => {
   const existingClassName = props.className || \\"\\";
   const newClassName = \\"kuma-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
-  return <__Box as=\\"div\\" {...props} className={\` \${combinedClassName}\`} />;
+  return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
 function App() {
   return <Box>test</Box>;
