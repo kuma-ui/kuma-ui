@@ -4,8 +4,8 @@ import { toCssUnit } from "@kuma-ui/system";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type SpacerSpecificProps = {
-  horizontal: boolean;
-  size: number | string;
+  horizontal?: boolean;
+  size?: number | string;
 };
 
 const spacerSpecificProps: (keyof SpacerSpecificProps)[] = [
@@ -21,9 +21,8 @@ export const isSpacerProps = (
 
 export const spacerDefaultProps: StyledProps = {};
 
-export const spacerHandler = (
-  props: Partial<SpacerSpecificProps>
-): StyledProps => {
+export const spacerHandler = (props: SpacerSpecificProps): StyledProps => {
+  if (!props.horizontal && !props.size) return {};
   const px =
     typeof props.size === "number"
       ? toCssUnit(props.size)

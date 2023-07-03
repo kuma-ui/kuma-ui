@@ -20,9 +20,10 @@ type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 const Spacer: SpacerComponent = <T extends As = "div">({
   as: Component = "div",
   children,
+  size,
+  horizontal,
   ...props
 }: MergeWithAs<PropsOf<T>, SpacerProps>) => {
-  const { size, horizontal } = props;
   props = {
     ...spacerHandler({ size, horizontal }),
     ...props,
