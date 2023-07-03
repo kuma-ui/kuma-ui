@@ -1,0 +1,36 @@
+---
+title: "Button"
+description: "Button is a fundamental interactive component in Kuma UI."
+---
+
+import { ButtonExample, ExampleContainer } from "../../../components/example";
+
+# Button
+
+Button is essentially a Box component with `as="button"` and `curour="pointer"` set by default. It is a fundamental interactive component in Kuma UI.
+
+## Import
+
+```tsx copy
+import { Button } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <ButtonExample />
+</ExampleContainer>
+
+```tsx copy
+const ButtonExample = () => {
+  return (
+    <Button p={8} bg="blue" color="white" borderRadius={6}>
+      Click me
+    </Button>
+  );
+};
+```
+
+## props
+
+Button accepts all the same props as Box. In addition, it accepts all the standard attributes for HTML button elements.

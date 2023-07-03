@@ -1,0 +1,38 @@
+---
+title: "Flex"
+description: "Flex makes it easier to layout and align child components in both horizontal and vertical directions."
+---
+
+import { FlexExample, ExampleContainer } from "../../../components/example";
+
+# Flex
+
+Flex is a Box component with `display="flex"` set by default. It makes it easier to layout and align child components in both horizontal and vertical directions. It is a fundamental layout component in Kuma UI.
+
+## Import
+
+```tsx copy
+import { Flex } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <FlexExample />
+</ExampleContainer>
+
+```tsx copy
+const FlexExample = () => {
+  return (
+    <Flex justify="center" alignItems="center">
+      <Box p={8} bg="blue" color="white">
+        Hello world
+      </Box>
+    </Flex>
+  );
+};
+```
+
+## Props
+
+Flex accepts all the same props as [Box](/docs/Components/Box).
