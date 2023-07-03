@@ -6,7 +6,19 @@ import {
   buttonDefaultProps,
 } from "./Button/handler";
 import { isFlexProps, flexHandler, flexDefaultProps } from "./Flex/handler";
+import {
+  isHeadingProps,
+  headingHandler,
+  headingDefaultProps,
+} from "./Heading/handler";
+import {
+  isSpacerProps,
+  spacerHandler,
+  spacerDefaultProps,
+} from "./Spacer/handler";
+import { isTextProps, textHandler, textDefaultProps } from "./Text/handler";
 import { match } from "ts-pattern";
+import { StyledProps } from "@kuma-ui/system";
 
 export const componentList = Object.freeze({
   Box: Box.name as "Box",
@@ -25,23 +37,34 @@ export const isComponentProps =
       .with("Box", isBoxProps)
       .with("Button", isButtonProps)
       .with("Flex", isFlexProps)
-      .otherwise(() => false);
-    // .exhaustive();
+      .with("Heading", isHeadingProps)
+      .with("Spacer", isSpacerProps)
+      .with("Text", isTextProps)
+      .exhaustive();
   };
 
-export const componentDefaultProps = (componentName: ComponentName) => {
+export const componentDefaultProps = (
+  componentName: ComponentName
+): StyledProps => {
   return match(componentName)
     .with("Box", () => boxDefaultProps)
     .with("Button", () => buttonDefaultProps)
     .with("Flex", () => flexDefaultProps)
-    .otherwise(() => ({}));
+    .with("Heading", () => headingDefaultProps)
+    .with("Spacer", () => spacerDefaultProps)
+    .with("Text", () => textDefaultProps)
+    .exhaustive();
 };
 
 export const componentHandler =
-  (componentName: ComponentName) => (props: Record<string, any>) => {
+  (componentName: ComponentName) =>
+  (props: Record<string, any>): StyledProps => {
     return match(componentName)
-      .with("Box", boxHandler)
-      .with("Button", buttonHandler)
-      .with("Flex", flexHandler)
-      .otherwise(() => ({}));
+      .with("Box", () => boxHandler(props))
+      .with("Button", () => buttonHandler(props))
+      .with("Flex", () => flexHandler(props))
+      .with("Heading", () => headingHandler(props))
+      .with("Spacer", () => spacerHandler(props))
+      .with("Text", () => textHandler(props))
+      .exhaustive();
   };

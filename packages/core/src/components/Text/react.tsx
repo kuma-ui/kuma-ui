@@ -1,6 +1,7 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import { Box } from "../Box";
 
 type TextProps = StyledProps &
   Partial<PseudoProps> & {
@@ -18,7 +19,8 @@ const Text: TextComponent = <T extends As = "p">({
   as: Component = "p",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, TextProps>) =>
-  React.createElement(Component, props, children);
+}: MergeWithAs<PropsOf<T>, TextProps>) => (
+  <Box as={Component} {...props} children={children} />
+);
 
 export { Text, type TextComponent, TextProps };
