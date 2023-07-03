@@ -21,7 +21,7 @@ export const ExampleSpacerHorizontal = () => {
       <Box p={8} bg="blue" color="white">
         Component A
       </Box>
-      <Spacer size="20px" horizontal={true} />
+      <Spacer size="20px" horizontal />
       <Box p={8} bg="green" color="white">
         Component B
       </Box>
