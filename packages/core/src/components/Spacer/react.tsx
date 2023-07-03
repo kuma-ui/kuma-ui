@@ -24,8 +24,6 @@ const Spacer: SpacerComponent = <T extends As = "div">({
   horizontal,
   ...props
 }: MergeWithAs<PropsOf<T>, SpacerProps>) => {
-  console.log(size, horizontal, spacerHandler({ size, horizontal }));
-
   props = {
     ...spacerHandler({ size, horizontal }),
     ...props,
