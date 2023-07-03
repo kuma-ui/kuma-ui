@@ -50,6 +50,10 @@ export const extractProps = (
     return;
   }
 
+  if (componentName === "Spacer") {
+    console.log(propsMap);
+  }
+
   const specificProps = componentHandler(componentName)(componentProps);
 
   const combinedProps = { ...specificProps, ...styledProps, ...pseudoProps };

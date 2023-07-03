@@ -34,12 +34,12 @@ type ComponentName = keyof typeof componentList;
 export const isComponentProps =
   (componentName: ComponentName) => (propName: string) => {
     return match(componentName)
-      .with("Box", isBoxProps)
-      .with("Button", isButtonProps)
-      .with("Flex", isFlexProps)
-      .with("Heading", isHeadingProps)
-      .with("Spacer", isSpacerProps)
-      .with("Text", isTextProps)
+      .with("Box", () => isBoxProps(propName))
+      .with("Button", () => isButtonProps(propName))
+      .with("Flex", () => isFlexProps(propName))
+      .with("Heading", () => isHeadingProps(propName))
+      .with("Spacer", () => isSpacerProps(propName))
+      .with("Text", () => isTextProps(propName))
       .exhaustive();
   };
 
