@@ -1,4 +1,13 @@
-import { Box, Button, Flex, Spacer, Text, Heading } from "./index";
+import {
+  Box,
+  Button,
+  Flex,
+  Spacer,
+  Text,
+  Heading,
+  Select,
+  Input,
+} from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
   isButtonProps,
@@ -17,6 +26,12 @@ import {
   spacerDefaultProps,
 } from "./Spacer/handler";
 import { isTextProps, textHandler, textDefaultProps } from "./Text/handler";
+import {
+  isSelectProps,
+  selectHandler,
+  selectDefaultProps,
+} from "./Select/handler";
+import { isInputProps, inputHandler, inputDefaultProps } from "./Input/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -27,6 +42,8 @@ export const componentList = Object.freeze({
   Text: Text.name as "Text",
   Button: Button.name as "Button",
   Heading: Heading.name as "Heading",
+  Select: Select.name as "Select",
+  Input: Input.name as "Input",
 } as const);
 
 type ComponentName = keyof typeof componentList;
@@ -40,6 +57,8 @@ export const isComponentProps =
       .with("Heading", () => isHeadingProps(propName))
       .with("Spacer", () => isSpacerProps(propName))
       .with("Text", () => isTextProps(propName))
+      .with("Select", () => isSelectProps(propName))
+      .with("Input", () => isInputProps(propName))
       .exhaustive();
   };
 
@@ -53,6 +72,8 @@ export const componentDefaultProps = (
     .with("Heading", () => headingDefaultProps)
     .with("Spacer", () => spacerDefaultProps)
     .with("Text", () => textDefaultProps)
+    .with("Select", () => selectDefaultProps)
+    .with("Input", () => inputDefaultProps)
     .exhaustive();
 };
 
@@ -66,5 +87,7 @@ export const componentHandler =
       .with("Heading", () => headingHandler(props))
       .with("Spacer", () => spacerHandler(props))
       .with("Text", () => textHandler(props))
+      .with("Select", () => selectHandler(props))
+      .with("Input", () => inputHandler(props))
       .exhaustive();
   };

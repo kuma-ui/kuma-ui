@@ -6,3 +6,4 @@ export * from "./css";
 export * from "./Flex";
 export * from "./Button";
 export * from "./Spacer";
+export * from "./Text";

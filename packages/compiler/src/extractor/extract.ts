@@ -13,8 +13,12 @@ import {
   SystemStyle,
   StyleGenerator,
 } from "@kuma-ui/system";
-import { componentDefaultProps, componentList } from "@kuma-ui/core";
-import { isComponentProps, componentHandler } from "packages/core/dist";
+import {
+  componentDefaultProps,
+  componentList,
+  isComponentProps,
+  componentHandler,
+} from "@kuma-ui/core";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
