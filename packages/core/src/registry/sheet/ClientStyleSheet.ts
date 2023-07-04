@@ -84,11 +84,8 @@ export class ClientStyleSheet implements StyleSheet {
   public deleteRule(index: number): void {
     if (this.speedy) {
       const sheet = this.getLatestSheet();
-      console.log(index);
-      if (index > 0) {
-        sheet.deleteRule(index);
-        sheet.insertRule(this.deletedRulePlaceholder, index);
-      }
+      sheet.deleteRule(index);
+      sheet.insertRule(this.deletedRulePlaceholder, index);
       return;
     }
     const tag = this.tags[index];
