@@ -1,6 +1,7 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import { Box } from "../Box";
 
 type HeadingProps = StyledProps &
   Partial<PseudoProps> & {
@@ -23,7 +24,8 @@ const Heading: HeadingComponent = <
   as: Component = "h1",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, HeadingProps>) =>
-  React.createElement(Component, props, children);
+}: MergeWithAs<PropsOf<T>, HeadingProps>) => (
+  <Box as={Component} {...props} children={children} />
+);
 
 export { Heading, type HeadingComponent, HeadingProps };

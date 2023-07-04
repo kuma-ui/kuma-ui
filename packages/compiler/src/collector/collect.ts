@@ -52,6 +52,11 @@ const extractAttribute = (jsxAttribute: JsxAttribute) => {
         const decodedNode = decode(expression);
         return handleJsxExpression(decodedNode);
       })
+      // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
+      .when(
+        () => initializer === undefined,
+        () => true
+      )
       .otherwise(() => undefined)
   );
 };

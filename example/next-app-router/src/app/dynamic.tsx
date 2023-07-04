@@ -7,9 +7,9 @@ export function Dynamic() {
   const [checked, toggle] = React.useReducer((state) => !state, false);
 
   return (
-    <Box p={12} bg={checked ? "blue" : "green"}>
-      dynamic
-      <Button onClick={() => toggle()}>Change Background Color</Button>
+    <Box p={6} bg={checked ? "colors.blue" : "colors.green"}>
+      <Box mb={(() => [6, 12])()}>dynamic</Box>
+      <Button onClick={() => toggle()}>Change Color</Button>
     </Box>
   );
 }

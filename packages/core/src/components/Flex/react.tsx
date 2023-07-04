@@ -1,6 +1,7 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import { Box } from "../Box";
 
 type FlexProps = StyledProps &
   Partial<PseudoProps> & {
@@ -19,7 +20,8 @@ const Flex: FlexComponent = <T extends As = "div">({
   as: Component = "div",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, FlexProps>) =>
-  React.createElement(Component, props, children);
+}: MergeWithAs<PropsOf<T>, FlexProps>) => (
+  <Box as={Component} {...props} children={children} />
+);
 
 export { Flex, type FlexComponent, FlexProps };
