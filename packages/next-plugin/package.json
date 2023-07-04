@@ -45,7 +45,7 @@
     "webpack": "^5.78.0"
   },
   "peerDependencies": {
-    "next": ">=13",
+    "next": ">=13.4.5",
     "webpack": "^5"
   },
   "publishConfig": {

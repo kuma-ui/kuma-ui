@@ -5,13 +5,13 @@ import { useServerInsertedHTML } from "next/navigation";
 import { StyleRegistry, createStyleRegistry } from "@kuma-ui/core";
 
 export function KumaRegistry({ children }: { children: React.ReactNode }) {
-  const [jsxStyleRegistry] = useState(() => createStyleRegistry());
+  const [registry] = useState(() => createStyleRegistry());
 
   useServerInsertedHTML(() => {
-    const styles = jsxStyleRegistry.styles();
-    jsxStyleRegistry.flush();
+    const styles = registry.styles();
+    registry.flush();
     return <>{styles}</>;
   });
 
-  return <StyleRegistry registry={jsxStyleRegistry}>{children}</StyleRegistry>;
+  return <StyleRegistry registry={registry}>{children}</StyleRegistry>;
 }
