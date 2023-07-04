@@ -31,9 +31,6 @@ export const DynamicBox: BoxComponent = ({
     variant: undefined,
   });
 
-  console.log(styledProps);
-
-
   const { className, rule } = useMemo(() => {
     const style = getStyle(styledProps);
     const className = sheet.addRule(style, true);
@@ -44,7 +41,6 @@ export const DynamicBox: BoxComponent = ({
     JSON.stringify(styledProps.styledProps),
     JSON.stringify(styledProps.styledProps),
   ]);
-  console.log(rule);
 
   const box = React.createElement(
     Component,
