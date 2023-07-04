@@ -1,0 +1,60 @@
+---
+title: "Hybrid Approach"
+description: "Understanding the Hybrid CSS-in-JS approach used by Kuma UI, merging the best of runtime and zero-runtime styles."
+---
+
+import { Callout } from "nextra-theme-docs";
+
+# Hybrid Approach
+
+Kuma UI adopts a **Hybrid approach** to CSS-in-JS. This approach is designed to leverage the strengths and mitigate the weaknesses of both runtime and zero-runtime CSS-in-JS.
+
+## What is the Hybrid Approach?
+
+The Hybrid Approach is the combination of the best features of runtime and zero-runtime CSS-in-JS.
+
+- **Runtime CSS-in-JS**: This allows developers to express CSS entirely in JavaScript. It is powerful and flexible, with the ability to make dynamic style changes. However, injecting styles into the DOM at runtime can lead to performance issues.
+
+- **Zero-runtime CSS-in-JS**: This solves the performance issues of runtime CSS-in-JS by statically analyzing and extracting CSS during the build process. While it provides performance improvements, the inability to handle dynamic styles limits JavaScript's expressive power.
+
+With the Hybrid Approach, Kuma UI manages to extract styles that can be determined at build time statically and performs a static "dirty check" on styles that may change dynamically, injecting them at runtime.
+
+This way, Kuma UI successfully combines **the performance benefits of zero-runtime CSS-in-JS and the expressive power of runtime CSS-in-JS**.
+
+## Why the Hybrid Approach?
+
+The Hybrid approach offers significant advantages for web development:
+
+- **Performance**: By statically extracting as much CSS as possible at build time, we reduce the load on the client's browser, making our applications faster.
+
+- **Flexibility**: With the hybrid approach, we can have the expressiveness and dynamic capabilities of runtime CSS-in-JS while also enjoying the performance benefits of zero-runtime CSS-in-JS.
+
+- **Compatibility**: The Hybrid Approach is compatible with modern technologies like React Server Components (RSC).
+
+Consider the following code snippet:
+
+```tsx
+function App() {
+  const [checked, toggle] = React.useReducer((state) => !state, false);
+
+  return (
+    <Box p={12} color={checked ? "blue" : "green"}>
+      dynamic
+      <Button onClick={() => toggle()}>Change Color</Button>
+    </Box>
+  );
+}
+```
+
+In this code, `p={12}` is a static style that is extracted at build time. The `color={checked ? "blue" : "green"}`, on the other hand, is a dynamic style injected at runtime.
+
+## Conclusion
+
+By adopting the Hybrid Approach, Kuma UI offers a powerful and flexible solution to the challenges of CSS-in-JS. It harnesses the full power of JavaScript for styling without compromising on performance or compatibility with modern technologies.
+
+<Callout type="warning">
+  When using a framework that provides Server Components like Next.js, if style
+  props have even one dynamically generated item, that component automatically
+  becomes a Client Component. So, be careful! Even though Kuma supports Dynamic
+  Styles, we recommend using them at the tip of the component tree.
+</Callout>
