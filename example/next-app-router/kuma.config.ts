@@ -11,11 +11,14 @@ const theme = createTheme({
   components: {
     Box: {
       base: {
-        color: "gray",
+        color: "ThemeBoxRed",
       },
       variants: {
         action: {
-          color: "red",
+          bg: "pink",
+        },
+        action2: {
+          bg: "red",
         },
       },
     },
