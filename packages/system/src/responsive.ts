@@ -6,7 +6,7 @@ export const applyResponsiveStyles = (
   cssValues: CSSProperty | number | (CSSProperty | number)[],
   convertFn: (value: CSSProperty | number) => string | number = (value) => value
 ): ResponsiveStyle => {
-  const breakpoints = theme.getBreakpoints();
+  const { breakpoints } = theme.getUserTheme();
   const media: ResponsiveStyle["media"] = {};
 
   if (Array.isArray(cssValues)) {

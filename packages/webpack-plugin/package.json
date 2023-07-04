@@ -36,6 +36,7 @@
   "dependencies": {
     "@kuma-ui/babel-plugin": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
+    "@kuma-ui/system": "workspace:^",
     "esbuild": "^0.18.0",
     "eval": "^0.1.8"
   },

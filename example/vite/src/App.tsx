@@ -11,6 +11,7 @@ import {
 import { Dynamic } from "./Dynamic";
 
 function App() {
+  const red = "red";
   return (
     <Box
       as="main"
@@ -31,13 +32,13 @@ function App() {
       >
         Kuma UI
       </Heading>
-      <Spacer size={4} />
+
       <Flex flexDir={`column`}>
         <Text as="p" fontSize={24}>
           Zero Runtime UI Component Library
         </Text>
-        <Spacer size={8} horizontal />
-        <Button>Getting Started</Button>
+        <Spacer size={8} />
+        <Button color={red}>Getting Started</Button>
       </Flex>
       <HelloWorld>hello world</HelloWorld>
       <Dynamic key={1} />

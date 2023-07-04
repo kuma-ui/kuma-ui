@@ -6,10 +6,15 @@ import { PseudoProps, isPseudoProps, normalizePseudo } from "./pseudo";
 import { all } from ".";
 
 export class StyleGenerator {
-  private style: SystemStyle;
+  private style: SystemStyle | undefined;
   private className: string;
 
   constructor(props: StyledProps & PseudoProps, isDynamic = false) {
+    if (Object.keys(props).length === 0) {
+      this.className = "";
+      return;
+    }
+
     const styledProps: { [key: string]: any } = {};
     const pseudoProps: { [key: string]: any } = {};
 
@@ -47,6 +52,10 @@ export class StyleGenerator {
   }
 
   getCSS() {
+    if (!this.style) {
+      return "";
+    }
+
     let css = `.${this.className} { ${this.style.base} }`;
     for (const [breakpoint, cssValue] of Object.entries(
       this.style.responsive

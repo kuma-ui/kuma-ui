@@ -16,6 +16,14 @@ export const handleJsxExpression = (node: Node<ts.Node>) => {
       .when(Node.isNoSubstitutionTemplateLiteral, (literal) => {
         return literal.getLiteralValue().trim();
       })
+      // horizontal={true}
+      .when(Node.isTrueLiteral, (bool) => {
+        return bool.getLiteralValue();
+      })
+      // horizontal={false}
+      .when(Node.isFalseLiteral, (bool) => {
+        return bool.getLiteralValue();
+      })
       // fontSize={['24px', '32px']}
       .when(Node.isArrayLiteralExpression, (array) => {
         const arrayExpression = array.getElements().map((elm) => {

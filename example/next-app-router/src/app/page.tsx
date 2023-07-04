@@ -1,4 +1,4 @@
-import { k } from "@kuma-ui/core";
+import { k, Box } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 
 export default function Home() {
@@ -18,6 +18,9 @@ export default function Home() {
       </k.header>
       <Dynamic key={1} />
       <Dynamic key={2} />
+      <Box p={[8, 16]} color="colors.green">
+        test
+      </Box>
     </div>
   );
 }

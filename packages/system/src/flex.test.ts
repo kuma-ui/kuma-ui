@@ -6,6 +6,21 @@ describe("flex utility function", () => {
   const testCases: Array<[FlexProps, string, string]> = [
     [{ flexDir: "column" }, "flex-direction: column;", ""],
     [{ justify: "center" }, "justify-content: center;", ""],
+    [{ alignContent: "center" }, "align-content: center;", ""],
+    [{ alignItems: "center" }, "align-items: center;", ""],
+    [{ alignSelf: "center" }, "align-self: center;", ""],
+    [{ flex: 1 }, "flex: 1;", ""],
+    [{ flex: "1 1 100px" }, "flex: 1 1 100px;", ""],
+    [{ flexBasis: 1 }, "flex-basis: 1px;", ""],
+    [{ flexBasis: "100px" }, "flex-basis: 100px;", ""],
+    [{ flexFlow: "row wrap" }, "flex-flow: row wrap;", ""],
+    [{ flexGrow: 1 }, "flex-grow: 1;", ""],
+    [{ flexShrink: 1 }, "flex-shrink: 1;", ""],
+    [{ flexWrap: "wrap" }, "flex-wrap: wrap;", ""],
+    [{ justifyItems: "center" }, "justify-items: center;", ""],
+    [{ justifySelf: "center" }, "justify-self: center;", ""],
+    [{ gap: 1 }, "gap: 1px;", ""],
+    [{ gap: "10px 20px" }, "gap: 10px 20px;", ""],
   ];
 
   test.each(testCases)(
