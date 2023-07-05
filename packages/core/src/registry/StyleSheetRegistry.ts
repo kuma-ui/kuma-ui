@@ -1,5 +1,4 @@
 import React from "react";
-import { compile, serialize, stringify } from "stylis";
 import { StyleSheet } from "./sheet/StyleSheet";
 import { isBrowser } from "../utils/isBrowser";
 import { isProduction } from "../utils/isProduction";
@@ -8,82 +7,70 @@ const STYLE_ID_PREFIX = "__";
 
 export class StyleSheetRegistry {
   private sheet: StyleSheet;
-  private serverSideRenderedStyleMap: {
-    [id: string]: HTMLStyleElement;
-  } | null = null;
-  private indexesMap: { [id: string]: number[] | undefined } = {};
-  private instancesCountMap: { [id: string]: number | undefined } = {};
+  private serverSideRenderedStyles: Record<string, HTMLStyleElement> | null =
+    null;
+  private indices: Record<string, number | undefined> = {};
+  private instancesCounts: Record<string, number | undefined> = {};
 
   constructor() {
     this.sheet = new StyleSheet("kuma-ui", isProduction);
     this.sheet.inject();
   }
 
-  public add(id: string, css: string): void {
-    if (isBrowser && this.serverSideRenderedStyleMap === null) {
-      this.serverSideRenderedStyleMap = this.getServerSideRenderedStyleMap();
-      Object.keys(this.serverSideRenderedStyleMap).forEach((id) => {
-        this.instancesCountMap[id] = 0;
+  public add(id: string, rule: string): void {
+    if (isBrowser && this.serverSideRenderedStyles === null) {
+      this.serverSideRenderedStyles = this.getServerSideRenderedStyles();
+      Object.keys(this.serverSideRenderedStyles).forEach((id) => {
+        this.instancesCounts[id] = 0;
+        this.indices[id] = -1;
       });
     }
 
-    this.instancesCountMap[id] = 1 + (this.instancesCountMap[id] ?? 0);
-    const serverSideRenderedStyle = this.serverSideRenderedStyleMap?.[id];
-    if (this.instancesCountMap[id] === 1 && !serverSideRenderedStyle) {
-      compile(css).forEach((element) => {
-        const rule = serialize([element], stringify);
-        this.indexesMap[id] = (this.indexesMap[id] || []).concat(
-          this.sheet.insertRule(rule)
-        );
-      });
+    this.instancesCounts[id] = 1 + (this.instancesCounts[id] ?? 0);
+    const serverSideRenderedStyle = this.serverSideRenderedStyles?.[id];
+    if (this.instancesCounts[id] === 1 && !serverSideRenderedStyle) {
+      this.indices[id] = this.sheet.insertRule(rule, this.indices[id]);
     }
   }
 
   public remove(id: string): void {
-    if (this.instancesCountMap[id] === undefined) {
-      throw new Error(
-        `StyleSheetRegistry: id: \`${id}\` not found in idInstancesCountMap.`
-      );
+    if (
+      this.indices[id] === undefined ||
+      this.instancesCounts[id] === undefined
+    ) {
+      throw new Error(`StyleSheetRegistry: id: \`${id}\` not found.`);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    this.instancesCountMap[id]! -= 1;
+    this.instancesCounts[id]! -= 1;
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (this.instancesCountMap[id]! !== 0) {
+    if (this.instancesCounts[id]! !== 0) {
       return;
     }
 
-    const serverSideRenderedStyle = this.serverSideRenderedStyleMap?.[id];
+    const serverSideRenderedStyle = this.serverSideRenderedStyles?.[id];
     if (serverSideRenderedStyle) {
       serverSideRenderedStyle.remove();
-      delete this.serverSideRenderedStyleMap?.[id];
+      delete this.serverSideRenderedStyles?.[id];
     } else {
-      if (this.indexesMap[id] === undefined) {
-        throw new Error(
-          `StyleSheetRegistry: id: \`${id}\` not found in idIndexesMap.`
-        );
-      }
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.indexesMap[id]!.forEach((index) => this.sheet.deleteRule(index));
-      delete this.indexesMap[id];
+      this.sheet.deleteRule(this.indices[id]!);
     }
 
-    delete this.instancesCountMap[id];
+    delete this.indices[id];
+    delete this.instancesCounts[id];
   }
 
   public styles(options: { nonce?: string } = {}) {
-    return Object.keys(this.indexesMap)
+    return Object.keys(this.indices)
       .map((id) => {
-        const indexes = this.indexesMap[id];
-        if (indexes === undefined) {
+        const index = this.indices[id];
+        if (index === undefined) {
           return null;
         }
         const cssRules = this.sheet.cssRules();
-        const css = indexes
-          .map((index) => cssRules[index]?.cssText)
-          .filter(Boolean)
-          .join(this.sheet.isSpeedy() ? "" : "\n");
-        if (css.length === 0) {
+        const rule = cssRules[index];
+        if (rule === undefined) {
           return null;
         }
         return React.createElement("style", {
@@ -91,22 +78,22 @@ export class StyleSheetRegistry {
           key: `${STYLE_ID_PREFIX}${id}`,
           nonce: options.nonce ? options.nonce : undefined,
           dangerouslySetInnerHTML: {
-            __html: css,
+            __html: rule.cssText,
           },
         });
       })
-      .filter(Boolean);
+      .filter((props) => props !== null);
   }
 
   public flush(): void {
     this.sheet.flush();
     this.sheet.inject();
-    this.serverSideRenderedStyleMap = null;
-    this.indexesMap = {};
-    this.instancesCountMap = {};
+    this.serverSideRenderedStyles = null;
+    this.indices = {};
+    this.instancesCounts = {};
   }
 
-  private getServerSideRenderedStyleMap() {
+  private getServerSideRenderedStyles() {
     const elements: HTMLStyleElement[] = Array.from(
       document.querySelectorAll(`[id^="${STYLE_ID_PREFIX}"]`)
     );
