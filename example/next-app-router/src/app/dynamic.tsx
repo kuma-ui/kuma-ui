@@ -8,7 +8,7 @@ export function Dynamic() {
 
   return (
     <Box p={6} bg={checked ? "colors.blue" : "colors.green"}>
-      <Box mb={[checked ? 6 : 0, 12]}>dynamic</Box>
+      <Box mb={(() => [6, 12])()}>dynamic</Box>
       <Button onClick={() => toggle()}>Change Color</Button>
     </Box>
   );

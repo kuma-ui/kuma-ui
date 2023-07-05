@@ -292,18 +292,12 @@ importers:
       '@kuma-ui/system':
         specifier: workspace:*
         version: link:../system
-      '@types/stylis':
-        specifier: ^4.2.0
-        version: 4.2.0
       next:
         specifier: '>=13.4.5'
         version: 13.4.7(react-dom@18.2.0)(react@18.2.0)
       react:
         specifier: '>=18.2.0'
         version: 18.2.0
-      stylis:
-        specifier: ^4.2.0
-        version: 4.2.0
       ts-pattern:
         specifier: ^5.0.1
         version: 5.0.1
@@ -3310,6 +3304,7 @@ packages:
 
   /@types/stylis@4.2.0:
     resolution: {integrity: sha512-n4sx2bqL0mW1tvDf/loQ+aMX7GQD3lc3fkCMC55VFNDu/vBOabO+LTIeXKM14xK0ppk5TUGcWRjiSpIlUpghKw==}
+    dev: true
 
   /@types/testing-library__jest-dom@5.14.6:
     resolution: {integrity: sha512-FkHXCb+ikSoUP4Y4rOslzTdX5sqYwMxfefKh1GmZ8ce1GOkEHntSp6b5cGadmNfp5e4BMEWOMx+WSKd5/MqlDA==}
