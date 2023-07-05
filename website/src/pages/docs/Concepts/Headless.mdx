@@ -1,0 +1,43 @@
+---
+title: "Headless Components"
+description: "Learn about the concept of headless components and their role in Kuma UI."
+---
+
+# Headless Components
+
+Headless components are a crucial part of Kuma UI's approach to design. This philosophy of building components allows for maximum flexibility and control over component styling and behavior.
+
+## What Are Headless Components?
+
+At its core, a headless component is a component that provides functionality and behavior without dictating the rendered output. In other words, it's 'headless' because it does not dictate the 'look' of the component—the 'head' or visual rendering is up to you.
+
+This approach to component design means that every component in the Kuma UI library is unstyled. It provides the functionality and accessibility out of the box, but the actual visual design is left entirely up to the developer. This opens up immense possibilities for customization and theming, allowing you to bring your design vision to life with the power and flexibility of Kuma UI.
+
+```tsx
+function App() {
+  return (
+    <Box as="main" display="flex" flexDir={["column", "row"]}>
+      <Heading
+        as="h3"
+        className={css`
+          color: red;
+          @media (max-width: sm) {
+            color: blue;
+          }
+        `}
+      >
+        Kuma UI
+      </Heading>
+      <Spacer size={4} />
+      <Flex flexDir={`column`}>
+        <Text as="p" fontSize={24}>
+          Headless UI Component Library
+        </Text>
+        <Button>Getting Started</Button>
+      </Flex>
+    </Box>
+  );
+}
+```
+
+In the above example, `Box`, `Heading`, `Spacer`, `Flex`, `Text`, and `Button` are all examples of headless components provided by Kuma UI.
