@@ -25,14 +25,22 @@ type RuntimeUserTheme = {
   breakpoints: Record<string, string>;
 };
 
+declare global {
+  // eslint-disable-next-line no-var
+  var __KUMA_USER_THEME__: UserTheme | undefined;
+  // eslint-disable-next-line no-var
+  var __KUMA_RUNTIME_USER_THEME__: RuntimeUserTheme | undefined;
+}
+
 export class Theme {
   private static instance: Theme;
-  private _runtimeUserTheme: RuntimeUserTheme = {
-    breakpoints: {},
-    components: {},
-    tokens: {}
-  }
-  private _userTheme: UserTheme = {
+  private _runtimeUserTheme: RuntimeUserTheme =
+    globalThis.__KUMA_RUNTIME_USER_THEME__ ?? {
+      breakpoints: {},
+      components: {},
+      tokens: {},
+    };
+  private _userTheme: UserTheme = globalThis.__KUMA_USER_THEME__ ?? {
     colors: undefined,
     breakpoints: defaultBreakpoints,
     components: undefined,
@@ -63,17 +71,22 @@ export class Theme {
     return this._runtimeUserTheme;
   }
 
-
-  getVariants(
-    componentName: string
-  ): Record<string /*VariantKey*/, string /*VariantKey*/> {
-    return this._runtimeUserTheme.components[componentName] || {};
+  getVariants(componentName: ComponentName):
+    | {
+        base?: any;
+        variants?:
+          | {
+              [key: string]: any;
+            }
+          | undefined;
+      }
+    | undefined {
+    return this._userTheme.components?.[componentName] || {};
   }
 
   getTokens(): Record<string, string> {
     return this._runtimeUserTheme.tokens || {};
   }
-
 
   getBreakPoints(): Record<string, string> {
     return this._runtimeUserTheme.breakpoints || {};

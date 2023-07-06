@@ -1,15 +1,10 @@
-import { Compilation, Compiler, NormalModule } from "webpack";
-import { theme, sheet } from "@kuma-ui/sheet";
+import { Compiler } from "webpack";
 import { buildSync } from "esbuild";
 import eval from "eval";
 import { StyleGenerator } from "@kuma-ui/system";
-import { createHash } from "crypto";
-import fs from "fs";
-import { transform } from "@kuma-ui/babel-plugin";
-// import { RawSource, Source } from "webpack-sources";
+import { theme } from "@kuma-ui/sheet";
 import path from "path";
-import { rm, mkdir, existsSync } from "fs";
-import { readFileSync, readdirSync } from "fs";
+import { readdirSync } from "fs";
 
 type WebpackPluginOption = {
   breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
@@ -27,8 +22,6 @@ class KumaUIWebpackPlugin {
   static loader = require.resolve("./loader");
 
   public tmpDir: string[] = [];
-
-  userTheme: any;
 
   constructor(options: WebpackPluginOption = {}) {
     const dir = readdirSync(".");
@@ -102,11 +95,12 @@ class KumaUIWebpackPlugin {
       });
     }
 
-  theme.setRuntimeUserTheme(runtimeTheme);
+    theme.setRuntimeUserTheme(runtimeTheme);
 
     compiler.options.plugins.push(
       new compiler.webpack.DefinePlugin({
-        "globalThis.KUMA_USER_THEME": JSON.stringify(runtimeTheme),
+        "globalThis.__KUMA_USER_THEME__": JSON.stringify(userTheme),
+        "globalThis.__KUMA_RUNTIME_USER_THEME__": JSON.stringify(runtimeTheme),
       })
     );
 

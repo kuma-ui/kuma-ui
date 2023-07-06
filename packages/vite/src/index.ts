@@ -90,7 +90,8 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
     config(config) {
       if (!config.define) config.define = {};
       config.define = Object.assign(config.define, {
-        "globalThis.KUMA_USER_THEME": JSON.stringify(runtimeTheme),
+        "globalThis.__KUMA_USER_THEME__": JSON.stringify(runtimeTheme),
+        "globalThis.__KUMA_RUNTIME_USER_THEME__": JSON.stringify(runtimeTheme),
       });
       return config;
     },

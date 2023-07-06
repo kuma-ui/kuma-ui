@@ -13,31 +13,77 @@ import {
   SystemStyle,
   StyleGenerator,
 } from "@kuma-ui/system";
+import { componentDefaultProps, componentList } from "@kuma-ui/core";
+import { theme } from "@kuma-ui/sheet";
+import { isComponentProps, componentHandler } from "packages/core/dist";
 
 export const extractProps = (
+  componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
   propsMap: Record<string, any>
 ) => {
   const styledProps: { [key: string]: any } = {};
   const pseudoProps: { [key: string]: any } = {};
+  const componentProps: { [key: string]: any } = {};
 
-  for (const [propName, propValue] of Object.entries(propsMap)) {
+  const componentVariantProps: { [key: string]: any } = {};
+
+  const defaultProps = componentDefaultProps(componentName);
+
+  const variant = theme.getVariants(componentName);
+
+  for (const [propName, propValue] of Object.entries({
+    ...defaultProps,
+    ...propsMap,
+  })) {
     if (isStyledProp(propName.trim())) {
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
+    } else if (isComponentProps(componentName)(propName.trim())) {
+      componentProps[propName.trim()] = propValue;
+    } else if (propName.trim() === "variant") {
+      Object.assign(
+        componentVariantProps,
+        variant?.base,
+        variant?.variants?.[propValue as string]
+      );
+      jsx.getAttribute("variant")?.remove();
     }
   }
 
+  Object.assign(componentVariantProps, variant?.base);
+
   if (
-    !(!!Object.keys(styledProps).length || !!Object.keys(pseudoProps).length)
+    !(
+      !!Object.keys(styledProps).length ||
+      !!Object.keys(pseudoProps).length ||
+      !!Object.keys(componentProps)
+    )
   ) {
     return;
   }
-  const combinedProps = { ...styledProps, ...pseudoProps };
-  const { className: generatedClassName, css } = new StyleGenerator(
-    combinedProps
-  ).getStyle();
+
+  const specificProps = componentHandler(componentName)(componentProps);
+
+  const combinedProps = {
+    ...componentVariantProps,
+    ...specificProps,
+    ...styledProps,
+    ...pseudoProps,
+  };
+  const key = generateKey(combinedProps);
+  let generatedStyle = styleCache[key];
+  // If the result isn't in the cache, generate it and save it to the cache
+  if (!generatedStyle) {
+    generatedStyle = new StyleGenerator(combinedProps).getStyle();
+    styleCache[key] = generatedStyle;
+  }
+  const { className: generatedClassName, css } = generatedStyle;
+
+  // If no generatedClassName is returned, the component should remain intact
+  if (!generatedClassName) return { css };
+
   const classNameAttr = jsx.getAttribute("className");
   let newClassName = generatedClassName;
   let newClassNameInitializer = "";
@@ -71,9 +117,26 @@ export const extractProps = (
     jsx.getAttribute(pseudoPropKey)?.remove();
   }
 
+  for (const componentPropsKey of Object.keys(componentProps)) {
+    jsx.getAttribute(componentPropsKey)?.remove();
+  }
+
   jsx.addAttribute({
     name: "className",
     initializer: `{${newClassNameInitializer}}`,
   });
   return { css };
 };
+
+/**
+ * Generates a unique key for props, aiding cache efficiency.
+ * Incurs O(n log n) cost due to sorting, but it's acceptable given the
+ * expensive nature of StyleGenerator's internals.
+ */
+const generateKey = (props: Record<string, any>) => {
+  return Object.entries(props)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, value]) => `${key}:${value}`)
+    .join("|");
+};
+const styleCache: { [key: string]: { className: string; css: string } } = {};
