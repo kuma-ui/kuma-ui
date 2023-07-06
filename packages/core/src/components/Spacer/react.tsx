@@ -1,13 +1,17 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import {
+  As,
+  ComponentWithAs,
+  MergeWithAs,
+  PropsOf,
+  ComponentProps,
+} from "../types";
 import { Box } from "../Box";
 import { SpacerSpecificProps, spacerHandler } from "./handler";
+import { theme } from "@kuma-ui/sheet";
 
-type SpacerProps = StyledProps &
-  Partial<PseudoProps> & {
-    children?: ReactNode;
-  } & SpacerSpecificProps;
+type SpacerProps = ComponentProps & SpacerSpecificProps;
 
 type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 
@@ -29,7 +33,11 @@ const Spacer: SpacerComponent = <T extends As = "div">({
     ...props,
   };
 
-  return <Box as={Component} {...props} children={children} />;
+  const variant = props.variant
+    ? theme.getVariants("Spacer")?.variants?.[props.variant]
+    : {};
+
+  return <Box as={Component} {...variant} {...props} children={children} />;
 };
 
 export { Spacer, type SpacerComponent, SpacerProps };

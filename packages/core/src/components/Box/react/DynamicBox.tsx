@@ -8,7 +8,7 @@ import {
   createStyleRegistry,
 } from "../../../registry/StyleRegistry";
 import { extractStyledProps, getStyle } from "./utils";
-import { sheet } from "@kuma-ui/sheet";
+import { sheet, theme } from "@kuma-ui/sheet";
 
 const defaultRegistry = createStyleRegistry();
 const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
@@ -16,10 +16,21 @@ const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
 export const DynamicBox: BoxComponent = ({
   as: Component = "div",
   children,
+  variant,
   ...props
 }) => {
   const registry = useStyleRegistry() || defaultRegistry;
-  const styledProps = extractStyledProps(props);
+
+  const variantStyle = variant
+    ? theme.getVariants("Box")?.variants?.[variant]
+    : {};
+
+  const styledProps = extractStyledProps({
+    ...variantStyle,
+    ...props,
+    variant: undefined,
+  });
+
   const { className, rule } = useMemo(() => {
     const style = getStyle(styledProps);
     const className = sheet.addRule(style, true);
@@ -30,6 +41,7 @@ export const DynamicBox: BoxComponent = ({
     JSON.stringify(styledProps.styledProps),
     JSON.stringify(styledProps.styledProps),
   ]);
+
   const box = React.createElement(
     Component,
     {

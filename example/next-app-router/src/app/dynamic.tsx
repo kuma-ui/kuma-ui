@@ -5,6 +5,7 @@ import { Box, Button } from "@kuma-ui/core";
 
 export function Dynamic() {
   const [checked, toggle] = React.useReducer((state) => !state, false);
+  const [isButton, setIsButton] = React.useState(false);
 
   return (
     <Box p={6} bg={checked ? "colors.blue" : "colors.green"}>

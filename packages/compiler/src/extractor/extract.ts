@@ -14,6 +14,7 @@ import {
   StyleGenerator,
 } from "@kuma-ui/system";
 import { componentDefaultProps, componentList } from "@kuma-ui/core";
+import { theme } from "@kuma-ui/sheet";
 import { isComponentProps, componentHandler } from "packages/core/dist";
 
 export const extractProps = (
@@ -25,7 +26,11 @@ export const extractProps = (
   const pseudoProps: { [key: string]: any } = {};
   const componentProps: { [key: string]: any } = {};
 
+  const componentVariantProps: { [key: string]: any } = {};
+
   const defaultProps = componentDefaultProps(componentName);
+
+  const variant = theme.getVariants(componentName);
 
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
@@ -37,8 +42,17 @@ export const extractProps = (
       pseudoProps[propName.trim()] = propValue;
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
+    } else if (propName.trim() === "variant") {
+      Object.assign(
+        componentVariantProps,
+        variant?.base,
+        variant?.variants?.[propValue as string]
+      );
+      jsx.getAttribute("variant")?.remove();
     }
   }
+
+  Object.assign(componentVariantProps, variant?.base);
 
   if (
     !(
@@ -52,7 +66,12 @@ export const extractProps = (
 
   const specificProps = componentHandler(componentName)(componentProps);
 
-  const combinedProps = { ...specificProps, ...styledProps, ...pseudoProps };
+  const combinedProps = {
+    ...componentVariantProps,
+    ...specificProps,
+    ...styledProps,
+    ...pseudoProps,
+  };
   const key = generateKey(combinedProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache

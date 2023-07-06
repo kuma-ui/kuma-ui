@@ -274,6 +274,9 @@ importers:
       '@kuma-ui/core':
         specifier: workspace:^
         version: link:../core
+      '@kuma-ui/sheet':
+        specifier: workspace:^
+        version: link:../sheet
       '@kuma-ui/system':
         specifier: workspace:^
         version: link:../system

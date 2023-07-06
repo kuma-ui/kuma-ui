@@ -1,12 +1,16 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import {
+  As,
+  ComponentWithAs,
+  MergeWithAs,
+  PropsOf,
+  ComponentProps,
+} from "../types";
 import { Box } from "../Box";
+import { theme } from "@kuma-ui/sheet";
 
-type ButtonProps = StyledProps &
-  Partial<PseudoProps> & {
-    children?: ReactNode;
-  };
+type ButtonProps = ComponentProps;
 
 type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
 
@@ -19,8 +23,11 @@ const Button: ButtonComponent = <T extends As = "button">({
   as: Component = "button",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, ButtonProps>) => (
-  <Box as={Component} {...props} children={children} />
-);
+}: MergeWithAs<PropsOf<T>, ButtonProps>) => {
+  const variant = props.variant
+    ? theme.getVariants("Button")?.variants?.[props.variant]
+    : {};
+  return <Box as={Component} {...variant} {...props} children={children} />;
+};
 
 export { Button, type ButtonComponent, ButtonProps };

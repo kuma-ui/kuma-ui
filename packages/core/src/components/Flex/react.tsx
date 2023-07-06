@@ -1,12 +1,16 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
+import { theme } from "@kuma-ui/sheet";
 import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import {
+  As,
+  ComponentWithAs,
+  MergeWithAs,
+  PropsOf,
+  ComponentProps,
+} from "../types";
 import { Box } from "../Box";
 
-type FlexProps = StyledProps &
-  Partial<PseudoProps> & {
-    children?: ReactNode;
-  };
+type FlexProps = ComponentProps;
 
 type FlexComponent<T extends As = "div"> = ComponentWithAs<T, FlexProps>;
 
@@ -20,8 +24,11 @@ const Flex: FlexComponent = <T extends As = "div">({
   as: Component = "div",
   children,
   ...props
-}: MergeWithAs<PropsOf<T>, FlexProps>) => (
-  <Box as={Component} {...props} children={children} />
-);
+}: MergeWithAs<PropsOf<T>, FlexProps>) => {
+  const variant = props.variant
+    ? theme.getVariants("Flex")?.variants?.[props.variant]
+    : {};
+  return <Box as={Component} {...variant} {...props} children={children} />;
+};
 
 export { Flex, type FlexComponent, FlexProps };

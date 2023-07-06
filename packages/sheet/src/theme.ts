@@ -71,10 +71,17 @@ export class Theme {
     return this._runtimeUserTheme;
   }
 
-  getVariants(
-    componentName: string
-  ): Record<string /*VariantKey*/, string /*VariantKey*/> {
-    return this._runtimeUserTheme.components[componentName] || {};
+  getVariants(componentName: ComponentName):
+    | {
+        base?: any;
+        variants?:
+          | {
+              [key: string]: any;
+            }
+          | undefined;
+      }
+    | undefined {
+    return this._userTheme.components?.[componentName] || {};
   }
 
   getTokens(): Record<string, string> {
