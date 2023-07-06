@@ -12,6 +12,8 @@ import { border } from "./border";
 import { outline } from "./outline";
 import { font } from "./font";
 import { mask } from "./mask";
+import { column } from "./column";
+
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -27,7 +29,8 @@ describe("compose function", () => {
       list,
       effect,
       font,
-      mask
+      mask,
+      column
     );
     const props: StyledProps = {
       m: 8,
@@ -45,6 +48,7 @@ describe("compose function", () => {
       outline: "none",
       borderTop: "1px solid red",
       maskRepeat: "no-repeat",
+      columnCount: 2,
     };
     // Act
     const styles = combinedFunction(props);
@@ -66,6 +70,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("outline: none;");
     expect(styles.base).toContain("border-top: 1px solid red;");
     expect(styles.base).toContain("mask-repeat: no-repeat;");
+    expect(styles.base).toContain("column-count: 2;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {

@@ -10,12 +10,14 @@ import { shadow, ShadowProps } from "./shadow";
 import { compose, StyledProps } from "./compose";
 import { ResponsiveStyle } from "./types";
 import { PseudoProps, normalizePseudo, isPseudoProps } from "./pseudo";
-import { grid } from "./grid";
-import { list } from "./list";
-import { effect } from "./effect";
-import { text } from "./text";
-import { font } from "./font";
+import { grid, GridProps } from "./grid";
+import { list, ListProps } from "./list";
+import { effect, EffectProps } from "./effect";
+import { text, TextProps } from "./text";
+import { font, FontProps } from "./font";
 import { mask, MaskProps } from "./mask";
+import { column, ColumnProps } from "./column";
+
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -32,6 +34,7 @@ export const all = compose(
   shadow,
   grid,
   list,
+  column,
   effect,
   text,
   font,
@@ -50,6 +53,12 @@ export type {
   PositionProps,
   ShadowProps,
   MaskProps,
+  GridProps,
+  ListProps,
+  ColumnProps,
+  EffectProps,
+  TextProps,
+  FontProps,
   StyledProps,
   ResponsiveStyle,
   PseudoProps,
