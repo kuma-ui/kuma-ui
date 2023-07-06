@@ -7,10 +7,11 @@ import {
   type PseudoProps,
 } from "@kuma-ui/system";
 import { SystemStyle } from "@kuma-ui/sheet";
+import { BoxProps } from "./types";
 
-export function hasStyledOrPseudoProps(props: any): boolean {
+export function hasDynamicProps(props: BoxProps): boolean {
   return Object.keys(props).some((key) => {
-    if (isStyledProp(key) || isPseudoProps(key)) {
+    if (isStyledProp(key) || isPseudoProps(key) || key === "variant") {
       return true;
     }
     return false;
