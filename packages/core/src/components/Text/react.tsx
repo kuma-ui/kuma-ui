@@ -1,10 +1,16 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf, StyleProps } from "../types";
+import {
+  As,
+  ComponentWithAs,
+  MergeWithAs,
+  PropsOf,
+  ComponentProps,
+} from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 
-type TextProps = StyleProps
+type TextProps = ComponentProps;
 
 type TextComponent<T extends As = "p"> = ComponentWithAs<T, TextProps>;
 

@@ -45,7 +45,7 @@ type OmitCommonProps<
   OmitAdditionalProps extends keyof any = never
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 
-export type StyleProps = StyledProps &
+export type ComponentProps = StyledProps &
   Partial<PseudoProps> & {
     children?: ReactNode;
   } & {

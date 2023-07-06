@@ -5,12 +5,12 @@ import {
   ComponentWithAs,
   MergeWithAs,
   PropsOf,
-  StyleProps,
+  ComponentProps,
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 
-type HeadingProps = StyleProps;
+type HeadingProps = ComponentProps;
 
 type HeadingComponent<
   T extends "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1"

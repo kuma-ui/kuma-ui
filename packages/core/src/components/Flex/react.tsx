@@ -6,11 +6,11 @@ import {
   ComponentWithAs,
   MergeWithAs,
   PropsOf,
-  StyleProps,
+  ComponentProps,
 } from "../types";
 import { Box } from "../Box";
 
-type FlexProps = StyleProps;
+type FlexProps = ComponentProps;
 
 type FlexComponent<T extends As = "div"> = ComponentWithAs<T, FlexProps>;
 
@@ -26,8 +26,8 @@ const Flex: FlexComponent = <T extends As = "div">({
   ...props
 }: MergeWithAs<PropsOf<T>, FlexProps>) => {
   const variant = props.variant
-  ? theme.getVariants("Flex")?.variants?.[props.variant]
-  : {};
+    ? theme.getVariants("Flex")?.variants?.[props.variant]
+    : {};
   return <Box as={Component} {...variant} {...props} children={children} />;
 };
 
