@@ -95,10 +95,15 @@ export const styleKeys = {
     "justify",
     "alignItems",
     "alignContent",
+    "alignSelf",
+    "flex",
+    "flexFlow",
     "flexWrap",
     "flexGrow",
     "flexShrink",
     "flexBasis",
+    "justifyItems",
+    "justifySelf",
     "gap",
   ] as const,
   color: [
@@ -154,6 +159,18 @@ export const styleKeys = {
     "gridColumnGap",
     "gridRowGap",
   ] as const,
+  column: [
+    "columnCount",
+    "columnFill",
+    "columnGap",
+    "columnRule",
+    "columnRuleColor",
+    "columnRuleStyle",
+    "columnRuleWidth",
+    "columnSpan",
+    "columnWidth",
+    "columns",
+  ] as const,
   effect: [
     "transition",
     "transitionDuration",
@@ -181,7 +198,7 @@ export type PositionKeys = (typeof styleKeys.position)[number];
 export type ShadowKeys = (typeof styleKeys.shadow)[number];
 export type ListKeys = (typeof styleKeys.list)[number];
 export type GridKeys = (typeof styleKeys.grid)[number];
-
+export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 
 export type StyledKeyType =
@@ -197,6 +214,7 @@ export type StyledKeyType =
   | ShadowKeys
   | ListKeys
   | GridKeys
+  | ColumnKeys
   | EffectKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {

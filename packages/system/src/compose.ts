@@ -16,6 +16,7 @@ import { ListProps } from "./list";
 import { EffectProps } from "./effect";
 import { TextProps } from "./text";
 import { FontProps } from "./font";
+import { ColumnProps } from ".";
 
 export type StyledProps = AnimationProps &
   SpaceProps &
@@ -31,6 +32,7 @@ export type StyledProps = AnimationProps &
   ShadowProps &
   GridProps &
   ListProps &
+  ColumnProps &
   EffectProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
