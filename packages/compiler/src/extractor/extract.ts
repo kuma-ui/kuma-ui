@@ -135,8 +135,9 @@ export const extractProps = (
  */
 const generateKey = (props: Record<string, any>) => {
   return Object.entries(props)
+    .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([key, value]) => `${key}:${value}`)
     .join("|");
 };
-const styleCache: { [key: string]: { className: string; css: string } } = {};
+const styleCache: { [key: string]: { className: string; css: string } | undefined } = {};
