@@ -1,11 +1,11 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import { Plugin } from "vite";
 import path from "path";
-import {buildSync} from "esbuild";
+import { buildSync } from "esbuild";
 import _eval from "eval";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
-import { StyleGenerator } from "packages/system";
+import { StyleGenerator } from "@kuma-ui/system";
 
 export type VitePluginOption = {
   // breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
@@ -27,7 +27,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
       target: "es2017",
       write: false,
       platform: "node",
-      format: typeof require !== 'undefined' ? 'cjs' : 'esm',
+      format: typeof require !== "undefined" ? "cjs" : "esm",
       absWorkingDir: process.cwd(),
       outfile: filename + ".out",
       entryPoints: [filename],
@@ -52,16 +52,17 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
   const runtimeTheme = {
     components: {},
     tokens: userTheme.colors || {},
-    breakpoints: userTheme.breakpoints || {}
+    breakpoints: userTheme.breakpoints || {},
   };
 
   for (const componentKey in userTheme.components) {
-    const component = userTheme.components[componentKey as keyof typeof userTheme.components];
+    const component =
+      userTheme.components[componentKey as keyof typeof userTheme.components];
     const componentVariants = {};
     let componentBase = undefined;
     const style = new StyleGenerator(component?.base);
-      themeCss += style.getCSS();
-      componentBase = style.getClassName()
+    themeCss += style.getCSS();
+    componentBase = style.getClassName();
 
     for (const variantKey in component?.variants) {
       const variant = component?.variants[variantKey];
@@ -81,17 +82,17 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
     });
   }
 
-theme.setRuntimeUserTheme(runtimeTheme);
+  theme.setRuntimeUserTheme(runtimeTheme);
 
   return {
     name: "kuma-ui",
     enforce: "pre",
     config(config) {
-      if (!config.define) config.define = {}
+      if (!config.define) config.define = {};
       config.define = Object.assign(config.define, {
         "globalThis.KUMA_USER_THEME": JSON.stringify(runtimeTheme),
-      })
-      return config
+      });
+      return config;
     },
     async transform(code: string, id: string) {
       if (id.includes("@kuma-ui")) return;
@@ -112,7 +113,8 @@ theme.setRuntimeUserTheme(runtimeTheme);
       cssLookup[cssFilename] = css + themeCss;
       cssLookup[cssId] = css + themeCss;
       sheet.reset();
-      if (mode === "serve") return injectCSS(css + themeCss, cssId) + result.code;
+      if (mode === "serve")
+        return injectCSS(css + themeCss, cssId) + result.code;
       return `import ${JSON.stringify(cssFilename)};\n` + result.code;
     },
     load(url: string) {

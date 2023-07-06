@@ -10,7 +10,7 @@ import { hasStyledOrPseudoProps } from "./utils";
  *
  * @see — Further documentation will be available in the future.
  */
-const Box: BoxComponent = ({ children, ...props }) => {
+const Box: BoxComponent = ({ children, ...props }: BoxProps) => {
   if (hasStyledOrPseudoProps(props)) {
     return React.createElement(DynamicBox, props, children);
   }
