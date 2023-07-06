@@ -72,10 +72,14 @@ export const extractProps = (
     ...styledProps,
     ...pseudoProps,
   };
-
-  const { className: generatedClassName, css } = new StyleGenerator(
-    combinedProps
-  ).getStyle();
+  const key = generateKey(combinedProps);
+  let generatedStyle = styleCache[key];
+  // If the result isn't in the cache, generate it and save it to the cache
+  if (!generatedStyle) {
+    generatedStyle = new StyleGenerator(combinedProps).getStyle();
+    styleCache[key] = generatedStyle;
+  }
+  const { className: generatedClassName, css } = generatedStyle;
 
   // If no generatedClassName is returned, the component should remain intact
   if (!generatedClassName) return { css };
@@ -117,10 +121,22 @@ export const extractProps = (
     jsx.getAttribute(componentPropsKey)?.remove();
   }
 
-
   jsx.addAttribute({
     name: "className",
     initializer: `{${newClassNameInitializer}}`,
   });
   return { css };
 };
+
+/**
+ * Generates a unique key for props, aiding cache efficiency.
+ * Incurs O(n log n) cost due to sorting, but it's acceptable given the
+ * expensive nature of StyleGenerator's internals.
+ */
+const generateKey = (props: Record<string, any>) => {
+  return Object.entries(props)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, value]) => `${key}:${value}`)
+    .join("|");
+};
+const styleCache: { [key: string]: { className: string; css: string } } = {};

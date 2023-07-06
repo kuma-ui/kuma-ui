@@ -2,14 +2,14 @@
 
 exports[`styled function > Snapshot tests (runtime: automatic) > basic usage should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
@@ -21,14 +21,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
 "
-.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
@@ -42,14 +42,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
@@ -61,14 +61,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: classic) > basic usage should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
@@ -80,14 +80,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
 "
-.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
@@ -101,14 +101,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
@@ -120,14 +120,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: undefined) > basic usage should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };
@@ -139,14 +139,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: undefined) > using className prop should match snapshot 1`] = `
 "
-.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-1440123820{box-shadow:0 1px 2px 0 rgba(0, 0, 0, 0.05);}.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"span\\" {...props} className={combinedClassName} />;
 };
@@ -160,14 +160,14 @@ function App() {
 
 exports[`styled function > Snapshot tests (runtime: undefined) > using pseudo elements should match snapshot 1`] = `
 "
-.kuma-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.kuma-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.kuma-686274543{flex-direction:column;}}
+.🐻-686274543{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-686274543:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-686274543{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { styled } from '@kuma-ui/core';
 const Box = props => {
   const existingClassName = props.className || \\"\\";
-  const newClassName = \\"kuma-686274543\\";
+  const newClassName = \\"🐻-686274543\\";
   const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(\\" \\");
   return <__Box as=\\"div\\" {...props} className={combinedClassName} />;
 };

@@ -9,8 +9,7 @@ export function Dynamic() {
 
   return (
     <Box p={6} bg={checked ? "colors.blue" : "colors.green"}>
-      <Box variant={isButton ? "action" : "action2"} mb={(() => [6, 12])()}>dynamic</Box>
-      <button onClick={() => setIsButton(v => !v)}>12345</button>
+      <Box mb={[checked ? 6 : 0, 12]}>dynamic</Box>
       <Button onClick={() => toggle()}>Change Color</Button>
     </Box>
   );
