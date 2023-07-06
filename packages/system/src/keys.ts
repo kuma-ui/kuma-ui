@@ -182,6 +182,25 @@ export const styleKeys = {
     "transformOrigin",
     "transformStyle",
   ] as const,
+  mask: [
+    "mask",
+    "maskBorder",
+    "maskBorderMode",
+    "maskBorderOutset",
+    "maskBorderRepeat",
+    "maskBorderSlice",
+    "maskBorderSource",
+    "maskBorderWidth",
+    "maskClip",
+    "maskComposite",
+    "maskImage",
+    "maskMode",
+    "maskOrigin",
+    "maskPosition",
+    "maskRepeat",
+    "maskSize",
+    "maskType",
+  ] as const,
 };
 
 export type AnimationKeys = (typeof styleKeys.animation)[number];
@@ -200,6 +219,7 @@ export type ListKeys = (typeof styleKeys.list)[number];
 export type GridKeys = (typeof styleKeys.grid)[number];
 export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
+export type MaskKeys = (typeof styleKeys.mask)[number];
 
 export type StyledKeyType =
   | AnimationKeys
@@ -214,6 +234,7 @@ export type StyledKeyType =
   | ShadowKeys
   | ListKeys
   | GridKeys
+  | MaskKeys
   | ColumnKeys
   | EffectKeys;
 
