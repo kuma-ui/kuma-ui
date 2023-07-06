@@ -14,7 +14,7 @@ const theme = createTheme({
   },
   components: {
     Box: {
-      base: {
+      baseStyle: {
         color: "Boxbase",
       },
     variants: {

@@ -10,7 +10,7 @@ const theme = createTheme({
   },
   components: {
     Box: {
-      base: {
+      baseStyle: {
         color: "ThemeBoxRed",
       },
       variants: {
@@ -23,7 +23,7 @@ const theme = createTheme({
       },
     },
     Flex: {
-      base: {
+      baseStyle: {
         color: "gray",
       },
       variants: {

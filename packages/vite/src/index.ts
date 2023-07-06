@@ -58,10 +58,10 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
   for (const componentKey in userTheme.components) {
     const component = userTheme.components[componentKey as keyof typeof userTheme.components];
     const componentVariants = {};
-    let componentBase = undefined;
-    const style = new StyleGenerator(component?.base);
+    let componentBaseStyle = undefined;
+    const style = new StyleGenerator(component?.baseStyle);
       themeCss += style.getCSS();
-      componentBase = style.getClassName()
+      componentBaseStyle = style.getClassName()
 
     for (const variantKey in component?.variants) {
       const variant = component?.variants[variantKey];
@@ -75,7 +75,7 @@ export default function kumaUI(options?: VitePluginOption): Plugin {
 
     Object.assign(runtimeTheme.components, {
       [componentKey]: {
-        base: componentBase,
+        baseStyle: componentBaseStyle,
         variants: componentVariants,
       },
     });

@@ -45,14 +45,14 @@ export const extractProps = (
     } else if (propName.trim() === "variant") {
       Object.assign(
         componentVariantProps,
-        variant?.base,
+        variant?.baseStyle,
         variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
     }
   }
 
-  Object.assign(componentVariantProps, variant?.base);
+  Object.assign(componentVariantProps, variant?.baseStyle);
 
   if (
     !(
