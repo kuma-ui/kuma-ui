@@ -50,4 +50,8 @@ export type ComponentProps = StyledProps &
     children?: ReactNode;
   } & {
     variant?: string;
+    /**
+     * @internal
+     */
+    IS_KUMA_DEFAULT: boolean;
   };
