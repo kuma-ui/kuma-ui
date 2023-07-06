@@ -10,6 +10,7 @@ export type TypographyProps = Partial<
     CSSProperties<"lineHeight", true> &
     CSSProperties<"lineBreak"> &
     CSSProperties<"orphans", true> &
+    CSSProperties<"quotes"> &
     CSSProperties<"rubyPosition"> &
     CSSProperties<"unicodeBidi"> &
     CSSProperties<"widows", true> &
@@ -26,6 +27,7 @@ const typographyMappings: Record<TypographyKeys, string> = {
   lineHeight: "line-height",
   lineBreak: "line-break",
   orphans: "orphans",
+  quotes: "quotes",
   rubyPosition: "ruby-position",
   unicodeBidi: "unicode-bidi",
   widows: "widows",

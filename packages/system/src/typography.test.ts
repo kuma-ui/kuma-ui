@@ -16,6 +16,7 @@ describe("typography utility function", () => {
     [{ lineHeight: "2.5em" }, "line-height: 2.5em;", ""],
     [{ lineBreak: "loose" }, "line-break: loose;", ""],
     [{ orphans: 2 }, "orphans: 2;", ""],
+    [{ quotes: "'“' '”' '‘' '’'" }, "quotes: '“' '”' '‘' '’';", ""],
     [{ rubyPosition: "over" }, "ruby-position: over;", ""],
     [{ unicodeBidi: "embed" }, "unicode-bidi: embed;", ""],
     [{ widows: 2 }, "widows: 2;", ""],

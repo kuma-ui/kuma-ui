@@ -24,6 +24,7 @@ export const styleKeys = {
     "lineBreak",
     "letterSpacing",
     "orphans",
+    "quotes",
     "rubyPosition",
     "unicodeBidi",
     "widows",
