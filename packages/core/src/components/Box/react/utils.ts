@@ -44,7 +44,7 @@ const styleCache: {
  * Incurs O(n log n) cost due to sorting, but it's acceptable given the
  * expensive nature of StyleGenerator's internals.
  */
-const generateKey = (props: Record<string, any>) => {
+function generateKey (props: Record<string, any>) {
   return Object.entries(props)
     .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[0].localeCompare(b[0]))
