@@ -7,8 +7,7 @@ import {
   useStyleRegistry,
   createStyleRegistry,
 } from "../../../registry/StyleRegistry";
-import { extractDynamicProps } from "./utils";
-import { StyleGenerator } from "@kuma-ui/system";
+import { extractDynamicProps, getCachedStyle } from "./utils";
 import { theme } from "@kuma-ui/sheet";
 
 const defaultRegistry = createStyleRegistry();
@@ -31,10 +30,7 @@ export const DynamicBox: BoxComponent = ({
     ...props,
   });
 
-  const { className, css } = useMemo(
-    () => new StyleGenerator(dynamicProps, true).getStyle(),
-    [JSON.stringify(dynamicProps)]
-  );
+  const { className, css } = getCachedStyle(dynamicProps);
 
   const box = React.createElement(
     Component,

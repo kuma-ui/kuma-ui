@@ -1,4 +1,4 @@
-import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
+import { isStyledProp, isPseudoProps, StyleGenerator } from "@kuma-ui/system";
 import { BoxProps } from "./types";
 
 function isDynamicProp(key: string) {
@@ -33,4 +33,32 @@ export function extractDynamicProps(props: BoxProps) {
     dynamicProps,
     restProps,
   };
+}
+
+const styleCache: {
+  [key: string]: { className: string; css: string } | undefined;
+} = {};
+
+/**
+ * Generates a unique key for props, aiding cache efficiency.
+ * Incurs O(n log n) cost due to sorting, but it's acceptable given the
+ * expensive nature of StyleGenerator's internals.
+ */
+const generateKey = (props: Record<string, any>) => {
+  return Object.entries(props)
+    .filter(([, value]) => value !== undefined)
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, value]) => `${key}:${value}`)
+    .join("|");
+};
+
+export function getCachedStyle(dynamicProps: Record<string, any>) {
+  const key = generateKey(dynamicProps);
+  let generatedStyle = styleCache[key];
+  // If the result isn't in the cache, generate it and save it to the cache
+  if (!generatedStyle) {
+    generatedStyle = new StyleGenerator(dynamicProps).getStyle();
+    styleCache[key] = generatedStyle;
+  }
+  return generatedStyle;
 }
