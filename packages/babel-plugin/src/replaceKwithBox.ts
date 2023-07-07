@@ -37,6 +37,7 @@ export const replaceKwithBox = (
             t.jsxIdentifier("as"),
             t.stringLiteral(openingElement.name.property.name)
           ),
+          t.jsxAttribute(t.jsxIdentifier("IS_KUMA_DEFAULT")),
           ...openingElement.attributes,
         ];
         openingElement.name = t.jsxIdentifier(importedStyleFunctions["Box"]);
