@@ -10,7 +10,7 @@ export class StyleGenerator {
   private className: string;
 
   constructor(props: StyledProps & PseudoProps, isDynamic = false) {
-    if (Object.keys(props).length === 0) {
+    if (!props || Object.keys(props).length === 0) {
       this.className = "";
       return;
     }

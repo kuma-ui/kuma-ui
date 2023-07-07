@@ -51,4 +51,8 @@ export type ComponentProps = StyledProps<ThemeSystem> &
     children?: ReactNode;
   } & {
     variant?: string;
+    /**
+     * @internal
+     */
+    IS_KUMA_DEFAULT?: boolean;
   };

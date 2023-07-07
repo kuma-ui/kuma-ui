@@ -37,7 +37,15 @@ const Spacer: SpacerComponent = <T extends As = "div">({
     ? theme.getVariants("Spacer")?.variants?.[props.variant]
     : {};
 
-  return <Box as={Component} {...variant} {...props} children={children} />;
+  return (
+    <Box
+      as={Component}
+      {...variant}
+      {...props}
+      children={children}
+      IS_KUMA_DEFAULT
+    />
+  );
 };
 
 export { Spacer, type SpacerComponent, SpacerProps };

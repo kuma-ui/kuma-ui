@@ -28,7 +28,15 @@ const Text: TextComponent = <T extends As = "p">({
     ? theme.getVariants("Text")?.variants?.[props.variant]
     : {};
 
-  return <Box as={Component} {...variant} {...props} children={children} />;
+  return (
+    <Box
+      as={Component}
+      {...variant}
+      {...props}
+      children={children}
+      IS_KUMA_DEFAULT
+    />
+  );
 };
 
 export { Text, type TextComponent, TextProps };
