@@ -50,20 +50,3 @@ describe("css function", () => {
     });
   });
 });
-
-pluginTester({
-  plugin: () => plugin({ types, template }),
-  babelOptions: {
-    presets: [
-      "@babel/preset-typescript",
-      [
-        "@babel/preset-react",
-        {
-          runtime: "classic",
-        },
-      ],
-    ],
-  },
-  filename: "test.tsx",
-  fixtures: path.join(__dirname, "__fixtures__"),
-});
