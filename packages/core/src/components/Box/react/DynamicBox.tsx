@@ -17,13 +17,14 @@ export const DynamicBox: BoxComponent = ({
   as: Component = "div",
   children,
   variant,
+  IS_KUMA_DEFAULT,
   ...props
 }) => {
   const registry = useStyleRegistry() || defaultRegistry;
 
   const variantStyle = (() => {
     if (!variant) return {};
-    if (!!props.IS_KUMA_DEFAULT) return {};
+    if (!!IS_KUMA_DEFAULT) return {};
     return theme.getVariants("Box")?.variants?.[variant];
   })();
 
