@@ -3,6 +3,7 @@ import { componentList } from "./componentList";
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import { ReactNode } from "react";
 import { ThemeSystem } from "../theme";
+import { If, IsUnknown } from "../utils/types";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export type As<Props = any> = React.ElementType<Props>;
@@ -55,9 +56,13 @@ type Variants<
   ? T["variants"]
   : never;
 
-type Variant<ComponentType extends keyof typeof componentList> = Extract<
-  keyof Variants<ThemeSystem["components"][ComponentType], ComponentType>,
-  string
+type Variant<ComponentType extends keyof typeof componentList> = If<
+  IsUnknown<ThemeSystem["components"][ComponentType]>,
+  never,
+  Extract<
+    keyof Variants<ThemeSystem["components"][ComponentType], ComponentType>,
+    string
+  >
 >;
 
 export type ComponentProps<ComponentType extends keyof typeof componentList> =
