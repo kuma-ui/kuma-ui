@@ -19,6 +19,7 @@ import {
   isComponentProps,
   componentHandler,
 } from "@kuma-ui/core";
+import { theme } from "@kuma-ui/sheet";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -29,7 +30,12 @@ export const extractProps = (
   const pseudoProps: { [key: string]: any } = {};
   const componentProps: { [key: string]: any } = {};
 
+  const componentVariantProps: { [key: string]: any } = {};
+
   const defaultProps = componentDefaultProps(componentName);
+
+  const variant = theme.getVariants(componentName);
+  let isDefault = false;
 
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
@@ -41,8 +47,19 @@ export const extractProps = (
       pseudoProps[propName.trim()] = propValue;
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
+    } else if (propName.trim() === "variant") {
+      Object.assign(
+        componentVariantProps,
+        variant?.baseStyle,
+        variant?.variants?.[propValue as string]
+      );
+      jsx.getAttribute("variant")?.remove();
+    } else if (propName.trim() === "IS_KUMA_DEFAULT") {
+      isDefault = true;
     }
   }
+
+  Object.assign(componentVariantProps, variant?.baseStyle);
 
   if (
     !(
@@ -56,7 +73,22 @@ export const extractProps = (
 
   const specificProps = componentHandler(componentName)(componentProps);
 
-  const combinedProps = { ...specificProps, ...styledProps, ...pseudoProps };
+  // Every component internally uses the Box component.
+  // However, we do not want to apply the Box theme in those cases.
+  if (componentName === "Box" && isDefault) {
+    for (const prop in componentVariantProps) {
+      if (componentVariantProps.hasOwnProperty(prop)) {
+        delete componentVariantProps[prop];
+      }
+    }
+  }
+
+  const combinedProps = {
+    ...componentVariantProps,
+    ...specificProps,
+    ...styledProps,
+    ...pseudoProps,
+  };
   const key = generateKey(combinedProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
@@ -120,8 +152,11 @@ export const extractProps = (
  */
 const generateKey = (props: Record<string, any>) => {
   return Object.entries(props)
+    .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([key, value]) => `${key}:${value}`)
     .join("|");
 };
-const styleCache: { [key: string]: { className: string; css: string } } = {};
+const styleCache: {
+  [key: string]: { className: string; css: string } | undefined;
+} = {};

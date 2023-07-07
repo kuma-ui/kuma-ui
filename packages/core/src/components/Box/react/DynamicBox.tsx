@@ -7,8 +7,8 @@ import {
   useStyleRegistry,
   createStyleRegistry,
 } from "../../../registry/StyleRegistry";
-import { extractStyledProps, getStyle } from "./utils";
-import { sheet } from "@kuma-ui/sheet";
+import { extractDynamicProps, getCachedStyle } from "./utils";
+import { theme } from "@kuma-ui/sheet";
 
 const defaultRegistry = createStyleRegistry();
 const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
@@ -16,42 +16,45 @@ const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
 export const DynamicBox: BoxComponent = ({
   as: Component = "div",
   children,
+  variant,
+  IS_KUMA_DEFAULT,
   ...props
 }) => {
   const registry = useStyleRegistry() || defaultRegistry;
-  const styledProps = extractStyledProps(props);
-  const { className, rule } = useMemo(() => {
-    const style = getStyle(styledProps);
-    const className = sheet.addRule(style, true);
-    const rule = sheet.getCSS();
-    sheet.reset();
-    return { className, rule };
-  }, [
-    JSON.stringify(styledProps.styledProps),
-    JSON.stringify(styledProps.styledProps),
-  ]);
+
+  const variantStyle = (() => {
+    if (!variant) return {};
+    if (!!IS_KUMA_DEFAULT) return {};
+    return theme.getVariants("Box")?.variants?.[variant];
+  })();
+
+  const { dynamicProps, restProps } = extractDynamicProps({
+    ...variantStyle,
+    ...props,
+  });
+
+  const { className, css } = getCachedStyle(dynamicProps);
+
   const box = React.createElement(
     Component,
     {
-      ...styledProps.restProps,
-      className: [styledProps.restProps.className, className]
-        .filter(Boolean)
-        .join(" "),
+      ...restProps,
+      className: [restProps.className, className].filter(Boolean).join(" "),
     },
     children
   );
 
   if (!isBrowser) {
-    registry.add(className, rule);
+    registry.add(className, css);
     return box;
   }
 
   useInsertionEffect(() => {
-    registry.add(className, rule);
+    registry.add(className, css);
     return () => {
       registry.remove(className);
     };
-  }, [className, rule]);
+  }, [className, css]);
 
   return box;
 };

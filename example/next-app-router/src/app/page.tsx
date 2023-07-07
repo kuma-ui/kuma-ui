@@ -1,4 +1,4 @@
-import { k, Box } from "@kuma-ui/core";
+import { k, Box, css, styled } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 import { Dynamic2 } from "./dynamic2";
 
@@ -21,9 +21,22 @@ export default function Home() {
       <Dynamic key={2} />
       <Dynamic2 />
       <Box color={(() => "colors.blue")()}>dynamic</Box>
+      <Box variant={(() => "action")()}>dynamic</Box>
       <Box p={[8, 16]} color="colors.green">
         static
       </Box>
+      <div
+        className={css`
+          background-color: gray;
+        `}
+      >
+        css
+      </div>
+      <Styled>styled</Styled>
     </div>
   );
 }
+
+const Styled = styled("div")`
+  background-color: lightblue;
+`;

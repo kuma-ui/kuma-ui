@@ -10,17 +10,20 @@ const theme = createTheme({
   },
   components: {
     Box: {
-      base: {
-        color: "gray",
+      baseStyle: {
+        color: "ThemeBoxRed",
       },
       variants: {
         action: {
-          color: "red",
+          bg: "pink",
+        },
+        action2: {
+          bg: "red",
         },
       },
     },
     Flex: {
-      base: {
+      baseStyle: {
         color: "gray",
       },
       variants: {

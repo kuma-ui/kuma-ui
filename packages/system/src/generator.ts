@@ -10,7 +10,7 @@ export class StyleGenerator {
   private className: string;
 
   constructor(props: StyledProps & PseudoProps, isDynamic = false) {
-    if (Object.keys(props).length === 0) {
+    if (!props || Object.keys(props).length === 0) {
       this.className = "";
       return;
     }
@@ -42,9 +42,16 @@ export class StyleGenerator {
       responsive: all(styledProps).media,
       pseudo: convertedPseudoProps,
     };
-    const prefix = isDynamic ? "🦄-" : "🐻-";
 
-    this.className = prefix + generateHash(JSON.stringify(this.style));
+    this.className =
+      StyleGenerator.getClassNamePrefix(isDynamic) +
+      generateHash(JSON.stringify(this.style));
+  }
+
+  private static getClassNamePrefix(isDynamic = false) {
+    const isProduction = process.env.NODE_ENV === "production";
+    if (isProduction) return "kuma-";
+    return isDynamic ? "🦄-" : "🐻-";
   }
 
   getClassName() {
