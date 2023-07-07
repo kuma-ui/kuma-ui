@@ -15,15 +15,16 @@ const theme = createTheme({
   components: {
     Box: {
       base: {
-        color: "Boxbase",
+        bg: "black",
+        color: "white",
       },
-    variants: {
-      action: {
-        color: "ActionBOx"
-      }
-    }
-    }
-  }
+      variants: {
+        action: {
+          color: "ActionBOx",
+        },
+      },
+    },
+  },
 });
 
 type UserTheme = typeof theme;

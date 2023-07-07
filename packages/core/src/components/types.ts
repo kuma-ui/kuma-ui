@@ -53,5 +53,5 @@ export type ComponentProps = StyledProps &
     /**
      * @internal
      */
-    IS_KUMA_DEFAULT: boolean;
+    IS_KUMA_DEFAULT?: boolean;
   };

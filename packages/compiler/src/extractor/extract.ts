@@ -13,9 +13,13 @@ import {
   SystemStyle,
   StyleGenerator,
 } from "@kuma-ui/system";
-import { componentDefaultProps, componentList } from "@kuma-ui/core";
+import {
+  componentDefaultProps,
+  componentList,
+  isComponentProps,
+  componentHandler,
+} from "@kuma-ui/core";
 import { theme } from "@kuma-ui/sheet";
-import { isComponentProps, componentHandler } from "packages/core/dist";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -31,6 +35,7 @@ export const extractProps = (
   const defaultProps = componentDefaultProps(componentName);
 
   const variant = theme.getVariants(componentName);
+  let isDefault = false;
 
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
@@ -46,9 +51,11 @@ export const extractProps = (
       Object.assign(
         componentVariantProps,
         variant?.base,
-        variant?.variants?.[propValue as string]
+        variant?.variants?.[propValue as string | number]
       );
       jsx.getAttribute("variant")?.remove();
+    } else if (propName.trim() === "IS_KUMA_DEFAULT") {
+      isDefault = true;
     }
   }
 
@@ -65,6 +72,16 @@ export const extractProps = (
   }
 
   const specificProps = componentHandler(componentName)(componentProps);
+
+  // Every component internally uses the Box component.
+  // However, we do not want to apply the Box theme in those cases.
+  if (componentName === "Box" && isDefault) {
+    for (const prop in componentVariantProps) {
+      if (componentVariantProps.hasOwnProperty(prop)) {
+        delete componentVariantProps[prop];
+      }
+    }
+  }
 
   const combinedProps = {
     ...componentVariantProps,

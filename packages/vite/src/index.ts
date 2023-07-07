@@ -7,11 +7,7 @@ import { theme, sheet } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
 import { StyleGenerator } from "@kuma-ui/system";
 
-export type VitePluginOption = {
-  // breakpoints?: Record<string, string>; // {sm: '400px', md: '700px'}
-};
-
-export default function kumaUI(options?: VitePluginOption): Plugin {
+export default function kumaUI(): Plugin {
   let mode: "build" | "serve";
 
   const dir = readdirSync(".");
