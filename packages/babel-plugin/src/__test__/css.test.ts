@@ -13,7 +13,7 @@ describe("css function", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
-        const style = css({ color: 'red' })
+        const style = css\`color: red;\`
       `;
       // Act
       const result = await babelTransform(inputCode);
@@ -25,19 +25,7 @@ describe("css function", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
-        const style = css({ p: 2 })
-      `;
-      // Act
-      const result = await babelTransform(inputCode);
-      // Assert
-      expect(getExpectSnapshot(result)).toMatchSnapshot();
-    });
-
-    test("using pseudo elements should match snapshot", async () => {
-      // Arrange
-      const inputCode = `
-        import { css } from '@kuma-ui/core'
-        const style = css({ _after: { color: 'blue' } })
+        const style = css\`padding: 2px;\`
       `;
       // Act
       const result = await babelTransform(inputCode);
@@ -49,7 +37,11 @@ describe("css function", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
-        const style = css({ _hover: { color: 'red' } })
+        const style = css\`
+        &:hover {
+          color: red;
+        }
+        \`
       `;
       // Act
       const result = await babelTransform(inputCode);
