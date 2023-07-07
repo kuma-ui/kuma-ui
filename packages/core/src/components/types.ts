@@ -71,4 +71,8 @@ export type ComponentProps<ComponentType extends keyof typeof componentList> =
       children?: ReactNode;
     } & {
       variant?: Variant<ComponentType>;
+      /**
+       * @internal
+       */
+      IS_KUMA_DEFAULT?: boolean;
     };

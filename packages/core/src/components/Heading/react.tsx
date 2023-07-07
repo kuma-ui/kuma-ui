@@ -30,9 +30,17 @@ const Heading: HeadingComponent = <
   ...props
 }: MergeWithAs<PropsOf<T>, HeadingProps>) => {
   const variant = props.variant
-    ? theme.getVariants("Heading")?.variants?.[props.variant]
+    ? theme.getVariants("Heading")?.variants?.[props.variant as any]
     : {};
-  return <Box as={Component} {...variant} {...props} children={children} />;
+  return (
+    <Box
+      as={Component}
+      {...variant}
+      {...props}
+      children={children}
+      IS_KUMA_DEFAULT
+    />
+  );
 };
 
 export { Heading, type HeadingComponent, HeadingProps };

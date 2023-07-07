@@ -28,7 +28,15 @@ const Flex: FlexComponent = <T extends As = "div">({
   const variant = props.variant
     ? theme.getVariants("Flex")?.variants?.[props.variant]
     : {};
-  return <Box as={Component} {...variant} {...props} children={children} />;
+  return (
+    <Box
+      as={Component}
+      {...variant}
+      {...props}
+      children={children}
+      IS_KUMA_DEFAULT
+    />
+  );
 };
 
 export { Flex, type FlexComponent, FlexProps };

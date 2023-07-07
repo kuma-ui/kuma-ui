@@ -27,7 +27,15 @@ const Button: ButtonComponent = <T extends As = "button">({
   const variant = props.variant
     ? theme.getVariants("Button")?.variants?.[props.variant]
     : {};
-  return <Box as={Component} {...variant} {...props} children={children} />;
+  return (
+    <Box
+      as={Component}
+      {...variant}
+      {...props}
+      children={children}
+      IS_KUMA_DEFAULT
+    />
+  );
 };
 
 export { Button, type ButtonComponent, ButtonProps };
