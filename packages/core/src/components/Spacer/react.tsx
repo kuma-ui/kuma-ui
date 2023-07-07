@@ -11,7 +11,7 @@ import { Box } from "../Box";
 import { SpacerSpecificProps, spacerHandler } from "./handler";
 import { theme } from "@kuma-ui/sheet";
 
-type SpacerProps = ComponentProps & SpacerSpecificProps;
+type SpacerProps = ComponentProps<"Spacer"> & SpacerSpecificProps;
 
 type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 

@@ -10,7 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 
-type TextProps = ComponentProps;
+type TextProps = ComponentProps<"Text">;
 
 type TextComponent<T extends As = "p"> = ComponentWithAs<T, TextProps>;
 

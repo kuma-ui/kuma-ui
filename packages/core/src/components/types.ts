@@ -1,3 +1,5 @@
+import { ThemeInput } from "./../theme";
+import { componentList } from "./componentList";
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import { ReactNode } from "react";
 import { ThemeSystem } from "../theme";
@@ -46,9 +48,22 @@ type OmitCommonProps<
   OmitAdditionalProps extends keyof any = never
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 
-export type ComponentProps = StyledProps<ThemeSystem> &
-  Partial<PseudoProps<ThemeSystem>> & {
-    children?: ReactNode;
-  } & {
-    variant?: string;
-  };
+type Variants<
+  T,
+  ComponentType extends keyof typeof componentList
+> = T extends Required<Required<ThemeInput>["components"]>[ComponentType]
+  ? T["variants"]
+  : never;
+
+type Variant<ComponentType extends keyof typeof componentList> = Extract<
+  keyof Variants<ThemeSystem["components"][ComponentType], ComponentType>,
+  string
+>;
+
+export type ComponentProps<ComponentType extends keyof typeof componentList> =
+  StyledProps<ThemeSystem> &
+    Partial<PseudoProps<ThemeSystem>> & {
+      children?: ReactNode;
+    } & {
+      variant?: Variant<ComponentType>;
+    };
