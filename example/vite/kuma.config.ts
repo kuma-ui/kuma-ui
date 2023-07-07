@@ -15,12 +15,11 @@ const theme = createTheme({
   components: {
     Box: {
       base: {
-        bg: "black",
-        color: "white",
+        color: "green",
       },
       variants: {
         action: {
-          color: "ActionBOx",
+          color: "red",
         },
       },
     },

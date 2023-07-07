@@ -21,9 +21,11 @@ export const DynamicBox: BoxComponent = ({
 }) => {
   const registry = useStyleRegistry() || defaultRegistry;
 
-  const variantStyle = variant
-    ? theme.getVariants("Box")?.variants?.[variant]
-    : {};
+  const variantStyle = (() => {
+    if (!variant) return {};
+    if (!!props.IS_KUMA_DEFAULT) return {};
+    return theme.getVariants("Box")?.variants?.[variant];
+  })();
 
   const styledProps = extractStyledProps({
     ...variantStyle,
