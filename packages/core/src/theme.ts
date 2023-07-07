@@ -12,7 +12,7 @@ type ThemeInput = {
   breakpoints?: Record<string, string>;
   components?: {
     [_ in keyof typeof componentList]?: {
-      base?: any;
+      baseStyle?: any;
       variants?: { [key: string]: any };
     };
   };
