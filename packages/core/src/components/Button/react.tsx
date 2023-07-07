@@ -10,7 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 
-type ButtonProps = ComponentProps;
+type ButtonProps = ComponentProps<"Button">;
 
 type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
 

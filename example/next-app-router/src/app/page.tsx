@@ -21,7 +21,7 @@ export default function Home() {
       <Dynamic key={2} />
       <Dynamic2 />
       <Box color={(() => "colors.blue")()}>dynamic</Box>
-      <Box variant={(() => "action")()}>dynamic</Box>
+      <Box variant={(() => "action" as const)()}>dynamic</Box>
       <Box p={[8, 16]} color="colors.green">
         static
       </Box>

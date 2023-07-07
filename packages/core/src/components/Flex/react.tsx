@@ -10,7 +10,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 
-type FlexProps = ComponentProps;
+type FlexProps = ComponentProps<"Flex">;
 
 type FlexComponent<T extends As = "div"> = ComponentWithAs<T, FlexProps>;
 
