@@ -72,10 +72,10 @@ class KumaUIWebpackPlugin {
     for (const componentKey in userTheme.components) {
       const component = userTheme.components[componentKey as keyof typeof userTheme.components];
       const componentVariants = {};
-      let componentBaseStyle = undefined;
-      const style = new StyleGenerator(component?.baseStyle);
+      let componentBase = undefined;
+      const style = new StyleGenerator(component?.base);
         css += style.getCSS();
-        componentBaseStyle = style.getClassName()
+        componentBase = style.getClassName()
 
       for (const variantKey in component?.variants) {
         const variant = component?.variants[variantKey];
@@ -89,7 +89,7 @@ class KumaUIWebpackPlugin {
 
       Object.assign(runtimeTheme.components, {
         [componentKey]: {
-          baseStyle: componentBaseStyle,
+          base: componentBase,
           variants: componentVariants,
         },
       });

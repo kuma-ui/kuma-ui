@@ -14,7 +14,7 @@ const theme = createTheme({
   },
   components: {
     Button: {
-      baseStyle: {
+      base: {
         bg: "black",
         p: "10px",
       },

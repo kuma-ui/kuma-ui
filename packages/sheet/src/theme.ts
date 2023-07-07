@@ -13,7 +13,7 @@ export type UserTheme = {
   breakpoints: Record<string, string>;
   components?: {
     [_ in ComponentName]?: {
-      baseStyle?: any;
+      base?: any;
       variants?: { [key: string]: any };
     };
   };
@@ -73,7 +73,7 @@ export class Theme {
 
   getVariants(componentName: ComponentName):
     | {
-        baseStyle?: any;
+        base?: any;
         variants?:
           | {
               [key: string]: any;

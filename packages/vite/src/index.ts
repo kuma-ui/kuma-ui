@@ -55,10 +55,10 @@ export default function kumaUI(): Plugin {
     const component =
       userTheme.components[componentKey as keyof typeof userTheme.components];
     const componentVariants = {};
-    let componentBaseStyle = undefined;
-    const style = new StyleGenerator(component?.baseStyle);
+    let componentBase = undefined;
+    const style = new StyleGenerator(component?.base);
     themeCss += style.getCSS();
-    componentBaseStyle = style.getClassName();
+    componentBase = style.getClassName();
 
     for (const variantKey in component?.variants) {
       const variant = component?.variants[variantKey];
@@ -72,7 +72,7 @@ export default function kumaUI(): Plugin {
 
     Object.assign(runtimeTheme.components, {
       [componentKey]: {
-        baseStyle: componentBaseStyle,
+        base: componentBase,
         variants: componentVariants,
       },
     });

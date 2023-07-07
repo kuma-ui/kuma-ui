@@ -7,8 +7,8 @@ import {
   useStyleRegistry,
   createStyleRegistry,
 } from "../../../registry/StyleRegistry";
-import { extractDynamicProps, getCachedStyle } from "./utils";
-import { theme } from "@kuma-ui/sheet";
+import { extractStyledProps, getStyle } from "./utils";
+import { sheet, theme } from "@kuma-ui/sheet";
 
 const defaultRegistry = createStyleRegistry();
 const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
@@ -27,33 +27,45 @@ export const DynamicBox: BoxComponent = ({
     return theme.getVariants("Box")?.variants?.[variant];
   })();
 
-  const { dynamicProps, restProps } = extractDynamicProps({
+  const styledProps = extractStyledProps({
     ...variantStyle,
     ...props,
+    variant: undefined,
   });
 
-  const { className, css } = getCachedStyle(dynamicProps);
+  const { className, rule } = useMemo(() => {
+    const style = getStyle(styledProps);
+    const className = sheet.addRule(style, true);
+    const rule = sheet.getCSS();
+    sheet.reset();
+    return { className, rule };
+  }, [
+    JSON.stringify(styledProps.styledProps),
+    JSON.stringify(styledProps.styledProps),
+  ]);
 
   const box = React.createElement(
     Component,
     {
-      ...restProps,
-      className: [restProps.className, className].filter(Boolean).join(" "),
+      ...styledProps.restProps,
+      className: [styledProps.restProps.className, className]
+        .filter(Boolean)
+        .join(" "),
     },
     children
   );
 
   if (!isBrowser) {
-    registry.add(className, css);
+    registry.add(className, rule);
     return box;
   }
 
   useInsertionEffect(() => {
-    registry.add(className, css);
+    registry.add(className, rule);
     return () => {
       registry.remove(className);
     };
-  }, [className, css]);
+  }, [className, rule]);
 
   return box;
 };

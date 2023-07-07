@@ -1,3 +1,5 @@
+import { StyledProps, PseudoProps } from "@kuma-ui/system";
+import { ReactNode } from "react";
 import { As, ComponentWithAs, ComponentProps } from "../../types";
 
 export type BoxProps = ComponentProps;
