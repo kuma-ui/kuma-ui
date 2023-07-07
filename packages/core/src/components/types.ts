@@ -1,5 +1,6 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import { ReactNode } from "react";
+import { ThemeSystem } from "../theme";
 
 /* eslint-disable @typescript-eslint/ban-types */
 export type As<Props = any> = React.ElementType<Props>;
@@ -45,8 +46,8 @@ type OmitCommonProps<
   OmitAdditionalProps extends keyof any = never
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 
-export type ComponentProps = StyledProps &
-  Partial<PseudoProps> & {
+export type ComponentProps = StyledProps<ThemeSystem> &
+  Partial<PseudoProps<ThemeSystem>> & {
     children?: ReactNode;
   } & {
     variant?: string;

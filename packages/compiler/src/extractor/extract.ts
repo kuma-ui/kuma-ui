@@ -50,8 +50,8 @@ export const extractProps = (
     } else if (propName.trim() === "variant") {
       Object.assign(
         componentVariantProps,
-        variant?.base,
-        variant?.variants?.[propValue as string | number]
+        variant?.baseStyle,
+        variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
     } else if (propName.trim() === "IS_KUMA_DEFAULT") {
@@ -59,7 +59,7 @@ export const extractProps = (
     }
   }
 
-  Object.assign(componentVariantProps, variant?.base);
+  Object.assign(componentVariantProps, variant?.baseStyle);
 
   if (
     !(
@@ -152,8 +152,11 @@ export const extractProps = (
  */
 const generateKey = (props: Record<string, any>) => {
   return Object.entries(props)
+    .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([key, value]) => `${key}:${value}`)
     .join("|");
 };
-const styleCache: { [key: string]: { className: string; css: string } } = {};
+const styleCache: {
+  [key: string]: { className: string; css: string } | undefined;
+} = {};
