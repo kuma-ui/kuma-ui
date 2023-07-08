@@ -8,6 +8,7 @@ import {
   Select,
   Input,
   HStack,
+  VStack,
 } from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
@@ -38,6 +39,11 @@ import {
   hstackHandler,
   hstackDefaultProps,
 } from "./HStack/handler";
+import {
+  isVStackProps,
+  vstackHandler,
+  vstackDefaultProps,
+} from "./VStack/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -51,6 +57,7 @@ export const componentList = Object.freeze({
   Select: Select.name as "Select",
   Input: Input.name as "Input",
   HStack: HStack.name as "HStack",
+  VStack: VStack.name as "VStack",
 } as const);
 
 type ComponentName = keyof typeof componentList;
@@ -67,6 +74,7 @@ export const isComponentProps =
       .with("Select", () => isSelectProps(propName))
       .with("Input", () => isInputProps(propName))
       .with("HStack", () => isHStackProps(propName))
+      .with("VStack", () => isVStackProps(propName))
       .exhaustive();
   };
 
@@ -83,6 +91,7 @@ export const componentDefaultProps = (
     .with("Select", () => selectDefaultProps)
     .with("Input", () => inputDefaultProps)
     .with("HStack", () => hstackDefaultProps)
+    .with("VStack", () => vstackDefaultProps)
     .exhaustive();
 };
 
@@ -99,5 +108,6 @@ export const componentHandler =
       .with("Select", () => selectHandler(props))
       .with("Input", () => inputHandler(props))
       .with("HStack", () => hstackHandler(props))
+      .with("VStack", () => vstackHandler(props))
       .exhaustive();
   };

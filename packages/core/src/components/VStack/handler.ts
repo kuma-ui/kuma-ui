@@ -11,7 +11,7 @@ export const isVStackProps = (
   return vstackSpecificProps.some((k) => k === propName);
 };
 
-export const VStackDefaultProps: StyledProps = {
+export const vstackDefaultProps: StyledProps = {
   display: "flex",
   flexDir: "column",
 };
