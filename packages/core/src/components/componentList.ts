@@ -11,6 +11,7 @@ import {
   VStack,
   Image,
   Link,
+  Grid,
 } from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
@@ -48,6 +49,7 @@ import {
 } from "./VStack/handler";
 import { isImageProps, imageHandler, imageDefaultProps } from "./Image/handler";
 import { isLinkProps, linkHandler, linkDefaultProps } from "./Link/handler";
+import { isGridProps, gridHandler, gridDefaultProps } from "./Grid/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -64,6 +66,7 @@ export const componentList = Object.freeze({
   VStack: VStack.name as "VStack",
   Image: Image.name as "Image",
   Link: Link.name as "Link",
+  Grid: Grid.name as "Grid",
 } as const);
 
 type ComponentName = keyof typeof componentList;
@@ -83,6 +86,7 @@ export const isComponentProps =
       .with("VStack", () => isVStackProps(propName))
       .with("Image", () => isImageProps(propName))
       .with("Link", () => isLinkProps(propName))
+      .with("Grid", () => isGridProps(propName))
       .exhaustive();
   };
 
@@ -102,6 +106,7 @@ export const componentDefaultProps = (
     .with("VStack", () => vstackDefaultProps)
     .with("Image", () => imageDefaultProps)
     .with("Link", () => linkDefaultProps)
+    .with("Grid", () => gridDefaultProps)
     .exhaustive();
 };
 
@@ -121,5 +126,6 @@ export const componentHandler =
       .with("VStack", () => vstackHandler(props))
       .with("Image", () => imageHandler(props))
       .with("Link", () => linkHandler(props))
+      .with("Grid", () => gridHandler(props))
       .exhaustive();
   };

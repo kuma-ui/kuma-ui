@@ -1,6 +1,7 @@
 {
   "Box": "Box",
   "Flex": "Flex",
+  "Grid": "Grid",
   "HStack": "HStack",
   "VStack": "VStack",
   "Text": "Text",

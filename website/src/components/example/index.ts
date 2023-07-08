@@ -13,3 +13,4 @@ export * from "./VStack";
 export * from "./Select";
 export * from "./Image";
 export * from "./Link";
+export * from "./Grid";
