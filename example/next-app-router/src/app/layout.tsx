@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { k } from "@kuma-ui/core";
-import { KumaRegistry } from "./registry";
+import { KumaRegistry } from "@kuma-ui/next-plugin/registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
