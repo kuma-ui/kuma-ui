@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 0.6.0-next.1
+
+### Minor Changes
+
+- [#126](https://github.com/poteboy/kuma-ui/pull/126) [`c4b7318`](https://github.com/poteboy/kuma-ui/commit/c4b73184ca8e9c659734f9547143806a3a7d222a) Thanks [@poteboy](https://github.com/poteboy)! - Introducing Theming, Hybrid CSS-in-JS, and Universal UI Components
+
 ## 0.6.0-next.0
 
 ### Minor Changes
