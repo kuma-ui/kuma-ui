@@ -15,8 +15,7 @@ type VStackProps = ComponentProps<"VStack">;
 type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
 
 /**
- * VStack is a Box component with 'display: VStack' by default. It's used to create VStackible layouts in a Kuma UI application.
- * Like Box, it can accept any system style properties for extensive customization.
+ * VStack is a Box component with `display="flex"` and `flex-direction: column` set by default. It makes it easier to layout and align child components in a vertical direction. It is a fundamental layout component in Kuma UI.
  *
  * @see — Further documentation will be available in the future.
  */

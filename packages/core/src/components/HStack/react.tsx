@@ -15,10 +15,9 @@ type HStackProps = ComponentProps<"HStack">;
 type HStackComponent<T extends As = "div"> = ComponentWithAs<T, HStackProps>;
 
 /**
- * HStack is a Box component with 'display: HStack' by default. It's used to create HStackible layouts in a Kuma UI application.
- * Like Box, it can accept any system style properties for extensive customization.
+ * HStack is a Box component with `display="flex"` and `flex-direction: row` set by default. It makes it easier to layout and align child components in a horizontal direction. It is a fundamental layout component in Kuma UI.
  *
- * @see — Further documentation will be available in the future.
+ * @see — http://kuma-ui.com/docs/Components/HStack
  */
 const HStack: HStackComponent = <T extends As = "div">({
   as: Component = "div",

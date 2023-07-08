@@ -8,6 +8,11 @@ import { ComponentProps } from "../types";
 type InputProps = ComponentProps<"Input">;
 type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
 
+/**
+ * The Input component inherits from the HTML input element and can be combined with Kuma UI's style properties for extensive customization.
+ *
+ * @see — http://kuma-ui.com/docs/Components/Input
+ */
 const Input: InputComponent = <T extends As>({
   as: Component = "input",
   children,
