@@ -21,6 +21,9 @@ const theme = createTheme({
           p: "16px 32px",
           color: "white",
           fontWeight: 600,
+          _hover: {
+            opacity: 0.8,
+          },
         },
       },
     },
