@@ -8,3 +8,7 @@ export const ButtonExample = () => {
     </Button>
   );
 };
+
+export const PrimaryButton = () => {
+  return <Button variant="primary">I'm a primary button</Button>;
+};
