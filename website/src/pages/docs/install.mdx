@@ -114,6 +114,8 @@ Once you've installed the plugin, you need to configure it in your configuration
 
 ## Server Side Rendering
 
+If you are using Kuma UI with Next.js, setting up Server Side Rendering (SSR) isn't mandatory. However, without this setup, you may experience a Flash Of Unstyled Content (FOUC). **We highly recommend setting up SSR** to prevent this from happening.
+
 <Tabs
   items={["next.js app router", "next.js pages router"]}
   storageKey="selected-ssr"
@@ -137,6 +139,7 @@ Once you've installed the plugin, you need to configure it in your configuration
       );
     }
     ```
+
   </Tab>
   {/* prettier-ignore */}
   <Tab>
@@ -183,5 +186,6 @@ Once you've installed the plugin, you need to configure it in your configuration
       }
     }
     ```
+
   </Tab>
 </Tabs>
