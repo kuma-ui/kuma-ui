@@ -13,7 +13,7 @@ export const isHStackProps = (
 
 export const hstackDefaultProps: StyledProps = {
   display: "flex",
-  flexDir: "column",
+  flexDir: "row",
 };
 
 export const hstackHandler = (props: HStackSpecificProps) => ({});

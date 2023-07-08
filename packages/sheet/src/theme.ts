@@ -13,7 +13,10 @@ type ComponentName =
   | "Text"
   | "Button"
   | "Heading"
-  | "HStack";
+  | "Input"
+  | "Select"
+  | "HStack"
+  | "VStack";
 
 export type UserTheme = {
   colors: Record<string, string> | undefined;
