@@ -7,12 +7,12 @@ import {
 import { If, IsAny, Stringify, _String } from "./utils/types";
 import { componentList } from "./components/componentList";
 
-type ThemeInput = {
+export type ThemeInput = {
   colors?: NestedObject<string>;
   breakpoints?: Record<string, string>;
   components?: {
     [_ in keyof typeof componentList]?: {
-      base?: any;
+      baseStyle?: any;
       variants?: { [key: string]: any };
     };
   };

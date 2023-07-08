@@ -64,3 +64,4 @@ export type {
   PseudoProps,
 };
 export * from "./generator";
+export * from "./toCSS";

@@ -1,0 +1,37 @@
+---
+title: "HStack"
+description: "HStack is a layout component that aligns child components horizontally."
+---
+
+import { HStackExample, ExampleContainer } from "../../../components/example";
+
+# HStack
+
+HStack is a Box component with `display="flex"` and `flex-direction: row` set by default. It makes it easier to layout and align child components in a horizontal direction. It is a fundamental layout component in Kuma UI.
+
+## Import
+
+```tsx copy
+import { HStack } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <HStackExample />
+</ExampleContainer>
+
+```tsx copy
+const HStackExample = () => {
+  return (
+    <HStack justify="center" alignItems="center" gap={8}>
+      <Box p={8} bg="blue" color="white">
+        Hello world
+      </Box>
+      <Box p={8} bg="green" color="white">
+        Hello again
+      </Box>
+    </HStack>
+  );
+};
+```

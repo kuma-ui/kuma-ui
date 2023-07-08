@@ -1,12 +1,8 @@
 import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
-import eval from "eval";
 import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
-import { sheet, styleMap } from "@kuma-ui/sheet";
-import { writeFile, mkdtempSync } from "fs";
 import { createHash } from "crypto";
-import { tmpCSSDir } from "./plugin";
 
 const virtualLoaderPath = require.resolve("./virtualLoader");
 

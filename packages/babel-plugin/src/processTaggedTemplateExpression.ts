@@ -64,7 +64,7 @@ export const processTaggedTemplateExpression = (
             return (
               <${
                 importedStyleFunctions["Box"]
-              } as="${component}" {...props} className={combinedClassName} />
+              } as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />
             );
         }`,
         {

@@ -1,0 +1,76 @@
+---
+title: "Spacer"
+description: "The Spacer is a utility component used to create space between other components. It accepts 'size' and 'horizontal' props, which specify the size of the space and its orientation, respectively."
+---
+
+import {
+  ExampleContainer,
+  ExampleSpacerVertical,
+  ExampleSpacerHorizontal,
+} from "../../../components/example";
+
+# Spacer
+
+The Spacer is a utility component used to create space between other components in a Kuma UI application. It accepts `size` and `horizontal` props, which specify the size of the space and its orientation, respectively.
+
+## Import
+
+```tsx copy
+import { Spacer } from "@kuma-ui/core";
+```
+
+## Usage
+
+### Vertical Spacing
+
+<ExampleContainer>
+  <ExampleSpacerVertical />
+</ExampleContainer>
+
+```tsx copy
+const ExampleSpacerVertical = () => {
+  return (
+    <>
+      <Box p={8} bg="blue" color="white">
+        Component A
+      </Box>
+      <Spacer size="20px" />
+      <Box p={8} bg="green" color="white">
+        Component B
+      </Box>
+    </>
+  );
+};
+```
+
+### Horizontal Spacing
+
+<ExampleContainer>
+  <ExampleSpacerHorizontal />
+</ExampleContainer>
+
+```tsx copy
+const ExampleSpacerHorizontal = () => {
+  return (
+    <Flex>
+      <Box p={8} bg="blue" color="white">
+        Component A
+      </Box>
+      <Spacer size="20px" horizontal />
+      <Box p={8} bg="green" color="white">
+        Component B
+      </Box>
+    </Flex>
+  );
+};
+```
+
+## Props
+
+### size
+
+The `size` prop determines the size of the space. You can specify this as a string (e.g., "20px") or as a number (which will be converted to pixels).
+
+### horizontal
+
+The `horizontal` prop determines the orientation of the space. If set to true, the space will be horizontal. If left unset or set to false, the space will be vertical.

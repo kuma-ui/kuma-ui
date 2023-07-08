@@ -1,38 +1,40 @@
 import { createTheme } from "@kuma-ui/core";
 
 const theme = createTheme({
-
   colors: {
     red: {
-      100: 'red'
+      100: "red",
     },
     blue: "blue",
     green: "green",
   },
   components: {
     Box: {
-      base: {
-        color: 'BoxBase'
+      baseStyle: {
+        color: "ThemeBoxRed",
       },
       variants: {
         action: {
-          color: 'BoxAction'
-        }
-      }
+          bg: "pink",
+        },
+        action2: {
+          bg: "red",
+        },
+      },
     },
     Flex: {
-      base: {
-        color: 'FlexBase'
+      baseStyle: {
+        color: "gray",
       },
       variants: {
         action: {
-          color: 'FlexAction'
-        }
-      }
-    }
+          color: "orange",
+        },
+      },
+    },
   },
   breakpoints: {
-    sm: '1000px'
+    sm: "1000px",
   },
 });
 

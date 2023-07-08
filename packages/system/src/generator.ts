@@ -6,10 +6,15 @@ import { PseudoProps, isPseudoProps, normalizePseudo } from "./pseudo";
 import { all } from ".";
 
 export class StyleGenerator {
-  private style: SystemStyle;
+  private style: SystemStyle | undefined;
   private className: string;
 
   constructor(props: StyledProps & PseudoProps, isDynamic = false) {
+    if (!props || Object.keys(props).length === 0) {
+      this.className = "";
+      return;
+    }
+
     const styledProps: { [key: string]: any } = {};
     const pseudoProps: { [key: string]: any } = {};
 
@@ -37,9 +42,16 @@ export class StyleGenerator {
       responsive: all(styledProps).media,
       pseudo: convertedPseudoProps,
     };
-    const prefix = isDynamic ? "🦄-" : "🐻-";
 
-    this.className = prefix + generateHash(JSON.stringify(this.style));
+    this.className =
+      StyleGenerator.getClassNamePrefix(isDynamic) +
+      generateHash(JSON.stringify(this.style));
+  }
+
+  private static getClassNamePrefix(isDynamic = false) {
+    const isProduction = process.env.NODE_ENV === "production";
+    if (isProduction) return "kuma-";
+    return isDynamic ? "🦄-" : "🐻-";
   }
 
   getClassName() {
@@ -47,6 +59,10 @@ export class StyleGenerator {
   }
 
   getCSS() {
+    if (!this.style) {
+      return "";
+    }
+
     let css = `.${this.className} { ${this.style.base} }`;
     for (const [breakpoint, cssValue] of Object.entries(
       this.style.responsive
