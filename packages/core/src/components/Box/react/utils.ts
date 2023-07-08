@@ -44,13 +44,13 @@ const styleCache: {
  * Incurs O(n log n) cost due to sorting, but it's acceptable given the
  * expensive nature of StyleGenerator's internals.
  */
-function generateKey (props: Record<string, any>) {
+function generateKey(props: Record<string, any>) {
   return Object.entries(props)
     .filter(([, value]) => value !== undefined)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([key, value]) => `${key}:${value}`)
     .join("|");
-};
+}
 
 export function getCachedStyle(dynamicProps: Record<string, any>) {
   const key = generateKey(dynamicProps);
