@@ -15,7 +15,8 @@ import { ListProps } from "./list";
 import { EffectProps } from "./effect";
 import { TextProps } from "./text";
 import { FontProps } from "./font";
-import { ColumnProps } from ".";
+import { MaskProps } from "./mask";
+import { ColumnProps } from "./column";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProps &
   TypographyProps &
@@ -30,6 +31,8 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProp
   ShadowProps &
   GridProps &
   ListProps &
+  EffectProps &
+  MaskProps &
   ColumnProps &
   EffectProps;
 

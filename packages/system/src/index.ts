@@ -15,7 +15,9 @@ import { list, ListProps } from "./list";
 import { effect, EffectProps } from "./effect";
 import { text, TextProps } from "./text";
 import { font, FontProps } from "./font";
+import { mask, MaskProps } from "./mask";
 import { column, ColumnProps } from "./column";
+
 export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
@@ -35,7 +37,8 @@ export const all = compose(
   column,
   effect,
   text,
-  font
+  font,
+  mask
 );
 
 export { normalizePseudo, isPseudoProps };
@@ -49,6 +52,7 @@ export type {
   OutlineProps,
   PositionProps,
   ShadowProps,
+  MaskProps,
   GridProps,
   ListProps,
   ColumnProps,

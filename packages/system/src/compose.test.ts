@@ -11,7 +11,9 @@ import { effect } from "./effect";
 import { border } from "./border";
 import { outline } from "./outline";
 import { font } from "./font";
+import { mask } from "./mask";
 import { column } from "./column";
+
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
@@ -27,6 +29,7 @@ describe("compose function", () => {
       list,
       effect,
       font,
+      mask,
       column
     );
     const props: StyledProps = {
@@ -44,6 +47,7 @@ describe("compose function", () => {
       transition: "all 0.5s ease-in-out",
       outline: "none",
       borderTop: "1px solid red",
+      maskRepeat: "no-repeat",
       columnCount: 2,
     };
     // Act
@@ -65,6 +69,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("transition: all 0.5s ease-in-out;");
     expect(styles.base).toContain("outline: none;");
     expect(styles.base).toContain("border-top: 1px solid red;");
+    expect(styles.base).toContain("mask-repeat: no-repeat;");
     expect(styles.base).toContain("column-count: 2;");
   });
 
