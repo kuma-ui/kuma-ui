@@ -18,7 +18,7 @@ import {
   componentList,
   isComponentProps,
   componentHandler,
-} from "@kuma-ui/core";
+} from "@kuma-ui/core/components/componentList";
 import { theme } from "@kuma-ui/sheet";
 
 export const extractProps = (

@@ -1,23 +1,13 @@
-import {
-  Box,
-  Flex,
-  Spacer,
-  Text,
-  Button,
-  Heading,
-  styled,
-  css,
-  Select as S,
-} from "@kuma-ui/core";
+import { Box, HStack, styled, css, Select as S } from "@kuma-ui/core";
 import { Dynamic } from "./Dynamic";
 
 function App() {
   const red = "red";
   return (
-    <Box as="main" display="flex" flexDir={["column"]}>
+    <HStack>
       <Dynamic key={1} />
       <Dynamic key={2} />
-    </Box>
+    </HStack>
   );
 }
 

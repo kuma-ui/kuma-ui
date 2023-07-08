@@ -7,7 +7,7 @@ import {
 } from "ts-morph";
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
-import { componentList } from "@kuma-ui/core";
+import { componentList } from "@kuma-ui/core/components/componentList";
 
 const project = new Project({});
 

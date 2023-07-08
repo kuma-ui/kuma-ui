@@ -1,5 +1,5 @@
 import { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
-import { componentList } from "@kuma-ui/core";
+import { componentList } from "@kuma-ui/core/components/componentList";
 import { match } from "ts-pattern";
 import {
   handleBox,

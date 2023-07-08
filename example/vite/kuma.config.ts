@@ -14,13 +14,18 @@ const theme = createTheme({
   },
   components: {
     Box: {
-      base: {
+      baseStyle: {
         color: "green",
       },
       variants: {
         action: {
           color: "red",
         },
+      },
+    },
+    HStack: {
+      baseStyle: {
+        gap: "12px",
       },
     },
   },
