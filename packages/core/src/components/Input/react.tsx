@@ -3,12 +3,9 @@ import React, { ReactNode } from "react";
 import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { ComponentProps } from "../types";
 
-type InputProps = StyledProps &
-  Partial<PseudoProps> & {
-    children?: ReactNode;
-  };
-
+type InputProps = ComponentProps<"Input">;
 type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
 
 const Input: InputComponent = <T extends As>({

@@ -10,7 +10,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 
-type HStackProps = ComponentProps;
+type HStackProps = ComponentProps<"HStack">;
 
 type HStackComponent<T extends As = "div"> = ComponentWithAs<T, HStackProps>;
 

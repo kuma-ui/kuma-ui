@@ -10,7 +10,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 
-type VStackProps = ComponentProps;
+type VStackProps = ComponentProps<"VStack">;
 
 type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
 

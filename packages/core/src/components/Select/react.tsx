@@ -1,13 +1,16 @@
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import {
+  As,
+  ComponentProps,
+  ComponentWithAs,
+  MergeWithAs,
+  PropsOf,
+} from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 
-type SelectProps = StyledProps &
-  Partial<PseudoProps> & {
-    children?: ReactNode;
-  };
+type SelectProps = ComponentProps<"Select">;
 
 type SelectComponent<T extends As = "select"> = ComponentWithAs<T, SelectProps>;
 
