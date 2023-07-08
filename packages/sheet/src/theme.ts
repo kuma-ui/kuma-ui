@@ -6,7 +6,20 @@ export const defaultBreakpoints = Object.freeze({
 });
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/core
-type ComponentName = "Box" | "Flex" | "Spacer" | "Text" | "Button" | "Heading";
+type ComponentName =
+  | "Box"
+  | "Flex"
+  | "Spacer"
+  | "Text"
+  | "Button"
+  | "Heading"
+  | "Input"
+  | "Select"
+  | "HStack"
+  | "VStack"
+  | "Image"
+  | "Link"
+  | "Grid";
 
 export type UserTheme = {
   colors: Record<string, string> | undefined;

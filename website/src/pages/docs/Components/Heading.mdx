@@ -1,0 +1,40 @@
+---
+title: "Heading"
+description: "The Heading component is used to render semantic HTML heading elements in a Kuma UI application."
+---
+
+import { ExampleContainer, HeadingExample } from "../../../components/example";
+
+# Heading
+
+The Heading component is used to render semantic HTML heading elements in a Kuma UI application. By default, it renders as an `<h1>` element, but this can be customized using the `as` prop.
+
+## Import
+
+```tsx copy
+import { Heading } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <HeadingExample />
+</ExampleContainer>
+
+```tsx copy
+const HeadingExample = () => {
+  return (
+    <Heading as="h2" color="black" fontSize="24px">
+      Hello world
+    </Heading>
+  );
+};
+```
+
+## Props
+
+Props for the Heading component are the same as for the standard HTML heading elements (h1 to h6), in addition to Kuma UI's `StyledProps` and `PseudoProps`.
+
+## as
+
+The as prop allows you to alter the rendered element. It takes values from "h1" to "h6" with "h1" as default.

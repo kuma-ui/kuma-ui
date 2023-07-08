@@ -7,40 +7,14 @@ import {
   Heading,
   styled,
   css,
+  Select as S,
 } from "@kuma-ui/core";
 import { Dynamic } from "./Dynamic";
 
 function App() {
   const red = "red";
   return (
-    <Box
-      as="main"
-      display="flex"
-      flexDir={["column", "row"]}
-      _hover={{
-        bg: "red",
-      }}
-    >
-      <Heading
-        as="h3"
-        className={css`
-          color: red;
-          @media (max-width: sm) {
-            color: blue;
-          }
-        `}
-      >
-        Kuma UI
-      </Heading>
-
-      <Flex flexDir={`column`}>
-        <Text as="p" fontSize={24}>
-          Zero Runtime UI Component Library
-        </Text>
-        <Spacer size={8} />
-        <Button color={red}>Getting Started</Button>
-      </Flex>
-      <HelloWorld>hello world</HelloWorld>
+    <Box as="main" display="flex" flexDir={["column"]}>
       <Dynamic key={1} />
       <Dynamic key={2} />
     </Box>

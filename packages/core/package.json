@@ -31,6 +31,13 @@
       "import": "./dist/components/componentList.mjs"
     }
   },
+  "typesVersions": {
+    "*": {
+      "components/componentList": [
+        "./dist/components/componentList.d.ts"
+      ]
+    }
+  },
   "files": [
     "dist"
   ],

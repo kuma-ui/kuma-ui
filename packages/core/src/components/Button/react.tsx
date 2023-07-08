@@ -17,7 +17,7 @@ type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
 /**
  * Button is a clickable component used to trigger actions or events in a Kuma UI application.
  *
- * @see — Further documentation will be available in the future.
+ * @see — http://kuma-ui.com/docs/Components/Button
  */
 const Button: ButtonComponent = <T extends As = "button">({
   as: Component = "button",

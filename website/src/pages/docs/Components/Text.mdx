@@ -1,0 +1,32 @@
+---
+title: "Text"
+description: "Text is Used to render text content or paragraphs in a Kuma UI application"
+---
+
+import { ExampleContainer, TextExample } from "../../../components/example";
+
+# Text
+
+Text is a component used to render text content or paragraphs in a Kuma UI application. It uses the `<p>` HTML element by default but this can be customized using the `as` prop.
+
+## Import
+
+```tsx copy
+import { Text } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <TextExample />
+</ExampleContainer>
+
+```tsx copy
+const TextExample = () => {
+  return (
+    <Text color="black" fontSize="16px">
+      Hello world
+    </Text>
+  );
+};
+```

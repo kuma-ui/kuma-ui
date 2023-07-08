@@ -18,7 +18,7 @@ type FlexComponent<T extends As = "div"> = ComponentWithAs<T, FlexProps>;
  * Flex is a Box component with 'display: flex' by default. It's used to create flexible layouts in a Kuma UI application.
  * Like Box, it can accept any system style properties for extensive customization.
  *
- * @see — Further documentation will be available in the future.
+ * @see — http://kuma-ui.com/docs/Components/Flex
  */
 const Flex: FlexComponent = <T extends As = "div">({
   as: Component = "div",
