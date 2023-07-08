@@ -14,3 +14,4 @@ export * from "./Select";
 export * from "./Image";
 export * from "./Link";
 export * from "./Grid";
+export * from "./Input";
