@@ -29,11 +29,10 @@ describe("Sheet class", () => {
     const className = sheet.addRule(style);
     const cssString = sheet.getCSS();
     // Assert
-    expect(className.startsWith("kuma-")).toBeTruthy();
+    expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
       `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
     );
-    console.log(cssString);
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${style.responsive[
         "768px"

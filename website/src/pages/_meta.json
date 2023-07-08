@@ -1,0 +1,21 @@
+{
+  "index": {
+    "title": "Home",
+    "type": "page"
+  },
+  "docs": {
+    "title": "Documentation",
+    "type": "page",
+    "href": "/docs"
+  },
+  "team": {
+    "title": "Community",
+    "type": "menu",
+    "items": {
+      "team": {
+        "title": "Team",
+        "href": "/team"
+      }
+    }
+  }
+}

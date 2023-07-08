@@ -6,24 +6,22 @@ describe("Theme", () => {
     theme.reset();
   });
 
-  test("should allow setting and getting breakpoints", () => {
+  test("should allow setting and getting theme", () => {
     // Arrange
-    const breakpoints = {
-      sm: "640px",
-      md: "768px",
-      lg: "1024px",
-      xl: "1280px",
-    };
-
+    const userTheme = {
+      colors: {},
+      breakpoints: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+      },
+      components: {},
+    }
     // Act
-    theme.setBreakpoints(breakpoints);
+    theme.setUserTheme(userTheme);
 
     // Assert
-    expect(theme.getBreakpoints()).toEqual(breakpoints);
-  });
-
-  test("should return default breakpoints when none are set", () => {
-    // Act & Assert
-    expect(theme.getBreakpoints()).toEqual(defaultBreakpoints);
+    expect(theme.getUserTheme()).toEqual(userTheme);
   });
 });

@@ -12,14 +12,7 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? P
   : never;
 /**
- * A higher-order component that wraps a given component with styled-system
- * functionality and applies the data-kuma-ui attribute.
- *
- * the Babel plugin replaces the styled function with the hashed class name during the build process.
- * This is essentially a placeholder for the actual implementation that happens in the Babel plugin.
- *
- * @param Component - The component to be wrapped with styled-system functionality
- * @returns A new component with styled-system functionality and a unique data-kuma-ui attribute
+ * Kuma UI's `styled` API allows you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with libraries like styled-components or Emotion.
  */
 function styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn = (

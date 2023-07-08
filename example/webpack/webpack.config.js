@@ -43,13 +43,16 @@ module.exports = {
                 "@babel/preset-typescript",
                 [
                   "@babel/preset-react",
+                  {
+                    runtime: "automatic",
+                  },
                 ],
               ],
             },
           },
-          {
-            loader: KumaUIWebpackPlugin.loader,
-          },
+          // {
+          //   loader: KumaUIWebpackPlugin.loader,
+          // },
         ],
       },
       {

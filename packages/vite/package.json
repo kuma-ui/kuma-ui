@@ -34,7 +34,10 @@
   },
   "dependencies": {
     "@kuma-ui/babel-plugin": "workspace:^",
-    "@kuma-ui/sheet": "workspace:^"
+    "@kuma-ui/system": "workspace:^",
+    "@kuma-ui/sheet": "workspace:^",
+    "esbuild": "^0.18.0",
+    "eval": "^0.1.8"
   },
   "devDependencies": {
     "vite": "^4.2.1"

@@ -1,7 +1,4 @@
 import { NodePath, Node, types, template } from "@babel/core";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import printAST from "ast-pretty-print";
 
 /**
  * Processes the JSXElement nodes in the AST and replaces the 'k' syntax from '@kuma-ui/core'
@@ -39,6 +36,10 @@ export const replaceKwithBox = (
           t.jsxAttribute(
             t.jsxIdentifier("as"),
             t.stringLiteral(openingElement.name.property.name)
+          ),
+          t.jsxAttribute(
+            t.jsxIdentifier("IS_KUMA_DEFAULT"),
+            t.jsxExpressionContainer(t.booleanLiteral(true))
           ),
           ...openingElement.attributes,
         ];

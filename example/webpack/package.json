@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "webpack serve --mode development"
+    "start": "rimraf node_modules/@kuma-ui/core/node_modules/react && webpack serve --mode development"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",
+    "rimraf": "^5.0.1",
     "ts-loader": "^9.4.2",
     "webpack": "^5.78.0",
     "webpack-cli": "^5.0.2",

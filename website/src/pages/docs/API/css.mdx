@@ -1,0 +1,81 @@
+---
+title: "css"
+description: "The css function provides a way to define styles using tagged template literals and generates a unique className that you can apply to your components. "
+---
+
+import { ThisIsTheCSS, ExampleContainer } from "../../../components/example";
+import { Callout } from "nextra-theme-docs";
+
+# css
+
+Kuma UI's `css` function allows you to define styles using tagged template literals, generating a unique className that you can apply to your components. This syntax is similar to the one used with the styled API, making it a familiar choice for developers.
+
+<Callout type="warning">
+  Please note that the css API does not currently support interpolations in the
+  same way as libraries like Emotion does. However, we are actively working to
+  incorporate this feature, so stay tuned for updates.
+</Callout>
+
+## Import
+
+```ts copy
+import { css } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <ThisIsTheCSS />
+</ExampleContainer>
+
+```tsx copy
+export const ThisIsTheCSS = () => {
+  return (
+    <div
+      className={css`
+        color: white;
+        padding: 8px;
+        background: blue;
+      `}
+    >
+      hello world
+    </div>
+  );
+};
+```
+
+In this example, the `css` function defines a set of styles, generating a className that we then apply to the div component.
+
+## Handling Dynamic Styles
+
+While Kuma UI supports dynamic values for styled props like the one shown below, they are processed at runtime and hence might not be as performance-friendly:
+
+```tsx copy
+const [isPressed, setPressed] = useState(false);
+const onClick = () => setPressed(true);
+
+return <Box color={isPressed ? "red" : "blue"}></Box>;
+```
+
+For better performance, we recommend defining your dynamic styles with the css API like so:
+
+```tsx copy
+const [isPressed, setPressed] = useState(false);
+const onClick = () => setPressed(true);
+
+return (
+  <Box
+    className={
+      isPressed
+        ? css`
+            color: red;
+          `
+        : css`
+            color: blue;
+          `
+    }
+  ></Box>
+);
+```
+
+In this case, the styles are generated statically at build time, which is more performance-friendly. Thus, you can use the `css` API to handle both static and dynamic styles efficiently.
