@@ -1,5 +1,17 @@
 # @kuma-ui/next-plugin
 
+## 0.9.0-next.0
+
+### Minor Changes
+
+- [#126](https://github.com/poteboy/kuma-ui/pull/126) [`c89e97c`](https://github.com/poteboy/kuma-ui/commit/c89e97c2f2d3fc56586d0e02d5d8ff873b9eee6a) Thanks [@poteboy](https://github.com/poteboy)! - Introducing Theming, Hybrid CSS-in-JS, and Universal UI Components in @kuma-ui/core
+
+### Patch Changes
+
+- Updated dependencies [[`c89e97c`](https://github.com/poteboy/kuma-ui/commit/c89e97c2f2d3fc56586d0e02d5d8ff873b9eee6a)]:
+  - @kuma-ui/core@0.6.0-next.0
+  - @kuma-ui/webpack-plugin@0.8.0-next.0
+
 ## 0.8.0
 
 ### Minor Changes
