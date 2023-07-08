@@ -36,7 +36,6 @@
   ],
   "scripts": {
     "build": "tsup && npm run add-mjs-ext",
-    "build:types": "tsc --stripInternal",
     "add-mjs-ext": "ts-node --esm -P scripts/tsconfig.json scripts/add-mjs-ext.mts",
     "test": "vitest run && vitest typecheck --run",
     "typecheck": "tsc --noEmit --composite false",
