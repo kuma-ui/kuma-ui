@@ -57,7 +57,7 @@ export function getCachedStyle(dynamicProps: Record<string, any>) {
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
   if (!generatedStyle) {
-    generatedStyle = new StyleGenerator(dynamicProps).getStyle();
+    generatedStyle = new StyleGenerator(dynamicProps, true).getStyle();
     styleCache[key] = generatedStyle;
   }
   return generatedStyle;
