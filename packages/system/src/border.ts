@@ -4,12 +4,13 @@ import { CSSProperties, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type BorderProps = Partial<
-  CSSProperties<"borderTop" | "borderRight" | "borderLeft" | "borderBottom"> &
+  CSSProperties<"border" | "borderTop" | "borderRight" | "borderLeft" | "borderBottom"> &
     CSSProperties<"borderStyle"> &
     CSSProperties<"borderRadius" | "borderWidth", true>
 >;
 
 const borderMappings: Record<BorderKeys, string> = {
+  border: "border",
   borderTop: "border-top",
   borderRight: "border-right",
   borderLeft: "border-left",
