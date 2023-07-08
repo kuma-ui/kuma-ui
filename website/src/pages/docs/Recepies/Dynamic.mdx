@@ -24,7 +24,7 @@ export function Client() {
 }
 ```
 
-To distinguish which CSS has been statically extracted and which CSS has been dynamically added, Kuma uses different CSS class names. Class names starting with 🐻 are statically interpreted, and those starting with 🦄 are dynamically added. You can check these in your developer console.
+To distinguish which CSS has been statically extracted and which CSS has been dynamically added, Kuma uses different CSS class names. During development, class names starting with 🐻 are statically interpreted, and those starting with 🦄 are dynamically added. However, in production, these class names are prefixed with "kuma". You can check these in your developer console.
 
 Please note that when using a framework that provides Server Components like Next.js, if a CSS class has even one dynamically generated item, that component automatically becomes a Client Component. So, be careful! Even though Kuma supports Dynamic Styles, we recommend using them at the tip of the component tree.
 

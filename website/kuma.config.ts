@@ -14,9 +14,14 @@ const theme = createTheme({
   },
   components: {
     Button: {
-      baseStyle: {
-        bg: "black",
-        p: "10px",
+      variants: {
+        primary: {
+          bg: "#576ddf",
+          borderRadius: "14px",
+          p: "16px 32px",
+          color: "white",
+          fontWeight: 600,
+        },
       },
     },
   },
