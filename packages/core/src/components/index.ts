@@ -6,3 +6,4 @@ export * from "./Button";
 export * from "./Heading";
 export * from "./Select";
 export * from "./Input";
+export * from "./HStack";

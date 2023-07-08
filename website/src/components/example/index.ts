@@ -8,3 +8,4 @@ export * from "./Button";
 export * from "./Spacer";
 export * from "./Text";
 export * from "./Heading";
+export * from "./HStack";

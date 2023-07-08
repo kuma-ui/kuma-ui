@@ -15,7 +15,7 @@ const Select: SelectComponent = <T extends As = "select">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, SelectProps>) => (
-  <Box as={Component} {...props} children={children} />
+  <Box as={Component} {...props} children={children} IS_KUMA_DEFAULT />
 );
 
 export { Select, type SelectComponent, SelectProps };

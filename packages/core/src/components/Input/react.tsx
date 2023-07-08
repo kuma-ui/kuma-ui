@@ -15,7 +15,7 @@ const Input: InputComponent = <T extends As>({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, InputProps>) => (
-  <Box as={Component} {...props} children={children} />
+  <Box as={Component} {...props} children={children} IS_KUMA_DEFAULT />
 );
 
 export { Input, type InputComponent, InputProps };
