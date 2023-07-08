@@ -104,6 +104,7 @@ export const styleKeys = {
     "opacity",
   ] as const,
   border: [
+    "border",
     "borderWidth",
     "borderStyle",
     "borderRadius",
