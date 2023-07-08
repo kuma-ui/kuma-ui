@@ -11,5 +11,7 @@
     "@kuma-ui/vite": "0.7.0-next.0",
     "@kuma-ui/webpack-plugin": "0.8.0-next.0"
   },
-  "changesets": []
+  "changesets": [
+    "eight-papayas-repair"
+  ]
 }
