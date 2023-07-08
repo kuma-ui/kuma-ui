@@ -47,6 +47,8 @@ function App() {
 
 In this code, `p={12}` is a static style that is extracted at build time. The `color={checked ? "blue" : "green"}`, on the other hand, is a dynamic style injected at runtime.
 
+During development, Kuma uses different class names to distinguish between the two: 🐻 for statically interpreted styles, and 🦄 for dynamically added styles. However, in production, these class names are prefixed with "kuma".
+
 ## Conclusion
 
 By adopting the Hybrid Approach, Kuma UI offers a powerful and flexible solution to the challenges of CSS-in-JS. It harnesses the full power of JavaScript for styling without compromising on performance or compatibility with modern technologies.
