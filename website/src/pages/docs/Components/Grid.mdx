@@ -1,0 +1,38 @@
+---
+title: "Grid"
+description: "Grid is a powerful component that allows for 2-dimensional layouts and alignment of child components."
+---
+
+import { GridExample, ExampleContainer } from "../../../components/example";
+
+# Grid
+
+Grid is a Box component with `display="grid"` set by default. It allows for 2-dimensional layouts and alignment of child components, making it a powerful layout tool in the Kuma UI toolkit.
+
+## Import
+
+```tsx copy
+import { Grid } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <GridExample />
+</ExampleContainer>
+```tsx copy
+const GridExample = () => {
+  return (
+    <Grid gridTemplateColumns="repeat(2, 1fr)" gap={6}>
+      <Box bg="teal" height="80px" />
+      <Box bg="teal" height="80px" />
+      <Box bg="teal" height="80px" />
+      <Box bg="teal" height="80px" />
+    </Grid>
+  );
+};
+```
+
+## Props
+
+Grid accepts all the same props as [Box](/docs/Components/Box), plus additional props for controlling grid-specific styling.

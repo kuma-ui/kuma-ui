@@ -20,7 +20,7 @@ type HeadingComponent<
  * Used to render semantic HTML heading elements in a Kuma UI application.
  * By default, renders as h1 which can be customized with the 'as' prop.
  *
- * @see — Further documentation will be available in the future.
+ * @see — http://kuma-ui.com/docs/Components/Heading
  */
 const Heading: HeadingComponent = <
   T extends "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1"

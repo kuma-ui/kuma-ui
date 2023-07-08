@@ -1,0 +1,33 @@
+---
+title: "Input"
+description: "The Input component inherits from the HTML input element and can be combined with Kuma UI's style properties for customization."
+---
+
+import { InputExample, ExampleContainer } from "../../../components/example";
+
+# Input
+
+The Input component inherits from the HTML input element and can be combined with Kuma UI's style properties for extensive customization.
+
+## Import
+
+```tsx copy
+import { Input } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <InputExample />
+</ExampleContainer>
+```tsx copy
+const InputExample = () => {
+  return (
+    <Input placeholder="Enter some text" />
+  );
+};
+```
+
+## Props
+
+Input accepts all the same props as a standard HTML [input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) element.

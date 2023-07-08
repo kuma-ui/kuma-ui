@@ -1,0 +1,44 @@
+---
+title: "Utility First"
+description: "Harness the power of utility props in Kuma UI for efficient and concise styling."
+---
+
+# Utility First
+
+Kuma UI adopts the **Utility First** CSS approach, empowering developers to style their components directly using utility props rather than relying on external stylesheets. This approach has several significant advantages:
+
+## 1. No Need to Name Styles
+
+With traditional CSS, developers have to think of unique class names and manage an increasingly large stylesheet as more components are added. With utility first, you apply styles directly to the components, eliminating the need for class names altogether. It's simpler, cleaner, and allows you to focus on creating reusable components rather than reusable stylesheets.
+
+```tsx
+<Text color="blue" fontSize="16px" fontWeight="bold">
+  Hello world
+</Text>
+```
+
+## 2. Changes Feel Safer
+
+In traditional CSS, styles are global, making it risky to change something without potentially breaking another part of your app. In the utility first approach, styles are scoped to the component, so you can change them without worrying about unwanted side effects.
+
+## 3. Leverage the Power of Inline Styles
+
+At first glance, utility props might seem like inline styles, but they offer several key advantages:
+
+1. **Designing with Constraints**: With inline styles, every value is arbitrary. With utility props, you're choosing from predefined design tokens in your theme, encouraging consistent design across your app.
+
+2. **Responsive Design**: Utility props in Kuma UI are responsive, allowing you to easily build responsive interfaces directly in your components.
+
+3. **Pseudo-Props**: Utility props support states like hover or focus, which aren't possible with inline styles.
+
+```tsx
+<Button
+  color="colors.white"
+  bg={["red", "black"]}
+  _hover={{ cursor: "pointer" }}
+>
+  Hover me
+</Button>
+```
+
+By adopting the utility first approach, you'll find your workflow becoming more efficient, concise, and intuitive. Embrace the utility first, and watch your productivity soar 🚀

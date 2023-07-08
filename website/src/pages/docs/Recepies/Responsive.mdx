@@ -1,0 +1,61 @@
+---
+title: "Responsive Styles"
+description: "This page explains how to use responsive styles with Kuma UI for adaptive design across different viewport sizes."
+---
+
+# Responsive Styles
+
+Kuma UI provides powerful tools for implementing responsive designs. By using the array syntax for style props or the `styled` and `css` APIs, you can create designs that adapt to different viewport sizes seamlessly.
+
+## Array Syntax for Style Props
+
+In your components, you can apply different styles based on the viewport size using an array syntax. For example, the following Box component will have a different color at different viewport sizes:
+
+```tsx copy
+<Box color={["red", "blue", "green"]} />
+```
+
+In this example, the Box will have a 'red' color on small viewports, 'blue' color on medium viewports, and 'green' on large and above viewports.
+
+## The `styled` and css `APIs`
+
+Both the `styled` and `css` APIs support the breakpoints defined in your [theme](/docs/Theme/CustomizingTheme). This allows you to use the breakpoint names directly in your media queries. It's also possible to use raw pixel values in your media queries.
+
+Here is an example of how to use them in the `styled` API:
+
+```tsx copy
+import { styled } from "@kuma-ui/core";
+
+export const ResponsiveBox = styled("div")`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: medium) {
+    flex-direction: column;
+  }
+  @media (max-width: 500px) {
+    background-color: pink;
+  }
+`;
+```
+
+In the above example, the `flex-direction` changes to `column` when the viewport width is less than the `medium` breakpoint. Additionally, when the viewport width is less than 500px, the background color changes to pink.
+
+You can also use breakpoints in the css API:
+
+```tsx copy
+import { css } from "@kuma-ui/core";
+
+export const responsiveStyles = css`
+  color: red;
+  @media (max-width: sm) {
+    color: blue;
+  }
+  @media (max-width: 600px) {
+    color: green;
+  }
+`;
+```
+
+In this example, the color changes to 'blue' when the viewport width is less than the `sm` breakpoint. When the viewport width is less than 600px, the color changes to green.
+
+These techniques provide a powerful way to write maintainable and consistent media queries in your styles, ensuring that your Kuma UI application is responsive and adapts to various viewport sizes.
