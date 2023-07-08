@@ -17,7 +17,7 @@ type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
 /**
  * VStack is a Box component with `display="flex"` and `flex-direction: column` set by default. It makes it easier to layout and align child components in a vertical direction. It is a fundamental layout component in Kuma UI.
  *
- * @see — Further documentation will be available in the future.
+ * @see — http://kuma-ui.com/docs/Components/VStack
  */
 const VStack: VStackComponent = <T extends As = "div">({
   as: Component = "div",

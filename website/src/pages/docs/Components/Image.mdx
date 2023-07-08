@@ -1,0 +1,36 @@
+---
+title: "Image"
+description: "Image is a component that displays an image, providing styling that integrates well with the Kuma UI ecosystem."
+---
+
+import { ImageExample, ExampleContainer } from "../../../components/example";
+
+# Image
+
+Image is a simple wrapper around the native `<img>` HTML element, providing styling that integrates well with the Kuma UI ecosystem.
+
+## Import
+
+```tsx copy
+import { Image } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <ImageExample />
+</ExampleContainer>
+```tsx
+const ImageExample = () => {
+  return (
+    <Image
+      src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp"
+      alt="Description of image"
+    />
+  );
+};
+```
+
+## Props
+
+Image accepts all the same props as a standard HTML [img](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img) element.

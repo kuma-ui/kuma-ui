@@ -16,7 +16,8 @@ type ComponentName =
   | "Input"
   | "Select"
   | "HStack"
-  | "VStack";
+  | "VStack"
+  | "Image";
 
 export type UserTheme = {
   colors: Record<string, string> | undefined;

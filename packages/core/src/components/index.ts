@@ -8,3 +8,4 @@ export * from "./Select";
 export * from "./Input";
 export * from "./HStack";
 export * from "./VStack";
+export * from "./Image";

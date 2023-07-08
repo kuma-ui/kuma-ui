@@ -9,6 +9,7 @@ import {
   Input,
   HStack,
   VStack,
+  Image,
 } from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
@@ -44,6 +45,7 @@ import {
   vstackHandler,
   vstackDefaultProps,
 } from "./VStack/handler";
+import { isImageProps, imageHandler, imageDefaultProps } from "./Image/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -58,6 +60,7 @@ export const componentList = Object.freeze({
   Input: Input.name as "Input",
   HStack: HStack.name as "HStack",
   VStack: VStack.name as "VStack",
+  Image: Image.name as "Image",
 } as const);
 
 type ComponentName = keyof typeof componentList;
@@ -75,6 +78,7 @@ export const isComponentProps =
       .with("Input", () => isInputProps(propName))
       .with("HStack", () => isHStackProps(propName))
       .with("VStack", () => isVStackProps(propName))
+      .with("Image", () => isImageProps(propName))
       .exhaustive();
   };
 
@@ -92,6 +96,7 @@ export const componentDefaultProps = (
     .with("Input", () => inputDefaultProps)
     .with("HStack", () => hstackDefaultProps)
     .with("VStack", () => vstackDefaultProps)
+    .with("Image", () => imageDefaultProps)
     .exhaustive();
 };
 
@@ -109,5 +114,6 @@ export const componentHandler =
       .with("Input", () => inputHandler(props))
       .with("HStack", () => hstackHandler(props))
       .with("VStack", () => vstackHandler(props))
+      .with("Image", () => imageHandler(props))
       .exhaustive();
   };
