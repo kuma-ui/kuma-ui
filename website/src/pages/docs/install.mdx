@@ -60,25 +60,11 @@ Once the `@kuma-ui/core` package is successfully installed, you can proceed to i
 Once you've installed the plugin, you need to configure it in your configuration file.
 
 <Tabs
-  items={["next.js pages router", "next.js app router", "vite"]}
+  items={["next.js app router", "next.js pages router", "vite"]}
   storageKey="selected-config"
 >
   {/* prettier-ignore */}
   <Tab>
-    ```js filename="next.config.js"
-    const { withKumaUI } = require("@kuma-ui/next-plugin");
-
-    /** @type {import('next').NextConfig} */
-    const nextConfig = {
-      reactStrictMode: true,
-    };
-
-    module.exports = withKumaUI(nextConfig);
-    ```
-
-</Tab>
-{/* prettier-ignore */}
-<Tab>
     ```tsx filename="next.config.js"
     const { withKumaUI } = require("@kuma-ui/next-plugin");
 
@@ -94,6 +80,21 @@ Once you've installed the plugin, you need to configure it in your configuration
     ```
 
   </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+    ```js filename="next.config.js"
+    const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+    /** @type {import('next').NextConfig} */
+    const nextConfig = {
+      reactStrictMode: true,
+    };
+
+    module.exports = withKumaUI(nextConfig);
+    ```
+
+  </Tab>
+  {/* prettier-ignore */}
   <Tab>
     ```js filename="vite.config.js"
     import { defineConfig } from "vite";
@@ -114,9 +115,29 @@ Once you've installed the plugin, you need to configure it in your configuration
 ## Server Side Rendering
 
 <Tabs
-  items={["next.js pages router", "next.js app router"]}
+  items={["next.js app router", "next.js pages router"]}
   storageKey="selected-ssr"
 >
+  {/* prettier-ignore */}
+  <Tab>
+    ```tsx filename="app/layout.tsx"
+    import { KumaRegistry } from "@kuma-ui/next-plugin/registry"
+
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <html>
+          <body>
+            <KumaRegistry>{children}</KumaRegistry>
+          </body>
+        </html>
+      );
+    }
+    ```
+  </Tab>
   {/* prettier-ignore */}
   <Tab>
     ```tsx filename="pages/_document.tsx"
@@ -161,46 +182,6 @@ Once you've installed the plugin, you need to configure it in your configuration
         );
       }
     }
-    ```
-</Tab>
-{/* prettier-ignore */}
-<Tab>
-    ```tsx filename="app/registry.tsx"
-      "use client";
-
-      import React, { useState } from "react";
-      import { useServerInsertedHTML } from "next/navigation";
-      import { StyleRegistry, createStyleRegistry } from "@kuma-ui/core";
-
-      export function KumaRegistry({ children }: { children: React.ReactNode }) {
-        const [registry] = useState(() => createStyleRegistry());
-
-        useServerInsertedHTML(() => {
-          const styles = registry.styles();
-          registry.flush();
-          return <>{styles}</>;
-        });
-
-        return <StyleRegistry registry={registry}>{children}</StyleRegistry>;
-      }
-    ```
-
-    ```tsx filename="app/layout.tsx"
-      import { KumaRegistry } from "./registry"
-
-      export default function RootLayout({
-        children,
-      }: {
-        children: React.ReactNode
-      }) {
-        return (
-          <html>
-            <body>
-              <KumaRegistry>{children}</KumaRegistry>
-            </body>
-          </html>
-        );
-      }
     ```
   </Tab>
 </Tabs>
