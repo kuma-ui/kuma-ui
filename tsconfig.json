@@ -11,6 +11,7 @@
     "typeRoots": ["./src/types", "node_modules/@types"],
     "moduleResolution": "bundler",
     "skipLibCheck": true,
+    "stripInternal": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "declarationDir": "dist",

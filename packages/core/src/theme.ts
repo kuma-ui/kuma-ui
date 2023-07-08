@@ -4,7 +4,7 @@ import {
   Pretty,
   flattenObject,
 } from "./utils/object";
-import { If, IsAny, Stringify, _String } from "./utils/types";
+import { If, IsNever, Stringify, _String } from "./utils/types";
 import { componentList } from "./components/componentList";
 
 export type ThemeInput = {
@@ -39,17 +39,18 @@ type ThemeBreakPointsResult<T extends ThemeInput> = {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Theme {}
 
-//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
-type ThemeColors = Theme["colors"];
-//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
-type ThemeComponents = Theme["components"];
-//　@ts-expect-error　To inject types, the user needs to provide values, which are not present by default.
-type ThemeBreakPoints = Theme["breakPoints"];
+type ThemeColors = Theme extends { colors: unknown } ? Theme["colors"] : never;
+type ThemeComponents = Theme extends { components: unknown }
+  ? Theme["components"]
+  : never;
+type ThemeBreakPoints = Theme extends { breakPoints: unknown }
+  ? Theme["breakPoints"]
+  : never;
 
 export type ThemeSystem = {
-  colors: If<IsAny<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
-  components: If<IsAny<ThemeComponents>, unknown, ThemeComponents>;
-  breakpoints: If<IsAny<ThemeBreakPoints>, unknown, ThemeBreakPoints>;
+  colors: If<IsNever<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
+  components: If<IsNever<ThemeComponents>, unknown, ThemeComponents>;
+  breakpoints: If<IsNever<ThemeBreakPoints>, unknown, ThemeBreakPoints>;
 };
 
 export function createTheme<const T extends ThemeInput>(
