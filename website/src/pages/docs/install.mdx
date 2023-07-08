@@ -1,0 +1,187 @@
+---
+title: "Installation"
+description: "The Modern Headless & Zero Runtime UI Component Library 🐻‍❄️✨"
+---
+
+import { Callout, Tabs, Tab, Steps } from "nextra-theme-docs";
+
+# Installation
+
+<Callout type="info">
+  Kuma UI is compatible with React 18 and above. If you're using an older
+  version of React, [you'll need to upgrade
+  first](https://react.dev/blog/2022/03/08/react-18-upgrade-guide).
+</Callout>
+
+## Install packages
+
+To install Kuma UI in your project, run one of the following commands in your terminal:
+
+<Tabs items={["npm", "pnpm", "yarn"]} storageKey="selected-pkg-manager">
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  npm install @kuma-ui/core
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install @kuma-ui/core
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  yarn add @kuma-ui/core
+  ```
+  </Tab>
+</Tabs>
+
+Once the `@kuma-ui/core` package is successfully installed, you can proceed to install a plugin for your specific framework (Next.js or Vite) as below.
+
+<Tabs items={["next.js", "vite"]} storageKey="selected-framework">
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D @kuma-ui/next-plugin
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D @kuma-ui/vite
+  ```
+  </Tab>
+</Tabs>
+
+## Setting Up Kuma UI
+
+Once you've installed the plugin, you need to configure it in your configuration file.
+
+<Tabs
+  items={["next.js app router", "next.js pages router", "vite"]}
+  storageKey="selected-config"
+>
+  {/* prettier-ignore */}
+  <Tab>
+    ```tsx filename="next.config.js"
+    const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+    /** @type {import('next').NextConfig} */
+    const nextConfig = {
+      reactStrictMode: true,
+      experimental: {
+        appDir: true
+      }
+    };
+
+    module.exports = withKumaUI(nextConfig);
+    ```
+
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+    ```js filename="next.config.js"
+    const { withKumaUI } = require("@kuma-ui/next-plugin");
+
+    /** @type {import('next').NextConfig} */
+    const nextConfig = {
+      reactStrictMode: true,
+    };
+
+    module.exports = withKumaUI(nextConfig);
+    ```
+
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+    ```js filename="vite.config.js"
+    import { defineConfig } from "vite";
+    import react from "@vitejs/plugin-react";
+    import KumaUI from "@kuma-ui/vite";
+
+    export default defineConfig({
+      plugins: [
+        react(),
+        KumaUI(),
+      ],
+    });
+    ```
+
+  </Tab>
+</Tabs>
+
+## Server Side Rendering
+
+<Tabs
+  items={["next.js app router", "next.js pages router"]}
+  storageKey="selected-ssr"
+>
+  {/* prettier-ignore */}
+  <Tab>
+    ```tsx filename="app/layout.tsx"
+    import { KumaRegistry } from "@kuma-ui/next-plugin/registry"
+
+    export default function RootLayout({
+      children,
+    }: {
+      children: React.ReactNode
+    }) {
+      return (
+        <html>
+          <body>
+            <KumaRegistry>{children}</KumaRegistry>
+          </body>
+        </html>
+      );
+    }
+    ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+    ```tsx filename="pages/_document.tsx"
+    import Document, { Html, Head, Main, NextScript } from "next/document";
+    import { createStyleRegistry, StyleRegistry } from "@kuma-ui/core";
+
+    export default class MyDocument extends Document {
+      static async getInitialProps(ctx: DocumentContext) {
+        const registry = createStyleRegistry();
+        const originalRenderPage = ctx.renderPage;
+
+        try {
+          ctx.renderPage = () =>
+            originalRenderPage({
+              enhanceApp: (App) => (props) =>
+                (
+                  <StyleRegistry registry={registry}>
+                    <App {...props} />
+                  </StyleRegistry>
+                ),
+            });
+
+          const initialProps = await Document.getInitialProps(ctx);
+          return {
+            ...initialProps,
+            styles: [initialProps.styles, registry.styles()],
+          };
+        } finally {
+          registry.flush();
+        }
+      }
+
+      render() {
+        return (
+          <Html>
+            <Head />
+            <body>
+              <Main />
+              <NextScript />
+            </body>
+          </Html>
+        );
+      }
+    }
+    ```
+  </Tab>
+</Tabs>

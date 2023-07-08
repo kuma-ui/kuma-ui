@@ -1,6 +1,6 @@
 {
   "name": "@kuma-ui/sheet",
-  "version": "0.5.1",
+  "version": "0.6.0-next.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",

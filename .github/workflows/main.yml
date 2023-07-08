@@ -3,9 +3,11 @@ on:
   push:
     branches:
       - main
+      - experimental
   pull_request:
     branches:
       - main
+      - experimental
 jobs:
   test:
     name: Node ${{ matrix.node_version }} testing

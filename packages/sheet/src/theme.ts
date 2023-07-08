@@ -5,13 +5,61 @@ export const defaultBreakpoints = Object.freeze({
   xl: "1200px",
 });
 
+// to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/core
+type ComponentName =
+  | "Box"
+  | "Flex"
+  | "Spacer"
+  | "Text"
+  | "Button"
+  | "Heading"
+  | "Input"
+  | "Select"
+  | "HStack"
+  | "VStack"
+  | "Image"
+  | "Link"
+  | "Grid";
+
+export type UserTheme = {
+  colors: Record<string, string> | undefined;
+  breakpoints: Record<string, string>;
+  components?: {
+    [_ in ComponentName]?: {
+      baseStyle?: any;
+      variants?: { [key: string]: any };
+    };
+  };
+};
+
+type RuntimeUserTheme = {
+  components: Record<string, Record<string, string>>;
+  tokens: Record<string, string>;
+  breakpoints: Record<string, string>;
+};
+
+declare global {
+  // eslint-disable-next-line no-var
+  var __KUMA_USER_THEME__: UserTheme | undefined;
+  // eslint-disable-next-line no-var
+  var __KUMA_RUNTIME_USER_THEME__: RuntimeUserTheme | undefined;
+}
+
 export class Theme {
   private static instance: Theme;
-  private _breakpoints: Record<string, string>;
+  private _runtimeUserTheme: RuntimeUserTheme =
+    globalThis.__KUMA_RUNTIME_USER_THEME__ ?? {
+      breakpoints: {},
+      components: {},
+      tokens: {},
+    };
+  private _userTheme: UserTheme = globalThis.__KUMA_USER_THEME__ ?? {
+    colors: undefined,
+    breakpoints: defaultBreakpoints,
+    components: undefined,
+  };
 
-  private constructor() {
-    this._breakpoints = defaultBreakpoints;
-  }
+  private constructor() {}
 
   static getInstance() {
     if (!Theme.instance) {
@@ -20,16 +68,49 @@ export class Theme {
     return Theme.instance;
   }
 
-  setBreakpoints(breakpoints: Record<string, string>) {
-    this._breakpoints = breakpoints;
+  setUserTheme(userTheme: UserTheme) {
+    this._userTheme = userTheme;
   }
 
-  getBreakpoints(): Record<string, string> {
-    return this._breakpoints;
+  setRuntimeUserTheme(runtimeUserTheme: RuntimeUserTheme) {
+    this._runtimeUserTheme = runtimeUserTheme;
+  }
+
+  getUserTheme() {
+    return this._userTheme;
+  }
+
+  getRuntimeUserTheme() {
+    return this._runtimeUserTheme;
+  }
+
+  getVariants(componentName: ComponentName):
+    | {
+        baseStyle?: any;
+        variants?:
+          | {
+              [key: string]: any;
+            }
+          | undefined;
+      }
+    | undefined {
+    return this._userTheme.components?.[componentName] || {};
+  }
+
+  getTokens(): Record<string, string> {
+    return this._runtimeUserTheme.tokens || {};
+  }
+
+  getBreakPoints(): Record<string, string> {
+    return this._runtimeUserTheme.breakpoints || {};
   }
 
   reset() {
-    this._breakpoints = defaultBreakpoints;
+    this._userTheme = {
+      colors: undefined,
+      breakpoints: defaultBreakpoints,
+      components: undefined,
+    };
   }
 }
 

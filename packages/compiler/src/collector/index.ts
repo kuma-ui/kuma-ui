@@ -1,0 +1,1 @@
+export { collectPropsFromJsx } from "./collect";

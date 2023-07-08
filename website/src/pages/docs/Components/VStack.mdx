@@ -1,0 +1,36 @@
+---
+title: "VStack"
+description: "VStack is a layout component that aligns child components vertically."
+---
+
+import { VStackExample, ExampleContainer } from "../../../components/example";
+
+# VStack
+
+VStack is a Box component with `display="flex"` and `flex-direction: column` set by default. It makes it easier to layout and align child components in a vertical direction. It is a fundamental layout component in Kuma UI.
+
+## Import
+
+```tsx copy
+import { VStack } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <VStackExample />
+</ExampleContainer>
+```tsx copy
+const VStackExample = () => {
+  return (
+    <VStack justify="center" alignItems="center">
+      <Box p={8} bg="blue" color="white">
+        Hello world
+      </Box>
+      <Box p={8} bg="green" color="white">
+        Hello again
+      </Box>
+    </VStack>
+  );
+};
+```

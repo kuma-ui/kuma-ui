@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@kuma-ui/babel-plugin": "0.12.0-next.0",
+    "@kuma-ui/compiler": "0.1.0-next.0",
+    "@kuma-ui/core": "0.6.0-next.0",
+    "@kuma-ui/next-plugin": "0.9.0-next.0",
+    "@kuma-ui/sheet": "0.6.0-next.0",
+    "@kuma-ui/system": "0.7.0-next.0",
+    "@kuma-ui/vite": "0.7.0-next.0",
+    "@kuma-ui/webpack-plugin": "0.8.0-next.0"
+  },
+  "changesets": [
+    "eight-papayas-repair"
+  ]
+}

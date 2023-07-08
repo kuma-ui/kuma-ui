@@ -1,6 +1,7 @@
+import { theme } from ".";
 import { generateHash } from "./hash";
 import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
-import { compile, serialize, stringify } from "stylis";
+import { compile, serialize, stringify, Element } from "stylis";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
@@ -44,8 +45,15 @@ export class Sheet {
     return Sheet.instance;
   }
 
-  addRule(style: SystemStyle) {
-    const className = "kuma-" + generateHash(JSON.stringify(style));
+  private static getClassNamePrefix(isDynamic = false) {
+    const isProduction = process.env.NODE_ENV === "production";
+    if (isProduction) return "kuma-";
+    return isDynamic ? "🦄-" : "🐻-";
+  }
+
+  addRule(style: SystemStyle, isDynamic = false) {
+    const className =
+      Sheet.getClassNamePrefix(isDynamic) + generateHash(JSON.stringify(style));
     this._addeBaseRule(className, style.base);
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
       this._addMediaRule(className, css, breakpoint);
@@ -95,8 +103,35 @@ export class Sheet {
    * It's useful for handling complex CSS such as media queries and pseudo selectors.
    */
   parseCSS(style: string): string {
-    const id = "kuma-" + generateHash(style);
-    const css = serialize(compile(`.${id}{${style}}`), stringify);
+    const id = Sheet.getClassNamePrefix() + generateHash(style);
+
+    const elements: Element[] = [];
+
+    compile(`.${id}{${style}}`).forEach((element) => {
+      const { breakpoints } = theme.getUserTheme();
+      if (element.type === "@media") {
+        const props = Array.isArray(element.props)
+          ? element.props
+          : [element.props];
+        const newProps: string[] = [];
+        let newValue = element.value;
+        for (const key in breakpoints) {
+          newValue = newValue.replaceAll(key, breakpoints[key]);
+        }
+        props.forEach((prop) => {
+          for (const key in breakpoints) {
+            newProps.push(prop.replaceAll(key, breakpoints[key]));
+            break;
+          }
+        });
+        element.props = newProps;
+        element.value = newValue;
+      }
+      elements.push(element);
+    });
+
+    const css = serialize(elements, stringify);
+
     this.css.push(css);
     return id;
   }

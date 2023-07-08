@@ -8,7 +8,7 @@ import { OutlineProps } from "./outline";
 import { PositionProps } from "./position";
 import { ShadowProps } from "./shadow";
 import { PseudoProps } from "./pseudo";
-import { ResponsiveStyle } from "./types";
+import { ThemeSystemType, ResponsiveStyle } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
 import { GridProps } from "./grid";
 import { ListProps } from "./list";
@@ -18,12 +18,12 @@ import { FontProps } from "./font";
 import { MaskProps } from "./mask";
 import { ColumnProps } from "./column";
 
-export type StyledProps = SpaceProps &
+export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProps &
   TypographyProps &
   TextProps &
   FontProps &
   LayoutProps &
-  ColorProps &
+  ColorProps<T["colors"]> &
   FlexProps &
   BorderProps &
   OutlineProps &

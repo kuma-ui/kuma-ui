@@ -3,6 +3,13 @@ import { StyledKeyType } from "./keys";
 
 type If<C extends boolean, T, F> = C extends true ? T : F;
 
+// eslint-disable-next-line @typescript-eslint/ban-types
+type _String = string & {};
+
+export type ThemeSystemType = {
+  colors: _String;
+};
+
 // A type for non-undefined CSS property values
 export type CSSProperty = Exclude<
   CSS.Properties[keyof CSS.Properties],
@@ -40,4 +47,14 @@ export type UtilityCSSMapping<K extends StyledKeyType> = {
 export type ResponsiveStyle = {
   base: string;
   media: { [breakpoint: string]: string };
+};
+
+export type SystemStyle = {
+  base: ResponsiveStyle["base"];
+  responsive: ResponsiveStyle["media"];
+  pseudo: {
+    key: string;
+    base: ResponsiveStyle["base"];
+    responsive: ResponsiveStyle["media"];
+  }[];
 };
