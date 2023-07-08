@@ -86,7 +86,7 @@ export default function kumaUI(): Plugin {
     config(config) {
       if (!config.define) config.define = {};
       config.define = Object.assign(config.define, {
-        "globalThis.__KUMA_USER_THEME__": JSON.stringify(runtimeTheme),
+        "globalThis.__KUMA_USER_THEME__": JSON.stringify(userTheme),
         "globalThis.__KUMA_RUNTIME_USER_THEME__": JSON.stringify(runtimeTheme),
       });
       return config;
