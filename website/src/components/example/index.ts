@@ -12,3 +12,4 @@ export * from "./HStack";
 export * from "./VStack";
 export * from "./Select";
 export * from "./Image";
+export * from "./Link";

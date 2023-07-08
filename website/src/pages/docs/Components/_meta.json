@@ -6,6 +6,9 @@
   "Text": "Text",
   "Heading": "Heading",
   "Button": "Button",
+  "Link": "Link",
+  "Image": "Image",
   "Input": "Input",
+  "Select": "Select",
   "Spacer": "Spacer"
 }

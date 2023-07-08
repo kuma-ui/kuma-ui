@@ -17,7 +17,8 @@ type ComponentName =
   | "Select"
   | "HStack"
   | "VStack"
-  | "Image";
+  | "Image"
+  | "Link";
 
 export type UserTheme = {
   colors: Record<string, string> | undefined;

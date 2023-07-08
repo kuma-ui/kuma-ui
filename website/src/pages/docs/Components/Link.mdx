@@ -1,0 +1,33 @@
+---
+title: "Link"
+description: "Link is a component that creates a hyperlink, providing styling that integrates well with the Kuma UI ecosystem."
+---
+
+import { LinkExample, ExampleContainer } from "../../../components/example";
+
+# Link
+
+Link is a simple wrapper around the native `<a>` HTML element, providing styling that integrates well with the Kuma UI ecosystem.
+
+## Import
+
+```ts copy
+import { Link } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <LinkExample />
+</ExampleContainer>
+```tsx copy
+const LinkExample = () => {
+  return (
+    <Link href="https://example.com" target="_blank">Visit example.com</Link>
+  );
+};
+```
+
+## Props
+
+Link accepts all the same props as a standard HTML [a](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) element.
