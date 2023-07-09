@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
+</div>
+
 <h1 align='center'>Ultra Fast, Zero Runtime, Headless UI Components</h1>
 
 **[Documentation](https://kuma-ui.com)**
@@ -13,7 +17,7 @@
   <br />
 </div>
 
-## 🌟 Features
+## 🐻‍❄️ Features
 
 - ⚡ **Zero-runtime**: Deliver blazing-fast websites with zero-runtime CSS extraction.
 
@@ -36,7 +40,7 @@ npm install @kuma-ui/core
 For installation instructions and more detailed information, please visit our [documentation](https://www.kuma-ui.com/docs/install). Be sure to check out our guide for setting up Kuma UI with your specific framework (Next.js or Vite).
 
 
-## Example
+## 🔫 Example
 
 ```tsx
 function App() {
