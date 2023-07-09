@@ -58,6 +58,14 @@ declare module "@kuma-ui/core" {
 }
 ```
 
+**Don't forget**: To leverage type inference and enable autocompletion of theme tokens and variants in your application, be sure to include `kuma.config.ts` in the include array of your `tsconfig.json`.
+
+```ts filename="tsconfig.json"
+{
+  "include": ["./kuma.config.ts"]
+}
+```
+
 ## Using the Theme
 
 ### Theme Tokens

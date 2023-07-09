@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Heading, css, Text } from "@kuma-ui/core";
-import Link from "next/link";
+import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
 
 export const Hero = () => {
   return (
@@ -47,25 +46,23 @@ export const Hero = () => {
           justify="center"
           gap="1rem"
         >
-          <a
+          <Link
             href="/docs"
-            className={css`
-              background: #292e32;
-              color: white;
-              padding-left: 1.5rem;
-              padding-right: 1.5rem;
-              line-height: 45px;
-              border-radius: 6px;
-              height: 3rem;
-              text-align: center;
-              cursor: pointer;
-              &:hover {
-                opacity: 0.9;
-              }
-            `}
+            bg="#292e32"
+            color="white"
+            px="1.5rem"
+            lineHeight="45px"
+            borderRadius="6px"
+            height="3rem"
+            textAlign="center"
+            cursor="pointer"
+            fontWeight={600}
+            _hover={{
+              opacity: 0.9,
+            }}
           >
             Get Started
-          </a>
+          </Link>
         </Box>
       </Box>
       <Box as="section" mt="5rem">
