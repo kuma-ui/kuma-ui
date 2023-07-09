@@ -15,7 +15,7 @@ const outlineMappings: Record<OutlineKeys, string> = {
   outlineOffset: "outline-offset",
   outlineWidth: "outline-width",
   outlineStyle: "outline-style",
-};
+} as const;
 
 export const outline = (props: OutlineProps): ResponsiveStyle => {
   let base = "";
