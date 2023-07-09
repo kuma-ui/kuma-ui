@@ -56,6 +56,7 @@ export const Hero = () => {
             height="3rem"
             textAlign="center"
             cursor="pointer"
+            fontWeight={600}
             _hover={{
               opacity: 0.9,
             }}
