@@ -17,6 +17,10 @@
   <br />
 </div>
 
+
+https://github.com/poteboy/kuma-ui/assets/59927325/c3f7da97-dbff-49bb-a578-1cb9134b8dd2
+
+
 ## 🐻‍❄️ Features
 
 - ⚡ **Zero-runtime**: Deliver blazing-fast websites with zero-runtime CSS extraction.
