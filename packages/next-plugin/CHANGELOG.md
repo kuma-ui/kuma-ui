@@ -1,5 +1,17 @@
 # @kuma-ui/next-plugin
 
+## 1.0.0
+
+### Major Changes
+
+- [`8ada2cd`](https://github.com/poteboy/kuma-ui/commit/8ada2cd64f144103cf611fc0990f4f74bcc19969) Thanks [@poteboy](https://github.com/poteboy)! - 🐻‍❄️
+
+### Patch Changes
+
+- Updated dependencies [[`8ada2cd`](https://github.com/poteboy/kuma-ui/commit/8ada2cd64f144103cf611fc0990f4f74bcc19969)]:
+  - @kuma-ui/core@1.0.0
+  - @kuma-ui/webpack-plugin@1.0.0
+
 ## 0.9.0-next.1
 
 ### Minor Changes
