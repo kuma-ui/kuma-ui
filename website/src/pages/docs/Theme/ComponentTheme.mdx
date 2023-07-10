@@ -1,0 +1,58 @@
+---
+title: "Component Theme"
+description: "Get to know how to customize component-specific themes in Kuma UI"
+---
+
+import { PrimaryButton, ExampleContainer } from "../../../components/example";
+
+# Component Theme
+
+In Kuma UI, you can define default and variant styles for your components globally in your theme. This feature provides a consistent look and feel across your application while allowing for extensive customization.
+
+## Defining Component Styles
+
+Component styles are defined in the `components` field of your theme. Each component can have a `baseStyle` and `variants`.
+
+Here's an example of how you can define a `primary` variant for the `Button` component:
+
+```ts
+const theme = createTheme({
+  components: {
+    Button: {
+      variants: {
+        primary: {
+          bg: "#576ddf",
+          borderRadius: "14px",
+          p: "16px 32px",
+          color: "white",
+          fontWeight: 600,
+          _hover: {
+            opacity: 0.8,
+          },
+        },
+      },
+    },
+  },
+});
+```
+
+## Using Component Styles
+
+### Base Styles
+
+Base styles are applied to all instances of a component. They're useful for defining default appearances.
+
+## Variants
+
+Variants offer a way to apply different styles to components based on a prop. For example, with the above theme configuration, you can apply the `primary` variant to a `Button` like so:
+
+<ExampleContainer>
+  <PrimaryButton />
+</ExampleContainer>
+```tsx
+<Button variant="primary">I'm a primary button</Button>
+```
+
+This approach gives you a lot of flexibility in terms of styling your components and ensuring consistency across your application.
+
+Remember, Kuma UI is a headless library, which means styles are not applied unless you define them in your theme. Define your component styles and unleash the power of Kuma UI!

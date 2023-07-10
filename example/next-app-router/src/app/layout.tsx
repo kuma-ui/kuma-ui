@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from "react";
 import { Inter } from "next/font/google";
 import { k } from "@kuma-ui/core";
+import { KumaRegistry } from "@kuma-ui/next-plugin/registry";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,9 +16,11 @@ const Layout: FC<Props> = ({ children }) => {
         <title></title>
       </head>
       <body>
-        <k.div bg={'red'} className={inter.className}>
-          {children}
-        </k.div>
+        <KumaRegistry>
+          <k.div bg={"red"} className={inter.className}>
+            {children}
+          </k.div>
+        </KumaRegistry>
       </body>
     </html>
   );

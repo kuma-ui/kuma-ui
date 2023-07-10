@@ -1,50 +1,18 @@
-import { k, styled, css } from "@kuma-ui/core";
+import { Box, HStack, styled, css, Select as S } from "@kuma-ui/core";
+import { Dynamic } from "./Dynamic";
 
 function App() {
+  const red = "red";
   return (
-    <ResponsiveTest>
-      <div className={text}>hello</div>
-      <k.p color="blue" _hover={{ bg: "red" }}>
-        world
-      </k.p>
-      <k.button p="10px 12px" fontSize={16} disabled>
-        button
-      </k.button>
-    </ResponsiveTest>
+    <HStack>
+      <Dynamic key={1} />
+      <Dynamic key={2} />
+    </HStack>
   );
 }
 
-export default App;
-
-const text = css({
-  color: "red",
-  p: [2, 4],
-  _hover: {
-    color: "black",
-  },
-});
-
-const ResponsiveTest = styled("div")`
-  position: relative;
-  width: 300px;
-  height: 300px;
-  background-color: rgba(255, 0, 0, 0.5);
-
-  &:hover {
-    background-color: rgba(0, 0, 255, 0.5);
-  }
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    border-top: 5px solid red;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    border-top: 5px solid blue;
-  }
+const HelloWorld = styled("p")`
+  color: red;
 `;
+
+export default App;

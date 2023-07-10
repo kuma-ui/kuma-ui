@@ -1,0 +1,37 @@
+---
+title: "Select"
+description: "Select is a component that allows the user to select one option from a list."
+---
+
+import { SelectExample, ExampleContainer } from "../../../components/example";
+
+# Select
+
+Select is a simple wrapper around the native `<select>` HTML element, providing styling that integrates well with the Kuma UI ecosystem.
+
+## Import
+
+```tsx copy
+import { Select } from "@kuma-ui/core";
+```
+
+## Usage
+
+<ExampleContainer>
+  <SelectExample />
+</ExampleContainer>
+```tsx copy
+const SelectExample = () => {
+  return (
+    <Select defaultValue="Option 1">
+      <option value="Option 1">Option 1</option>
+      <option value="Option 2">Option 2</option>
+      <option value="Option 3">Option 3</option>
+    </Select>
+  );
+};
+```
+
+## Props
+
+Select accepts all the same props as a standard HTML [select](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) element.

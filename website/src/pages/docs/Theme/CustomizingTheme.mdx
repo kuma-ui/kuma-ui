@@ -1,0 +1,87 @@
+---
+title: "Customizing Theme"
+description: "Customizing your Kuma UI theme allows you to define the default styles for your entire application."
+---
+
+# Customizing Theme
+
+Kuma UI provides you with a flexible way to define your theme. The `createTheme` function can be used to set up theme tokens like colors and breakpoints, as well as to define base and variant styles for your components.
+
+Note that Kuma UI is a headless component library, which means **it doesn't come with a default theme**. Styles won't be applied to your components unless you define them in your theme.
+
+## Defining Your Theme
+
+Here's an example of how you can define your theme:
+
+```ts filename="kuma.config.ts"
+import { createTheme } from "@kuma-ui/core";
+
+const theme = createTheme({
+  colors: {
+    red: {
+      100: "red",
+    },
+    blue: "blue",
+  },
+  breakpoints: {
+    sm: "400px",
+    md: "700px",
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        bg: "black", // bg is short for background
+        p: "10px", // p is short for padding
+      },
+    },
+  },
+});
+
+type UserTheme = typeof theme;
+
+declare module "@kuma-ui/core" {
+  export interface Theme extends UserTheme {}
+}
+
+export default theme;
+```
+
+In the above example, the theme is defined with a set of colors, a breakpoint, as well as base styles for the Button component.
+
+If you're using TypeScript, you can benefit from type inference when writing props for your application by extending the Kuma UI `Theme` interface with your user-defined theme:
+
+```ts copy
+type UserTheme = typeof theme;
+
+declare module "@kuma-ui/core" {
+  export interface Theme extends UserTheme {}
+}
+```
+
+**Don't forget**: To leverage type inference and enable autocompletion of theme tokens and variants in your application, be sure to include `kuma.config.ts` in the include array of your `tsconfig.json`.
+
+```ts filename="tsconfig.json"
+{
+  "include": ["./kuma.config.ts"]
+}
+```
+
+## Using the Theme
+
+### Theme Tokens
+
+Currently, the only theme token available is `colors`, but more are planned for the future. Colors are defined as an object, with keys being the color names and values being the color codes.
+
+### Breakpoints
+
+Breakpoints are a separate category, defined as an object with keys being the breakpoint names and values being the CSS width values. These can be utilized in your media queries.
+
+### Component Styles
+
+You can define styles for your components in the `components` section of your theme. Each component can have `base` and `variants` styles:
+
+- **Base Styles**: Base styles are applied to all instances of a component. For instance, if you set a `base` style for the Button component, all Button instances in your app will have that style.
+
+- **Variant Styles**: Variant styles can be applied to a component by passing a `variant` prop to it. For example, if you have a `primary` variant for the Button component, you can apply it like so: `<Button variant="primary" />`.
+
+This allows for a high degree of flexibility and consistency in styling your components across your application.

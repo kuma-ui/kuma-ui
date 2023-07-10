@@ -1,13 +1,8 @@
 <div align="center">
-
-  :construction: :rotating_light: **BIG NEWS!** :rotating_light: :construction:
-
-  We are taking Kuma UI to the next level. The ultimate CSS-in-JS solution is under development and we're aiming to drop the updates on **July 16th, 2023**. Until then, new releases will be paused. Stay tuned and get ready for the revolution 🐻‍❄️
-
   <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 
-<h1 align='center'>Ultra Fast, Zero Runtime, Utility-First CSS-in-JS</h1>
+<h1 align='center'>Ultra Fast, Zero Runtime, Headless UI Components</h1>
 
 **[Documentation](https://kuma-ui.com)**
 
@@ -22,177 +17,60 @@
   <br />
 </div>
 
-🐻‍❄️ Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.
+## 🐻‍❄️ Features
 
-## Features
+- ⚡ **Zero-runtime**: Deliver blazing-fast websites with zero-runtime CSS extraction.
 
-🔥 &nbsp; Blazing-fast performance with zero-runtime CSS extraction
+- 🔮 **Autocomplete**: Experience seamless development with style autocompletion.
 
-🦄 &nbsp; Build-time CSS generation
+- 🛠️ **Headless Components**: Enjoy maximum customization freedom with our headless components.
 
-🌳 &nbsp; Responsive design with breakpoints and media queries
+- 🤝 **Hybrid Approach**: The best of both worlds—support for any writing style with our hybrid approach.
 
-🎨 &nbsp; Utility-first approach for rapid UI development
+- 🚀 **RSC Support**: Stay updated with cutting-edge Next.js technology via our RSC support.
 
-👋 &nbsp; Support for pseudo-classes and pseudo-elements
+- 🥇 **Familiar DX** : Delight in the ultimate DX with our familiar API design.
 
-🔬 &nbsp; Experimental support for Next.js 13.4 App router & React server components(RSC).
-
-## Installation
+## 💻 Installation
 
 ```sh
-npm install -D @kuma-ui/core
+npm install @kuma-ui/core
 ```
 
-or
+For installation instructions and more detailed information, please visit our [documentation](https://www.kuma-ui.com/docs/install). Be sure to check out our guide for setting up Kuma UI with your specific framework (Next.js or Vite).
 
-```sh
-yarn add @kuma-ui/core -D
-```
 
-## Usage
-
-## styled API
-
-The styled API works just like styled-components or Emotion, allowing you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with these libraries.
+## 🔫 Example
 
 ```tsx
-import { styled } from "@kuma-ui/core";
-
-const Box = styled("div")`
-  position: relative;
-  &:hover {
-    background-color: rgba(0, 0, 255, 0.5);
-  }
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-// Then use it like so:
-<Box>Hello, world!</Box>;
-```
-
-### k object
-
-The `k` object is a key part of Kuma UI's API. It provides pre-styled HTML elements that you can use as components in your application. These elements can be styled using utility props for inline styling. The utility props are type-safe and make it easy to write responsive styles.
-
-```tsx
-import { k } from "@kuma-ui/core";
-
 function App() {
   return (
-    <k.div p={[4, 8]} m="2px" _hover={{ flexDir: "row" }}>
-      hello world
-    </k.div>
+    <Box as="main" display="flex" flexDir={["column", "row"]}>
+      <Heading
+        as="h3"
+        className={css`
+          color: red;
+          @media (max-width: sm) {
+            color: blue;
+          }
+        `}
+      >
+        Kuma UI
+      </Heading>
+      <Spacer size={4} />
+      <Flex flexDir={`column`}>
+        <Text as="p" fontSize={24}>
+          Headless UI Component Library
+        </Text>
+        <Button variant='primary'>Getting Started</Button>
+      </Flex>
+    </Box>
   );
 }
 ```
 
-### css function
+## 👥 Join the Community
 
-The `css` function is another way to style your components. It takes an object of styles and returns a string of hashed classNames that you can apply to your component using the `className` prop.
+Connect with us on [Twitter](https://twitter.com/kuma__ui) and [Discord](https://discord.gg/QrsQ4EPp7G) to stay up to date with our latest developments, or to provide us with your valuable feedback!
 
-```tsx
-import { css } from "@kuma-ui/core";
-
-const styles = css({ color: "red", fontSize: "24px" });
-
-function App() {
-  return <div className={styles}>Hello, world!</div>;
-}
-```
-
-## Setup
-
-### Next.js
-
-```sh
-yarn add @kuma-ui/next-plugin -D
-```
-
-#### Pages Directory Version
-
-**next.config.js**
-
-```js
-const { withKumaUI } = require("@kuma-ui/next-plugin");
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-};
-
-module.exports = withKumaUI(nextConfig);
-```
-
-#### App Router Version (Experimental)
-
-**next.config.js**
-
-```js
-const { withKumaUI } = require("@kuma-ui/next-plugin");
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  experimental: {
-    appDir: true
-  }
-};
-
-module.exports = withKumaUI(nextConfig);
-```
-
-### Vite
-
-```sh
-yarn add @kuma-ui/vite -D
-```
-
-**vite.config.ts**
-
-```js
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import KumaUI from "@kuma-ui/vite";
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    react(),
-    KumaUI(),
-  ],
-});
-```
-
-## Responsive Design
-
-Kuma UI supports responsive design. Use arrays to specify different styles for different viewport widths. For example, <k.div fontSize={[16, 24]} /> changes the font size from 16px to 24px based on the window size.
-
-Define the breakpoints in your config file:
-```js
-import kumaUI from "@kuma-ui/vite";
-
-kumaUI({
-  breakpoints: { sm: "400px", md: "700px" },
-});
-```
-
-## Roadmap
-
-Our ultimate goal is to develop **a zero-runtime headless component library**. We're currently focusing on enhancing the core and expanding our range of components. We aim to create a unique library that allows users to pass style props, operates with zero runtime, and remains accessible. In the future, we plan to introduce a `kuma.config.js` that allows users to define their own variants, making Kuma UI a go-to tool for creating design systems with high performance.
-
-
-## Contributing
-Contributions are welcome! Please feel free to submit issues or pull requests with any improvements or suggestions.
-
-### Adding a changeset
-Don't forget to include a changeset as well, by running this command at the root of the project:
-
-```sh
-pnpm changeset
-```
-
-## License
-MIT
+Welcome to Kuma UI, we can't wait to see what you build with it 🐻‍❄️.

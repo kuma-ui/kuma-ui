@@ -1,0 +1,57 @@
+---
+title: "Dynamic Styles"
+description: "Learn how to use dynamic styles with Kuma UI, the first library in the world to adopt a Hybrid approach to styling."
+---
+
+# Dynamic Styles
+
+Dynamic styling is a core feature of Kuma UI. **Kuma is the first library in the world to adopt a Hybrid approach to styling**. It analyzes the styles that can be statically interpreted at build time, and only extracts styles that couldn't be statically interpreted at runtime. This means that dynamic values, which cannot be statically interpreted, are injected at runtime.
+
+For example, in the following code snippet, `p={12}` can be statically interpreted, so the CSS is generated at build time. However, the background color (`bg`), which changes dynamically based on React's state, is processed at runtime. Despite this, it is efficiently processed due to support for Server Side Rendering (SSR) and effective use of caching.
+
+```tsx copy
+import React from "react";
+import { Box, Button } from "@kuma-ui/core";
+
+export function Client() {
+  const [checked, toggle] = React.useReducer((state) => !state, false);
+
+  return (
+    <Box p={12} bg={checked ? "blue" : "green"}>
+      <Button onClick={() => toggle()}>Change Background Color</Button>
+    </Box>
+  );
+}
+```
+
+To distinguish which CSS has been statically extracted and which CSS has been dynamically added, Kuma uses different CSS class names. During development, class names starting with 🐻 are statically interpreted, and those starting with 🦄 are dynamically added. However, in production, these class names are prefixed with "kuma". You can check these in your developer console.
+
+Please note that when using a framework that provides Server Components like Next.js, if a CSS class has even one dynamically generated item, that component automatically becomes a Client Component. So, be careful! Even though Kuma supports Dynamic Styles, we recommend using them at the tip of the component tree.
+
+Furthermore, to optimize Kuma, it's more desirable to generate CSS classes in advance using the `css` API and switch between them based on conditions, instead of using dynamic props. Here's an example:
+
+```tsx copy
+import React from "react";
+import { Box, Button, css } from "@kuma-ui/core";
+
+export function Client() {
+  const [checked, toggle] = React.useReducer((state) => !state, false);
+
+  return (
+    <Box
+      p={12}
+      className={
+        checked
+          ? css`
+              background: blue;
+            `
+          : css`
+              background: green;
+            `
+      }
+    >
+      <Button onClick={() => toggle()}>Change Background Color</Button>
+    </Box>
+  );
+}
+```
