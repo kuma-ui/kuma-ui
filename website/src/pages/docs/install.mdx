@@ -60,23 +60,9 @@ Once the `@kuma-ui/core` package is successfully installed, you can proceed to i
 Once you've installed the plugin, you need to configure it in your configuration file.
 
 <Tabs
-  items={["next.js app router", "next.js pages router", "vite"]}
+  items={["next.js", "vite"]}
   storageKey="selected-config"
 >
-  {/* prettier-ignore */}
-  <Tab>
-    ```tsx filename="next.config.js"
-    const { withKumaUI } = require("@kuma-ui/next-plugin");
-
-    /** @type {import('next').NextConfig} */
-    const nextConfig = {
-      reactStrictMode: true,
-    };
-
-    module.exports = withKumaUI(nextConfig);
-    ```
-
-  </Tab>
   {/* prettier-ignore */}
   <Tab>
     ```js filename="next.config.js"
