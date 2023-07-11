@@ -4,6 +4,7 @@ import { type Configuration, type RuleSetRule } from "webpack";
 import KumaUIWebpackPlugin from "@kuma-ui/webpack-plugin";
 import { lazyPostCSS } from "next/dist/build/webpack/config/blocks/css";
 import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/loaders";
+import { findPagesDir } from "next/dist/lib/find-pages-dir";
 import type { ConfigurationContext } from "next/dist/build/webpack/config/utils";
 
 type KumaConfig = ConstructorParameters<typeof KumaUIWebpackPlugin>[0];
@@ -25,7 +26,10 @@ const kumaUiConfig = (
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
-      const appDir = nextConfig.experimental?.appDir === true;
+      const { appDir } = findPagesDir(
+        dir,
+        !!options.config.experimental.appDir
+      );
 
       const cssRules = (
         config.module?.rules?.find(
