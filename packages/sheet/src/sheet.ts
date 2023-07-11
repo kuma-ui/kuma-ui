@@ -54,7 +54,7 @@ export class Sheet {
   addRule(style: SystemStyle, isDynamic = false) {
     const className =
       Sheet.getClassNamePrefix(isDynamic) + generateHash(JSON.stringify(style));
-    this._addeBaseRule(className, style.base);
+    this._addBaseRule(className, style.base);
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
       this._addMediaRule(className, css, breakpoint);
     }
@@ -64,7 +64,7 @@ export class Sheet {
     return className;
   }
 
-  private _addeBaseRule(className: string, css: string) {
+  private _addBaseRule(className: string, css: string) {
     css = css.replace(cssPropertyRegex, "");
     this.base.push(`.${className}{${css}}`);
   }
