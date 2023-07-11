@@ -25,7 +25,7 @@ const kumaUiConfig = (
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
-      const appDir = nextConfig.experimental?.appDir === true;
+      const appDir = options.config.experimental.appDir === true;
 
       const cssRules = (
         config.module?.rules?.find(
