@@ -32,6 +32,9 @@ export const Hero = () => {
           fontSize="1.125rem"
           className={css`
             line-height: 1.75rem;
+            @media (prefers-color-scheme: dark) {
+              mix-blend-mode: plus-lighter;
+            }
           `}
         >
           With Kuma UI's headless, zero-runtime UI components, build
