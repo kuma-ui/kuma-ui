@@ -1,5 +1,11 @@
 # @kuma-ui/next-plugin
 
+## 1.0.1
+
+### Patch Changes
+
+- [#201](https://github.com/poteboy/kuma-ui/pull/201) [`f2ddb97`](https://github.com/poteboy/kuma-ui/commit/f2ddb976adf44e7cdeb313b2913b6ebc81a2110f) Thanks [@kotarella1110](https://github.com/kotarella1110)! - feat(next-plugin): remove experimental.appDir option requirement
+
 ## 1.0.0
 
 ### Major Changes
