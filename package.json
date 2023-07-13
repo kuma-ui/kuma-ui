@@ -36,7 +36,7 @@
     "test": "turbo run test",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}'",
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'",
-    "codesandbox:insall": "pnpm i -D pnpm & pnpm i",
+    "codesandbox:insall": "pnpm i -g pnpm & pnpm i",
     "codesandbox:build": "pnpm build"
   },
   "devDependencies": {
@@ -58,6 +58,6 @@
     "vitest": "^0.31.4"
   },
   "engines": {
-    "pnpm": "8"
+    "pnpm": "7>="
   }
 }
