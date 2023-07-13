@@ -1,5 +1,11 @@
 # @kuma-ui/webpack-plugin
 
+## 1.0.1
+
+### Patch Changes
+
+- [#213](https://github.com/poteboy/kuma-ui/pull/213) [`0024b53`](https://github.com/poteboy/kuma-ui/commit/0024b53c53e0bec25fc108dac0e8289a456fc8f7) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix: fix exports field for typescript
+
 ## 1.0.0
 
 ### Major Changes
