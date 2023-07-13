@@ -1,5 +1,5 @@
 {
-  "installCommand": "> /dev/null & pnpm i -g pnpm & pnpm i",
+  "installCommand": "|| true & pnpm i -g pnpm & pnpm i",
   "packages": ["packages/*"],
   "sandboxes": ["new", "react-typescript-react-ts"],
   "node": "16"
