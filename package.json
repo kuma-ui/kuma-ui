@@ -35,7 +35,9 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}'",
-    "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'"
+    "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'",
+    "codesandbox:insall": "npm i -g pnpm@8 & pnpm i --no-frozen-lockfile",
+    "codesandbox:build": "pnpm build --filter=@kuma-ui/*"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
@@ -56,6 +58,6 @@
     "vitest": "^0.31.4"
   },
   "engines": {
-    "pnpm": "8"
+    "pnpm": ">=7"
   }
 }
