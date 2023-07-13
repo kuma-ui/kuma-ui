@@ -1,0 +1,7 @@
+{
+  "installCommand": "codesandbox:insall",
+  "buildCommand": "codesandbox:build",
+  "packages": ["packages/*"],
+  "sandboxes": ["new", "react-typescript-react-ts"],
+  "node": "16"
+}
