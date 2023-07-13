@@ -1,4 +1,5 @@
 {
+  "installCommand": "pnpm install -g pnpm & pnpm install",
   "packages": ["packages/*"],
   "sandboxes": ["new", "react-typescript-react-ts"],
   "node": "16"
