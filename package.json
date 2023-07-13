@@ -31,7 +31,6 @@
     "./README.md": "node scripts/sync-files.js"
   },
   "scripts": {
-    "codesandbox-ci-install": "pnpm install -g pnpm && pnpm install",
     "bootstrap": "pnpm install",
     "build": "turbo run build",
     "test": "turbo run test",
