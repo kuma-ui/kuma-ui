@@ -35,7 +35,9 @@
     "build": "turbo run build",
     "test": "turbo run test",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}'",
-    "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'"
+    "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}'",
+    "codesandbox:insall": "pnpm i -g pnpm & pnpm i",
+    "codesandbox:build": "pnpm build"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
@@ -56,6 +58,6 @@
     "vitest": "^0.31.4"
   },
   "engines": {
-    "pnpm": ">=7"
+    "pnpm": "8"
   }
 }
