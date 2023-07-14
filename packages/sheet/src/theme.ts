@@ -32,31 +32,18 @@ export type UserTheme = {
   };
 };
 
-type RuntimeUserTheme = {
-  components: Record<string, Record<string, string>>;
-  tokens: Record<string, string>;
-  breakpoints: Record<string, string>;
-};
-
 declare global {
   // eslint-disable-next-line no-var
   var __KUMA_USER_THEME__: UserTheme | undefined;
-  // eslint-disable-next-line no-var
-  var __KUMA_RUNTIME_USER_THEME__: RuntimeUserTheme | undefined;
 }
 
 export class Theme {
   private static instance: Theme;
-  private _runtimeUserTheme: RuntimeUserTheme =
-    globalThis.__KUMA_RUNTIME_USER_THEME__ ?? {
-      breakpoints: defaultBreakpoints,
-      components: {},
-      tokens: {},
-    };
-  private _userTheme: UserTheme = globalThis.__KUMA_USER_THEME__ ?? {
-    colors: undefined,
-    breakpoints: defaultBreakpoints,
-    components: undefined,
+  private _userTheme: UserTheme = {
+    colors: globalThis.__KUMA_USER_THEME__?.colors,
+    breakpoints:
+      globalThis.__KUMA_USER_THEME__?.breakpoints ?? defaultBreakpoints,
+    components: globalThis.__KUMA_USER_THEME__?.components,
   };
 
   private constructor() {}
@@ -68,32 +55,18 @@ export class Theme {
     return Theme.instance;
   }
 
-  setUserTheme(userTheme: UserTheme) {
-    if (
-      !userTheme?.breakpoints ||
-      Object.keys(userTheme?.breakpoints).length === 0
-    ) {
-      userTheme.breakpoints = defaultBreakpoints;
+  setUserTheme(userTheme: Partial<UserTheme>) {
+    if (Object.keys(userTheme.breakpoints || {}).length === 0) {
+      delete userTheme.breakpoints;
     }
-    this._userTheme = userTheme;
-  }
-
-  setRuntimeUserTheme(runtimeUserTheme: RuntimeUserTheme) {
-    if (
-      !runtimeUserTheme?.breakpoints ||
-      Object.keys(runtimeUserTheme?.breakpoints).length === 0
-    ) {
-      runtimeUserTheme.breakpoints = defaultBreakpoints;
-    }
-    this._runtimeUserTheme = runtimeUserTheme;
+    this._userTheme = {
+      ...this._userTheme,
+      ...userTheme,
+    };
   }
 
   getUserTheme() {
     return this._userTheme;
-  }
-
-  getRuntimeUserTheme() {
-    return this._runtimeUserTheme;
   }
 
   getVariants(componentName: ComponentName):
@@ -107,14 +80,6 @@ export class Theme {
       }
     | undefined {
     return this._userTheme.components?.[componentName] || {};
-  }
-
-  getTokens(): Record<string, string> {
-    return this._runtimeUserTheme.tokens || {};
-  }
-
-  getBreakPoints(): Record<string, string> {
-    return this._runtimeUserTheme.breakpoints || {};
   }
 
   reset() {

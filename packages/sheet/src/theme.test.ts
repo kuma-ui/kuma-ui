@@ -17,7 +17,7 @@ describe("Theme", () => {
         xl: "1280px",
       },
       components: {},
-    }
+    };
     // Act
     theme.setUserTheme(userTheme);
 
