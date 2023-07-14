@@ -44,43 +44,6 @@ export default function kumaUI(): Plugin {
 
   const userTheme = theme.getUserTheme();
 
-  let themeCss = "";
-
-  const runtimeTheme = {
-    components: {},
-    tokens: userTheme.colors || {},
-    breakpoints: userTheme.breakpoints || {},
-  };
-
-  for (const componentKey in userTheme.components) {
-    const component =
-      userTheme.components[componentKey as keyof typeof userTheme.components];
-    const componentVariants = {};
-    let componentBaseStyle = undefined;
-    const style = new StyleGenerator(component?.baseStyle);
-    themeCss += style.getCSS();
-    componentBaseStyle = style.getClassName();
-
-    for (const variantKey in component?.variants) {
-      const variant = component?.variants[variantKey];
-      const style = new StyleGenerator(variant);
-      themeCss += style.getCSS();
-
-      Object.assign(componentVariants, {
-        [variantKey]: style.getClassName(),
-      });
-    }
-
-    Object.assign(runtimeTheme.components, {
-      [componentKey]: {
-        baseStyle: componentBaseStyle,
-        variants: componentVariants,
-      },
-    });
-  }
-
-  theme.setRuntimeUserTheme(runtimeTheme);
-
   return {
     name: "kuma-ui",
     enforce: "pre",
@@ -88,7 +51,6 @@ export default function kumaUI(): Plugin {
       if (!config.define) config.define = {};
       config.define = Object.assign(config.define, {
         "globalThis.__KUMA_USER_THEME__": JSON.stringify(userTheme),
-        "globalThis.__KUMA_RUNTIME_USER_THEME__": JSON.stringify(runtimeTheme),
       });
       return config;
     },
@@ -110,8 +72,8 @@ export default function kumaUI(): Plugin {
       // const css = sheet.getCSS();
       const css =
         ((result.metadata as unknown as { css: string }).css as string) || "";
-      cssLookup[cssFilename] = css + themeCss;
-      cssLookup[cssId] = css + themeCss;
+      cssLookup[cssFilename] = css;
+      cssLookup[cssId] = css;
       sheet.reset();
       return (
         `import "${virtualModuleId}/${cssFilename}";

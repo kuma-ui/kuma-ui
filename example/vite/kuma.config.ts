@@ -8,10 +8,6 @@ const theme = createTheme({
     },
     green: "green",
   },
-  breakpoints: {
-    sm: "100px",
-    xl: "1000px",
-  },
   components: {
     Box: {
       baseStyle: {

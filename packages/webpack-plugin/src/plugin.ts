@@ -1,7 +1,6 @@
 import { Compiler } from "webpack";
 import { buildSync } from "esbuild";
 import eval from "eval";
-import { StyleGenerator } from "@kuma-ui/system";
 import { theme } from "@kuma-ui/sheet";
 import path from "path";
 import { readdirSync } from "fs";
@@ -60,47 +59,9 @@ class KumaUIWebpackPlugin {
 
   apply(compiler: Compiler) {
     const userTheme = theme.getUserTheme();
-
-    let css = "";
-
-    const runtimeTheme = {
-      components: {},
-      tokens: userTheme.colors || {},
-      breakpoints: userTheme.breakpoints || {}
-    };
-
-    for (const componentKey in userTheme.components) {
-      const component = userTheme.components[componentKey as keyof typeof userTheme.components];
-      const componentVariants = {};
-      let componentBaseStyle = undefined;
-      const style = new StyleGenerator(component?.baseStyle);
-        css += style.getCSS();
-        componentBaseStyle = style.getClassName()
-
-      for (const variantKey in component?.variants) {
-        const variant = component?.variants[variantKey];
-        const style = new StyleGenerator(variant);
-        css += style.getCSS();
-
-        Object.assign(componentVariants, {
-          [variantKey]: style.getClassName(),
-        });
-      }
-
-      Object.assign(runtimeTheme.components, {
-        [componentKey]: {
-          baseStyle: componentBaseStyle,
-          variants: componentVariants,
-        },
-      });
-    }
-
-    theme.setRuntimeUserTheme(runtimeTheme);
-
     compiler.options.plugins.push(
       new compiler.webpack.DefinePlugin({
         "globalThis.__KUMA_USER_THEME__": JSON.stringify(userTheme),
-        "globalThis.__KUMA_RUNTIME_USER_THEME__": JSON.stringify(runtimeTheme),
       })
     );
 
@@ -115,7 +76,6 @@ class KumaUIWebpackPlugin {
           options: {
             virtualLoader: this.options.virtualLoader ?? true,
             cssOutputDir: path.posix.join(process.cwd(), outDir),
-            cssSrc: css,
           },
         },
       ],

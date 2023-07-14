@@ -1,5 +1,20 @@
 # @kuma-ui/webpack-plugin
 
+## 1.0.2
+
+### Patch Changes
+
+- Updated dependencies [[`ee93574`](https://github.com/poteboy/kuma-ui/commit/ee9357493694118f6c9c829c9107221688a65ab8)]:
+  - @kuma-ui/sheet@1.0.1
+  - @kuma-ui/babel-plugin@1.0.1
+  - @kuma-ui/system@1.0.1
+
+## 1.0.1
+
+### Patch Changes
+
+- [#213](https://github.com/poteboy/kuma-ui/pull/213) [`0024b53`](https://github.com/poteboy/kuma-ui/commit/0024b53c53e0bec25fc108dac0e8289a456fc8f7) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix: fix exports field for typescript
+
 ## 1.0.0
 
 ### Major Changes

@@ -9,7 +9,6 @@ const virtualLoaderPath = require.resolve("./virtualLoader");
 type Options = {
   virtualLoader?: boolean;
   cssOutputDir?: string;
-  cssSrc: string;
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
@@ -50,17 +49,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
           outputDir: options.cssOutputDir || "kuma",
         });
 
-        const codePrefixTheme = fileLoader(options.cssSrc, {
-          context: this,
-          isVirtualLoader: isVirtualLoader,
-          outputDir: options.cssOutputDir || "kuma",
-        });
-
-        callback(
-          null,
-          `${result.code}\n${codePrefix};${codePrefixTheme}`
-        );
-        return
+        callback(null, `${result.code}\n${codePrefix};`);
+        return;
       }
       callback(null, `${result.code}`);
     })
