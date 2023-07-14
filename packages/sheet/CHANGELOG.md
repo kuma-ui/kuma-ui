@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 1.0.1
+
+### Patch Changes
+
+- [#216](https://github.com/poteboy/kuma-ui/pull/216) [`ee93574`](https://github.com/poteboy/kuma-ui/commit/ee9357493694118f6c9c829c9107221688a65ab8) Thanks [@poteboy](https://github.com/poteboy)! - Preventing 'Cannot convert undefined or null to object' error when using responsive styles without defined breakpoints
+
 ## 1.0.0
 
 ### Major Changes
