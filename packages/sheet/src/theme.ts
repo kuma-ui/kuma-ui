@@ -49,7 +49,7 @@ export class Theme {
   private static instance: Theme;
   private _runtimeUserTheme: RuntimeUserTheme =
     globalThis.__KUMA_RUNTIME_USER_THEME__ ?? {
-      breakpoints: {},
+      breakpoints: defaultBreakpoints,
       components: {},
       tokens: {},
     };
@@ -69,10 +69,22 @@ export class Theme {
   }
 
   setUserTheme(userTheme: UserTheme) {
+    if (
+      !userTheme?.breakpoints ||
+      Object.keys(userTheme?.breakpoints).length === 0
+    ) {
+      userTheme.breakpoints = defaultBreakpoints;
+    }
     this._userTheme = userTheme;
   }
 
   setRuntimeUserTheme(runtimeUserTheme: RuntimeUserTheme) {
+    if (
+      !runtimeUserTheme?.breakpoints ||
+      Object.keys(runtimeUserTheme?.breakpoints).length === 0
+    ) {
+      runtimeUserTheme.breakpoints = defaultBreakpoints;
+    }
     this._runtimeUserTheme = runtimeUserTheme;
   }
 
