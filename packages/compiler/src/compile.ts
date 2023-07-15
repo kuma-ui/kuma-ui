@@ -32,7 +32,6 @@ const compile = (
       }
       const jsxTagName = openingElement.getTagNameNode().getText();
       // Check if the current JSX element is a Kuma component
-      if (!Object.values(bindings).includes(jsxTagName)) return;
       const originalComponentName = Object.keys(bindings).find(
         (key) =>
           bindings[key] === jsxTagName &&
