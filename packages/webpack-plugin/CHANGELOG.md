@@ -1,5 +1,16 @@
 # @kuma-ui/webpack-plugin
 
+## 1.1.0
+
+### Minor Changes
+
+- [#224](https://github.com/poteboy/kuma-ui/pull/224) [`b9110d7`](https://github.com/poteboy/kuma-ui/commit/b9110d7e17c7ad16b70604f2272adb53c96c5544) Thanks [@rabitarochan](https://github.com/rabitarochan)! - fix: resolving paths on Windows
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @kuma-ui/babel-plugin@1.0.2
+
 ## 1.0.2
 
 ### Patch Changes
