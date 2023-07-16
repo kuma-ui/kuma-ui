@@ -42,8 +42,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup && npm run add-mjs-ext",
-    "add-mjs-ext": "ts-node --esm -P scripts/tsconfig.json scripts/add-mjs-ext.mts",
+    "build": "tsup",
     "test": "vitest run && vitest typecheck --run",
     "typecheck": "tsc --noEmit --composite false",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
