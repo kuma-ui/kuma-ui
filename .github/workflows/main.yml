@@ -12,10 +12,11 @@ on:
 jobs:
   test:
     name: Node ${{ matrix.node_version }} testing
-    runs-on: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node_version: [16]
+        os: [ubuntu-latest, windows-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
