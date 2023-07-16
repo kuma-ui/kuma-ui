@@ -8,9 +8,10 @@ Our project uses `pnpm` and `turborepo`. Here's how you can set it up:
 
 1. Clone the repository.
 2. In the root directory, run `pnpm install` to install dependencies.
-3. Make your changes. If you modify the source code, make sure to build the project to see your changes in action.
-4. If you make any modifications, please test your changes. We prefer new features to come with tests.
-5. If you update the README, please run `node scripts/sync-files.js` from the root directory to sync changes.
+3. To use everything correctly, run `pnpm build` to compile the necessary packages.
+4. Make your changes. If you modify the source code, make sure to build the project to see your changes in action.
+5. If you make any modifications, please test your changes. We prefer new features to come with tests.
+6. If you update the README, please run `node scripts/sync-files.js` from the root directory to sync changes.
 
 ## Package Structure
 
