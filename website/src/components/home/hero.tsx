@@ -1,7 +1,26 @@
 import React from "react";
 import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
+import { useConfig } from "nextra-theme-docs";
+import { useState, useEffect } from "react";
 
 export const Hero = () => {
+  const { nextThemes } = useConfig();
+  const isDark = useState(false);
+
+  useEffect(() => {
+    const html = document.getElementsByTagName("html")[0];
+    isDark[1](html.style.colorScheme === "dark");
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        // 'colorScheme' is not a standard style property, but we monitor it here
+        // because 'nextra-theme-docs' applies its own color scheme settings.
+        isDark[1](html.style.colorScheme === "dark");
+      });
+    });
+    observer.observe(html, { attributeFilter: ["style"] });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <Box m={["40px auto", "80px auto 0px"]}>
       <Box position="relative">
@@ -32,7 +51,13 @@ export const Hero = () => {
           fontSize="1.125rem"
           className={css`
             line-height: 1.75rem;
+            @media (prefers-color-scheme: dark) {
+              mix-blend-mode: plus-lighter;
+            }
           `}
+          style={{
+            mixBlendMode: isDark[0] ? "plus-lighter" : "initial",
+          }}
         >
           With Kuma UI's headless, zero-runtime UI components, build
           top-performing websites effortlessly, while enjoying the best
