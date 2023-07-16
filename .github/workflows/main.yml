@@ -8,10 +8,11 @@ on:
     branches:
       - main
       - experimental
+  workflow_dispatch:
 jobs:
   test:
     name: Node ${{ matrix.node_version }} testing
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest, windows-latest]
     strategy:
       matrix:
         node_version: [16]
