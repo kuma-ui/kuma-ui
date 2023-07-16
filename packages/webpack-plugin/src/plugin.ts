@@ -65,7 +65,7 @@ class KumaUIWebpackPlugin {
       })
     );
 
-    const outDir = this.options.cssOutputDir ?? ".kuma";
+    const outDir = this.options.cssOutputDir ?? "./.kuma";
 
     compiler.options.module?.rules?.push({
       test: /\.(tsx|ts|js|mjs|jsx)$/,
@@ -75,7 +75,7 @@ class KumaUIWebpackPlugin {
           loader: KumaUIWebpackPlugin.loader,
           options: {
             virtualLoader: this.options.virtualLoader ?? true,
-            cssOutputDir: path.posix.join(process.cwd(), outDir),
+            cssOutputDir: outDir,
           },
         },
       ],
