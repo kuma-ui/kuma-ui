@@ -41,6 +41,21 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: automatic) > using conditionals should match snapshot 1`] = `
+"
+.🐻-4229161508 { font-size: 24px; } .🐻-220318275 { font-size: 16px; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={[\\"🐻-4229161508\\",\\"🐻-220318275\\"][1*!(flag)]}></__Box>;
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements should match snapshot 1`] = `
 "
 .🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
@@ -134,6 +149,21 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: classic) > using conditionals should match snapshot 1`] = `
+"
+.🐻-4229161508 { font-size: 24px; } .🐻-220318275 { font-size: 16px; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={[\\"🐻-4229161508\\",\\"🐻-220318275\\"][1*!(flag)]}></__Box>;
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements should match snapshot 1`] = `
 "
 .🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
@@ -223,6 +253,21 @@ function App() {
   return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${css({
           boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
         })}\`} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using conditionals should match snapshot 1`] = `
+"
+.🐻-4229161508 { font-size: 24px; } .🐻-220318275 { font-size: 16px; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={[\\"🐻-4229161508\\",\\"🐻-220318275\\"][1*!(flag)]}></__Box>;
 }
 "
 `;

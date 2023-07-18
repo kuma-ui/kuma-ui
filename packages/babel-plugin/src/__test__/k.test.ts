@@ -18,6 +18,20 @@ describe("k api", () => {
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
+      test("using conditionals should match snapshot", async () => {
+        // Arrange
+        const inputCode = `
+        import { k } from '@kuma-ui/core'
+        function App({flag}) {
+          return <k.div fontSize={flag ? 24 : 16}></k.div>
+        }
+      `;
+        // Act
+        const result = await babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
       test("using responsive props should match snapshot", async () => {
         // Arrange
         const inputCode = `

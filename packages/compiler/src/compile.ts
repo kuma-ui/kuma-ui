@@ -45,7 +45,7 @@ const compile = (
         componentName,
         openingElement,
         extractedPropsMap
-      );
+      )
       if (result) css.push(result.css);
     }
   });

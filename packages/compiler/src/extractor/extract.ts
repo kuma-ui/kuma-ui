@@ -5,6 +5,7 @@ import {
   JsxOpeningElement,
   JsxSelfClosingElement,
 } from "ts-morph";
+import * as ts from "ts-morph";
 import {
   isStyledProp,
   isPseudoProps,
@@ -20,11 +21,12 @@ import {
   componentHandler,
 } from "@kuma-ui/core/components/componentList";
 import { theme } from "@kuma-ui/sheet";
+import { evaluateStaticBranching } from "../static-branching";
 
-export const extractProps = (
+const evaluateProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
-  propsMap: Record<string, any>
+  propsMap: Record<string, any>,
 ) => {
   const styledProps: { [key: string]: any } = {};
   const pseudoProps: { [key: string]: any } = {};
@@ -51,7 +53,7 @@ export const extractProps = (
       Object.assign(
         componentVariantProps,
         variant?.baseStyle,
-        variant?.variants?.[propValue as string]
+        variant?.variants?.[propValue as string],
       );
       jsx.getAttribute("variant")?.remove();
     } else if (propName.trim() === "IS_KUMA_DEFAULT") {
@@ -101,31 +103,6 @@ export const extractProps = (
   // If no generatedClassName is returned, the component should remain intact
   if (!generatedClassName) return { css };
 
-  const classNameAttr = jsx.getAttribute("className");
-  let newClassName = generatedClassName;
-  let newClassNameInitializer = "";
-
-  // Check if a className attribute already exists
-  if (classNameAttr && Node.isJsxAttribute(classNameAttr)) {
-    const initializer = classNameAttr.getInitializer();
-    // If the initializer is a string literal, simply concatenate the new className (i.e., className="hoge")
-    if (Node.isStringLiteral(initializer)) {
-      const existingClassName = initializer.getLiteralText();
-      if (existingClassName) newClassName += " " + existingClassName;
-      newClassNameInitializer = `"${newClassName}"`;
-    }
-    // If the initializer is a JsxExpression, create a template literal to combine the classNames at runtime (i.e., className={hoge})
-    else if (Node.isJsxExpression(initializer)) {
-      const expression = initializer.getExpression();
-      if (expression) {
-        newClassNameInitializer = `\`${newClassName} \${${expression.getText()}}\``;
-      }
-    }
-    classNameAttr.remove();
-  } else {
-    newClassNameInitializer = `"${newClassName}"`;
-  }
-
   for (const styledPropKey of Object.keys(styledProps)) {
     jsx.getAttribute(styledPropKey)?.remove();
   }
@@ -138,11 +115,74 @@ export const extractProps = (
     jsx.getAttribute(componentPropsKey)?.remove();
   }
 
+  return { css, generatedClassName };
+};
+
+const updateClassNameAttr = (
+  jsx: JsxOpeningElement | JsxSelfClosingElement,
+  className: string | { type: 'expression', expression: string } | undefined,
+) => {
+  if (!className) {
+    return;
+  }
+  const classNameAttr = jsx.getAttribute("className");
+  let newClassNameInitializer = "";
+
+  // Check if a className attribute already exists
+  if (classNameAttr && Node.isJsxAttribute(classNameAttr)) {
+    const initializer = classNameAttr.getInitializer();
+    const existingClassName = Node.isStringLiteral(initializer)
+      ? initializer.getText()
+      : Node.isJsxExpression(initializer)
+        ? initializer.getExpression()?.getText()
+        : undefined;
+
+    if (existingClassName) {
+      newClassNameInitializer = typeof className !== 'string' ? `\`\${${className.expression}} \${${existingClassName}}\`` : `\`${className} \${${existingClassName}}\``;
+    }
+    classNameAttr.remove();
+  } else {
+    newClassNameInitializer = typeof className !== 'string' ? className.expression : JSON.stringify(className);
+  }
+
   jsx.addAttribute({
     name: "className",
     initializer: `{${newClassNameInitializer}}`,
   });
-  return { css };
+};
+
+
+export const extractProps = (
+  componentName: (typeof componentList)[keyof typeof componentList],
+  jsx: JsxOpeningElement | JsxSelfClosingElement,
+  propsMapWithUnevaluatedConditionals: Record<string, any>,
+): { css: string } | undefined => {
+  const { propsMapList, indexExpression } = evaluateStaticBranching(
+    propsMapWithUnevaluatedConditionals,
+  );
+
+  const evaluationResults = propsMapList.map((propsMap) =>
+    evaluateProps(componentName, jsx, propsMap),
+  );
+
+  const kumaClassNames: string[] = evaluationResults.map(
+    (r) => r?.generatedClassName ?? "",
+  );
+
+  const switchingClassNameExpression = `${JSON.stringify(
+    kumaClassNames,
+  )}[${indexExpression}]`;
+
+  updateClassNameAttr(
+    jsx,
+    kumaClassNames.length === 1
+      ? kumaClassNames[0] ? kumaClassNames[0] : undefined
+      : { type: 'expression', expression: switchingClassNameExpression },
+  );
+
+  return {
+    css: evaluationResults.map((r) => r?.css ?? "").join(" "),
+  };
 };
 
 /**
