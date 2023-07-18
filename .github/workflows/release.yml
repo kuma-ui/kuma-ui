@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   release:
-    name: Node ${{ matrix.node_version }} testing
+    name: Node ${{ matrix.node_version }} releasing
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,7 +32,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm publish -r --access public --no-git-checks
+          publish: pnpm changeset tag && pnpm publish -r --access public --no-git-checks
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
