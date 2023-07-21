@@ -4,7 +4,7 @@ import pluin from ".";
 import { sheet } from "@kuma-ui/sheet";
 
 export async function transform(code: string, id: string) {
-  const result = await transformSync(code, {
+  const result = transformSync(code, {
     filename: id,
     sourceMaps: true,
     plugins: [pluin],
