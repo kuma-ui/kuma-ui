@@ -40,6 +40,7 @@ export default function kumaUI(): Plugin {
   }
 
   const cssLookup: { [key: string]: string } = {};
+  const virtualModuleId = "virtual:kuma-ui";
 
   const userTheme = theme.getUserTheme();
 
@@ -61,7 +62,9 @@ export default function kumaUI(): Plugin {
 
       const result = await transform(code, id);
       if (!result?.code) return;
-      const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
+      const cssFilename = path.normalize(
+        `.${id.replace(/\.[jt]sx?$/, "")}.css`
+      );
       const cssRelativePath = path
         .relative(process.cwd(), cssFilename)
         .replace(/\\/g, path.posix.sep);
@@ -72,19 +75,19 @@ export default function kumaUI(): Plugin {
       cssLookup[cssFilename] = css;
       cssLookup[cssId] = css;
       sheet.reset();
-      if (mode === "serve") return injectCSS(css, cssId) + result.code;
-      return `import ${JSON.stringify(cssFilename)};\n` + result.code;
+      return (
+        `import "${virtualModuleId}/${cssFilename}";
+` + result.code
+      );
     },
-    load(url: string) {
-      const [id] = url.split("?");
+    load(url) {
+      if (!url.startsWith(`\0${virtualModuleId}`)) return undefined;
+      const id = url.slice(`\0${virtualModuleId}`.length + 1);
       return cssLookup[id];
     },
-    resolveId(importeeUrl: string) {
-      const [id, qsRaw] = importeeUrl.split("?");
-      if (id in cssLookup) {
-        if (qsRaw?.length) return importeeUrl;
-        return id;
-      }
+    resolveId(importeeUrl) {
+      if (!importeeUrl.startsWith(virtualModuleId)) return undefined;
+      return `\0${importeeUrl}`;
     },
     handleHotUpdate({ server, file }) {
       sheet.reset();
@@ -95,25 +98,3 @@ export default function kumaUI(): Plugin {
     },
   };
 }
-
-const injectCSS = (cssContent: string, fileId: string) => {
-  return `
-  (function() {
-    if (typeof window === 'undefined') {
-      return;
-    }
-    const css = ${JSON.stringify(cssContent)};
-    const kumaStyleId = 'kuma-ui-styles-' + ${JSON.stringify(fileId)};
-    let style = document.getElementById(kumaStyleId);
-    const head = document.head || document.getElementsByTagName('head')[0];
-
-    if (!style) {
-      style = document.createElement('style');
-      style.type = 'text/css';
-      style.id = kumaStyleId;
-      head.appendChild(style);
-    }
-    style.textContent = css;
-  })();
-  `;
-};
