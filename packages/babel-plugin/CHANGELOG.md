@@ -1,5 +1,11 @@
 # @kuma-ui/babel-plugin
 
+## 1.1.0
+
+### Minor Changes
+
+- [#235](https://github.com/poteboy/kuma-ui/pull/235) [`79f318b`](https://github.com/poteboy/kuma-ui/commit/79f318bc2cbe17d96314f4194b890d66e6635438) Thanks [@naruaway](https://github.com/naruaway)! - fix(babel-plugin): Race condition bug which can cause missing styles
+
 ## 1.0.2
 
 ### Patch Changes
