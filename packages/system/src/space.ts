@@ -89,7 +89,7 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
 
   for (const key in spaceMappings) {
     const cssValue = props[key as SpaceKeys];
-    if (cssValue) {
+    if (cssValue || cssValue === 0) {
       const properties = spaceMappings[key as SpaceKeys].split(",");
       for (const property of properties) {
         const responsiveStyles = applyResponsiveStyles(

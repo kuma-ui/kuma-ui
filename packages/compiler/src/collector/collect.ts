@@ -27,7 +27,7 @@ export const collectPropsFromJsx = (
         propValue = extractAttribute(jsxAttribute);
       }
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
-      if (!propValue) return;
+      if (!propValue && propValue !== 0) return;
       extracted[propName] = propValue;
     }
   });
