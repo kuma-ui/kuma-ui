@@ -9,12 +9,11 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultButtonTag } from "./handler";
 
 type ButtonProps = ComponentProps<"Button">;
 
 type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
-
-export const defaultButtonTag = "button";
 
 /**
  * Button is a clickable component used to trigger actions or events in a Kuma UI application.

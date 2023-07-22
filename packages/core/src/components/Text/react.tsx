@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultTextTag } from "./handler";
 
 type TextProps = ComponentProps<"Text">;
 
@@ -20,7 +21,7 @@ type TextComponent<T extends As = "p"> = ComponentWithAs<T, TextProps>;
  * @see — http://kuma-ui.com/docs/Components/Text
  */
 const Text: TextComponent = <T extends As = "p">({
-  as: Component = "p",
+  as: Component = defaultTextTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, TextProps>) => {

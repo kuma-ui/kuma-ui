@@ -2,6 +2,8 @@ import { theme } from "@kuma-ui/sheet";
 import { StyleGenerator, StyledProps } from "@kuma-ui/system";
 import { toCssUnit } from "@kuma-ui/system";
 
+export const defaultSpacerTag = "div";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type SpacerSpecificProps = {
   horizontal?: boolean;

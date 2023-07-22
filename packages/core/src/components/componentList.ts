@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  defaultButtonTag,
   Flex,
   Spacer,
   Text,
@@ -16,22 +15,35 @@ import {
 } from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
+  defaultButtonTag,
   isButtonProps,
   buttonHandler,
   buttonDefaultProps,
 } from "./Button/handler";
-import { isFlexProps, flexHandler, flexDefaultProps } from "./Flex/handler";
 import {
+  defaultFlexTag,
+  isFlexProps,
+  flexHandler,
+  flexDefaultProps,
+} from "./Flex/handler";
+import {
+  defaultHeadingTag,
   isHeadingProps,
   headingHandler,
   headingDefaultProps,
 } from "./Heading/handler";
 import {
+  defaultSpacerTag,
   isSpacerProps,
   spacerHandler,
   spacerDefaultProps,
 } from "./Spacer/handler";
-import { isTextProps, textHandler, textDefaultProps } from "./Text/handler";
+import {
+  defaultTextTag,
+  isTextProps,
+  textHandler,
+  textDefaultProps,
+} from "./Text/handler";
 import {
   isSelectProps,
   selectHandler,
@@ -50,7 +62,12 @@ import {
 } from "./VStack/handler";
 import { isImageProps, imageHandler, imageDefaultProps } from "./Image/handler";
 import { isLinkProps, linkHandler, linkDefaultProps } from "./Link/handler";
-import { isGridProps, gridHandler, gridDefaultProps } from "./Grid/handler";
+import {
+  defaultGridTag,
+  isGridProps,
+  gridHandler,
+  gridDefaultProps,
+} from "./Grid/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -74,6 +91,10 @@ export const defaultComponentTag: Partial<
   Record<keyof typeof componentList, keyof JSX.IntrinsicElements>
 > = {
   Button: defaultButtonTag,
+  Flex: defaultFlexTag,
+  Spacer: defaultSpacerTag,
+  Text: defaultTextTag,
+  Grid: defaultGridTag,
 };
 
 type ComponentName = keyof typeof componentList;

@@ -1,6 +1,8 @@
 import { theme } from "@kuma-ui/sheet";
 import { StyleGenerator, StyledProps } from "@kuma-ui/system";
 
+export const defaultTextTag = "p";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type TextSpecificProps = {};
 
