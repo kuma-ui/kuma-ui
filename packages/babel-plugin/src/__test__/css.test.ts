@@ -2,10 +2,6 @@
 /// <reference types="vitest/globals" />
 
 import { babelTransform, getExpectSnapshot } from "./testUtils";
-import { pluginTester } from "babel-plugin-tester";
-import { types, template } from "@babel/core";
-import plugin from "../";
-import path from "path";
 
 describe("css function", () => {
   describe("Snapshot tests", () => {
