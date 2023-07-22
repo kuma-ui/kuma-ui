@@ -3,8 +3,8 @@ import { babelTransform, getExpectSnapshot } from "./testUtils";
 describe("k api", () => {
   describe.each([[undefined], ["classic" as const], ["automatic" as const]])(
     "Snapshot tests (runtime: %s)",
-    (runtime) => {
-      test("basic usage should match snapshot", async () => {
+    () => {
+      test("basic usage should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -13,12 +13,12 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using responsive props should match snapshot", async () => {
+      test("using responsive props should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -27,12 +27,12 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using space props should match snapshot", async () => {
+      test("using space props should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -41,12 +41,12 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using pseudo elements should match snapshot", async () => {
+      test("using pseudo elements should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -55,12 +55,12 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using pseudo props should match snapshot", async () => {
+      test("using pseudo props should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -69,12 +69,12 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using className prop should match snapshot", async () => {
+      test("using className prop should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { k, css } from '@kuma-ui/core'
@@ -89,12 +89,12 @@ describe("k api", () => {
         }
         `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("should match snapshot when k is used more than once", async () => {
+      test("should match snapshot when k is used more than once", () => {
         // Arrange
         const inputCode = `
         import { k } from '@kuma-ui/core'
@@ -103,7 +103,7 @@ describe("k api", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });

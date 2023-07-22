@@ -53,13 +53,13 @@ export default function kumaUI(): Plugin {
       });
       return config;
     },
-    async transform(code: string, id: string) {
+    transform(code: string, id: string) {
       if (id.includes("@kuma-ui")) return;
       if (!/\.(t|j)(s|sx)?$/.test(id)) return;
       if (/node_modules/.test(id)) return;
       if (!code.includes("@kuma-ui/core")) return;
 
-      const result = await transform(code, id);
+      const result = transform(code, id);
       if (!result?.code) return;
       const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
       const cssRelativePath = path
@@ -84,7 +84,7 @@ export default function kumaUI(): Plugin {
       if (!importeeUrl.startsWith(virtualModuleId)) return undefined;
       return `\0${importeeUrl}`;
     },
-    handleHotUpdate({ server, file }) {
+    handleHotUpdate({ server }) {
       sheet.reset();
       server.ws.send({ type: "full-reload" });
     },

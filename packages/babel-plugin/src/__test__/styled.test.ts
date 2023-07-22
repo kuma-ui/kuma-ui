@@ -3,8 +3,8 @@ import { babelTransform, getExpectSnapshot } from "./testUtils";
 describe("styled function", () => {
   describe.each([[undefined], ["classic" as const], ["automatic" as const]])(
     "Snapshot tests (runtime: %s)",
-    (runtime) => {
-      test("basic usage should match snapshot", async () => {
+    () => {
+      test("basic usage should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { styled } from '@kuma-ui/core'
@@ -25,12 +25,12 @@ describe("styled function", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using pseudo elements should match snapshot", async () => {
+      test("using pseudo elements should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { styled } from '@kuma-ui/core'
@@ -51,12 +51,12 @@ describe("styled function", () => {
         }
       `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("using className prop should match snapshot", async () => {
+      test("using className prop should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { styled, css } from '@kuma-ui/core'
@@ -83,7 +83,7 @@ describe("styled function", () => {
         }
         `;
         // Act
-        const result = await babelTransform(inputCode);
+        const result = babelTransform(inputCode);
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
