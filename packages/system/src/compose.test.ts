@@ -14,6 +14,7 @@ import { outline } from "./outline";
 import { font } from "./font";
 import { mask } from "./mask";
 import { column } from "./column";
+import { background } from "./background";
 
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
@@ -32,7 +33,8 @@ describe("compose function", () => {
       effect,
       font,
       mask,
-      column
+      column,
+      background
     );
     const props: StyledProps = {
       m: 8,
@@ -52,6 +54,13 @@ describe("compose function", () => {
       animation: "fadein 2s",
       maskRepeat: "no-repeat",
       columnCount: 2,
+      bgImage: "url('img_tree.png')",
+      bgSize: "cover",
+      bgPosition: "center",
+      bgRepeat: "no-repeat",
+      bgAttachment: "fixed",
+      bgClip: "border-box",
+      bgOrigin: "content-box",
     };
     // Act
     const styles = combinedFunction(props);
@@ -75,6 +84,13 @@ describe("compose function", () => {
     expect(styles.base).toContain("animation: fadein 2s;");
     expect(styles.base).toContain("mask-repeat: no-repeat;");
     expect(styles.base).toContain("column-count: 2;");
+    expect(styles.base).toContain("background-image: url('img_tree.png');");
+    expect(styles.base).toContain("background-size: cover;");
+    expect(styles.base).toContain("background-position: center;");
+    expect(styles.base).toContain("background-repeat: no-repeat;");
+    expect(styles.base).toContain("background-attachment: fixed;");
+    expect(styles.base).toContain("background-clip: border-box;");
+    expect(styles.base).toContain("background-origin: content-box;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {

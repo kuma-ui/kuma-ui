@@ -18,25 +18,28 @@ import { TextProps } from "./text";
 import { FontProps } from "./font";
 import { MaskProps } from "./mask";
 import { ColumnProps } from "./column";
+import { BackgroundProps } from "./background";
 
-export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProps &
-  AnimationProps &
-  TypographyProps &
-  TextProps &
-  FontProps &
-  LayoutProps &
-  ColorProps<T["colors"]> &
-  FlexProps &
-  BorderProps &
-  OutlineProps &
-  PositionProps &
-  ShadowProps &
-  GridProps &
-  ListProps &
-  EffectProps &
-  MaskProps &
-  ColumnProps &
-  EffectProps;
+export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
+  SpaceProps &
+    AnimationProps &
+    TypographyProps &
+    TextProps &
+    FontProps &
+    LayoutProps &
+    ColorProps<T["colors"]> &
+    FlexProps &
+    BorderProps &
+    OutlineProps &
+    PositionProps &
+    ShadowProps &
+    GridProps &
+    ListProps &
+    EffectProps &
+    MaskProps &
+    ColumnProps &
+    BackgroundProps &
+    EffectProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
