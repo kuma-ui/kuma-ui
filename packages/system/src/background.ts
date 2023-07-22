@@ -1,6 +1,7 @@
 import { BackgroundKeys } from "./keys";
 import { CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from ".";
 
 type AddProperty<T, T2> = {
   [Key in keyof T]: T[Key] | T2;
@@ -21,15 +22,15 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
       /**
        * @see backgroundPositionX
        */
-      bgPositionX: CSSValue<"backgroundPositionX"> | AutoPrefix;
+      bgPositionX: CSSValue<"backgroundPositionX", true> | AutoPrefix;
       /**
        * @see backgroundPositionY
        */
-      bgPositionY: CSSValue<"backgroundPositionY"> | AutoPrefix;
+      bgPositionY: CSSValue<"backgroundPositionY", true> | AutoPrefix;
       /**
        * @see backgroundSize
        */
-      bgSize: CSSValue<"backgroundSize"> | AutoPrefix;
+      bgSize: CSSValue<"backgroundSize", true> | AutoPrefix;
       /**
        * @see backgroundRepeat
        */
@@ -71,7 +72,18 @@ export const background = (props: BackgroundProps): ResponsiveStyle => {
     const cssValue = props[key as BackgroundKeys];
     if (cssValue) {
       const property = backgroundMappings[key as BackgroundKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
+      const converter = [
+        backgroundMappings.bgPositionX,
+        backgroundMappings.bgPositionY,
+        backgroundMappings.bgSize,
+      ].includes(property)
+        ? toCssUnit
+        : undefined;
+      const responsiveStyles = applyResponsiveStyles(
+        property,
+        cssValue,
+        converter
+      );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
         if (media[breakpoint]) media[breakpoint] += css;
