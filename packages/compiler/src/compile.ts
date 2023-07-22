@@ -8,6 +8,7 @@ import {
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
 import { componentList } from "@kuma-ui/core/components/componentList";
+import { optimize } from "./optimizer/optimize";
 
 const project = new Project({});
 
@@ -47,6 +48,7 @@ const compile = (
         extractedPropsMap
       );
       if (result) css.push(result.css);
+      optimize(componentName, openingElement);
     }
   });
   return { code: source.getFullText(), id, css: css.join(" ") };

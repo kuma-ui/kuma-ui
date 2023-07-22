@@ -14,13 +14,15 @@ type ButtonProps = ComponentProps<"Button">;
 
 type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
 
+export const defaultButtonTag = "button";
+
 /**
  * Button is a clickable component used to trigger actions or events in a Kuma UI application.
  *
  * @see — http://kuma-ui.com/docs/Components/Button
  */
 const Button: ButtonComponent = <T extends As = "button">({
-  as: Component = "button",
+  as: Component = defaultButtonTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, ButtonProps>) => {

@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  defaultButtonTag,
   Flex,
   Spacer,
   Text,
@@ -68,6 +69,12 @@ export const componentList = Object.freeze({
   Link: Link.name as "Link",
   Grid: Grid.name as "Grid",
 } as const);
+
+export const defaultComponentTag: Partial<
+  Record<keyof typeof componentList, keyof JSX.IntrinsicElements>
+> = {
+  Button: defaultButtonTag,
+};
 
 type ComponentName = keyof typeof componentList;
 
