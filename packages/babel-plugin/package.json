@@ -32,8 +32,8 @@
     "build": "tsup --config ../../tsup.config.ts",
     "typecheck": "tsc --noEmit --composite false",
     "test": "vitest run",
-    "lint": "eslint './src/**/*.{js,ts,jsx,tsx}'",
-    "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}'"
+    "lint": "eslint './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@babel/core": "^7.21.4",
