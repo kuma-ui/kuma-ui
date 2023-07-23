@@ -1,8 +1,9 @@
+const TEST_CODE = `
 import React from "react";
 import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
 import { useState, useEffect } from "react";
 
-export const Hero = () => {
+export const App = () => {
   const isDark = useState(false);
 
   useEffect(() => {
@@ -33,13 +34,13 @@ export const Hero = () => {
         <Heading
           fontSize={["2.25rem", "3.25rem"]}
           fontWeight={800}
-          className={css`
+          className={css\`
             letter-spacing: -0.025em;
             line-height: 1;
             @media (max-width: sm) {
               line-height: 2.5rem;
             }
-          `}
+          \`}
         >
           Empower Your Web with Ultimate Performance and Flexibility
         </Heading>
@@ -47,12 +48,12 @@ export const Hero = () => {
           color="#718096"
           mt="1.5rem"
           fontSize="1.125rem"
-          className={css`
+          className={css\`
             line-height: 1.75rem;
             @media (prefers-color-scheme: dark) {
               mix-blend-mode: plus-lighter;
             }
-          `}
+          \`}
           style={{
             mixBlendMode: isDark[0] ? "plus-lighter" : "initial",
           }}
@@ -115,20 +116,20 @@ export const Hero = () => {
               </Box>
               <Heading
                 as="h2"
-                className={css`
+                className={css\`
                   font-size: 1.25rem;
                   line-height: 1.75rem;
                   font-weight: 700;
                   margin-bottom: 0.25rem;
-                `}
+                \`}
               >
                 {data.title}
               </Heading>
               <Text
-                className={css`
+                className={css\`
                   font-size: 1rem;
                   line-height: 1.5rem;
-                `}
+                \`}
               >
                 {data.description}
               </Text>
@@ -176,3 +177,20 @@ const gridData = [
     description: "Delight in the ultimate DX with our familiar API design.",
   },
 ];
+
+export default App;
+
+`;
+
+import { babelTransform, getExpectSnapshot } from "./testUtils";
+
+describe("Hero Page", () => {
+  test("should match", async () => {
+    // Arrange
+    const inputCode = TEST_CODE;
+    // Act
+    const result = await babelTransform(inputCode);
+    // Assert
+    expect(getExpectSnapshot(result)).toMatchSnapshot();
+  });
+});

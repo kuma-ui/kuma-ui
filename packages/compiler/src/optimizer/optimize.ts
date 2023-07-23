@@ -20,7 +20,7 @@ export const optimize = (
   const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
     if (Node.isJsxSpreadAttribute(attrLike)) return false;
     const attr = attrLike.asKindOrThrow(SyntaxKind.JsxAttribute);
-    if (hasDynamicProp(attr.getNameNode().getFullText())) return false;
+    if (hasDynamicProp(attr.getNameNode().getText())) return false;
     return true;
   });
 
@@ -37,10 +37,16 @@ export const optimize = (
     }
   })();
 
+  jsxElement.getAttribute("IS_KUMA_DEFAULT")?.remove();
+
   if (Node.isJsxOpeningElement(jsxElement)) {
     const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
     if (jsxElementParent) {
       const closingElement = jsxElementParent.getClosingElement();
+      console.log(
+        jsxElement.getTagNameNode().getText(),
+        closingElement.getTagNameNode().getText()
+      );
       jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
       closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
     }
