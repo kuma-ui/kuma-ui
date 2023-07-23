@@ -11,6 +11,7 @@ describe("color utility function", () => {
     [{ accentColor: "red" }, "accent-color: red;", ""],
     [{ caretColor: "red" }, "caret-color: red;", ""],
     [{ opacity: 0.5 }, "opacity: 0.5;", ""],
+    [{ opacity: 0 }, "opacity: 0;", ""],
   ];
 
   test.each(testCases)(

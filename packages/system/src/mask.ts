@@ -51,7 +51,7 @@ export const mask = (props: MaskProps): ResponsiveStyle => {
 
   for (const key in maskMappings) {
     const cssValue = props[key as MaskKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = maskMappings[key as MaskKeys];
       const converter = [maskMappings.maskSize].includes(property)
         ? toCssUnit

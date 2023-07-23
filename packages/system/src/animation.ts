@@ -38,7 +38,7 @@ export const animation = (props: AnimationProps): ResponsiveStyle => {
 
   for (const key in animationMappings) {
     const cssValue = props[key as AnimationKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = animationMappings[key as AnimationKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,

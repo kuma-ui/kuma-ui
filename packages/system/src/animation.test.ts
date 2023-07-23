@@ -22,6 +22,7 @@ describe("animation utility function", () => {
       "animation-timing-function: ease-in;",
       "",
     ],
+    [{ animationIterationCount: 0 }, "animation-iteration-count: 0;", ""],
   ];
 
   test.each(testCases)(

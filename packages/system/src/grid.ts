@@ -37,7 +37,7 @@ export const grid = (props: GridProps): ResponsiveStyle => {
 
   for (const key in gridMappings) {
     const cssValue = props[key as GridKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = gridMappings[key as GridKeys];
       const converter = unitKeys.includes(key as UnitKeys)
         ? toCssUnit

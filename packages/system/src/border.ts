@@ -26,7 +26,7 @@ export const border = (props: BorderProps): ResponsiveStyle => {
 
   for (const key in borderMappings) {
     const cssValue = props[key as BorderKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = borderMappings[key as BorderKeys];
       const converter = [
         borderMappings.borderWidth,

@@ -30,7 +30,7 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
   const media: ResponsiveStyle["media"] = {};
   for (const key in layoutMappings) {
     const cssValue = props[key as LayoutKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = layoutMappings[key as LayoutKeys];
       const converter = [
         layoutMappings.width,

@@ -25,6 +25,7 @@ describe("typography utility function", () => {
     [{ wordSpacing: 1 }, "word-spacing: 1px;", ""],
     [{ wordBreak: "break-all" }, "word-break: break-all;", ""],
     [{ writingMode: "vertical-rl" }, "writing-mode: vertical-rl;", ""],
+    [{ letterSpacing: 0 }, "letter-spacing: 0px;", ""],
   ];
 
   test.each(testCases)(
