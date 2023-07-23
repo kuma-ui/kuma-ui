@@ -23,7 +23,7 @@ export const outline = (props: OutlineProps): ResponsiveStyle => {
 
   for (const key in outlineMappings) {
     const cssValue = props[key as OutlineKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = outlineMappings[key as OutlineKeys];
       const converter = [
         outlineMappings.outlineWidth,

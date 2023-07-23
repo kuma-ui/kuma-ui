@@ -15,7 +15,7 @@ export const shadow = (props: ShadowProps): ResponsiveStyle => {
 
   for (const key in shadowMappings) {
     const cssValue = props[key as ShadowKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = shadowMappings[key as ShadowKeys];
       const responsiveStyles = applyResponsiveStyles(property, cssValue);
       base += responsiveStyles.base;

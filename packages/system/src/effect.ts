@@ -34,7 +34,7 @@ export const effect = (props: EffectProps): ResponsiveStyle => {
 
   for (const key in effectMappings) {
     const cssValue = props[key as EffectKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = effectMappings[key as EffectKeys];
       const responsiveStyles = applyResponsiveStyles(property, cssValue);
       base += responsiveStyles.base;

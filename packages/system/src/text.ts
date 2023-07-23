@@ -60,7 +60,7 @@ export const text = (props: TextProps): ResponsiveStyle => {
 
   for (const key in textMappings) {
     const cssValue = props[key as TextKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = textMappings[key as TextKeys];
       const converter = [textMappings.textIndent].includes(property)
         ? toCssUnit
