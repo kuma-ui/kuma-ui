@@ -48,7 +48,8 @@ const compile = (
         extractedPropsMap
       );
       if (result) css.push(result.css);
-      optimize(componentName, openingElement);
+
+      optimize(componentName, openingElement, extractedPropsMap["as"]);
     }
   });
   return { code: source.getFullText(), id, css: css.join(" ") };

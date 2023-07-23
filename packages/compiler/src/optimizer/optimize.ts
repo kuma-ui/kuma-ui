@@ -14,26 +14,12 @@ import { handleJsxExpression } from "../collector/expression";
 
 export const optimize = (
   componentName: (typeof componentList)[keyof typeof componentList],
-  jsxElement: JsxOpeningElement | JsxSelfClosingElement
+  jsxElement: JsxOpeningElement | JsxSelfClosingElement,
+  as?: string
 ) => {
-  let as: string | undefined = undefined;
   const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
     if (Node.isJsxSpreadAttribute(attrLike)) return false;
     const attr = attrLike.asKindOrThrow(SyntaxKind.JsxAttribute);
-    if (attr.getNameNode().getText() === "as" && Node.isJsxAttribute(attr)) {
-      console.log(attr.getText());
-      const initializer = attr.getInitializer();
-      if (Node.isStringLiteral(initializer)) {
-        as = initializer.getText();
-      } else if (Node.isJsxExpression(initializer)) {
-        const exp = initializer.getExpression();
-        if (!exp) return false;
-        const expStr = handleJsxExpression(decode(exp));
-        if (typeof expStr == "string") as = expStr;
-        else return false;
-      }
-    }
-
     if (hasDynamicProp(attr.getNameNode().getFullText())) return false;
     return true;
   });

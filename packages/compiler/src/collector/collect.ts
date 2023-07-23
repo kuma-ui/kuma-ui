@@ -18,7 +18,7 @@ export const collectPropsFromJsx = (
   const extracted: Record<string, any> = {};
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {
-      const propName = jsxAttribute.getNameNode().getFullText();
+      const propName = jsxAttribute.getNameNode().getText();
       let propValue;
       // If the propName starts with underscore, use extractPseudoAttribute
       if (propName.trim().startsWith("_")) {
