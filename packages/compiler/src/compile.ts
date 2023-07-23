@@ -48,7 +48,7 @@ const compile = (
         extractedPropsMap
       );
       if (result) css.push(result.css);
-      optimize(componentName, openingElement, extractedPropsMap["as"]);
+      optimize(componentName, openingElement);
     }
   });
   return { code: source.getFullText(), id, css: css.join(" ") };
