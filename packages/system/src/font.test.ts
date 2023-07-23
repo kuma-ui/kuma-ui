@@ -12,6 +12,7 @@ describe("font utility function", () => {
       "font-size: 24px;",
       "@media (min-width: 576px) { font-size: 32px; }",
     ],
+    [{ fontSize: 0 }, "font-size: 0px;", ""],
   ];
 
   test.each(testCases)(

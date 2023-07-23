@@ -48,6 +48,7 @@ describe("mask utility function", () => {
     [{ maskSize: 10 }, "mask-size: 10px;", ""],
     [{ maskSize: "10% 20%" }, "mask-size: 10% 20%;", ""],
     [{ maskType: "luminance" }, "mask-type: luminance;", ""],
+    [{ maskBorderWidth: 0 }, "mask-border-width: 0;", ""],
   ];
 
   test.each(testCases)(

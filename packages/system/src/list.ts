@@ -21,7 +21,7 @@ export const list = (props: ListProps): ResponsiveStyle => {
 
   for (const key in listMappings) {
     const cssValue = props[key as ListKeys];
-    if (cssValue != undefined) {
+    if (cssValue) {
       const property = listMappings[key as ListKeys];
       const responsiveStyles = applyResponsiveStyles(property, cssValue);
       base += responsiveStyles.base;

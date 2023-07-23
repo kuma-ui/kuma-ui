@@ -18,6 +18,7 @@ describe("outline utility function", () => {
     [{ columnWidth: "auto" }, "column-width: auto;", ""],
     [{ columns: 2 }, "columns: 2;", ""],
     [{ columns: "auto 2" }, "columns: auto 2;", ""],
+    [{ columnWidth: 0 }, "column-width: 0px;", ""],
   ];
 
   test.each(testCases)(

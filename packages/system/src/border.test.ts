@@ -6,6 +6,7 @@ describe("border utility function", () => {
   const testCases: Array<[BorderProps, string, string]> = [
     [{ borderRadius: 1 }, "border-radius: 1px;", ""],
     [{ borderWidth: "20px" }, "border-width: 20px;", ""],
+    [{ borderWidth: 0 }, "border-width: 0px;", ""],
   ];
 
   test.each(testCases)(

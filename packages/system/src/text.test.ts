@@ -12,6 +12,7 @@ describe("text utility function", () => {
       "text-indent: 50px;",
       "@media (min-width: 576px) { text-indent: 100px; }",
     ],
+    [{ textIndent: 0 }, "text-indent: 0px;", ""],
   ];
 
   test.each(testCases)(
