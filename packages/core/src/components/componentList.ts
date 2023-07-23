@@ -45,23 +45,41 @@ import {
   textDefaultProps,
 } from "./Text/handler";
 import {
+  defaultSelectTag,
   isSelectProps,
   selectHandler,
   selectDefaultProps,
 } from "./Select/handler";
-import { isInputProps, inputHandler, inputDefaultProps } from "./Input/handler";
 import {
+  defaultInputTag,
+  isInputProps,
+  inputHandler,
+  inputDefaultProps,
+} from "./Input/handler";
+import {
+  defaultHStackTag,
   isHStackProps,
   hstackHandler,
   hstackDefaultProps,
 } from "./HStack/handler";
 import {
+  defaultVStackTag,
   isVStackProps,
   vstackHandler,
   vstackDefaultProps,
 } from "./VStack/handler";
-import { isImageProps, imageHandler, imageDefaultProps } from "./Image/handler";
-import { isLinkProps, linkHandler, linkDefaultProps } from "./Link/handler";
+import {
+  defaultImageTag,
+  isImageProps,
+  imageHandler,
+  imageDefaultProps,
+} from "./Image/handler";
+import {
+  defaultLinkTag,
+  isLinkProps,
+  linkHandler,
+  linkDefaultProps,
+} from "./Link/handler";
 import {
   defaultGridTag,
   isGridProps,
@@ -92,8 +110,15 @@ export const defaultComponentTag: Partial<
 > = {
   Button: defaultButtonTag,
   Flex: defaultFlexTag,
+  Heading: defaultHeadingTag,
   Spacer: defaultSpacerTag,
   Text: defaultTextTag,
+  Select: defaultSelectTag,
+  Input: defaultInputTag,
+  HStack: defaultHStackTag,
+  VStack: defaultVStackTag,
+  Image: defaultImageTag,
+  Link: defaultLinkTag,
   Grid: defaultGridTag,
 };
 

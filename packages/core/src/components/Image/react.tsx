@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultImageTag } from "./handler";
 
 type ImageProps = ComponentProps<"Image">;
 
@@ -20,7 +21,7 @@ type ImageComponent<T extends As = "img"> = ComponentWithAs<T, ImageProps>;
  * @see — http://kuma-ui.com/docs/Components/Image
  */
 const Image: ImageComponent = <T extends As>({
-  as: Component = "img",
+  as: Component = defaultImageTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, ImageProps>) => {
