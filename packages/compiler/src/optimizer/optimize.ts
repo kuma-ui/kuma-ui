@@ -43,15 +43,18 @@ export const optimize = (
     const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
     if (jsxElementParent) {
       const closingElement = jsxElementParent.getClosingElement();
-      console.log(
-        jsxElement.getTagNameNode().getText(),
-        closingElement.getTagNameNode().getText()
-      );
-      jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
-      closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
+      jsxElement
+        .getFirstDescendantByKind(SyntaxKind.Identifier)
+        ?.replaceWithText(rawHTMLTag);
+
+      closingElement
+        .getFirstDescendantByKind(SyntaxKind.Identifier)
+        ?.replaceWithText(rawHTMLTag);
     }
   } else if (Node.isJsxSelfClosingElement(jsxElement)) {
-    jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
+    jsxElement
+      .getFirstDescendantByKind(SyntaxKind.Identifier)
+      ?.replaceWithText(rawHTMLTag);
   }
 };
 
