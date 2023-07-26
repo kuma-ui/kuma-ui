@@ -24,6 +24,7 @@ const HStack: HStackComponent = <T extends As = "div">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, HStackProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("HStack")?.variants?.[props.variant]
     : {};
@@ -32,6 +33,7 @@ const HStack: HStackComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

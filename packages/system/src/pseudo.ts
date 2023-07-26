@@ -11,5 +11,6 @@ export const normalizePseudo = (props: string) => {
 };
 
 export const isPseudoProps = (props: unknown): props is keyof PseudoProps => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- FIXME
   return `${props}`.startsWith("_");
 };

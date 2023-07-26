@@ -18,6 +18,7 @@ const Input: InputComponent = <T extends As>({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, InputProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variantStyle = props.variant
     ? theme.getVariants("Input")?.variants?.[props.variant]
     : {};
@@ -26,6 +27,7 @@ const Input: InputComponent = <T extends As>({
       as={Component}
       {...variantStyle}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

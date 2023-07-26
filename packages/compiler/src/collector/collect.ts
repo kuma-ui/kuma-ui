@@ -15,6 +15,7 @@ export const collectPropsFromJsx = (
   node: JsxOpeningElement | JsxSelfClosingElement
 ) => {
   const jsxAttributes = node.getAttributes();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const extracted: Record<string, any> = {};
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {

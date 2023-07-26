@@ -24,6 +24,7 @@ const Button: ButtonComponent = <T extends As = "button">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, ButtonProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Button")?.variants?.[props.variant]
     : {};
@@ -32,6 +33,7 @@ const Button: ButtonComponent = <T extends As = "button">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

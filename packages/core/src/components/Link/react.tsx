@@ -24,6 +24,7 @@ const Link: LinkComponent = <T extends As = "a">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, LinkProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Link")?.variants?.[props.variant]
     : {};
@@ -33,6 +34,7 @@ const Link: LinkComponent = <T extends As = "a">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

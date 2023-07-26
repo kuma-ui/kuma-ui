@@ -26,6 +26,7 @@ export const spacerHandler = (props: SpacerSpecificProps): StyledProps => {
   const px =
     typeof props.size === "number"
       ? toCssUnit(props.size)
+      // eslint-disable-next-line no-extra-boolean-cast -- FIXME
       : !!props.size
       ? props.size
       : "0px";

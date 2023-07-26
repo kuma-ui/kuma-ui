@@ -44,6 +44,7 @@ describe("font utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = font(invalidProps as any);
     expect(base).toBe("");
     expect(media).toEqual({});

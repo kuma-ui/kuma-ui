@@ -35,6 +35,7 @@ describe("border utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const style = border(invalidProps as any);
     expect(style.base.replace(/\s/g, "")).toBe("".replace(/\s/g, ""));
   });

@@ -97,6 +97,7 @@ describe("compose function", () => {
     // Arrange
     const props = { invalid: true };
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const styles = compose(space)(props as any);
 
     // Assert

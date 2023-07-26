@@ -50,6 +50,7 @@ export const processTaggedTemplateExpression = (
         .map((str) => str.replace(/\s+/g, " ").trim())
         .join("");
       // Use the parseCSS function to process the CSS string and get the class name.
+      // eslint-disable-next-line no-extra-boolean-cast -- FIXME
       const className = !!cssString ? sheet.parseCSS(cssString) : undefined;
 
       const component = t.isStringLiteral(componentArg)

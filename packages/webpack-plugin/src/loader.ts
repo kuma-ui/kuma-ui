@@ -39,6 +39,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   }
 
   const css =
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- FIXME
     ((result.metadata as unknown as { css: string }).css as string) || "";
 
   if (css) {

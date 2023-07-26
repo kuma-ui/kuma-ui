@@ -33,6 +33,7 @@ const handlePseudoJsxExpression = (node: Node<ts.Node>) => {
     match(node)
       // fontSize={{xl: '2rem'}['xl']}
       .when(Node.isObjectLiteralExpression, (obj) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         const objProps: Record<string, any> = {};
         for (const prop of obj.getProperties()) {
           if (Node.isPropertyAssignment(prop)) {
