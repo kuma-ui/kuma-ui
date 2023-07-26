@@ -13,12 +13,12 @@ For example, in the following code snippet, `p={12}` can be statically interpret
 import React from "react";
 import { Box, Button } from "@kuma-ui/core";
 
-export function Client() {
-  const [checked, toggle] = React.useReducer((state) => !state, false);
+function App() {
+  const [color, setColor] = React.useState("blue");
 
   return (
-    <Box p={12} bg={checked ? "blue" : "green"}>
-      <Button onClick={() => toggle()}>Change Background Color</Button>
+    <Box p={12} bg={color}>
+      <Button onClick={() => setColor("green")}>Change Color</Button>
     </Box>
   );
 }
@@ -35,13 +35,13 @@ import React from "react";
 import { Box, Button, css } from "@kuma-ui/core";
 
 export function Client() {
-  const [checked, toggle] = React.useReducer((state) => !state, false);
+  const [changed, setChanged] = React.useState(false);
 
   return (
     <Box
       p={12}
       className={
-        checked
+        changed
           ? css`
               background: blue;
             `
@@ -50,7 +50,7 @@ export function Client() {
             `
       }
     >
-      <Button onClick={() => toggle()}>Change Background Color</Button>
+      <Button onClick={() => setChanged(true)}>Change Color</Button>
     </Box>
   );
 }
