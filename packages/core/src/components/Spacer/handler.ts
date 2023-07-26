@@ -2,7 +2,7 @@ import { theme } from "@kuma-ui/sheet";
 import { StyleGenerator, StyledProps } from "@kuma-ui/system";
 import { toCssUnit } from "@kuma-ui/system";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+ 
 export type SpacerSpecificProps = {
   horizontal?: boolean;
   size?: number | string;

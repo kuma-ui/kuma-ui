@@ -38,7 +38,7 @@ type ThemeBreakPointsResult<T extends ThemeInput> = {
   breakpoints: T["breakpoints"];
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+ 
 export interface Theme {}
 
 type ThemeColors = Theme extends { colors: unknown } ? Theme["colors"] : never;

@@ -13,7 +13,7 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
   as?: As;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+ 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<
