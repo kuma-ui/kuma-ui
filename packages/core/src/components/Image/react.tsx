@@ -24,6 +24,7 @@ const Image: ImageComponent = <T extends As>({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, ImageProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Image")?.variants?.[props.variant]
     : {};
@@ -33,6 +34,7 @@ const Image: ImageComponent = <T extends As>({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

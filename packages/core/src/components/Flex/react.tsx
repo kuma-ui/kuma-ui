@@ -25,6 +25,7 @@ const Flex: FlexComponent = <T extends As = "div">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, FlexProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Flex")?.variants?.[props.variant]
     : {};
@@ -33,6 +34,7 @@ const Flex: FlexComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

@@ -11,6 +11,7 @@ import { Box } from "../Box";
 import { SpacerSpecificProps, spacerHandler } from "./handler";
 import { theme } from "@kuma-ui/sheet";
 
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
 type SpacerProps = ComponentProps<"Spacer"> & SpacerSpecificProps;
 
 type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
@@ -29,10 +30,12 @@ const Spacer: SpacerComponent = <T extends As = "div">({
   ...props
 }: MergeWithAs<PropsOf<T>, SpacerProps>) => {
   props = {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
     ...spacerHandler({ size, horizontal }),
     ...props,
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Spacer")?.variants?.[props.variant]
     : {};
@@ -42,6 +45,7 @@ const Spacer: SpacerComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

@@ -15,7 +15,9 @@ export class StyleGenerator {
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     const styledProps: { [key: string]: any } = {};
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     const pseudoProps: { [key: string]: any } = {};
 
     for (const [propName, propValue] of Object.entries(props)) {
@@ -29,6 +31,7 @@ export class StyleGenerator {
     const convertedPseudoProps: SystemStyle["pseudo"] = Object.keys(pseudoProps)
       .length
       ? Object.entries(pseudoProps).map(([pseudoKey, pseudoValue]) => {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
           const pseudoStyle = all(pseudoValue);
           return {
             key: normalizePseudo(pseudoKey),

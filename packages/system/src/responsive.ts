@@ -3,7 +3,9 @@ import { CSSProperty, ResponsiveStyle } from "./types";
 
 export const applyResponsiveStyles = (
   cssProperty: string,
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
   cssValues: CSSProperty | number | (CSSProperty | number)[],
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
   convertFn: (value: CSSProperty | number) => string | number = (value) => value
 ): ResponsiveStyle => {
   const { breakpoints } = theme.getUserTheme();

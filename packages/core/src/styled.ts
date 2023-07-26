@@ -18,6 +18,7 @@ function styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn = (
     strings: TemplateStringsArray
   ): React.FC<React.ComponentProps<T>> => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     throw Error('Using the "styled" tag in runtime is not supported.') as any;
   };
   return fn;

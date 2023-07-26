@@ -24,6 +24,7 @@ const Text: TextComponent = <T extends As = "p">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, TextProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Text")?.variants?.[props.variant]
     : {};
@@ -33,6 +34,7 @@ const Text: TextComponent = <T extends As = "p">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

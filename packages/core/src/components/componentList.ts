@@ -54,18 +54,31 @@ import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
 export const componentList = Object.freeze({
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Box: Box.name as "Box",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Flex: Flex.name as "Flex",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Spacer: Spacer.name as "Spacer",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Text: Text.name as "Text",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Button: Button.name as "Button",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Heading: Heading.name as "Heading",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Select: Select.name as "Select",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Input: Input.name as "Input",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   HStack: HStack.name as "HStack",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   VStack: VStack.name as "VStack",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Image: Image.name as "Image",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Link: Link.name as "Link",
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Grid: Grid.name as "Grid",
 } as const);
 
@@ -73,6 +86,7 @@ type ComponentName = keyof typeof componentList;
 
 export const isComponentProps =
   (componentName: ComponentName) => (propName: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
     return match(componentName)
       .with("Box", () => isBoxProps(propName))
       .with("Button", () => isButtonProps(propName))
@@ -93,6 +107,7 @@ export const isComponentProps =
 export const componentDefaultProps = (
   componentName: ComponentName
 ): StyledProps => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
   return match(componentName)
     .with("Box", () => boxDefaultProps)
     .with("Button", () => buttonDefaultProps)
@@ -112,7 +127,9 @@ export const componentDefaultProps = (
 
 export const componentHandler =
   (componentName: ComponentName) =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   (props: Record<string, any>): StyledProps => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
     return match(componentName)
       .with("Box", () => boxHandler(props))
       .with("Button", () => buttonHandler(props))

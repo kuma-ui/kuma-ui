@@ -6,4 +6,5 @@ export const StaticBox: BoxComponent = ({
   children,
   IS_KUMA_DEFAULT,
   ...props
+// eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
 }) => React.createElement(Component, props, children);

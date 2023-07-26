@@ -12,7 +12,9 @@ export type ThemeInput = {
   breakpoints?: Record<string, string>;
   components?: {
     [_ in keyof typeof componentList]?: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
       baseStyle?: any;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
       variants?: { [key: string]: any };
     };
   };
@@ -36,7 +38,7 @@ type ThemeBreakPointsResult<T extends ThemeInput> = {
   breakpoints: T["breakpoints"];
 };
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+ 
 export interface Theme {}
 
 type ThemeColors = Theme extends { colors: unknown } ? Theme["colors"] : never;
@@ -58,6 +60,7 @@ export function createTheme<const T extends ThemeInput>(
 ): ThemeResult<T> {
   return {
     colors: theme.colors ? flattenObject({ colors: theme.colors }) : undefined,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
     components: theme.components,
     breakpoints: theme.breakpoints,
   } as unknown as ThemeResult<T>;

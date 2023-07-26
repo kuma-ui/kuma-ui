@@ -270,9 +270,12 @@ export type StyledKeyType =
   | EffectKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const cache = Object.create(null);
   return (arg: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
     if (cache[arg] === undefined) cache[arg] = fn(arg);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access -- FIXME
     return cache[arg];
   };
 }

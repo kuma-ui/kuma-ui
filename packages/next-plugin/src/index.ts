@@ -15,6 +15,7 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
       path: dir,
       env: isDevelopment ? "development" : "production",
     });
+  // eslint-disable-next-line no-empty -- FIXME
   } catch {}
   return undefined;
 };
@@ -62,6 +63,7 @@ const kumaUiConfig = (
             isServer,
             isDevelopment: dev,
             experimental: {},
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
             future: nextConfig.future || {},
             ...appDirOptions,
           } as ConfigurationContext,
@@ -91,6 +93,7 @@ const kumaUiConfig = (
         })
       );
       if (typeof nextConfig.webpack === "function") {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
         return nextConfig.webpack(config, options);
       }
       return config;

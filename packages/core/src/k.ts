@@ -11,6 +11,7 @@ type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
 /**
  * The `k` API allows you to use utility style props directly on a React component. These elements accept utility props for inline styling that are type-safe and intuitively named. This means you can apply styles directly on the components while maintaining code readability and ease of use.
  */
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
 const k: {
   [K in keyof JSX.IntrinsicElements]: StyledComponent<K>;
 } = new Proxy(
@@ -20,6 +21,7 @@ const k: {
       throw new Error('Using the "k" in runtime is not supported.');
     },
   }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
 ) as any;
 
 export { k };

@@ -22,9 +22,12 @@ export const DynamicBox: BoxComponent = ({
 }) => {
   const registry = useStyleRegistry() || defaultRegistry;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variantStyle = (() => {
     if (!variant) return {};
+    // eslint-disable-next-line no-extra-boolean-cast -- FIXME
     if (!!IS_KUMA_DEFAULT) return {};
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access -- FIXME
     return theme.getVariants("Box")?.variants?.[variant];
   })();
 
@@ -41,6 +44,7 @@ export const DynamicBox: BoxComponent = ({
       ...restProps,
       className: [restProps.className, className].filter(Boolean).join(" "),
     },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
     children
   );
 

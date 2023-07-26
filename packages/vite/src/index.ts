@@ -34,6 +34,7 @@ export default function kumaUI(): Plugin {
     };
 
     if (config.default) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
       theme.setUserTheme(config.default as any);
     }
   }
@@ -67,6 +68,7 @@ export default function kumaUI(): Plugin {
         .replace(/\\/g, path.posix.sep);
       // const css = sheet.getCSS();
       const css =
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- FIXME
         ((result.metadata as unknown as { css: string }).css as string) || "";
       cssLookup[cssRelativePath] = css;
       sheet.reset();

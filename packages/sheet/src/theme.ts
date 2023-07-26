@@ -26,7 +26,9 @@ export type UserTheme = {
   breakpoints: Record<string, string>;
   components?: {
     [_ in ComponentName]?: {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
       baseStyle?: any;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
       variants?: { [key: string]: any };
     };
   };
@@ -71,9 +73,11 @@ export class Theme {
 
   getVariants(componentName: ComponentName):
     | {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         baseStyle?: any;
         variants?:
           | {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
               [key: string]: any;
             }
           | undefined;

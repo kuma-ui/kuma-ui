@@ -17,10 +17,12 @@ export const handleJsxExpression = (node: Node<ts.Node>) => {
         return literal.getLiteralValue().trim();
       })
       // horizontal={true}
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- FIXME
       .when(Node.isTrueLiteral, (bool) => {
         return bool.getLiteralValue();
       })
       // horizontal={false}
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- FIXME
       .when(Node.isFalseLiteral, (bool) => {
         return bool.getLiteralValue();
       })
