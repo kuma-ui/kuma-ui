@@ -1,6 +1,7 @@
 import { k, Box, css, styled } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 import { Dynamic2 } from "./dynamic2";
+import { Static } from "./static";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <Dynamic2 />
       <Box color={(() => "colors.blue")()}>dynamic</Box>
       <Box variant={(() => "action" as const)()}>dynamic</Box>
+      <Static />
       <Box p={[8, 16]} color="colors.green">
         static
       </Box>
