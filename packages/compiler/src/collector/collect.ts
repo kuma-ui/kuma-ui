@@ -15,6 +15,7 @@ export const collectPropsFromJsx = (
   node: JsxOpeningElement | JsxSelfClosingElement
 ) => {
   const jsxAttributes = node.getAttributes();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const extracted: Record<string, any> = {};
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {
@@ -27,7 +28,7 @@ export const collectPropsFromJsx = (
         propValue = extractAttribute(jsxAttribute);
       }
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
-      if (!propValue) return;
+      if (propValue == undefined) return;
       extracted[propName] = propValue;
     }
   });

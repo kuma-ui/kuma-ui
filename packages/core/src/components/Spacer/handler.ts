@@ -4,7 +4,6 @@ import { toCssUnit } from "@kuma-ui/system";
 
 export const defaultSpacerTag = "div";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type SpacerSpecificProps = {
   horizontal?: boolean;
   size?: number | string;
@@ -28,7 +27,8 @@ export const spacerHandler = (props: SpacerSpecificProps): StyledProps => {
   const px =
     typeof props.size === "number"
       ? toCssUnit(props.size)
-      : !!props.size
+      : // eslint-disable-next-line no-extra-boolean-cast -- FIXME
+      !!props.size
       ? props.size
       : "0px";
 

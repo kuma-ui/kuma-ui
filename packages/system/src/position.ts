@@ -21,7 +21,7 @@ export const position = (props: PositionProps): ResponsiveStyle => {
 
   for (const key in positionMappings) {
     const cssValue = props[key as PositionKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = positionMappings[key as PositionKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,

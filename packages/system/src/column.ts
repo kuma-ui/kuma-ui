@@ -40,7 +40,7 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
 
   for (const key in columnMappings) {
     const cssValue = props[key as ColumnKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
       const converter = [
         columnMappings.columnGap,

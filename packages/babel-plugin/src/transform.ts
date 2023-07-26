@@ -3,7 +3,7 @@ import { compile } from "@kuma-ui/compiler";
 import pluin from ".";
 import { sheet } from "@kuma-ui/sheet";
 
-export async function transform(code: string, id: string) {
+export function transform(code: string, id: string) {
   const result = transformSync(code, {
     filename: id,
     sourceMaps: true,

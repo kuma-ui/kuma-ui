@@ -2,38 +2,34 @@
 /// <reference types="vitest/globals" />
 
 import { babelTransform, getExpectSnapshot } from "./testUtils";
-import { pluginTester } from "babel-plugin-tester";
-import { types, template } from "@babel/core";
-import plugin from "../";
-import path from "path";
 
 describe("css function", () => {
   describe("Snapshot tests", () => {
-    test("basic usage should match snapshot", async () => {
+    test("basic usage should match snapshot", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css\`color: red;\`
       `;
       // Act
-      const result = await babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
-    test("using space props should match snapshot", async () => {
+    test("using space props should match snapshot", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
         const style = css\`padding: 2px;\`
       `;
       // Act
-      const result = await babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });
 
-    test("using pseudo props should match snapshot", async () => {
+    test("using pseudo props should match snapshot", () => {
       // Arrange
       const inputCode = `
         import { css } from '@kuma-ui/core'
@@ -44,7 +40,7 @@ describe("css function", () => {
         \`
       `;
       // Act
-      const result = await babelTransform(inputCode);
+      const result = babelTransform(inputCode);
       // Assert
       expect(getExpectSnapshot(result)).toMatchSnapshot();
     });

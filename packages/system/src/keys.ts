@@ -219,6 +219,17 @@ export const styleKeys = {
     "maskSize",
     "maskType",
   ] as const,
+  background: [
+    "bgImage",
+    "bgPosition",
+    "bgPositionX",
+    "bgPositionY",
+    "bgSize",
+    "bgRepeat",
+    "bgAttachment",
+    "bgClip",
+    "bgOrigin",
+  ] as const,
 };
 
 export type AnimationKeys = (typeof styleKeys.animation)[number];
@@ -238,6 +249,7 @@ export type GridKeys = (typeof styleKeys.grid)[number];
 export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 export type MaskKeys = (typeof styleKeys.mask)[number];
+export type BackgroundKeys = (typeof styleKeys.background)[number];
 
 export type StyledKeyType =
   | AnimationKeys
@@ -252,14 +264,18 @@ export type StyledKeyType =
   | ShadowKeys
   | ListKeys
   | GridKeys
+  | BackgroundKeys
   | MaskKeys
   | ColumnKeys
   | EffectKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const cache = Object.create(null);
   return (arg: string) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
     if (cache[arg] === undefined) cache[arg] = fn(arg);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access -- FIXME
     return cache[arg];
   };
 }

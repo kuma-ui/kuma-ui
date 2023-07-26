@@ -12,6 +12,7 @@ describe("font utility function", () => {
       "font-size: 24px;",
       "@media (min-width: 576px) { font-size: 32px; }",
     ],
+    [{ fontSize: 0 }, "font-size: 0px;", ""],
   ];
 
   test.each(testCases)(
@@ -43,6 +44,7 @@ describe("font utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = font(invalidProps as any);
     expect(base).toBe("");
     expect(media).toEqual({});

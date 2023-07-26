@@ -12,6 +12,7 @@ describe("space utility function", () => {
       "margin-left: 4px; margin-right: 4px;",
       "@media (min-width: 576px) { margin-left: 8px; margin-right: 8px; }",
     ],
+    [{ m: 0 }, "margin: 0px;", ""],
   ];
 
   test.each(testCases)(
@@ -43,6 +44,7 @@ describe("space utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = space(invalidProps as any);
     expect(base).toBe("");
     expect(media).toEqual({});

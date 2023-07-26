@@ -8,6 +8,7 @@ export type FakeCSSStyleSheet = {
   cssRules: ({ cssText: string } | undefined)[];
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging -- FIXME
 export interface StyleSheet {
   inject(): void;
   isSpeedy(): boolean;
@@ -18,6 +19,7 @@ export interface StyleSheet {
   cssRules(): (CSSRule | undefined)[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging -- FIXME
 export class StyleSheet implements StyleSheet {
   constructor(name: string, speedy = false) {
     return isBrowser

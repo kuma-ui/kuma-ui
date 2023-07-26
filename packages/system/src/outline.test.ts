@@ -8,6 +8,7 @@ describe("outline utility function", () => {
     [{ outlineStyle: "dotted" }, "outline-style: dotted;", ""],
     [{ outlineWidth: 1 }, "outline-width: 1px;", ""],
     [{ outlineWidth: "thin" }, "outline-width: thin;", ""],
+    [{ outlineWidth: 0 }, "outline-width: 0px;", ""],
   ];
 
   test.each(testCases)(

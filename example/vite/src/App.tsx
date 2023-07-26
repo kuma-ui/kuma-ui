@@ -1,6 +1,5 @@
-import React from "react";
 import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 export const Hero = () => {
   const isDark = useState(false);

@@ -30,7 +30,9 @@ const Heading: HeadingComponent = <
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, HeadingProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any -- FIXME
     ? theme.getVariants("Heading")?.variants?.[props.variant as any]
     : {};
   return (

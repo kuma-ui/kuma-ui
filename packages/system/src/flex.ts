@@ -45,7 +45,7 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
 
   for (const key in flexMappings) {
     const cssValue = props[key as FlexKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = flexMappings[key as FlexKeys];
       const converter = [flexMappings.flexBasis, flexMappings.gap].includes(
         property

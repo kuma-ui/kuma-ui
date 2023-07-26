@@ -7,6 +7,7 @@ export type ExtractedStyleProps<T> = T extends NodePath<t.JSXOpeningElement>
   ? {
       filteredAttributes: t.JSXAttribute[];
       styledProps: {
+        // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
         [key: string]: CSSProperty | number | (CSSProperty | number)[];
       };
       pseudoProps: PseudoProps;

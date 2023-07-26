@@ -12,6 +12,7 @@ describe("text utility function", () => {
       "text-indent: 50px;",
       "@media (min-width: 576px) { text-indent: 100px; }",
     ],
+    [{ textIndent: 0 }, "text-indent: 0px;", ""],
   ];
 
   test.each(testCases)(
@@ -43,6 +44,7 @@ describe("text utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = text(invalidProps as any);
     expect(base).toBe("");
     expect(media).toEqual({});

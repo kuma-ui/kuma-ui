@@ -24,12 +24,17 @@ import { theme } from "@kuma-ui/sheet";
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   propsMap: Record<string, any>
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const styledProps: { [key: string]: any } = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const pseudoProps: { [key: string]: any } = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentProps: { [key: string]: any } = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentVariantProps: { [key: string]: any } = {};
 
   const defaultProps = componentDefaultProps(componentName);
@@ -77,6 +82,7 @@ export const extractProps = (
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
     for (const prop in componentVariantProps) {
+      // eslint-disable-next-line no-prototype-builtins -- FIXME
       if (componentVariantProps.hasOwnProperty(prop)) {
         delete componentVariantProps[prop];
       }
@@ -150,6 +156,7 @@ export const extractProps = (
  * Incurs O(n log n) cost due to sorting, but it's acceptable given the
  * expensive nature of StyleGenerator's internals.
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
 const generateKey = (props: Record<string, any>) => {
   return Object.entries(props)
     .filter(([, value]) => value !== undefined)

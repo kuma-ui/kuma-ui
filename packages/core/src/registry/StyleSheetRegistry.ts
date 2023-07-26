@@ -46,9 +46,9 @@ export class StyleSheetRegistry {
       );
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+     
     this.instancesCountMap[id]! -= 1;
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+     
     if (this.instancesCountMap[id]! !== 0) {
       return;
     }
@@ -63,7 +63,7 @@ export class StyleSheetRegistry {
           `StyleSheetRegistry: id: \`${id}\` not found in idIndexesMap.`
         );
       }
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+       
       this.indexesMap[id]!.forEach((index) => this.sheet.deleteRule(index));
       delete this.indexesMap[id];
     }

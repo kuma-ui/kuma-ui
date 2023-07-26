@@ -48,7 +48,7 @@ export const color = (props: ColorProps): ResponsiveStyle => {
   const media: ResponsiveStyle["media"] = {};
   for (const key in colorMappings) {
     const cssValue = props[key as ColorKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = colorMappings[key as ColorKeys];
       const userTheme = theme.getUserTheme();
       let converter: (value: string | number) => string | number;

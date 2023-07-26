@@ -59,7 +59,7 @@ export const font = (props: FontProps): ResponsiveStyle => {
 
   for (const key in fontMappings) {
     const cssValue = props[key as FontKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = fontMappings[key as FontKeys];
       const converter = [fontMappings.fontSize].includes(property)
         ? toCssUnit

@@ -21,6 +21,7 @@ describe("flex utility function", () => {
     [{ justifySelf: "center" }, "justify-self: center;", ""],
     [{ gap: 1 }, "gap: 1px;", ""],
     [{ gap: "10px 20px" }, "gap: 10px 20px;", ""],
+    [{ gap: 0 }, "gap: 0px;", ""],
   ];
 
   test.each(testCases)(
@@ -49,6 +50,7 @@ describe("flex utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const style = flex(invalidProps as any);
     expect(style.base.replace(/\s/g, "")).toBe("".replace(/\s/g, ""));
   });

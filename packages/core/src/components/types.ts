@@ -6,13 +6,14 @@ import { ThemeSystem } from "../theme";
 import { If, IsUnknown } from "../utils/types";
 
 /* eslint-disable @typescript-eslint/ban-types */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
 export type As<Props = any> = React.ElementType<Props>;
 
 export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
   as?: As;
 };
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+ 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<
@@ -23,8 +24,11 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
     >
   ): JSX.Element;
   displayName?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   propTypes?: React.WeakValidationMap<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   contextTypes?: React.ValidationMap<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   defaultProps?: Partial<any>;
   id?: string;
 };
@@ -46,6 +50,7 @@ type RightJoinProps<
 
 type OmitCommonProps<
   Target,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   OmitAdditionalProps extends keyof any = never
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 

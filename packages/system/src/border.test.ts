@@ -6,6 +6,7 @@ describe("border utility function", () => {
   const testCases: Array<[BorderProps, string, string]> = [
     [{ borderRadius: 1 }, "border-radius: 1px;", ""],
     [{ borderWidth: "20px" }, "border-width: 20px;", ""],
+    [{ borderWidth: 0 }, "border-width: 0px;", ""],
   ];
 
   test.each(testCases)(
@@ -34,6 +35,7 @@ describe("border utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const style = border(invalidProps as any);
     expect(style.base.replace(/\s/g, "")).toBe("".replace(/\s/g, ""));
   });

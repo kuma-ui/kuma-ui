@@ -1,9 +1,9 @@
-import { BabelFileResult, transformSync } from "@babel/core";
+import { BabelFileResult } from "@babel/core";
 import { transform } from "../transform";
 
-export async function babelTransform(code: string): Promise<BabelFileResult> {
+export function babelTransform(code: string): BabelFileResult {
   const filename = "test.tsx";
-  const result = await transform(code, filename);
+  const result = transform(code, filename);
 
   if (!result) throw Error("transform failed");
 

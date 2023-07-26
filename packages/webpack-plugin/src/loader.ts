@@ -32,31 +32,27 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
 
   const outputPath = this._compiler?.options.output.path;
   if (!outputPath) throw Error("output path is not correctly set");
-  transform(source.toString(), id)
-    .then(async (result) => {
-      if (!result || !result.code) {
-        callback(null, source);
-        return;
-      }
+  const result = transform(source.toString(), id)
+  if (!result || !result.code) {
+    callback(null, source);
+    return;
+  }
 
-      const css =
-        ((result.metadata as unknown as { css: string }).css as string) || "";
+  const css =
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- FIXME
+    ((result.metadata as unknown as { css: string }).css as string) || "";
 
-      if (css) {
-        const codePrefix = fileLoader(css, {
-          context: this,
-          isVirtualLoader: isVirtualLoader,
-          outputDir: options.cssOutputDir || "kuma",
-        });
-
-        callback(null, `${result.code}\n${codePrefix};`);
-        return;
-      }
-      callback(null, `${result.code}`);
-    })
-    .catch((error) => {
-      callback(error);
+  if (css) {
+    const codePrefix = fileLoader(css, {
+      context: this,
+      isVirtualLoader: isVirtualLoader,
+      outputDir: options.cssOutputDir || "kuma",
     });
+
+    callback(null, `${result.code}\n${codePrefix};`);
+    return;
+  }
+  callback(null, `${result.code}`);
 };
 
 export default kumaUiLoader;

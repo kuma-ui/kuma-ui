@@ -44,7 +44,7 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
 
   for (const key in typographyMappings) {
     const cssValue = props[key as TypographyKeys];
-    if (cssValue) {
+    if (cssValue != undefined) {
       const property = typographyMappings[key as TypographyKeys];
       const converter = [
         typographyMappings.letterSpacing,

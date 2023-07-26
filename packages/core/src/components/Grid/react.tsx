@@ -24,6 +24,7 @@ const Grid: GridComponent = <T extends As = "div">({
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, GridProps>) => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const variant = props.variant
     ? theme.getVariants("Grid")?.variants?.[props.variant]
     : {};
@@ -32,6 +33,7 @@ const Grid: GridComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

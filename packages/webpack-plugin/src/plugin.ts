@@ -50,6 +50,7 @@ class KumaUIWebpackPlugin {
       };
 
       if (config.default) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
         theme.setUserTheme(config.default as any);
       }
     }

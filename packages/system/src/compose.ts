@@ -18,25 +18,29 @@ import { TextProps } from "./text";
 import { FontProps } from "./font";
 import { MaskProps } from "./mask";
 import { ColumnProps } from "./column";
+import { BackgroundProps } from "./background";
 
-export type StyledProps<T extends ThemeSystemType = ThemeSystemType> = SpaceProps &
-  AnimationProps &
-  TypographyProps &
-  TextProps &
-  FontProps &
-  LayoutProps &
-  ColorProps<T["colors"]> &
-  FlexProps &
-  BorderProps &
-  OutlineProps &
-  PositionProps &
-  ShadowProps &
-  GridProps &
-  ListProps &
-  EffectProps &
-  MaskProps &
-  ColumnProps &
-  EffectProps;
+export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
+  SpaceProps &
+    AnimationProps &
+    TypographyProps &
+    TextProps &
+    FontProps &
+    LayoutProps &
+    ColorProps<T["colors"]> &
+    FlexProps &
+    BorderProps &
+    OutlineProps &
+    PositionProps &
+    ShadowProps &
+    GridProps &
+    ListProps &
+    EffectProps &
+    MaskProps &
+    ColumnProps &
+    BackgroundProps &
+    // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents -- FIXME
+    EffectProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
@@ -76,13 +80,18 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
+          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- FIXME
           newStyles.base.includes(`${outputProps[key as keyof StyledProps]}:`)
         );
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
         outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
           if (!processedProps.includes(key)) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
             remainingProps[key] = outputProps[key as keyof StyledProps];
           }
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
           return remainingProps;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         }, {} as any);
 
         return styles;

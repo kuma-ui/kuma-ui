@@ -12,6 +12,7 @@ describe("grid utility function", () => {
       "grid-gap: 8px;",
       "@media (min-width: 576px) { grid-gap: 16px; }",
     ],
+    [ { gridColumnStart: 0 }, "grid-column-start: 0;", ""],
   ];
 
   test.each(testCases)(
@@ -43,6 +44,7 @@ describe("grid utility function", () => {
     };
 
     // Act
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = grid(invalidProps as any);
     expect(base).toBe("");
     expect(media).toEqual({});
