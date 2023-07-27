@@ -7,7 +7,7 @@ exports[`css function > Snapshot tests > basic usage should match snapshot 1`] =
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { css } from '@kuma-ui/core';
-const style = \\"\\\\uD83D\\\\uDC3B-136547911\\";
+const style = \\"🐻-136547911\\";
 "
 `;
 
@@ -18,7 +18,7 @@ exports[`css function > Snapshot tests > using pseudo props should match snapsho
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { css } from '@kuma-ui/core';
-const style = \\"\\\\uD83D\\\\uDC3B-714656561\\";
+const style = \\"🐻-714656561\\";
 "
 `;
 
@@ -29,6 +29,6 @@ exports[`css function > Snapshot tests > using space props should match snapshot
 import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { css } from '@kuma-ui/core';
-const style = \\"\\\\uD83D\\\\uDC3B-620795649\\";
+const style = \\"🐻-620795649\\";
 "
 `;

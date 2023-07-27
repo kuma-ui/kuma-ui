@@ -8,6 +8,7 @@ import {
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
 import { componentList } from "@kuma-ui/core/components/componentList";
+import { sheet } from "@kuma-ui/sheet";
 
 const project = new Project({});
 
@@ -49,6 +50,19 @@ const compile = (
         extractedPropsMap
       );
       if (result) css.push(result.css);
+    }
+    if (Node.isTaggedTemplateExpression(node)) {
+      // css``
+      const cssTag = node.getTag();
+      if (cssTag.getText() !== bindings["css"]) return;
+      const cssTemplateLiteral = node.getTemplate();
+      if (Node.isNoSubstitutionTemplateLiteral(cssTemplateLiteral)) {
+        const cssString = cssTemplateLiteral.getLiteralText();
+        const className = cssString ? sheet.parseCSS(cssString) : undefined;
+        if (className) {
+          node.replaceWithText(JSON.stringify(className));
+        }
+      }
     }
   });
   return { code: source.getFullText(), id, css: css.join(" ") };
