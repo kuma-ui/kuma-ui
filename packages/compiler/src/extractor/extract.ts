@@ -82,8 +82,7 @@ export const extractProps = (
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
     for (const prop in componentVariantProps) {
-      // eslint-disable-next-line no-prototype-builtins -- FIXME
-      if (componentVariantProps.hasOwnProperty(prop)) {
+      if (Object.hasOwn(componentVariantProps, prop)) {
         delete componentVariantProps[prop];
       }
     }
