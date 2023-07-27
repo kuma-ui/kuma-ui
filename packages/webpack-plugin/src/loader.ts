@@ -32,15 +32,13 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
 
   const outputPath = this._compiler?.options.output.path;
   if (!outputPath) throw Error("output path is not correctly set");
-  const result = transform(source.toString(), id)
+  const result = transform(source.toString(), id);
   if (!result || !result.code) {
     callback(null, source);
     return;
   }
 
-  const css =
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- FIXME
-    ((result.metadata as unknown as { css: string }).css as string) || "";
+  const css = (result.metadata as unknown as { css: string }).css || "";
 
   if (css) {
     const codePrefix = fileLoader(css, {
