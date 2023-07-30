@@ -126,10 +126,21 @@ export const border = (props: BorderProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const properties = borderMappings[key as BorderKeys].split(",");
       for (const property of properties) {
+        const converter = [
+          borderMappings.borderStyle,
+          borderMappings.borderTopStyle,
+          borderMappings.borderBottomStyle,
+          borderMappings.borderLeftStyle,
+          borderMappings.borderRightStyle,
+          borderMappings.borderStartStyle,
+          borderMappings.borderEndStyle,
+        ].includes(borderMappings[key as BorderKeys])
+          ? undefined
+          : toCssUnit;
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          toCssUnit
+          converter
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(
