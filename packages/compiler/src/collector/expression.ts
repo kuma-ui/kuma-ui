@@ -5,7 +5,7 @@ import * as types from "../types";
 /**
  * Normalize ts-morph Node to make further processing simpler
  */
-export const normalizeNode = (node: Node): Node => {
+const normalizeNode = (node: Node): Node => {
   if (Node.isAsExpression(node)) {
     return normalizeNode(node.getExpression());
   }
