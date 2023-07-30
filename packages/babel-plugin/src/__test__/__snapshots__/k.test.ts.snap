@@ -54,6 +54,36 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements with conditional should match snapshot 1`] = `
+"
+.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: automatic) > using pseudo elements with top-level conditional should match snapshot 1`] = `
+"
+.🐻-3206633536 { padding: 2px; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-3206633536 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: automatic) > using pseudo props should match snapshot 1`] = `
 "
 .🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
@@ -147,6 +177,36 @@ function App() {
 "
 `;
 
+exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements with conditional should match snapshot 1`] = `
+"
+.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: classic) > using pseudo elements with top-level conditional should match snapshot 1`] = `
+"
+.🐻-3206633536 { padding: 2px; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-3206633536 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
+}
+"
+`;
+
 exports[`k api > Snapshot tests (runtime: classic) > using pseudo props should match snapshot 1`] = `
 "
 .🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
@@ -236,6 +296,36 @@ import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
   return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2631981251\\"} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using pseudo elements with conditional should match snapshot 1`] = `
+"
+.🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
+}
+"
+`;
+
+exports[`k api > Snapshot tests (runtime: undefined) > using pseudo elements with top-level conditional should match snapshot 1`] = `
+"
+.🐻-3206633536 { padding: 2px; } .🐻-772592793 { margin: 100px; }.🐻-772592793:hover { color: blue; } .🐻-2637715954 { margin: 10px; }.🐻-2637715954:hover { color: red; }
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App({
+  flag
+}) {
+  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-3206633536 \${(flag) ? \\"🐻-772592793\\" : \\"🐻-2637715954\\"}\`} />;
 }
 "
 `;

@@ -74,6 +74,34 @@ describe("k api", () => {
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
+      test("using pseudo elements with conditional should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { k } from '@kuma-ui/core'
+        function App({ flag }) {
+          return <k.div p={2} m={flag ? 100 : 10} _hover={{ color: flag ? 'blue' : 'red', backgroundColor: flag ? 'gray' : 'white' }} />
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
+      test("using pseudo elements with top-level conditional should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { k } from '@kuma-ui/core'
+        function App({ flag }) {
+          return <k.div p={2} m={flag ? 100 : 10} _hover={flag ? { color: 'blue', bgColor: 'gray'} : {color: 'green'}} />
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
       test("using className prop should match snapshot", () => {
         // Arrange
         const inputCode = `
