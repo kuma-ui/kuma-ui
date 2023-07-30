@@ -76,15 +76,13 @@ export const handleJsxExpression = (
         const whenTrue = handleJsxExpression(conditional.getWhenTrue());
         const whenFalse = handleJsxExpression(conditional.getWhenFalse());
 
-        const ret =
-          whenTrue?.type === "Static" && whenFalse?.type === "Static"
-            ? types.conditional({
-              expression: condition.getText(),
-              whenTrue: whenTrue.value,
-              whenFalse: whenFalse.value,
-            })
-            : undefined;
-        return ret;
+        return whenTrue?.type === "Static" && whenFalse?.type === "Static"
+          ? types.conditional({
+            expression: condition.getText(),
+            whenTrue: whenTrue.value,
+            whenFalse: whenFalse.value,
+          })
+          : undefined;
       })
       // _hover={{color: 'red'}}
       .when(Node.isObjectLiteralExpression, (obj) => {
