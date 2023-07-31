@@ -65,7 +65,7 @@ const compile = (
         }
       }
       // styled("xxx")``
-      if (
+      else if (
         Node.isCallExpression(tag) &&
         tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
           bindings["styled"]
