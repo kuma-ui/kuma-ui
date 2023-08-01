@@ -1,5 +1,11 @@
 # @kuma-ui/compiler
 
+## 1.0.3
+
+### Patch Changes
+
+- [#248](https://github.com/kuma-ui/kuma-ui/pull/248) [`439965c`](https://github.com/kuma-ui/kuma-ui/commit/439965c78ff2d1a6e2f4ac9225ad9a9067d36ee2) Thanks [@kotarella1110](https://github.com/kotarella1110)! - refactor: move tagged template expression from babel-plugin to compiler
+
 ## 1.0.2
 
 ### Patch Changes
