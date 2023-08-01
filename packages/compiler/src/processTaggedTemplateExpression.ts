@@ -1,8 +1,4 @@
-import {
-  Node,
-  SyntaxKind,
-  TaggedTemplateExpression,
-} from "ts-morph";
+import { Node, SyntaxKind, TaggedTemplateExpression } from "ts-morph";
 import { sheet } from "@kuma-ui/sheet";
 
 const parseCssTemplate = (cssTemplateLiteral: Node) => {
@@ -13,7 +9,10 @@ const parseCssTemplate = (cssTemplateLiteral: Node) => {
   return undefined;
 };
 
-export const processTaggedTemplateExpression = (node: TaggedTemplateExpression, bindings: Record<string, string>) => {
+export const processTaggedTemplateExpression = (
+  node: TaggedTemplateExpression,
+  bindings: Record<string, string>
+) => {
   const tag = node.getTag();
   // css``
   if (Node.isIdentifier(tag) && tag.getText() === bindings["css"]) {
@@ -47,7 +46,3 @@ export const processTaggedTemplateExpression = (node: TaggedTemplateExpression, 
     }
   }
 };
-
-
-
-
