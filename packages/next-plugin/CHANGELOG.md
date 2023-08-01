@@ -1,5 +1,13 @@
 # @kuma-ui/next-plugin
 
+## 1.1.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @kuma-ui/core@1.1.1
+  - @kuma-ui/webpack-plugin@1.1.3
+
 ## 1.1.2
 
 ### Patch Changes

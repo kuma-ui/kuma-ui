@@ -1,5 +1,13 @@
 # @kuma-ui/system
 
+## 1.1.0
+
+### Minor Changes
+
+- [#252](https://github.com/kuma-ui/kuma-ui/pull/252) [`8a42a22`](https://github.com/kuma-ui/kuma-ui/commit/8a42a225359bad6d2bf35a3c63d897ae02f59392) Thanks [@kotarella1110](https://github.com/kotarella1110)! - add: properties related to border
+  fix: correctly compile falsy property values
+  Add: background style
+
 ## 1.0.1
 
 ### Patch Changes
