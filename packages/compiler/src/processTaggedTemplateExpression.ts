@@ -1,9 +1,14 @@
-import { Node, SyntaxKind, TaggedTemplateExpression } from "ts-morph";
+import {
+  Node,
+  SyntaxKind,
+  TaggedTemplateExpression,
+  TemplateLiteral,
+} from "ts-morph";
 import { sheet } from "@kuma-ui/sheet";
 
-const parseCssTemplate = (cssTemplateLiteral: Node) => {
-  if (Node.isNoSubstitutionTemplateLiteral(cssTemplateLiteral)) {
-    const cssString = cssTemplateLiteral.getLiteralText();
+const extractClassName = (templateLiteral: TemplateLiteral) => {
+  if (Node.isNoSubstitutionTemplateLiteral(templateLiteral)) {
+    const cssString = templateLiteral.getLiteralText();
     return cssString ? sheet.parseCSS(cssString) : undefined;
   }
   return undefined;
@@ -16,8 +21,7 @@ export const processTaggedTemplateExpression = (
   const tag = node.getTag();
   // css``
   if (Node.isIdentifier(tag) && tag.getText() === bindings["css"]) {
-    const cssTemplateLiteral = node.getTemplate();
-    const className = parseCssTemplate(cssTemplateLiteral);
+    const className = extractClassName(node.getTemplate());
     if (className) {
       node.replaceWithText(JSON.stringify(className));
     }
@@ -28,8 +32,7 @@ export const processTaggedTemplateExpression = (
     tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
       bindings["styled"]
   ) {
-    const cssTemplateLiteral = node.getTemplate();
-    const className = parseCssTemplate(cssTemplateLiteral);
+    const className = extractClassName(node.getTemplate());
     if (className) {
       const componentArg = tag.getArguments()[0];
       const component = Node.isStringLiteral(componentArg)
