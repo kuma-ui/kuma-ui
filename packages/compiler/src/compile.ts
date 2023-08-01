@@ -8,7 +8,7 @@ import {
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
 import { componentList } from "@kuma-ui/core/components/componentList";
-import { sheet } from "@kuma-ui/sheet";
+import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 
 const project = new Project({});
 
@@ -52,44 +52,7 @@ const compile = (
       if (result) css.push(result.css);
     }
     if (Node.isTaggedTemplateExpression(node)) {
-      const tag = node.getTag();
-      // css``
-      if (Node.isIdentifier(tag) && tag.getText() === bindings["css"]) {
-        const cssTemplateLiteral = node.getTemplate();
-        if (Node.isNoSubstitutionTemplateLiteral(cssTemplateLiteral)) {
-          const cssString = cssTemplateLiteral.getLiteralText();
-          const className = cssString ? sheet.parseCSS(cssString) : undefined;
-          if (className) {
-            node.replaceWithText(JSON.stringify(className));
-          }
-        }
-      }
-      // styled("xxx")``
-      else if (
-        Node.isCallExpression(tag) &&
-        tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
-          bindings["styled"]
-      ) {
-        const cssTemplateLiteral = node.getTemplate();
-        if (Node.isNoSubstitutionTemplateLiteral(cssTemplateLiteral)) {
-          const componentArg = tag.getArguments()[0];
-          const component = Node.isStringLiteral(componentArg)
-            ? componentArg.getLiteralText()
-            : "div";
-          const cssString = cssTemplateLiteral.getLiteralText();
-          const className = cssString ? sheet.parseCSS(cssString) : undefined;
-          if (className) {
-            node.replaceWithText(`props => {
-  const existingClassName = props.className || "";
-  const newClassName = "${className || ""}";
-  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
-  return <${
-    bindings["Box"]
-  } as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
-}`);
-          }
-        }
-      }
+      processTaggedTemplateExpression(node, bindings);
     }
   });
   return { code: source.getFullText(), id, css: css.join(" ") };
