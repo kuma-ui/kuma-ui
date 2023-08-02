@@ -1,4 +1,4 @@
-import { Node, ts } from "ts-morph";
+import { Node, SyntaxKind, ts } from "ts-morph";
 import { match } from "ts-pattern";
 import * as types from "../types";
 
@@ -78,39 +78,35 @@ export const handleJsxExpression = (
 
         return whenTrue?.type === "Static" && whenFalse?.type === "Static"
           ? types.conditional({
-            expression: condition.getText(),
-            whenTrue: whenTrue.value,
-            whenFalse: whenFalse.value,
-          })
+              expression: condition.getText(),
+              whenTrue: whenTrue.value,
+              whenFalse: whenFalse.value,
+            })
           : undefined;
       })
       // _hover={{color: 'red'}}
       .when(Node.isObjectLiteralExpression, (obj) => {
+        // prettier-ignore
+        if (!obj.getParent().asKind(SyntaxKind.JsxAttribute)?.getNameNode().getText().startsWith("_")) {
+          return undefined
+        }
         const entries: [string, types.Value][] = [];
         for (const prop of obj.getProperties()) {
-          if (Node.isPropertyAssignment(prop)) {
-            const initializer = prop.getInitializer();
-            if (initializer) {
-              const propName = prop.getName();
-              const value = handleJsxExpression(initializer);
-              if (value === undefined) {
-                return undefined;
-              }
-              entries.push([propName, value]);
-            }
-          } else {
-            return undefined;
-          }
+          // Ignore the properties that are not simple assignments, like getters, setters, shorthand methods, and computed property names
+          if (!Node.isPropertyAssignment(prop)) return undefined;
+
+          const initializer = prop.getInitializer();
+          if (!initializer) return undefined;
+
+          const propName = prop.getName();
+          const value = handleJsxExpression(initializer);
+          if (value === undefined) return undefined;
+
+          entries.push([propName, value]);
         }
 
         if (entries.every((e) => e[1].type === "Static")) {
-          return types.staticValue(
-            Object.fromEntries(
-              entries.map((e) =>
-                e[1].type === "Static" ? [e[0], e[1].value] : ({} as never)
-              )
-            )
-          );
+          return types.staticValue(Object.fromEntries(entries));
         } else {
           return types.recordValue(Object.fromEntries(entries));
         }

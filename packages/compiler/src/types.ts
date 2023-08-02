@@ -31,6 +31,9 @@ export type Value =
 export const staticValue = (value: StaticValue) =>
   ({ type: "Static", value } as const);
 
+/**
+ * The record can contain pseudo-elements like `_hover` which is an object, e.g. `_hover={{color: 'red'}}`.
+ */
 export const recordValue = (value: {
   [_ in string]: Value;
 }) => ({ type: "Record", value } as const);
