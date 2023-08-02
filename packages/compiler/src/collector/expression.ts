@@ -26,6 +26,17 @@ const normalizeNode = (node: Node): Node => {
   return node;
 };
 
+/**
+ * This function attempts to statically analyze the JSX expression and determine its value at compile time.
+ * However, if the expression cannot be statically analyzed, the function returns `undefined`.
+ *
+ * The function uses the provided `propName` parameter to optimize the handling of object literal expressions.
+ * If `propName` is not a pseudo prop, the function avoids unnecessary recursive computations.
+ *
+ * @param {Expression<ts.Expression>} node - The JSX expression to handle.
+ * @param {string} propName - The name of the property that this expression is being used for.
+ * @returns {types.Value | undefined} A `types.Value` representing the value of the JSX expression if it can be statically analyzed, or `undefined` otherwise.
+ */
 export const handleJsxExpression = (
   node: Expression<ts.Expression>,
   propName: string
