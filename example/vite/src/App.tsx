@@ -1,10 +1,11 @@
-import { Box, HStack, styled, css, Select as S } from "@kuma-ui/core";
+import { Box, HStack, styled, css, Select as S, Text } from "@kuma-ui/core";
 import { Dynamic } from "./Dynamic";
 
 function App() {
   const red = "red";
   return (
     <HStack flexDir={["row", "column"]}>
+      <Text variant={"primary"}>hello</Text>
       <Dynamic key={1} />
       <Dynamic key={2} />
     </HStack>
