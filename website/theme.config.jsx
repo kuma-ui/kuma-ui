@@ -134,15 +134,15 @@ export default {
   },
   banner: {
     key: "2.0.0-release",
-    text: <a href="https://github.com/poteboy/kuma-ui">⭐ Leave 🐻‍❄️ a star →</a>,
+    text: <a href="https://github.com/kuma-ui/kuma-ui">⭐ Leave 🐻‍❄️ a star →</a>,
   },
   project: {
-    link: "https://github.com/poteboy/kuma-ui",
+    link: "https://github.com/kuma-ui/kuma-ui",
   },
   chat: {
     link: "https://discord.gg/QrsQ4EPp7G",
   },
-  docsRepositoryBase: "https://github.com/poteboy/kuma-ui/tree/main/website/",
+  docsRepositoryBase: "https://github.com/kuma-ui/kuma-ui/tree/main/website/",
   navbar: {
     extraContent: (
       <>
