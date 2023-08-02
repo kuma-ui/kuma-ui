@@ -1,6 +1,7 @@
-import { Node, SyntaxKind, ts } from "ts-morph";
+import { Expression, Node, SyntaxKind, ts } from "ts-morph";
 import { match } from "ts-pattern";
 import * as types from "../types";
+import { isPseudoProps } from "@kuma-ui/system";
 
 /**
  * Normalize ts-morph Node to make further processing simpler
@@ -26,7 +27,8 @@ const normalizeNode = (node: Node): Node => {
 };
 
 export const handleJsxExpression = (
-  node: Node<ts.Node>
+  node: Expression<ts.Expression>,
+  propName: string
 ): types.Value | undefined => {
   return (
     match(normalizeNode(node))
@@ -56,7 +58,7 @@ export const handleJsxExpression = (
       .when(Node.isArrayLiteralExpression, (array) => {
         const arrayExpression = array
           .getElements()
-          .map((elm) => handleJsxExpression(elm))
+          .map((elm) => handleJsxExpression(elm, propName))
           .map((x) =>
             x?.type === "Static"
               ? typeof x.value === "string" || typeof x.value === "number"
@@ -73,8 +75,14 @@ export const handleJsxExpression = (
       // fontSize={someFlag ? "24px" : "32px"}
       .when(Node.isConditionalExpression, (conditional) => {
         const condition = conditional.getCondition();
-        const whenTrue = handleJsxExpression(conditional.getWhenTrue());
-        const whenFalse = handleJsxExpression(conditional.getWhenFalse());
+        const whenTrue = handleJsxExpression(
+          conditional.getWhenTrue(),
+          propName
+        );
+        const whenFalse = handleJsxExpression(
+          conditional.getWhenFalse(),
+          propName
+        );
 
         return whenTrue?.type === "Static" && whenFalse?.type === "Static"
           ? types.conditional({
@@ -86,10 +94,9 @@ export const handleJsxExpression = (
       })
       // _hover={{color: 'red'}}
       .when(Node.isObjectLiteralExpression, (obj) => {
-        // prettier-ignore
-        if (!obj.getParent().asKind(SyntaxKind.JsxAttribute)?.getNameNode().getText().startsWith("_")) {
-          return undefined
-        }
+        // This must be pseudo props, otherwise it shouldn't be collected.
+        if (!isPseudoProps(propName)) return undefined;
+
         const entries: [string, types.Value][] = [];
         for (const prop of obj.getProperties()) {
           // Ignore the properties that are not simple assignments, like getters, setters, shorthand methods, and computed property names
@@ -99,14 +106,20 @@ export const handleJsxExpression = (
           if (!initializer) return undefined;
 
           const propName = prop.getName();
-          const value = handleJsxExpression(initializer);
+          const value = handleJsxExpression(initializer, propName);
           if (value === undefined) return undefined;
 
           entries.push([propName, value]);
         }
 
         if (entries.every((e) => e[1].type === "Static")) {
-          return types.staticValue(Object.fromEntries(entries));
+          return types.staticValue(
+            Object.fromEntries(
+              entries.map((e) =>
+                e[1].type === "Static" ? [e[0], e[1].value] : ({} as never)
+              )
+            )
+          );
         } else {
           return types.recordValue(Object.fromEntries(entries));
         }

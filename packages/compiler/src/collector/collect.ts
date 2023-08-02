@@ -17,7 +17,7 @@ export const collectPropsFromJsx = (
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {
       const propName = jsxAttribute.getNameNode().getText();
-      const propValue = extractAttribute(jsxAttribute);
+      const propValue = extractAttribute(propName, jsxAttribute);
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
       if (propValue == undefined) return;
       extracted[propName] = propValue;
@@ -28,6 +28,7 @@ export const collectPropsFromJsx = (
 };
 
 const extractAttribute = (
+  propName: string,
   jsxAttribute: JsxAttribute
 ): types.Value | undefined => {
   const initializer = jsxAttribute.getInitializer();
@@ -43,7 +44,7 @@ const extractAttribute = (
       .when(Node.isJsxExpression, (initializer) => {
         const expression = initializer.getExpression();
         if (!expression) return;
-        return handleJsxExpression(expression);
+        return handleJsxExpression(expression, propName);
       })
       // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
       .when(
