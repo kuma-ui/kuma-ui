@@ -1,41 +1,36 @@
 import {
-  Project,
   Node,
-  SyntaxKind,
   JsxOpeningElement,
   JsxSelfClosingElement,
   JsxAttribute,
 } from "ts-morph";
 import { match } from "ts-pattern";
-import { decode } from "./decode";
 import { handleJsxExpression } from "./expression";
-import { extractPseudoAttribute } from "./pseudo";
+import * as types from "../types";
 
 export const collectPropsFromJsx = (
   node: JsxOpeningElement | JsxSelfClosingElement
-) => {
+): Record<string, types.Value> => {
   const jsxAttributes = node.getAttributes();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const extracted: Record<string, any> = {};
+  const extracted: Record<string, types.Value> = {};
+
   jsxAttributes.forEach((jsxAttribute) => {
     if (Node.isJsxAttribute(jsxAttribute)) {
-      const propName = jsxAttribute.getNameNode().getFullText();
-      let propValue;
-      // If the propName starts with underscore, use extractPseudoAttribute
-      if (propName.trim().startsWith("_")) {
-        propValue = extractPseudoAttribute(jsxAttribute);
-      } else {
-        propValue = extractAttribute(jsxAttribute);
-      }
+      const propName = jsxAttribute.getNameNode().getText();
+      const propValue = extractAttribute(propName, jsxAttribute);
       // If the value is returned, it means that it can be statically analyzed, so we remove the corresponding prop from the Jsx tag and generate CSS.
       if (propValue == undefined) return;
       extracted[propName] = propValue;
     }
   });
+
   return extracted;
 };
 
-const extractAttribute = (jsxAttribute: JsxAttribute) => {
+const extractAttribute = (
+  propName: string,
+  jsxAttribute: JsxAttribute
+): types.Value | undefined => {
   const initializer = jsxAttribute.getInitializer();
 
   return (
@@ -43,20 +38,18 @@ const extractAttribute = (jsxAttribute: JsxAttribute) => {
       // fontSize='24px'
       .when(Node.isStringLiteral, (initializer) => {
         const value = initializer.getLiteralText();
-        return value;
+        return types.staticValue(value);
       })
       // fontSize={...}
       .when(Node.isJsxExpression, (initializer) => {
         const expression = initializer.getExpression();
         if (!expression) return;
-
-        const decodedNode = decode(expression);
-        return handleJsxExpression(decodedNode);
+        return handleJsxExpression(expression, propName);
       })
       // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
       .when(
         () => initializer === undefined,
-        () => true
+        () => types.staticValue(true)
       )
       .otherwise(() => undefined)
   );

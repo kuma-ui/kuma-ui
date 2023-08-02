@@ -36,11 +36,10 @@ const compile = (
       const originalComponentName = Object.keys(bindings).find(
         (key) =>
           bindings[key] === jsxTagName &&
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
           Object.values(componentList).some((c) => c === key)
       );
       if (!originalComponentName) return;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+
       const componentName =
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);
