@@ -34,14 +34,16 @@ export const extractProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentProps: { [key: string]: any } = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
+  const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentVariantProps: { [key: string]: any } = {};
+  const componentVariantProps: { [key: string]: any } = {
+    ...(variant?.baseStyle as Record<string, string>),
+  };
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call -- FIXME
   const defaultProps = componentDefaultProps(componentName);
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
-  const variant = theme.getVariants(componentName);
   let isDefault = false;
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
@@ -53,13 +55,12 @@ export const extractProps = (
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- FIXME
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- FIXME
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
     } else if (propName.trim() === "variant") {
       Object.assign(
         componentVariantProps,
-        variant?.baseStyle,
         variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
@@ -67,8 +68,6 @@ export const extractProps = (
       isDefault = true;
     }
   }
-
-  Object.assign(componentVariantProps, variant?.baseStyle);
 
   if (
     !(
