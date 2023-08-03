@@ -20,6 +20,8 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
        */
       bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
     } & CSSProperties<
+      | "background"
+      | "backgroundColor"
       | "borderColor"
       | "outlineColor"
       | "color"
@@ -33,7 +35,9 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
+  background: "background",
   bg: "background",
+  backgroundColor: "background-color",
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",

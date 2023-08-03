@@ -3,7 +3,9 @@ import { describe, expect, test } from "vitest";
 
 describe("color utility function", () => {
   const testCases: Array<[ColorProps, string, string]> = [
+    [{ background: "red" }, "background: red;", ""],
     [{ bg: "red" }, "background: red;", ""],
+    [{ backgroundColor: "red" }, "background-color: red;", ""],
     [{ bgColor: "red" }, "background-color: red;", ""],
     [{ color: "red" }, "color: red;", ""],
     [{ borderColor: "red" }, "border-color: red;", ""],

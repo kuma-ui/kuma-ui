@@ -124,7 +124,9 @@ export const styleKeys = {
     "gap",
   ] as const,
   color: [
+    "background",
     "bg",
+    "backgroundColor",
     "bgColor",
     "color",
     "borderColor",
