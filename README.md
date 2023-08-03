@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
+  <img src="https://raw.githubusercontent.com/kuma-ui/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 
 <h1 align='center'>Ultra Fast, Zero Runtime, Headless UI Components</h1>
@@ -18,7 +18,7 @@
 </div>
 
 
-https://github.com/poteboy/kuma-ui/assets/59927325/c3f7da97-dbff-49bb-a578-1cb9134b8dd2
+https://github.com/kuma-ui/kuma-ui/assets/59927325/c3f7da97-dbff-49bb-a578-1cb9134b8dd2
 
 
 ## 🐻‍❄️ Features

@@ -34,14 +34,19 @@ export const extractProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentProps: { [key: string]: any } = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
+  const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentVariantProps: { [key: string]: any } = {};
+  const componentVariantProps: { [key: string]: any } = {
+    ...(variant?.baseStyle as Record<string, string>),
+  };
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call -- FIXME
   const defaultProps = componentDefaultProps(componentName);
 
-  const variant = theme.getVariants(componentName);
   let isDefault = false;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
     ...propsMap,
@@ -50,12 +55,12 @@ export const extractProps = (
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- FIXME
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
     } else if (propName.trim() === "variant") {
       Object.assign(
         componentVariantProps,
-        variant?.baseStyle,
         variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
@@ -63,8 +68,6 @@ export const extractProps = (
       isDefault = true;
     }
   }
-
-  Object.assign(componentVariantProps, variant?.baseStyle);
 
   if (
     !(
@@ -76,29 +79,32 @@ export const extractProps = (
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call -- FIXME
   const specificProps = componentHandler(componentName)(componentProps);
 
   // Every component internally uses the Box component.
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
     for (const prop in componentVariantProps) {
-      // eslint-disable-next-line no-prototype-builtins -- FIXME
-      if (componentVariantProps.hasOwnProperty(prop)) {
+      if (Object.hasOwn(componentVariantProps, prop)) {
         delete componentVariantProps[prop];
       }
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const combinedProps = {
     ...componentVariantProps,
     ...specificProps,
     ...styledProps,
     ...pseudoProps,
   };
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   const key = generateKey(combinedProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
   if (!generatedStyle) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
     generatedStyle = new StyleGenerator(combinedProps).getStyle();
     styleCache[key] = generatedStyle;
   }

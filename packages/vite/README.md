@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/poteboy/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
+  <img src="https://raw.githubusercontent.com/kuma-ui/kuma-ui/main/media/logo.webp" alt="Kuma UI logo" width="300" />
 </div>
 
 <h1 align='center'>Ultra Fast, Zero Runtime, Headless UI Components</h1>

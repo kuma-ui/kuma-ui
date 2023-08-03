@@ -37,3 +37,23 @@ jobs:
 
       - name: Build packages
         run: pnpm build
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup node v16
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.5.1
+
+      - name: install packages
+        run: pnpm install
+
+      - name: Run lint
+        run: pnpm lint

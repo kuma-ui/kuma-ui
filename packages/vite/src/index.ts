@@ -67,9 +67,7 @@ export default function kumaUI(): Plugin {
         .relative(process.cwd(), cssFilename)
         .replace(/\\/g, path.posix.sep);
       // const css = sheet.getCSS();
-      const css =
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- FIXME
-        ((result.metadata as unknown as { css: string }).css as string) || "";
+      const css = (result.metadata as unknown as { css: string }).css || "";
       cssLookup[cssRelativePath] = css;
       sheet.reset();
       return (

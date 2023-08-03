@@ -1,5 +1,23 @@
 # @kuma-ui/babel-plugin
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`8a42a22`](https://github.com/kuma-ui/kuma-ui/commit/8a42a225359bad6d2bf35a3c63d897ae02f59392)]:
+  - @kuma-ui/system@1.1.0
+  - @kuma-ui/compiler@1.0.4
+  - @kuma-ui/core@1.1.1
+
+## 1.1.1
+
+### Patch Changes
+
+- [#248](https://github.com/kuma-ui/kuma-ui/pull/248) [`439965c`](https://github.com/kuma-ui/kuma-ui/commit/439965c78ff2d1a6e2f4ac9225ad9a9067d36ee2) Thanks [@kotarella1110](https://github.com/kotarella1110)! - refactor: move tagged template expression from babel-plugin to compiler
+
+- Updated dependencies [[`439965c`](https://github.com/kuma-ui/kuma-ui/commit/439965c78ff2d1a6e2f4ac9225ad9a9067d36ee2)]:
+  - @kuma-ui/compiler@1.0.3
+
 ## 1.1.0
 
 ### Minor Changes

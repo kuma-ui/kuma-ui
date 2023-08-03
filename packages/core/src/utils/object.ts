@@ -26,15 +26,13 @@ export function flattenObject<const T, T2 extends NestedObject<T>>(
 ): FlattenObject<T2> {
   const result = {} as FlattenObject<T2>;
   for (const key in object) {
-    // eslint-disable-next-line no-prototype-builtins -- FIXME
-    if (!object.hasOwnProperty(key)) continue;
+    if (!Object.hasOwn(object, key)) continue;
     const value = object[key];
 
     if (typeof value == "object" && value !== null) {
       const _object = flattenObject(value as NestedObject);
       for (const _key in _object) {
-        // eslint-disable-next-line no-prototype-builtins -- FIXME
-        if (!_object.hasOwnProperty(_key)) continue;
+        if (!Object.hasOwn(_object, _key)) continue;
         //@ts-expect-error type
         result[key + "." + _key] = _object[_key];
       }

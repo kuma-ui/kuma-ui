@@ -24,6 +24,16 @@ const theme = createTheme({
         gap: "12px",
       },
     },
+    Text: {
+      baseStyle: {
+        color: "red",
+      },
+      variants: {
+        primary: {
+          color: "green",
+        },
+      },
+    },
   },
 });
 
