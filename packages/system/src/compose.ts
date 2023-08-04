@@ -91,7 +91,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
           }
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
           return remainingProps;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         }, {} as any);
 
         return styles;

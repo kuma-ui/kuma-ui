@@ -38,7 +38,6 @@ type ThemeBreakPointsResult<T extends ThemeInput> = {
   breakpoints: T["breakpoints"];
 };
 
- 
 export interface Theme {}
 
 type ThemeColors = Theme extends { colors: unknown } ? Theme["colors"] : never;

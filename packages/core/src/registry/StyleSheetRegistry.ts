@@ -46,9 +46,8 @@ export class StyleSheetRegistry {
       );
     }
 
-     
     this.instancesCountMap[id]! -= 1;
-     
+
     if (this.instancesCountMap[id]! !== 0) {
       return;
     }
@@ -63,7 +62,7 @@ export class StyleSheetRegistry {
           `StyleSheetRegistry: id: \`${id}\` not found in idIndexesMap.`
         );
       }
-       
+
       this.indexesMap[id]!.forEach((index) => this.sheet.deleteRule(index));
       delete this.indexesMap[id];
     }

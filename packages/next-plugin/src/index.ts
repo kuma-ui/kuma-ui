@@ -15,7 +15,7 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
       path: dir,
       env: isDevelopment ? "development" : "production",
     });
-  // eslint-disable-next-line no-empty -- FIXME
+    // eslint-disable-next-line no-empty -- FIXME
   } catch {}
   return undefined;
 };
