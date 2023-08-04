@@ -9,20 +9,19 @@ type AddProperty<T, T2> = {
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
-  CSSProperties<
-    | "backgroundImage"
-    | "backgroundPosition"
-    | "backgroundRepeat"
-    | "backgroundAttachment"
-    | "backgroundClip"
-    | "backgroundOrigin"
-  > &
+  AddProperty<
     CSSProperties<
-      "backgroundPositionX" | "backgroundPositionY" | "backgroundSize",
-      true
+      | "backgroundImage"
+      | "backgroundPosition"
+      | "backgroundRepeat"
+      | "backgroundAttachment"
+      | "backgroundClip"
+      | "backgroundOrigin"
     > &
-    AddProperty<
-      {
+      CSSProperties<
+        "backgroundPositionX" | "backgroundPositionY" | "backgroundSize",
+        true
+      > & {
         /**
          * @see backgroundImage
          */
@@ -60,8 +59,8 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
          */
         bgOrigin: CSSValue<"backgroundOrigin"> | AutoPrefix;
       },
-      AutoPrefix
-    >
+    AutoPrefix
+  >
 >;
 
 const backgroundMappings: Record<BackgroundKeys, string> = {
