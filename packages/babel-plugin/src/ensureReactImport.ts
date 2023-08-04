@@ -1,5 +1,5 @@
-import {NodePath} from "@babel/core";
-import {types} from "@babel/core";
+import { NodePath } from "@babel/core";
+import { types } from "@babel/core";
 
 /**
  * Ensures that a React import declaration exists in the given program.
