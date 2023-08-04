@@ -108,7 +108,9 @@ export const styleKeys = {
     "cursor",
   ] as const,
   flex: [
+    "flexDirection",
     "flexDir",
+    "justifyContent",
     "justify",
     "alignItems",
     "alignContent",

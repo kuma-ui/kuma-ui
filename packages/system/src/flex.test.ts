@@ -4,7 +4,9 @@ import { describe, expect, test } from "vitest";
 describe("flex utility function", () => {
   // Arrange
   const testCases: Array<[FlexProps, string, string]> = [
+    [{ flexDirection: "column" }, "flex-direction: column;", ""],
     [{ flexDir: "column" }, "flex-direction: column;", ""],
+    [{ justifyContent: "center" }, "justify-content: center;", ""],
     [{ justify: "center" }, "justify-content: center;", ""],
     [{ alignContent: "center" }, "align-content: center;", ""],
     [{ alignItems: "center" }, "align-items: center;", ""],

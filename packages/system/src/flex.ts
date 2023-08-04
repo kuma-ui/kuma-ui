@@ -15,15 +15,17 @@ export type FlexProps = Partial<
      */
     justify: CSSValue<"justifyContent">;
   } & CSSProperties<"alignContent" | "alignItems" | "alignSelf"> &
-    CSSProperties<"flexWrap" | "flexFlow"> &
+    CSSProperties<"flexWrap" | "flexFlow" | "flexDirection"> &
     CSSProperties<"flexBasis", true> &
     CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
-    CSSProperties<"justifyItems" | "justifySelf"> &
+    CSSProperties<"justifyItems" | "justifySelf" | "justifyContent"> &
     CSSProperties<"gap", true>
 >;
 
 const flexMappings: Record<FlexKeys, string> = {
+  flexDirection: "flex-direction",
   flexDir: "flex-direction",
+  justifyContent: "justify-content",
   justify: "justify-content",
   alignContent: "align-content",
   alignItems: "align-items",
