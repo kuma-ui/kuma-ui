@@ -18,6 +18,7 @@ export default {
         <mask
           id="mask0_632_5"
           maskUnits="userSpaceOnUse"
+          style={{ maskType: "alpha" }}
           x="0"
           y="0"
           width="77"
