@@ -79,4 +79,4 @@ jobs:
         run: pnpm install
 
       - name: Run changeset status
-        run: pnpm changeset status
+        run: pnpm changeset status --since origin/main
