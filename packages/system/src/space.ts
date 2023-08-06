@@ -9,6 +9,7 @@ import {
   ThemeSystemType,
 } from "./types";
 import { theme } from "@kuma-ui/sheet";
+import { spaceConverter } from "./valueConverters";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -146,12 +147,6 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
   let baseStyles = "";
   const mediaStyles: { [breakpoint: string]: string } = {};
 
-  const userTheme = theme.getUserTheme();
-  const converter: (value: string | number) => string | number = (v) => {
-    console.log(userTheme);
-    return userTheme.spaces?.[v] || toCssUnit(v);
-  };
-
   for (const key in spaceMappings) {
     const cssValue = props[key as SpaceKeys];
     if (cssValue != undefined) {
@@ -160,7 +155,7 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          converter
+          spaceConverter
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(
