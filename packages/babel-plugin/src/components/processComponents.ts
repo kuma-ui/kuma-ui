@@ -19,8 +19,9 @@ export const processComponents = (
       const openingElement = path.node.openingElement;
       if (t.isJSXIdentifier(openingElement.name)) {
         const name = openingElement.name.name;
-
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
         const componentType =
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
           componentList[
             importedStyleFunctions[name] as keyof typeof componentList
           ];

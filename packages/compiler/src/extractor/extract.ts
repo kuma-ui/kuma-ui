@@ -34,16 +34,19 @@ export const extractProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentProps: { [key: string]: any } = {};
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const componentVariantProps: { [key: string]: any } = {
     ...(variant?.baseStyle as Record<string, string>),
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call -- FIXME
   const defaultProps = componentDefaultProps(componentName);
 
   let isDefault = false;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
     ...propsMap,
@@ -52,6 +55,7 @@ export const extractProps = (
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call -- FIXME
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
     } else if (propName.trim() === "variant") {
@@ -75,6 +79,7 @@ export const extractProps = (
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call -- FIXME
   const specificProps = componentHandler(componentName)(componentProps);
 
   // Every component internally uses the Box component.
@@ -87,6 +92,7 @@ export const extractProps = (
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const combinedProps = {
     ...componentVariantProps,
     ...specificProps,
@@ -94,9 +100,11 @@ export const extractProps = (
     ...pseudoProps,
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   const key = generateKey(combinedProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
   if (!generatedStyle) {
     generatedStyle = new StyleGenerator(combinedProps).getStyle();
     styleCache[key] = generatedStyle;
