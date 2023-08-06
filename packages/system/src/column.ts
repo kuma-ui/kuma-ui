@@ -7,7 +7,7 @@ import {
 import { ColumnKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
-import { spaceConverter } from "./valueConverters";
+import { ValueConverter, spaceConverter } from "./valueConverters";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -25,16 +25,28 @@ export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<"columnGap", true>, T["spaces"]>
 >;
 
-const columnMappings: Record<ColumnKeys, string> = {
+const columnMappings: Record<
+  ColumnKeys,
+  string | { property: string; converter: ValueConverter }
+> = {
   columnCount: "column-count",
   columnFill: "column-fill",
-  columnGap: "column-gap",
+  columnGap: {
+    property: "column-gap",
+    converter: spaceConverter,
+  },
   columnRule: "column-rule",
   columnRuleColor: "column-rule-color",
   columnRuleStyle: "column-rule-style",
-  columnRuleWidth: "column-rule-width",
+  columnRuleWidth: {
+    property: "column-rule-width",
+    converter: toCssUnit,
+  },
   columnSpan: "column-span",
-  columnWidth: "column-width",
+  columnWidth: {
+    property: "column-width",
+    converter: toCssUnit,
+  },
   columns: "columns",
 };
 
@@ -47,17 +59,10 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
       const converter =
-        property === columnMappings.columnGap
-          ? spaceConverter
-          : [
-              columnMappings.columnWidth,
-              columnMappings.columnRuleWidth,
-            ].includes(property)
-          ? spaceConverter
-          : undefined;
+        typeof property !== "string" ? property.converter : undefined;
 
       const responsiveStyles = applyResponsiveStyles(
-        property,
+        typeof property !== "string" ? property.property : property,
         cssValue,
         converter
       );
