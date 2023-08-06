@@ -28,6 +28,7 @@ export type Tokens =
   | "fontWeights"
   | "lineHeights"
   | "letterSpacings"
+  | "spaces"
   | "breakpoints";
 
 export type UserTheme = {
