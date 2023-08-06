@@ -57,30 +57,30 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
 
       const userTheme = theme.getUserTheme();
       const converter = (value: string | number): string | number => {
-        if (property === "letter-spacing") {
+        if (property === "word-spacing") {
+          return toCssUnit(value);
+        } else if (property === "letter-spacing") {
+          let newValue = toCssUnit(value);
           if (userTheme.letterSpacings) {
-            let newValue = value;
             for (const key in userTheme.letterSpacings) {
               if (value === key) {
-                newValue = userTheme.letterSpacings[key];
+                newValue = toCssUnit(userTheme.letterSpacings[key]);
                 break;
               }
             }
-            return newValue;
           }
+          return newValue;
         } else if (property === "line-height") {
+          let newValue = value;
           if (userTheme.lineHeights) {
-            let newValue = toCssUnit(value);
             for (const key in userTheme.lineHeights) {
               if (value === key) {
-                newValue = toCssUnit(userTheme.lineHeights[key]);
+                newValue = userTheme.lineHeights[key];
                 break;
               }
             }
-            return newValue;
           }
-        } else if (property === "wordSpacing") {
-          return toCssUnit(value);
+          return newValue;
         }
         return value;
       };
