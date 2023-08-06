@@ -9,6 +9,7 @@ import { componentList } from "./components/componentList";
 
 export type ThemeInput = {
   colors?: NestedObject<string>;
+  fonts?: NestedObject<string>;
   breakpoints?: Record<string, string>;
   components?: {
     [_ in keyof typeof componentList]?: {
@@ -41,12 +42,18 @@ type ThemeBreakPointsResult<T extends ThemeInput> = {
 export interface Theme {}
 
 type ThemeColors = Theme extends { colors: unknown } ? Theme["colors"] : never;
+type ThemeFonts = Theme extends { fonts: unknown } ? Theme["fonts"] : never;
+
 type ThemeComponents = Theme extends { components: unknown }
   ? Theme["components"]
   : never;
 type ThemeBreakPoints = Theme extends { breakPoints: unknown }
   ? Theme["breakPoints"]
   : never;
+
+type ThemeTokens = {
+  colors: If<IsNever<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
+};
 
 export type ThemeSystem = {
   colors: If<IsNever<ThemeColors>, _String, Stringify<keyof ThemeColors>>;
@@ -58,7 +65,7 @@ export function createTheme<const T extends ThemeInput>(
   theme: T
 ): ThemeResult<T> {
   return {
-    colors: theme.colors ? flattenObject({ colors: theme.colors }) : undefined,
+    colors: theme.colors ?? flattenObject({ colors: theme.colors }),
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
     components: theme.components,
     breakpoints: theme.breakpoints,
