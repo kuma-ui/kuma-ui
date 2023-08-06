@@ -8,6 +8,13 @@ const theme = createTheme({
     blue: "blue",
     green: "green",
   },
+
+  fontSizes: {
+    x: "100px",
+    y: {
+      z: "200px"
+    }
+  },
   components: {
     Box: {
       baseStyle: {

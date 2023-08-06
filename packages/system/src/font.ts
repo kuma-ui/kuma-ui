@@ -1,18 +1,23 @@
 import { toCssUnit } from "./toCSS";
 import { FontKeys } from "./keys";
-import { ResponsiveStyle, CSSProperties } from "./types";
+import {
+  ResponsiveStyle,
+  CSSProperties,
+  AddProperty,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { theme } from "@kuma-ui/sheet";
 
-export type FontProps = Partial<
+export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<"font"> &
-    CSSProperties<"fontFamily"> &
+    AddProperty<CSSProperties<"fontFamily">, T["fonts"]> &
     CSSProperties<"fontFeatureSettings"> &
     CSSProperties<"fontKerning"> &
     CSSProperties<"fontLanguageOverride"> &
     CSSProperties<"fontOpticalSizing"> &
     CSSProperties<"fontPalette"> &
-    CSSProperties<"fontSize", true> &
+    AddProperty<CSSProperties<"fontSize", true>, T["fontSizes"]> &
     CSSProperties<"fontSizeAdjust"> &
     CSSProperties<"fontStretch"> &
     CSSProperties<"fontStyle"> &
@@ -26,7 +31,7 @@ export type FontProps = Partial<
     CSSProperties<"fontVariantNumeric"> &
     CSSProperties<"fontVariantPosition"> &
     CSSProperties<"fontVariationSettings"> &
-    CSSProperties<"fontWeight", true>
+    AddProperty<CSSProperties<"fontWeight", true>, T["fontWeights"]>
 >;
 
 const fontMappings: Record<FontKeys, string> = {
@@ -65,10 +70,10 @@ export const font = (props: FontProps): ResponsiveStyle => {
 
       const userTheme = theme.getUserTheme();
       const converter = (value: string | number): string | number => {
-        if (property === "fontFamily") {
+        if (property === "font-family") {
           if (userTheme.fonts) {
             let newValue = value;
-            for (const key in userTheme) {
+            for (const key in userTheme.fonts) {
               if (value === key) {
                 newValue = userTheme.fonts[key];
                 break;
@@ -76,10 +81,10 @@ export const font = (props: FontProps): ResponsiveStyle => {
             }
             return newValue;
           }
-        } else if (property === "fontSize") {
+        } else if (property === "font-size") {
           if (userTheme.fontSizes) {
             let newValue = toCssUnit(value);
-            for (const key in userTheme) {
+            for (const key in userTheme.fontSizes) {
               if (value === key) {
                 newValue = toCssUnit(userTheme.fontSizes[key]);
                 break;
@@ -88,34 +93,12 @@ export const font = (props: FontProps): ResponsiveStyle => {
             return newValue;
           }
           return toCssUnit(value);
-        } else if(property === "fontWeight") {
+        } else if (property === "font-weight") {
           if (userTheme.fontWeights) {
             let newValue = value;
-            for (const key in userTheme) {
+            for (const key in userTheme.fontWeights) {
               if (value === key) {
                 newValue = userTheme.fontWeights[key];
-                break;
-              }
-            }
-            return newValue;
-          }
-        } else if(property === "lineHeight") {
-          if (userTheme.lineHeights) {
-            let newValue = value;
-            for (const key in userTheme) {
-              if (value === key) {
-                newValue = userTheme.lineHeights[key];
-                break;
-              }
-            }
-            return newValue;
-          }
-        } else if (property === "letterSpacing") {
-          if (userTheme.letterSpacings) {
-            let newValue = value;
-            for (const key in userTheme) {
-              if (value === key) {
-                newValue = userTheme.letterSpacings[key];
                 break;
               }
             }

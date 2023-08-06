@@ -1,10 +1,18 @@
 import { ColorKeys } from "./keys";
-import { AddProperty, CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { theme } from "@kuma-ui/sheet";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
+export type ColorProps<
+  T extends ThemeSystemType = ThemeSystemType
+> = Partial<
   AddProperty<
     {
       /**
@@ -26,7 +34,7 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
       | "opacity",
       false
     >,
-    AutoPrefix
+    T["colors"]
   >
 >;
 
