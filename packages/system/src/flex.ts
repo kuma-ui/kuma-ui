@@ -1,9 +1,17 @@
 import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
+import { spaceConverter } from "./valueConverters";
 
-export type FlexProps = Partial<
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
     /**
      * @see flexDirection
@@ -19,7 +27,7 @@ export type FlexProps = Partial<
     CSSProperties<"flexBasis", true> &
     CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
     CSSProperties<"justifyItems" | "justifySelf" | "justifyContent"> &
-    CSSProperties<"gap", true>
+    AddProperty<CSSProperties<"gap", true>, T["spaces"]>
 >;
 
 const flexMappings: Record<FlexKeys, string> = {
@@ -49,11 +57,12 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue != undefined) {
       const property = flexMappings[key as FlexKeys];
-      const converter = [flexMappings.flexBasis, flexMappings.gap].includes(
-        property
-      )
-        ? toCssUnit
-        : undefined;
+      const converter =
+        property === flexMappings.flexBasis
+          ? toCssUnit
+          : property === flexMappings.gap
+          ? spaceConverter
+          : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

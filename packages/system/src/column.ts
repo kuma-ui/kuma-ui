@@ -1,9 +1,16 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { ColumnKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
+import { spaceConverter } from "./valueConverters";
 
-export type ColumnProps = Partial<
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<
     | "columnFill"
     | "columnRule"
@@ -12,13 +19,10 @@ export type ColumnProps = Partial<
     | "columnSpan"
   > &
     CSSProperties<
-      | "columnCount"
-      | "columnGap"
-      | "columnWidth"
-      | "columnRuleWidth"
-      | "columns",
+      "columnCount" | "columnWidth" | "columnRuleWidth" | "columns",
       true
-    >
+    > &
+    AddProperty<CSSProperties<"columnGap", true>, T["spaces"]>
 >;
 
 const columnMappings: Record<ColumnKeys, string> = {
@@ -42,13 +46,16 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
     const cssValue = props[key as ColumnKeys];
     if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
-      const converter = [
-        columnMappings.columnGap,
-        columnMappings.columnWidth,
-        columnMappings.columnRuleWidth,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
+      const converter =
+        property === columnMappings.columnGap
+          ? spaceConverter
+          : [
+              columnMappings.columnWidth,
+              columnMappings.columnRuleWidth,
+            ].includes(property)
+          ? spaceConverter
+          : undefined;
+
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
