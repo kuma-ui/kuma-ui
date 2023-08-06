@@ -14,18 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
+      - uses: ./.github/actions/setup-pnpm
         with:
-          version: 8.5.1
-
-      - name: Setup node ${{ matrix.node_version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node_version }}
-          cache: pnpm
-
-      - name: install packages
-        run: pnpm install
+          node_version: ${{ matrix.node_version }}
 
       - name: build packages
         run: pnpm run build
