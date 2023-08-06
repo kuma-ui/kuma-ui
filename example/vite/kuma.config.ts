@@ -8,6 +8,11 @@ const theme = createTheme({
     },
     green: "green",
   },
+  spaces: {
+    sm: "8px",
+    1: "0.25rem",
+    4: "1rem",
+  },
   components: {
     Box: {
       baseStyle: {
