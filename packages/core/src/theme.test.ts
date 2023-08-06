@@ -34,7 +34,7 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      colors: {
+      readonly colors: {
         "colors.red": "#red";
         "colors.blue": "#blue";
         "colors.green.light": "#green_light";
@@ -47,7 +47,6 @@ describe("createTheme", () => {
         "colors.purple.200": "#purple_200";
       };
       components: unknown;
-      breakpoints: unknown;
     }>();
   });
 
@@ -59,9 +58,7 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      colors: undefined;
       components: unknown;
-      breakpoints: unknown;
     }>();
   });
 });

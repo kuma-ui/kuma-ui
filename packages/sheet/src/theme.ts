@@ -21,9 +21,11 @@ type ComponentName =
   | "Link"
   | "Grid";
 
+type Tokens = "colors" | "fonts" | "breakpoints";
+
 export type UserTheme = {
-  colors: Record<string, string> | undefined;
-  breakpoints: Record<string, string>;
+  [K in Tokens]?: Record<string, string> | undefined;
+} & {
   components?: {
     [_ in ComponentName]?: {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
@@ -42,10 +44,9 @@ declare global {
 export class Theme {
   private static instance: Theme;
   private _userTheme: UserTheme = {
-    colors: globalThis.__KUMA_USER_THEME__?.colors,
+    ...globalThis.__KUMA_USER_THEME__,
     breakpoints:
       globalThis.__KUMA_USER_THEME__?.breakpoints ?? defaultBreakpoints,
-    components: globalThis.__KUMA_USER_THEME__?.components,
   };
 
   private constructor() {}
@@ -88,9 +89,7 @@ export class Theme {
 
   reset() {
     this._userTheme = {
-      colors: undefined,
       breakpoints: defaultBreakpoints,
-      components: undefined,
     };
   }
 }

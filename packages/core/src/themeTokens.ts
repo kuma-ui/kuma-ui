@@ -6,9 +6,9 @@ type ThemeTokens<T extends string> = Theme extends Record<T, unknown>
   ? Theme[T]
   : never;
 
-type Tokens = "colors" | "fonts";
+type Tokens = "colors" | "fonts" | "breakpoints";
 
-export type InputThemeTokens = Record<Tokens, NestedObject<string>>;
+export type InputThemeTokens = Partial<Record<Tokens, NestedObject<string>>>;
 
 export type ResultThemeTokens<T extends InputThemeTokens> = {
   [K in keyof T]: Pretty<FlattenObject<Pick<T, K>>>;
