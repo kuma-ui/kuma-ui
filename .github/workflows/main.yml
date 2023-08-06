@@ -8,7 +8,7 @@ on:
       - main
     paths:
       - "packages/**"
-      - ".github/workflows/main.yml"
+      # - ".github/workflows/main.yml"
   workflow_dispatch:
 jobs:
   test:
