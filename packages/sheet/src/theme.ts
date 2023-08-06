@@ -21,7 +21,14 @@ type ComponentName =
   | "Link"
   | "Grid";
 
-type Tokens = "colors" | "fonts" | "breakpoints";
+export type Tokens =
+  | "colors"
+  | "fonts"
+  | "fontSizes"
+  | "fontWeights"
+  | "lineHeights"
+  | "letterSpacings"
+  | "breakpoints";
 
 export type UserTheme = {
   [K in Tokens]?: Record<string, string> | undefined;
