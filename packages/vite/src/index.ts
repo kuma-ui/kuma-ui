@@ -63,22 +63,23 @@ export default function kumaUI(): Plugin {
 
       const result = transform(code, id);
       if (!result?.code) return;
-      const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
+      const css = (result.metadata as unknown as { css: string }).css || "";
+      const cssFilename = path.normalize(
+        `${id.replace(/\.[jt]sx?$/, "")}-${generateHash(css)}.css`
+      );
       const cssRelativePath = path
         .relative(process.cwd(), cssFilename)
         .replace(/\\/g, path.posix.sep);
-      // const css = sheet.getCSS();
-      const css = (result.metadata as unknown as { css: string }).css || "";
       cssLookup[cssRelativePath] = css;
       sheet.reset();
       return (
-        `import "${virtualModuleId}/${cssRelativePath}?v=${generateHash(css)}";
+        `import "${virtualModuleId}/${cssRelativePath}";
 ` + result.code
       );
     },
     load(url) {
       if (!url.startsWith(`\0${virtualModuleId}`)) return undefined;
-      const id = url.slice(`\0${virtualModuleId}`.length + 1).split("?")[0];
+      const id = url.slice(`\0${virtualModuleId}`.length + 1);
       return cssLookup[id];
     },
     resolveId(importeeUrl) {
