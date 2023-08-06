@@ -1,5 +1,5 @@
 import { BackgroundKeys } from "./keys";
-import { CSSValue, ResponsiveStyle } from "./types";
+import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from ".";
 
@@ -10,57 +10,77 @@ type AddProperty<T, T2> = {
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
   AddProperty<
-    {
-      /**
-       * @see backgroundImage
-       */
-      bgImage: CSSValue<"backgroundImage"> | AutoPrefix;
-      /**
-       * @see backgroundPosition
-       */
-      bgPosition: CSSValue<"backgroundPosition"> | AutoPrefix;
-      /**
-       * @see backgroundPositionX
-       */
-      bgPositionX: CSSValue<"backgroundPositionX", true> | AutoPrefix;
-      /**
-       * @see backgroundPositionY
-       */
-      bgPositionY: CSSValue<"backgroundPositionY", true> | AutoPrefix;
-      /**
-       * @see backgroundSize
-       */
-      bgSize: CSSValue<"backgroundSize", true> | AutoPrefix;
-      /**
-       * @see backgroundRepeat
-       */
-      bgRepeat: CSSValue<"backgroundRepeat"> | AutoPrefix;
-      /**
-       * @see backgroundAttachment
-       */
-      bgAttachment: CSSValue<"backgroundAttachment"> | AutoPrefix;
-      /**
-       * @see backgroundClip
-       */
-      bgClip: CSSValue<"backgroundClip"> | AutoPrefix;
-      /**
-       * @see backgroundOrigin
-       */
-      bgOrigin: CSSValue<"backgroundOrigin"> | AutoPrefix;
-    },
+    CSSProperties<
+      | "backgroundImage"
+      | "backgroundPosition"
+      | "backgroundRepeat"
+      | "backgroundAttachment"
+      | "backgroundClip"
+      | "backgroundOrigin"
+    > &
+      CSSProperties<
+        "backgroundPositionX" | "backgroundPositionY" | "backgroundSize",
+        true
+      > & {
+        /**
+         * @see backgroundImage
+         */
+        bgImage: CSSValue<"backgroundImage"> | AutoPrefix;
+        /**
+         * @see backgroundPosition
+         */
+        bgPosition: CSSValue<"backgroundPosition"> | AutoPrefix;
+        /**
+         * @see backgroundPositionX
+         */
+        bgPositionX: CSSValue<"backgroundPositionX", true> | AutoPrefix;
+        /**
+         * @see backgroundPositionY
+         */
+        bgPositionY: CSSValue<"backgroundPositionY", true> | AutoPrefix;
+        /**
+         * @see backgroundSize
+         */
+        bgSize: CSSValue<"backgroundSize", true> | AutoPrefix;
+        /**
+         * @see backgroundRepeat
+         */
+        bgRepeat: CSSValue<"backgroundRepeat"> | AutoPrefix;
+        /**
+         * @see backgroundAttachment
+         */
+        bgAttachment: CSSValue<"backgroundAttachment"> | AutoPrefix;
+        /**
+         * @see backgroundClip
+         */
+        bgClip: CSSValue<"backgroundClip"> | AutoPrefix;
+        /**
+         * @see backgroundOrigin
+         */
+        bgOrigin: CSSValue<"backgroundOrigin"> | AutoPrefix;
+      },
     AutoPrefix
   >
 >;
 
 const backgroundMappings: Record<BackgroundKeys, string> = {
+  backgroundImage: "background-image",
   bgImage: "background-image",
+  backgroundPosition: "background-position",
   bgPosition: "background-position",
+  backgroundPositionX: "background-position-x",
   bgPositionX: "background-position-x",
+  backgroundPositionY: "background-position-y",
   bgPositionY: "background-position-y",
+  backgroundSize: "background-size",
   bgSize: "background-size",
+  backgroundRepeat: "background-repeat",
   bgRepeat: "background-repeat",
+  backgroundAttachment: "background-attachment",
   bgAttachment: "background-attachment",
+  backgroundClip: "background-clip",
   bgClip: "background-clip",
+  backgroundOrigin: "background-origin",
   bgOrigin: "background-origin",
 } as const;
 
