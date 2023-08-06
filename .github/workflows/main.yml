@@ -3,11 +3,12 @@ on:
   push:
     branches:
       - main
-      - experimental
   pull_request:
     branches:
       - main
-      - experimental
+    paths:
+      - "packages/**"
+      - ".github/workflows/main.yml"
   workflow_dispatch:
 jobs:
   test:
