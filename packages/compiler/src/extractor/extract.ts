@@ -105,8 +105,8 @@ export const extractProps = (
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
   if (!generatedStyle) {
-    generatedStyle = new StyleGenerator(combinedProps).getStyle();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
+    generatedStyle = new StyleGenerator(combinedProps).getStyle();
     styleCache[key] = generatedStyle;
   }
   const { className: generatedClassName, css } = generatedStyle;
