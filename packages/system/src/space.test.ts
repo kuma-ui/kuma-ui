@@ -4,7 +4,9 @@ import { describe, expect, test } from "vitest";
 describe("space utility function", () => {
   // Arrange
   const testCases: Array<[SpaceProps, string, string]> = [
+    [{ margin: 8 }, "margin: 8px;", ""],
     [{ m: 8 }, "margin: 8px;", ""],
+    [{ marginTop: "8px" }, "margin-top: 8px;", ""],
     [{ mt: "8px" }, "margin-top: 8px;", ""],
     [{ mx: 8 }, "margin-left: 8px; margin-right: 8px;", ""],
     [

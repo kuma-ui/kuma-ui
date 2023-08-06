@@ -1,11 +1,7 @@
 import { ColorKeys } from "./keys";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import { AddProperty, CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { theme } from "@kuma-ui/sheet";
-
-type AddProperty<T, T2> = {
-  [Key in keyof T]: T[Key] | T2;
-};
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
@@ -14,12 +10,14 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
       /**
        * @see background
        */
-      bg: CSSValue<"background"> | AutoPrefix;
+      bg: CSSValue<"background">;
       /**
        * @see backgroundColor
        */
-      bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+      bgColor: CSSValue<"backgroundColor">;
     } & CSSProperties<
+      | "background"
+      | "backgroundColor"
       | "borderColor"
       | "outlineColor"
       | "color"
@@ -33,7 +31,9 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
+  background: "background",
   bg: "background",
+  backgroundColor: "background-color",
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",

@@ -55,3 +55,7 @@ export type SystemStyle = {
     responsive: ResponsiveStyle["media"];
   }[];
 };
+
+export type AddProperty<T, T2> = {
+  [Key in keyof T]: T[Key] | T2;
+};
