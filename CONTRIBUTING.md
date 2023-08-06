@@ -12,7 +12,7 @@ Our project uses `pnpm` and `turborepo`. Here's how you can set it up:
 4. Make your changes. If you modify the source code, make sure to build the project to see your changes in action.
 5. If you make any modifications, please test your changes. We prefer new features to come with tests.
 6. If you update the README, please run `node scripts/sync-files.js` from the root directory to sync changes.
-7. If you update any files under the packages/ dir, don't forget to run pnpm changeset.
+7. If you update any files under the `packages/` dir, don't forget to run `pnpm changeset`.
 
 ## Package Structure
 
