@@ -25,39 +25,39 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
         /**
          * @see backgroundImage
          */
-        bgImage: CSSValue<"backgroundImage"> | AutoPrefix;
+        bgImage: CSSValue<"backgroundImage">;
         /**
          * @see backgroundPosition
          */
-        bgPosition: CSSValue<"backgroundPosition"> | AutoPrefix;
+        bgPosition: CSSValue<"backgroundPosition">;
         /**
          * @see backgroundPositionX
          */
-        bgPositionX: CSSValue<"backgroundPositionX", true> | AutoPrefix;
+        bgPositionX: CSSValue<"backgroundPositionX", true>;
         /**
          * @see backgroundPositionY
          */
-        bgPositionY: CSSValue<"backgroundPositionY", true> | AutoPrefix;
+        bgPositionY: CSSValue<"backgroundPositionY", true>;
         /**
          * @see backgroundSize
          */
-        bgSize: CSSValue<"backgroundSize", true> | AutoPrefix;
+        bgSize: CSSValue<"backgroundSize", true>;
         /**
          * @see backgroundRepeat
          */
-        bgRepeat: CSSValue<"backgroundRepeat"> | AutoPrefix;
+        bgRepeat: CSSValue<"backgroundRepeat">;
         /**
          * @see backgroundAttachment
          */
-        bgAttachment: CSSValue<"backgroundAttachment"> | AutoPrefix;
+        bgAttachment: CSSValue<"backgroundAttachment">;
         /**
          * @see backgroundClip
          */
-        bgClip: CSSValue<"backgroundClip"> | AutoPrefix;
+        bgClip: CSSValue<"backgroundClip">;
         /**
          * @see backgroundOrigin
          */
-        bgOrigin: CSSValue<"backgroundOrigin"> | AutoPrefix;
+        bgOrigin: CSSValue<"backgroundOrigin">;
       },
     AutoPrefix
   >

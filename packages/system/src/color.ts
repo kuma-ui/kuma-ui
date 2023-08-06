@@ -14,11 +14,11 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
       /**
        * @see background
        */
-      bg: CSSValue<"background"> | AutoPrefix;
+      bg: CSSValue<"background">;
       /**
        * @see backgroundColor
        */
-      bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+      bgColor: CSSValue<"backgroundColor">;
     } & CSSProperties<
       | "background"
       | "backgroundColor"
