@@ -77,7 +77,50 @@ export const font = (props: FontProps): ResponsiveStyle => {
             return newValue;
           }
         } else if (property === "fontSize") {
+          if (userTheme.fontSizes) {
+            let newValue = toCssUnit(value);
+            for (const key in userTheme) {
+              if (value === key) {
+                newValue = toCssUnit(userTheme.fontSizes[key]);
+                break;
+              }
+            }
+            return newValue;
+          }
           return toCssUnit(value);
+        } else if(property === "fontWeight") {
+          if (userTheme.fontWeights) {
+            let newValue = value;
+            for (const key in userTheme) {
+              if (value === key) {
+                newValue = userTheme.fontWeights[key];
+                break;
+              }
+            }
+            return newValue;
+          }
+        } else if(property === "lineHeight") {
+          if (userTheme.lineHeights) {
+            let newValue = value;
+            for (const key in userTheme) {
+              if (value === key) {
+                newValue = userTheme.lineHeights[key];
+                break;
+              }
+            }
+            return newValue;
+          }
+        } else if (property === "letterSpacing") {
+          if (userTheme.letterSpacings) {
+            let newValue = value;
+            for (const key in userTheme) {
+              if (value === key) {
+                newValue = userTheme.letterSpacings[key];
+                break;
+              }
+            }
+            return newValue;
+          }
         }
         return value;
       };
