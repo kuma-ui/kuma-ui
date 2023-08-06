@@ -78,7 +78,7 @@ export default function kumaUI(): Plugin {
     },
     load(url) {
       if (!url.startsWith(`\0${virtualModuleId}`)) return undefined;
-      const id = url.replace(`\0${virtualModuleId}`, "").split("?")[0];
+      const id = url.slice(`\0${virtualModuleId}`.length + 1).split("?")[0];
       return cssLookup[id];
     },
     resolveId(importeeUrl) {
