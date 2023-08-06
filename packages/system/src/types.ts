@@ -1,11 +1,11 @@
 import * as CSS from "csstype";
 import { StyledKeyType } from "./keys";
-import { Tokens } from '@kuma-ui/sheet'
+import { Tokens } from "@kuma-ui/sheet";
 
 type If<C extends boolean, T, F> = C extends true ? T : F;
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export type ThemeSystemType = Record<Tokens, string & {}>
+export type ThemeSystemType = Record<Tokens, string & {}>;
 
 // A type for non-undefined CSS property values
 export type CSSProperty = Exclude<

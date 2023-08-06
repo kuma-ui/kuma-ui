@@ -9,10 +9,7 @@ import {
 import { applyResponsiveStyles } from "./responsive";
 import { theme } from "@kuma-ui/sheet";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorProps<
-  T extends ThemeSystemType = ThemeSystemType
-> = Partial<
+export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
     {
       /**
