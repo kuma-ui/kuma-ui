@@ -1,5 +1,5 @@
 name: setup-pnpm
-description: "This is a composite GitHub Action that checks out the repo, sets up pnpm, node and installs the project's dependencies."
+description: "This is a composite GitHub Action that sets up pnpm, node and installs the project's dependencies."
 inputs:
   node_version:
     description: "Node.js version"
