@@ -1,5 +1,6 @@
 import { isStyledProp, isPseudoProps, StyleGenerator } from "@kuma-ui/system";
 import { BoxProps } from "./types";
+import { stableStringify } from "../../../utils/stableStringify";
 
 function isDynamicProp(key: string) {
   if (isStyledProp(key) || isPseudoProps(key) || key === "variant") {
@@ -41,23 +42,9 @@ const styleCache: {
   [key: string]: { className: string; css: string } | undefined;
 } = {};
 
-/**
- * Generates a unique key for props, aiding cache efficiency.
- * Incurs O(n log n) cost due to sorting, but it's acceptable given the
- * expensive nature of StyleGenerator's internals.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-function generateKey(props: Record<string, any>) {
-  return Object.entries(props)
-    .filter(([, value]) => value !== undefined)
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([key, value]) => `${key}:${value}`)
-    .join("|");
-}
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
 export function getCachedStyle(dynamicProps: Record<string, any>) {
-  const key = generateKey(dynamicProps);
+  const key = stableStringify(dynamicProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
   if (!generatedStyle) {
