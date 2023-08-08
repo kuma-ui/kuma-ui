@@ -43,6 +43,9 @@ jobs:
         with:
           node_version: 16
 
+      - name: Build packages
+        run: pnpm build
+
       - name: Run lint
         run: pnpm lint
 

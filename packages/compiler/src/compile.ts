@@ -36,12 +36,11 @@ const compile = (
       const originalComponentName = Object.keys(bindings).find(
         (key) =>
           bindings[key] === jsxTagName &&
-           
+
           Object.values(componentList).some((c) => c === key)
       );
       if (!originalComponentName) return;
 
-       
       const componentName =
         originalComponentName as (typeof componentList)[keyof typeof componentList];
       const extractedPropsMap = collectPropsFromJsx(openingElement);

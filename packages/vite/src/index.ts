@@ -5,6 +5,7 @@ import { buildSync } from "esbuild";
 import _eval from "eval";
 import { theme, sheet } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
+import { generateHash } from "@kuma-ui/sheet";
 
 export default function kumaUI(): Plugin {
   let mode: "build" | "serve";
@@ -62,12 +63,13 @@ export default function kumaUI(): Plugin {
 
       const result = transform(code, id);
       if (!result?.code) return;
-      const cssFilename = path.normalize(`${id.replace(/\.[jt]sx?$/, "")}.css`);
+      const css = (result.metadata as unknown as { css: string }).css || "";
+      const cssFilename = path.normalize(
+        `${id.replace(/\.[jt]sx?$/, "")}-${generateHash(css)}.css`
+      );
       const cssRelativePath = path
         .relative(process.cwd(), cssFilename)
         .replace(/\\/g, path.posix.sep);
-      // const css = sheet.getCSS();
-      const css = (result.metadata as unknown as { css: string }).css || "";
       cssLookup[cssRelativePath] = css;
       sheet.reset();
       return (

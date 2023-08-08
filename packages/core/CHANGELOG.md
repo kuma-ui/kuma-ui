@@ -1,5 +1,12 @@
 # @kuma-ui/core
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`022fdec`](https://github.com/kuma-ui/kuma-ui/commit/022fdecfd1c2494974e9965ddca31aebf03d1dc2), [`90a9e65`](https://github.com/kuma-ui/kuma-ui/commit/90a9e6504d9e11f164f2373a8968e8eef7130b9d)]:
+  - @kuma-ui/system@1.2.0
+
 ## 1.1.1
 
 ### Patch Changes

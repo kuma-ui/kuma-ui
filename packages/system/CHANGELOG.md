@@ -1,5 +1,15 @@
 # @kuma-ui/system
 
+## 1.2.0
+
+### Minor Changes
+
+- [#259](https://github.com/kuma-ui/kuma-ui/pull/259) [`022fdec`](https://github.com/kuma-ui/kuma-ui/commit/022fdecfd1c2494974e9965ddca31aebf03d1dc2) Thanks [@yukukotani](https://github.com/yukukotani)! - Supports long-hand props such as `background` corresponding for `bg`.
+
+### Patch Changes
+
+- [#270](https://github.com/kuma-ui/kuma-ui/pull/270) [`90a9e65`](https://github.com/kuma-ui/kuma-ui/commit/90a9e6504d9e11f164f2373a8968e8eef7130b9d) Thanks [@yukukotani](https://github.com/yukukotani)! - Refactor types in system package
+
 ## 1.1.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @kuma-ui/vite
 
+## 1.0.7
+
+### Patch Changes
+
+- [#275](https://github.com/kuma-ui/kuma-ui/pull/275) [`a0edbd5`](https://github.com/kuma-ui/kuma-ui/commit/a0edbd5b6ba0d7276524715f89221d7de5a403ad) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix(vite): fix hmr issue in vite v1.0.5 and later
+
+- Updated dependencies [[`022fdec`](https://github.com/kuma-ui/kuma-ui/commit/022fdecfd1c2494974e9965ddca31aebf03d1dc2), [`90a9e65`](https://github.com/kuma-ui/kuma-ui/commit/90a9e6504d9e11f164f2373a8968e8eef7130b9d)]:
+  - @kuma-ui/system@1.2.0
+  - @kuma-ui/babel-plugin@1.1.3
+
 ## 1.0.6
 
 ### Patch Changes
