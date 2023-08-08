@@ -36,6 +36,9 @@ describe("createTheme", () => {
         "colors.purple.100": "#purple_100",
         "colors.purple.200": "#purple_200",
       },
+      fonts: {
+        "fonts.sans.n": "fonts sans n",
+      },
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
