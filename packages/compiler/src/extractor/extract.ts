@@ -45,7 +45,6 @@ export const extractProps = (
 
   let isDefault = false;
 
-
   for (const [propName, propValue] of Object.entries({
     ...defaultProps,
     ...propsMap,
@@ -54,7 +53,6 @@ export const extractProps = (
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
-
     } else if (isComponentProps(componentName)(propName.trim())) {
       componentProps[propName.trim()] = propValue;
     } else if (propName.trim() === "variant") {
