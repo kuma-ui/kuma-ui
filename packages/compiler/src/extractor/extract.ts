@@ -20,6 +20,7 @@ import {
   componentHandler,
 } from "@kuma-ui/core/components/componentList";
 import { theme } from "@kuma-ui/sheet";
+import { stableStringify } from "../utils/stableStringify";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -93,8 +94,7 @@ export const extractProps = (
     ...styledProps,
     ...pseudoProps,
   };
-
-  const key = generateKey(combinedProps);
+  const key = stableStringify(combinedProps);
   let generatedStyle = styleCache[key];
   // If the result isn't in the cache, generate it and save it to the cache
   if (!generatedStyle) {
@@ -150,19 +150,6 @@ export const extractProps = (
   return { css };
 };
 
-/**
- * Generates a unique key for props, aiding cache efficiency.
- * Incurs O(n log n) cost due to sorting, but it's acceptable given the
- * expensive nature of StyleGenerator's internals.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-const generateKey = (props: Record<string, any>) => {
-  return Object.entries(props)
-    .filter(([, value]) => value !== undefined)
-    .sort((a, b) => a[0].localeCompare(b[0]))
-    .map(([key, value]) => `${key}:${value}`)
-    .join("|");
-};
 const styleCache: {
   [key: string]: { className: string; css: string } | undefined;
 } = {};
