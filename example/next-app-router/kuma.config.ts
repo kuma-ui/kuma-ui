@@ -12,8 +12,20 @@ const theme = createTheme({
   fontSizes: {
     x: "100px",
     y: {
-      z: "200px"
-    }
+      z: "200px",
+    },
+  },
+  fonts: {
+    a: "font a",
+  },
+  fontWeights: {
+    super_bold: "bold",
+  },
+  letterSpacings: {
+    space_200: ".2rem",
+  },
+  lineHeights: {
+    sx: "300",
   },
   components: {
     Box: {

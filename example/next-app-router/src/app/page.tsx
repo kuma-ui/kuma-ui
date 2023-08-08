@@ -8,6 +8,10 @@ export default function Home() {
       <k.header
         height={56}
         fontSize={"fontSizes.y.z"}
+        fontWeight={"fontWeights.super_bold"}
+        fontFamily={"fonts.a"}
+        letterSpacing={"letterSpacings.space_200"}
+        lineHeight={"lineHeights.sx"}
       >
         <k.div
           maxWidth={1200}

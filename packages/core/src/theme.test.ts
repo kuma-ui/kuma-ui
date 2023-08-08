@@ -16,6 +16,11 @@ describe("createTheme", () => {
           200: "#purple_200",
         },
       },
+      fonts: {
+        sans: {
+          n: "fonts sans n",
+        },
+      },
     });
 
     expect(theme).toEqual({
@@ -45,6 +50,9 @@ describe("createTheme", () => {
         "colors.purple.dark": "#purple_dark";
         "colors.purple.100": "#purple_100";
         "colors.purple.200": "#purple_200";
+      };
+      readonly fonts: {
+        "fonts.sans.n": "fonts sans n";
       };
       components: unknown;
     }>();
