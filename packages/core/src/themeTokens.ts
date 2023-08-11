@@ -7,7 +7,17 @@ type ThemeTokens<T extends string> = Theme extends Record<T, unknown>
   ? Theme[T]
   : never;
 
-export type InputThemeTokens = Partial<Record<Tokens, NestedObject<string>>>;
+type NumberToken =
+  | "fontSizes"
+  | "fontWeights"
+  | "lineHeights"
+  | "letterSpacings"
+  | "breakpoints";
+
+export type InputThemeTokens = Partial<
+  Record<Exclude<NumberToken, Tokens>, NestedObject<string>> &
+    Record<NumberToken, NestedObject<string | number>>
+>;
 
 export type ResultThemeTokens<T extends InputThemeTokens> = {
   [K in keyof T]: Pretty<FlattenObject<Pick<T, K>>>;

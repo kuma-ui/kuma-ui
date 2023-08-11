@@ -10,7 +10,7 @@ export default function Home() {
         fontSize={"fontSizes.y.z"}
         fontWeight={"fontWeights.super_bold"}
         fontFamily={"fonts.a"}
-        letterSpacing={"letterSpacings.space_200"}
+        letterSpacing={(() => "letterSpacings.space_300" as const)()}
         lineHeight={"lineHeights.sx"}
       >
         <k.div
