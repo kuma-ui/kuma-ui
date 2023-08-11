@@ -20,7 +20,7 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent
-    >
+    > & { ref?: React.Ref<React.ElementType<AsComponent>> }
   ): JSX.Element;
   displayName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
@@ -74,6 +74,7 @@ export type ComponentProps<ComponentType extends keyof typeof componentList> =
     Partial<PseudoProps<ThemeSystem>> & {
       children?: ReactNode;
     } & {
+      as?: As;
       variant?: Variant<ComponentType>;
       /**
        * @internal

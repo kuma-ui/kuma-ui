@@ -1,6 +1,6 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { theme } from "@kuma-ui/sheet";
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   As,
   ComponentWithAs,
@@ -9,6 +9,7 @@ import {
   ComponentProps,
 } from "../types";
 import { Box } from "../Box";
+import { forwardRef } from "../forwardRef";
 
 type VStackProps = ComponentProps<"VStack">;
 
@@ -19,25 +20,25 @@ type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/VStack
  */
-const VStack: VStackComponent = <T extends As = "div">({
-  as: Component = "div",
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, VStackProps>) => {
+const VStack: VStackComponent = forwardRef<"div", VStackProps>((props, ref) => {
+  const { as: Component = "div", children, ...restProps } = props;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("VStack")?.variants?.[props.variant]
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const variant = restProps.variant
+    ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      theme.getVariants("VStack")?.variants?.[restProps.variant]
     : {};
   return (
     <Box
+      ref={ref}
       as={Component}
       {...variant}
-      {...props}
+      {...restProps}
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />
   );
-};
+});
 
 export { VStack, type VStackComponent, VStackProps };
