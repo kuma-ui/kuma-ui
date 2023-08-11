@@ -65,6 +65,7 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
               userTheme.letterSpacings?.[value] as string | number
             );
           }
+          return toCssUnit(value);
         } else if (property === "line-height") {
           if (value in (userTheme.lineHeights ?? {})) {
             return userTheme.lineHeights?.[value] as string;

@@ -78,6 +78,7 @@ export const font = (props: FontProps): ResponsiveStyle => {
           if (value in (userTheme.fontSizes ?? {})) {
             return toCssUnit(userTheme.fontSizes?.[value] as string | number);
           }
+          return toCssUnit(value);
         } else if (property === "font-weight") {
           if (value in (userTheme.fontWeights ?? {})) {
             return userTheme.fontWeights?.[value] as string | number;

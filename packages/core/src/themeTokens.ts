@@ -15,7 +15,7 @@ type NumberToken =
   | "breakpoints";
 
 export type InputThemeTokens = Partial<
-  Record<Exclude<NumberToken, Tokens>, NestedObject<string>> &
+  Record<Exclude<Tokens, NumberToken>, NestedObject<string>> &
     Record<NumberToken, NestedObject<string | number>>
 >;
 
