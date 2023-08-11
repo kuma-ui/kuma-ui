@@ -59,14 +59,10 @@ export const color = (props: ColorProps): ResponsiveStyle => {
       let converter: (value: string | number) => string | number;
       if (userTheme.colors) {
         converter = (value) => {
-          let newValue = value;
-          for (const key in userTheme.colors) {
-            if (value === key) {
-              newValue = userTheme.colors[key];
-              break;
-            }
+          if (value in (userTheme.colors ?? {})) {
+            return userTheme.colors?.[value] as string;
           }
-          return newValue;
+          return value;
         };
       } else {
         converter = (v) => v;

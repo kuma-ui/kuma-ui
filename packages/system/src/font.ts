@@ -71,38 +71,17 @@ export const font = (props: FontProps): ResponsiveStyle => {
       const userTheme = theme.getUserTheme();
       const converter = (value: string | number): string | number => {
         if (property === "font-family") {
-          let newValue = value;
-          if (userTheme.fonts) {
-            for (const key in userTheme.fonts) {
-              if (value === key) {
-                newValue = userTheme.fonts[key];
-                break;
-              }
-            }
+          if (value in (userTheme.fonts ?? {})) {
+            return userTheme.fonts?.[value] as string;
           }
-          return newValue;
         } else if (property === "font-size") {
-          let newValue = toCssUnit(value);
-          if (userTheme.fontSizes) {
-            for (const key in userTheme.fontSizes) {
-              if (value === key) {
-                newValue = toCssUnit(userTheme.fontSizes[key]);
-                break;
-              }
-            }
+          if (value in (userTheme.fontSizes ?? {})) {
+            return toCssUnit(userTheme.fontSizes?.[value] as string | number);
           }
-          return newValue;
         } else if (property === "font-weight") {
-          let newValue = value;
-          if (userTheme.fontWeights) {
-            for (const key in userTheme.fontWeights) {
-              if (value === key) {
-                newValue = userTheme.fontWeights[key];
-                break;
-              }
-            }
+          if (value in (userTheme.fontWeights ?? {})) {
+            return userTheme.fontWeights?.[value] as string | number;
           }
-          return newValue;
         }
         return value;
       };

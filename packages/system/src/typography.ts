@@ -60,27 +60,15 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
         if (property === "word-spacing") {
           return toCssUnit(value);
         } else if (property === "letter-spacing") {
-          let newValue = toCssUnit(value);
-          if (userTheme.letterSpacings) {
-            for (const key in userTheme.letterSpacings) {
-              if (value === key) {
-                newValue = toCssUnit(userTheme.letterSpacings[key]);
-                break;
-              }
-            }
+          if (value in (userTheme.letterSpacings ?? {})) {
+            return toCssUnit(
+              userTheme.letterSpacings?.[value] as string | number
+            );
           }
-          return newValue;
         } else if (property === "line-height") {
-          let newValue = value;
-          if (userTheme.lineHeights) {
-            for (const key in userTheme.lineHeights) {
-              if (value === key) {
-                newValue = userTheme.lineHeights[key];
-                break;
-              }
-            }
+          if (value in (userTheme.lineHeights ?? {})) {
+            return userTheme.lineHeights?.[value] as string;
           }
-          return newValue;
         }
         return value;
       };
