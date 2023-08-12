@@ -16,6 +16,11 @@ describe("createTheme", () => {
           200: "#purple_200",
         },
       },
+      fonts: {
+        sans: {
+          n: "fonts sans n",
+        },
+      },
     });
 
     expect(theme).toEqual({
@@ -31,10 +36,13 @@ describe("createTheme", () => {
         "colors.purple.100": "#purple_100",
         "colors.purple.200": "#purple_200",
       },
+      fonts: {
+        "fonts.sans.n": "fonts sans n",
+      },
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      colors: {
+      readonly colors: {
         "colors.red": "#red";
         "colors.blue": "#blue";
         "colors.green.light": "#green_light";
@@ -46,8 +54,10 @@ describe("createTheme", () => {
         "colors.purple.100": "#purple_100";
         "colors.purple.200": "#purple_200";
       };
+      readonly fonts: {
+        "fonts.sans.n": "fonts sans n";
+      };
       components: unknown;
-      breakpoints: unknown;
     }>();
   });
 
@@ -59,9 +69,7 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      colors: undefined;
       components: unknown;
-      breakpoints: unknown;
     }>();
   });
 });

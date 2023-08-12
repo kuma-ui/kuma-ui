@@ -21,13 +21,13 @@ import { ColumnProps } from "./column";
 import { BackgroundProps } from "./background";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
-  SpaceProps &
+  TypographyProps<T> &
+    FontProps<T> &
+    ColorProps<T> &
+    SpaceProps &
     AnimationProps &
-    TypographyProps &
     TextProps &
-    FontProps &
     LayoutProps &
-    ColorProps<T["colors"]> &
     FlexProps &
     BorderProps &
     OutlineProps &

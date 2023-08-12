@@ -87,7 +87,6 @@ export const extractProps = (
       }
     }
   }
-
   const combinedProps = {
     ...componentVariantProps,
     ...specificProps,

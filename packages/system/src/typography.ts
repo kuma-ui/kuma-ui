@@ -1,23 +1,31 @@
 import { toCssUnit } from "./toCSS";
 import { TypographyKeys } from "./keys";
-import { ResponsiveStyle, CSSProperties } from "./types";
+import {
+  ResponsiveStyle,
+  CSSProperties,
+  ThemeSystemType,
+  AddProperty,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { theme } from "@kuma-ui/sheet";
 
-export type TypographyProps = Partial<
-  CSSProperties<"hyphenateCharacter" | "hyphens"> &
-    CSSProperties<"hyphenateLimitChars", true> &
-    CSSProperties<"hangingPunctuation"> &
-    CSSProperties<"lineHeight", true> &
-    CSSProperties<"lineBreak"> &
-    CSSProperties<"orphans", true> &
-    CSSProperties<"quotes"> &
-    CSSProperties<"rubyPosition"> &
-    CSSProperties<"unicodeBidi"> &
-    CSSProperties<"widows", true> &
-    CSSProperties<"whiteSpace"> &
-    CSSProperties<"wordSpacing" | "letterSpacing", true> &
-    CSSProperties<"wordBreak" | "writingMode">
->;
+export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
+  Partial<
+    CSSProperties<"hyphenateCharacter" | "hyphens"> &
+      CSSProperties<"hyphenateLimitChars", true> &
+      CSSProperties<"hangingPunctuation"> &
+      AddProperty<CSSProperties<"lineHeight", true>, T["lineHeights"]> &
+      CSSProperties<"lineBreak"> &
+      CSSProperties<"orphans", true> &
+      CSSProperties<"quotes"> &
+      CSSProperties<"rubyPosition"> &
+      CSSProperties<"unicodeBidi"> &
+      CSSProperties<"widows", true> &
+      CSSProperties<"whiteSpace"> &
+      AddProperty<CSSProperties<"letterSpacing", true>, T["letterSpacings"]> &
+      CSSProperties<"wordSpacing", true> &
+      CSSProperties<"wordBreak" | "writingMode">
+  >;
 
 const typographyMappings: Record<TypographyKeys, string> = {
   hyphenateCharacter: "hyphenate-character",
@@ -46,12 +54,26 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
     const cssValue = props[key as TypographyKeys];
     if (cssValue != undefined) {
       const property = typographyMappings[key as TypographyKeys];
-      const converter = [
-        typographyMappings.letterSpacing,
-        typographyMappings.wordSpacing,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
+
+      const userTheme = theme.getUserTheme();
+      const converter = (value: string | number): string | number => {
+        if (property === "word-spacing") {
+          return toCssUnit(value);
+        } else if (property === "letter-spacing") {
+          if (value in (userTheme.letterSpacings ?? {})) {
+            return toCssUnit(
+              userTheme.letterSpacings?.[value] as string | number
+            );
+          }
+          return toCssUnit(value);
+        } else if (property === "line-height") {
+          if (value in (userTheme.lineHeights ?? {})) {
+            return userTheme.lineHeights?.[value] as string;
+          }
+        }
+        return value;
+      };
+
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
