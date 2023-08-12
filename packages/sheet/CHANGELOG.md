@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 1.0.2
+
+### Patch Changes
+
+- [#272](https://github.com/kuma-ui/kuma-ui/pull/272) [`2329a1d`](https://github.com/kuma-ui/kuma-ui/commit/2329a1d9ea2fe4cf2d61cdf4ea87983c75b0d8fb) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - feat: support font theme tokens
+
 ## 1.0.1
 
 ### Patch Changes
