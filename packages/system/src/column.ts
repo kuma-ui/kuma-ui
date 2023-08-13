@@ -25,29 +25,23 @@ export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<"columnGap", true>, T["spacings"]>
 >;
 
-const columnMappings: Record<
-  ColumnKeys,
-  string | { property: string; converter: ValueConverter }
-> = {
+const columnMappings: Record<ColumnKeys, string> = {
   columnCount: "column-count",
   columnFill: "column-fill",
-  columnGap: {
-    property: "column-gap",
-    converter: spaceConverter,
-  },
+  columnGap: "column-gap",
   columnRule: "column-rule",
   columnRuleColor: "column-rule-color",
   columnRuleStyle: "column-rule-style",
-  columnRuleWidth: {
-    property: "column-rule-width",
-    converter: toCssUnit,
-  },
+  columnRuleWidth: "column-rule-width",
   columnSpan: "column-span",
-  columnWidth: {
-    property: "column-width",
-    converter: toCssUnit,
-  },
+  columnWidth: "column-width",
   columns: "columns",
+};
+
+const converters: Partial<Record<ColumnKeys, ValueConverter>> = {
+  columnGap: spaceConverter,
+  columnRuleWidth: toCssUnit,
+  columnWidth: toCssUnit,
 };
 
 export const column = (props: ColumnProps): ResponsiveStyle => {
@@ -58,11 +52,10 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
     const cssValue = props[key as ColumnKeys];
     if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
-      const converter =
-        typeof property !== "string" ? property.converter : undefined;
+      const converter = converters[key as ColumnKeys];
 
       const responsiveStyles = applyResponsiveStyles(
-        typeof property !== "string" ? property.property : property,
+        property,
         cssValue,
         converter
       );

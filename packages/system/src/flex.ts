@@ -8,7 +8,7 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
 } from "./types";
-import { spaceConverter } from "./valueConverters";
+import { ValueConverter, spaceConverter } from "./valueConverters";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -49,6 +49,11 @@ const flexMappings: Record<FlexKeys, string> = {
   gap: "gap",
 } as const;
 
+const converters: Partial<Record<FlexKeys, ValueConverter>> = {
+  gap: spaceConverter,
+  flexBasis: toCssUnit,
+};
+
 export const flex = (props: FlexProps): ResponsiveStyle => {
   let base = "";
   const media: ResponsiveStyle["media"] = {};
@@ -57,12 +62,7 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue != undefined) {
       const property = flexMappings[key as FlexKeys];
-      const converter =
-        property === flexMappings.flexBasis
-          ? toCssUnit
-          : property === flexMappings.gap
-          ? spaceConverter
-          : undefined;
+      const converter = converters[key as FlexKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
