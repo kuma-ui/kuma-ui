@@ -96,6 +96,20 @@ const theme = createTheme({
 });
 ```
 
+## Spacings
+
+Determine the spacing between objects such as `margin` and `padding`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  spacings: {
+    sm: "1em",
+    md: "4em",
+    lg: "8em",
+  },
+});
+```
+
 <Callout type="warning">
   As for other tokens such as `spacing`, we are currently actively working to
   incorporate them into Kuma UI. Stay tuned for updates and ensure to check the
