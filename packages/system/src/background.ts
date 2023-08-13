@@ -59,7 +59,7 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
   >
 >;
 
-const backgroundMappings: Record<BackgroundKeys, string> = {
+export const backgroundMappings: Record<BackgroundKeys, string> = {
   backgroundImage: "background-image",
   bgImage: "background-image",
   backgroundPosition: "background-position",

@@ -18,7 +18,7 @@ export type AnimationProps = Partial<
     CSSProperties<"animationIterationCount", true>
 >;
 
-const animationMappings: Record<AnimationKeys, string> = {
+export const animationMappings: Record<AnimationKeys, string> = {
   animation: "animation",
   animationComposition: "animation-composition",
   animationDelay: "animation-delay",

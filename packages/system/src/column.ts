@@ -21,7 +21,7 @@ export type ColumnProps = Partial<
     >
 >;
 
-const columnMappings: Record<ColumnKeys, string> = {
+export const columnMappings: Record<ColumnKeys, string> = {
   columnCount: "column-count",
   columnFill: "column-fill",
   columnGap: "column-gap",

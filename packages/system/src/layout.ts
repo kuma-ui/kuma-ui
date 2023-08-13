@@ -11,7 +11,7 @@ export type LayoutProps = Partial<
     CSSProperties<"cursor">
 >;
 
-const layoutMappings: Record<LayoutKeys, string> = {
+export const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
   minWidth: "min-width",
   maxWidth: "max-width",

@@ -84,7 +84,7 @@ export type BorderProps = Partial<
     >
 >;
 
-const borderMappings: Record<BorderKeys, string> = {
+export const borderMappings: Record<BorderKeys, string> = {
   border: "border",
   borderTop: "border-top",
   borderRight: "border-right",

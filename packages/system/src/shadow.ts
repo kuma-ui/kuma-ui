@@ -4,7 +4,7 @@ import { applyResponsiveStyles } from "./responsive";
 
 export type ShadowProps = Partial<CSSProperties<"boxShadow" | "textShadow">>;
 
-const shadowMappings: Record<ShadowKeys, string> = {
+export const shadowMappings: Record<ShadowKeys, string> = {
   boxShadow: "box-shadow",
   textShadow: "text-shadow",
 } as const;

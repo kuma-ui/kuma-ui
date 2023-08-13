@@ -10,7 +10,7 @@ export type OutlineProps = Partial<
     CSSProperties<"outlineStyle">
 >;
 
-const outlineMappings: Record<OutlineKeys, string> = {
+export const outlineMappings: Record<OutlineKeys, string> = {
   outline: "outline",
   outlineOffset: "outline-offset",
   outlineWidth: "outline-width",

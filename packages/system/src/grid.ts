@@ -10,7 +10,7 @@ export type GridProps = Partial<
   CSSProperties<Exclude<GridKeys, UnitKeys>> & CSSProperties<UnitKeys, true>
 >;
 
-const gridMappings: Record<GridKeys, string> = {
+export const gridMappings: Record<GridKeys, string> = {
   grid: "grid",
   gridArea: "grid-area",
   gridAutoColumns: "grid-auto-columns",

@@ -22,7 +22,7 @@ export type FlexProps = Partial<
     CSSProperties<"gap", true>
 >;
 
-const flexMappings: Record<FlexKeys, string> = {
+export const flexMappings: Record<FlexKeys, string> = {
   flexDirection: "flex-direction",
   flexDir: "flex-direction",
   justifyContent: "justify-content",

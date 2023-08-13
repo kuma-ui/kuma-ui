@@ -27,7 +27,7 @@ export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
       CSSProperties<"wordBreak" | "writingMode">
   >;
 
-const typographyMappings: Record<TypographyKeys, string> = {
+export const typographyMappings: Record<TypographyKeys, string> = {
   hyphenateCharacter: "hyphenate-character",
   hyphenateLimitChars: "hyphenate-limit-chars",
   hyphens: "hyphens",

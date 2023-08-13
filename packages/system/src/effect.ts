@@ -16,7 +16,7 @@ export type EffectProps = Partial<
   >
 >;
 
-const effectMappings: Record<EffectKeys, string> = {
+export const effectMappings: Record<EffectKeys, string> = {
   transition: "transition",
   transitionDuration: "transition-duration",
   transitionProperty: "transition-property",
