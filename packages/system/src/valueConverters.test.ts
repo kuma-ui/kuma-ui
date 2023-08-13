@@ -5,7 +5,7 @@ import { spaceConverter } from "./valueConverters";
 describe("spaceConverter", () => {
   beforeAll(() => {
     theme.setUserTheme({
-      spaces: {
+      spacings: {
         sm: "1rem",
       },
     });
