@@ -9,7 +9,6 @@ import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
 import { ValueConverter, spaceConverter } from "./valueConverters";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<
     | "columnFill"

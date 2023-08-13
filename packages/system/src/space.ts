@@ -11,7 +11,6 @@ import {
 import { theme } from "@kuma-ui/sheet";
 import { spaceConverter } from "./valueConverters";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
     CSSProperties<

@@ -11,7 +11,6 @@ import { spaceConverter } from "./valueConverters";
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type GridProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<Exclude<GridKeys, GapKeys>> &
     AddProperty<CSSProperties<GapKeys, true>, T["spacings"]>

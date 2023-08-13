@@ -10,7 +10,6 @@ import {
 } from "./types";
 import { ValueConverter, spaceConverter } from "./valueConverters";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
     /**
