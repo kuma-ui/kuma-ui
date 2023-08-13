@@ -22,7 +22,7 @@ export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
       "columnCount" | "columnWidth" | "columnRuleWidth" | "columns",
       true
     > &
-    AddProperty<CSSProperties<"columnGap", true>, T["spaces"]>
+    AddProperty<CSSProperties<"columnGap", true>, T["spacings"]>
 >;
 
 const columnMappings: Record<

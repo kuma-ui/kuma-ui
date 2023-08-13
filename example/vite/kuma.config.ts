@@ -8,7 +8,7 @@ const theme = createTheme({
     },
     green: "green",
   },
-  spaces: {
+  spacings: {
     sm: "8px",
     1: "0.25rem",
     4: "1rem",

@@ -14,7 +14,7 @@ type GapKeys = (typeof gapKeys)[number];
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type GridProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<Exclude<GridKeys, GapKeys>> &
-    AddProperty<CSSProperties<GapKeys, true>, T["spaces"]>
+    AddProperty<CSSProperties<GapKeys, true>, T["spacings"]>
 >;
 
 const gridMappings: Record<GridKeys, string> = {

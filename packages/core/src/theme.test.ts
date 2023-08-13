@@ -63,7 +63,7 @@ describe("createTheme", () => {
 
   test("should convert space theme object to expected format", () => {
     const theme = createTheme({
-      spaces: {
+      spacings: {
         1: "0.25rem",
         4: "1rem",
         sm: "8px",
@@ -71,18 +71,18 @@ describe("createTheme", () => {
     });
 
     expect(theme).toEqual({
-      spaces: {
-        "spaces.1": "0.25rem",
-        "spaces.4": "1rem",
-        "spaces.sm": "8px",
+      spacings: {
+        "spacings.1": "0.25rem",
+        "spacings.4": "1rem",
+        "spacings.sm": "8px",
       },
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      readonly spaces: {
-        "spaces.1": "0.25rem";
-        "spaces.4": "1rem";
-        "spaces.sm": "8px";
+      readonly spacings: {
+        "spacings.1": "0.25rem";
+        "spacings.4": "1rem";
+        "spacings.sm": "8px";
       };
       components: unknown;
     }>();
@@ -93,7 +93,7 @@ describe("createTheme", () => {
 
     expect(theme).toEqual({
       colors: undefined,
-      spaces: undefined,
+      spacings: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{

@@ -27,7 +27,7 @@ export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"flexBasis", true> &
     CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
     CSSProperties<"justifyItems" | "justifySelf" | "justifyContent"> &
-    AddProperty<CSSProperties<"gap", true>, T["spaces"]>
+    AddProperty<CSSProperties<"gap", true>, T["spacings"]>
 >;
 
 const flexMappings: Record<FlexKeys, string> = {

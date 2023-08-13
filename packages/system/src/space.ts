@@ -108,7 +108,7 @@ export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
        */
       py: CSSValue<"paddingTop" | "paddingBottom", true>;
     },
-    T["spaces"]
+    T["spacings"]
   >
 >;
 
