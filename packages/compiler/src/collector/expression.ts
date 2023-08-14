@@ -1,7 +1,9 @@
-import { Node, ts } from "ts-morph";
+import { Node, SyntaxKind, ts } from "ts-morph";
 import { match } from "ts-pattern";
 
-export const handleJsxExpression = (node: Node<ts.Node>) => {
+export const handleJsxExpression = (
+  node: Node<ts.Node>
+): string | number | boolean | (string | number | undefined)[] | undefined => {
   return (
     match(node)
       // fontSize={24}
@@ -36,6 +38,31 @@ export const handleJsxExpression = (node: Node<ts.Node>) => {
         return arrayExpression.includes(undefined)
           ? undefined
           : arrayExpression;
+      })
+      // fontSize={2 + 5}
+      .when(Node.isBinaryExpression, (exp) => {
+        const leftOperand = handleJsxExpression(exp.getLeft());
+        const rightOperand = handleJsxExpression(exp.getRight());
+        const operator = exp.getOperatorToken().getKind();
+        if (
+          typeof leftOperand === "number" &&
+          typeof rightOperand === "number"
+        ) {
+          // FIXME: opted for native switch due to a type conflict between ts-pattern and SyntaxKind which remains unexplained.
+          switch (operator) {
+            case SyntaxKind.PlusToken:
+              return leftOperand + rightOperand;
+            case SyntaxKind.MinusToken:
+              return leftOperand - rightOperand;
+            case SyntaxKind.AsteriskToken:
+              return leftOperand * rightOperand;
+            case SyntaxKind.SlashToken:
+              return leftOperand / rightOperand;
+            default:
+              return undefined;
+          }
+        }
+        return undefined;
       })
       // fontSize={{xl: '2rem'}['xl']}
       .when(Node.isObjectLiteralExpression, (obj) => {
