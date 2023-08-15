@@ -1,13 +1,10 @@
 import { spacerHandler } from "./handler";
-import { describe, it, expect, beforeEach } from "vitest";
-import { render, cleanup } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
 import { Spacer } from "./react";
 import React from "react";
 
 describe("Spacer", () => {
-  beforeEach(() => {
-    cleanup();
-  });
   describe("spacerHandler", () => {
     it("should return an empty object if both horizontal and size props are not defined", () => {
       // Arrange
