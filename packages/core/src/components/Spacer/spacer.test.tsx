@@ -1,6 +1,6 @@
 import { spacerHandler } from "./handler";
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Spacer } from "./react";
 import React from "react";
 
@@ -50,12 +50,12 @@ describe("Spacer", () => {
       const props = { size: 10, horizontal: true };
 
       // Act
-      const { container } = render(<Spacer {...props} id="spacer" />);
+      render(<Spacer {...props} data-testid="spacer" />);
 
       // Assert
-      expect(
-        window.getComputedStyle(container.firstElementChild as Element).width
-      ).toBe("10px");
+      expect(screen.getByTestId("spacer")).toHaveStyle({
+        width: "10px",
+      });
     });
   });
 });
