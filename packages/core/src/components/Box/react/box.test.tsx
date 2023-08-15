@@ -4,7 +4,18 @@ import { Box } from ".";
 import React from "react";
 
 describe("Box component", () => {
-  it("should render correctly with given static props", () => {
+  it("should render correctly with no props", () => {
+    // Arrange
+    const props = {};
+
+    // Act
+    render(<Box {...props}>This is a box</Box>);
+
+    // Assert
+    expect(screen.getByText("This is a box")).toBeInTheDocument();
+  });
+
+  it("should render correctly with given dynamic props", () => {
     // Arrange
     const props = { p: 8, color: "white" };
 
