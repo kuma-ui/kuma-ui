@@ -48,7 +48,10 @@ export const handleJsxExpression = (
           typeof leftOperand === "number" &&
           typeof rightOperand === "number"
         ) {
-          // FIXME: opted for native switch due to a type conflict between ts-pattern and SyntaxKind which remains unexplained.
+          /**
+           * ts-pattern doesn't work when the conditions use an enum with numeric values due to the TS limitation
+           * @see https://github.com/gvergnaud/ts-pattern/issues/183
+           **/
           switch (operator) {
             case SyntaxKind.PlusToken:
               return leftOperand + rightOperand;
