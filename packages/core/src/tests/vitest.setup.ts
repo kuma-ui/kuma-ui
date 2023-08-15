@@ -1,6 +1,7 @@
 import type { TestingLibraryMatchers } from "@testing-library/jest-dom/matchers";
 import matchers from "@testing-library/jest-dom/matchers";
-import { expect } from "vitest";
+import { cleanup } from "@testing-library/react";
+import { beforeEach, expect } from "vitest";
 
 declare module "vitest" {
   interface Assertion<T>
@@ -9,3 +10,7 @@ declare module "vitest" {
 }
 
 expect.extend(matchers);
+
+beforeEach(() => {
+  cleanup();
+});
