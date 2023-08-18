@@ -1,7 +1,6 @@
 import { ColorKeys } from "./keys";
 import { AddProperty, CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { theme } from "@kuma-ui/sheet";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
@@ -50,27 +49,7 @@ export const color = (props: ColorProps): ResponsiveStyle => {
     const cssValue = props[key as ColorKeys];
     if (cssValue != undefined) {
       const property = colorMappings[key as ColorKeys];
-      const userTheme = theme.getUserTheme();
-      let converter: (value: string | number) => string | number;
-      if (userTheme.colors) {
-        converter = (value) => {
-          let newValue = value;
-          for (const key in userTheme.colors) {
-            if (value === key) {
-              newValue = userTheme.colors[key];
-              break;
-            }
-          }
-          return newValue;
-        };
-      } else {
-        converter = (v) => v;
-      }
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter
-      );
+      const responsiveStyles = applyResponsiveStyles(property, cssValue);
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
         if (media[breakpoint]) media[breakpoint] += css;

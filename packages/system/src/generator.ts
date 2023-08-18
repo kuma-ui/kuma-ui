@@ -1,7 +1,7 @@
-import { generateHash } from "@kuma-ui/sheet";
+import { generateHash, theme } from "@kuma-ui/sheet";
 import { SystemStyle } from "./types";
 import { StyledProps } from "./compose";
-import { isStyledProp } from "./keys";
+import { StyleThemeKeyType, isStyledProp } from "./keys";
 import { PseudoProps, isPseudoProps, normalizePseudo } from "./pseudo";
 import { all } from ".";
 
@@ -21,7 +21,21 @@ export class StyleGenerator {
     const pseudoProps: { [key: string]: any } = {};
 
     for (const [propName, propValue] of Object.entries(props)) {
-      if (isStyledProp(propName.trim())) {
+      if (
+        typeof propValue === "string" &&
+        /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue)
+      ) {
+        const userTheme = theme.getUserTheme();
+        const propKey = propValue.split(".")[0] as StyleThemeKeyType;
+        if (userTheme[propKey] !== undefined) {
+          for (const key in userTheme[propKey]) {
+            if (propValue.trim() === key) {
+              styledProps[propName.trim()] = userTheme[propKey]![key];
+              break;
+            }
+          }
+        }
+      } else if (isStyledProp(propName.trim())) {
         styledProps[propName.trim()] = propValue;
       } else if (isPseudoProps(propName.trim())) {
         pseudoProps[propName.trim()] = propValue;

@@ -318,6 +318,8 @@ export type StyledKeyType =
   | ColumnKeys
   | EffectKeys;
 
+export type StyleThemeKeyType = "colors" | "breakpoints";
+
 function memo<T>(fn: (value: string) => T): (value: string) => T {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
   const cache = Object.create(null);

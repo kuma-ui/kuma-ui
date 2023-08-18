@@ -3,9 +3,8 @@ import { Plugin } from "vite";
 import path from "path";
 import { buildSync } from "esbuild";
 import _eval from "eval";
-import { theme, sheet } from "@kuma-ui/sheet";
+import { theme, sheet, generateHash, UserTheme } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
-import { generateHash } from "@kuma-ui/sheet";
 
 export default function kumaUI(): Plugin {
   let mode: "build" | "serve";
@@ -31,12 +30,11 @@ export default function kumaUI(): Plugin {
     });
 
     const config = _eval(result.outputFiles[0].text, configPath) as {
-      default: unknown;
+      default: Partial<UserTheme>;
     };
 
     if (config.default) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
-      theme.setUserTheme(config.default as any);
+      theme.setUserTheme(config.default as Partial<UserTheme>);
     }
   }
 
@@ -91,6 +89,9 @@ export default function kumaUI(): Plugin {
       server.ws.send({ type: "full-reload" });
     },
     configResolved(config) {
+      if (config.define && Object.keys(config.define).length > 0) {
+        config.configFileDependencies.push(`${config.root}/kuma.config.ts`);
+      }
       mode = config.command;
     },
   };
