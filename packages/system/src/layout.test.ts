@@ -54,6 +54,8 @@ describe("layout utility function", () => {
     // Act
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
     const { base, media } = grid(invalidProps as any);
+
+    // Assert
     expect(base).toBe("");
     expect(media).toEqual({});
   });
