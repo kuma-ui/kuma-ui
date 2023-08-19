@@ -71,7 +71,7 @@ describe("sizeConverter", () => {
 describe("radiusConverter", () => {
   beforeAll(() => {
     theme.setUserTheme({
-      sizes: {
+      radii: {
         sm: "1rem",
       },
     });
