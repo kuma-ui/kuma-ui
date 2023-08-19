@@ -138,6 +138,19 @@ const theme = createTheme({
 });
 ```
 
+## z-indices
+
+Determine the z-index of an object.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  zIndices: {
+    overlay: "10",
+    modal: "100",
+  },
+});
+```
+
 <Callout type="warning">
   As for other tokens, we are currently actively working to incorporate them
   into Kuma UI. Stay tuned for updates and ensure to check the documentation
