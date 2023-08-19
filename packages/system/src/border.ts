@@ -1,10 +1,16 @@
 import { BorderKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { ValueConverter } from "./valueConverters";
+import { ValueConverter, radiusConverter } from "./valueConverters";
 
-export type BorderProps = Partial<
+export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
     /**
      * @see borderTop
@@ -40,33 +46,7 @@ export type BorderProps = Partial<
      * @see borderInlineEndStyle
      */
     borderEndStyle: CSSValue<"borderInlineEndStyle">;
-    /**
-     * @see borderTopLeftRadius
-     * @see borderBottomLeftRadius
-     */
-    borderStartRadius: CSSValue<
-      "borderTopLeftRadius" | "borderBottomLeftRadius",
-      true
-    >;
-    /**
-     * @see borderTopRightRadius
-     * @see borderBottomRightRadius
-     */
-    borderEndRadius: CSSValue<
-      "borderTopRightRadius" | "borderBottomRightRadius",
-      true
-    >;
-  } & CSSProperties<
-    "border" | "borderTop" | "borderRight" | "borderLeft" | "borderBottom",
-    true
-  > &
-    CSSProperties<
-      | "borderStyle"
-      | "borderTopStyle"
-      | "borderBottomStyle"
-      | "borderLeftStyle"
-      | "borderRightStyle"
-    > &
+  } & AddProperty<
     CSSProperties<
       | "borderRadius"
       | "borderTopLeftRadius"
@@ -74,6 +54,36 @@ export type BorderProps = Partial<
       | "borderBottomLeftRadius"
       | "borderBottomRightRadius",
       true
+    > & {
+      /**
+       * @see borderTopLeftRadius
+       * @see borderBottomLeftRadius
+       */
+      borderStartRadius: CSSValue<
+        "borderTopLeftRadius" | "borderBottomLeftRadius",
+        true
+      >;
+      /**
+       * @see borderTopRightRadius
+       * @see borderBottomRightRadius
+       */
+      borderEndRadius: CSSValue<
+        "borderTopRightRadius" | "borderBottomRightRadius",
+        true
+      >;
+    },
+    T["radii"]
+  > &
+    CSSProperties<
+      "border" | "borderTop" | "borderRight" | "borderLeft" | "borderBottom",
+      true
+    > &
+    CSSProperties<
+      | "borderStyle"
+      | "borderTopStyle"
+      | "borderBottomStyle"
+      | "borderLeftStyle"
+      | "borderRightStyle"
     > &
     CSSProperties<
       | "borderWidth"
@@ -126,11 +136,11 @@ const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderBottom: toCssUnit,
   borderX: toCssUnit,
   borderY: toCssUnit,
-  borderRadius: toCssUnit,
-  borderTopLeftRadius: toCssUnit,
-  borderTopRightRadius: toCssUnit,
-  borderBottomLeftRadius: toCssUnit,
-  borderBottomRightRadius: toCssUnit,
+  borderRadius: radiusConverter,
+  borderTopLeftRadius: radiusConverter,
+  borderTopRightRadius: radiusConverter,
+  borderBottomLeftRadius: radiusConverter,
+  borderBottomRightRadius: radiusConverter,
   borderWidth: toCssUnit,
   borderTopWidth: toCssUnit,
   borderBottomWidth: toCssUnit,
@@ -140,8 +150,8 @@ const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderEnd: toCssUnit,
   borderStartWidth: toCssUnit,
   borderEndWidth: toCssUnit,
-  borderStartRadius: toCssUnit,
-  borderEndRadius: toCssUnit,
+  borderStartRadius: radiusConverter,
+  borderEndRadius: radiusConverter,
 };
 
 export const border = (props: BorderProps): ResponsiveStyle => {
