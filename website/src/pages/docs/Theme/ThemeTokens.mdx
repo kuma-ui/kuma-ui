@@ -124,6 +124,20 @@ const theme = createTheme({
 });
 ```
 
+## Radii
+
+Determine the radius of an object's corners such as `borderRadius`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  radii: {
+    sm: "1em",
+    md: "4em",
+    lg: "8em",
+  },
+});
+```
+
 <Callout type="warning">
   As for other tokens, we are currently actively working to incorporate them
   into Kuma UI. Stay tuned for updates and ensure to check the documentation
