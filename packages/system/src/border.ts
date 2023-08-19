@@ -2,6 +2,7 @@ import { BorderKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
 import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { ValueConverter } from "./valueConverters";
 
 export type BorderProps = Partial<
   {
@@ -117,6 +118,32 @@ const borderMappings: Record<BorderKeys, string> = {
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
 };
 
+const converters: Partial<Record<BorderKeys, ValueConverter>> = {
+  border: toCssUnit,
+  borderTop: toCssUnit,
+  borderRight: toCssUnit,
+  borderLeft: toCssUnit,
+  borderBottom: toCssUnit,
+  borderX: toCssUnit,
+  borderY: toCssUnit,
+  borderRadius: toCssUnit,
+  borderTopLeftRadius: toCssUnit,
+  borderTopRightRadius: toCssUnit,
+  borderBottomLeftRadius: toCssUnit,
+  borderBottomRightRadius: toCssUnit,
+  borderWidth: toCssUnit,
+  borderTopWidth: toCssUnit,
+  borderBottomWidth: toCssUnit,
+  borderLeftWidth: toCssUnit,
+  borderRightWidth: toCssUnit,
+  borderStart: toCssUnit,
+  borderEnd: toCssUnit,
+  borderStartWidth: toCssUnit,
+  borderEndWidth: toCssUnit,
+  borderStartRadius: toCssUnit,
+  borderEndRadius: toCssUnit,
+};
+
 export const border = (props: BorderProps): ResponsiveStyle => {
   let baseStyles = "";
   const mediaStyles: { [breakpoint: string]: string } = {};
@@ -126,17 +153,7 @@ export const border = (props: BorderProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const properties = borderMappings[key as BorderKeys].split(",");
       for (const property of properties) {
-        const converter = [
-          borderMappings.borderStyle,
-          borderMappings.borderTopStyle,
-          borderMappings.borderBottomStyle,
-          borderMappings.borderLeftStyle,
-          borderMappings.borderRightStyle,
-          borderMappings.borderStartStyle,
-          borderMappings.borderEndStyle,
-        ].includes(borderMappings[key as BorderKeys])
-          ? undefined
-          : toCssUnit;
+        const converter = converters[key as BorderKeys];
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
