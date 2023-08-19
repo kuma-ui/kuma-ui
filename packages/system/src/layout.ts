@@ -1,11 +1,23 @@
 import { toCssUnit } from "./toCSS";
 import { LayoutKeys } from "./keys";
-import { CSSProperties, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { sizeConverter } from "./valueConverters";
 
-export type LayoutProps = Partial<
-  CSSProperties<"width" | "minWidth" | "maxWidth", true> &
-    CSSProperties<"height" | "minHeight" | "maxHeight", true> &
+export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
+  AddProperty<
+    CSSProperties<"width" | "minWidth" | "maxWidth", true>,
+    T["sizes"]
+  > &
+    AddProperty<
+      CSSProperties<"height" | "minHeight" | "maxHeight", true>,
+      T["sizes"]
+    > &
     CSSProperties<"display" | "overflow" | "position"> &
     CSSProperties<"zIndex", true> &
     CSSProperties<"cursor">
@@ -40,7 +52,7 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
         layoutMappings.minHeight,
         layoutMappings.maxHeight,
       ].includes(property)
-        ? toCssUnit
+        ? sizeConverter
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,
