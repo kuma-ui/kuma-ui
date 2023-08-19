@@ -115,6 +115,57 @@ describe("createTheme", () => {
     }>();
   });
 
+  test("should convert radius theme object to expected format", () => {
+    const theme = createTheme({
+      radii: {
+        1: "0.25rem",
+        4: "1rem",
+        sm: "8px",
+      },
+    });
+
+    expect(theme).toEqual({
+      radii: {
+        "radii.1": "0.25rem",
+        "radii.4": "1rem",
+        "radii.sm": "8px",
+      },
+    });
+
+    expectTypeOf(theme).toEqualTypeOf<{
+      readonly radii: {
+        "radii.1": "0.25rem";
+        "radii.4": "1rem";
+        "radii.sm": "8px";
+      };
+      components: unknown;
+    }>();
+  });
+
+  test("should convert z-index theme object to expected format", () => {
+    const theme = createTheme({
+      zIndices: {
+        overlay: "10",
+        modal: "100",
+      },
+    });
+
+    expect(theme).toEqual({
+      zIndices: {
+        "zIndices.overlay": "10",
+        "zIndices.modal": "100",
+      },
+    });
+
+    expectTypeOf(theme).toEqualTypeOf<{
+      readonly zIndices: {
+        "zIndices.overlay": "10";
+        "zIndices.modal": "100";
+      };
+      components: unknown;
+    }>();
+  });
+
   test("should return an empty theme when no colors are provided", () => {
     const theme = createTheme({});
 

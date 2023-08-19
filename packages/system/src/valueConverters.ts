@@ -17,3 +17,8 @@ export const radiusConverter: ValueConverter = (v) => {
   const userTheme = theme.getUserTheme();
   return userTheme.radii?.[v] || toCssUnit(v);
 };
+
+export const zIndexConverter: ValueConverter = (v) => {
+  const userTheme = theme.getUserTheme();
+  return userTheme.zIndices?.[v] || v;
+};

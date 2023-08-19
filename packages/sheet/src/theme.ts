@@ -31,6 +31,7 @@ export type Tokens =
   | "spacings"
   | "sizes"
   | "radii"
+  | "zIndices"
   | "breakpoints";
 
 export type UserTheme = {

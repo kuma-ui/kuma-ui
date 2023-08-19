@@ -10,6 +10,9 @@ describe("layout utility function", () => {
       sizes: {
         sm: "1rem",
       },
+      zIndices: {
+        overlay: "10",
+      },
     });
   });
 
@@ -21,6 +24,9 @@ describe("layout utility function", () => {
     [{ maxHeight: "sm" }, "max-height: 1rem;", ""],
     [{ display: "flex" }, "display: flex;", ""],
     [{ display: "sm" }, "display: sm;", ""], // size token won't be applied
+    [{ zIndex: 1 }, "z-index: 1;", ""],
+    [{ zIndex: "5" }, "z-index: 5;", ""],
+    [{ zIndex: "overlay" }, "z-index: 10;", ""],
   ];
 
   test.each(testCases)(
