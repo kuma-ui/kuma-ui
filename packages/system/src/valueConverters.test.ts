@@ -4,6 +4,7 @@ import {
   sizeConverter,
   spaceConverter,
   radiusConverter,
+  zIndexConverter,
 } from "./valueConverters";
 
 describe("spaceConverter", () => {
@@ -96,5 +97,36 @@ describe("radiusConverter", () => {
 
     // Assert
     expect(converted).toBe("1px");
+  });
+});
+
+describe("zIndexConverter", () => {
+  beforeAll(() => {
+    theme.setUserTheme({
+      zIndices: {
+        overlay: "10",
+      },
+    });
+  });
+
+  test("should correctly convert theme token value", () => {
+    const converted = zIndexConverter("overlay");
+
+    // Assert
+    expect(converted).toBe("10");
+  });
+
+  test("should correctly convert raw string value", () => {
+    const converted = zIndexConverter("5");
+
+    // Assert
+    expect(converted).toBe("5");
+  });
+
+  test("should correctly convert raw number value", () => {
+    const converted = zIndexConverter(1);
+
+    // Assert
+    expect(converted).toBe(1);
   });
 });
