@@ -24,20 +24,20 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
   TypographyProps<T> &
     FontProps<T> &
     ColorProps<T> &
-    SpaceProps &
+    SpaceProps<T> &
     AnimationProps &
     TextProps &
     LayoutProps &
-    FlexProps &
+    FlexProps<T> &
     BorderProps &
     OutlineProps &
     PositionProps &
     ShadowProps &
-    GridProps &
+    GridProps<T> &
     ListProps &
     EffectProps &
     MaskProps &
-    ColumnProps &
+    ColumnProps<T> &
     BackgroundProps &
     // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents -- FIXME
     EffectProps;

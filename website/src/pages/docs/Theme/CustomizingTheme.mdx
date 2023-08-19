@@ -23,6 +23,10 @@ const theme = createTheme({
     },
     blue: "blue",
   },
+  spaces: {
+    sm: "0.5rem",
+    md: "1rem",
+  },
   breakpoints: {
     sm: "400px",
     md: "700px",
@@ -46,7 +50,7 @@ declare module "@kuma-ui/core" {
 export default theme;
 ```
 
-In the above example, the theme is defined with a set of colors, a breakpoint, as well as base styles for the Button component.
+In the above example, the theme is defined with a set of colors, spaces, a breakpoint, as well as base styles for the Button component.
 
 If you're using TypeScript, you can benefit from type inference when writing props for your application by extending the Kuma UI `Theme` interface with your user-defined theme:
 
@@ -70,7 +74,7 @@ declare module "@kuma-ui/core" {
 
 ### Theme Tokens
 
-As of now, the available theme tokens include `colors`, `fonts`, `fontSizes`, `fontWeights`, `lineHeights`, and `letterSpacings`. More theme tokens like `spacing` are actively being worked on and will be incorporated in the future. Check the [Theme Tokens](/docs/Theme/ThemeTokens) page for a detailed guide on using each token.
+As of now, the available theme tokens include `colors`, `fonts`, `fontSizes`, `fontWeights`, `lineHeights`, `letterSpacings`, and `spaces`. Check the [Theme Tokens](/docs/Theme/ThemeTokens) page for a detailed guide on using each token.
 
 ### Breakpoints
 

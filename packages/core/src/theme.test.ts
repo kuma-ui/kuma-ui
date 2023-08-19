@@ -61,11 +61,39 @@ describe("createTheme", () => {
     }>();
   });
 
+  test("should convert space theme object to expected format", () => {
+    const theme = createTheme({
+      spacings: {
+        1: "0.25rem",
+        4: "1rem",
+        sm: "8px",
+      },
+    });
+
+    expect(theme).toEqual({
+      spacings: {
+        "spacings.1": "0.25rem",
+        "spacings.4": "1rem",
+        "spacings.sm": "8px",
+      },
+    });
+
+    expectTypeOf(theme).toEqualTypeOf<{
+      readonly spacings: {
+        "spacings.1": "0.25rem";
+        "spacings.4": "1rem";
+        "spacings.sm": "8px";
+      };
+      components: unknown;
+    }>();
+  });
+
   test("should return an empty theme when no colors are provided", () => {
     const theme = createTheme({});
 
     expect(theme).toEqual({
       colors: undefined,
+      spacings: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{

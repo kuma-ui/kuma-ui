@@ -4,7 +4,7 @@ import { Dynamic } from "./Dynamic";
 function App() {
   const red = "red";
   return (
-    <HStack flexDir={["row", "column"]}>
+    <HStack flexDir={["row", "column"]} gap="spacings.4">
       <Text variant={"primary"}>hello</Text>
       <Dynamic key={1} />
       <Dynamic key={2} />
