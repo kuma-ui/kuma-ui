@@ -32,3 +32,34 @@ describe("spaceConverter", () => {
     expect(converted).toBe("1px");
   });
 });
+
+describe("sizeConverter", () => {
+  beforeAll(() => {
+    theme.setUserTheme({
+      sizes: {
+        sm: "1rem",
+      },
+    });
+  });
+
+  test("should correctly convert theme token value", () => {
+    const converted = spaceConverter("sm");
+
+    // Assert
+    expect(converted).toBe("1rem");
+  });
+
+  test("should correctly convert raw string value", () => {
+    const converted = spaceConverter("1px");
+
+    // Assert
+    expect(converted).toBe("1px");
+  });
+
+  test("should correctly convert raw number value", () => {
+    const converted = spaceConverter(1);
+
+    // Assert
+    expect(converted).toBe("1px");
+  });
+});
