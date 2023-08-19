@@ -88,6 +88,33 @@ describe("createTheme", () => {
     }>();
   });
 
+  test("should convert size theme object to expected format", () => {
+    const theme = createTheme({
+      sizes: {
+        1: "0.25rem",
+        4: "1rem",
+        sm: "8px",
+      },
+    });
+
+    expect(theme).toEqual({
+      sizes: {
+        "sizes.1": "0.25rem",
+        "sizes.4": "1rem",
+        "sizes.sm": "8px",
+      },
+    });
+
+    expectTypeOf(theme).toEqualTypeOf<{
+      readonly sizes: {
+        "sizes.1": "0.25rem";
+        "sizes.4": "1rem";
+        "sizes.sm": "8px";
+      };
+      components: unknown;
+    }>();
+  });
+
   test("should return an empty theme when no colors are provided", () => {
     const theme = createTheme({});
 

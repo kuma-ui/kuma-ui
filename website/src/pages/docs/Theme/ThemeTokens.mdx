@@ -110,6 +110,20 @@ const theme = createTheme({
 });
 ```
 
+## Sizes
+
+Determine the size of objects such as `width` and `height`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  sizes: {
+    sm: "16px",
+    md: "64px",
+    lg: "256px",
+  },
+});
+```
+
 <Callout type="warning">
   As for other tokens, we are currently actively working to incorporate them
   into Kuma UI. Stay tuned for updates and ensure to check the documentation

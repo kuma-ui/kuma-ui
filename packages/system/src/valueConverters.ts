@@ -7,3 +7,8 @@ export const spaceConverter: ValueConverter = (v) => {
   const userTheme = theme.getUserTheme();
   return userTheme.spacings?.[v] || toCssUnit(v);
 };
+
+export const sizeConverter: ValueConverter = (v) => {
+  const userTheme = theme.getUserTheme();
+  return userTheme.sizes?.[v] || toCssUnit(v);
+};
