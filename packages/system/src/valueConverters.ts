@@ -12,3 +12,8 @@ export const sizeConverter: ValueConverter = (v) => {
   const userTheme = theme.getUserTheme();
   return userTheme.sizes?.[v] || toCssUnit(v);
 };
+
+export const radiusConverter: ValueConverter = (v) => {
+  const userTheme = theme.getUserTheme();
+  return userTheme.radii?.[v] || toCssUnit(v);
+};
