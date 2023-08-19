@@ -7,7 +7,11 @@ import {
   ThemeSystemType,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { sizeConverter } from "./valueConverters";
+import {
+  ValueConverter,
+  sizeConverter,
+  zIndexConverter,
+} from "./valueConverters";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -19,7 +23,7 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
       T["sizes"]
     > &
     CSSProperties<"display" | "overflow" | "position"> &
-    CSSProperties<"zIndex", true> &
+    AddProperty<CSSProperties<"zIndex", true>, T["zIndices"]> &
     CSSProperties<"cursor">
 >;
 
@@ -37,6 +41,16 @@ const layoutMappings: Record<LayoutKeys, string> = {
   cursor: "cursor",
 } as const;
 
+const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
+  width: sizeConverter,
+  minWidth: sizeConverter,
+  maxWidth: sizeConverter,
+  height: sizeConverter,
+  minHeight: sizeConverter,
+  maxHeight: sizeConverter,
+  zIndex: zIndexConverter,
+};
+
 export const layout = (props: LayoutProps): ResponsiveStyle => {
   let base = "";
   const media: ResponsiveStyle["media"] = {};
@@ -44,16 +58,7 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     const cssValue = props[key as LayoutKeys];
     if (cssValue != undefined) {
       const property = layoutMappings[key as LayoutKeys];
-      const converter = [
-        layoutMappings.width,
-        layoutMappings.minWidth,
-        layoutMappings.maxWidth,
-        layoutMappings.height,
-        layoutMappings.minHeight,
-        layoutMappings.maxHeight,
-      ].includes(property)
-        ? sizeConverter
-        : undefined;
+      const converter = converters[key as LayoutKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
