@@ -30,6 +30,7 @@ export type Tokens =
   | "letterSpacings"
   | "spacings"
   | "sizes"
+  | "radii"
   | "breakpoints";
 
 export type UserTheme = {
