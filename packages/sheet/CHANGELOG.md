@@ -1,5 +1,21 @@
 # @kuma-ui/sheet
 
+## 1.1.0
+
+### Minor Changes
+
+- [#274](https://github.com/kuma-ui/kuma-ui/pull/274) [`bc1a7f9`](https://github.com/kuma-ui/kuma-ui/commit/bc1a7f979f5539a4e2d1d2785dc2a893eee076eb) Thanks [@yukukotani](https://github.com/yukukotani)! - Add support for spacing theme token
+
+- [#289](https://github.com/kuma-ui/kuma-ui/pull/289) [`10f9811`](https://github.com/kuma-ui/kuma-ui/commit/10f98111d542f1fa45a6cda18ac872bec7b40910) Thanks [@yukukotani](https://github.com/yukukotani)! - Add support for size token
+
+- [#291](https://github.com/kuma-ui/kuma-ui/pull/291) [`066d043`](https://github.com/kuma-ui/kuma-ui/commit/066d04383d3f4e19fb0460b184e8aa9ed67ae41d) Thanks [@yukukotani](https://github.com/yukukotani)! - Add support for radius token
+
+## 1.0.2
+
+### Patch Changes
+
+- [#272](https://github.com/kuma-ui/kuma-ui/pull/272) [`2329a1d`](https://github.com/kuma-ui/kuma-ui/commit/2329a1d9ea2fe4cf2d61cdf4ea87983c75b0d8fb) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - feat: support font theme tokens
+
 ## 1.0.1
 
 ### Patch Changes

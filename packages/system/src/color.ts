@@ -1,25 +1,28 @@
 import { ColorKeys } from "./keys";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { theme } from "@kuma-ui/sheet";
 
-type AddProperty<T, T2> = {
-  [Key in keyof T]: T[Key] | T2;
-};
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
+export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
     {
       /**
        * @see background
        */
-      bg: CSSValue<"background"> | AutoPrefix;
+      bg: CSSValue<"background">;
       /**
        * @see backgroundColor
        */
-      bgColor: CSSValue<"backgroundColor"> | AutoPrefix;
+      bgColor: CSSValue<"backgroundColor">;
     } & CSSProperties<
+      | "background"
+      | "backgroundColor"
       | "borderColor"
       | "outlineColor"
       | "color"
@@ -28,12 +31,14 @@ export type ColorProps<AutoPrefix extends string = string & {}> = Partial<
       | "opacity",
       false
     >,
-    AutoPrefix
+    T["colors"]
   >
 >;
 
 const colorMappings: Record<ColorKeys, string> = {
+  background: "background",
   bg: "background",
+  backgroundColor: "background-color",
   bgColor: "background-color",
   color: "color",
   borderColor: "border-color",
@@ -54,14 +59,10 @@ export const color = (props: ColorProps): ResponsiveStyle => {
       let converter: (value: string | number) => string | number;
       if (userTheme.colors) {
         converter = (value) => {
-          let newValue = value;
-          for (const key in userTheme.colors) {
-            if (value === key) {
-              newValue = userTheme.colors[key];
-              break;
-            }
+          if (value in (userTheme.colors ?? {})) {
+            return userTheme.colors?.[value] as string;
           }
-          return newValue;
+          return value;
         };
       } else {
         converter = (v) => v;

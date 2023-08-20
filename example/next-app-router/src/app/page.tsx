@@ -5,7 +5,14 @@ import { Dynamic2 } from "./dynamic2";
 export default function Home() {
   return (
     <div>
-      <k.header height={56}>
+      <k.header
+        height={56}
+        fontSize={"fontSizes.y.z"}
+        fontWeight={"fontWeights.super_bold"}
+        fontFamily={"fonts.a"}
+        letterSpacing={(() => "letterSpacings.space_300" as const)()}
+        lineHeight={"lineHeights.sx"}
+      >
         <k.div
           maxWidth={1200}
           fontSize={32}

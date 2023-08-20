@@ -1,13 +1,10 @@
 import { spacerHandler } from "./handler";
-import { describe, it, expect, beforeEach } from "vitest";
-import { render, cleanup } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
+import { render, screen } from "@testing-library/react";
 import { Spacer } from "./react";
 import React from "react";
 
 describe("Spacer", () => {
-  beforeEach(() => {
-    cleanup();
-  });
   describe("spacerHandler", () => {
     it("should return an empty object if both horizontal and size props are not defined", () => {
       // Arrange
@@ -53,12 +50,12 @@ describe("Spacer", () => {
       const props = { size: 10, horizontal: true };
 
       // Act
-      const { container } = render(<Spacer {...props} id="spacer" />);
+      render(<Spacer {...props} data-testid="spacer" />);
 
       // Assert
-      expect(
-        window.getComputedStyle(container.firstElementChild as Element).width
-      ).toBe("10px");
+      expect(screen.getByTestId("spacer")).toHaveStyle({
+        width: "10px",
+      });
     });
   });
 });

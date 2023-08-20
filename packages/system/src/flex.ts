@@ -1,9 +1,16 @@
 import { toCssUnit } from "./toCSS";
 import { FlexKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
+import { ValueConverter, spaceConverter } from "./valueConverters";
 
-export type FlexProps = Partial<
+export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
     /**
      * @see flexDirection
@@ -15,15 +22,17 @@ export type FlexProps = Partial<
      */
     justify: CSSValue<"justifyContent">;
   } & CSSProperties<"alignContent" | "alignItems" | "alignSelf"> &
-    CSSProperties<"flexWrap" | "flexFlow"> &
+    CSSProperties<"flexWrap" | "flexFlow" | "flexDirection"> &
     CSSProperties<"flexBasis", true> &
     CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
-    CSSProperties<"justifyItems" | "justifySelf"> &
-    CSSProperties<"gap", true>
+    CSSProperties<"justifyItems" | "justifySelf" | "justifyContent"> &
+    AddProperty<CSSProperties<"gap", true>, T["spacings"]>
 >;
 
 const flexMappings: Record<FlexKeys, string> = {
+  flexDirection: "flex-direction",
   flexDir: "flex-direction",
+  justifyContent: "justify-content",
   justify: "justify-content",
   alignContent: "align-content",
   alignItems: "align-items",
@@ -39,6 +48,11 @@ const flexMappings: Record<FlexKeys, string> = {
   gap: "gap",
 } as const;
 
+const converters: Partial<Record<FlexKeys, ValueConverter>> = {
+  gap: spaceConverter,
+  flexBasis: toCssUnit,
+};
+
 export const flex = (props: FlexProps): ResponsiveStyle => {
   let base = "";
   const media: ResponsiveStyle["media"] = {};
@@ -47,11 +61,7 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue != undefined) {
       const property = flexMappings[key as FlexKeys];
-      const converter = [flexMappings.flexBasis, flexMappings.gap].includes(
-        property
-      )
-        ? toCssUnit
-        : undefined;
+      const converter = converters[key as FlexKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

@@ -12,7 +12,7 @@ describe("grid utility function", () => {
       "grid-gap: 8px;",
       "@media (min-width: 576px) { grid-gap: 16px; }",
     ],
-    [ { gridColumnStart: 0 }, "grid-column-start: 0;", ""],
+    [{ gridColumnStart: 0 }, "grid-column-start: 0;", ""],
   ];
 
   test.each(testCases)(

@@ -3,11 +3,12 @@ on:
   push:
     branches:
       - main
-      - experimental
   pull_request:
     branches:
       - main
-      - experimental
+    paths:
+      - "packages/**"
+      - ".github/workflows/main.yml"
   workflow_dispatch:
 jobs:
   test:
@@ -20,40 +21,47 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup node ${{ matrix.node_version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node_version }}
 
-      - uses: pnpm/action-setup@v2
+      - uses: ./.github/actions/setup-pnpm
         with:
-          version: 8.5.1
-
-      - name: install packages
-        run: pnpm install
+          node_version: ${{ matrix.node_version }}
 
       - name: Run test
         run: pnpm test
 
       - name: Build packages
         run: pnpm build
+
   lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Setup node v16
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
 
-      - uses: pnpm/action-setup@v2
+      - uses: ./.github/actions/setup-pnpm
         with:
-          version: 8.5.1
+          node_version: 16
 
-      - name: install packages
-        run: pnpm install
+      - name: Build packages
+        run: pnpm build
 
       - name: Run lint
         run: pnpm lint
+
+      - name: Run format
+        run: pnpm format
+
+  changeset:
+    name: check changeset status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: ./.github/actions/setup-pnpm
+        with:
+          node_version: 16
+
+      - name: Run changeset status
+        run: pnpm changeset status --since origin/main

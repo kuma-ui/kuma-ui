@@ -13,7 +13,6 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
   as?: As;
 };
 
- 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
     props: MergeWithAs<

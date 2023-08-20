@@ -1,9 +1,16 @@
 import { BorderKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import { ValueConverter, radiusConverter } from "./valueConverters";
 
-export type BorderProps = Partial<
+export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
     /**
      * @see borderTop
@@ -39,33 +46,7 @@ export type BorderProps = Partial<
      * @see borderInlineEndStyle
      */
     borderEndStyle: CSSValue<"borderInlineEndStyle">;
-    /**
-     * @see borderTopLeftRadius
-     * @see borderBottomLeftRadius
-     */
-    borderStartRadius: CSSValue<
-      "borderTopLeftRadius" | "borderBottomLeftRadius",
-      true
-    >;
-    /**
-     * @see borderTopRightRadius
-     * @see borderBottomRightRadius
-     */
-    borderEndRadius: CSSValue<
-      "borderTopRightRadius" | "borderBottomRightRadius",
-      true
-    >;
-  } & CSSProperties<
-    "border" | "borderTop" | "borderRight" | "borderLeft" | "borderBottom",
-    true
-  > &
-    CSSProperties<
-      | "borderStyle"
-      | "borderTopStyle"
-      | "borderBottomStyle"
-      | "borderLeftStyle"
-      | "borderRightStyle"
-    > &
+  } & AddProperty<
     CSSProperties<
       | "borderRadius"
       | "borderTopLeftRadius"
@@ -73,6 +54,36 @@ export type BorderProps = Partial<
       | "borderBottomLeftRadius"
       | "borderBottomRightRadius",
       true
+    > & {
+      /**
+       * @see borderTopLeftRadius
+       * @see borderBottomLeftRadius
+       */
+      borderStartRadius: CSSValue<
+        "borderTopLeftRadius" | "borderBottomLeftRadius",
+        true
+      >;
+      /**
+       * @see borderTopRightRadius
+       * @see borderBottomRightRadius
+       */
+      borderEndRadius: CSSValue<
+        "borderTopRightRadius" | "borderBottomRightRadius",
+        true
+      >;
+    },
+    T["radii"]
+  > &
+    CSSProperties<
+      "border" | "borderTop" | "borderRight" | "borderLeft" | "borderBottom",
+      true
+    > &
+    CSSProperties<
+      | "borderStyle"
+      | "borderTopStyle"
+      | "borderBottomStyle"
+      | "borderLeftStyle"
+      | "borderRightStyle"
     > &
     CSSProperties<
       | "borderWidth"
@@ -117,6 +128,32 @@ const borderMappings: Record<BorderKeys, string> = {
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
 };
 
+const converters: Partial<Record<BorderKeys, ValueConverter>> = {
+  border: toCssUnit,
+  borderTop: toCssUnit,
+  borderRight: toCssUnit,
+  borderLeft: toCssUnit,
+  borderBottom: toCssUnit,
+  borderX: toCssUnit,
+  borderY: toCssUnit,
+  borderRadius: radiusConverter,
+  borderTopLeftRadius: radiusConverter,
+  borderTopRightRadius: radiusConverter,
+  borderBottomLeftRadius: radiusConverter,
+  borderBottomRightRadius: radiusConverter,
+  borderWidth: toCssUnit,
+  borderTopWidth: toCssUnit,
+  borderBottomWidth: toCssUnit,
+  borderLeftWidth: toCssUnit,
+  borderRightWidth: toCssUnit,
+  borderStart: toCssUnit,
+  borderEnd: toCssUnit,
+  borderStartWidth: toCssUnit,
+  borderEndWidth: toCssUnit,
+  borderStartRadius: radiusConverter,
+  borderEndRadius: radiusConverter,
+};
+
 export const border = (props: BorderProps): ResponsiveStyle => {
   let baseStyles = "";
   const mediaStyles: { [breakpoint: string]: string } = {};
@@ -126,17 +163,7 @@ export const border = (props: BorderProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const properties = borderMappings[key as BorderKeys].split(",");
       for (const property of properties) {
-        const converter = [
-          borderMappings.borderStyle,
-          borderMappings.borderTopStyle,
-          borderMappings.borderBottomStyle,
-          borderMappings.borderLeftStyle,
-          borderMappings.borderRightStyle,
-          borderMappings.borderStartStyle,
-          borderMappings.borderEndStyle,
-        ].includes(borderMappings[key as BorderKeys])
-          ? undefined
-          : toCssUnit;
+        const converter = converters[key as BorderKeys];
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,

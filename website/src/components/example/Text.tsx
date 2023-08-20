@@ -2,9 +2,9 @@ import { Text } from "@kuma-ui/core";
 import { useTheme } from "nextra-theme-docs";
 
 export const TextExample = () => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   return (
-    <Text color={theme === "dark" ? "white" : "black"} fontSize="16px">
+    <Text color={resolvedTheme === "dark" ? "white" : "black"} fontSize="16px">
       Hello world
     </Text>
   );

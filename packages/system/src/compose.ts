@@ -21,23 +21,23 @@ import { ColumnProps } from "./column";
 import { BackgroundProps } from "./background";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
-  SpaceProps &
+  TypographyProps<T> &
+    FontProps<T> &
+    ColorProps<T> &
+    SpaceProps<T> &
     AnimationProps &
-    TypographyProps &
     TextProps &
-    FontProps &
     LayoutProps &
-    ColorProps<T["colors"]> &
-    FlexProps &
+    FlexProps<T> &
     BorderProps &
     OutlineProps &
     PositionProps &
     ShadowProps &
-    GridProps &
+    GridProps<T> &
     ListProps &
     EffectProps &
     MaskProps &
-    ColumnProps &
+    ColumnProps<T> &
     BackgroundProps &
     // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents -- FIXME
     EffectProps;
@@ -91,7 +91,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
           }
           // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
           return remainingProps;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         }, {} as any);
 
         return styles;
