@@ -34,7 +34,7 @@ export default function kumaUI(): Plugin {
     };
 
     if (config.default) {
-      theme.setUserTheme(config.default as Partial<UserTheme>);
+      theme.setUserTheme(config.default);
     }
   }
 
