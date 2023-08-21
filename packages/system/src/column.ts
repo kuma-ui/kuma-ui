@@ -1,9 +1,15 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { ColumnKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
+import { ValueConverter, spaceConverter } from "./valueConverters";
 
-export type ColumnProps = Partial<
+export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<
     | "columnFill"
     | "columnRule"
@@ -12,13 +18,10 @@ export type ColumnProps = Partial<
     | "columnSpan"
   > &
     CSSProperties<
-      | "columnCount"
-      | "columnGap"
-      | "columnWidth"
-      | "columnRuleWidth"
-      | "columns",
+      "columnCount" | "columnWidth" | "columnRuleWidth" | "columns",
       true
-    >
+    > &
+    AddProperty<CSSProperties<"columnGap", true>, T["spacings"]>
 >;
 
 const columnMappings: Record<ColumnKeys, string> = {
@@ -34,6 +37,12 @@ const columnMappings: Record<ColumnKeys, string> = {
   columns: "columns",
 };
 
+const converters: Partial<Record<ColumnKeys, ValueConverter>> = {
+  columnGap: spaceConverter,
+  columnRuleWidth: toCssUnit,
+  columnWidth: toCssUnit,
+};
+
 export const column = (props: ColumnProps): ResponsiveStyle => {
   let base = "";
   const media: ResponsiveStyle["media"] = {};
@@ -42,13 +51,8 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
     const cssValue = props[key as ColumnKeys];
     if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
-      const converter = [
-        columnMappings.columnGap,
-        columnMappings.columnWidth,
-        columnMappings.columnRuleWidth,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
+      const converter = converters[key as ColumnKeys];
+
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

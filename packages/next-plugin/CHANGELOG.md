@@ -1,5 +1,21 @@
 # @kuma-ui/next-plugin
 
+## 1.1.6
+
+### Patch Changes
+
+- Updated dependencies [[`bc1a7f9`](https://github.com/kuma-ui/kuma-ui/commit/bc1a7f979f5539a4e2d1d2785dc2a893eee076eb), [`144e1d0`](https://github.com/kuma-ui/kuma-ui/commit/144e1d01a852ca21fc4a89da7f5da2a1f0a4f955), [`10f9811`](https://github.com/kuma-ui/kuma-ui/commit/10f98111d542f1fa45a6cda18ac872bec7b40910), [`066d043`](https://github.com/kuma-ui/kuma-ui/commit/066d04383d3f4e19fb0460b184e8aa9ed67ae41d)]:
+  - @kuma-ui/core@1.2.0
+  - @kuma-ui/webpack-plugin@1.1.6
+
+## 1.1.5
+
+### Patch Changes
+
+- Updated dependencies [[`e276aea`](https://github.com/kuma-ui/kuma-ui/commit/e276aea4dbd933800de5237d0411df9097451dfe), [`a03add5`](https://github.com/kuma-ui/kuma-ui/commit/a03add5b2a0b4ec9bcd6d2fd636c6d03a14f1636), [`2329a1d`](https://github.com/kuma-ui/kuma-ui/commit/2329a1d9ea2fe4cf2d61cdf4ea87983c75b0d8fb)]:
+  - @kuma-ui/core@1.1.3
+  - @kuma-ui/webpack-plugin@1.1.5
+
 ## 1.1.4
 
 ### Patch Changes

@@ -14,9 +14,11 @@ export const applyResponsiveStyles = (
   if (Array.isArray(cssValues)) {
     const baseValue = convertFn(cssValues[0]);
     cssValues.slice(1).map((value, index) => {
-      const breakpoint = Object.keys(breakpoints)[index];
-      const breakpointValue = breakpoints[breakpoint];
-      media[breakpointValue] = `${cssProperty}: ${convertFn(value)};`;
+      if (breakpoints) {
+        const breakpoint = Object.keys(breakpoints)[index];
+        const breakpointValue = breakpoints[breakpoint];
+        media[breakpointValue] = `${cssProperty}: ${convertFn(value)};`;
+      }
     });
 
     return { base: `${cssProperty}: ${baseValue};`, media };

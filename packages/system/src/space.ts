@@ -1,103 +1,114 @@
 import { toCssUnit } from "./toCSS";
 import { SpaceKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
-import { CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
+import { theme } from "@kuma-ui/sheet";
+import { spaceConverter } from "./valueConverters";
 
-export type SpaceProps = Partial<
-  CSSProperties<
-    | "margin"
-    | "marginTop"
-    | "marginRight"
-    | "marginBottom"
-    | "marginLeft"
-    | "padding"
-    | "paddingTop"
-    | "paddingRight"
-    | "paddingBottom"
-    | "paddingLeft",
-    true
-  > & {
-    /**
-     * @see margin
-     */
-    m: CSSValue<"margin", true>;
-    /**
-     * @see marginTop
-     */
-    mt: CSSValue<"marginTop", true>;
-    /**
-     * @see marginRight
-     */
-    mr: CSSValue<"marginRight", true>;
-    /**
-     * @see marginBottom
-     */
-    mb: CSSValue<"marginBottom", true>;
-    /**
-     * @see marginLeft
-     */
-    ml: CSSValue<"marginLeft", true>;
-    /**
-     * @see marginLeft
-     * @see marginRight
-     */
-    marginX: CSSValue<"marginLeft" | "marginRight", true>;
-    /**
-     * @see marginLeft
-     * @see marginRight
-     */
-    mx: CSSValue<"marginLeft" | "marginRight", true>;
-    /**
-     * @see marginTop
-     * @see marginBottom
-     */
-    marginY: CSSValue<"marginTop" | "marginBottom", true>;
-    /**
-     * @see marginTop
-     * @see marginBottom
-     */
-    my: CSSValue<"marginTop" | "marginBottom", true>;
-    /**
-     * @see padding
-     */
-    p: CSSValue<"padding", true>;
-    /**
-     * @see paddingTop
-     */
-    pt: CSSValue<"paddingTop", true>;
-    /**
-     * @see paddingRight
-     */
-    pr: CSSValue<"paddingRight", true>;
-    /**
-     * @see paddingBottom
-     */
-    pb: CSSValue<"paddingBottom", true>;
-    /**
-     * @see paddingLeft
-     */
-    pl: CSSValue<"paddingLeft", true>;
-    /**
-     * @see paddingLeft
-     * @see paddingRight
-     */
-    paddingX: CSSValue<"paddingLeft" | "paddingRight", true>;
-    /**
-     * @see paddingLeft
-     * @see paddingRight
-     */
-    px: CSSValue<"paddingLeft" | "paddingRight", true>;
-    /**
-     * @see paddingTop
-     * @see paddingBottom
-     */
-    paddingY: CSSValue<"paddingTop" | "paddingBottom", true>;
-    /**
-     * @see paddingTop
-     * @see paddingBottom
-     */
-    py: CSSValue<"paddingTop" | "paddingBottom", true>;
-  }
+export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
+  AddProperty<
+    CSSProperties<
+      | "margin"
+      | "marginTop"
+      | "marginRight"
+      | "marginBottom"
+      | "marginLeft"
+      | "padding"
+      | "paddingTop"
+      | "paddingRight"
+      | "paddingBottom"
+      | "paddingLeft",
+      true
+    > & {
+      /**
+       * @see margin
+       */
+      m: CSSValue<"margin", true>;
+      /**
+       * @see marginTop
+       */
+      mt: CSSValue<"marginTop", true>;
+      /**
+       * @see marginRight
+       */
+      mr: CSSValue<"marginRight", true>;
+      /**
+       * @see marginBottom
+       */
+      mb: CSSValue<"marginBottom", true>;
+      /**
+       * @see marginLeft
+       */
+      ml: CSSValue<"marginLeft", true>;
+      /**
+       * @see marginLeft
+       * @see marginRight
+       */
+      marginX: CSSValue<"marginLeft" | "marginRight", true>;
+      /**
+       * @see marginLeft
+       * @see marginRight
+       */
+      mx: CSSValue<"marginLeft" | "marginRight", true>;
+      /**
+       * @see marginTop
+       * @see marginBottom
+       */
+      marginY: CSSValue<"marginTop" | "marginBottom", true>;
+      /**
+       * @see marginTop
+       * @see marginBottom
+       */
+      my: CSSValue<"marginTop" | "marginBottom", true>;
+      /**
+       * @see padding
+       */
+      p: CSSValue<"padding", true>;
+      /**
+       * @see paddingTop
+       */
+      pt: CSSValue<"paddingTop", true>;
+      /**
+       * @see paddingRight
+       */
+      pr: CSSValue<"paddingRight", true>;
+      /**
+       * @see paddingBottom
+       */
+      pb: CSSValue<"paddingBottom", true>;
+      /**
+       * @see paddingLeft
+       */
+      pl: CSSValue<"paddingLeft", true>;
+      /**
+       * @see paddingLeft
+       * @see paddingRight
+       */
+      paddingX: CSSValue<"paddingLeft" | "paddingRight", true>;
+      /**
+       * @see paddingLeft
+       * @see paddingRight
+       */
+      px: CSSValue<"paddingLeft" | "paddingRight", true>;
+      /**
+       * @see paddingTop
+       * @see paddingBottom
+       */
+      paddingY: CSSValue<"paddingTop" | "paddingBottom", true>;
+      /**
+       * @see paddingTop
+       * @see paddingBottom
+       */
+      py: CSSValue<"paddingTop" | "paddingBottom", true>;
+    },
+    T["spacings"]
+  >
 >;
 
 const spaceMappings: Record<SpaceKeys, string> = {
@@ -143,7 +154,7 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          toCssUnit
+          spaceConverter
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(

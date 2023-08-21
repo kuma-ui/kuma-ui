@@ -1,13 +1,29 @@
 import { toCssUnit } from "./toCSS";
 import { LayoutKeys } from "./keys";
-import { CSSProperties, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  ResponsiveStyle,
+  ThemeSystemType,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
+import {
+  ValueConverter,
+  sizeConverter,
+  zIndexConverter,
+} from "./valueConverters";
 
-export type LayoutProps = Partial<
-  CSSProperties<"width" | "minWidth" | "maxWidth", true> &
-    CSSProperties<"height" | "minHeight" | "maxHeight", true> &
+export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
+  AddProperty<
+    CSSProperties<"width" | "minWidth" | "maxWidth", true>,
+    T["sizes"]
+  > &
+    AddProperty<
+      CSSProperties<"height" | "minHeight" | "maxHeight", true>,
+      T["sizes"]
+    > &
     CSSProperties<"display" | "overflow" | "position"> &
-    CSSProperties<"zIndex", true> &
+    AddProperty<CSSProperties<"zIndex", true>, T["zIndices"]> &
     CSSProperties<"cursor">
 >;
 
@@ -25,6 +41,16 @@ const layoutMappings: Record<LayoutKeys, string> = {
   cursor: "cursor",
 } as const;
 
+const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
+  width: sizeConverter,
+  minWidth: sizeConverter,
+  maxWidth: sizeConverter,
+  height: sizeConverter,
+  minHeight: sizeConverter,
+  maxHeight: sizeConverter,
+  zIndex: zIndexConverter,
+};
+
 export const layout = (props: LayoutProps): ResponsiveStyle => {
   let base = "";
   const media: ResponsiveStyle["media"] = {};
@@ -32,16 +58,7 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     const cssValue = props[key as LayoutKeys];
     if (cssValue != undefined) {
       const property = layoutMappings[key as LayoutKeys];
-      const converter = [
-        layoutMappings.width,
-        layoutMappings.minWidth,
-        layoutMappings.maxWidth,
-        layoutMappings.height,
-        layoutMappings.minHeight,
-        layoutMappings.maxHeight,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
+      const converter = converters[key as LayoutKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

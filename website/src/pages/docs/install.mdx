@@ -172,3 +172,95 @@ If you are using Kuma UI with Next.js, setting up Server Side Rendering (SSR) is
 
   </Tab>
 </Tabs>
+
+## Integrate with Storybook
+
+For those looking to integrate Kuma UI with Storybook, the process will vary depending on the [Storybook builder](https://storybook.js.org/docs/react/builders/overview) you are using. Here's how you can set it up:
+
+<Tabs
+  items={["next.js (webpack)", "vite"]}
+  storageKey="selected-storybook-builder"
+>
+  {/* prettier-ignore */}
+  <Tab>
+    If your project uses Storybook Webpack builder (including `@storybook/nextjs`), you can use `"@kuma-ui/webpack-plugin"`.
+
+    ```ts copy
+    // .storybook/main.ts
+
+    import KumaUIWebpackPlugin from "@kuma-ui/webpack-plugin";
+
+    // ...
+
+    const config: StorybookConfig = {
+      // ...
+      webpackFinal: (config) => {
+        config.plugins = [...(config.plugins ?? []), new KumaUIWebpackPlugin({})];
+
+        return config;
+      },
+      // ...
+    };
+
+    // ...
+    ```
+
+    For more information, refer to the [Working with Webpack plugins](https://storybook.js.org/docs/react/builders/webpack#working-with-webpack-plugins) section in the Storybook documentation.
+
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+    When using Storybook Vite builder, **Kuma UI might work without any specific configuration**, as the Vite builder reads from the `vite.config.js`.
+
+    However, you may need to tweak some options or add a custom configuration. Here's a guide to help you:
+
+    ### Specify Configuration Path
+
+    You can define the path to your Vite configuration file using the `viteConfigPath` builder option.
+
+    ```ts copy
+    // .storybook/main.ts
+
+    // ...
+
+    const config = {
+      framework: {
+        name: "@storybook/react-vite",
+        options: {
+          builder: {
+            viteConfigPath: ".storybook/customViteConfig.js",
+          },
+        },
+      },
+    };
+
+    // ...
+    ```
+
+    ### Override Vite Config with `viteFinal`
+
+    Use the `viteFinal` option add Kuma UI Vite plugin.
+
+    ```ts
+    // .storybook/main.ts
+
+    import { mergeConfig } from "vite";
+    import KumaUI from "@kuma-ui/vite";
+
+    // ...
+
+    const config = {
+      async viteFinal(config, { configType }) {
+        return mergeConfig(config, {
+          plugins: [KumaUI()],
+        });
+      },
+    };
+
+    // ...
+    ```
+
+    For additional details and customization options, refer to the ["Customize Vite config" section of Storybook builder for Vite README](https://github.com/storybookjs/storybook/blob/next/code/builders/builder-vite/README.md#customize-vite-config).
+
+  </Tab>
+</Tabs>

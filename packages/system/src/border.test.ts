@@ -1,7 +1,16 @@
 import { border, BorderProps } from "./border";
-import { describe, expect, test } from "vitest";
+import { beforeAll, describe, expect, test } from "vitest";
+import { theme } from "@kuma-ui/sheet";
 
 describe("border utility function", () => {
+  beforeAll(() => {
+    theme.setUserTheme({
+      radii: {
+        sm: "1rem",
+      },
+    });
+  });
+
   // Arrange
   const testCases: Array<[BorderProps, string, string]> = [
     [{ borderX: 1 }, "border-left: 1px; border-right: 1px;", ""],
@@ -66,6 +75,7 @@ describe("border utility function", () => {
       "border-top-right-radius: 1px 2px; border-bottom-right-radius: 1px 2px;",
       "",
     ],
+    [{ borderRadius: "sm" }, "border-radius: 1rem;", ""],
   ];
 
   test.each(testCases)(

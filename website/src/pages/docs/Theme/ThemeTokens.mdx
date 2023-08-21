@@ -1,0 +1,152 @@
+---
+title: "Theme Tokens"
+description: "Learn about theme tokens in Kuma UI and how to customize them to suit your design needs."
+---
+
+import { Callout } from "nextra-theme-docs";
+
+# Theme Tokens
+
+Theme tokens in Kuma UI provide an abstract way to define design values that can be used across your components. These tokens are especially useful in achieving consistent design across different parts of your application.
+
+## Colors
+
+Colors are defined as an object, with keys being the color names and values being the color codes.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  colors: {
+    primary: "#576ddf",
+    secondary: "#f6a5ce",
+    // ... other colors ...
+  },
+});
+```
+
+## Fonts
+
+Define a set of fonts to be used in your application.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  fonts: {
+    body: "Helvetica, sans-serif",
+    heading: "Georgia, serif",
+    monospace: "Menlo, monospace",
+  },
+});
+```
+
+## Font Sizes
+
+Determine the sizes of your fonts with easy-to-refer names.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  fontSizes: {
+    xs: "12px",
+    sm: "14px",
+    md: "16px",
+    lg: "20px",
+    xl: "24px",
+  },
+});
+```
+
+## Font Weights
+
+Define the thickness or thinness of your fonts.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  fontWeights: {
+    light: 300,
+    normal: 400,
+    medium: 500,
+    bold: 700,
+  },
+});
+```
+
+## Line Heights
+
+Customize the space between lines of text.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  lineHeights: {
+    tight: "1.2",
+    normal: "1.5",
+    relaxed: "1.75",
+  },
+});
+```
+
+## Letter Spacings
+
+Determine the spacing between characters in your text.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  letterSpacings: {
+    tighter: "-0.05em",
+    normal: "0",
+    wider: "0.05em",
+  },
+});
+```
+
+## Spacings
+
+Determine the spacing between objects such as `margin` and `padding`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  spacings: {
+    sm: "1em",
+    md: "4em",
+    lg: "8em",
+  },
+});
+```
+
+## Sizes
+
+Determine the size of objects such as `width` and `height`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  sizes: {
+    sm: "16px",
+    md: "64px",
+    lg: "256px",
+  },
+});
+```
+
+## Radii
+
+Determine the radius of an object's corners such as `borderRadius`.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  radii: {
+    sm: "1em",
+    md: "4em",
+    lg: "8em",
+  },
+});
+```
+
+## z-indices
+
+Determine the z-index of an object.
+
+```ts filename="kuma.config.ts"
+const theme = createTheme({
+  zIndices: {
+    overlay: "10",
+    modal: "100",
+  },
+});
+```
