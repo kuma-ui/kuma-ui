@@ -65,7 +65,7 @@ export class Sheet {
   }
 
   private _addBaseRule(className: string, css: string) {
-    css = css.replace(cssPropertyRegex, "");
+    css = css.replace(cssPropertyRegex, "$1$2");
     this.base.push(`.${className}{${css}}`);
   }
 
@@ -74,11 +74,11 @@ export class Sheet {
     css: string,
     breakpoint: string
   ): void {
-    css = css.replace(cssPropertyRegex, "");
+    css = css.replace(cssPropertyRegex, "$1$2");
     const mediaCss =
       `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`.replace(
         removeSpacesExceptInPropertiesRegex,
-        ""
+        "$1$2$3"
       );
     this.responsive.push(mediaCss);
   }
@@ -87,10 +87,10 @@ export class Sheet {
     className: string,
     pseudo: SystemStyle["pseudo"][number]
   ) {
-    const css = pseudo.base.replace(cssPropertyRegex, "");
+    const css = pseudo.base.replace(cssPropertyRegex, "$1$2");
     const pseudoCss = `.${className}${pseudo.key} { ${css} }`.replace(
       removeSpacesExceptInPropertiesRegex,
-      ""
+      "$1$2$3"
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {

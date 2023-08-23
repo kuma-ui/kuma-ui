@@ -31,17 +31,17 @@ describe("Sheet class", () => {
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
-      `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
+      `.${className}{${style.base.replace(cssPropertyRegex, "$1$2")}}`
     );
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${style.responsive[
         "768px"
-      ].replace(cssPropertyRegex, "")}}}`
+      ].replace(cssPropertyRegex, "$1$2")}}}`
     );
     expect(cssString).toContain(
       `.${className}${style.pseudo[0].key}{${style.pseudo[0].base.replace(
         cssPropertyRegex,
-        ""
+        "$1$2"
       )}}`
     );
   });
@@ -79,7 +79,7 @@ describe("Sheet class", () => {
     const cssString = sheet.getCSS();
     // Assert
     expect(cssString).toContain(
-      `.${id}{${style.base}}`.replace(cssPropertyRegex, "")
+      `.${id}{${style.base}}`.replace(cssPropertyRegex, "$1$2")
     );
   });
 });
