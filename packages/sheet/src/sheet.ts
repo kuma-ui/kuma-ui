@@ -1,6 +1,9 @@
 import { theme } from ".";
 import { generateHash } from "./hash";
-import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
+import {
+  removeSpacesAroundCssPropertyValues,
+  removeSpacesExceptInProperties,
+} from "./regex";
 import { compile, serialize, stringify, Element } from "stylis";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
@@ -65,8 +68,8 @@ export class Sheet {
   }
 
   private _addBaseRule(className: string, css: string) {
-    css = css.replace(cssPropertyRegex, "$1$2");
-    this.base.push(`.${className}{${css}}`);
+    const minifiedCss = removeSpacesAroundCssPropertyValues(css);
+    this.base.push(`.${className}{${minifiedCss}}`);
   }
 
   private _addMediaRule(
@@ -74,12 +77,10 @@ export class Sheet {
     css: string,
     breakpoint: string
   ): void {
-    css = css.replace(cssPropertyRegex, "$1$2");
-    const mediaCss =
-      `@media (min-width: ${breakpoint}) { .${className} { ${css} } }`.replace(
-        removeSpacesExceptInPropertiesRegex,
-        "$1$2$3"
-      );
+    const minifiedCss = removeSpacesAroundCssPropertyValues(css);
+    const mediaCss = removeSpacesExceptInProperties(
+      `@media (min-width: ${breakpoint}) { .${className} { ${minifiedCss} } }`
+    );
     this.responsive.push(mediaCss);
   }
 
@@ -87,10 +88,8 @@ export class Sheet {
     className: string,
     pseudo: SystemStyle["pseudo"][number]
   ) {
-    const css = pseudo.base.replace(cssPropertyRegex, "$1$2");
-    const pseudoCss = `.${className}${pseudo.key} { ${css} }`.replace(
-      removeSpacesExceptInPropertiesRegex,
-      "$1$2$3"
+    const pseudoCss = removeSpacesExceptInProperties(
+      `.${className}${pseudo.key} { ${pseudo.base} }`
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {

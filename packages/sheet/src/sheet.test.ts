@@ -1,6 +1,6 @@
 import { sheet, SystemStyle } from "./sheet";
 import { describe, expect, test, beforeEach } from "vitest";
-import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
+import { removeSpacesAroundCssPropertyValues } from "./regex";
 
 describe("Sheet class", () => {
   beforeEach(() => {
@@ -31,18 +31,17 @@ describe("Sheet class", () => {
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
-      `.${className}{${style.base.replace(cssPropertyRegex, "$1$2")}}`
+      `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`
     );
     expect(cssString).toContain(
-      `@media (min-width:768px){.${className}{${style.responsive[
-        "768px"
-      ].replace(cssPropertyRegex, "$1$2")}}}`
+      `@media (min-width:768px){.${className}{${removeSpacesAroundCssPropertyValues(
+        style.responsive["768px"]
+      )}}}`
     );
     expect(cssString).toContain(
-      `.${className}${style.pseudo[0].key}{${style.pseudo[0].base.replace(
-        cssPropertyRegex,
-        "$1$2"
-      )}}`
+      `.${className}${
+        style.pseudo[0].key
+      }{${removeSpacesAroundCssPropertyValues(style.pseudo[0].base)}}`
     );
   });
 
@@ -79,7 +78,7 @@ describe("Sheet class", () => {
     const cssString = sheet.getCSS();
     // Assert
     expect(cssString).toContain(
-      `.${id}{${style.base}}`.replace(cssPropertyRegex, "$1$2")
+      removeSpacesAroundCssPropertyValues(`.${id}{${style.base}}`)
     );
   });
 });

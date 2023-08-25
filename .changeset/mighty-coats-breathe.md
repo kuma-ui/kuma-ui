@@ -2,4 +2,4 @@
 "@kuma-ui/sheet": minor
 ---
 
-Remove regex lookbehinds to support Safari <= 16.3
+Remove regex lookbehinds to support Safari <= 16.3 and some refactoring
