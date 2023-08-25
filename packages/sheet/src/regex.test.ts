@@ -1,8 +1,11 @@
-import { cssPropertyRegex, removeSpacesExceptInPropertiesRegex } from "./regex";
+import {
+  removeSpacesAroundCssPropertyValues,
+  removeSpacesExceptInProperties,
+} from "./regex";
 import { describe, expect, test } from "vitest";
 
 describe("regex", () => {
-  describe("cssPropertyRegex", () => {
+  describe("removeSpacesAroundCssPropertyValues", () => {
     // Arrange
     const testCases = [
       { input: "color: red;", expected: "color:red;" },
@@ -44,14 +47,14 @@ describe("regex", () => {
       "should removes whitespace around CSS property values correctly",
       ({ input, expected }) => {
         // Act
-        const result = input.replace(cssPropertyRegex, "");
+        const result = removeSpacesAroundCssPropertyValues(input);
         // Assert
         expect(result).toStrictEqual(expected);
       }
     );
   });
 
-  describe("removeSpacesExceptInPropertiesRegex", () => {
+  describe("removeSpacesExceptInProperties", () => {
     // Arrange
     const testCases = [
       { input: "padding: 10px 20px;", expected: "padding:10px 20px;" },
@@ -74,7 +77,7 @@ describe("regex", () => {
       "should removes whitespace except around CSS property values and after commas",
       ({ input, expected }) => {
         // Act
-        const result = input.replace(removeSpacesExceptInPropertiesRegex, "");
+        const result = removeSpacesExceptInProperties(input);
         // Assert
         expect(result).toStrictEqual(expected);
       }
