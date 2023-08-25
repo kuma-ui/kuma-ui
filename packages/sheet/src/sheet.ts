@@ -88,8 +88,9 @@ export class Sheet {
     className: string,
     pseudo: SystemStyle["pseudo"][number]
   ) {
+    const css = removeSpacesAroundCssPropertyValues(pseudo.base);
     const pseudoCss = removeSpacesExceptInProperties(
-      `.${className}${pseudo.key} { ${pseudo.base} }`
+      `.${className}${pseudo.key} { ${css} }`
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {

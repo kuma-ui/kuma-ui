@@ -1,6 +1,6 @@
 export const removeSpacesAroundCssPropertyValues = (css: string) => {
-  const regex = /(:)\s+|\s+(;)/g;
-  return css.replace(regex, "$1$2");
+  const regex = /(:)\s+|\s+(?=;)/g;
+  return css.replace(regex, "$1");
 };
 
 // removes whitespace except around CSS property values and after commas.

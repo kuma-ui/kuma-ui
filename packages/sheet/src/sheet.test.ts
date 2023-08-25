@@ -68,7 +68,7 @@ describe("Sheet class", () => {
     const className = sheet.parseCSS(style);
     // Assert
     const expectedCSS = `.${className}{display:flex;flex-direction:row;}@media (max-width: 768px){.${className}{flex-direction:column;}}.${className}:after{content:" 🦄";}`;
-    expect(sheet.getCSS()).toContain(expectedCSS);
+    expect(sheet.getCSS()).toEqual(expectedCSS);
   });
 
   test("getCSS() should return the CSS string with unique rules", () => {
@@ -76,9 +76,8 @@ describe("Sheet class", () => {
     const id = sheet.addRule(style);
     // Act
     const cssString = sheet.getCSS();
+    const expectedCSS = `.${id}{color:red;}@media (min-width:768px){.${id}{color:blue;}}@media (min-width:768px){.${id}:hover{color:yellow;}}.${id}:hover{color:green;}`;
     // Assert
-    expect(cssString).toContain(
-      removeSpacesAroundCssPropertyValues(`.${id}{${style.base}}`)
-    );
+    expect(cssString).toEqual(expectedCSS);
   });
 });
