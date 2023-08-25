@@ -11,14 +11,13 @@ import {
   InputThemeTokens,
 } from "./themeTokens";
 import { componentList } from "./components/componentList";
+import { StyledProps } from "@kuma-ui/system";
 
 export type ThemeInput = InputThemeTokens & {
   components?: {
     [_ in keyof typeof componentList]?: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-      baseStyle?: any;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-      variants?: { [key: string]: any };
+      baseStyle?: StyledProps;
+      variants?: { [key: string]: StyledProps };
     };
   };
 };
