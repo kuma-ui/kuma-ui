@@ -103,7 +103,6 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- FIXME
           newStyles.base.includes(`${styleMappings[key as StyledKeyType]}:`)
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
