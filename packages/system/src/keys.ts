@@ -304,6 +304,8 @@ export type StyledKeyType =
   | AnimationKeys
   | SpaceKeys
   | TypographyKeys
+  | FontKeys
+  | TextKeys
   | LayoutKeys
   | ColorKeys
   | FlexKeys

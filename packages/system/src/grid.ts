@@ -16,7 +16,7 @@ export type GridProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<GapKeys, true>, T["spacings"]>
 >;
 
-const gridMappings: Record<GridKeys, string> = {
+export const gridMappings: Record<GridKeys, string> = {
   grid: "grid",
   gridArea: "grid-area",
   gridAutoColumns: "grid-auto-columns",

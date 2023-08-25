@@ -95,7 +95,7 @@ export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     >
 >;
 
-const borderMappings: Record<BorderKeys, string> = {
+export const borderMappings: Record<BorderKeys, string> = {
   border: "border",
   borderTop: "border-top",
   borderRight: "border-right",

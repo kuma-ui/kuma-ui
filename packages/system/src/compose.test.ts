@@ -15,6 +15,7 @@ import { font } from "./font";
 import { mask } from "./mask";
 import { column } from "./column";
 import { background } from "./background";
+import { text } from "./text";
 
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
@@ -31,6 +32,7 @@ describe("compose function", () => {
       shadow,
       list,
       effect,
+      text,
       font,
       mask,
       column,
@@ -61,6 +63,8 @@ describe("compose function", () => {
       bgAttachment: "fixed",
       bgClip: "border-box",
       bgOrigin: "content-box",
+      marginRight: 4,
+      textAlign: "right",
     };
     // Act
     const styles = combinedFunction(props);
@@ -91,6 +95,8 @@ describe("compose function", () => {
     expect(styles.base).toContain("background-attachment: fixed;");
     expect(styles.base).toContain("background-clip: border-box;");
     expect(styles.base).toContain("background-origin: content-box;");
+    expect(styles.base).toContain("margin-right: 4px;");
+    expect(styles.base).toContain("text-align: right;");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {

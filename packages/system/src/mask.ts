@@ -25,7 +25,7 @@ export type MaskProps = Partial<
     >
 >;
 
-const maskMappings: Record<MaskKeys, string> = {
+export const maskMappings: Record<MaskKeys, string> = {
   mask: "mask",
   maskBorder: "mask-border",
   maskBorderMode: "mask-border-mode",

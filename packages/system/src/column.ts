@@ -24,7 +24,7 @@ export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<"columnGap", true>, T["spacings"]>
 >;
 
-const columnMappings: Record<ColumnKeys, string> = {
+export const columnMappings: Record<ColumnKeys, string> = {
   columnCount: "column-count",
   columnFill: "column-fill",
   columnGap: "column-gap",

@@ -111,7 +111,7 @@ export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   >
 >;
 
-const spaceMappings: Record<SpaceKeys, string> = {
+export const spaceMappings: Record<SpaceKeys, string> = {
   margin: "margin",
   m: "margin",
   marginTop: "margin-top",
