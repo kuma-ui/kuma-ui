@@ -1,5 +1,15 @@
 # @kuma-ui/sheet
 
+## 1.2.0
+
+### Minor Changes
+
+- [#293](https://github.com/kuma-ui/kuma-ui/pull/293) [`638d61d`](https://github.com/kuma-ui/kuma-ui/commit/638d61df0a6dd355d8bb4847e5752877a9895d71) Thanks [@yukukotani](https://github.com/yukukotani)! - Add support for z-index token
+
+### Patch Changes
+
+- [#298](https://github.com/kuma-ui/kuma-ui/pull/298) [`3414300`](https://github.com/kuma-ui/kuma-ui/commit/341430056cff0e4097e0b066726e5c110219eac9) Thanks [@myzkyy](https://github.com/myzkyy)! - Remove regex lookbehinds to support Safari <= 16.3 and some refactoring
+
 ## 1.1.0
 
 ### Minor Changes
