@@ -94,7 +94,6 @@ export class Theme {
               [key: string]: any;
             }
           | undefined;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
         defaultProps?: { variant?: string };
       }
     | undefined {
