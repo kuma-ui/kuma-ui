@@ -13,7 +13,12 @@ import {
   Link,
   Grid,
 } from "./index";
-import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
+import {
+  isBoxProps,
+  boxHandler,
+  boxDefaultProps,
+  defaultBoxTag,
+} from "./Box/handler";
 import {
   defaultButtonTag,
   isButtonProps,
@@ -118,9 +123,11 @@ export const componentList = Object.freeze({
   Grid: Grid.name as "Grid",
 } as const);
 
-export const defaultComponentTag: Partial<
-  Record<keyof typeof componentList, keyof JSX.IntrinsicElements>
+export const defaultComponentTag: Record<
+  keyof typeof componentList,
+  keyof JSX.IntrinsicElements
 > = {
+  Box: defaultBoxTag,
   Button: defaultButtonTag,
   Flex: defaultFlexTag,
   Heading: defaultHeadingTag,
