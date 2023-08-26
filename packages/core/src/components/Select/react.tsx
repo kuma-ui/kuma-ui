@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultSelectTag } from "./handler";
 
 type SelectProps = ComponentProps<"Select">;
 
@@ -20,7 +21,7 @@ type SelectComponent<T extends As = "select"> = ComponentWithAs<T, SelectProps>;
  * @see — http://kuma-ui.com/docs/Components/Select
  */
 const Select: SelectComponent = <T extends As = "select">({
-  as: Component = "select",
+  as: Component = defaultSelectTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, SelectProps>) => {

@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultLinkTag } from "./handler";
 
 type LinkProps = ComponentProps<"Link">;
 
@@ -20,7 +21,7 @@ type LinkComponent<T extends As = "a"> = ComponentWithAs<T, LinkProps>;
  * @see — http://kuma-ui.com/docs/Components/Link
  */
 const Link: LinkComponent = <T extends As = "a">({
-  as: Component = "a",
+  as: Component = defaultLinkTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, LinkProps>) => {
