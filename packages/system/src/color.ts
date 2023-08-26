@@ -35,7 +35,7 @@ export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   >
 >;
 
-const colorMappings: Record<ColorKeys, string> = {
+export const colorMappings: Record<ColorKeys, string> = {
   background: "background",
   bg: "background",
   backgroundColor: "background-color",

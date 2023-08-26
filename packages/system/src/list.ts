@@ -8,7 +8,7 @@ export type ListProps = Partial<
   >
 >;
 
-const listMappings: Record<ListKeys, string> = {
+export const listMappings: Record<ListKeys, string> = {
   listStyle: "list-style",
   listStyleImage: "list-style-image",
   listStylePosition: "list-style-position",

@@ -34,7 +34,7 @@ export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<"fontWeight", true>, T["fontWeights"]>
 >;
 
-const fontMappings: Record<FontKeys, string> = {
+export const fontMappings: Record<FontKeys, string> = {
   font: "font",
   fontFamily: "font-family",
   fontFeatureSettings: "font-feature-settings",

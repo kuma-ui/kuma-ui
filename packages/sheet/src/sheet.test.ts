@@ -1,6 +1,6 @@
 import { sheet, SystemStyle } from "./sheet";
 import { describe, expect, test, beforeEach } from "vitest";
-import { removeSpacesExceptInPropertiesRegex, cssPropertyRegex } from "./regex";
+import { removeSpacesAroundCssPropertyValues } from "./regex";
 
 describe("Sheet class", () => {
   beforeEach(() => {
@@ -31,18 +31,17 @@ describe("Sheet class", () => {
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
-      `.${className}{${style.base.replace(cssPropertyRegex, "")}}`
+      `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`
     );
     expect(cssString).toContain(
-      `@media (min-width:768px){.${className}{${style.responsive[
-        "768px"
-      ].replace(cssPropertyRegex, "")}}}`
+      `@media (min-width:768px){.${className}{${removeSpacesAroundCssPropertyValues(
+        style.responsive["768px"]
+      )}}}`
     );
     expect(cssString).toContain(
-      `.${className}${style.pseudo[0].key}{${style.pseudo[0].base.replace(
-        cssPropertyRegex,
-        ""
-      )}}`
+      `.${className}${
+        style.pseudo[0].key
+      }{${removeSpacesAroundCssPropertyValues(style.pseudo[0].base)}}`
     );
   });
 
@@ -69,7 +68,7 @@ describe("Sheet class", () => {
     const className = sheet.parseCSS(style);
     // Assert
     const expectedCSS = `.${className}{display:flex;flex-direction:row;}@media (max-width: 768px){.${className}{flex-direction:column;}}.${className}:after{content:" 🦄";}`;
-    expect(sheet.getCSS()).toContain(expectedCSS);
+    expect(sheet.getCSS()).toEqual(expectedCSS);
   });
 
   test("getCSS() should return the CSS string with unique rules", () => {
@@ -77,9 +76,8 @@ describe("Sheet class", () => {
     const id = sheet.addRule(style);
     // Act
     const cssString = sheet.getCSS();
+    const expectedCSS = `.${id}{color:red;}@media (min-width:768px){.${id}{color:blue;}}@media (min-width:768px){.${id}:hover{color:yellow;}}.${id}:hover{color:green;}`;
     // Assert
-    expect(cssString).toContain(
-      `.${id}{${style.base}}`.replace(cssPropertyRegex, "")
-    );
+    expect(cssString).toEqual(expectedCSS);
   });
 });

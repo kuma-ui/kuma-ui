@@ -1,5 +1,14 @@
 # @kuma-ui/vite
 
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [[`638d61d`](https://github.com/kuma-ui/kuma-ui/commit/638d61df0a6dd355d8bb4847e5752877a9895d71), [`3414300`](https://github.com/kuma-ui/kuma-ui/commit/341430056cff0e4097e0b066726e5c110219eac9), [`314096c`](https://github.com/kuma-ui/kuma-ui/commit/314096cde1d45ffa35c93ef49bddacb7e745606b)]:
+  - @kuma-ui/system@1.4.0
+  - @kuma-ui/sheet@1.2.0
+  - @kuma-ui/babel-plugin@1.1.6
+
 ## 1.0.9
 
 ### Patch Changes

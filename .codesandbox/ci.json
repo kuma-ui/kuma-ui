@@ -2,6 +2,6 @@
   "installCommand": "codesandbox:insall",
   "buildCommand": "codesandbox:build",
   "packages": ["packages/*"],
-  "sandboxes": ["new", "react-typescript-react-ts"],
+  "sandboxes": ["/example/vite"],
   "node": "16"
 }

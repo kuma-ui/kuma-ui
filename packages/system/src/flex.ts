@@ -29,7 +29,7 @@ export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     AddProperty<CSSProperties<"gap", true>, T["spacings"]>
 >;
 
-const flexMappings: Record<FlexKeys, string> = {
+export const flexMappings: Record<FlexKeys, string> = {
   flexDirection: "flex-direction",
   flexDir: "flex-direction",
   justifyContent: "justify-content",

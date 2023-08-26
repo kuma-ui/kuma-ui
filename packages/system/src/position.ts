@@ -7,7 +7,7 @@ export type PositionProps = Partial<
   CSSProperties<"top" | "right" | "left" | "bottom" | "inset", true>
 >;
 
-const positionMappings: Record<PositionKeys, string> = {
+export const positionMappings: Record<PositionKeys, string> = {
   top: "top",
   right: "right",
   left: "left",

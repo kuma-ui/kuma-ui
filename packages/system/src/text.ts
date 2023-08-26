@@ -29,7 +29,7 @@ export type TextProps = Partial<
     CSSProperties<"textUnderlinePosition">
 >;
 
-const textMappings: Record<TextKeys, string> = {
+export const textMappings: Record<TextKeys, string> = {
   textAlign: "text-align",
   textAlignLast: "text-align-last",
   textCombineUpright: "text-combine-upright",

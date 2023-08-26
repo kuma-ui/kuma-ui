@@ -1,24 +1,25 @@
-import { AnimationProps } from "./animation";
-import { SpaceProps } from "./space";
-import { TypographyProps } from "./typography";
-import { LayoutProps } from "./layout";
-import { ColorProps } from "./color";
-import { FlexProps } from "./flex";
-import { BorderProps } from "./border";
-import { OutlineProps } from "./outline";
-import { PositionProps } from "./position";
-import { ShadowProps } from "./shadow";
+import { AnimationProps, animationMappings } from "./animation";
+import { SpaceProps, spaceMappings } from "./space";
+import { TypographyProps, typographyMappings } from "./typography";
+import { LayoutProps, layoutMappings } from "./layout";
+import { ColorProps, colorMappings } from "./color";
+import { FlexProps, flexMappings } from "./flex";
+import { BorderProps, borderMappings } from "./border";
+import { OutlineProps, outlineMappings } from "./outline";
+import { PositionProps, positionMappings } from "./position";
+import { ShadowProps, shadowMappings } from "./shadow";
 import { PseudoProps } from "./pseudo";
 import { ThemeSystemType, ResponsiveStyle } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
-import { GridProps } from "./grid";
-import { ListProps } from "./list";
-import { EffectProps } from "./effect";
-import { TextProps } from "./text";
-import { FontProps } from "./font";
-import { MaskProps } from "./mask";
-import { ColumnProps } from "./column";
-import { BackgroundProps } from "./background";
+import { GridProps, gridMappings } from "./grid";
+import { ListProps, listMappings } from "./list";
+import { EffectProps, effectMappings } from "./effect";
+import { TextProps, textMappings } from "./text";
+import { FontProps, fontMappings } from "./font";
+import { MaskProps, maskMappings } from "./mask";
+import { ColumnProps, columnMappings } from "./column";
+import { BackgroundProps, backgroundMappings } from "./background";
+import { StyledKeyType } from "./keys";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
   TypographyProps<T> &
@@ -44,6 +45,28 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+const styleMappings: Record<StyledKeyType, string> = Object.assign(
+  {},
+  animationMappings,
+  spaceMappings,
+  typographyMappings,
+  layoutMappings,
+  colorMappings,
+  flexMappings,
+  borderMappings,
+  outlineMappings,
+  positionMappings,
+  shadowMappings,
+  gridMappings,
+  listMappings,
+  effectMappings,
+  textMappings,
+  fontMappings,
+  maskMappings,
+  columnMappings,
+  backgroundMappings
+);
 /**
  * Composes multiple style functions into a single style function.
  * This allows for more efficient application of multiple style functions at once,
@@ -80,8 +103,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions -- FIXME
-          newStyles.base.includes(`${outputProps[key as keyof StyledProps]}:`)
+          newStyles.base.includes(`${styleMappings[key as StyledKeyType]}:`)
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
         outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {

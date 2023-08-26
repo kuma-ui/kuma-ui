@@ -27,7 +27,7 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"cursor">
 >;
 
-const layoutMappings: Record<LayoutKeys, string> = {
+export const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
   minWidth: "min-width",
   maxWidth: "max-width",
