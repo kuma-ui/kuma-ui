@@ -7,7 +7,6 @@ import {
 import { ColumnKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
-import { ValueConverter, spaceConverter } from "./valueConverters";
 
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<
@@ -37,8 +36,8 @@ const columnMappings: Record<ColumnKeys, string> = {
   columns: "columns",
 };
 
-const converters: Partial<Record<ColumnKeys, ValueConverter>> = {
-  columnGap: spaceConverter,
+const converters: Partial<Record<ColumnKeys, typeof toCssUnit>> = {
+  columnGap: toCssUnit,
   columnRuleWidth: toCssUnit,
   columnWidth: toCssUnit,
 };

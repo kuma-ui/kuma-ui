@@ -7,7 +7,6 @@ import {
   ThemeSystemType,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { theme } from "@kuma-ui/sheet";
 
 export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<"font"> &
@@ -68,21 +67,9 @@ export const font = (props: FontProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const property = fontMappings[key as FontKeys];
 
-      const userTheme = theme.getUserTheme();
       const converter = (value: string | number): string | number => {
-        if (property === "font-family") {
-          if (value in (userTheme.fonts ?? {})) {
-            return userTheme.fonts?.[value] as string;
-          }
-        } else if (property === "font-size") {
-          if (value in (userTheme.fontSizes ?? {})) {
-            return toCssUnit(userTheme.fontSizes?.[value] as string | number);
-          }
+        if (property === "font-size") {
           return toCssUnit(value);
-        } else if (property === "font-weight") {
-          if (value in (userTheme.fontWeights ?? {})) {
-            return userTheme.fontWeights?.[value] as string | number;
-          }
         }
         return value;
       };

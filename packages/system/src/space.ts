@@ -8,8 +8,6 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
 } from "./types";
-import { theme } from "@kuma-ui/sheet";
-import { spaceConverter } from "./valueConverters";
 
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -154,7 +152,7 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          spaceConverter
+          toCssUnit
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(

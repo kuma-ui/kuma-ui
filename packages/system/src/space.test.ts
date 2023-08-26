@@ -1,16 +1,7 @@
 import { space, SpaceProps } from "./space";
-import { beforeAll, describe, expect, test } from "vitest";
-import { theme } from "@kuma-ui/sheet";
+import { describe, expect, test } from "vitest";
 
 describe("space utility function", () => {
-  beforeAll(() => {
-    theme.setUserTheme({
-      spacings: {
-        sm: "1rem",
-      },
-    });
-  });
-
   // Arrange
   const testCases: Array<[SpaceProps, string, string]> = [
     [{ margin: 8 }, "margin: 8px;", ""],
@@ -24,7 +15,6 @@ describe("space utility function", () => {
       "@media (min-width: 576px) { margin-left: 8px; margin-right: 8px; }",
     ],
     [{ m: 0 }, "margin: 0px;", ""],
-    [{ margin: "sm" }, "margin: 1rem;", ""],
   ];
 
   test.each(testCases)(

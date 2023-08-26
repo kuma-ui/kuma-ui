@@ -1,32 +1,19 @@
 import { theme } from "@kuma-ui/sheet";
 import { LayoutProps } from ".";
 import { grid } from "./grid";
-import { beforeAll, describe, expect, test } from "vitest";
+import { describe, expect, test } from "vitest";
 import { layout } from "./layout";
 
 describe("layout utility function", () => {
-  beforeAll(() => {
-    theme.setUserTheme({
-      sizes: {
-        sm: "1rem",
-      },
-      zIndices: {
-        overlay: "10",
-      },
-    });
-  });
-
   // Arrange
   const testCases: Array<[LayoutProps, string, string]> = [
     [{ width: 8 }, "width: 8px;", ""],
     [{ minWidth: "12px" }, "min-width: 12px;", ""],
     [{ height: "2em" }, "height: 2em;", ""],
-    [{ maxHeight: "sm" }, "max-height: 1rem;", ""],
     [{ display: "flex" }, "display: flex;", ""],
     [{ display: "sm" }, "display: sm;", ""], // size token won't be applied
     [{ zIndex: 1 }, "z-index: 1;", ""],
     [{ zIndex: "5" }, "z-index: 5;", ""],
-    [{ zIndex: "overlay" }, "z-index: 10;", ""],
   ];
 
   test.each(testCases)(
