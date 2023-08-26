@@ -15,41 +15,77 @@ import {
 } from "./index";
 import { isBoxProps, boxHandler, boxDefaultProps } from "./Box/handler";
 import {
+  defaultButtonTag,
   isButtonProps,
   buttonHandler,
   buttonDefaultProps,
 } from "./Button/handler";
-import { isFlexProps, flexHandler, flexDefaultProps } from "./Flex/handler";
 import {
+  defaultFlexTag,
+  isFlexProps,
+  flexHandler,
+  flexDefaultProps,
+} from "./Flex/handler";
+import {
+  defaultHeadingTag,
   isHeadingProps,
   headingHandler,
   headingDefaultProps,
 } from "./Heading/handler";
 import {
+  defaultSpacerTag,
   isSpacerProps,
   spacerHandler,
   spacerDefaultProps,
 } from "./Spacer/handler";
-import { isTextProps, textHandler, textDefaultProps } from "./Text/handler";
 import {
+  defaultTextTag,
+  isTextProps,
+  textHandler,
+  textDefaultProps,
+} from "./Text/handler";
+import {
+  defaultSelectTag,
   isSelectProps,
   selectHandler,
   selectDefaultProps,
 } from "./Select/handler";
-import { isInputProps, inputHandler, inputDefaultProps } from "./Input/handler";
 import {
+  defaultInputTag,
+  isInputProps,
+  inputHandler,
+  inputDefaultProps,
+} from "./Input/handler";
+import {
+  defaultHStackTag,
   isHStackProps,
   hstackHandler,
   hstackDefaultProps,
 } from "./HStack/handler";
 import {
+  defaultVStackTag,
   isVStackProps,
   vstackHandler,
   vstackDefaultProps,
 } from "./VStack/handler";
-import { isImageProps, imageHandler, imageDefaultProps } from "./Image/handler";
-import { isLinkProps, linkHandler, linkDefaultProps } from "./Link/handler";
-import { isGridProps, gridHandler, gridDefaultProps } from "./Grid/handler";
+import {
+  defaultImageTag,
+  isImageProps,
+  imageHandler,
+  imageDefaultProps,
+} from "./Image/handler";
+import {
+  defaultLinkTag,
+  isLinkProps,
+  linkHandler,
+  linkDefaultProps,
+} from "./Link/handler";
+import {
+  defaultGridTag,
+  isGridProps,
+  gridHandler,
+  gridDefaultProps,
+} from "./Grid/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
@@ -81,6 +117,23 @@ export const componentList = Object.freeze({
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
   Grid: Grid.name as "Grid",
 } as const);
+
+export const defaultComponentTag: Partial<
+  Record<keyof typeof componentList, keyof JSX.IntrinsicElements>
+> = {
+  Button: defaultButtonTag,
+  Flex: defaultFlexTag,
+  Heading: defaultHeadingTag,
+  Spacer: defaultSpacerTag,
+  Text: defaultTextTag,
+  Select: defaultSelectTag,
+  Input: defaultInputTag,
+  HStack: defaultHStackTag,
+  VStack: defaultVStackTag,
+  Image: defaultImageTag,
+  Link: defaultLinkTag,
+  Grid: defaultGridTag,
+};
 
 type ComponentName = keyof typeof componentList;
 

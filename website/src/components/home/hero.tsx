@@ -1,10 +1,8 @@
 import React from "react";
 import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
-import { useConfig } from "nextra-theme-docs";
 import { useState, useEffect } from "react";
 
 export const Hero = () => {
-  const { nextThemes } = useConfig();
   const isDark = useState(false);
 
   useEffect(() => {

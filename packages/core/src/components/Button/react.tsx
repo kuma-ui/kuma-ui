@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultButtonTag } from "./handler";
 
 type ButtonProps = ComponentProps<"Button">;
 
@@ -20,7 +21,7 @@ type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
  * @see — http://kuma-ui.com/docs/Components/Button
  */
 const Button: ButtonComponent = <T extends As = "button">({
-  as: Component = "button",
+  as: Component = defaultButtonTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, ButtonProps>) => {
