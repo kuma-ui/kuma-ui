@@ -1,6 +1,8 @@
 import { theme } from "@kuma-ui/sheet";
 import { StyledProps } from "@kuma-ui/system";
 
+export const defaultBoxTag = "div";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BoxSpecificProps = {};
 

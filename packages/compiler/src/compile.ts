@@ -51,7 +51,11 @@ const compile = (
       );
       if (result) css.push(result.css);
 
-      optimize(componentName, openingElement, extractedPropsMap["as"]);
+      optimize(
+        componentName,
+        openingElement,
+        extractedPropsMap["as"] as string | undefined
+      );
     }
     if (Node.isTaggedTemplateExpression(node)) {
       processTaggedTemplateExpression(node, bindings);

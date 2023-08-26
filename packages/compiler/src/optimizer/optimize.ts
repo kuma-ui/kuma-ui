@@ -29,8 +29,7 @@ export const optimize = (
   const rawHTMLTag = (() => {
     const tag = defaultComponentTag[componentName];
     if (!!as && typeof as === "string") {
-      jsxElement.getAttribute("as")?.remove();
-      return (as as string).replace(/['"`]/g, "");
+      return as.replace(/['"`]/g, "");
     } else {
       if (typeof tag === "string") return tag;
       return "div";
@@ -39,12 +38,9 @@ export const optimize = (
 
   jsxElement.getAttribute("IS_KUMA_DEFAULT")?.remove();
 
-  // console.log(jsxElement.getSourceFile().getFullText());
-
   if (Node.isJsxOpeningElement(jsxElement)) {
     const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
     const children = jsxElement.getChildren();
-    console.log(jsxElementParent?.getText());
 
     if (jsxElementParent) {
       const children = jsxElement.getChildren();
@@ -52,10 +48,13 @@ export const optimize = (
       const closingElement = jsxElementParent.getClosingElement();
       const openingElement = jsxElementParent.getOpeningElement();
 
-      openingElement.getTagNameNode();
-      closingElement.getTagNameNode();
-
-      console.log(openingElement.getText());
+      try {
+        openingElement.getTagNameNode().replaceWithText(rawHTMLTag);
+        closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
+        jsxElement.getAttribute("as")?.remove();
+      } catch {
+        return;
+      }
     }
   } else if (Node.isJsxSelfClosingElement(jsxElement)) {
     jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
