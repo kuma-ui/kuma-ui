@@ -1,19 +1,4 @@
 import {
-  Box,
-  Button,
-  Flex,
-  Spacer,
-  Text,
-  Heading,
-  Select,
-  Input,
-  HStack,
-  VStack,
-  Image,
-  Link,
-  Grid,
-} from "./index";
-import {
   isBoxProps,
   boxHandler,
   boxDefaultProps,
@@ -95,32 +80,19 @@ import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 
 export const componentList = Object.freeze({
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Box: Box.name as "Box",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Flex: Flex.name as "Flex",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Spacer: Spacer.name as "Spacer",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Text: Text.name as "Text",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Button: Button.name as "Button",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Heading: Heading.name as "Heading",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Select: Select.name as "Select",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Input: Input.name as "Input",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  HStack: HStack.name as "HStack",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  VStack: VStack.name as "VStack",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Image: Image.name as "Image",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Link: Link.name as "Link",
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-  Grid: Grid.name as "Grid",
+  Box: "Box",
+  Flex: "Flex",
+  Spacer: "Spacer",
+  Text: "Text",
+  Button: "Button",
+  Heading: "Heading",
+  Select: "Select",
+  Input: "Input",
+  HStack: "HStack",
+  VStack: "VStack",
+  Image: "Image",
+  Link: "Link",
+  Grid: "Grid",
 } as const);
 
 export const defaultComponentTag: Record<
