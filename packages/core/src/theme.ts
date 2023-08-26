@@ -18,6 +18,7 @@ export type ThemeInput = InputThemeTokens & {
     [_ in keyof typeof componentList]?: {
       baseStyle?: StyledProps;
       variants?: { [key: string]: StyledProps };
+      defaultProps?: { variant?: string };
     };
   };
 };
@@ -56,4 +57,16 @@ export function createTheme<const T extends ThemeInput>(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
     components: components,
   } as unknown as ThemeResult<T>;
+}
+
+type ComponentThemeInput<Variants extends { [key: string]: StyledProps }> = {
+  baseStyle?: StyledProps;
+  variants?: Variants;
+  defaultProps?: StyledProps & { variant?: keyof Variants };
+};
+
+export function createComponentTheme<
+  const Variants extends { [key: string]: StyledProps }
+>(config: ComponentThemeInput<Variants>) {
+  return config;
 }

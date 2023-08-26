@@ -41,12 +41,14 @@ export const extractProps = (
     ...(variant?.baseStyle as Record<string, string>),
   };
 
-  const defaultProps = componentDefaultProps(componentName);
+  const systemDefaultProps = componentDefaultProps(componentName);
+  const userDefaultProps = variant?.defaultProps;
 
   let isDefault = false;
 
   for (const [propName, propValue] of Object.entries({
-    ...defaultProps,
+    ...systemDefaultProps,
+    ...userDefaultProps,
     ...propsMap,
   })) {
     if (isStyledProp(propName.trim())) {

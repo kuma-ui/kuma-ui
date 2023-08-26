@@ -57,7 +57,7 @@ type Variants<
   T,
   ComponentType extends keyof typeof componentList
 > = T extends Required<Required<ThemeInput>["components"]>[ComponentType]
-  ? T["variants"]
+  ? NonNullable<T["variants"]>
   : never;
 
 type Variant<ComponentType extends keyof typeof componentList> = If<
