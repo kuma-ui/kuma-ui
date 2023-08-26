@@ -52,8 +52,8 @@ export const optimize = (
       const closingElement = jsxElementParent.getClosingElement();
       const openingElement = jsxElementParent.getOpeningElement();
 
-      openingElement.getTagNameNode().replaceWithText(rawHTMLTag);
-      closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
+      openingElement.getTagNameNode();
+      closingElement.getTagNameNode();
 
       console.log(openingElement.getText());
     }
@@ -75,64 +75,4 @@ function hasDynamicProp(key: string) {
     return true;
   }
   return false;
-}
-
-function processElement(
-  jsxElement: JsxOpeningElement | JsxSelfClosingElement,
-  componentName: (typeof componentList)[keyof typeof componentList],
-  as?: string
-) {
-  // まず子要素を処理します
-  const children = jsxElement.getChildren();
-  children.forEach((child) => {
-    if (
-      Node.isJsxOpeningElement(child) ||
-      Node.isJsxSelfClosingElement(child)
-    ) {
-      processElement(child, componentName, as);
-    }
-  });
-
-  const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
-    if (Node.isJsxSpreadAttribute(attrLike)) return false;
-    const attr = attrLike.asKindOrThrow(SyntaxKind.JsxAttribute);
-    if (hasDynamicProp(attr.getNameNode().getText())) return false;
-    return true;
-  });
-
-  if (!isOptimizable) return;
-
-  const rawHTMLTag = getRawHTMLTag(componentName, as, jsxElement);
-
-  if (Node.isJsxOpeningElement(jsxElement)) {
-    const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
-
-    if (jsxElementParent) {
-      const closingElement = jsxElementParent.getClosingElement();
-      const openingElement = jsxElementParent.getOpeningElement();
-
-      openingElement.getTagNameNode().replaceWithText(rawHTMLTag);
-      closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
-    }
-  } else if (Node.isJsxSelfClosingElement(jsxElement)) {
-    jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
-    jsxElement
-      .getFirstDescendantByKind(SyntaxKind.Identifier)
-      ?.replaceWithText(rawHTMLTag);
-  }
-}
-
-function getRawHTMLTag(
-  componentName: (typeof componentList)[keyof typeof componentList],
-  as?: string,
-  jsxElement?: JsxOpeningElement | JsxSelfClosingElement
-): string {
-  const tag = defaultComponentTag[componentName];
-  if (!!as && typeof as === "string") {
-    jsxElement?.getAttribute("as")?.remove();
-    return (as as string).replace(/['"`]/g, "");
-  } else {
-    if (typeof tag === "string") return tag;
-    return "div";
-  }
 }
