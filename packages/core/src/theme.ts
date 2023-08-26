@@ -62,7 +62,7 @@ export function createTheme<const T extends ThemeInput>(
 type ComponentThemeInput<Variants extends { [key: string]: StyledProps }> = {
   baseStyle?: StyledProps;
   variants?: Variants;
-  defaultProps?: StyledProps & { variant?: keyof Variants };
+  defaultProps?: { variant?: keyof Variants } & Record<string, unknown>;
 };
 
 export function createComponentTheme<
