@@ -78,6 +78,7 @@ import {
 } from "./Grid/handler";
 import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
+import "react";
 
 export const componentList = Object.freeze({
   Box: "Box",

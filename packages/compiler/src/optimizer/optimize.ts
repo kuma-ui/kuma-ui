@@ -9,8 +9,6 @@ import {
   SyntaxKind,
 } from "ts-morph";
 import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
-import { decode } from "../collector/decode";
-import { handleJsxExpression } from "../collector/expression";
 
 export const optimize = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -40,11 +38,7 @@ export const optimize = (
 
   if (Node.isJsxOpeningElement(jsxElement)) {
     const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
-    const children = jsxElement.getChildren();
-
     if (jsxElementParent) {
-      const children = jsxElement.getChildren();
-
       const closingElement = jsxElementParent.getClosingElement();
       const openingElement = jsxElementParent.getOpeningElement();
 
@@ -57,10 +51,14 @@ export const optimize = (
       }
     }
   } else if (Node.isJsxSelfClosingElement(jsxElement)) {
-    jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
-    jsxElement
-      .getFirstDescendantByKind(SyntaxKind.Identifier)
-      ?.replaceWithText(rawHTMLTag);
+    try {
+      jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
+      jsxElement
+        .getFirstDescendantByKind(SyntaxKind.Identifier)
+        ?.replaceWithText(rawHTMLTag);
+    } catch {
+      return;
+    }
   }
 };
 
