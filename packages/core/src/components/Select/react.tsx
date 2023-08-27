@@ -35,7 +35,7 @@ const Select: SelectComponent = <T extends As = "select">({
       as={Component}
       {...variantStyle}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+       
       children={children}
       IS_KUMA_DEFAULT
     />

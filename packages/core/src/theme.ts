@@ -42,7 +42,7 @@ export type ThemeSystem = {
 export function createTheme<const T extends ThemeInput>(
   theme: T
 ): ThemeResult<T> {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+   
   const { components, ...tokens } = theme;
   const resolvedTokens = {};
   for (const key in tokens) {
@@ -53,7 +53,7 @@ export function createTheme<const T extends ThemeInput>(
 
   return {
     ...resolvedTokens,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+     
     components: components,
   } as unknown as ThemeResult<T>;
 }

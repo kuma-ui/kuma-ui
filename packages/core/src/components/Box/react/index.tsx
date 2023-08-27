@@ -12,10 +12,10 @@ import { hasDynamicProps } from "./utils";
  */
 const Box: BoxComponent = ({ children, ...props }) => {
   if (hasDynamicProps(props)) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
+     
     return React.createElement(DynamicBox, props, children);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- FIXME
+   
   return React.createElement(StaticBox, props, children);
 };
 

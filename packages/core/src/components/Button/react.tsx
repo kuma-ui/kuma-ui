@@ -34,7 +34,7 @@ const Button: ButtonComponent = <T extends As = "button">({
       as={Component}
       {...variant}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+       
       children={children}
       IS_KUMA_DEFAULT
     />
