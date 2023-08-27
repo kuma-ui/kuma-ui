@@ -10,6 +10,21 @@ import {
 } from "ts-morph";
 import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
 
+/**
+ * Optimizes JSX elements by converting Kuma components to raw HTML elements
+ * during compilation, when possible.
+ *
+ * The transformation can only be applied when no runtime-affecting prefix
+ * utility props are present. This is because these would necessitate runtime
+ * processing and therefore an intermediary component.
+ *
+ * For example, a <Flex as='section'> component would be converted to a <section>
+ * based on the 'as' prop, or to the default HTML element for that component.
+ *
+ * @param {string} componentName - The name of the Kuma component.
+ * @param {JsxOpeningElement|JsxSelfClosingElement} jsxElement - The JSX element to optimize.
+ * @param {string|undefined} as - The HTML element to use as a replacement.
+ */
 export const optimize = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
@@ -34,42 +49,67 @@ export const optimize = (
     }
   })();
 
-  jsxElement.getAttribute("IS_KUMA_DEFAULT")?.remove();
-
-  if (Node.isJsxOpeningElement(jsxElement)) {
-    const jsxElementParent = jsxElement.getParentIfKind(SyntaxKind.JsxElement);
-    if (jsxElementParent) {
-      const closingElement = jsxElementParent.getClosingElement();
-      const openingElement = jsxElementParent.getOpeningElement();
-
-      try {
-        openingElement.getTagNameNode().replaceWithText(rawHTMLTag);
-        closingElement.getTagNameNode().replaceWithText(rawHTMLTag);
-        jsxElement.getAttribute("as")?.remove();
-      } catch {
-        return;
-      }
-    }
-  } else if (Node.isJsxSelfClosingElement(jsxElement)) {
-    try {
-      jsxElement.getTagNameNode().replaceWithText(rawHTMLTag);
-      jsxElement
-        .getFirstDescendantByKind(SyntaxKind.Identifier)
-        ?.replaceWithText(rawHTMLTag);
-    } catch {
-      return;
-    }
-  }
+  safeReplaceTagName(jsxElement, rawHTMLTag);
 };
 
-function hasDynamicProp(key: string) {
-  if (
-    isStyledProp(key) ||
-    isPseudoProps(key) ||
-    key === "variant" ||
-    key === "as"
-  ) {
-    return true;
+function hasDynamicProp(key: string): boolean {
+  return (
+    isStyledProp(key) || isPseudoProps(key) || key === "variant" || key === "as"
+  );
+}
+
+/**
+ * Safely attempts to perform a replacement operation on a JSX element.
+ * If any error occurs during the operation, it is caught silently, ensuring
+ * that the rest of the code execution is unaffected.
+ *
+ * Notably, this function addresses a known edge case where replacements
+ * fail when a parent component has an 'as' prop and a child component doesn't.
+ *
+ * @param {JsxOpeningElement|JsxSelfClosingElement} jsxElement - Target JSX element to be replaced
+ * @param {string} newTagName - HTML tag to replace with
+ */
+function safeReplaceTagName(
+  jsxElement: JsxOpeningElement | JsxSelfClosingElement,
+  newTagName: string
+): void {
+  const originalComponent = jsxElement.getTagNameNode().getText();
+  try {
+    if (Node.isJsxOpeningElement(jsxElement)) {
+      const jsxElementParent = jsxElement.getParentIfKind(
+        SyntaxKind.JsxElement
+      );
+      if (jsxElementParent) {
+        jsxElementParent
+          .getOpeningElement()
+          .getTagNameNode()
+          .replaceWithText(newTagName);
+        jsxElementParent
+          .getClosingElement()
+          .getTagNameNode()
+          .replaceWithText(newTagName);
+      }
+    } else if (Node.isJsxSelfClosingElement(jsxElement)) {
+      jsxElement.getTagNameNode().replaceWithText(newTagName);
+      jsxElement
+        .getFirstDescendantByKind(SyntaxKind.Identifier)
+        ?.replaceWithText(newTagName);
+    }
+
+    // Common logic for both JSX element types.
+    jsxElement.getAttribute("as")?.remove();
+    jsxElement.getAttribute("IS_KUMA_DEFAULT")?.remove();
+
+    // if (process.env.NODE_ENV === "development") {
+    //   console.log(
+    //     `[Kuma UI] Optimize Success 🐻‍❄️: ${originalComponent} component has been optimized.`
+    //   );
+    // }
+  } catch {
+    // if (process.env.NODE_ENV === "development") {
+    //   console.error(
+    //     `[Kuma UI] Optimize Failed 🐻‍❄️: ${originalComponent} component has not been optimized`
+    //   );
+    // }
   }
-  return false;
 }
