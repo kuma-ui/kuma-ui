@@ -35,7 +35,6 @@ const Image: ImageComponent = <T extends As>({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

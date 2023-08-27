@@ -33,7 +33,6 @@ const Grid: GridComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

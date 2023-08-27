@@ -35,7 +35,6 @@ const Text: TextComponent = <T extends As = "p">({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

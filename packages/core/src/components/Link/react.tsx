@@ -35,7 +35,6 @@ const Link: LinkComponent = <T extends As = "a">({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

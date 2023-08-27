@@ -10,7 +10,6 @@ function isDynamicProp(key: string) {
 }
 
 export function hasDynamicProps(props: BoxProps) {
-   
   return Object.keys(props).some((key) => {
     if (isDynamicProp(key)) {
       return true;
@@ -24,7 +23,7 @@ export function extractDynamicProps(props: BoxProps) {
   const dynamicProps: Record<string, any> = {};
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const restProps: Record<string, any> = {};
-   
+
   Object.entries(props).forEach(([key, prop]) => {
     if (isDynamicProp(key)) {
       dynamicProps[key] = prop;

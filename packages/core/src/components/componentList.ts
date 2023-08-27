@@ -119,7 +119,6 @@ type ComponentName = keyof typeof componentList;
 
 export const isComponentProps =
   (componentName: ComponentName) => (propName: string) => {
-     
     return match(componentName)
       .with("Box", () => isBoxProps(propName))
       .with("Button", () => isButtonProps(propName))
@@ -140,7 +139,6 @@ export const isComponentProps =
 export const componentDefaultProps = (
   componentName: ComponentName
 ): StyledProps => {
-   
   return match(componentName)
     .with("Box", () => boxDefaultProps)
     .with("Button", () => buttonDefaultProps)
@@ -162,7 +160,6 @@ export const componentHandler =
   (componentName: ComponentName) =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   (props: Record<string, any>): StyledProps => {
-     
     return match(componentName)
       .with("Box", () => boxHandler(props))
       .with("Button", () => buttonHandler(props))

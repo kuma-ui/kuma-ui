@@ -34,7 +34,6 @@ const Button: ButtonComponent = <T extends As = "button">({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

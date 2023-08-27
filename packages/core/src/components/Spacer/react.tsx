@@ -12,7 +12,6 @@ import { SpacerSpecificProps, spacerHandler } from "./handler";
 import { theme } from "@kuma-ui/sheet";
 import { defaultSpacerTag } from "./handler";
 
- 
 type SpacerProps = ComponentProps<"Spacer"> & SpacerSpecificProps;
 
 type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
@@ -31,7 +30,6 @@ const Spacer: SpacerComponent = <T extends As = "div">({
   ...props
 }: MergeWithAs<PropsOf<T>, SpacerProps>) => {
   props = {
-     
     ...spacerHandler({ size, horizontal }),
     ...props,
   };
@@ -46,7 +44,6 @@ const Spacer: SpacerComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

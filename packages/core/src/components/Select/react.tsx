@@ -35,7 +35,6 @@ const Select: SelectComponent = <T extends As = "select">({
       as={Component}
       {...variantStyle}
       {...props}
-       
       children={children}
       IS_KUMA_DEFAULT
     />

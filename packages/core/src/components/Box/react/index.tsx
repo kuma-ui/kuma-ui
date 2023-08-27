@@ -12,10 +12,9 @@ import { hasDynamicProps } from "./utils";
  */
 const Box: BoxComponent = ({ children, ...props }) => {
   if (hasDynamicProps(props)) {
-     
     return React.createElement(DynamicBox, props, children);
   }
-   
+
   return React.createElement(StaticBox, props, children);
 };
 
