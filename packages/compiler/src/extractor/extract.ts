@@ -6,8 +6,7 @@ import {
   isComponentProps,
   componentHandler,
 } from "@kuma-ui/core/components/componentList";
-import { Tokens, theme } from "@kuma-ui/sheet";
-import { stableStringify } from "../utils/stableStringify";
+import { theme } from "@kuma-ui/sheet";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -36,21 +35,7 @@ export const extractProps = (
     ...defaultProps,
     ...propsMap,
   })) {
-    if (
-      typeof propValue === "string" &&
-      /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue)
-    ) {
-      const userTheme = theme.getUserTheme();
-      const propKey = propValue.split(".")[0] as Tokens;
-      if (userTheme[propKey] !== undefined) {
-        for (const key in userTheme[propKey]) {
-          if (propValue.trim() === key) {
-            styledProps[propName.trim()] = userTheme[propKey]![key];
-            break;
-          }
-        }
-      }
-    } else if (isStyledProp(propName.trim())) {
+    if (isStyledProp(propName.trim())) {
       styledProps[propName.trim()] = propValue;
     } else if (isPseudoProps(propName.trim())) {
       pseudoProps[propName.trim()] = propValue;
@@ -94,14 +79,9 @@ export const extractProps = (
     ...styledProps,
     ...pseudoProps,
   };
-  const key = stableStringify(combinedProps);
-  let generatedStyle = styleCache[key];
-  // If the result isn't in the cache, generate it and save it to the cache
-  if (!generatedStyle) {
-    generatedStyle = new StyleGenerator(combinedProps).getStyle();
-    styleCache[key] = generatedStyle;
-  }
-  const { className: generatedClassName, css } = generatedStyle;
+  const { className: generatedClassName, css } = new StyleGenerator(
+    combinedProps
+  ).getStyle();
 
   // If no generatedClassName is returned, the component should remain intact
   if (!generatedClassName) return { css };
@@ -149,7 +129,3 @@ export const extractProps = (
   });
   return { css };
 };
-
-const styleCache: {
-  [key: string]: { className: string; css: string } | undefined;
-} = {};
