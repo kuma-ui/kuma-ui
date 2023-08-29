@@ -28,12 +28,12 @@ import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
 export const optimize = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
-  as?: string
+  as?: string,
 ) => {
   const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
     if (Node.isJsxSpreadAttribute(attrLike)) return false;
     const attr = attrLike.asKindOrThrow(SyntaxKind.JsxAttribute);
-    if (hasDynamicProp(attr.getNameNode().getText())) return false;
+    if (hasDynamicProp(attr.getNameNode().getText().trim(), !!as)) return false;
     return true;
   });
 
@@ -52,9 +52,12 @@ export const optimize = (
   safeReplaceTagName(jsxElement, rawHTMLTag);
 };
 
-function hasDynamicProp(key: string): boolean {
+function hasDynamicProp(key: string, hasAs: boolean): boolean {
   return (
-    isStyledProp(key) || isPseudoProps(key) || key === "variant" || key === "as"
+    isStyledProp(key) ||
+    isPseudoProps(key) ||
+    key === "variant" ||
+    (!hasAs && key === "as")
   );
 }
 
@@ -63,21 +66,18 @@ function hasDynamicProp(key: string): boolean {
  * If any error occurs during the operation, it is caught silently, ensuring
  * that the rest of the code execution is unaffected.
  *
- * Notably, this function addresses a known edge case where replacements
- * fail when a parent component has an 'as' prop and a child component doesn't.
- *
  * @param {JsxOpeningElement|JsxSelfClosingElement} jsxElement - Target JSX element to be replaced
  * @param {string} newTagName - HTML tag to replace with
  */
 function safeReplaceTagName(
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
-  newTagName: string
+  newTagName: string,
 ): void {
   const originalComponent = jsxElement.getTagNameNode().getText();
   try {
     if (Node.isJsxOpeningElement(jsxElement)) {
       const jsxElementParent = jsxElement.getParentIfKind(
-        SyntaxKind.JsxElement
+        SyntaxKind.JsxElement,
       );
       if (jsxElementParent) {
         jsxElementParent
