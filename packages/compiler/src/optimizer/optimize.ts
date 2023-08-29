@@ -40,7 +40,7 @@ export const optimize = (
   if (!isOptimizable) return;
 
   const rawHTMLTag = (() => {
-    let safeAs = typeof as === "string" ? as.replace(/['"`]/g, "") : as;
+    const safeAs = typeof as === "string" ? as.replace(/['"`]/g, "") : as;
     const tag = defaultComponentTag[componentName];
     if (safeAs) {
       return safeAs;
