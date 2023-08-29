@@ -3,13 +3,18 @@ import path from "path";
 import fs from "fs";
 import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
 import { createHash } from "crypto";
+import { theme } from "@kuma-ui/sheet";
+import { getUserTheme } from "./getUserTheme";
 
 const virtualLoaderPath = require.resolve("./virtualLoader");
 
 type Options = {
-  virtualLoader?: boolean;
-  cssOutputDir?: string;
+  config?: string;
+  virtualLoader: boolean;
+  cssOutputDir: string;
 };
+
+let prevConfigText: string | undefined;
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   source: Buffer
@@ -17,9 +22,20 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
+  const { config, virtualLoader, cssOutputDir } = this.getOptions();
 
-  const options = this.getOptions();
-  const isVirtualLoader = options.virtualLoader ?? true;
+  if (config) {
+    this.addDependency(config);
+    const configText = fs.readFileSync(config, "utf8");
+    const isChanged = configText !== prevConfigText;
+    prevConfigText = configText;
+    if (isChanged) {
+      const userTheme = getUserTheme(config);
+      if (userTheme) {
+        theme.setUserTheme(userTheme);
+      }
+    }
+  }
 
   if (
     id.includes("/node_modules/") ||
@@ -43,8 +59,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   if (css) {
     const codePrefix = fileLoader(css, {
       context: this,
-      isVirtualLoader: isVirtualLoader,
-      outputDir: options.cssOutputDir || "kuma",
+      isVirtualLoader: virtualLoader,
+      outputDir: cssOutputDir,
     });
 
     callback(null, `${result.code}\n${codePrefix};`);
