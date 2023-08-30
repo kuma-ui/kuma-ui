@@ -1,4 +1,4 @@
-import { createComponentTheme, createTheme } from "@kuma-ui/core";
+import {  createTheme } from "@kuma-ui/core";
 
 const theme = createTheme({
   colors: {
@@ -29,7 +29,7 @@ const theme = createTheme({
         gap: "12px",
       },
     },
-    Text: createComponentTheme({
+    Text: {
       baseStyle: {
         textDecoration: "underline",
       },
@@ -44,7 +44,7 @@ const theme = createTheme({
       defaultProps: {
         variant: "primary",
       },
-    }),
+    },
   },
 });
 
