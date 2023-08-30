@@ -5,6 +5,7 @@ import {
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -36,9 +37,7 @@ const layoutMappings: Record<LayoutKeys, string> = {
   cursor: "cursor",
 } as const;
 
-const converters: Partial<
-  Record<LayoutKeys, (t: string | number) => string | number>
-> = {
+const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
   width: toCssUnit,
   minWidth: toCssUnit,
   maxWidth: toCssUnit,

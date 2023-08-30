@@ -15,6 +15,7 @@ describe("space utility function", () => {
       "@media (min-width: 576px) { margin-left: 8px; margin-right: 8px; }",
     ],
     [{ m: 0 }, "margin: 0px;", ""],
+    [{ margin: "1rem" }, "margin: 1rem;", ""],
   ];
 
   test.each(testCases)(

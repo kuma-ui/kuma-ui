@@ -7,6 +7,7 @@ import {
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 
 export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -47,7 +48,7 @@ const flexMappings: Record<FlexKeys, string> = {
   gap: "gap",
 } as const;
 
-const converters: Partial<Record<FlexKeys, typeof toCssUnit>> = {
+const converters: Partial<Record<FlexKeys, ValueConverter>> = {
   gap: toCssUnit,
   flexBasis: toCssUnit,
 };

@@ -66,6 +66,7 @@ describe("border utility function", () => {
       "border-top-right-radius: 1px 2px; border-bottom-right-radius: 1px 2px;",
       "",
     ],
+    [{ borderRadius: "1rem" }, "border-radius: 1rem;", ""],
   ];
 
   test.each(testCases)(

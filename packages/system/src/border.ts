@@ -6,6 +6,7 @@ import {
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -127,7 +128,7 @@ const borderMappings: Record<BorderKeys, string> = {
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
 };
 
-const converters: Partial<Record<BorderKeys, typeof toCssUnit>> = {
+const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   border: toCssUnit,
   borderTop: toCssUnit,
   borderRight: toCssUnit,

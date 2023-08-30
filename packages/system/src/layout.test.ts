@@ -1,4 +1,3 @@
-import { theme } from "@kuma-ui/sheet";
 import { LayoutProps } from ".";
 import { grid } from "./grid";
 import { describe, expect, test } from "vitest";
@@ -10,6 +9,7 @@ describe("layout utility function", () => {
     [{ width: 8 }, "width: 8px;", ""],
     [{ minWidth: "12px" }, "min-width: 12px;", ""],
     [{ height: "2em" }, "height: 2em;", ""],
+    [{ maxHeight: "1rem" }, "max-height: 1rem;", ""],
     [{ display: "flex" }, "display: flex;", ""],
     [{ display: "sm" }, "display: sm;", ""], // size token won't be applied
     [{ zIndex: 1 }, "z-index: 1;", ""],

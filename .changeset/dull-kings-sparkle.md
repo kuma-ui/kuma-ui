@@ -5,4 +5,4 @@
 "@kuma-ui/compiler": minor
 ---
 
-fix/kuma.config can hmr
+In the vite project, kuma.config.ts will be HMR
