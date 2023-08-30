@@ -35,12 +35,12 @@ type ThemeComponent<T> = {
     ? StyleProps
     : K extends "variants"
     ? {
-        [_ in keyof T[K] extends string ? keyof T[K] : never]: StyleProps;
+        [_ in keyof T[K]]: StyleProps;
       }
     : K extends "defaultProps"
     ? {
         variant?: T extends RawThemeComponent ? keyof T["variants"] : never;
-      } & Record<string, unknown>
+      }
     : never;
 };
 
@@ -78,7 +78,6 @@ export type ThemeSystem = {
 } & SystemThemeTokens;
 
 export function createTheme<T>(theme: ThemeInput<T>): ThemeResult<T> {
-   
   const rawTheme = theme as RawThemeInput;
   const resolvedTokens = {};
   for (const key in rawTheme) {
