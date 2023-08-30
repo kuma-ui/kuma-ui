@@ -29,16 +29,16 @@ export class StyleGenerator {
         const propKey = propValue.split(".")[0] as Tokens;
         if (userTheme[propKey] !== undefined) {
           for (const key in userTheme[propKey]) {
-            if (propValue.trim() === key) {
-              styledProps[propName.trim()] = userTheme[propKey]![key];
+            if (propValue === key) {
+              styledProps[propName] = userTheme[propKey]![key];
               break;
             }
           }
         }
-      } else if (isStyledProp(propName.trim())) {
-        styledProps[propName.trim()] = propValue;
-      } else if (isPseudoProps(propName.trim())) {
-        pseudoProps[propName.trim()] = propValue;
+      } else if (isStyledProp(propName)) {
+        styledProps[propName] = propValue;
+      } else if (isPseudoProps(propName)) {
+        pseudoProps[propName] = propValue;
       }
     }
 

@@ -35,19 +35,19 @@ export const extractProps = (
     ...defaultProps,
     ...propsMap,
   })) {
-    if (isStyledProp(propName.trim())) {
-      styledProps[propName.trim()] = propValue;
-    } else if (isPseudoProps(propName.trim())) {
-      pseudoProps[propName.trim()] = propValue;
-    } else if (isComponentProps(componentName)(propName.trim())) {
-      componentProps[propName.trim()] = propValue;
-    } else if (propName.trim() === "variant") {
+    if (isStyledProp(propName)) {
+      styledProps[propName] = propValue;
+    } else if (isPseudoProps(propName)) {
+      pseudoProps[propName] = propValue;
+    } else if (isComponentProps(componentName)(propName)) {
+      componentProps[propName] = propValue;
+    } else if (propName === "variant") {
       Object.assign(
         componentVariantProps,
         variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
-    } else if (propName.trim() === "IS_KUMA_DEFAULT") {
+    } else if (propName === "IS_KUMA_DEFAULT") {
       isDefault = true;
     }
   }
