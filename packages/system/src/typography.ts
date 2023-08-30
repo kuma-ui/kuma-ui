@@ -7,7 +7,6 @@ import {
   AddProperty,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { theme } from "@kuma-ui/sheet";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<
@@ -55,21 +54,9 @@ export const typography = (props: TypographyProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const property = typographyMappings[key as TypographyKeys];
 
-      const userTheme = theme.getUserTheme();
       const converter = (value: string | number): string | number => {
-        if (property === "word-spacing") {
+        if (property === "word-spacing" || property === "letter-spacing") {
           return toCssUnit(value);
-        } else if (property === "letter-spacing") {
-          if (value in (userTheme.letterSpacings ?? {})) {
-            return toCssUnit(
-              userTheme.letterSpacings?.[value] as string | number
-            );
-          }
-          return toCssUnit(value);
-        } else if (property === "line-height") {
-          if (value in (userTheme.lineHeights ?? {})) {
-            return userTheme.lineHeights?.[value] as string;
-          }
         }
         return value;
       };

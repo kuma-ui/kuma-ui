@@ -1,3 +1,4 @@
+import { toCssUnit } from "./toCSS";
 import { GridKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import {
@@ -6,7 +7,6 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
 } from "./types";
-import { spaceConverter } from "./valueConverters";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];
@@ -46,7 +46,7 @@ export const grid = (props: GridProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const property = gridMappings[key as GridKeys];
       const converter = gapKeys.includes(key as GapKeys)
-        ? spaceConverter
+        ? toCssUnit
         : undefined;
       const responsiveStyles = applyResponsiveStyles(
         property,

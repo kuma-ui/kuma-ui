@@ -5,13 +5,9 @@ import {
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import {
-  ValueConverter,
-  sizeConverter,
-  zIndexConverter,
-} from "./valueConverters";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -42,13 +38,13 @@ export const layoutMappings: Record<LayoutKeys, string> = {
 } as const;
 
 const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
-  width: sizeConverter,
-  minWidth: sizeConverter,
-  maxWidth: sizeConverter,
-  height: sizeConverter,
-  minHeight: sizeConverter,
-  maxHeight: sizeConverter,
-  zIndex: zIndexConverter,
+  width: toCssUnit,
+  minWidth: toCssUnit,
+  maxWidth: toCssUnit,
+  height: toCssUnit,
+  minHeight: toCssUnit,
+  maxHeight: toCssUnit,
+  zIndex: (t) => t,
 };
 
 export const layout = (props: LayoutProps): ResponsiveStyle => {
