@@ -7,7 +7,7 @@ type ThemeTokens<T extends string> = Theme extends Record<T, unknown>
   ? Theme[T]
   : never;
 
-type NumberToken =
+export type NumberToken =
   | "fontSizes"
   | "fontWeights"
   | "lineHeights"
