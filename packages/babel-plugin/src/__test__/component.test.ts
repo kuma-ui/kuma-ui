@@ -2,7 +2,7 @@ import { theme } from "@kuma-ui/sheet";
 import { babelTransform, getExpectSnapshot } from "./testUtils";
 
 describe("headless component", () => {
-  test("using default props should match snapshot", () => {
+  beforeAll(() => {
     theme.setUserTheme({
       components: {
         Text: {
@@ -25,11 +25,28 @@ describe("headless component", () => {
         },
       },
     });
+  });
+
+  test("using default props should match snapshot", () => {
     // Arrange
     const inputCode = `
         import { Text } from '@kuma-ui/core'
         function App() {
           return <Text />
+        }
+      `;
+    // Act
+    const result = babelTransform(inputCode);
+    // Assert
+    expect(getExpectSnapshot(result)).toMatchSnapshot();
+  });
+
+  test("using default props with inline props should match snapshot", () => {
+    // Arrange
+    const inputCode = `
+        import { Text } from '@kuma-ui/core'
+        function App() {
+          return <Text variant="secondary" fontSize="12px" />
         }
       `;
     // Act
