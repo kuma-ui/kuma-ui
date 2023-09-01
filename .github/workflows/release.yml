@@ -5,18 +5,15 @@ on:
       - main
 jobs:
   release:
-    name: Node ${{ matrix.node_version }} releasing
+    name: Release
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node_version: [16]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - uses: ./.github/actions/setup-pnpm
         with:
-          node_version: ${{ matrix.node_version }}
+          node_version: 18
 
       - name: build packages
         run: pnpm run build
