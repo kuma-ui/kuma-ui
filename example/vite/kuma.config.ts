@@ -1,4 +1,4 @@
-import {  createTheme } from "@kuma-ui/core";
+import { createTheme } from "@kuma-ui/core";
 
 const theme = createTheme({
   colors: {
@@ -43,6 +43,7 @@ const theme = createTheme({
       },
       defaultProps: {
         variant: "primary",
+        textDecoration: "line-through",
       },
     },
   },

@@ -43,7 +43,7 @@ export type UserTheme = {
       baseStyle?: any;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
       variants?: { [key: string]: any };
-      defaultProps?: { variant?: string };
+      defaultProps?: { variant?: string } & Record<string, unknown>;
     };
   };
 };

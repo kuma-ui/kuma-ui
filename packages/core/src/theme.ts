@@ -17,9 +17,12 @@ import { StyledProps, PseudoProps, ThemeSystemType } from "@kuma-ui/system";
 type StyleProps = StyledProps & PseudoProps;
 
 type RawThemeComponent = {
+  /**
+   * @deprecated use `defaultProps` instead
+   */
   baseStyle?: StyleProps;
   variants?: { [key: string]: StyleProps };
-  defaultProps?: { variant?: string } & Record<string, unknown>;
+  defaultProps?: { variant?: string } & StyleProps & Record<string, unknown>;
 };
 
 type RawThemeComponents = {
