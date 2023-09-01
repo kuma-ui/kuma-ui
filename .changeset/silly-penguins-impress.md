@@ -4,4 +4,4 @@
 "@kuma-ui/core": minor
 ---
 
-Introduce `defaultProps` in component theme with better typing utility `createComponentTheme`.
+Introduce `defaultProps` in component theme
