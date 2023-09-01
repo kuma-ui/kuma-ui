@@ -94,7 +94,7 @@ export class Theme {
               [key: string]: any;
             }
           | undefined;
-        defaultProps?: { variant?: string };
+        defaultProps?: { variant?: string } & Record<string, unknown>;
       }
     | undefined {
     return this._userTheme.components?.[componentName] || {};
