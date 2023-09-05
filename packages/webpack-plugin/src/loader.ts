@@ -14,8 +14,6 @@ type Options = {
   cssOutputDir: string;
 };
 
-let prevConfigText: string | undefined;
-
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   source: Buffer
 ) {
@@ -26,14 +24,9 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
 
   if (config) {
     this.addDependency(config);
-    const configText = fs.readFileSync(config, "utf8");
-    const isChanged = configText !== prevConfigText;
-    prevConfigText = configText;
-    if (isChanged) {
-      const userTheme = getUserTheme(config);
-      if (userTheme) {
-        theme.setUserTheme(userTheme);
-      }
+    const userTheme = getUserTheme(config);
+    if (userTheme) {
+      theme.setUserTheme(userTheme);
     }
   }
 

@@ -1,8 +1,20 @@
 import eval from "eval";
 import { buildSync } from "esbuild";
+import fs from "fs";
 import type { UserTheme } from "packages/sheet";
 
+let prevConfigText: string | undefined;
+let pervUserTheme: Partial<UserTheme> | undefined;
+
 export const getUserTheme = (configPath: string) => {
+  const configText = fs.readFileSync(configPath, "utf8");
+  const isChanged = configText !== prevConfigText;
+  prevConfigText = configText;
+
+  if (!isChanged) {
+    return pervUserTheme;
+  }
+
   const result = buildSync({
     bundle: true,
     target: "es2017",
@@ -21,6 +33,8 @@ export const getUserTheme = (configPath: string) => {
   ) as {
     default: Partial<UserTheme>;
   };
+
+  pervUserTheme = userTheme;
 
   return userTheme;
 };

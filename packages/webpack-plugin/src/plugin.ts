@@ -1,6 +1,4 @@
 import { Compiler } from "webpack";
-import { buildSync } from "esbuild";
-import eval from "eval";
 import { theme } from "@kuma-ui/sheet";
 import path from "path";
 import { readdirSync } from "fs";
@@ -36,14 +34,30 @@ class KumaUIWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    const userTheme = theme.getUserTheme();
+    const { virtualLoader = true, cssOutputDir = ".kuma" } = this.options;
+    const { config } = this;
+
     compiler.options.plugins.push(
       new compiler.webpack.DefinePlugin({
-        "globalThis.__KUMA_USER_THEME__": JSON.stringify(userTheme),
+        ...(config
+          ? {
+              "globalThis.__KUMA_USER_THEME__":
+                compiler.webpack.DefinePlugin.runtimeValue(
+                  () => {
+                    const userTheme = getUserTheme(config);
+                    if (userTheme) {
+                      theme.setUserTheme(userTheme);
+                    }
+                    return JSON.stringify(userTheme);
+                  },
+                  {
+                    fileDependencies: [config],
+                  }
+                ),
+            }
+          : undefined),
       })
     );
-
-    const { virtualLoader = true, cssOutputDir = ".kuma" } = this.options;
 
     compiler.options.module?.rules?.push({
       test: /\.(tsx|ts|js|mjs|jsx)$/,
@@ -54,7 +68,7 @@ class KumaUIWebpackPlugin {
           options: {
             virtualLoader,
             cssOutputDir,
-            config: this.config,
+            config,
           },
         },
       ],
