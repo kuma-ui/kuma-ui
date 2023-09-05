@@ -1,0 +1,74 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`optimizer > should compile Kuma components to raw HTML when no dynamic props are given 1`] = `
+"
+  .🐻-4011430064 { display: flex;flex-direction: row; }@media (min-width: 576px) { .🐻-4011430064 { flex-direction: column; } } 
+  
+  
+        import { Box, Text } from \\"@kuma-ui/core\\";
+        
+        function App() {
+          const red = \\"red\\";
+          return (
+            <div className={\\"🐻-4011430064\\"}>
+              <p>hello</p>
+            </div>
+          );
+        }
+        
+  "
+`;
+
+exports[`optimizer > should compile SelfClosingTags with static styles to raw HTML 1`] = `
+"
+  
+  
+  
+      import { Image } from \\"@kuma-ui/core\\";
+      
+      function App() {
+        return (
+          <img src=\\"path/to/image.jpg\\" alt=\\"Sample Image\\" />
+        );
+      }
+      
+  "
+`;
+
+exports[`optimizer > should not compile Kuma components with dynamic props to raw HTML 1`] = `
+"
+  .🐻-2037632742 { display: flex;flex-direction: row; } 
+  
+  
+      import { Box, Text, HStack } from \\"@kuma-ui/core\\";
+      import { useState } from 'react'
+      
+      function App() {
+        const red = \\"red\\"
+        return (
+          <HStack color={true ? red : 'blue'} className={\\"🐻-2037632742\\"}>
+            <p>hello</p>
+          </HStack>
+        );
+      }
+      
+  "
+`;
+
+exports[`optimizer > should not compile to raw HTML when spread attributes are present 1`] = `
+"
+  .🐻-2037632742 { display: flex;flex-direction: row; } 
+  
+  
+      import { Box, Text, HStack } from \\"@kuma-ui/core\\";
+      
+      function App(props) {
+        return (
+          <HStack {...props} className={\\"🐻-2037632742\\"}>
+            <p>hello</p>
+          </HStack>
+        );
+      }
+      
+  "
+`;
