@@ -1,7 +1,5 @@
 ---
-"@kuma-ui/webpack-plugin": patch
-"next-app-router": patch
-"next": patch
+"@kuma-ui/webpack-plugin": minor
 ---
 
 feat(webpack): enable automatic rebuild on kuma.config.ts changes
