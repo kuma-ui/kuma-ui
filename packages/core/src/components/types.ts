@@ -1,4 +1,4 @@
-import { ThemeInput } from "./../theme";
+import { RawThemeInput } from "./../theme";
 import { componentList } from "./componentList";
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import { ReactNode } from "react";
@@ -56,8 +56,8 @@ type OmitCommonProps<
 type Variants<
   T,
   ComponentType extends keyof typeof componentList
-> = T extends Required<Required<ThemeInput>["components"]>[ComponentType]
-  ? T["variants"]
+> = T extends Required<Required<RawThemeInput>["components"]>[ComponentType]
+  ? NonNullable<T["variants"]>
   : never;
 
 type Variant<ComponentType extends keyof typeof componentList> = If<

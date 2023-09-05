@@ -31,12 +31,19 @@ const theme = createTheme({
     },
     Text: {
       baseStyle: {
-        color: "red",
+        textDecoration: "underline",
       },
       variants: {
         primary: {
           color: "green",
         },
+        secondary: {
+          color: "blue",
+        },
+      },
+      defaultProps: {
+        variant: "primary",
+        textDecoration: "line-through",
       },
     },
   },

@@ -4,6 +4,7 @@ description: "Get to know how to customize component-specific themes in Kuma UI"
 ---
 
 import { PrimaryButton, ExampleContainer } from "../../../components/example";
+import { Callout } from "nextra-theme-docs";
 
 # Component Theme
 
@@ -11,24 +12,36 @@ In Kuma UI, you can define default and variant styles for your components global
 
 ## Defining Component Styles
 
-Component styles are defined in the `components` field of your theme. Each component can have a `baseStyle` and `variants`.
+Component styles are defined in the `components` field of your theme. Each component can have a `defaultProps` and `variants`.
 
-Here's an example of how you can define a `primary` variant for the `Button` component:
+<Callout type="warning">
+  You can also define `baseStyle` for each component but it's deprecated and
+  will be removed in v2.0. Use `defaultProps` instead.
+</Callout>
+
+Here's an example of how you can define a `primary` variant and make it default for the `Button` component:
 
 ```ts
 const theme = createTheme({
   components: {
     Button: {
+      defaultProps: {
+        variant: "primary",
+        borderRadius: "14px",
+        p: "16px 32px",
+        fontWeight: 600,
+        _hover: {
+          opacity: 0.8,
+        },
+      },
       variants: {
         primary: {
           bg: "#576ddf",
-          borderRadius: "14px",
-          p: "16px 32px",
           color: "white",
-          fontWeight: 600,
-          _hover: {
-            opacity: 0.8,
-          },
+        },
+        secondary: {
+          bg: "white",
+          color: "#576ddf",
         },
       },
     },
