@@ -24,3 +24,5 @@ stats.html
 *.njsproj
 *.sln
 *.sw?
+
+.inspect

@@ -5,4 +5,15 @@ const withNextra = require("nextra")({
   themeConfig: "./theme.config.jsx",
 });
 
-module.exports = withKumaUI(withNextra());
+module.exports = withKumaUI(
+  withNextra({
+    images: {
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "github.com",
+        },
+      ],
+    },
+  })
+);

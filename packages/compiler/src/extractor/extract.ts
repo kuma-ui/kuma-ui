@@ -1,18 +1,5 @@
-import {
-  Project,
-  Node,
-  SyntaxKind,
-  JsxOpeningElement,
-  JsxSelfClosingElement,
-} from "ts-morph";
-import {
-  isStyledProp,
-  isPseudoProps,
-  normalizePseudo,
-  all,
-  SystemStyle,
-  StyleGenerator,
-} from "@kuma-ui/system";
+import { Node, JsxOpeningElement, JsxSelfClosingElement } from "ts-morph";
+import { isStyledProp, isPseudoProps, StyleGenerator } from "@kuma-ui/system";
 import {
   componentDefaultProps,
   componentList,
@@ -20,7 +7,6 @@ import {
   componentHandler,
 } from "@kuma-ui/core/components/componentList";
 import { theme } from "@kuma-ui/sheet";
-import { stableStringify } from "../utils/stableStringify";
 
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
@@ -37,31 +23,30 @@ export const extractProps = (
 
   const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentVariantProps: { [key: string]: any } = {
+  const baseStyleProps: { [key: string]: any } = {
     ...(variant?.baseStyle as Record<string, string>),
   };
 
-  const defaultProps = componentDefaultProps(componentName);
+  const systemDefaultProps = componentDefaultProps(componentName);
+  const userDefaultProps = variant?.defaultProps;
 
   let isDefault = false;
 
   for (const [propName, propValue] of Object.entries({
-    ...defaultProps,
+    ...systemDefaultProps,
+    ...userDefaultProps,
     ...propsMap,
   })) {
-    if (isStyledProp(propName.trim())) {
-      styledProps[propName.trim()] = propValue;
-    } else if (isPseudoProps(propName.trim())) {
-      pseudoProps[propName.trim()] = propValue;
-    } else if (isComponentProps(componentName)(propName.trim())) {
-      componentProps[propName.trim()] = propValue;
-    } else if (propName.trim() === "variant") {
-      Object.assign(
-        componentVariantProps,
-        variant?.variants?.[propValue as string]
-      );
+    if (isStyledProp(propName)) {
+      styledProps[propName] = propValue;
+    } else if (isPseudoProps(propName)) {
+      pseudoProps[propName] = propValue;
+    } else if (isComponentProps(componentName)(propName)) {
+      componentProps[propName] = propValue;
+    } else if (propName === "variant") {
+      Object.assign(baseStyleProps, variant?.variants?.[propValue as string]);
       jsx.getAttribute("variant")?.remove();
-    } else if (propName.trim() === "IS_KUMA_DEFAULT") {
+    } else if (propName === "IS_KUMA_DEFAULT") {
       isDefault = true;
     }
   }
@@ -81,26 +66,21 @@ export const extractProps = (
   // Every component internally uses the Box component.
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
-    for (const prop in componentVariantProps) {
-      if (Object.hasOwn(componentVariantProps, prop)) {
-        delete componentVariantProps[prop];
+    for (const prop in baseStyleProps) {
+      if (Object.hasOwn(baseStyleProps, prop)) {
+        delete baseStyleProps[prop];
       }
     }
   }
   const combinedProps = {
-    ...componentVariantProps,
+    ...baseStyleProps,
     ...specificProps,
     ...styledProps,
     ...pseudoProps,
   };
-  const key = stableStringify(combinedProps);
-  let generatedStyle = styleCache[key];
-  // If the result isn't in the cache, generate it and save it to the cache
-  if (!generatedStyle) {
-    generatedStyle = new StyleGenerator(combinedProps).getStyle();
-    styleCache[key] = generatedStyle;
-  }
-  const { className: generatedClassName, css } = generatedStyle;
+  const { className: generatedClassName, css } = new StyleGenerator(
+    combinedProps
+  ).getStyle();
 
   // If no generatedClassName is returned, the component should remain intact
   if (!generatedClassName) return { css };
@@ -148,7 +128,3 @@ export const extractProps = (
   });
   return { css };
 };
-
-const styleCache: {
-  [key: string]: { className: string; css: string } | undefined;
-} = {};

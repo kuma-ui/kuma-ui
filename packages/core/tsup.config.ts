@@ -7,13 +7,23 @@ export default defineConfig([
     clean: true,
     dts: true,
     format: ["cjs"],
-    entry: ["src", "!src/**/*.test.*", "!src/**__test__/**"],
+    entry: [
+      "src",
+      "!src/**/*.test.*",
+      "!src/**__test__/**",
+      "!src/**/vitest.setup.ts",
+    ],
     bundle: false,
   },
   {
     clean: true,
     format: ["esm"],
-    entry: ["src", "!src/**/*.test.*", "!src/**__test__/**"],
+    entry: [
+      "src",
+      "!src/**/*.test.*",
+      "!src/**__test__/**",
+      "!src/**/vitest.setup.ts",
+    ],
     bundle: true,
     esbuildPlugins: [
       {

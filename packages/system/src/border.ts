@@ -6,9 +6,9 @@ import {
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { ValueConverter, radiusConverter } from "./valueConverters";
 
 export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
@@ -136,11 +136,11 @@ const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderBottom: toCssUnit,
   borderX: toCssUnit,
   borderY: toCssUnit,
-  borderRadius: radiusConverter,
-  borderTopLeftRadius: radiusConverter,
-  borderTopRightRadius: radiusConverter,
-  borderBottomLeftRadius: radiusConverter,
-  borderBottomRightRadius: radiusConverter,
+  borderRadius: toCssUnit,
+  borderTopLeftRadius: toCssUnit,
+  borderTopRightRadius: toCssUnit,
+  borderBottomLeftRadius: toCssUnit,
+  borderBottomRightRadius: toCssUnit,
   borderWidth: toCssUnit,
   borderTopWidth: toCssUnit,
   borderBottomWidth: toCssUnit,
@@ -150,8 +150,8 @@ const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderEnd: toCssUnit,
   borderStartWidth: toCssUnit,
   borderEndWidth: toCssUnit,
-  borderStartRadius: radiusConverter,
-  borderEndRadius: radiusConverter,
+  borderStartRadius: toCssUnit,
+  borderEndRadius: toCssUnit,
 };
 
 export const border = (props: BorderProps): ResponsiveStyle => {

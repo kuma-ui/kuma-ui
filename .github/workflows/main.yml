@@ -16,7 +16,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [16]
+        node_version: [16, 18]
         os: [ubuntu-latest, windows-latest]
     steps:
       - name: Checkout
@@ -41,7 +41,7 @@ jobs:
 
       - uses: ./.github/actions/setup-pnpm
         with:
-          node_version: 16
+          node_version: 18
 
       - name: Build packages
         run: pnpm build
@@ -61,7 +61,7 @@ jobs:
 
       - uses: ./.github/actions/setup-pnpm
         with:
-          node_version: 16
+          node_version: 18
 
       - name: Run changeset status
         run: pnpm changeset status --since origin/main

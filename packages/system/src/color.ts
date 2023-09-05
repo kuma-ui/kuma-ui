@@ -7,7 +7,6 @@ import {
   ThemeSystemType,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
-import { theme } from "@kuma-ui/sheet";
 
 export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -55,23 +54,7 @@ export const color = (props: ColorProps): ResponsiveStyle => {
     const cssValue = props[key as ColorKeys];
     if (cssValue != undefined) {
       const property = colorMappings[key as ColorKeys];
-      const userTheme = theme.getUserTheme();
-      let converter: (value: string | number) => string | number;
-      if (userTheme.colors) {
-        converter = (value) => {
-          if (value in (userTheme.colors ?? {})) {
-            return userTheme.colors?.[value] as string;
-          }
-          return value;
-        };
-      } else {
-        converter = (v) => v;
-      }
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter
-      );
+      const responsiveStyles = applyResponsiveStyles(property, cssValue);
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
         if (media[breakpoint]) media[breakpoint] += css;
