@@ -24,13 +24,6 @@ class KumaUIWebpackPlugin {
         this.config = path.join(process.cwd(), filePath);
       }
     });
-
-    if (this.config) {
-      const userTheme = getUserTheme(this.config);
-      if (userTheme) {
-        theme.setUserTheme(userTheme);
-      }
-    }
   }
 
   apply(compiler: Compiler) {
