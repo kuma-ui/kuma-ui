@@ -44,10 +44,7 @@ export const extractProps = (
     } else if (isComponentProps(componentName)(propName)) {
       componentProps[propName] = propValue;
     } else if (propName === "variant") {
-      Object.assign(
-        baseStyleProps,
-        variant?.variants?.[propValue as string]
-      );
+      Object.assign(baseStyleProps, variant?.variants?.[propValue as string]);
       jsx.getAttribute("variant")?.remove();
     } else if (propName === "IS_KUMA_DEFAULT") {
       isDefault = true;
