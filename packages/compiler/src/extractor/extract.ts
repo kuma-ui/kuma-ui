@@ -37,7 +37,7 @@ export const extractProps = (
 
   const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentVariantProps: { [key: string]: any } = {
+  const baseStyleProps: { [key: string]: any } = {
     ...(variant?.baseStyle as Record<string, string>),
   };
 
@@ -59,7 +59,7 @@ export const extractProps = (
       componentProps[propName.trim()] = propValue;
     } else if (propName.trim() === "variant") {
       Object.assign(
-        componentVariantProps,
+        baseStyleProps,
         variant?.variants?.[propValue as string]
       );
       jsx.getAttribute("variant")?.remove();
@@ -83,14 +83,14 @@ export const extractProps = (
   // Every component internally uses the Box component.
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
-    for (const prop in componentVariantProps) {
-      if (Object.hasOwn(componentVariantProps, prop)) {
-        delete componentVariantProps[prop];
+    for (const prop in baseStyleProps) {
+      if (Object.hasOwn(baseStyleProps, prop)) {
+        delete baseStyleProps[prop];
       }
     }
   }
   const combinedProps = {
-    ...componentVariantProps,
+    ...baseStyleProps,
     ...specificProps,
     ...styledProps,
     ...pseudoProps,
