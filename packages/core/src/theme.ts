@@ -93,7 +93,7 @@ export function createTheme<T>(theme: ThemeInput<T>): ThemeResult<T> {
 
   return {
     ...resolvedTokens,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+
     components: rawTheme.components,
   } as unknown as ThemeResult<T>;
 }

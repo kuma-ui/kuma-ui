@@ -8,7 +8,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { Text } from '@kuma-ui/core';
 function App() {
-  return <Text className={\\"🐻-1587700805\\"} />;
+  return <p className={\\"🐻-1587700805\\"} />;
 }
 "
 `;
@@ -21,7 +21,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { Text } from '@kuma-ui/core';
 function App() {
-  return <Text className={\\"🐻-4138457428\\"} />;
+  return <p className={\\"🐻-4138457428\\"} />;
 }
 "
 `;
