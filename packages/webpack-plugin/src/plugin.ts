@@ -44,6 +44,8 @@ class KumaUIWebpackPlugin {
                     return JSON.stringify(userTheme);
                   },
                   {
+                    // enable automatic rebuild for dynamic theme props
+                    // <Box color={(() => "colors.red.100"))()} />
                     fileDependencies: [config],
                   }
                 ),

@@ -23,6 +23,8 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   const { config, virtualLoader, cssOutputDir } = this.getOptions();
 
   if (config) {
+    // enable automatic rebuild for static theme props
+    // <Box color={"colors.red.100"} />
     this.addDependency(config);
     const userTheme = getUserTheme(config);
     if (userTheme) {
