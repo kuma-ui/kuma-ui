@@ -82,9 +82,9 @@ Breakpoints are a separate category, defined as an object with keys being the br
 
 ### Component Styles
 
-You can define styles for your components in the `components` section of your theme. Each component can have `base` and `variants` styles:
+You can define styles for your components in the `components` section of your theme. Each component can have `defaultProps` and `variants` styles:
 
-- **Base Styles**: Base styles are applied to all instances of a component. For instance, if you set a `base` style for the Button component, all Button instances in your app will have that style.
+- **Default Props**: `defaultProps` are applied to all instances of a component, as configured in your theme configuration. For instance, if you set a `variant` prop for the Button component in your theme configuration, all Button instances in your app will have that prop by default.
 
 - **Variant Styles**: Variant styles can be applied to a component by passing a `variant` prop to it. For example, if you have a `primary` variant for the Button component, you can apply it like so: `<Button variant="primary" />`.
 
