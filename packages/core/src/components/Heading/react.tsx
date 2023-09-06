@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
+import { defaultHeadingTag } from "./handler";
 
 type HeadingProps = ComponentProps<"Heading">;
 
@@ -25,7 +26,7 @@ type HeadingComponent<
 const Heading: HeadingComponent = <
   T extends "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1"
 >({
-  as: Component = "h1",
+  as: Component = defaultHeadingTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, HeadingProps>) => {

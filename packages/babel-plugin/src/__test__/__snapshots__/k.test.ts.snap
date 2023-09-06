@@ -8,7 +8,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box>;
+  return <div className={\\"🐻-4229161508\\"}></div>;
 }
 "
 `;
@@ -21,7 +21,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}><__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box></__Box>;
+  return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>;
 }
 "
 `;
@@ -34,7 +34,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${css({
+  return <div className={\`🐻-2131929892 \${css({
           boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
         })}\`} />;
 }
@@ -49,7 +49,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2631981251\\"} />;
+  return <div className={\\"🐻-2631981251\\"} />;
 }
 "
 `;
@@ -62,7 +62,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2131929892\\"} />;
+  return <span className={\\"🐻-2131929892\\"} />;
 }
 "
 `;
@@ -75,7 +75,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"a\\" IS_KUMA_DEFAULT={true} className={\\"🐻-401969115\\"} />;
+  return <a className={\\"🐻-401969115\\"} />;
 }
 "
 `;
@@ -88,7 +88,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-3206633536\\"} />;
+  return <div className={\\"🐻-3206633536\\"} />;
 }
 "
 `;
@@ -101,7 +101,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box>;
+  return <div className={\\"🐻-4229161508\\"}></div>;
 }
 "
 `;
@@ -114,7 +114,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}><__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box></__Box>;
+  return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>;
 }
 "
 `;
@@ -127,7 +127,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${css({
+  return <div className={\`🐻-2131929892 \${css({
           boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
         })}\`} />;
 }
@@ -142,7 +142,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2631981251\\"} />;
+  return <div className={\\"🐻-2631981251\\"} />;
 }
 "
 `;
@@ -155,7 +155,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2131929892\\"} />;
+  return <span className={\\"🐻-2131929892\\"} />;
 }
 "
 `;
@@ -168,7 +168,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"a\\" IS_KUMA_DEFAULT={true} className={\\"🐻-401969115\\"} />;
+  return <a className={\\"🐻-401969115\\"} />;
 }
 "
 `;
@@ -181,7 +181,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-3206633536\\"} />;
+  return <div className={\\"🐻-3206633536\\"} />;
 }
 "
 `;
@@ -194,7 +194,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box>;
+  return <div className={\\"🐻-4229161508\\"}></div>;
 }
 "
 `;
@@ -207,7 +207,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}><__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-4229161508\\"}></__Box></__Box>;
+  return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>;
 }
 "
 `;
@@ -220,7 +220,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k, css } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\`🐻-2131929892 \${css({
+  return <div className={\`🐻-2131929892 \${css({
           boxShadow: '0 1px 2px 0 rgba(0, 0, 0, 0.05)'
         })}\`} />;
 }
@@ -235,7 +235,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2631981251\\"} />;
+  return <div className={\\"🐻-2631981251\\"} />;
 }
 "
 `;
@@ -248,7 +248,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"span\\" IS_KUMA_DEFAULT={true} className={\\"🐻-2131929892\\"} />;
+  return <span className={\\"🐻-2131929892\\"} />;
 }
 "
 `;
@@ -261,7 +261,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"a\\" IS_KUMA_DEFAULT={true} className={\\"🐻-401969115\\"} />;
+  return <a className={\\"🐻-401969115\\"} />;
 }
 "
 `;
@@ -274,7 +274,7 @@ import { Box as __Box } from \\"@kuma-ui/core\\";
 import React from \\"react\\";
 import { k } from '@kuma-ui/core';
 function App() {
-  return <__Box as=\\"div\\" IS_KUMA_DEFAULT={true} className={\\"🐻-3206633536\\"} />;
+  return <div className={\\"🐻-3206633536\\"} />;
 }
 "
 `;

@@ -12,8 +12,4 @@ function App() {
   );
 }
 
-const HelloWorld = styled("p")`
-  color: red;
-`;
-
 export default App;

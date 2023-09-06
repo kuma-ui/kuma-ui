@@ -8,6 +8,7 @@ import {
 import { collectPropsFromJsx } from "./collector";
 import { extractProps } from "./extractor";
 import { componentList } from "@kuma-ui/core/components/componentList";
+import { optimize } from "./optimizer/optimize";
 import { processTaggedTemplateExpression } from "./processTaggedTemplateExpression";
 
 const project = new Project({});
@@ -49,6 +50,12 @@ const compile = (
         extractedPropsMap
       );
       if (result) css.push(result.css);
+
+      optimize(
+        componentName,
+        openingElement,
+        extractedPropsMap["as"] as string | undefined
+      );
     }
     if (Node.isTaggedTemplateExpression(node)) {
       processTaggedTemplateExpression(node, bindings);

@@ -9,6 +9,7 @@ import {
   ComponentProps,
 } from "../types";
 import { Box } from "../Box";
+import { defaultFlexTag } from "./handler";
 
 type FlexProps = ComponentProps<"Flex">;
 
@@ -21,7 +22,7 @@ type FlexComponent<T extends As = "div"> = ComponentWithAs<T, FlexProps>;
  * @see — http://kuma-ui.com/docs/Components/Flex
  */
 const Flex: FlexComponent = <T extends As = "div">({
-  as: Component = "div",
+  as: Component = defaultFlexTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, FlexProps>) => {
@@ -34,7 +35,6 @@ const Flex: FlexComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />
