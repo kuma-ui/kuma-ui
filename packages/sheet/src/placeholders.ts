@@ -34,20 +34,6 @@ export const applyT = (
   );
 };
 
-export const applyArrayT = (
-  input: string | string[],
-  placeholders: Placeholders,
-  factor: number
-): string | string[] => {
-  if (typeof input === "string") {
-    return applyT(input, placeholders, factor);
-  } else if (Array.isArray(input)) {
-    return input.map((str) => applyT(str, placeholders, factor));
-  }
-
-  throw new Error("Invalid input type. Expected string or string[].");
-};
-
 export const applyPlaceholders = (
   input: string,
   placeholders: Placeholders

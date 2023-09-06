@@ -3,7 +3,6 @@ import {
   applySpacingScalingFactor,
   createPlaceholders,
   applyT,
-  applyArrayT,
 } from "./placeholders";
 import { describe, expect, it } from "vitest";
 import { UserTheme } from "./theme";
@@ -237,26 +236,6 @@ describe("Theme utility functions", () => {
       const input = "This is a t('non.existent') placeholder";
       const result = applyT(input, placeholders, 8);
       expect(result).toBe("This is a t('non.existent') placeholder");
-    });
-
-    it("should process an array of strings correctly", () => {
-      const input = [
-        "Background is t('c.primary')",
-        "Margin is t(2)",
-        "Padding is t(1.5)",
-      ];
-      const result = applyArrayT(input, placeholders, 8);
-      expect(result).toEqual([
-        "Background is #FF0000",
-        "Margin is 16px",
-        "Padding is 12px",
-      ]);
-    });
-
-    it("should leave unchanged values in an array when there's no matching placeholder", () => {
-      const input = ["This is t('non.existent')", "Padding is t(1.5)"];
-      const result = applyArrayT(input, placeholders, 8);
-      expect(result).toEqual(["This is t('non.existent')", "Padding is 12px"]);
     });
   });
 });

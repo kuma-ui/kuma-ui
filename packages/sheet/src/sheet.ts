@@ -5,7 +5,7 @@ import {
   removeSpacesExceptInProperties,
 } from "./regex";
 import { compile, serialize, stringify, Element } from "stylis";
-import { applyArrayT, applyT } from "./placeholders";
+import { applyT } from "./placeholders";
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
