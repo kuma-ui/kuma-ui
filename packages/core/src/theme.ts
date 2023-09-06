@@ -80,7 +80,9 @@ export type ThemeSystem = {
   components: If<IsNever<ThemeComponents>, unknown, ThemeComponents>;
 } & SystemThemeTokens;
 
-export function createTheme<T>(theme: ThemeInput<T>): ThemeResult<T> {
+export function createTheme<const T extends ThemeInput<T>>(
+  theme: T
+): ThemeResult<T> {
   const rawTheme = theme as RawThemeInput;
   const resolvedTokens = {};
   for (const key in rawTheme) {
