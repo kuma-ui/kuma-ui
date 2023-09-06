@@ -1,4 +1,4 @@
-import { createTheme } from "./theme";
+import { createTheme, ThemeInput } from "./theme";
 import { describe, expect, test, expectTypeOf } from "vitest";
 
 describe("createTheme", () => {
@@ -42,20 +42,20 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      colors: {
-        "colors.red": string;
-        "colors.blue": string;
-        "colors.green.light": string;
-        "colors.green.dark": string;
-        "colors.yellow.100": string;
-        "colors.yellow.200": string;
-        "colors.purple.light": string;
-        "colors.purple.dark": string;
-        "colors.purple.100": string;
-        "colors.purple.200": string;
+      readonly colors: {
+        "colors.red": "#red";
+        "colors.blue": "#blue";
+        "colors.green.light": "#green_light";
+        "colors.green.dark": "#green_dark";
+        "colors.yellow.100": "#yellow_100";
+        "colors.yellow.200": "#yellow_200";
+        "colors.purple.light": "#purple_light";
+        "colors.purple.dark": "#purple_dark";
+        "colors.purple.100": "#purple_100";
+        "colors.purple.200": "#purple_200";
       };
-      fonts: {
-        "fonts.sans.n": string;
+      readonly fonts: {
+        "fonts.sans.n": "fonts sans n";
       };
       components: undefined;
     }>();
@@ -79,10 +79,10 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      spacings: {
-        "spacings.1": string;
-        "spacings.4": string;
-        "spacings.sm": string;
+      readonly spacings: {
+        "spacings.1": "0.25rem";
+        "spacings.4": "1rem";
+        "spacings.sm": "8px";
       };
       components: undefined;
     }>();
@@ -106,10 +106,10 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      sizes: {
-        "sizes.1": string;
-        "sizes.4": string;
-        "sizes.sm": string;
+      readonly sizes: {
+        "sizes.1": "0.25rem";
+        "sizes.4": "1rem";
+        "sizes.sm": "8px";
       };
       components: undefined;
     }>();
@@ -133,10 +133,10 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      radii: {
-        "radii.1": string;
-        "radii.4": string;
-        "radii.sm": string;
+      readonly radii: {
+        "radii.1": "0.25rem";
+        "radii.4": "1rem";
+        "radii.sm": "8px";
       };
       components: undefined;
     }>();
@@ -158,9 +158,9 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      zIndices: {
-        "zIndices.overlay": string;
-        "zIndices.modal": string;
+      readonly zIndices: {
+        "zIndices.overlay": "10";
+        "zIndices.modal": "100";
       };
       components: undefined;
     }>();
@@ -191,6 +191,9 @@ describe("createTheme", () => {
             red: {
               color: "red",
             },
+            blue: {
+              color: "blue",
+            },
           },
         },
       },
@@ -207,6 +210,9 @@ describe("createTheme", () => {
             red: {
               color: "red",
             },
+            blue: {
+              color: "blue",
+            },
           },
         },
       },
@@ -214,16 +220,13 @@ describe("createTheme", () => {
 
     expectTypeOf(theme).toEqualTypeOf<{
       components: {
-        Box: {
-          baseStyle: {
-            color: "red";
-          };
-          defaultProps: {
-            variant: string;
-          };
-          variants: {
-            red: {
-              color: "red";
+        readonly Box: {
+          readonly baseStyle: { readonly color: "red" };
+          readonly defaultProps: { readonly variant: "red" };
+          readonly variants: {
+            readonly red: { readonly color: "red" };
+            readonly blue: {
+              readonly color: "blue";
             };
           };
         };
