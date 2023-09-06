@@ -1,0 +1,65 @@
+---
+title: "Optimization"
+description: "Discover the advanced optimization techniques utilized by Kuma UI to enhance performance."
+---
+
+import { Callout } from "nextra-theme-docs";
+
+# Optimization
+
+Kuma UI stands at the forefront of optimization in the modern web development landscape. When Kuma components are composed entirely of static styles, they are compiled to raw HTML, [achieving a performance benchmark that is on par with native HTML and CSS](https://github.com/kuma-ui/kuma-bench). This section details the underlying mechanisms that power this optimization and how you can make the most out of Kuma UI.
+
+## Static Compilation
+
+Consider the following component:
+
+```tsx
+function App() {
+  return (
+    <HStack flexDir={["row", "column"]}>
+      <Text>hello</Text>
+    </HStack>
+  );
+}
+```
+
+Kuma UI is capable of compiling this component to a more streamlined version that resembles the following:
+
+```tsx
+function App() {
+  return (
+    <div className={"🐻-4011430064"}>
+      <p>hello</p>
+    </div>
+  );
+}
+```
+
+As you can see, the Kuma component, which initially contained only static styles, is compiled to raw HTML, enhancing its performance to match that of plain HTML and CSS.
+
+## Bundle Optimization
+
+Furthermore, if your application doesn't incorporate dynamic styles across its entirety, **Kuma components are subjected to tree shaking, preventing them from being included in the bundle**. This technique can potentially reduce the bundle size by about 30KB, a substantial benefit for projects with stringent performance requirements.
+
+In cases where components include dynamic styles, consider implementing asynchronous imports and leveraging code splitting to prevent these components from augmenting the bundle size.
+
+## Dealing with Spread Syntax
+
+When utilizing the spread syntax to pass props to Kuma components, it becomes impossible to statically analyze whether style props are contained within those props, preventing optimization.
+
+Therefore, when employing spread syntax props, adhere to assigning classes to native HTML tags using the css function, as illustrated below:
+
+```tsx
+<div
+  className={css`
+    font-size: 16px;
+    font-weight: 500;
+  `}
+/>
+```
+
+<Callout type="info">
+  Looking ahead, we plan to introduce a special prop that will enable developers
+  to specify the compilation to raw HTML when it is predetermined that no style
+  props are contained within the spread props.
+</Callout>
