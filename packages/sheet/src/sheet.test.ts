@@ -1,6 +1,7 @@
 import { sheet, SystemStyle } from "./sheet";
-import { describe, expect, test, beforeEach } from "vitest";
+import { describe, expect, test, beforeEach, beforeAll } from "vitest";
 import { removeSpacesAroundCssPropertyValues } from "./regex";
+import { theme } from "./theme";
 
 describe("Sheet class", () => {
   beforeEach(() => {
@@ -79,5 +80,38 @@ describe("Sheet class", () => {
     const expectedCSS = `.${id}{color:red;}@media (min-width:768px){.${id}{color:blue;}}@media (min-width:768px){.${id}:hover{color:yellow;}}.${id}:hover{color:green;}`;
     // Assert
     expect(cssString).toEqual(expectedCSS);
+  });
+
+  describe("Sheet placeholders", () => {
+    beforeAll(() => {
+      theme.setUserTheme({
+        breakpoints: {
+          sm: "1000px",
+        },
+        colors: {
+          primary: "red",
+          secondary: "blue",
+        },
+        zIndices: {
+          modal: "1000",
+        },
+      });
+    });
+
+    test("parseCSS() support of t()", () => {
+      // Arrange
+      const style = `
+      color: t("colors.primary");
+      background-color: t('c.secondary');
+      @media (max-width: t("b.sm")) {
+        flex-direction: column;
+      }
+    `;
+      // Act
+      const className = sheet.parseCSS(style);
+      // Assert
+      const expectedCSS = `.${className}{color:red;background-color:blue;}@media (max-width: 1000px){.${className}{flex-direction:column;}}`;
+      expect(sheet.getCSS()).toEqual(expectedCSS);
+    });
   });
 });

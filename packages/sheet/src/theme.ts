@@ -1,3 +1,5 @@
+import { createPlaceholders, Placeholders } from "./placeholders";
+
 export const defaultBreakpoints = Object.freeze({
   sm: "576px",
   md: "768px",
@@ -60,6 +62,7 @@ export class Theme {
     breakpoints:
       globalThis.__KUMA_USER_THEME__?.breakpoints ?? defaultBreakpoints,
   };
+  private _placeholders: Placeholders = {};
 
   private constructor() {}
 
@@ -78,10 +81,19 @@ export class Theme {
       ...this._userTheme,
       ...userTheme,
     };
+    this._placeholders = createPlaceholders(this._userTheme);
   }
 
   getUserTheme() {
     return this._userTheme;
+  }
+
+  getSpacingScalingFactor() {
+    return 8;
+  }
+
+  getPlaceholders(): Placeholders {
+    return this._placeholders;
   }
 
   getVariants(componentName: ComponentName):
