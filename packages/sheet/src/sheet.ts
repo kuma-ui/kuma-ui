@@ -35,14 +35,11 @@ export class Sheet {
 
   private css: string[];
 
-  private placeholders: Record<string, string>;
-
   private constructor() {
     this.base = [];
     this.responsive = [];
     this.pseudo = [];
     this.css = [];
-    this.placeholders = theme?.getPlaceholders() || {};
   }
 
   static getInstance() {
