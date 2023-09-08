@@ -4,6 +4,7 @@ import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { ComponentProps } from "../types";
+import { defaultInputTag } from "./handler";
 
 type InputProps = ComponentProps<"Input">;
 type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
@@ -14,7 +15,7 @@ type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
  * @see — http://kuma-ui.com/docs/Components/Input
  */
 const Input: InputComponent = <T extends As>({
-  as: Component = "input",
+  as: Component = defaultInputTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, InputProps>) => {
@@ -27,7 +28,6 @@ const Input: InputComponent = <T extends As>({
       as={Component}
       {...variantStyle}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

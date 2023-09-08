@@ -1,5 +1,7 @@
 import { StyledProps } from "@kuma-ui/system";
 
+export const defaultInputTag = "input";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type InputSpecificProps = {};
 

@@ -1,5 +1,7 @@
 import { StyledProps } from "@kuma-ui/system";
 
+export const defaultImageTag = "img";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type ImageSpecificProps = {};
 

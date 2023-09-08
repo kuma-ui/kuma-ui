@@ -9,6 +9,7 @@ import {
   ComponentProps,
 } from "../types";
 import { Box } from "../Box";
+import { defaultVStackTag } from "./handler";
 
 type VStackProps = ComponentProps<"VStack">;
 
@@ -20,7 +21,7 @@ type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
  * @see — http://kuma-ui.com/docs/Components/VStack
  */
 const VStack: VStackComponent = <T extends As = "div">({
-  as: Component = "div",
+  as: Component = defaultVStackTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, VStackProps>) => {
@@ -33,7 +34,6 @@ const VStack: VStackComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />

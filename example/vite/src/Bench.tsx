@@ -1,24 +1,38 @@
-import React from "react";
+import React, { Profiler, ProfilerOnRenderCallback } from "react";
 import { Box, Heading, css, Text, Link } from "@kuma-ui/core";
 import { useState, useEffect } from "react";
 
-export const Hero = () => {
-  const isDark = useState(false);
-
-  useEffect(() => {
-    const html = document.getElementsByTagName("html")[0];
-    isDark[1](html.style.colorScheme === "dark");
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
-        // 'colorScheme' is not a standard style property, but we monitor it here
-        // because 'nextra-theme-docs' applies its own color scheme settings.
-        isDark[1](html.style.colorScheme === "dark");
-      });
+export const Bench = () => {
+  const callback = (
+    id: string, // the "id" prop of the Profiler tree that has just committed
+    phase: string, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+    actualDuration: number, // time spent rendering the committed update
+    baseDuration: number, // estimated time to render the entire subtree without memoization
+    startTime: number, // when React began rendering this update
+    commitTime: number, // when React committed this update
+    interactions: Set<any>,
+  ) => {
+    console.log({
+      id,
+      phase,
+      actualDuration,
+      baseDuration,
+      startTime,
+      commitTime,
+      interactions,
     });
-    observer.observe(html, { attributeFilter: ["style"] });
-    return () => observer.disconnect();
-  }, []);
+  };
 
+  return (
+    <Profiler id="hero" onRender={callback}>
+      {Array.from({ length: 1000 }).map((_, index) => (
+        <Hero key={index} />
+      ))}
+    </Profiler>
+  );
+};
+
+const Hero = () => {
   return (
     <Box m={["40px auto", "80px auto 0px"]}>
       <Box position="relative">
@@ -53,9 +67,6 @@ export const Hero = () => {
               mix-blend-mode: plus-lighter;
             }
           `}
-          style={{
-            mixBlendMode: isDark[0] ? "plus-lighter" : "initial",
-          }}
         >
           With Kuma UI's headless, zero-runtime UI components, build
           top-performing websites effortlessly, while enjoying the best

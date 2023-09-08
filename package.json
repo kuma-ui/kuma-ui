@@ -33,6 +33,7 @@
   "scripts": {
     "bootstrap": "pnpm install",
     "build": "turbo run build",
+    "build:packages": "turbo run build --filter @kuma-ui/*",
     "test": "turbo run test",
     "lint": "eslint './packages/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0",

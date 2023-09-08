@@ -1,4 +1,4 @@
-import { createTheme } from "./theme";
+import { createTheme, ThemeInput } from "./theme";
 import { describe, expect, test, expectTypeOf } from "vitest";
 
 describe("createTheme", () => {
@@ -57,7 +57,7 @@ describe("createTheme", () => {
       readonly fonts: {
         "fonts.sans.n": "fonts sans n";
       };
-      components: unknown;
+      components: undefined;
     }>();
   });
 
@@ -84,7 +84,7 @@ describe("createTheme", () => {
         "spacings.4": "1rem";
         "spacings.sm": "8px";
       };
-      components: unknown;
+      components: undefined;
     }>();
   });
 
@@ -111,7 +111,7 @@ describe("createTheme", () => {
         "sizes.4": "1rem";
         "sizes.sm": "8px";
       };
-      components: unknown;
+      components: undefined;
     }>();
   });
 
@@ -138,7 +138,7 @@ describe("createTheme", () => {
         "radii.4": "1rem";
         "radii.sm": "8px";
       };
-      components: unknown;
+      components: undefined;
     }>();
   });
 
@@ -162,11 +162,11 @@ describe("createTheme", () => {
         "zIndices.overlay": "10";
         "zIndices.modal": "100";
       };
-      components: unknown;
+      components: undefined;
     }>();
   });
 
-  test("should return an empty theme when no colors are provided", () => {
+  test("should autocomplete theme components", () => {
     const theme = createTheme({});
 
     expect(theme).toEqual({
@@ -175,7 +175,62 @@ describe("createTheme", () => {
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
-      components: unknown;
+      components: undefined;
+    }>();
+  });
+
+  test("should correctly generate theme for components", () => {
+    const theme = createTheme({
+      components: {
+        Box: {
+          baseStyle: {
+            color: "red",
+          },
+          defaultProps: { variant: "red" },
+          variants: {
+            red: {
+              color: "red",
+            },
+            blue: {
+              color: "blue",
+            },
+          },
+        },
+      },
+    });
+
+    expect(theme).toEqual({
+      components: {
+        Box: {
+          baseStyle: {
+            color: "red",
+          },
+          defaultProps: { variant: "red" },
+          variants: {
+            red: {
+              color: "red",
+            },
+            blue: {
+              color: "blue",
+            },
+          },
+        },
+      },
+    });
+
+    expectTypeOf(theme).toEqualTypeOf<{
+      components: {
+        readonly Box: {
+          readonly baseStyle: { readonly color: "red" };
+          readonly defaultProps: { readonly variant: "red" };
+          readonly variants: {
+            readonly red: { readonly color: "red" };
+            readonly blue: {
+              readonly color: "blue";
+            };
+          };
+        };
+      };
     }>();
   });
 });

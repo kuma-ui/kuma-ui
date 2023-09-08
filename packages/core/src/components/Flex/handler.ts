@@ -1,5 +1,7 @@
 import { StyledProps } from "@kuma-ui/system";
 
+export const defaultFlexTag = "div";
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type FlexSpecificProps = {};
 

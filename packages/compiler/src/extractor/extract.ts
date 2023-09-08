@@ -23,16 +23,18 @@ export const extractProps = (
 
   const variant = theme.getVariants(componentName);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentVariantProps: { [key: string]: any } = {
+  const baseStyleProps: { [key: string]: any } = {
     ...(variant?.baseStyle as Record<string, string>),
   };
 
-  const defaultProps = componentDefaultProps(componentName);
+  const systemDefaultProps = componentDefaultProps(componentName);
+  const userDefaultProps = variant?.defaultProps;
 
   let isDefault = false;
 
   for (const [propName, propValue] of Object.entries({
-    ...defaultProps,
+    ...systemDefaultProps,
+    ...userDefaultProps,
     ...propsMap,
   })) {
     if (isStyledProp(propName)) {
@@ -42,10 +44,7 @@ export const extractProps = (
     } else if (isComponentProps(componentName)(propName)) {
       componentProps[propName] = propValue;
     } else if (propName === "variant") {
-      Object.assign(
-        componentVariantProps,
-        variant?.variants?.[propValue as string]
-      );
+      Object.assign(baseStyleProps, variant?.variants?.[propValue as string]);
       jsx.getAttribute("variant")?.remove();
     } else if (propName === "IS_KUMA_DEFAULT") {
       isDefault = true;
@@ -67,14 +66,14 @@ export const extractProps = (
   // Every component internally uses the Box component.
   // However, we do not want to apply the Box theme in those cases.
   if (componentName === "Box" && isDefault) {
-    for (const prop in componentVariantProps) {
-      if (Object.hasOwn(componentVariantProps, prop)) {
-        delete componentVariantProps[prop];
+    for (const prop in baseStyleProps) {
+      if (Object.hasOwn(baseStyleProps, prop)) {
+        delete baseStyleProps[prop];
       }
     }
   }
   const combinedProps = {
-    ...componentVariantProps,
+    ...baseStyleProps,
     ...specificProps,
     ...styledProps,
     ...pseudoProps,

@@ -1,4 +1,3 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
 import { theme } from "@kuma-ui/sheet";
 import React, { ReactNode } from "react";
 import {
@@ -9,6 +8,7 @@ import {
   ComponentProps,
 } from "../types";
 import { Box } from "../Box";
+import { defaultGridTag } from "./handler";
 
 type GridProps = ComponentProps<"Grid">;
 
@@ -20,7 +20,7 @@ type GridComponent<T extends As = "div"> = ComponentWithAs<T, GridProps>;
  * @see — http://kuma-ui.com/docs/Components/Grid
  */
 const Grid: GridComponent = <T extends As = "div">({
-  as: Component = "div",
+  as: Component = defaultGridTag,
   children,
   ...props
 }: MergeWithAs<PropsOf<T>, GridProps>) => {
@@ -33,7 +33,6 @@ const Grid: GridComponent = <T extends As = "div">({
       as={Component}
       {...variant}
       {...props}
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
       children={children}
       IS_KUMA_DEFAULT
     />
