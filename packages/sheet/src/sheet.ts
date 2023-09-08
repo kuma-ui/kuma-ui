@@ -105,9 +105,8 @@ export class Sheet {
    */
   parseCSS(style: string): string {
     const placeholders = theme.getPlaceholders();
-    const scalingFactor = theme.getSpacingScalingFactor();
 
-    style = applyT(style, placeholders, scalingFactor);
+    style = applyT(style, placeholders);
 
     const id = Sheet.getClassNamePrefix() + generateHash(style);
 

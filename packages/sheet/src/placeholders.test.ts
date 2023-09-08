@@ -1,9 +1,4 @@
-import {
-  applyPlaceholders,
-  applySpacingScalingFactor,
-  createPlaceholders,
-  applyT,
-} from "./placeholders";
+import { applyPlaceholders, createPlaceholders, applyT } from "./placeholders";
 import { describe, expect, it } from "vitest";
 import { UserTheme } from "./theme";
 
@@ -31,25 +26,6 @@ describe("Theme utility functions", () => {
     });
   });
 
-  describe("applySpacingScalingFactor", () => {
-    it("replaces integers with scaled px value", () => {
-      const input = "Margin is t(2)";
-      expect(applySpacingScalingFactor(input, 8)).toBe("Margin is 16px");
-    });
-
-    it("replaces decimals with scaled px value", () => {
-      const input = "Padding is t(2.5)";
-      expect(applySpacingScalingFactor(input, 8)).toBe("Padding is 20px");
-    });
-
-    it("ignores non-number values", () => {
-      const input = "Something is t(notANumber)";
-      expect(applySpacingScalingFactor(input, 8)).toBe(
-        "Something is t(notANumber)"
-      );
-    });
-  });
-
   describe("createPlaceholders", () => {
     it("creates placeholders for valid theme values", () => {
       const theme: Partial<UserTheme> = {
@@ -63,9 +39,7 @@ describe("Theme utility functions", () => {
 
       expect(createPlaceholders(theme)).toEqual({
         "colors.primary": "#FF0000",
-        "c.primary": "#FF0000",
         "breakpoints.mobile": "480px",
-        "b.mobile": "480px",
       });
     });
 
@@ -78,7 +52,6 @@ describe("Theme utility functions", () => {
 
       expect(createPlaceholders(theme)).toEqual({
         "colors.primary": "#FF0000",
-        "c.primary": "#FF0000",
       });
     });
   });
@@ -114,41 +87,6 @@ describe("Theme utility functions", () => {
           placeholders
         )
       ).toBe("Colors: #FF0000, t('c.secondary')");
-    });
-  });
-
-  describe("applySpacingScalingFactor edge cases", () => {
-    it("handles negative numbers", () => {
-      expect(applySpacingScalingFactor("Margin is t(-2)", 8)).toBe(
-        "Margin is -16px"
-      );
-    });
-
-    it("handles zero", () => {
-      expect(applySpacingScalingFactor("Padding is t(0)", 8)).toBe(
-        "Padding is 0px"
-      );
-    });
-
-    it("handles very large numbers", () => {
-      expect(applySpacingScalingFactor("Width is t(1000)", 8)).toBe(
-        "Width is 8000px"
-      );
-    });
-
-    it("handles multiple spacing factors", () => {
-      expect(
-        applySpacingScalingFactor("Margin is t(2) and padding is t(2.5)", 8)
-      ).toBe("Margin is 16px and padding is 20px");
-    });
-
-    it("handles whitespace around numbers", () => {
-      expect(applySpacingScalingFactor("Margin is t( 2 )", 8)).toBe(
-        "Margin is 16px"
-      );
-      expect(applySpacingScalingFactor("Padding is t( 2.5 )", 8)).toBe(
-        "Padding is 20px"
-      );
     });
   });
 
@@ -201,40 +139,33 @@ describe("Theme utility functions", () => {
 
     const placeholders = createPlaceholders(theme);
 
-    it("should replace placeholders correctly", () => {
-      const input =
-        "Background is t('c.primary') and breakpoint is t('b.mobile')";
-      const result = applyT(input, placeholders, 8);
-      expect(result).toBe("Background is #FF0000 and breakpoint is 480px");
-    });
-
     it("should handle spacing scaling factor for positive numbers", () => {
       const input = "Margin is t(2)";
-      const result = applyT(input, placeholders, 8);
-      expect(result).toBe("Margin is 16px");
+      const result = applyT(input, placeholders);
+      expect(result).toBe("Margin is t(2)");
     });
 
     it("should handle spacing scaling factor for negative numbers", () => {
       const input = "Margin is t(-2)";
-      const result = applyT(input, placeholders, 8);
-      expect(result).toBe("Margin is -16px");
+      const result = applyT(input, placeholders);
+      expect(result).toBe("Margin is t(-2)");
     });
 
     it("should handle decimals in spacing scaling", () => {
       const input = "Padding is t(1.5)";
-      const result = applyT(input, placeholders, 8);
-      expect(result).toBe("Padding is 12px");
+      const result = applyT(input, placeholders);
+      expect(result).toBe("Padding is t(1.5)");
     });
 
     it("should handle whitespaces and both single and double quotation marks", () => {
-      const input = 'Color is t("c.primary") and space is t( 1 )';
-      const result = applyT(input, placeholders, 8);
-      expect(result).toBe("Color is #FF0000 and space is 8px");
+      const input = 'Color is t( "colors.primary" ) and space is t( 1 )';
+      const result = applyT(input, placeholders);
+      expect(result).toBe("Color is #FF0000 and space is t( 1 )");
     });
 
     it("should leave unchanged values when there's no matching placeholder", () => {
       const input = "This is a t('non.existent') placeholder";
-      const result = applyT(input, placeholders, 8);
+      const result = applyT(input, placeholders);
       expect(result).toBe("This is a t('non.existent') placeholder");
     });
   });

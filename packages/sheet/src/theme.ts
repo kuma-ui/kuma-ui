@@ -23,18 +23,21 @@ type ComponentName =
   | "Link"
   | "Grid";
 
-export type Tokens =
-  | "colors"
-  | "fonts"
-  | "fontSizes"
-  | "fontWeights"
-  | "lineHeights"
-  | "letterSpacings"
-  | "spacings"
-  | "sizes"
-  | "radii"
-  | "zIndices"
-  | "breakpoints";
+export const tokens = [
+  "colors",
+  "fonts",
+  "fontSizes",
+  "fontWeights",
+  "lineHeights",
+  "letterSpacings",
+  "spacings",
+  "sizes",
+  "radii",
+  "zIndices",
+  "breakpoints",
+] as const;
+
+export type Tokens = (typeof tokens)[number];
 
 export type UserTheme = {
   [K in Tokens]?: Record<string, string> | undefined;
@@ -86,10 +89,6 @@ export class Theme {
 
   getUserTheme() {
     return this._userTheme;
-  }
-
-  getSpacingScalingFactor() {
-    return 8;
   }
 
   getPlaceholders(): Placeholders {
