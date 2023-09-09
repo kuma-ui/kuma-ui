@@ -31,7 +31,7 @@ export const createPlaceholders = (
     const tokenValue = theme[token];
     if (tokenValue) {
       for (const key in tokenValue) {
-        result[`${token}.${key}`] = tokenValue[key]; // Add the token itself
+        result[key] = tokenValue[key]; // Add the token itself
       }
     }
   }

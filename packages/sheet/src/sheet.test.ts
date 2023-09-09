@@ -6,6 +6,18 @@ import { theme } from "./theme";
 describe("Sheet class", () => {
   beforeEach(() => {
     sheet.reset();
+    theme.setUserTheme({
+      breakpoints: {
+        "breakpoints.sm": "1000px",
+      },
+      colors: {
+        "colors.primary": "grey",
+        "colors.secondary": "black",
+      },
+      zIndices: {
+        "zIndices.modal": "1000",
+      },
+    });
   });
 
   // // Arrange
@@ -25,6 +37,22 @@ describe("Sheet class", () => {
     ],
   };
 
+  const stylePlaceholders: SystemStyle = {
+    base: "color: t('colors.primary');",
+    responsive: {
+      "t('breakpoints.sm')": "color: t('colors.secondary');",
+    },
+    pseudo: [
+      {
+        key: ":hover",
+        base: "color: t('colors.secondary');",
+        responsive: {
+          "t('breakpoints.sm')": "color: t('colors.primary');",
+        },
+      },
+    ],
+  };
+
   test("addRule() should handle SystemStyle correctly", () => {
     // Act
     const className = sheet.addRule(style);
@@ -34,6 +62,7 @@ describe("Sheet class", () => {
     expect(cssString).toContain(
       `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`
     );
+    console.log(cssString);
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${removeSpacesAroundCssPropertyValues(
         style.responsive["768px"]
@@ -50,6 +79,14 @@ describe("Sheet class", () => {
     // Act
     const id1 = sheet.addRule(style);
     const id2 = sheet.addRule(style);
+    // Assert
+    expect(id1).toBe(id2);
+  });
+
+  test("addRule() should not add duplicate rules (placeholders)", () => {
+    // Act
+    const id1 = sheet.addRule(stylePlaceholders);
+    const id2 = sheet.addRule(stylePlaceholders);
     // Assert
     expect(id1).toBe(id2);
   });
@@ -82,35 +119,30 @@ describe("Sheet class", () => {
     expect(cssString).toEqual(expectedCSS);
   });
 
-  describe("Sheet placeholders", () => {
-    beforeAll(() => {
-      theme.setUserTheme({
-        breakpoints: {
-          sm: "1000px",
-        },
-        colors: {
-          primary: "red",
-          secondary: "blue",
-        },
-        zIndices: {
-          modal: "1000",
-        },
-      });
-    });
+  test("getCSS() should return the CSS string with unique rules (placeholders)", () => {
+    // Arrange
+    const id = sheet.addRule(stylePlaceholders);
+    // Act
+    const cssString = sheet.getCSS();
+    const expectedCSS = `.${id}{color:grey;}@media (min-width:1000px){.${id}{color:black;}}@media (min-width:1000px){.${id}:hover{color:grey;}}.${id}:hover{color:black;}`;
+    // Assert
+    expect(cssString).toEqual(expectedCSS);
+  });
 
+  describe("Sheet placeholders", () => {
     test("parseCSS() support of t()", () => {
       // Arrange
       const style = `
       color: t("colors.primary");
-      background-color: t('c.secondary');
-      @media (max-width: t("b.sm")) {
+      background-color: t('colors.secondary');
+      @media (max-width: t("breakpoints.sm")) {
         flex-direction: column;
       }
     `;
       // Act
       const className = sheet.parseCSS(style);
       // Assert
-      const expectedCSS = `.${className}{color:red;background-color:blue;}@media (max-width: 1000px){.${className}{flex-direction:column;}}`;
+      const expectedCSS = `.${className}{color:grey;background-color:black;}@media (max-width: 1000px){.${className}{flex-direction:column;}}`;
       expect(sheet.getCSS()).toEqual(expectedCSS);
     });
   });

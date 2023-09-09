@@ -5,10 +5,11 @@ import { UserTheme } from "./theme";
 describe("Theme utility functions", () => {
   describe("applyPlaceholders", () => {
     it("replaces valid placeholders", () => {
-      const input = "Color is t('c.primary') and breakpoint is t('b.mobile')";
+      const input =
+        "Color is t('colors.primary') and breakpoint is t('breakpoints.mobile')";
       const placeholders = {
-        "c.primary": "#FF0000",
-        "b.mobile": "480px",
+        "colors.primary": "#FF0000",
+        "breakpoints.mobile": "480px",
       };
       expect(applyPlaceholders(input, placeholders)).toBe(
         "Color is #FF0000 and breakpoint is 480px"
@@ -16,9 +17,10 @@ describe("Theme utility functions", () => {
     });
 
     it("ignores invalid placeholders", () => {
-      const input = "Color is t('c.primary') and something is t('invalid.key')";
+      const input =
+        "Color is t('colors.primary') and something is t('invalid.key')";
       const placeholders = {
-        "c.primary": "#FF0000",
+        "colors.primary": "#FF0000",
       };
       expect(applyPlaceholders(input, placeholders)).toBe(
         "Color is #FF0000 and something is t('invalid.key')"
@@ -30,10 +32,10 @@ describe("Theme utility functions", () => {
     it("creates placeholders for valid theme values", () => {
       const theme: Partial<UserTheme> = {
         colors: {
-          primary: "#FF0000",
+          "colors.primary": "#FF0000",
         },
         breakpoints: {
-          mobile: "480px",
+          "breakpoints.mobile": "480px",
         },
       };
 
@@ -46,7 +48,7 @@ describe("Theme utility functions", () => {
     it("ignores invalid or non-existent theme values", () => {
       const theme: Partial<UserTheme> = {
         colors: {
-          primary: "#FF0000",
+          "colors.primary": "#FF0000",
         },
       };
 
@@ -58,35 +60,35 @@ describe("Theme utility functions", () => {
 
   describe("applyPlaceholders edge cases", () => {
     it("handles empty strings", () => {
-      const placeholders = { "c.primary": "#FF0000" };
+      const placeholders = { "colors.primary": "#FF0000" };
       expect(applyPlaceholders("", placeholders)).toBe("");
     });
 
     it("handles strings without placeholders", () => {
-      const placeholders = { "c.primary": "#FF0000" };
+      const placeholders = { "colors.primary": "#FF0000" };
       expect(applyPlaceholders("No placeholders here", placeholders)).toBe(
         "No placeholders here"
       );
     });
 
     it("replaces multiple occurrences of the same placeholder", () => {
-      const placeholders = { "c.primary": "#FF0000" };
+      const placeholders = { "colors.primary": "#FF0000" };
       expect(
         applyPlaceholders(
-          "Color t('c.primary') and again t('c.primary')",
+          "Color t('colors.primary') and again t('colors.primary')",
           placeholders
         )
       ).toBe("Color #FF0000 and again #FF0000");
     });
 
     it("handles a mixture of valid and invalid placeholders", () => {
-      const placeholders = { "c.primary": "#FF0000" };
+      const placeholders = { "colors.primary": "#FF0000" };
       expect(
         applyPlaceholders(
-          "Colors: t('c.primary'), t('c.secondary')",
+          "Colors: t('colors.primary'), t('colors.secondary')",
           placeholders
         )
-      ).toBe("Colors: #FF0000, t('c.secondary')");
+      ).toBe("Colors: #FF0000, t('colors.secondary')");
     });
   });
 
@@ -99,29 +101,32 @@ describe("Theme utility functions", () => {
     it("handles tokens without synonyms", () => {
       const theme: Partial<UserTheme> = {
         fontSizes: {
-          small: "12px",
+          "fontSizes.small": "12px",
         },
       };
       expect(createPlaceholders(theme)).toEqual({ "fontSizes.small": "12px" });
     });
 
     it("handles whitespace around placeholders", () => {
-      const placeholders = { "c.primary": "#FF0000" };
-      expect(applyPlaceholders("Color t(  'c.primary'  )", placeholders)).toBe(
-        "Color #FF0000"
-      );
-      expect(applyPlaceholders('Color t(  "c.primary"  )', placeholders)).toBe(
-        "Color #FF0000"
-      );
+      const placeholders = { "colors.primary": "#FF0000" };
+      expect(
+        applyPlaceholders("Color t(  'colors.primary'  )", placeholders)
+      ).toBe("Color #FF0000");
+      expect(
+        applyPlaceholders('Color t(  "colors.primary"  )', placeholders)
+      ).toBe("Color #FF0000");
     });
 
     it("handles both single and double quotation marks", () => {
-      const placeholders = { "c.primary": "#FF0000", "b.mobile": "480px" };
-      expect(applyPlaceholders('Color is t("c.primary")', placeholders)).toBe(
-        "Color is #FF0000"
-      );
+      const placeholders = {
+        "colors.primary": "#FF0000",
+        "breakpoints.mobile": "480px",
+      };
       expect(
-        applyPlaceholders("Breakpoint is t('b.mobile')", placeholders)
+        applyPlaceholders('Color is t("colors.primary")', placeholders)
+      ).toBe("Color is #FF0000");
+      expect(
+        applyPlaceholders("Breakpoint is t('breakpoints.mobile')", placeholders)
       ).toBe("Breakpoint is 480px");
     });
   });
@@ -129,11 +134,11 @@ describe("Theme utility functions", () => {
   describe("applyT function", () => {
     const theme: UserTheme = {
       colors: {
-        primary: "#FF0000",
-        secondary: "#00FF00",
+        "colors.primary": "#FF0000",
+        "colors.secondary": "#00FF00",
       },
       breakpoints: {
-        mobile: "480px",
+        "breakpoints.mobile": "480px",
       },
     };
 

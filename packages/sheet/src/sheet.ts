@@ -58,9 +58,13 @@ export class Sheet {
   addRule(style: SystemStyle, isDynamic = false) {
     const className =
       Sheet.getClassNamePrefix(isDynamic) + generateHash(JSON.stringify(style));
-    this._addBaseRule(className, style.base);
+    this._addBaseRule(className, this._processCSS(style.base));
     for (const [breakpoint, css] of Object.entries(style.responsive)) {
-      this._addMediaRule(className, css, breakpoint);
+      this._addMediaRule(
+        className,
+        this._processCSS(css),
+        this._processCSS(breakpoint)
+      );
     }
     for (const [_, pseudo] of Object.entries(style.pseudo)) {
       this._addPseudoRule(className, pseudo);
@@ -89,14 +93,26 @@ export class Sheet {
     className: string,
     pseudo: SystemStyle["pseudo"][number]
   ) {
-    const css = removeSpacesAroundCssPropertyValues(pseudo.base);
+    const css = removeSpacesAroundCssPropertyValues(
+      this._processCSS(pseudo.base)
+    );
     const pseudoCss = removeSpacesExceptInProperties(
       `.${className}${pseudo.key} { ${css} }`
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {
-      this._addMediaRule(`${className}${pseudo.key}`, _css, breakpoint);
+      this._addMediaRule(
+        `${className}${pseudo.key}`,
+        this._processCSS(_css),
+        this._processCSS(breakpoint)
+      );
     }
+  }
+
+  _processCSS(css: string): string {
+    const placeholders = theme.getPlaceholders();
+
+    return applyT(css, placeholders);
   }
 
   /**
@@ -104,9 +120,7 @@ export class Sheet {
    * It's useful for handling complex CSS such as media queries and pseudo selectors.
    */
   parseCSS(style: string): string {
-    const placeholders = theme.getPlaceholders();
-
-    style = applyT(style, placeholders);
+    style = this._processCSS(style);
 
     const id = Sheet.getClassNamePrefix() + generateHash(style);
 
