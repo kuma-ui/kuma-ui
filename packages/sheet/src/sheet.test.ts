@@ -62,7 +62,6 @@ describe("Sheet class", () => {
     expect(cssString).toContain(
       `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`
     );
-    console.log(cssString);
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${removeSpacesAroundCssPropertyValues(
         style.responsive["768px"]
