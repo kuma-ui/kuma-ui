@@ -1,10 +1,5 @@
 import type { ComponentType } from "react";
-import {
-  ResponsiveStyle,
-  StyledProps,
-  StyledKeyType,
-  PseudoProps,
-} from "@kuma-ui/system";
+import { ComponentProps, ComponentWithAs } from "./components/types";
 
 export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[T]
@@ -17,7 +12,7 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
 function styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn = (
     strings: TemplateStringsArray
-  ): React.FC<React.ComponentProps<T>> => {
+  ): ComponentWithAs<T, ComponentProps<"Box">> => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     throw Error('Using the "styled" tag in runtime is not supported.') as any;
   };
