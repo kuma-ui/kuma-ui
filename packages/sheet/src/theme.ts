@@ -1,3 +1,5 @@
+import { createPlaceholders, Placeholders } from "./placeholders";
+
 export const defaultBreakpoints = Object.freeze({
   sm: "576px",
   md: "768px",
@@ -21,18 +23,21 @@ type ComponentName =
   | "Link"
   | "Grid";
 
-export type Tokens =
-  | "colors"
-  | "fonts"
-  | "fontSizes"
-  | "fontWeights"
-  | "lineHeights"
-  | "letterSpacings"
-  | "spacings"
-  | "sizes"
-  | "radii"
-  | "zIndices"
-  | "breakpoints";
+export const tokens = [
+  "colors",
+  "fonts",
+  "fontSizes",
+  "fontWeights",
+  "lineHeights",
+  "letterSpacings",
+  "spacings",
+  "sizes",
+  "radii",
+  "zIndices",
+  "breakpoints",
+] as const;
+
+export type Tokens = (typeof tokens)[number];
 
 export type UserTheme = {
   [K in Tokens]?: Record<string, string> | undefined;
@@ -60,6 +65,7 @@ export class Theme {
     breakpoints:
       globalThis.__KUMA_USER_THEME__?.breakpoints ?? defaultBreakpoints,
   };
+  private _placeholders: Placeholders = {};
 
   private constructor() {}
 
@@ -78,10 +84,15 @@ export class Theme {
       ...this._userTheme,
       ...userTheme,
     };
+    this._placeholders = createPlaceholders(this._userTheme);
   }
 
   getUserTheme() {
     return this._userTheme;
+  }
+
+  getPlaceholders(): Placeholders {
+    return this._placeholders;
   }
 
   getVariants(componentName: ComponentName):
