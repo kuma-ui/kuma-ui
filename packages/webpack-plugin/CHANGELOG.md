@@ -1,5 +1,18 @@
 # @kuma-ui/webpack-plugin
 
+## 1.2.0
+
+### Minor Changes
+
+- [#315](https://github.com/kuma-ui/kuma-ui/pull/315) [`417b7ed`](https://github.com/kuma-ui/kuma-ui/commit/417b7ed02205c3e98b86684dfa9c95744be1ab23) Thanks [@kotarella1110](https://github.com/kotarella1110)! - feat(webpack): enable automatic rebuild on kuma.config.ts changes
+
+### Patch Changes
+
+- Updated dependencies [[`8d68550`](https://github.com/kuma-ui/kuma-ui/commit/8d685505e17beceafd43d9d3618342e1246032e4), [`031bc85`](https://github.com/kuma-ui/kuma-ui/commit/031bc851c140d5fbbd7a6b40116c2b894113940e), [`8e1a211`](https://github.com/kuma-ui/kuma-ui/commit/8e1a211860281f2fb7eb94bb2f8680300ebf7b7c)]:
+  - @kuma-ui/system@1.5.0
+  - @kuma-ui/sheet@1.3.0
+  - @kuma-ui/babel-plugin@1.1.7
+
 ## 1.1.7
 
 ### Patch Changes

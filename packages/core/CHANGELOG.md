@@ -1,5 +1,25 @@
 # @kuma-ui/core
 
+## 1.4.0
+
+### Minor Changes
+
+- [#240](https://github.com/kuma-ui/kuma-ui/pull/240) [`4073398`](https://github.com/kuma-ui/kuma-ui/commit/4073398d58e011f0afb351025e9b326ff56c0e36) Thanks [@poteboy](https://github.com/poteboy)! - Enhance Performance by Optimizing Compiler for Static HTML Conversion
+
+- [#321](https://github.com/kuma-ui/kuma-ui/pull/321) [`8e1a211`](https://github.com/kuma-ui/kuma-ui/commit/8e1a211860281f2fb7eb94bb2f8680300ebf7b7c) Thanks [@yukukotani](https://github.com/yukukotani)! - Introduce `defaultProps` in component theme
+
+### Patch Changes
+
+- [#304](https://github.com/kuma-ui/kuma-ui/pull/304) [`1b7982e`](https://github.com/kuma-ui/kuma-ui/commit/1b7982e5d8b9ab4f862d1ff113353380b411129e) Thanks [@yukukotani](https://github.com/yukukotani)! - Improve autocompletion experience of `baseStyle` and `variants`
+
+- [#324](https://github.com/kuma-ui/kuma-ui/pull/324) [`0fc8f4d`](https://github.com/kuma-ui/kuma-ui/commit/0fc8f4d86972517052aacb982fb9c9d94788353a) Thanks [@kotarella1110](https://github.com/kotarella1110)! - improve createTheme type
+
+- [#316](https://github.com/kuma-ui/kuma-ui/pull/316) [`f441c1d`](https://github.com/kuma-ui/kuma-ui/commit/f441c1d0b3a5e2e13d83aeff4984ad64702b69d9) Thanks [@yukukotani](https://github.com/yukukotani)! - Exclude vitest.setup.ts from dist files
+
+- Updated dependencies [[`8d68550`](https://github.com/kuma-ui/kuma-ui/commit/8d685505e17beceafd43d9d3618342e1246032e4), [`031bc85`](https://github.com/kuma-ui/kuma-ui/commit/031bc851c140d5fbbd7a6b40116c2b894113940e), [`8e1a211`](https://github.com/kuma-ui/kuma-ui/commit/8e1a211860281f2fb7eb94bb2f8680300ebf7b7c)]:
+  - @kuma-ui/system@1.5.0
+  - @kuma-ui/sheet@1.3.0
+
 ## 1.3.0
 
 ### Minor Changes

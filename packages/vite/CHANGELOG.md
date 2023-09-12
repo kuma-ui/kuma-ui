@@ -1,5 +1,18 @@
 # @kuma-ui/vite
 
+## 1.1.0
+
+### Minor Changes
+
+- [#292](https://github.com/kuma-ui/kuma-ui/pull/292) [`8d68550`](https://github.com/kuma-ui/kuma-ui/commit/8d685505e17beceafd43d9d3618342e1246032e4) Thanks [@nojiritakeshi](https://github.com/nojiritakeshi)! - In the vite project, kuma.config.ts will be HMR
+
+### Patch Changes
+
+- Updated dependencies [[`8d68550`](https://github.com/kuma-ui/kuma-ui/commit/8d685505e17beceafd43d9d3618342e1246032e4), [`031bc85`](https://github.com/kuma-ui/kuma-ui/commit/031bc851c140d5fbbd7a6b40116c2b894113940e), [`8e1a211`](https://github.com/kuma-ui/kuma-ui/commit/8e1a211860281f2fb7eb94bb2f8680300ebf7b7c)]:
+  - @kuma-ui/system@1.5.0
+  - @kuma-ui/sheet@1.3.0
+  - @kuma-ui/babel-plugin@1.1.7
+
 ## 1.0.10
 
 ### Patch Changes
