@@ -24,11 +24,11 @@ const theme = createTheme({
   },
   letterSpacings: {
     space_200: ".2rem",
-    space_300: 300,
+    space_300: ".3rem",
   },
   lineHeights: {
-    sx: 300,
-    s: "400",
+    sx: 1.5,
+    s: 2,
   },
   components: {
     Box: {
