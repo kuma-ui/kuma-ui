@@ -28,9 +28,9 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
     SpaceProps<T> &
     AnimationProps &
     TextProps &
-    LayoutProps &
+    LayoutProps<T> &
     FlexProps<T> &
-    BorderProps &
+    BorderProps<T> &
     OutlineProps &
     PositionProps &
     ShadowProps &
