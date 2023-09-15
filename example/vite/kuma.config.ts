@@ -13,6 +13,9 @@ const theme = createTheme({
     1: "0.25rem",
     4: "1rem",
   },
+  sizes: {
+    sm: "8px",
+  },
   components: {
     Box: {
       baseStyle: {

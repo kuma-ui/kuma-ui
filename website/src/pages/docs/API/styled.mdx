@@ -75,3 +75,15 @@ export const ThisIsStyledComponent = styled("div")`
 ```
 
 In the above example, the `flex-direction` changes to `column` when the viewport width falls below the 'sm' breakpoint value defined in the configuration. Thus, you can leverage the power of these shared media query breakpoints to write more maintainable and consistent media queries in your styles.
+
+## Using Theme Tokens
+
+You can also utilize [theme tokens](/docs/Theme/ThemeTokens) directly within your `styled` function. This allows for a more cohesive and centralized way to manage your design values. Here's how you can use it:
+
+```tsx
+export const ColorComponent = styled("div")`
+  color: t("colors.primary");
+`;
+```
+
+In the above example, `t("colors.primary")` fetches the primary color defined in your theme tokens, making it easier to maintain a consistent design across your application.

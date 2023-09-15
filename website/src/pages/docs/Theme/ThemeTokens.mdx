@@ -150,3 +150,39 @@ const theme = createTheme({
   },
 });
 ```
+
+## Usage
+
+Here are some examples of how you can use theme tokens in different contexts:
+
+### In Components
+
+You can use theme tokens directly in your components to apply styles:
+
+```tsx
+<Box color={"colors.primary"} />
+```
+
+### In Styled Components
+
+Similarly, you can use theme tokens within styled components to maintain a consistent design:
+
+```tsx
+const ColorComponent = styled.div`
+  color: t("colors.primary");
+`;
+```
+
+### In CSS
+
+You can also use theme tokens within the css function to apply styles dynamically:
+
+```tsx
+<div
+  className={css`
+    color: t("colors.primary");
+  `}
+/>
+```
+
+By utilizing theme tokens in these ways, you can ensure a cohesive and consistent design language across your application.
