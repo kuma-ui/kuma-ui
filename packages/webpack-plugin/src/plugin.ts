@@ -4,19 +4,20 @@ import path from "path";
 import { readdirSync } from "fs";
 import { getUserTheme } from "./getUserTheme";
 
-type WebpackPluginOption = {
-  cssOutputDir?: string;
-  virtualLoader?: boolean;
-};
+// type WebpackPluginOption = {};
+
+export const CSS_PATH = require.resolve("../assets/kuma.css");
+export const cssLoader = require.resolve("./cssLoader");
 
 class KumaUIWebpackPlugin {
-  private options: WebpackPluginOption;
+  // private options: WebpackPluginOption;
   private config: string | undefined;
 
   static loader = require.resolve("./loader");
 
-  constructor(options: WebpackPluginOption = {}) {
-    this.options = options;
+  constructor() {
+    // options: WebpackPluginOption = {}
+    // this.options = options;
 
     const dir = readdirSync(".");
     dir.forEach((filePath) => {
@@ -27,7 +28,6 @@ class KumaUIWebpackPlugin {
   }
 
   apply(compiler: Compiler) {
-    const { virtualLoader = true, cssOutputDir = ".kuma" } = this.options;
     const { config } = this;
 
     compiler.options.plugins.push(
@@ -54,20 +54,28 @@ class KumaUIWebpackPlugin {
       })
     );
 
-    compiler.options.module?.rules?.push({
-      test: /\.(tsx|ts|js|mjs|jsx)$/,
-      exclude: /node_modules/,
-      use: [
-        {
-          loader: KumaUIWebpackPlugin.loader,
-          options: {
-            virtualLoader,
-            cssOutputDir,
-            config,
+    compiler.options.module?.rules?.push(
+      {
+        test: /\.(tsx|ts|js|mjs|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: KumaUIWebpackPlugin.loader,
+            options: {
+              config,
+            },
           },
-        },
-      ],
-    });
+        ],
+      },
+      {
+        test: CSS_PATH,
+        use: [
+          {
+            loader: cssLoader,
+          },
+        ],
+      }
+    );
   }
 }
 
