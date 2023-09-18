@@ -79,4 +79,17 @@ export const responsiveStyles = css`
 
 In this example, the color changes to 'blue' when the viewport width is less than the `sm` breakpoint.
 
+Additionally, you can use the `t()` API to reference theme tokens directly within your template literals, as shown below:
+
+```ts
+export const responsiveStyles = css`
+  color: red;
+  @media (max-width: t("breakpoints.sm")) {
+    color: blue;
+  }
+`;
+```
+
+In this example, the `t()` API is used to reference the 'sm' breakpoint defined in your theme, changing the color to 'blue' when the viewport width is less than the defined 'sm' breakpoint.
+
 These techniques provide a powerful way to write maintainable and consistent media queries in your styles, ensuring that your Kuma UI application is responsive and adapts to various viewport sizes.
