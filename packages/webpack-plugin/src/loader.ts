@@ -5,8 +5,9 @@ import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
 import { createHash } from "crypto";
 import { theme } from "@kuma-ui/sheet";
 import { getUserTheme } from "./getUserTheme";
+import { CSS_PATH } from "./plugin";
 
-const virtualLoaderPath = require.resolve("./virtualLoader");
+export const CSS_PARAM_NAME = "css";
 
 type Options = {
   config?: string;
@@ -20,7 +21,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
-  const { config, virtualLoader, cssOutputDir } = this.getOptions();
+  const { config } = this.getOptions();
 
   if (config) {
     // enable automatic rebuild for static theme props
@@ -52,46 +53,16 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   const css = (result.metadata as unknown as { css: string }).css || "";
 
   if (css) {
-    const codePrefix = fileLoader(css, {
-      context: this,
-      isVirtualLoader: virtualLoader,
-      outputDir: cssOutputDir,
-    });
+    const params = new URLSearchParams({ [CSS_PARAM_NAME]: css });
 
-    callback(null, `${result.code}\n${codePrefix};`);
+    const importCSS = `import ${JSON.stringify(
+      `${this.utils.contextify(this.context, CSS_PATH)}?${params.toString()}`
+    )};`;
+
+    callback(null, `${result.code}\n${importCSS};`);
     return;
   }
   callback(null, `${result.code}`);
 };
 
 export default kumaUiLoader;
-
-export const DUMMY_CSS_FILE_PATH = require.resolve("../assets/kuma.css");
-
-export function fileLoader(
-  src: string,
-  options: {
-    context: LoaderContext<unknown>;
-    isVirtualLoader: boolean;
-    outputDir: string;
-  }
-) {
-  if (options.isVirtualLoader) {
-    const virtualResourceLoader = `${virtualLoaderPath}?${JSON.stringify({
-      src: src,
-    })}`;
-    return `import ${JSON.stringify(
-      options.context.utils.contextify(
-        options.context.context || options.context.rootContext,
-        `kuma.css!=!${virtualResourceLoader}!${DUMMY_CSS_FILE_PATH}`
-      )
-    )};`;
-  } else {
-    const outDir = options.outputDir;
-    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir);
-    const hash = createHash("md5").update(src).digest("hex");
-    const srcPath = path.posix.join(outDir, `${hash}.css`);
-    fs.writeFileSync(srcPath, src);
-    return `import "${srcPath}";`;
-  }
-}

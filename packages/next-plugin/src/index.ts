@@ -7,8 +7,6 @@ import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/lo
 import { findPagesDir } from "next/dist/lib/find-pages-dir";
 import type { ConfigurationContext } from "next/dist/build/webpack/config/utils";
 
-type KumaConfig = ConstructorParameters<typeof KumaUIWebpackPlugin>[0];
-
 const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   try {
     return loadConfig({
@@ -20,10 +18,7 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   return undefined;
 };
 
-const kumaUiConfig = (
-  nextConfig: NextConfig,
-  kumaConfig: KumaConfig = {}
-): NextConfig => {
+const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
@@ -86,12 +81,7 @@ const kumaUiConfig = (
       //   ],
       // });
 
-      config.plugins?.push(
-        new KumaUIWebpackPlugin({
-          virtualLoader: !appDir,
-          cssOutputDir: "./.next/cache/kuma",
-        })
-      );
+      config.plugins?.push(new KumaUIWebpackPlugin());
       if (typeof nextConfig.webpack === "function") {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
         return nextConfig.webpack(config, options);
@@ -101,9 +91,6 @@ const kumaUiConfig = (
   };
 };
 
-export const withKumaUI = (
-  nextConfig: NextConfig,
-  kumaConfig: KumaConfig = {}
-) => {
-  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig, kumaConfig));
+export const withKumaUI = (nextConfig: NextConfig) => {
+  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig));
 };
