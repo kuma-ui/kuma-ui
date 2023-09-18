@@ -1,5 +1,13 @@
 # @kuma-ui/compiler
 
+## 1.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`6bfcab7`](https://github.com/kuma-ui/kuma-ui/commit/6bfcab7b85de6ff020dec3e65cf936aebd14be54)]:
+  - @kuma-ui/system@1.5.1
+  - @kuma-ui/core@1.4.1
+
 ## 1.1.0
 
 ### Minor Changes
