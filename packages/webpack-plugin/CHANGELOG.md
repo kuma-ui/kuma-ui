@@ -1,5 +1,15 @@
 # @kuma-ui/webpack-plugin
 
+## 1.2.1
+
+### Patch Changes
+
+- [#337](https://github.com/kuma-ui/kuma-ui/pull/337) [`59f8338`](https://github.com/kuma-ui/kuma-ui/commit/59f833827ed72505bfe09c4f07bf75fa6cc684ae) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - refactor(next): Liberation from the curse of '.next/cache/kuma/\*.css'
+
+- Updated dependencies [[`6bfcab7`](https://github.com/kuma-ui/kuma-ui/commit/6bfcab7b85de6ff020dec3e65cf936aebd14be54)]:
+  - @kuma-ui/system@1.5.1
+  - @kuma-ui/babel-plugin@1.1.8
+
 ## 1.2.0
 
 ### Minor Changes

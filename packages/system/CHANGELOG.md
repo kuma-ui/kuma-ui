@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 1.5.1
+
+### Patch Changes
+
+- [#334](https://github.com/kuma-ui/kuma-ui/pull/334) [`6bfcab7`](https://github.com/kuma-ui/kuma-ui/commit/6bfcab7b85de6ff020dec3e65cf936aebd14be54) Thanks [@kotarella1110](https://github.com/kotarella1110)! - fix: improve theme type for theme autocomplete to work
+
 ## 1.5.0
 
 ### Minor Changes
