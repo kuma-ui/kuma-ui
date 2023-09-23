@@ -11,9 +11,7 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   : T extends ComponentType<infer P>
   ? P
   : never;
-/**
- * Kuma UI's `styled` API allows you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with libraries like styled-components or Emotion.
- */
+
 function _styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn = (
     strings: TemplateStringsArray
@@ -23,7 +21,9 @@ function _styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   };
   return fn;
 }
-
+/**
+ * Kuma UI's `styled` API allows you to create styled React components using tagged template literals. This makes it a familiar and comfortable choice for developers who have worked with libraries like styled-components or Emotion.
+ */
 const styled = Object.assign(_styled, {
   a: _styled("a"),
   abbr: _styled("abbr"),

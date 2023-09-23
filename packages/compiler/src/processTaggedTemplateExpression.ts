@@ -40,6 +40,7 @@ export const processTaggedTemplateExpression = (
     replaceTaggedTemplate(node, component, bindings);
   }
 
+  // styled.xxx``
   else if (
     Node.isPropertyAccessExpression(tag)
   ) {

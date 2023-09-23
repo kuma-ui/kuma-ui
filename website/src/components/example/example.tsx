@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, styled } from "@kuma-ui/core";
 
-export const ExampleContainer = styled("div")`
+export const ExampleContainer = styled.div`
   margin-top: 1.25rem;
   padding: 0.75rem;
   border-width: 1px;

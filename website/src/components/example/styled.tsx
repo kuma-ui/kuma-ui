@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@kuma-ui/core";
 
-export const ThisIsStyledComponent = styled("div")`
+export const ThisIsStyledComponent = styled.div`
   padding: 8px;
   color: white;
   background: black;
