@@ -49,7 +49,6 @@ export const processTaggedTemplateExpression = (
 };
 
 function replaceTaggedTemplate(node: TaggedTemplateExpression, component: string, bindings: Record<string, string>) {
-
   const className = extractClassName(node.getTemplate());
   if (className) {
     const replacement = `props => {
