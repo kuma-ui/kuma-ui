@@ -1,4 +1,5 @@
 import {
+  CallExpression,
   Node,
   SyntaxKind,
   TaggedTemplateExpression,
@@ -32,20 +33,30 @@ export const processTaggedTemplateExpression = (
     tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
       bindings["styled"]
   ) {
-    const className = extractClassName(node.getTemplate());
-    if (className) {
-      const componentArg = tag.getArguments()[0];
-      const component = Node.isStringLiteral(componentArg)
-        ? componentArg.getLiteralText()
-        : "div";
-      node.replaceWithText(`props => {
-  const existingClassName = props.className || "";
-  const newClassName = "${className || ""}";
-  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
-  return <${
-    bindings["Box"]
-  } as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
-}`);
-    }
+    const componentArg = tag.getArguments()[0];
+    const component = Node.isStringLiteral(componentArg)
+      ? componentArg.getLiteralText()
+      : "div";
+    replaceTaggedTemplate(node, component, bindings);
+  }
+
+  else if (
+    Node.isPropertyAccessExpression(tag)
+  ) {
+    replaceTaggedTemplate(node, tag.getName(), bindings)
   }
 };
+
+function replaceTaggedTemplate(node: TaggedTemplateExpression, component: string, bindings: Record<string, string>) {
+
+  const className = extractClassName(node.getTemplate());
+  if (className) {
+    const replacement = `props => {
+      const existingClassName = props.className || "";
+      const newClassName = "${className || ""}";
+      const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
+      return <${bindings["Box"]} as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    }`;
+    node.replaceWithText(replacement);
+  }
+}
