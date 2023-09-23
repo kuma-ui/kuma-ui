@@ -49,6 +49,21 @@ const Component = () => (
 
 In this example, we define a styled component `ThisIsStyledComponent` that changes the color of the text based on the viewport width. When the viewport width drops below 500px, the text color changes to blue.
 
+## Syntax
+
+You can also call `styled` as a function, passing the name of any intrinsic element type to it. The above is equivalent to:
+
+```tsx copy
+export const ThisIsStyledComponent = styled('div')`
+  padding: 8px;
+  color: white;
+  background: black;
+  @media (max-width: 500px) {
+    color: blue;
+  }
+`;
+```
+
 ## Configuring and Using Breakpoints
 
 The `styled` API also accepts shared media query breakpoints defined in your Kuma configuration (`kuma.config.ts`). For instance, if you have the following configuration:
