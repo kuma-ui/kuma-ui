@@ -70,7 +70,7 @@ describe("styled function", () => {
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
-      test("'styled' tag property usage should match snapshot", () => {
+      test("'styled' tag extending existing component should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { styled } from '@kuma-ui/core'
