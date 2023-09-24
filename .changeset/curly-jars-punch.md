@@ -3,4 +3,4 @@
 "@kuma-ui/core": minor
 ---
 
-styled-components element property syntax
+styled-components syntax parity
