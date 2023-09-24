@@ -34,6 +34,27 @@ function App() {
 "
 `;
 
+exports[`styled function > Snapshot tests (runtime: automatic) > 'styled' tag property usage should match snapshot 2`] = `
+"
+.🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const GreenButton = props => {
+      const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
+      return <__Box as=\\"button\\" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+const GreenButtonRedText = props => {
+      const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
+      return <GreenButton {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+function App() {
+  return <GreenButton>test</GreenButton>;
+}
+"
+`;
+
 exports[`styled function > Snapshot tests (runtime: automatic) > using className prop should match snapshot 1`] = `
 "
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
@@ -106,6 +127,27 @@ function App() {
 "
 `;
 
+exports[`styled function > Snapshot tests (runtime: classic) > 'styled' tag property usage should match snapshot 2`] = `
+"
+.🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const GreenButton = props => {
+      const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
+      return <__Box as=\\"button\\" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+const GreenButtonRedText = props => {
+      const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
+      return <GreenButton {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+function App() {
+  return <GreenButton>test</GreenButton>;
+}
+"
+`;
+
 exports[`styled function > Snapshot tests (runtime: classic) > using className prop should match snapshot 1`] = `
 "
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
@@ -174,6 +216,27 @@ const Box = props => {
     };
 function App() {
   return <Box>test</Box>;
+}
+"
+`;
+
+exports[`styled function > Snapshot tests (runtime: undefined) > 'styled' tag property usage should match snapshot 2`] = `
+"
+.🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
+
+import { Box as __Box } from \\"@kuma-ui/core\\";
+import React from \\"react\\";
+import { styled } from '@kuma-ui/core';
+const GreenButton = props => {
+      const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
+      return <__Box as=\\"button\\" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+const GreenButtonRedText = props => {
+      const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
+      return <GreenButton {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    };
+function App() {
+  return <GreenButton>test</GreenButton>;
 }
 "
 `;

@@ -64,6 +64,20 @@ export const ThisIsStyledComponent = styled('div')`
 `;
 ```
 
+## Extending styles
+
+You can pass a styled component to the `styled` function to extend styles:
+
+```tsx copy
+const GreenButton = styled.button`
+  background: green;
+`;
+
+const GreenButtonWithRedText = styled(GreenButton)`
+  color: red;
+`;
+```
+
 ## Configuring and Using Breakpoints
 
 The `styled` API also accepts shared media query breakpoints defined in your Kuma configuration (`kuma.config.ts`). For instance, if you have the following configuration:

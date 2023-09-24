@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`styled tag > should generate code 1`] = `
+"
+  
+  
+  
+        import { styled } from \\"@kuma-ui/core\\";
+        
+        export const GreenButton = props => {
+              const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
+              return <Box as=\\"button\\" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+            }
+        export const GreenButtonRedText = props => {
+              const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
+              return <GreenButton {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+            }
+    
+  "
+`;

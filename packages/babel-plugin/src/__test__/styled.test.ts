@@ -70,6 +70,26 @@ describe("styled function", () => {
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
 
+      test("'styled' tag property usage should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { styled } from '@kuma-ui/core'
+        const GreenButton = styled.button\`
+          background: green;
+        \`
+        const GreenButtonRedText = styled(GreenButton)\`
+          color: red;
+        \`
+        function App() {
+          return <GreenButton>test</GreenButton>
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
       test("placeholder usage should match snapshot", () => {
         const originalCode = `
         import { styled } from '@kuma-ui/core'

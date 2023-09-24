@@ -12,11 +12,24 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? P
   : never;
 
+export type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
+  React.ComponentProps<T>
+>;
+
 export type StyleTemplate<T extends keyof JSX.IntrinsicElements> = (
   strings: TemplateStringsArray
-) => React.FC<React.ComponentProps<T>>;
+) => StyledComponent<T>;
 
-function _styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
+export type StyledFn = {
+  <T extends keyof JSX.IntrinsicElements>(name: T): StyleTemplate<T>;
+  <T extends keyof JSX.IntrinsicElements>(
+    Component: StyledComponent<T>
+  ): StyleTemplate<T>;
+};
+
+function _styled<T extends keyof JSX.IntrinsicElements>(
+  Component: T | StyledComponent<T>
+) {
   const fn: StyleTemplate<T> = (strings) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     throw Error('Using the "styled" tag in runtime is not supported.') as any;
@@ -30,7 +43,7 @@ const styled = new Proxy(_styled, {
   get(target, key) {
     return target(key as keyof JSX.IntrinsicElements);
   },
-}) as typeof _styled & {
+}) as StyledFn & {
   [T in keyof JSX.IntrinsicElements]: StyleTemplate<T>;
 };
 
