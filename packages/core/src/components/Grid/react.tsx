@@ -9,6 +9,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { defaultGridTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type GridProps = ComponentProps<"Grid">;
 
@@ -19,24 +20,23 @@ type GridComponent<T extends As = "div"> = ComponentWithAs<T, GridProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Grid
  */
-const Grid: GridComponent = <T extends As = "div">({
-  as: Component = defaultGridTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, GridProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Grid")?.variants?.[props.variant]
-    : {};
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+const Grid: GridComponent = forwardRef(
+  ({ as: Component = defaultGridTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Grid")?.variants?.[props.variant]
+      : {};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Grid, type GridComponent, GridProps };

@@ -1,6 +1,6 @@
 import { StyledProps } from "@kuma-ui/system";
 
-export const defaultHeadingTag = "div";
+export const defaultHeadingTag = "h1";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type HeadingSpecificProps = {};

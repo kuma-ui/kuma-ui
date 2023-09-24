@@ -42,7 +42,7 @@ export type MergeWithAs<
     as?: AsComponent;
   };
 
-type RightJoinProps<
+export type RightJoinProps<
   SourceProps extends object = {},
   OverrideProps extends object = {}
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps;

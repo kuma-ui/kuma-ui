@@ -11,6 +11,7 @@ import { Box } from "../Box";
 import { SpacerSpecificProps, spacerHandler } from "./handler";
 import { theme } from "@kuma-ui/sheet";
 import { defaultSpacerTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type SpacerProps = ComponentProps<"Spacer"> & SpacerSpecificProps;
 
@@ -22,32 +23,32 @@ type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
  *
  * @see — Further documentation will be available in the future.
  */
-const Spacer: SpacerComponent = <T extends As = "div">({
-  as: Component = defaultSpacerTag,
-  children,
-  size,
-  horizontal,
-  ...props
-}: MergeWithAs<PropsOf<T>, SpacerProps>) => {
-  props = {
-    ...spacerHandler({ size, horizontal }),
-    ...props,
-  };
+const Spacer: SpacerComponent = forwardRef(
+  (
+    { as: Component = defaultSpacerTag, children, size, horizontal, ...props },
+    ref
+  ) => {
+    props = {
+      ...spacerHandler({ size, horizontal }),
+      ...props,
+    };
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Spacer")?.variants?.[props.variant]
-    : {};
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Spacer")?.variants?.[props.variant]
+      : {};
 
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Spacer, type SpacerComponent, SpacerProps };

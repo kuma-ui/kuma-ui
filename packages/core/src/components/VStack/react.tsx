@@ -10,6 +10,7 @@ import {
 } from "../types";
 import { Box } from "../Box";
 import { defaultVStackTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type VStackProps = ComponentProps<"VStack">;
 
@@ -20,24 +21,23 @@ type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/VStack
  */
-const VStack: VStackComponent = <T extends As = "div">({
-  as: Component = defaultVStackTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, VStackProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("VStack")?.variants?.[props.variant]
-    : {};
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+const VStack: VStackComponent = forwardRef(
+  ({ as: Component = defaultVStackTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("VStack")?.variants?.[props.variant]
+      : {};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { VStack, type VStackComponent, VStackProps };

@@ -10,6 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { defaultTextTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type TextProps = ComponentProps<"Text">;
 
@@ -20,25 +21,24 @@ type TextComponent<T extends As = "p"> = ComponentWithAs<T, TextProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Text
  */
-const Text: TextComponent = <T extends As = "p">({
-  as: Component = defaultTextTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, TextProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Text")?.variants?.[props.variant]
-    : {};
+const Text: TextComponent = forwardRef(
+  ({ as: Component = defaultTextTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Text")?.variants?.[props.variant]
+      : {};
 
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Text, type TextComponent, TextProps };
