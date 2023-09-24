@@ -33,11 +33,6 @@ export const processTaggedTemplateExpression = (
       bindings["styled"]
   ) {
     const componentArg = tag.getArguments()[0];
-    console.log(
-      node.getFullText(),
-      componentArg,
-      Node.isStringLiteral(componentArg)
-    );
     if (Node.isStringLiteral(componentArg)) {
       const componentName = componentArg.getLiteralText();
       replaceTaggedTemplate(node, getBoxComponent(componentName, bindings));
