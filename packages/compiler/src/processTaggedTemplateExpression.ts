@@ -1,5 +1,4 @@
 import {
-  CallExpression,
   Node,
   SyntaxKind,
   TaggedTemplateExpression,
@@ -52,9 +51,7 @@ function replaceTaggedTemplate(node: TaggedTemplateExpression, component: string
   const className = extractClassName(node.getTemplate());
   if (className) {
     const replacement = `props => {
-      const existingClassName = props.className || "";
-      const newClassName = "${className || ""}";
-      const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
+      const combinedClassName = [props.className, "${className}"].filter(Boolean).join(" ");
       return <${bindings["Box"]} as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
     }`;
     node.replaceWithText(replacement);
