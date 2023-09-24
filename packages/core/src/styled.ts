@@ -12,7 +12,9 @@ export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? P
   : never;
 
-export type StyleTemplate<T extends keyof JSX.IntrinsicElements> = (strings: TemplateStringsArray) => React.FC<React.ComponentProps<T>>
+export type StyleTemplate<T extends keyof JSX.IntrinsicElements> = (
+  strings: TemplateStringsArray
+) => React.FC<React.ComponentProps<T>>;
 
 function _styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
   const fn: StyleTemplate<T> = (strings) => {
@@ -26,10 +28,10 @@ function _styled<T extends keyof JSX.IntrinsicElements>(Component: T) {
  */
 const styled = new Proxy(_styled, {
   get(target, key) {
-    return target(key as keyof JSX.IntrinsicElements)
-  }
+    return target(key as keyof JSX.IntrinsicElements);
+  },
 }) as typeof _styled & {
-  [T in keyof JSX.IntrinsicElements]: StyleTemplate<T>
-}
+  [T in keyof JSX.IntrinsicElements]: StyleTemplate<T>;
+};
 
 export { styled };

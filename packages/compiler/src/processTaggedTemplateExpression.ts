@@ -40,14 +40,16 @@ export const processTaggedTemplateExpression = (
   }
 
   // styled.xxx``
-  else if (
-    Node.isPropertyAccessExpression(tag)
-  ) {
-    replaceTaggedTemplate(node, tag.getName(), bindings)
+  else if (Node.isPropertyAccessExpression(tag)) {
+    replaceTaggedTemplate(node, tag.getName(), bindings);
   }
 };
 
-function replaceTaggedTemplate(node: TaggedTemplateExpression, component: string, bindings: Record<string, string>) {
+function replaceTaggedTemplate(
+  node: TaggedTemplateExpression,
+  component: string,
+  bindings: Record<string, string>
+) {
   const className = extractClassName(node.getTemplate());
   if (className) {
     const replacement = `props => {
