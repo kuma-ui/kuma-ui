@@ -39,11 +39,21 @@ export default function Home() {
       >
         css
       </div>
-      <Styled>styled</Styled>
+      <StyledFn>styled fn</StyledFn>
+      <StyledProperty>styled property</StyledProperty>
+      <StyledExtended>styled extended</StyledExtended>
     </div>
   );
 }
 
-const Styled = styled("div")`
+const StyledFn = styled("div")`
   background-color: lightblue;
 `;
+
+const StyledProperty = styled.button`
+  background-color: cyan;
+`;
+
+const StyledExtended = styled(StyledProperty)`
+  color: orange;
+`

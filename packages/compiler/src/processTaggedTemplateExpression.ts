@@ -26,26 +26,44 @@ export const processTaggedTemplateExpression = (
       node.replaceWithText(JSON.stringify(className));
     }
   }
-  // styled("xxx")``
+  // styled("xxx")`` or styled(AnotherComponent)``
   else if (
     Node.isCallExpression(tag) &&
     tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
       bindings["styled"]
   ) {
-    const className = extractClassName(node.getTemplate());
-    if (className) {
-      const componentArg = tag.getArguments()[0];
-      const component = Node.isStringLiteral(componentArg)
-        ? componentArg.getLiteralText()
-        : "div";
-      node.replaceWithText(`props => {
-  const existingClassName = props.className || "";
-  const newClassName = "${className || ""}";
-  const combinedClassName = [existingClassName, newClassName].filter(Boolean).join(" ");
-  return <${
-    bindings["Box"]
-  } as="${component}" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
-}`);
+    const componentArg = tag.getArguments()[0];
+    if (Node.isStringLiteral(componentArg)) {
+      const componentName = componentArg.getLiteralText();
+      replaceTaggedTemplate(node, getBoxComponent(componentName, bindings));
+    } else {
+      replaceTaggedTemplate(node, componentArg.getFullText());
     }
   }
+
+  // styled.xxx``
+  else if (Node.isPropertyAccessExpression(tag)) {
+    replaceTaggedTemplate(node, getBoxComponent(tag.getName(), bindings));
+  }
 };
+
+function getBoxComponent(
+  intrinsicComponentName: string,
+  bindings: Record<string, string>
+) {
+  return `${bindings["Box"]} as="${intrinsicComponentName}"`;
+}
+
+function replaceTaggedTemplate(
+  node: TaggedTemplateExpression,
+  component: string
+) {
+  const className = extractClassName(node.getTemplate());
+  if (className) {
+    const replacement = `props => {
+      const combinedClassName = [props.className, "${className}"].filter(Boolean).join(" ");
+      return <${component} {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+    }`;
+    node.replaceWithText(replacement);
+  }
+}

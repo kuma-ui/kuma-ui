@@ -18,7 +18,7 @@ describe("styled function", () => {
   describe.each([[undefined], ["classic" as const], ["automatic" as const]])(
     "Snapshot tests (runtime: %s)",
     () => {
-      test("basic usage should match snapshot", () => {
+      test("'styled' tag function usage should match snapshot", () => {
         // Arrange
         const inputCode = `
         import { styled } from '@kuma-ui/core'
@@ -36,6 +36,52 @@ describe("styled function", () => {
         \`
         function App() {
           return <Box>test</Box>
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
+      test("'styled' tag property usage should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { styled } from '@kuma-ui/core'
+        const Box = styled.div\`
+          position: relative;
+          width: 300px;
+          height: 300px;
+          background-color: rgba(255, 0, 0, 0.5);
+          &:hover {
+            background-color: rgba(0, 0, 255, 0.5);
+          }
+          @media (max-width: 768px) {
+            flex-direction: column;
+          }
+        \`
+        function App() {
+          return <Box>test</Box>
+        }
+      `;
+        // Act
+        const result = babelTransform(inputCode);
+        // Assert
+        expect(getExpectSnapshot(result)).toMatchSnapshot();
+      });
+
+      test("'styled' tag extending existing component should match snapshot", () => {
+        // Arrange
+        const inputCode = `
+        import { styled } from '@kuma-ui/core'
+        const GreenButton = styled.button\`
+          background: green;
+        \`
+        const GreenButtonRedText = styled(GreenButton)\`
+          color: red;
+        \`
+        function App() {
+          return <GreenButton>test</GreenButton>
         }
       `;
         // Act
