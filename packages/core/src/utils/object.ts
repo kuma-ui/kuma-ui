@@ -29,7 +29,7 @@ export function flattenObject<const T, T2 extends NestedObject<T>>(
     if (!Object.hasOwn(object, key)) continue;
     const value = object[key];
 
-    if (typeof value == "object" && value !== null) {
+    if (typeof value === "object" && value !== null) {
       const _object = flattenObject(value as NestedObject);
       for (const _key in _object) {
         if (!Object.hasOwn(_object, _key)) continue;
