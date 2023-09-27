@@ -25,4 +25,27 @@ describe("styled tag", () => {
     // Assert
     expect(getExpectSnapshot(result)).toMatchSnapshot();
   });
+
+  it("should only touch 'styled' tag from kuma-ui", () => {
+    // Arrange
+    const code = `
+        import { styled as kuma } from "@kuma-ui/core";
+        import styled from "styled-components";
+        
+        export const One = styled.div\`
+          color: green;
+        \`
+        export const Two = kuma.div\`
+          color: red;
+        \`
+    `;
+
+    // Act
+    const result = compile(code, "file.tsx", {
+      ...componentList,
+      styled: "kuma",
+    });
+    // Assert
+    expect(getExpectSnapshot(result)).toMatchSnapshot();
+  });
 });
