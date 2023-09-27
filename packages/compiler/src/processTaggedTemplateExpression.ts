@@ -42,7 +42,11 @@ export const processTaggedTemplateExpression = (
   }
 
   // styled.xxx``
-  else if (Node.isPropertyAccessExpression(tag)) {
+  else if (
+    Node.isPropertyAccessExpression(tag) &&
+    tag.getExpressionIfKind(SyntaxKind.Identifier)?.getText() ===
+      bindings["styled"]
+  ) {
     replaceTaggedTemplate(node, getBoxComponent(tag.getName(), bindings));
   }
 };

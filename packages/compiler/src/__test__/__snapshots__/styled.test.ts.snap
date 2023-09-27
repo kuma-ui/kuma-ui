@@ -18,3 +18,22 @@ exports[`styled tag > should generate code 1`] = `
     
   "
 `;
+
+exports[`styled tag > should only touch 'styled' tag from kuma-ui 1`] = `
+"
+  
+  
+  
+        import { styled as kuma } from \\"@kuma-ui/core\\";
+        import styled from \\"styled-components\\";
+        
+        export const One = styled.div\`
+          color: green;
+        \`
+        export const Two = props => {
+              const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
+              return <Box as=\\"div\\" {...props} className={combinedClassName} IS_KUMA_DEFAULT />;
+            }
+    
+  "
+`;
