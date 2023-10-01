@@ -10,6 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { defaultImageTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type ImageProps = ComponentProps<"Image">;
 
@@ -20,25 +21,24 @@ type ImageComponent<T extends As = "img"> = ComponentWithAs<T, ImageProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Image
  */
-const Image: ImageComponent = <T extends As>({
-  as: Component = defaultImageTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, ImageProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Image")?.variants?.[props.variant]
-    : {};
+const Image: ImageComponent = forwardRef(
+  ({ as: Component = defaultImageTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Image")?.variants?.[props.variant]
+      : {};
 
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Image, type ImageComponent, ImageProps };

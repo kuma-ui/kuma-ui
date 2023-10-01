@@ -10,6 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { defaultSelectTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type SelectProps = ComponentProps<"Select">;
 
@@ -20,25 +21,24 @@ type SelectComponent<T extends As = "select"> = ComponentWithAs<T, SelectProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Select
  */
-const Select: SelectComponent = <T extends As = "select">({
-  as: Component = defaultSelectTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, SelectProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variantStyle = props.variant
-    ? theme.getVariants("Select")?.variants?.[props.variant]
-    : {};
+const Select: SelectComponent = forwardRef(
+  ({ as: Component = defaultSelectTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variantStyle = props.variant
+      ? theme.getVariants("Select")?.variants?.[props.variant]
+      : {};
 
-  return (
-    <Box
-      as={Component}
-      {...variantStyle}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variantStyle}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Select, type SelectComponent, SelectProps };

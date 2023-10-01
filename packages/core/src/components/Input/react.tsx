@@ -5,6 +5,7 @@ import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { ComponentProps } from "../types";
 import { defaultInputTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type InputProps = ComponentProps<"Input">;
 type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
@@ -14,24 +15,23 @@ type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Input
  */
-const Input: InputComponent = <T extends As>({
-  as: Component = defaultInputTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, InputProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variantStyle = props.variant
-    ? theme.getVariants("Input")?.variants?.[props.variant]
-    : {};
-  return (
-    <Box
-      as={Component}
-      {...variantStyle}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+const Input: InputComponent = forwardRef(
+  ({ as: Component = defaultInputTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variantStyle = props.variant
+      ? theme.getVariants("Input")?.variants?.[props.variant]
+      : {};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variantStyle}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Input, type InputComponent, InputProps };

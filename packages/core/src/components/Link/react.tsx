@@ -10,6 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { defaultLinkTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type LinkProps = ComponentProps<"Link">;
 
@@ -20,25 +21,24 @@ type LinkComponent<T extends As = "a"> = ComponentWithAs<T, LinkProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Link
  */
-const Link: LinkComponent = <T extends As = "a">({
-  as: Component = defaultLinkTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, LinkProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Link")?.variants?.[props.variant]
-    : {};
+const Link: LinkComponent = forwardRef(
+  ({ as: Component = defaultLinkTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Link")?.variants?.[props.variant]
+      : {};
 
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Link, type LinkComponent, LinkProps };

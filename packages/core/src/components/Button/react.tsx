@@ -10,6 +10,7 @@ import {
 import { Box } from "../Box";
 import { theme } from "@kuma-ui/sheet";
 import { defaultButtonTag } from "./handler";
+import { forwardRef } from "../forwardRef";
 
 type ButtonProps = ComponentProps<"Button">;
 
@@ -20,24 +21,23 @@ type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Button
  */
-const Button: ButtonComponent = <T extends As = "button">({
-  as: Component = defaultButtonTag,
-  children,
-  ...props
-}: MergeWithAs<PropsOf<T>, ButtonProps>) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-  const variant = props.variant
-    ? theme.getVariants("Button")?.variants?.[props.variant]
-    : {};
-  return (
-    <Box
-      as={Component}
-      {...variant}
-      {...props}
-      children={children}
-      IS_KUMA_DEFAULT
-    />
-  );
-};
+const Button: ButtonComponent = forwardRef(
+  ({ as: Component = defaultButtonTag, children, ...props }, ref) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+    const variant = props.variant
+      ? theme.getVariants("Button")?.variants?.[props.variant]
+      : {};
+    return (
+      <Box
+        as={Component}
+        ref={ref}
+        {...variant}
+        {...props}
+        children={children}
+        IS_KUMA_DEFAULT
+      />
+    );
+  }
+);
 
 export { Button, type ButtonComponent, ButtonProps };
