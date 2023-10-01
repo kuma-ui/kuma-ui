@@ -2,4 +2,4 @@
 "@kuma-ui/core": patch
 ---
 
-Override original props with as component props
+Override original prop types with `as` component props
