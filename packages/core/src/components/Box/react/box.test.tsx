@@ -1,7 +1,7 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, expectTypeOf } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Box } from ".";
-import React from "react";
+import React, { ComponentProps, MouseEventHandler, createRef } from "react";
 
 describe("Box component", () => {
   it("should render correctly with given static props", () => {
@@ -16,5 +16,14 @@ describe("Box component", () => {
       padding: "8px",
       color: "rgb(255, 255, 255)",
     });
+  });
+
+  it("should correctly override prop types by `as` prop", () => {
+    // Arrange
+    const ref = createRef<HTMLButtonElement>();
+    const onClick: MouseEventHandler<HTMLButtonElement> = () => {};
+
+    // Assert
+    <Box as="button" ref={ref} onClick={onClick} />;
   });
 });
