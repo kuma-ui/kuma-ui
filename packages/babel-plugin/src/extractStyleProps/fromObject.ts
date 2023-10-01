@@ -4,7 +4,7 @@ import { ExtractedStyleProps } from ".";
 
 export function extractStylePropsFromObjectExpression(
   path: NodePath<t.ObjectExpression | t.CallExpression | t.JSXOpeningElement>,
-  objectExpression: t.ObjectExpression
+  objectExpression: t.ObjectExpression,
 ): ExtractedStyleProps<NodePath<t.ObjectExpression>> {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};
@@ -48,7 +48,7 @@ export function extractStylePropsFromObjectExpression(
           objBinding:
             | ReturnType<typeof path.scope.getBinding>
             | t.ObjectExpression,
-          propertyPath: string[]
+          propertyPath: string[],
         ): t.Expression | null => {
           if (!objBinding) return null;
           const objDeclaration =
@@ -73,7 +73,7 @@ export function extractStylePropsFromObjectExpression(
                     return dfs(prop.value, remainingPath);
                   } else if (t.isIdentifier(prop.value)) {
                     const nextObjBinding = path.scope.getBinding(
-                      prop.value.name
+                      prop.value.name,
                     );
                     return dfs(nextObjBinding, remainingPath);
                   } else {

@@ -50,7 +50,7 @@ describe("regex", () => {
         const result = removeSpacesAroundCssPropertyValues(input);
         // Assert
         expect(result).toStrictEqual(expected);
-      }
+      },
     );
   });
 
@@ -80,7 +80,7 @@ describe("regex", () => {
         const result = removeSpacesExceptInProperties(input);
         // Assert
         expect(result).toStrictEqual(expected);
-      }
+      },
     );
   });
 });

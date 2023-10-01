@@ -36,7 +36,7 @@ const Grid: GridComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Grid, type GridComponent, GridProps };

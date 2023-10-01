@@ -31,18 +31,18 @@ export const handleSpacer = (path: NodePath<t.JSXElement>) => {
   // define attributes for vertical or horizontal spacer
   const displayValue = horizontal ? "inline-block" : "block";
   const display = openingElement.attributes.some(
-    (attr) => t.isJSXAttribute(attr) && attr.name.name === "display"
+    (attr) => t.isJSXAttribute(attr) && attr.name.name === "display",
   )
     ? undefined
     : t.jsxAttribute(t.jsxIdentifier("display"), t.stringLiteral(displayValue));
 
   const flexShrink = openingElement.attributes.some(
-    (attr) => t.isJSXAttribute(attr) && attr.name.name === "flexShrink"
+    (attr) => t.isJSXAttribute(attr) && attr.name.name === "flexShrink",
   )
     ? undefined
     : t.jsxAttribute(
         t.jsxIdentifier("flexShrink"),
-        t.jSXExpressionContainer(t.numericLiteral(0))
+        t.jSXExpressionContainer(t.numericLiteral(0)),
       );
 
   let widthValue, heightValue;
@@ -63,13 +63,13 @@ export const handleSpacer = (path: NodePath<t.JSXElement>) => {
   }
 
   const width = openingElement.attributes.some(
-    (attr) => t.isJSXAttribute(attr) && attr.name.name === "width"
+    (attr) => t.isJSXAttribute(attr) && attr.name.name === "width",
   )
     ? undefined
     : t.jsxAttribute(t.jsxIdentifier("width"), widthValue);
 
   const height = openingElement.attributes.some(
-    (attr) => t.isJSXAttribute(attr) && attr.name.name === "height"
+    (attr) => t.isJSXAttribute(attr) && attr.name.name === "height",
   )
     ? undefined
     : t.jsxAttribute(t.jsxIdentifier("height"), heightValue);

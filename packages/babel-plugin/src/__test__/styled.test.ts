@@ -193,6 +193,6 @@ describe("styled function", () => {
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
-    }
+    },
   );
 });

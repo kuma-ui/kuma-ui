@@ -9,7 +9,7 @@ export type ButtonSpecificProps = {};
 const buttonSpecificProps: (keyof ButtonSpecificProps)[] = [];
 
 export const isButtonProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is ButtonSpecificProps => {
   return buttonSpecificProps.some((k) => k === propName);
 };

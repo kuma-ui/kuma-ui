@@ -38,7 +38,7 @@ const Image: ImageComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Image, type ImageComponent, ImageProps };

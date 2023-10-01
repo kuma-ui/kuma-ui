@@ -8,7 +8,7 @@ export type InputSpecificProps = {};
 const inputSpecificProps: (keyof InputSpecificProps)[] = [];
 
 export const isInputProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is InputSpecificProps => {
   return inputSpecificProps.some((k) => k === propName);
 };

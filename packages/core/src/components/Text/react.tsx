@@ -38,7 +38,7 @@ const Text: TextComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Text, type TextComponent, TextProps };

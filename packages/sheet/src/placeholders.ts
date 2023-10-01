@@ -10,7 +10,7 @@ export const applyT = (input: string, placeholders: Placeholders): string => {
 
 export const applyPlaceholders = (
   input: string,
-  placeholders: Placeholders
+  placeholders: Placeholders,
 ): string => {
   const regex = /\bt\s*\(\s*["']([^"']+)["']\s*\)/g;
 
@@ -23,7 +23,7 @@ export const applyPlaceholders = (
 };
 
 export const createPlaceholders = (
-  theme: Partial<UserTheme>
+  theme: Partial<UserTheme>,
 ): Record<string, string> => {
   const result: Record<string, string> = {};
 

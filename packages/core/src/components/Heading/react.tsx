@@ -15,7 +15,7 @@ import { forwardRef } from "../forwardRef";
 type HeadingProps = ComponentProps<"Heading">;
 
 type HeadingComponent<
-  T extends "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1"
+  T extends "h1" | "h2" | "h3" | "h4" | "h5" | "h6" = "h1",
 > = ComponentWithAs<T, HeadingProps>;
 
 /**
@@ -41,7 +41,7 @@ const Heading: HeadingComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Heading, type HeadingComponent, HeadingProps };

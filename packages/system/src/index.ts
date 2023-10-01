@@ -42,7 +42,7 @@ export const all = compose(
   text,
   font,
   mask,
-  background
+  background,
 );
 
 export { normalizePseudo, isPseudoProps };

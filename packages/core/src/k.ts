@@ -20,7 +20,7 @@ const k: {
     get() {
       throw new Error('Using the "k" in runtime is not supported.');
     },
-  }
+  },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
 ) as any;
 

@@ -8,7 +8,7 @@ export type GridSpecificProps = {};
 const gridSpecificProps: (keyof GridSpecificProps)[] = [];
 
 export const isGridProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is GridSpecificProps => {
   return gridSpecificProps.some((k) => k === propName);
 };

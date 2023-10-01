@@ -6,7 +6,8 @@ export const applyResponsiveStyles = (
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
   cssValues: CSSProperty | number | (CSSProperty | number)[],
   // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
-  convertFn: (value: CSSProperty | number) => string | number = (value) => value
+  convertFn: (value: CSSProperty | number) => string | number = (value) =>
+    value,
 ): ResponsiveStyle => {
   const { breakpoints } = theme.getUserTheme();
   const media: ResponsiveStyle["media"] = {};

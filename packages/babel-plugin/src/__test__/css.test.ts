@@ -71,7 +71,7 @@ describe("css function", () => {
       const originalResult = babelTransform(originalCode);
       // Assert
       expect(getExpectSnapshot(result)).toEqual(
-        getExpectSnapshot(originalResult)
+        getExpectSnapshot(originalResult),
       );
     });
   });

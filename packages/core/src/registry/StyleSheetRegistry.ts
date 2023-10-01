@@ -33,7 +33,7 @@ export class StyleSheetRegistry {
       compile(css).forEach((element) => {
         const rule = serialize([element], stringify);
         this.indexesMap[id] = (this.indexesMap[id] || []).concat(
-          this.sheet.insertRule(rule)
+          this.sheet.insertRule(rule),
         );
       });
     }
@@ -42,7 +42,7 @@ export class StyleSheetRegistry {
   public remove(id: string): void {
     if (this.instancesCountMap[id] === undefined) {
       throw new Error(
-        `StyleSheetRegistry: id: \`${id}\` not found in idInstancesCountMap.`
+        `StyleSheetRegistry: id: \`${id}\` not found in idInstancesCountMap.`,
       );
     }
 
@@ -59,7 +59,7 @@ export class StyleSheetRegistry {
     } else {
       if (this.indexesMap[id] === undefined) {
         throw new Error(
-          `StyleSheetRegistry: id: \`${id}\` not found in idIndexesMap.`
+          `StyleSheetRegistry: id: \`${id}\` not found in idIndexesMap.`,
         );
       }
 
@@ -107,12 +107,15 @@ export class StyleSheetRegistry {
 
   private getServerSideRenderedStyleMap() {
     const elements: HTMLStyleElement[] = Array.from(
-      document.querySelectorAll(`[id^="${STYLE_ID_PREFIX}"]`)
+      document.querySelectorAll(`[id^="${STYLE_ID_PREFIX}"]`),
     );
-    return elements.reduce((styles, element) => {
-      const id = element.id.replace(STYLE_ID_PREFIX, "");
-      styles[id] = element;
-      return styles;
-    }, {} as Record<string, HTMLStyleElement>);
+    return elements.reduce(
+      (styles, element) => {
+        const id = element.id.replace(STYLE_ID_PREFIX, "");
+        styles[id] = element;
+        return styles;
+      },
+      {} as Record<string, HTMLStyleElement>,
+    );
   }
 }

@@ -334,6 +334,6 @@ function memo<T>(fn: (value: string) => T): (value: string) => T {
 export const isStyledProp = memo((_prop: string): _prop is StyledKeyType => {
   const prop = _prop as StyledKeyType;
   return Object.values(styleKeys).some((keyGroup) =>
-    (keyGroup as readonly string[]).includes(prop)
+    (keyGroup as readonly string[]).includes(prop),
   );
 });

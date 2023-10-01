@@ -38,7 +38,7 @@ const Flex: FlexComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Flex, type FlexComponent, FlexProps };

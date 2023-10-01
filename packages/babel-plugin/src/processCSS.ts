@@ -22,7 +22,7 @@ export function processCSS(
   nodePath: NodePath<types.Program>,
   t: typeof types,
   template: typeof Template,
-  importedStyleFunctions: Record<string, string>
+  importedStyleFunctions: Record<string, string>,
 ) {
   nodePath.traverse({
     CallExpression(path) {
@@ -43,10 +43,10 @@ export function processCSS(
       }
       const styleObject = extractStylePropsFromObjectExpression(
         path,
-        node.arguments[0]
+        node.arguments[0],
       );
       const convertedPseudoProps: SystemStyle["pseudo"] = Object.entries(
-        styleObject.pseudoProps
+        styleObject.pseudoProps,
       ).map(([pseudoKey, pseudoValue]) => {
         const pseudoStyle = all(pseudoValue);
         return {

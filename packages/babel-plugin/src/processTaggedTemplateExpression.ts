@@ -15,7 +15,7 @@ import { types as t } from "@babel/core";
 export const processTaggedTemplateExpression = (
   nodePath: NodePath<t.Program>,
   template: typeof Template,
-  importedStyleFunctions: Record<string, string>
+  importedStyleFunctions: Record<string, string>,
 ) => {
   nodePath.traverse({
     TaggedTemplateExpression(path) {
@@ -39,7 +39,7 @@ export const processTaggedTemplateExpression = (
         (key) =>
           t.isCallExpression(node.tag) &&
           t.isIdentifier(node.tag.callee) &&
-          importedStyleFunctions[key] === node.tag.callee.name
+          importedStyleFunctions[key] === node.tag.callee.name,
       );
 
       if (!(t.isCallExpression(node.tag) && hasStyled)) return;
@@ -70,7 +70,7 @@ export const processTaggedTemplateExpression = (
         }`,
         {
           plugins: ["jsx"],
-        }
+        },
       );
       path.replaceWith(createElementAst);
     },

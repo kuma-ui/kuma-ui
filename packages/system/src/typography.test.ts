@@ -34,12 +34,12 @@ describe("typography utility function", () => {
       const { base, media } = typography(props);
       const mediaString = Object.entries(media)
         .map(
-          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`
+          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`,
         )
         .join("");
 
       expect(base.replace(/\s/g, "")).toBe(expectedStyles.replace(/\s/g, ""));
       expect(mediaString.replace(/\s/g, "")).toBe(expectedMediaStyles);
-    }
+    },
   );
 });

@@ -81,7 +81,7 @@ export type ThemeSystem = {
 } & SystemThemeTokens;
 
 export function createTheme<const T extends ThemeInput<T>>(
-  theme: T
+  theme: T,
 ): ThemeResult<T> {
   const rawTheme = theme as RawThemeInput;
   const resolvedTokens = {};

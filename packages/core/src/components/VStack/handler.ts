@@ -8,7 +8,7 @@ export type VStackSpecificProps = {};
 const vstackSpecificProps: (keyof VStackSpecificProps)[] = [];
 
 export const isVStackProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is VStackSpecificProps => {
   return vstackSpecificProps.some((k) => k === propName);
 };

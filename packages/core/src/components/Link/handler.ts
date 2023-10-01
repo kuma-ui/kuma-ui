@@ -8,7 +8,7 @@ export type LinkSpecificProps = {};
 const linkSpecificProps: (keyof LinkSpecificProps)[] = [];
 
 export const isLinkProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is LinkSpecificProps => {
   return linkSpecificProps.some((k) => k === propName);
 };

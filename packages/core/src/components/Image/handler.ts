@@ -8,7 +8,7 @@ export type ImageSpecificProps = {};
 const imageSpecificProps: (keyof ImageSpecificProps)[] = [];
 
 export const isImageProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is ImageSpecificProps => {
   return imageSpecificProps.some((k) => k === propName);
 };

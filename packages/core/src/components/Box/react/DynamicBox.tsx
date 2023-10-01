@@ -17,7 +17,7 @@ const useInsertionEffect = React.useInsertionEffect || React.useLayoutEffect;
 export const DynamicBox: BoxComponent = forwardRef(
   (
     { as: Component = "div", children, variant, IS_KUMA_DEFAULT, ...props },
-    ref
+    ref,
   ) => {
     const registry = useStyleRegistry() || defaultRegistry;
 
@@ -44,7 +44,7 @@ export const DynamicBox: BoxComponent = forwardRef(
         ...restProps,
         className: [restProps.className, className].filter(Boolean).join(" "),
       },
-      children
+      children,
     );
 
     if (!isBrowser) {
@@ -60,5 +60,5 @@ export const DynamicBox: BoxComponent = forwardRef(
     }, [className, css]);
 
     return box;
-  }
+  },
 );

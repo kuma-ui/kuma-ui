@@ -5,7 +5,7 @@ import { extractStylePropsFromObjectExpression } from "./fromObject";
 
 export function extractStylePropsFromJSX(
   path: NodePath<t.JSXOpeningElement>,
-  openingElement: t.JSXOpeningElement
+  openingElement: t.JSXOpeningElement,
 ): ExtractedStyleProps<NodePath<t.JSXOpeningElement>> {
   const styledProps: { [key: string]: string | number | (string | number)[] } =
     {};
@@ -53,7 +53,7 @@ export function extractStylePropsFromJSX(
             objBinding:
               | ReturnType<typeof path.scope.getBinding>
               | t.ObjectExpression,
-            propertyPath: string[]
+            propertyPath: string[],
           ): t.Expression | null => {
             if (!objBinding) return null;
             const objDeclaration =
@@ -81,7 +81,7 @@ export function extractStylePropsFromJSX(
                       return dfs(prop.value, remainingPath);
                     } else if (t.isIdentifier(prop.value)) {
                       const nextObjBinding = path.scope.getBinding(
-                        prop.value.name
+                        prop.value.name,
                       );
                       return dfs(nextObjBinding, remainingPath);
                     } else {
@@ -128,7 +128,7 @@ export function extractStylePropsFromJSX(
         ...pseudoProps,
         [attr.name.name]: extractStylePropsFromObjectExpression(
           path,
-          attr.value.expression
+          attr.value.expression,
         ).styledProps,
       });
       return false;

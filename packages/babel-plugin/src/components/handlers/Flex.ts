@@ -7,11 +7,11 @@ export const handleFlex = (path: NodePath<t.JSXElement>) => {
   // add 'display="flex"' attribute if it's not already present
   if (
     !openingElement.attributes.some(
-      (attr) => attr.type === "JSXAttribute" && attr.name.name === "display"
+      (attr) => attr.type === "JSXAttribute" && attr.name.name === "display",
     )
   ) {
     openingElement.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier("display"), t.stringLiteral("flex"))
+      t.jsxAttribute(t.jsxIdentifier("display"), t.stringLiteral("flex")),
     );
   }
 };

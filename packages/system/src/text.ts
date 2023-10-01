@@ -68,7 +68,7 @@ export const text = (props: TextProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        converter
+        converter,
       );
       baseStyles += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

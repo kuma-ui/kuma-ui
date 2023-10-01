@@ -24,7 +24,7 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
       const { dir, dev, isServer } = options;
       const { appDir } = findPagesDir(
         dir,
-        !!options.config.experimental.appDir
+        !!options.config.experimental.appDir,
       );
 
       const cssRules = (
@@ -36,8 +36,8 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
               ({ test }) =>
                 test instanceof RegExp &&
                 typeof test.test === "function" &&
-                test.test("filename.css")
-            )
+                test.test("filename.css"),
+            ),
         ) as RuleSetRule
       )?.oneOf;
 
@@ -63,7 +63,7 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
             ...appDirOptions,
           } as ConfigurationContext,
           () => lazyPostCSS(dir, getSupportedBrowsers(dir, dev), undefined),
-          []
+          [],
         ),
       });
 

@@ -38,7 +38,7 @@ const Link: LinkComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Link, type LinkComponent, LinkProps };

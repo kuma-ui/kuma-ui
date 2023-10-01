@@ -152,11 +152,11 @@ export const space = (props: SpaceProps): ResponsiveStyle => {
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          toCssUnit
+          toCssUnit,
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media
+          responsiveStyles.media,
         )) {
           if (mediaStyles[breakpoint]) {
             mediaStyles[breakpoint] += css;

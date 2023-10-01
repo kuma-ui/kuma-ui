@@ -167,11 +167,11 @@ export const border = (props: BorderProps): ResponsiveStyle => {
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,
-          converter
+          converter,
         );
         baseStyles += responsiveStyles.base;
         for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media
+          responsiveStyles.media,
         )) {
           if (mediaStyles[breakpoint]) {
             mediaStyles[breakpoint] += css;

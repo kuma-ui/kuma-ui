@@ -19,8 +19,8 @@ describe("StyleGenerator class", () => {
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { color: red;font-size: 24px; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
         /\s/g,
-        ""
-      )
+        "",
+      ),
     );
     expect(css).toContain(`.${className}:hover { color: black; }`);
   });

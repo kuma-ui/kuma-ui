@@ -7,11 +7,11 @@ export const handleButton = (path: NodePath<t.JSXElement>) => {
   // add 'cursor="pointer"' attribute if it's not already present
   if (
     !openingElement.attributes.some(
-      (attr) => attr.type === "JSXAttribute" && attr.name.name === "cursor"
+      (attr) => attr.type === "JSXAttribute" && attr.name.name === "cursor",
     )
   ) {
     openingElement.attributes.push(
-      t.jsxAttribute(t.jsxIdentifier("cursor"), t.stringLiteral("pointer"))
+      t.jsxAttribute(t.jsxIdentifier("cursor"), t.stringLiteral("pointer")),
     );
   }
 };
