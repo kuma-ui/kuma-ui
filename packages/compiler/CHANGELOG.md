@@ -1,5 +1,18 @@
 # @kuma-ui/compiler
 
+## 1.2.0
+
+### Minor Changes
+
+- [#342](https://github.com/kuma-ui/kuma-ui/pull/342) [`2c3da38`](https://github.com/kuma-ui/kuma-ui/commit/2c3da38efccea069e9a4ac8e4fa7f5e7d50d0db6) Thanks [@mmkal](https://github.com/mmkal)! - styled-components syntax parity
+
+### Patch Changes
+
+- [#347](https://github.com/kuma-ui/kuma-ui/pull/347) [`a544228`](https://github.com/kuma-ui/kuma-ui/commit/a54422820afea1e49b9d0f51d15de0f0ba8ca87a) Thanks [@mmkal](https://github.com/mmkal)! - check 'styled' import binding before transforming
+
+- Updated dependencies [[`1e31d15`](https://github.com/kuma-ui/kuma-ui/commit/1e31d159d968e87054bb64155be1618d568be172), [`2c3da38`](https://github.com/kuma-ui/kuma-ui/commit/2c3da38efccea069e9a4ac8e4fa7f5e7d50d0db6)]:
+  - @kuma-ui/core@1.5.0
+
 ## 1.1.1
 
 ### Patch Changes

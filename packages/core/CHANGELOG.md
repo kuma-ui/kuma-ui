@@ -1,5 +1,13 @@
 # @kuma-ui/core
 
+## 1.5.0
+
+### Minor Changes
+
+- [#343](https://github.com/kuma-ui/kuma-ui/pull/343) [`1e31d15`](https://github.com/kuma-ui/kuma-ui/commit/1e31d159d968e87054bb64155be1618d568be172) Thanks [@poteboy](https://github.com/poteboy)! - Implement ForwardRef in Components
+
+- [#342](https://github.com/kuma-ui/kuma-ui/pull/342) [`2c3da38`](https://github.com/kuma-ui/kuma-ui/commit/2c3da38efccea069e9a4ac8e4fa7f5e7d50d0db6) Thanks [@mmkal](https://github.com/mmkal)! - styled-components syntax parity
+
 ## 1.4.1
 
 ### Patch Changes
