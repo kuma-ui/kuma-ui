@@ -2,7 +2,7 @@ import { Node, SyntaxKind, ts } from "ts-morph";
 import { match } from "ts-pattern";
 
 export const handleJsxExpression = (
-  node: Node<ts.Node>
+  node: Node<ts.Node>,
 ): string | number | boolean | (string | number | undefined)[] | undefined => {
   return (
     match(node)

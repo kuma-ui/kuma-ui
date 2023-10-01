@@ -37,7 +37,7 @@ const HStack: HStackComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { HStack, type HStackComponent, HStackProps };

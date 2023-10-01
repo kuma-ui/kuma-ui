@@ -3,7 +3,7 @@ import { types as t, types } from "@babel/core";
 
 export function collectImportedStyled(
   path: NodePath<t.Program>,
-  t: typeof types
+  t: typeof types,
 ): Record<string, string> {
   const importedStyleFunctions: Record<string, string> = {};
 

@@ -12,7 +12,7 @@ import {
 
 export const processComponents = (
   nodePath: NodePath<t.Program>,
-  importedStyleFunctions: Record<string, string>
+  importedStyleFunctions: Record<string, string>,
 ) => {
   nodePath.traverse({
     JSXElement(path) {

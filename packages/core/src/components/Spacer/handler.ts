@@ -15,7 +15,7 @@ const spacerSpecificProps: (keyof SpacerSpecificProps)[] = [
 ];
 
 export const isSpacerProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is SpacerSpecificProps => {
   return spacerSpecificProps.some((k) => k === propName);
 };

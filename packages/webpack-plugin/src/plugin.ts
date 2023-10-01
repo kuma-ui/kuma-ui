@@ -47,11 +47,11 @@ class KumaUIWebpackPlugin {
                     // enable automatic rebuild for dynamic theme props
                     // <Box color={(() => "colors.red.100"))()} />
                     fileDependencies: [config],
-                  }
+                  },
                 ),
             }
           : undefined),
-      })
+      }),
     );
 
     compiler.options.module?.rules?.push(
@@ -74,7 +74,7 @@ class KumaUIWebpackPlugin {
             loader: cssLoader,
           },
         ],
-      }
+      },
     );
   }
 }

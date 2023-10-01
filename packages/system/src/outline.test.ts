@@ -17,14 +17,14 @@ describe("outline utility function", () => {
       const styles = outline(props);
       const mediaString = Object.entries(styles.media)
         .map(
-          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`
+          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`,
         )
         .join("");
 
       expect(styles.base.replace(/\s/g, "")).toBe(
-        expectedStyles.replace(/\s/g, "")
+        expectedStyles.replace(/\s/g, ""),
       );
       expect(mediaString.replace(/\s/g, "")).toBe(expectedMediaStyle);
-    }
+    },
   );
 });

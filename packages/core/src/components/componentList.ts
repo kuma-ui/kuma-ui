@@ -137,7 +137,7 @@ export const isComponentProps =
   };
 
 export const componentDefaultProps = (
-  componentName: ComponentName
+  componentName: ComponentName,
 ): StyledProps => {
   return match(componentName)
     .with("Box", () => boxDefaultProps)

@@ -22,18 +22,18 @@ describe("text utility function", () => {
       const { base, media } = text(props);
       const mediaString = Object.entries(media)
         .map(
-          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`
+          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`,
         )
         .join("");
 
       // Assert
       expect(base.replace(/\s/g, "")).toBe(
-        expectedBaseStyles.replace(/\s/g, "")
+        expectedBaseStyles.replace(/\s/g, ""),
       );
       expect(mediaString.replace(/\s/g, "")).toBe(
-        expectedMediaStyles.replace(/\s/g, "")
+        expectedMediaStyles.replace(/\s/g, ""),
       );
-    }
+    },
   );
 
   test("should only generate styles for valid TextKeys", () => {

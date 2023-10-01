@@ -42,7 +42,7 @@ export class ServerStyleSheet implements StyleSheet {
   public setSpeedy(bool: boolean): void {
     if (this.rulesCount === 0) {
       throw new Error(
-        "ServerStyleSheet: speedy cannot be when rules have already been inserted"
+        "ServerStyleSheet: speedy cannot be when rules have already been inserted",
       );
     }
     this.flush();

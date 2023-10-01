@@ -98,7 +98,7 @@ export const background = (props: BackgroundProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        converter
+        converter,
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

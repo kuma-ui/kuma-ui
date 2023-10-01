@@ -9,14 +9,14 @@ import { NodePath, Node, types as t, template } from "@babel/core";
  */
 export function importBox(
   node: NodePath<t.Program>,
-  importedStyleFunctions: Record<string, string>
+  importedStyleFunctions: Record<string, string>,
 ) {
   let boxName: string = importedStyleFunctions["Box"];
   if (!boxName) {
     const localBoxName = "__Box";
     const reactImportDeclaration = t.importDeclaration(
       [t.importSpecifier(t.identifier(localBoxName), t.identifier("Box"))],
-      t.stringLiteral("@kuma-ui/core")
+      t.stringLiteral("@kuma-ui/core"),
     );
     node.unshiftContainer("body", reactImportDeclaration);
     boxName = localBoxName;

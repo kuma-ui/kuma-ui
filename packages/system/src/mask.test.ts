@@ -60,11 +60,11 @@ describe("mask utility function", () => {
         .join("");
 
       expect(styles.base.replace(/\s/g, "")).toBe(
-        expectedStyles.replace(/\s/g, "")
+        expectedStyles.replace(/\s/g, ""),
       );
       expect(mediaString.replace(/\s/g, "")).toBe(
-        expectedMediaStyle.replace(/\s/g, "")
+        expectedMediaStyle.replace(/\s/g, ""),
       );
-    }
+    },
   );
 });

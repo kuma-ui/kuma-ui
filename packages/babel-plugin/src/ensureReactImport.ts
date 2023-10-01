@@ -10,7 +10,7 @@ import { types } from "@babel/core";
  */
 export function ensureReactImport(
   programPath: NodePath<types.Program>,
-  t: typeof types
+  t: typeof types,
 ) {
   let hasReactImport = false;
 
@@ -23,7 +23,7 @@ export function ensureReactImport(
   if (!hasReactImport) {
     const reactImportDeclaration = t.importDeclaration(
       [t.importDefaultSpecifier(t.identifier("React"))],
-      t.stringLiteral("react")
+      t.stringLiteral("react"),
     );
     programPath.unshiftContainer("body", reactImportDeclaration);
   }

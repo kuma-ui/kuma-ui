@@ -20,7 +20,7 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
       React.ComponentProps<AsComponent>,
       Props,
       AsComponent
-    >
+    >,
   ): JSX.Element;
   displayName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
@@ -36,7 +36,7 @@ export type MergeWithAs<
   ComponentProps extends object,
   AsProps extends object,
   AdditionalProps extends object = {},
-  AsComponent extends As = As
+  AsComponent extends As = As,
 > = RightJoinProps<ComponentProps, AdditionalProps> &
   RightJoinProps<AsProps, AdditionalProps> & {
     as?: AsComponent;
@@ -44,18 +44,18 @@ export type MergeWithAs<
 
 export type RightJoinProps<
   SourceProps extends object = {},
-  OverrideProps extends object = {}
+  OverrideProps extends object = {},
 > = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps;
 
 type OmitCommonProps<
   Target,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  OmitAdditionalProps extends keyof any = never
+  OmitAdditionalProps extends keyof any = never,
 > = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 
 type Variants<
   T,
-  ComponentType extends keyof typeof componentList
+  ComponentType extends keyof typeof componentList,
 > = T extends Required<Required<RawThemeInput>["components"]>[ComponentType]
   ? NonNullable<T["variants"]>
   : never;

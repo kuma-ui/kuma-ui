@@ -33,15 +33,15 @@ describe("flex utility function", () => {
       const styles = flex(props);
       const mediaString = Object.entries(styles.media)
         .map(
-          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`
+          ([breakpoint, css]) => `@media (min-width: ${breakpoint}) {${css}}`,
         )
         .join("");
       // Asert
       expect(styles.base.replace(/\s/g, "")).toBe(
-        expectedStyles.replace(/\s/g, "")
+        expectedStyles.replace(/\s/g, ""),
       );
       expect(mediaString.replace(/\s/g, "")).toBe(expectedMediaStyle);
-    }
+    },
   );
 
   test("should only generate styles for valid FlexKeys", () => {

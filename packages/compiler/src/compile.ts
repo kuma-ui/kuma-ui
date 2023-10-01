@@ -16,7 +16,7 @@ const project = new Project({});
 const compile = (
   code: string,
   id: string,
-  bindings: Record<string, string>
+  bindings: Record<string, string>,
 ) => {
   const css: string[] = [];
   const source = project.createSourceFile(id, code, { overwrite: true });
@@ -37,7 +37,7 @@ const compile = (
       const originalComponentName = Object.keys(bindings).find(
         (key) =>
           bindings[key] === jsxTagName &&
-          Object.values(componentList).some((c) => c === key)
+          Object.values(componentList).some((c) => c === key),
       );
       if (!originalComponentName) return;
 
@@ -47,14 +47,14 @@ const compile = (
       const result = extractProps(
         componentName,
         openingElement,
-        extractedPropsMap
+        extractedPropsMap,
       );
       if (result) css.push(result.css);
 
       optimize(
         componentName,
         openingElement,
-        extractedPropsMap["as"] as string | undefined
+        extractedPropsMap["as"] as string | undefined,
       );
     }
     if (Node.isTaggedTemplateExpression(node)) {

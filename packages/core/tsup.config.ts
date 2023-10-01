@@ -44,12 +44,12 @@ export default defineConfig([
                 tsPath = path.join(
                   args.resolveDir,
                   args.path,
-                  `index${fileExtension}`
+                  `index${fileExtension}`,
                 );
                 tsxPath = path.join(
                   args.resolveDir,
                   args.path,
-                  `index${fileExtension}x`
+                  `index${fileExtension}x`,
                 );
                 if (fs.existsSync(tsPath) || fs.existsSync(tsxPath)) {
                   importPath = `${args.path}/index${extension}`;

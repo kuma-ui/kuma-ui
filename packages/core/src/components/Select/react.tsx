@@ -38,7 +38,7 @@ const Select: SelectComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Select, type SelectComponent, SelectProps };

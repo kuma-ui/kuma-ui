@@ -16,7 +16,7 @@ type Options = {
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
-  source: Buffer
+  source: Buffer,
 ) {
   // tell Webpack this loader is async
   const callback = this.async();
@@ -56,7 +56,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
     const params = new URLSearchParams({ [CSS_PARAM_NAME]: css });
 
     const importCSS = `import ${JSON.stringify(
-      `${this.utils.contextify(this.context, CSS_PATH)}?${params.toString()}`
+      `${this.utils.contextify(this.context, CSS_PATH)}?${params.toString()}`,
     )};`;
 
     callback(null, `${result.code}\n${importCSS};`);

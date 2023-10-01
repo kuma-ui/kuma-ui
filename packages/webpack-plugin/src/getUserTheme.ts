@@ -29,7 +29,7 @@ export const getUserTheme = (configPath: string) => {
 
   const { default: userTheme } = eval(
     result.outputFiles[0].text,
-    configPath
+    configPath,
   ) as {
     default: Partial<UserTheme>;
   };

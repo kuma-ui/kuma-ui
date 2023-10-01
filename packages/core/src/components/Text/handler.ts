@@ -9,7 +9,7 @@ export type TextSpecificProps = {};
 const textSpecificProps: (keyof TextSpecificProps)[] = [];
 
 export const isTextProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is TextSpecificProps => {
   return textSpecificProps.some((k) => k === propName);
 };

@@ -26,7 +26,7 @@ export const position = (props: PositionProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        toCssUnit
+        toCssUnit,
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

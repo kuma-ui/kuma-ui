@@ -63,7 +63,7 @@ export default function kumaUI(): Plugin {
       if (!result?.code) return;
       const css = (result.metadata as unknown as { css: string }).css || "";
       const cssFilename = path.normalize(
-        `${id.replace(/\.[jt]sx?$/, "")}-${generateHash(css)}.css`
+        `${id.replace(/\.[jt]sx?$/, "")}-${generateHash(css)}.css`,
       );
       const cssRelativePath = path
         .relative(process.cwd(), cssFilename)

@@ -8,7 +8,7 @@ export type SelectSpecificProps = {};
 const selectSpecificProps: (keyof SelectSpecificProps)[] = [];
 
 export const isSelectProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is SelectSpecificProps => {
   return selectSpecificProps.some((k) => k === propName);
 };

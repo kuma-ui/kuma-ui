@@ -27,10 +27,10 @@ describe("applyResponsiveStyles", () => {
     // Assert
     expect(result.base).toBe("margin-top: 10px;");
     expect(result.media[Object.keys(result.media)[0]]).toBe(
-      "margin-top: 20px;"
+      "margin-top: 20px;",
     );
     expect(result.media[Object.keys(result.media)[1]]).toBe(
-      "margin-top: 30px;"
+      "margin-top: 30px;",
     );
   });
 });

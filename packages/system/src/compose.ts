@@ -65,7 +65,7 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
   fontMappings,
   maskMappings,
   columnMappings,
-  backgroundMappings
+  backgroundMappings,
 );
 /**
  * Composes multiple style functions into a single style function.
@@ -103,7 +103,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
         }
 
         const processedProps = Object.keys(outputProps).filter((key) =>
-          newStyles.base.includes(`${styleMappings[key as StyledKeyType]}:`)
+          newStyles.base.includes(`${styleMappings[key as StyledKeyType]}:`),
         );
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
         outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
@@ -118,7 +118,7 @@ export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
 
         return styles;
       },
-      { base: "", media: {} } as ResponsiveStyle
+      { base: "", media: {} } as ResponsiveStyle,
     );
 
     styleCache.set(cacheKey, combinedStyles);

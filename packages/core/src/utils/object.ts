@@ -22,7 +22,7 @@ export type NestedObject<T = unknown> = {
  * }
  */
 export function flattenObject<const T, T2 extends NestedObject<T>>(
-  object: T2
+  object: T2,
 ): FlattenObject<T2> {
   const result = {} as FlattenObject<T2>;
   for (const key in object) {
@@ -58,7 +58,7 @@ export function flattenObject<const T, T2 extends NestedObject<T>>(
  */
 export type FlattenObject<
   T extends NestedObject,
-  RestKey extends string = ""
+  RestKey extends string = "",
 > = UnionToIntersection<
   T extends Record<infer Key, unknown>
     ? Key extends ObjectKey

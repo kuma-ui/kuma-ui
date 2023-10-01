@@ -11,7 +11,7 @@ describe("stableStringify", () => {
         c: 6,
         z: null,
         nested: [{ arr: "hello" }],
-      })
+      }),
     ).toEqual('{"a":3,"b":[4,5],"c":6,"nested":[{"arr":"hello"}],"z":null}');
   });
 
@@ -24,7 +24,7 @@ describe("stableStringify", () => {
           y: "y",
           x: "x",
         },
-      })
+      }),
     ).toEqual(
       stableStringify({
         a: 33,
@@ -33,7 +33,7 @@ describe("stableStringify", () => {
           y: "y",
         },
         b: 999,
-      })
+      }),
     );
   });
 });

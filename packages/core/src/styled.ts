@@ -17,18 +17,18 @@ export type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
 >;
 
 export type StyleTemplate<T extends keyof JSX.IntrinsicElements> = (
-  strings: TemplateStringsArray
+  strings: TemplateStringsArray,
 ) => StyledComponent<T>;
 
 export type StyledFn = {
   <T extends keyof JSX.IntrinsicElements>(name: T): StyleTemplate<T>;
   <T extends keyof JSX.IntrinsicElements>(
-    Component: StyledComponent<T>
+    Component: StyledComponent<T>,
   ): StyleTemplate<T>;
 };
 
 function _styled<T extends keyof JSX.IntrinsicElements>(
-  Component: T | StyledComponent<T>
+  Component: T | StyledComponent<T>,
 ) {
   const fn: StyleTemplate<T> = (strings) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME

@@ -37,7 +37,7 @@ const VStack: VStackComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { VStack, type VStackComponent, VStackProps };

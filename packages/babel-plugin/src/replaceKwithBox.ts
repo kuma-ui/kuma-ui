@@ -12,7 +12,7 @@ import { NodePath, Node, types, template } from "@babel/core";
 export const replaceKwithBox = (
   node: NodePath<types.Program>,
   t: typeof types,
-  importedStyleFunctions: Record<string, string>
+  importedStyleFunctions: Record<string, string>,
 ) => {
   node.traverse({
     JSXElement(path) {
@@ -35,11 +35,11 @@ export const replaceKwithBox = (
         openingElement.attributes = [
           t.jsxAttribute(
             t.jsxIdentifier("as"),
-            t.stringLiteral(openingElement.name.property.name)
+            t.stringLiteral(openingElement.name.property.name),
           ),
           t.jsxAttribute(
             t.jsxIdentifier("IS_KUMA_DEFAULT"),
-            t.jsxExpressionContainer(t.booleanLiteral(true))
+            t.jsxExpressionContainer(t.booleanLiteral(true)),
           ),
           ...openingElement.attributes,
         ];

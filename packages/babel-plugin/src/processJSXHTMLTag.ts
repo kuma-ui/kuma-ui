@@ -12,7 +12,7 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
   path.node.attributes = filteredAttributes;
   if (Object.keys(styledProps).length > 0) {
     const convertedPseudoProps: SystemStyle["pseudo"] = Object.entries(
-      pseudoProps
+      pseudoProps,
     ).map(([pseudoKey, pseudoValue]) => {
       const pseudoStyle = all(pseudoValue);
       return {
@@ -37,7 +37,7 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
     const existsClassNameAttr = path.node.attributes.find(
       (attr): attr is t.JSXAttribute =>
         t.isJSXAttribute(attr) &&
-        t.isJSXIdentifier(attr.name, { name: "className" })
+        t.isJSXIdentifier(attr.name, { name: "className" }),
     );
     if (existsClassNameAttr) {
       if (t.isStringLiteral(existsClassNameAttr.value)) {
@@ -58,14 +58,14 @@ export const processJSXHTMLTag = (path: NodePath<t.JSXOpeningElement>) => {
         t.callExpression(
           t.memberExpression(
             t.arrayExpression(classNameAttrs),
-            t.identifier("join")
+            t.identifier("join"),
           ),
-          [t.stringLiteral(" ")]
-        )
+          [t.stringLiteral(" ")],
+        ),
       );
     } else {
       path.node.attributes.push(
-        t.jsxAttribute(t.jsxIdentifier("className"), generatedClassNameAttr)
+        t.jsxAttribute(t.jsxIdentifier("className"), generatedClassNameAttr),
       );
     }
   }

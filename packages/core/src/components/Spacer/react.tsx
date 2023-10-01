@@ -26,7 +26,7 @@ type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
 const Spacer: SpacerComponent = forwardRef(
   (
     { as: Component = defaultSpacerTag, children, size, horizontal, ...props },
-    ref
+    ref,
   ) => {
     props = {
       ...spacerHandler({ size, horizontal }),
@@ -48,7 +48,7 @@ const Spacer: SpacerComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Spacer, type SpacerComponent, SpacerProps };

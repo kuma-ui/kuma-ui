@@ -60,17 +60,17 @@ describe("Sheet class", () => {
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
     expect(cssString).toContain(
-      `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`
+      `.${className}{${removeSpacesAroundCssPropertyValues(style.base)}}`,
     );
     expect(cssString).toContain(
       `@media (min-width:768px){.${className}{${removeSpacesAroundCssPropertyValues(
-        style.responsive["768px"]
-      )}}}`
+        style.responsive["768px"],
+      )}}}`,
     );
     expect(cssString).toContain(
       `.${className}${
         style.pseudo[0].key
-      }{${removeSpacesAroundCssPropertyValues(style.pseudo[0].base)}}`
+      }{${removeSpacesAroundCssPropertyValues(style.pseudo[0].base)}}`,
     );
   });
 

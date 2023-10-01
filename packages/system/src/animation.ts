@@ -43,7 +43,7 @@ export const animation = (props: AnimationProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        undefined
+        undefined,
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

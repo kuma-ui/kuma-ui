@@ -77,7 +77,7 @@ export const font = (props: FontProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        converter
+        converter,
       );
       baseStyles += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

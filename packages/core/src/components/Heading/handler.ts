@@ -8,7 +8,7 @@ export type HeadingSpecificProps = {};
 const headingSpecificProps: (keyof HeadingSpecificProps)[] = [];
 
 export const isHeadingProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is HeadingSpecificProps => {
   return headingSpecificProps.some((k) => k === propName);
 };

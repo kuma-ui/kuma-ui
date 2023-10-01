@@ -37,7 +37,7 @@ const Button: ButtonComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Button, type ButtonComponent, ButtonProps };

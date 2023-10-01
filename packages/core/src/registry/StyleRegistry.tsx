@@ -4,7 +4,7 @@ import React from "react";
 import { StyleSheetRegistry } from "./StyleSheetRegistry";
 
 export const StyleSheetContext = React.createContext<StyleSheetRegistry | null>(
-  null
+  null,
 );
 StyleSheetContext.displayName = "StyleSheetContext";
 
@@ -21,13 +21,13 @@ export function StyleRegistry({
 }): React.ReactElement {
   const rootRegistry = React.useContext(StyleSheetContext);
   const [registry] = React.useState(
-    () => rootRegistry || configuredRegistry || createStyleRegistry()
+    () => rootRegistry || configuredRegistry || createStyleRegistry(),
   );
 
   return React.createElement(
     StyleSheetContext.Provider,
     { value: registry },
-    children
+    children,
   );
 }
 

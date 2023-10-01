@@ -16,7 +16,7 @@ const extractClassName = (templateLiteral: TemplateLiteral) => {
 
 export const processTaggedTemplateExpression = (
   node: TaggedTemplateExpression,
-  bindings: Record<string, string>
+  bindings: Record<string, string>,
 ) => {
   const tag = node.getTag();
   // css``
@@ -53,14 +53,14 @@ export const processTaggedTemplateExpression = (
 
 function getBoxComponent(
   intrinsicComponentName: string,
-  bindings: Record<string, string>
+  bindings: Record<string, string>,
 ) {
   return `${bindings["Box"]} as="${intrinsicComponentName}"`;
 }
 
 function replaceTaggedTemplate(
   node: TaggedTemplateExpression,
-  component: string
+  component: string,
 ) {
   const className = extractClassName(node.getTemplate());
   if (className) {

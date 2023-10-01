@@ -11,7 +11,7 @@ const plugin = (core: Core): PluginObj => {
         if (
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- FIXME
           !parserOpts.plugins.some(
-            (p: unknown) => (Array.isArray(p) ? p[0] : p) === pluginName
+            (p: unknown) => (Array.isArray(p) ? p[0] : p) === pluginName,
           )
         ) {
           // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call -- FIXME

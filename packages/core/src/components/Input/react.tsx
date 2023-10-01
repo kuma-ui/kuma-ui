@@ -31,7 +31,7 @@ const Input: InputComponent = forwardRef(
         IS_KUMA_DEFAULT
       />
     );
-  }
+  },
 );
 
 export { Input, type InputComponent, InputProps };

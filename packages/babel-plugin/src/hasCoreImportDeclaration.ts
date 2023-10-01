@@ -13,6 +13,6 @@ export function hasCoreImportDeclaration(path: NodePath<t.Program>) {
   return importDeclarations.some(
     (importDeclaration) =>
       t.isImportDeclaration(importDeclaration.node) &&
-      importDeclaration.node.source.value === "@kuma-ui/core"
+      importDeclaration.node.source.value === "@kuma-ui/core",
   );
 }

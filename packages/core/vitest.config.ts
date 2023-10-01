@@ -8,5 +8,5 @@ export default mergeConfig(
       environment: "jsdom",
       setupFiles: "src/tests/vitest.setup.ts",
     },
-  })
+  }),
 );

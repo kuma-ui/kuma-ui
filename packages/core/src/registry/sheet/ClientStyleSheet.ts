@@ -29,7 +29,7 @@ export class ClientStyleSheet implements StyleSheet {
       if (!this.speedy) {
         if (!isProduction) {
           console.warn(
-            "ClientStyleSheet: speedy mode not supported falling back to standard mode."
+            "ClientStyleSheet: speedy mode not supported falling back to standard mode.",
           );
         }
         this.flush();
@@ -46,7 +46,7 @@ export class ClientStyleSheet implements StyleSheet {
   public setSpeedy(bool: boolean): void {
     if (this.rulesCount === 0) {
       throw new Error(
-        "ClientStyleSheet: speedy cannot be when rules have already been inserted"
+        "ClientStyleSheet: speedy cannot be when rules have already been inserted",
       );
     }
     this.flush();
@@ -68,7 +68,7 @@ export class ClientStyleSheet implements StyleSheet {
       } catch (error) {
         if (!isProduction) {
           console.warn(
-            `ClientStyleSheet: illegal rule: \n\n${rule}\n\nSee https://stackoverflow.com/q/20007992 for more info`
+            `ClientStyleSheet: illegal rule: \n\n${rule}\n\nSee https://stackoverflow.com/q/20007992 for more info`,
           );
         }
 
@@ -104,21 +104,24 @@ export class ClientStyleSheet implements StyleSheet {
   }
 
   public cssRules(): ReturnType<StyleSheet["cssRules"]> {
-    return this.tags.reduce((rules, tag) => {
-      if (tag) {
-        return rules.concat(
-          Array.from(this.getSheet(tag).cssRules, (rule) =>
-            rule.cssText === this.deletedRulePlaceholder ? undefined : rule
-          )
-        );
-      }
-      return rules;
-    }, [] as ReturnType<StyleSheet["cssRules"]>);
+    return this.tags.reduce(
+      (rules, tag) => {
+        if (tag) {
+          return rules.concat(
+            Array.from(this.getSheet(tag).cssRules, (rule) =>
+              rule.cssText === this.deletedRulePlaceholder ? undefined : rule,
+            ),
+          );
+        }
+        return rules;
+      },
+      [] as ReturnType<StyleSheet["cssRules"]>,
+    );
   }
 
   private makeStyleTag(
     cssString?: string,
-    relativeToTag?: HTMLStyleElement
+    relativeToTag?: HTMLStyleElement,
   ): HTMLStyleElement {
     const tag = document.createElement("style");
     tag.setAttribute(`data-${this.name}`, "");
@@ -152,7 +155,7 @@ export class ClientStyleSheet implements StyleSheet {
 
     // this weirdness brought to you by firefox
     const sheet = Array.from(document.styleSheets).find(
-      (sheet) => sheet.ownerNode === tag
+      (sheet) => sheet.ownerNode === tag,
     );
     if (sheet) {
       return sheet;

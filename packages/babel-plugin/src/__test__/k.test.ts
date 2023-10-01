@@ -107,6 +107,6 @@ describe("k api", () => {
         // Assert
         expect(getExpectSnapshot(result)).toMatchSnapshot();
       });
-    }
+    },
   );
 });

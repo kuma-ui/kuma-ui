@@ -8,7 +8,7 @@ export type HStackSpecificProps = {};
 const hstackSpecificProps: (keyof HStackSpecificProps)[] = [];
 
 export const isHStackProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is HStackSpecificProps => {
   return hstackSpecificProps.some((k) => k === propName);
 };

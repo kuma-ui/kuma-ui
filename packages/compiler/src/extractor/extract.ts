@@ -12,7 +12,7 @@ export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  propsMap: Record<string, any>
+  propsMap: Record<string, any>,
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   const styledProps: { [key: string]: any } = {};
@@ -79,7 +79,7 @@ export const extractProps = (
     ...pseudoProps,
   };
   const { className: generatedClassName, css } = new StyleGenerator(
-    combinedProps
+    combinedProps,
   ).getStyle();
 
   // If no generatedClassName is returned, the component should remain intact

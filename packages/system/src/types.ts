@@ -24,12 +24,12 @@ export type ExcludeHyphen<T extends string> = Exclude<T, `-${string}`>;
 // A type representing a single CSS property value or an array of them, with an optional number type if Q is true
 export type CSSValue<
   P extends keyof CSS.Properties,
-  Q extends boolean = false
+  Q extends boolean = false,
 > = CSSProperties<P, Q>[P];
 
 export type CSSProperties<
   P extends keyof CSS.Properties,
-  Q extends boolean = false
+  Q extends boolean = false,
 > = If<
   Q,
   Pick<CSS.PropertiesFallback<number>, P>,

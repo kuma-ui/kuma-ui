@@ -12,7 +12,7 @@ import { handleJsxExpression } from "./expression";
 import { extractPseudoAttribute } from "./pseudo";
 
 export const collectPropsFromJsx = (
-  node: JsxOpeningElement | JsxSelfClosingElement
+  node: JsxOpeningElement | JsxSelfClosingElement,
 ) => {
   const jsxAttributes = node.getAttributes();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
@@ -56,7 +56,7 @@ const extractAttribute = (jsxAttribute: JsxAttribute) => {
       // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
       .when(
         () => initializer === undefined,
-        () => true
+        () => true,
       )
       .otherwise(() => undefined)
   );

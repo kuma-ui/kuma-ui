@@ -12,7 +12,7 @@ describe("Theme utility functions", () => {
         "breakpoints.mobile": "480px",
       };
       expect(applyPlaceholders(input, placeholders)).toBe(
-        "Color is #FF0000 and breakpoint is 480px"
+        "Color is #FF0000 and breakpoint is 480px",
       );
     });
 
@@ -23,7 +23,7 @@ describe("Theme utility functions", () => {
         "colors.primary": "#FF0000",
       };
       expect(applyPlaceholders(input, placeholders)).toBe(
-        "Color is #FF0000 and something is t('invalid.key')"
+        "Color is #FF0000 and something is t('invalid.key')",
       );
     });
   });
@@ -67,7 +67,7 @@ describe("Theme utility functions", () => {
     it("handles strings without placeholders", () => {
       const placeholders = { "colors.primary": "#FF0000" };
       expect(applyPlaceholders("No placeholders here", placeholders)).toBe(
-        "No placeholders here"
+        "No placeholders here",
       );
     });
 
@@ -76,8 +76,8 @@ describe("Theme utility functions", () => {
       expect(
         applyPlaceholders(
           "Color t('colors.primary') and again t('colors.primary')",
-          placeholders
-        )
+          placeholders,
+        ),
       ).toBe("Color #FF0000 and again #FF0000");
     });
 
@@ -86,8 +86,8 @@ describe("Theme utility functions", () => {
       expect(
         applyPlaceholders(
           "Colors: t('colors.primary'), t('colors.secondary')",
-          placeholders
-        )
+          placeholders,
+        ),
       ).toBe("Colors: #FF0000, t('colors.secondary')");
     });
   });
@@ -110,10 +110,10 @@ describe("Theme utility functions", () => {
     it("handles whitespace around placeholders", () => {
       const placeholders = { "colors.primary": "#FF0000" };
       expect(
-        applyPlaceholders("Color t(  'colors.primary'  )", placeholders)
+        applyPlaceholders("Color t(  'colors.primary'  )", placeholders),
       ).toBe("Color #FF0000");
       expect(
-        applyPlaceholders('Color t(  "colors.primary"  )', placeholders)
+        applyPlaceholders('Color t(  "colors.primary"  )', placeholders),
       ).toBe("Color #FF0000");
     });
 
@@ -123,10 +123,13 @@ describe("Theme utility functions", () => {
         "breakpoints.mobile": "480px",
       };
       expect(
-        applyPlaceholders('Color is t("colors.primary")', placeholders)
+        applyPlaceholders('Color is t("colors.primary")', placeholders),
       ).toBe("Color is #FF0000");
       expect(
-        applyPlaceholders("Breakpoint is t('breakpoints.mobile')", placeholders)
+        applyPlaceholders(
+          "Breakpoint is t('breakpoints.mobile')",
+          placeholders,
+        ),
       ).toBe("Breakpoint is 480px");
     });
   });

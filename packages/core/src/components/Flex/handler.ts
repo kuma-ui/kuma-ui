@@ -8,7 +8,7 @@ export type FlexSpecificProps = {};
 const flexSpecificProps: (keyof FlexSpecificProps)[] = [];
 
 export const isFlexProps = (
-  propName: unknown
+  propName: unknown,
 ): propName is FlexSpecificProps => {
   return flexSpecificProps.some((k) => k === propName);
 };

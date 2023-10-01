@@ -28,7 +28,7 @@ import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
 export const optimize = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
-  as?: string
+  as?: string,
 ) => {
   const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
     if (Node.isJsxSpreadAttribute(attrLike)) return false;
@@ -72,13 +72,13 @@ function hasDynamicProp(key: string, hasAs: boolean): boolean {
  */
 function safeReplaceTagName(
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
-  newTagName: string
+  newTagName: string,
 ): void {
   const originalComponent = jsxElement.getTagNameNode().getText();
   try {
     if (Node.isJsxOpeningElement(jsxElement)) {
       const jsxElementParent = jsxElement.getParentIfKind(
-        SyntaxKind.JsxElement
+        SyntaxKind.JsxElement,
       );
       if (jsxElementParent) {
         jsxElementParent

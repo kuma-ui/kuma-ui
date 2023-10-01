@@ -82,7 +82,7 @@ export class StyleGenerator {
 
     let css = `.${this.className} { ${this.style.base} }`;
     for (const [breakpoint, cssValue] of Object.entries(
-      this.style.responsive
+      this.style.responsive,
     )) {
       css += `@media (min-width: ${breakpoint}) { .${this.className} { ${cssValue} } }`;
     }
