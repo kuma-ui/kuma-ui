@@ -23,7 +23,7 @@ export class StyleGenerator {
     const findCustomStyle = (value: string) => {
       const userTheme = theme.getUserTheme();
       const propKey = value.split(".")[0] as Tokens;
-      if(userTheme[propKey] === undefined) return undefined;
+      if (userTheme[propKey] === undefined) return undefined;
 
       for (const key in userTheme[propKey]) {
         if (value === key) {
@@ -31,33 +31,33 @@ export class StyleGenerator {
         }
       }
       return undefined;
-    }
-    
+    };
+
     for (const [propName, propValue] of Object.entries(props)) {
       if (
         typeof propValue === "string" &&
         /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue)
       ) {
-          const customStyle = findCustomStyle(propValue);
-          if(customStyle !== undefined) {
-            styledProps[propName] = customStyle;
-          }
+        const customStyle = findCustomStyle(propValue);
+        if (customStyle !== undefined) {
+          styledProps[propName] = customStyle;
+        }
       } else if (isStyledProp(propName)) {
         styledProps[propName] = propValue;
       } else if (isPseudoProps(propName)) {
         pseudoProps[propName] = propValue;
-        for(const [name, value] of Object.entries(propValue)) {
+        for (const [name, value] of Object.entries(propValue)) {
           if (
             typeof value === "string" &&
             /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(value)
           ) {
-              const customStyle = findCustomStyle(value);
-              if(customStyle !== undefined) {
-                pseudoProps[propName] = {
-                  [name]: customStyle
-                }
-              }
+            const customStyle = findCustomStyle(value);
+            if (customStyle !== undefined) {
+              pseudoProps[propName] = {
+                [name]: customStyle,
+              };
             }
+          }
         }
       }
     }
