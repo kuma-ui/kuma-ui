@@ -20,25 +20,45 @@ export class StyleGenerator {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     const pseudoProps: { [key: string]: any } = {};
 
+    const findCustomStyle = (value: string) => {
+      const userTheme = theme.getUserTheme();
+      const propKey = value.split(".")[0] as Tokens;
+      if(userTheme[propKey] === undefined) return undefined;
+
+      for (const key in userTheme[propKey]) {
+        if (value === key) {
+          return userTheme[propKey]![key];
+        }
+      }
+      return undefined;
+    }
+    
     for (const [propName, propValue] of Object.entries(props)) {
       if (
         typeof propValue === "string" &&
         /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue)
       ) {
-        const userTheme = theme.getUserTheme();
-        const propKey = propValue.split(".")[0] as Tokens;
-        if (userTheme[propKey] !== undefined) {
-          for (const key in userTheme[propKey]) {
-            if (propValue === key) {
-              styledProps[propName] = userTheme[propKey]![key];
-              break;
-            }
+          const customStyle = findCustomStyle(propValue);
+          if(customStyle !== undefined) {
+            styledProps[propName] = customStyle;
           }
-        }
       } else if (isStyledProp(propName)) {
         styledProps[propName] = propValue;
       } else if (isPseudoProps(propName)) {
         pseudoProps[propName] = propValue;
+        for(const [name, value] of Object.entries(propValue)) {
+          if (
+            typeof value === "string" &&
+            /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(value)
+          ) {
+              const customStyle = findCustomStyle(value);
+              if(customStyle !== undefined) {
+                pseudoProps[propName] = {
+                  [name]: customStyle
+                }
+              }
+            }
+        }
       }
     }
 
