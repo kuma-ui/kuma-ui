@@ -42,6 +42,13 @@ export default function Home() {
       <StyledFn>styled fn</StyledFn>
       <StyledProperty>styled property</StyledProperty>
       <StyledExtended>styled extended</StyledExtended>
+      <k.button _hover={{
+        bgColor: "colors.blue"
+      }}
+      _active={{
+        bgColor: "colors.red.100"
+      }}
+      >psuedo button</k.button>
     </div>
   );
 }
