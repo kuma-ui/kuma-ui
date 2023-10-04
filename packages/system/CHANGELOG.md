@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 1.5.2
+
+### Patch Changes
+
+- [#352](https://github.com/kuma-ui/kuma-ui/pull/352) [`d8b82dc`](https://github.com/kuma-ui/kuma-ui/commit/d8b82dc7e851afa994eda664e09acff41d04ba6c) Thanks [@tomoyuki-hiranuma](https://github.com/tomoyuki-hiranuma)! - Apply custom theme in pseudo elements
+
 ## 1.5.1
 
 ### Patch Changes
