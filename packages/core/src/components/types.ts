@@ -37,10 +37,12 @@ export type MergeWithAs<
   AsProps extends object,
   AdditionalProps extends object = {},
   AsComponent extends As = As,
-> = RightJoinProps<ComponentProps, AdditionalProps> &
+> = RightJoinProps<
+  RightJoinProps<ComponentProps, AdditionalProps>,
   RightJoinProps<AsProps, AdditionalProps> & {
     as?: AsComponent;
-  };
+  }
+>;
 
 export type RightJoinProps<
   SourceProps extends object = {},

@@ -8,11 +8,16 @@ import {
   Button,
 } from "@kuma-ui/core";
 import { Dynamic } from "./Dynamic";
-import { useEffect, useRef } from "react";
+import { MouseEventHandler, useEffect, useRef } from "react";
 
 function App() {
   const ref = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const buttonRef2 = useRef<HTMLButtonElement>(null);
+
+  const onClick: MouseEventHandler<HTMLButtonElement> = () => {
+    alert("Hi");
+  };
 
   useEffect(() => {
     if (ref.current) {
@@ -32,6 +37,9 @@ function App() {
       <Button ref={buttonRef} color={true ? "red" : "blue"}>
         hello
       </Button>
+      <Box as="button" ref={buttonRef2} onClick={onClick}>
+        Click Me!
+      </Box>
     </HStack>
   );
 }
