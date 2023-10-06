@@ -1,5 +1,16 @@
 # @kuma-ui/babel-plugin
 
+## 1.1.10
+
+### Patch Changes
+
+- [#311](https://github.com/kuma-ui/kuma-ui/pull/311) [`69b90fa`](https://github.com/kuma-ui/kuma-ui/commit/69b90fadedd338d552aa6c128226ea7732f7fafa) Thanks [@poteboy](https://github.com/poteboy)! - Update prettier from 2.8 to 3.0.3
+
+- Updated dependencies [[`d8b82dc`](https://github.com/kuma-ui/kuma-ui/commit/d8b82dc7e851afa994eda664e09acff41d04ba6c), [`69b90fa`](https://github.com/kuma-ui/kuma-ui/commit/69b90fadedd338d552aa6c128226ea7732f7fafa), [`e8e5195`](https://github.com/kuma-ui/kuma-ui/commit/e8e5195706f90e99a0236d76c5825e5060425b7a)]:
+  - @kuma-ui/system@1.5.2
+  - @kuma-ui/compiler@1.2.1
+  - @kuma-ui/core@1.5.1
+
 ## 1.1.9
 
 ### Patch Changes
