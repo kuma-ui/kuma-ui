@@ -12,19 +12,9 @@ export function ensureReactImport(
   programPath: NodePath<types.Program>,
   t: typeof types,
 ) {
-  let hasReactImport = false;
-
-  programPath.node.body.forEach((node) => {
-    if (t.isImportDeclaration(node) && node.source.value === "react") {
-      hasReactImport = true;
-    }
-  });
-
-  if (!hasReactImport) {
-    const reactImportDeclaration = t.importDeclaration(
-      [t.importDefaultSpecifier(t.identifier("React"))],
-      t.stringLiteral("react"),
-    );
-    programPath.unshiftContainer("body", reactImportDeclaration);
-  }
+  const reactImportDeclaration = t.importDeclaration(
+    [t.importDefaultSpecifier(t.identifier("__React_Kuma_"))],
+    t.stringLiteral("react"),
+  );
+  programPath.unshiftContainer("body", reactImportDeclaration);
 }

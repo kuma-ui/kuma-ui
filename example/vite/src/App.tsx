@@ -22,7 +22,7 @@ function App() {
   useEffect(() => {
     if (ref.current) {
       console.log("ref", ref.current);
-      console.log("buttonRef", buttonRef.current);
+      // console.log("buttonRef", buttonRef.current);
     }
   }, []);
 
@@ -31,17 +31,22 @@ function App() {
       <Text>hello</Text>
       <Dynamic key={1} />
       <Dynamic key={2} />
-      <Box ref={ref} color={true ? "red" : "blue"}>
+      {/* <Box ref={ref} color={true ? "red" : "blue"}>
         hello
-      </Box>
+      </Box> */}
       <Button ref={buttonRef} color={true ? "red" : "blue"}>
         hello
       </Button>
       <Box as="button" ref={buttonRef2} onClick={onClick}>
         Click Me!
       </Box>
+      <Styled ref={ref}>hello</Styled>
     </HStack>
   );
 }
 
 export default App;
+
+const Styled = styled.div`
+  color: orange;
+`;
