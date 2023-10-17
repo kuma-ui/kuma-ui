@@ -23,6 +23,8 @@ describe("layout utility function", () => {
     [{ clear: "both" }, "clear: both;", ""],
     [{ objectFit: "contain" }, "object-fit: contain;", ""],
     [{ objectPosition: "250px 125px" }, "object-position: 250px 125px;", ""],
+    [{ resize: "horizontal" }, "resize: horizontal;", ""],
+    [{ verticalAlign: "sub" }, "vertical-align: sub;", ""],
   ];
 
   test.each(testCases)(

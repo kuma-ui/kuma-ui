@@ -128,6 +128,8 @@ export const styleKeys = {
     "clear",
     "objectFit",
     "objectPosition",
+    "resize",
+    "verticalAlign",
   ] as const,
   flex: [
     "flexDirection",
