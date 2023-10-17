@@ -13,6 +13,7 @@ export type EffectProps = Partial<
     | "transformBox"
     | "transformOrigin"
     | "transformStyle"
+    | "clipPath"
   >
 >;
 
@@ -26,6 +27,7 @@ export const effectMappings: Record<EffectKeys, string> = {
   transformBox: "transform-box",
   transformOrigin: "transform-origin",
   transformStyle: "transform-style",
+  clipPath: "clip-path",
 } as const;
 
 export const effect = (props: EffectProps): ResponsiveStyle => {
