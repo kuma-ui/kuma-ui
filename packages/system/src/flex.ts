@@ -26,6 +26,7 @@ export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"flexBasis", true> &
     CSSProperties<"flex" | "flexShrink" | "flexGrow", true> &
     CSSProperties<"justifyItems" | "justifySelf" | "justifyContent"> &
+    CSSProperties<"placeItems" | "placeContent"> &
     AddProperty<CSSProperties<"gap", true>, T["spacings"]>
 >;
 
@@ -46,6 +47,8 @@ export const flexMappings: Record<FlexKeys, string> = {
   justifyItems: "justify-items",
   justifySelf: "justify-self",
   gap: "gap",
+  placeItems: "place-items",
+  placeContent: "place-content",
 } as const;
 
 const converters: Partial<Record<FlexKeys, ValueConverter>> = {

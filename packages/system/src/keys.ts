@@ -145,6 +145,8 @@ export const styleKeys = {
     "flexBasis",
     "justifyItems",
     "justifySelf",
+    "placeItems",
+    "placeContent",
     "gap",
   ] as const,
   color: [
