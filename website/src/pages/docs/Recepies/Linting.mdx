@@ -1,0 +1,81 @@
+---
+title: "Linting"
+description: "This page explains how to lint your styles in Kuma UI."
+---
+
+import { Tabs, Tab } from "nextra-theme-docs";
+
+# Linting
+
+Sinse Kuma UI's [`styled`](/docs/API/styled.mdx) and [`css`](/docs/API/css.mdx) APIs are similar to the ones from Emotion or styled-components,
+you can use [Stylelint](https://stylelint.io/) with [postcss-styled-syntax](https://github.com/hudochenkov/postcss-styled-syntax) to lint your styles in those functions.
+
+For example, if you want to use Stylelint with config [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) and [stylelint-config-recess-order](https://github.com/stormwarning/stylelint-config-recess-order), you can install the following packages:
+
+<Tabs items={["npm", "pnpm", "yarn"]} storageKey="selected-pkg-manager">
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  npm install -D stylelint postcss-styled-syntax stylelint-config-standard stylelint-config-recess-order
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D stylelint postcss-styled-syntax stylelint-config-standard stylelint-config-recess-order
+  ```
+  </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  yarn add -D stylelint postcss-styled-syntax stylelint-config-standard stylelint-config-recess-order
+  ```
+  </Tab>
+</Tabs>
+
+Then, create a `.stylelintrc.cjs` file in the root of your project with the following content:
+
+```js filename=".stylelintrc.cjs"
+/**
+ * @type {import ("stylelint").Config}
+ */
+module.exports = {
+  extends: ["stylelint-config-standard", "stylelint-config-recess-order"],
+  customSyntax: "postcss-styled-syntax",
+  rules: {
+    "function-no-unknown": [
+      true,
+      {
+        // In Kuma UI, you can use theme tokens with `t` css function.
+        ignoreFunctions: ["t"],
+      },
+    ],
+  },
+};
+```
+
+Now you can lint your styles with the following command:
+
+```bash
+npx stylelint **/*.tsx
+```
+
+For more information, refer to the [Stylelint documentation](https://stylelint.io/).
+
+If you want to lint your styles with `lint:styles` script, you can add the following script to your `package.json` file:
+
+```json filename="package.json"
+{
+  "scripts": {
+    "lint:styles": "stylelint **/*.tsx"
+  }
+}
+```
+
+If you are using Visual Studio Code and [stylelint extension](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint), you can add the following settings to your `.vscode/settings.json` file to lint your styles in `.tsx` files:
+
+```json filename=".vscode/settings.json"
+{
+  "stylelint.validate": ["typescript", "typescriptreact"]
+}
+```
