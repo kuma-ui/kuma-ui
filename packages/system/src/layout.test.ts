@@ -18,6 +18,9 @@ describe("layout utility function", () => {
     [{ overflowX: "auto" }, "overflow-x: auto;", ""],
     [{ overflowY: "visible" }, "overflow-y: visible;", ""],
     [{ aspectRatio: "16/9" }, "aspect-ratio: 16/9;", ""],
+    [{ boxSizing: "border-box" }, "box-sizing: border-box;", ""],
+    [{ float: "right" }, "float: right;", ""],
+    [{ clear: "both" }, "clear: both;", ""],
   ];
 
   test.each(testCases)(

@@ -22,7 +22,9 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"overflow" | "overflowX" | "overflowY"> &
     AddProperty<CSSProperties<"zIndex", true>, T["zIndices"]> &
     CSSProperties<"cursor"> &
-    CSSProperties<"aspectRatio">
+    CSSProperties<"aspectRatio"> &
+    CSSProperties<"boxSizing"> &
+    CSSProperties<"float" | "clear">
 >;
 
 export const layoutMappings: Record<LayoutKeys, string> = {
@@ -40,6 +42,9 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   zIndex: "z-index",
   cursor: "cursor",
   aspectRatio: "aspect-ratio",
+  boxSizing: "box-sizing",
+  float: "float",
+  clear: "clear",
 } as const;
 
 const converters: Partial<Record<LayoutKeys, ValueConverter>> = {

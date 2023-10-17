@@ -123,6 +123,9 @@ export const styleKeys = {
     "zIndex",
     "cursor",
     "aspectRatio",
+    "boxSizing",
+    "float",
+    "clear",
   ] as const,
   flex: [
     "flexDirection",
