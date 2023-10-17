@@ -296,10 +296,7 @@ export const styleKeys = {
     "backgroundBlendMode",
     "bgBlendMode",
   ] as const,
-  filter: [
-    "filter",
-    "backdropFilter",
-  ] as const,
+  filter: ["filter", "backdropFilter"] as const,
 };
 
 export type AnimationKeys = (typeof styleKeys.animation)[number];

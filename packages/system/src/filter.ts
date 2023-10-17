@@ -2,9 +2,7 @@ import { CSSProperties, ResponsiveStyle } from "./types";
 import { FilterKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 
-export type FilterProps = Partial<
-  CSSProperties<"filter" | "backdropFilter">
->;
+export type FilterProps = Partial<CSSProperties<"filter" | "backdropFilter">>;
 
 export const filterMappings: Record<FilterKeys, string> = {
   filter: "filter",
