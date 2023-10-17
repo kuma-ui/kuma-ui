@@ -24,7 +24,8 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"cursor"> &
     CSSProperties<"aspectRatio"> &
     CSSProperties<"boxSizing"> &
-    CSSProperties<"float" | "clear">
+    CSSProperties<"float" | "clear"> &
+    CSSProperties<"objectFit" | "objectPosition">
 >;
 
 export const layoutMappings: Record<LayoutKeys, string> = {
@@ -45,6 +46,8 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   boxSizing: "box-sizing",
   float: "float",
   clear: "clear",
+  objectFit: "object-fit",
+  objectPosition: "object-position",
 } as const;
 
 const converters: Partial<Record<LayoutKeys, ValueConverter>> = {

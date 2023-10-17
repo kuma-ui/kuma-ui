@@ -126,6 +126,8 @@ export const styleKeys = {
     "boxSizing",
     "float",
     "clear",
+    "objectFit",
+    "objectPosition",
   ] as const,
   flex: [
     "flexDirection",

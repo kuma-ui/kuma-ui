@@ -21,6 +21,8 @@ describe("layout utility function", () => {
     [{ boxSizing: "border-box" }, "box-sizing: border-box;", ""],
     [{ float: "right" }, "float: right;", ""],
     [{ clear: "both" }, "clear: both;", ""],
+    [{ objectFit: "contain" }, "object-fit: contain;", ""],
+    [{ objectPosition: "250px 125px" }, "object-position: 250px 125px;", ""],
   ];
 
   test.each(testCases)(
