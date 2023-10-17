@@ -282,6 +282,10 @@ export const styleKeys = {
     "backgroundOrigin",
     "bgOrigin",
   ] as const,
+  filter: [
+    "filter",
+    "backdropFilter",
+  ] as const,
 };
 
 export type AnimationKeys = (typeof styleKeys.animation)[number];
@@ -302,6 +306,7 @@ export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 export type MaskKeys = (typeof styleKeys.mask)[number];
 export type BackgroundKeys = (typeof styleKeys.background)[number];
+export type FilterKeys = (typeof styleKeys.filter)[number];
 
 export type StyledKeyType =
   | AnimationKeys
@@ -321,7 +326,8 @@ export type StyledKeyType =
   | BackgroundKeys
   | MaskKeys
   | ColumnKeys
-  | EffectKeys;
+  | EffectKeys
+  | FilterKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME

@@ -16,6 +16,7 @@ import { mask } from "./mask";
 import { column } from "./column";
 import { background } from "./background";
 import { text } from "./text";
+import { filter } from "./filter";
 
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
@@ -37,6 +38,7 @@ describe("compose function", () => {
       mask,
       column,
       background,
+      filter,
     );
     const props: StyledProps = {
       m: 8,
@@ -65,6 +67,7 @@ describe("compose function", () => {
       bgOrigin: "content-box",
       marginRight: 4,
       textAlign: "right",
+      backdropFilter: "drop-shadow(4px 4px 10px blue)",
     };
     // Act
     const styles = combinedFunction(props);
@@ -97,6 +100,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("background-origin: content-box;");
     expect(styles.base).toContain("margin-right: 4px;");
     expect(styles.base).toContain("text-align: right;");
+    expect(styles.base).toContain("backdropFilter: drop-shadow(4px 4px 10px blue);");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
