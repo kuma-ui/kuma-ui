@@ -100,7 +100,7 @@ describe("compose function", () => {
     expect(styles.base).toContain("background-origin: content-box;");
     expect(styles.base).toContain("margin-right: 4px;");
     expect(styles.base).toContain("text-align: right;");
-    expect(styles.base).toContain("backdropFilter: drop-shadow(4px 4px 10px blue);");
+    expect(styles.base).toContain("backdrop-filter: drop-shadow(4px 4px 10px blue);");
   });
 
   test("should not include invalid keys in the resulting CSS", () => {
