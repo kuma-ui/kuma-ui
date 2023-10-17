@@ -1,5 +1,14 @@
 # @kuma-ui/babel-plugin
 
+## 1.1.11
+
+### Patch Changes
+
+- Updated dependencies [[`b5415ed`](https://github.com/kuma-ui/kuma-ui/commit/b5415ed684c5212a4dd6d6e10d43969164375233)]:
+  - @kuma-ui/system@1.6.0
+  - @kuma-ui/compiler@1.2.2
+  - @kuma-ui/core@1.5.2
+
 ## 1.1.10
 
 ### Patch Changes

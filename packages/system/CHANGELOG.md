@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 1.6.0
+
+### Minor Changes
+
+- [#359](https://github.com/kuma-ui/kuma-ui/pull/359) [`b5415ed`](https://github.com/kuma-ui/kuma-ui/commit/b5415ed684c5212a4dd6d6e10d43969164375233) Thanks [@mtripg6666tdr](https://github.com/mtripg6666tdr)! - add lots of css properties that hadn't been supported yet
+
 ## 1.5.2
 
 ### Patch Changes
