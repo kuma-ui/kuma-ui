@@ -25,6 +25,7 @@ describe("layout utility function", () => {
     [{ objectPosition: "250px 125px" }, "object-position: 250px 125px;", ""],
     [{ resize: "horizontal" }, "resize: horizontal;", ""],
     [{ verticalAlign: "sub" }, "vertical-align: sub;", ""],
+    [{ userSelect: "none" }, "user-select: none;", ""],
   ];
 
   test.each(testCases)(

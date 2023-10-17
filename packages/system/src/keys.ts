@@ -122,6 +122,7 @@ export const styleKeys = {
     "position",
     "zIndex",
     "cursor",
+    "userSelect",
     "aspectRatio",
     "boxSizing",
     "float",

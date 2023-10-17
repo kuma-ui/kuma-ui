@@ -21,7 +21,7 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"display" | "position"> &
     CSSProperties<"overflow" | "overflowX" | "overflowY"> &
     AddProperty<CSSProperties<"zIndex", true>, T["zIndices"]> &
-    CSSProperties<"cursor"> &
+    CSSProperties<"cursor" | "userSelect"> &
     CSSProperties<"aspectRatio"> &
     CSSProperties<"boxSizing"> &
     CSSProperties<"float" | "clear"> &
@@ -52,6 +52,7 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   objectPosition: "object-position",
   resize: "resize",
   verticalAlign: "vertical-align",
+  userSelect: "user-select",
 } as const;
 
 const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
