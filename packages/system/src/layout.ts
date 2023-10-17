@@ -18,9 +18,11 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
       CSSProperties<"height" | "minHeight" | "maxHeight", true>,
       T["sizes"]
     > &
-    CSSProperties<"display" | "overflow" | "position"> &
+    CSSProperties<"display" | "position"> &
+    CSSProperties<"overflow" | "overflowX" | "overflowY"> &
     AddProperty<CSSProperties<"zIndex", true>, T["zIndices"]> &
-    CSSProperties<"cursor">
+    CSSProperties<"cursor"> &
+    CSSProperties<"aspectRatio">
 >;
 
 export const layoutMappings: Record<LayoutKeys, string> = {
@@ -32,9 +34,12 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   maxHeight: "max-height",
   display: "display",
   overflow: "overflow",
+  overflowX: "overflow-x",
+  overflowY: "overflow-y",
   position: "position",
   zIndex: "z-index",
   cursor: "cursor",
+  aspectRatio: "aspect-ratio",
 } as const;
 
 const converters: Partial<Record<LayoutKeys, ValueConverter>> = {

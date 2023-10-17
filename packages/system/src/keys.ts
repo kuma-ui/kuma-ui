@@ -117,9 +117,12 @@ export const styleKeys = {
     "maxHeight",
     "display",
     "overflow",
+    "overflowX",
+    "overflowY",
     "position",
     "zIndex",
     "cursor",
+    "aspectRatio",
   ] as const,
   flex: [
     "flexDirection",
