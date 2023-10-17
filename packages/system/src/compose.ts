@@ -19,6 +19,7 @@ import { FontProps, fontMappings } from "./font";
 import { MaskProps, maskMappings } from "./mask";
 import { ColumnProps, columnMappings } from "./column";
 import { BackgroundProps, backgroundMappings } from "./background";
+import { FilterProps, filterMappings } from "./filter";
 import { StyledKeyType } from "./keys";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
@@ -41,7 +42,8 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
     ColumnProps<T> &
     BackgroundProps &
     // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents -- FIXME
-    EffectProps;
+    EffectProps &
+    FilterProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;
 
@@ -66,6 +68,7 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
   maskMappings,
   columnMappings,
   backgroundMappings,
+  filterMappings,
 );
 /**
  * Composes multiple style functions into a single style function.

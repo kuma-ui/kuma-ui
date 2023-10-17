@@ -34,6 +34,8 @@ describe("background utility function", () => {
       "",
     ],
     [{ bgOrigin: "content-box" }, "background-origin: content-box;", ""],
+    [{ backgroundBlendMode: "darken" }, "background-blend-mode: darken;", ""],
+    [{ bgBlendMode: "hue" }, "background-blend-mode: hue;", ""],
   ];
 
   test.each(testCases)(

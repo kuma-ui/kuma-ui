@@ -19,6 +19,7 @@ import { font, FontProps } from "./font";
 import { mask, MaskProps } from "./mask";
 import { column, ColumnProps } from "./column";
 import { background, BackgroundProps } from "./background";
+import { filter, FilterProps } from "./filter";
 
 export { StyledKeyType, isStyledProp } from "./keys";
 
@@ -43,6 +44,7 @@ export const all = compose(
   font,
   mask,
   background,
+  filter,
 );
 
 export { normalizePseudo, isPseudoProps };
@@ -68,6 +70,7 @@ export type {
   ResponsiveStyle,
   PseudoProps,
   BackgroundProps,
+  FilterProps,
 };
 export * from "./generator";
 export * from "./toCSS";

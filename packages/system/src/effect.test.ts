@@ -17,6 +17,11 @@ describe("effects utility function", () => {
     [{ transformBox: "border-box" }, "transform-box: border-box;", ""],
     [{ transformOrigin: "center" }, "transform-origin: center;", ""],
     [{ transformStyle: "preserve-3d" }, "transform-style: preserve-3d;", ""],
+    [
+      { clipPath: "ellipse(130px 140px at 10% 20%)" },
+      "clip-path: ellipse(130px 140px at 10% 20%);",
+      "",
+    ],
   ];
 
   test.each(testCases)(

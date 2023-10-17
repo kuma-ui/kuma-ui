@@ -13,6 +13,7 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
       | "backgroundAttachment"
       | "backgroundClip"
       | "backgroundOrigin"
+      | "backgroundBlendMode"
     > &
       CSSProperties<
         "backgroundPositionX" | "backgroundPositionY" | "backgroundSize",
@@ -54,6 +55,10 @@ export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
          * @see backgroundOrigin
          */
         bgOrigin: CSSValue<"backgroundOrigin">;
+        /**
+         * @see backgroundBlendMode
+         */
+        bgBlendMode: CSSValue<"backgroundBlendMode">;
       },
     AutoPrefix
   >
@@ -78,6 +83,8 @@ export const backgroundMappings: Record<BackgroundKeys, string> = {
   bgClip: "background-clip",
   backgroundOrigin: "background-origin",
   bgOrigin: "background-origin",
+  backgroundBlendMode: "background-blend-mode",
+  bgBlendMode: "background-blend-mode",
 } as const;
 
 export const background = (props: BackgroundProps): ResponsiveStyle => {

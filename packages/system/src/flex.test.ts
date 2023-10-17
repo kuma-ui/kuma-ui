@@ -24,6 +24,8 @@ describe("flex utility function", () => {
     [{ gap: 1 }, "gap: 1px;", ""],
     [{ gap: "10px 20px" }, "gap: 10px 20px;", ""],
     [{ gap: 0 }, "gap: 0px;", ""],
+    [{ placeItems: "center" }, "place-items: center;", ""],
+    [{ placeContent: "end center" }, "place-content: end center;", ""],
   ];
 
   test.each(testCases)(

@@ -14,6 +14,7 @@ describe("color utility function", () => {
     [{ caretColor: "red" }, "caret-color: red;", ""],
     [{ opacity: 0.5 }, "opacity: 0.5;", ""],
     [{ opacity: 0 }, "opacity: 0;", ""],
+    [{ visibility: "hidden" }, "visibility: hidden;", ""],
   ];
 
   test.each(testCases)(

@@ -117,9 +117,20 @@ export const styleKeys = {
     "maxHeight",
     "display",
     "overflow",
+    "overflowX",
+    "overflowY",
     "position",
     "zIndex",
     "cursor",
+    "userSelect",
+    "aspectRatio",
+    "boxSizing",
+    "float",
+    "clear",
+    "objectFit",
+    "objectPosition",
+    "resize",
+    "verticalAlign",
   ] as const,
   flex: [
     "flexDirection",
@@ -137,6 +148,8 @@ export const styleKeys = {
     "flexBasis",
     "justifyItems",
     "justifySelf",
+    "placeItems",
+    "placeContent",
     "gap",
   ] as const,
   color: [
@@ -150,6 +163,7 @@ export const styleKeys = {
     "accentColor",
     "caretColor",
     "opacity",
+    "visibility",
   ] as const,
   border: [
     "border",
@@ -239,6 +253,7 @@ export const styleKeys = {
     "transformBox",
     "transformOrigin",
     "transformStyle",
+    "clipPath",
   ] as const,
   mask: [
     "mask",
@@ -278,7 +293,10 @@ export const styleKeys = {
     "bgClip",
     "backgroundOrigin",
     "bgOrigin",
+    "backgroundBlendMode",
+    "bgBlendMode",
   ] as const,
+  filter: ["filter", "backdropFilter"] as const,
 };
 
 export type AnimationKeys = (typeof styleKeys.animation)[number];
@@ -299,6 +317,7 @@ export type ColumnKeys = (typeof styleKeys.column)[number];
 export type EffectKeys = (typeof styleKeys.effect)[number];
 export type MaskKeys = (typeof styleKeys.mask)[number];
 export type BackgroundKeys = (typeof styleKeys.background)[number];
+export type FilterKeys = (typeof styleKeys.filter)[number];
 
 export type StyledKeyType =
   | AnimationKeys
@@ -318,7 +337,8 @@ export type StyledKeyType =
   | BackgroundKeys
   | MaskKeys
   | ColumnKeys
-  | EffectKeys;
+  | EffectKeys
+  | FilterKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME

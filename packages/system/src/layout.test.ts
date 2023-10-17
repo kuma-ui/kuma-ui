@@ -14,6 +14,18 @@ describe("layout utility function", () => {
     [{ display: "sm" }, "display: sm;", ""], // size token won't be applied
     [{ zIndex: 1 }, "z-index: 1;", ""],
     [{ zIndex: "5" }, "z-index: 5;", ""],
+    [{ overflow: "hidden" }, "overflow: hidden;", ""],
+    [{ overflowX: "auto" }, "overflow-x: auto;", ""],
+    [{ overflowY: "visible" }, "overflow-y: visible;", ""],
+    [{ aspectRatio: "16/9" }, "aspect-ratio: 16/9;", ""],
+    [{ boxSizing: "border-box" }, "box-sizing: border-box;", ""],
+    [{ float: "right" }, "float: right;", ""],
+    [{ clear: "both" }, "clear: both;", ""],
+    [{ objectFit: "contain" }, "object-fit: contain;", ""],
+    [{ objectPosition: "250px 125px" }, "object-position: 250px 125px;", ""],
+    [{ resize: "horizontal" }, "resize: horizontal;", ""],
+    [{ verticalAlign: "sub" }, "vertical-align: sub;", ""],
+    [{ userSelect: "none" }, "user-select: none;", ""],
   ];
 
   test.each(testCases)(
