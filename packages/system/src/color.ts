@@ -27,7 +27,8 @@ export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
       | "color"
       | "accentColor"
       | "caretColor"
-      | "opacity",
+      | "opacity"
+      | "visibility",
       false
     >,
     T["colors"]
@@ -45,6 +46,7 @@ export const colorMappings: Record<ColorKeys, string> = {
   accentColor: "accent-color",
   caretColor: "caret-color",
   opacity: "opacity",
+  visibility: "visibility",
 };
 
 export const color = (props: ColorProps): ResponsiveStyle => {

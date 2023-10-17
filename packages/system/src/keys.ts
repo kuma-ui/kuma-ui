@@ -163,6 +163,7 @@ export const styleKeys = {
     "accentColor",
     "caretColor",
     "opacity",
+    "visibility",
   ] as const,
   border: [
     "border",
