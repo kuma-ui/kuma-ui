@@ -281,6 +281,8 @@ export const styleKeys = {
     "bgClip",
     "backgroundOrigin",
     "bgOrigin",
+    "backgroundBlendMode",
+    "bgBlendMode",
   ] as const,
   filter: [
     "filter",
