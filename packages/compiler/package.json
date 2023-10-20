@@ -46,7 +46,7 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
+    "@types/react": "^18.2.31",
     "@vitest/coverage-c8": "0.31.4",
     "react": "^18.2.0",
     "vitest": "0.31.4"
