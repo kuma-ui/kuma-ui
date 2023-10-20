@@ -1,5 +1,5 @@
 {
-  "name": ".",
+  "name": "sonik",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hono/vite-dev-server": "^0.0.7",
+    "@kuma-ui/core": "workspace:^",
+    "@kuma-ui/vite": "workspace:^",
     "@sonikjs/react": "^0.0.4",
     "hono": "^3.7.6",
     "react": "^18.2.0",
@@ -19,9 +21,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230518.0",
     "@sonikjs/cloudflare-pages": "^0.0.1",
-    "@types/node": "^20.8.6",
     "@types/react": "^18.2.20",
-    "vite": "^4.4.11",
+    "vite": "^4.3.3",
     "wrangler": "^3.13.1"
   }
 }

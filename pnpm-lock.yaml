@@ -125,6 +125,12 @@ importers:
       '@hono/vite-dev-server':
         specifier: ^0.0.7
         version: 0.0.7
+      '@kuma-ui/core':
+        specifier: workspace:^
+        version: link:../../packages/core
+      '@kuma-ui/vite':
+        specifier: workspace:^
+        version: link:../../packages/vite
       '@sonikjs/react':
         specifier: ^0.0.4
         version: 0.0.4(@hono/vite-dev-server@0.0.7)(hono@3.7.6)
@@ -147,15 +153,12 @@ importers:
       '@sonikjs/cloudflare-pages':
         specifier: ^0.0.1
         version: 0.0.1
-      '@types/node':
-        specifier: ^20.8.6
-        version: 20.8.6
       '@types/react':
         specifier: ^18.2.20
         version: 18.2.20
       vite:
-        specifier: ^4.4.11
-        version: 4.4.11(@types/node@20.8.6)
+        specifier: ^4.3.3
+        version: 4.3.3(@types/node@18.15.11)
       wrangler:
         specifier: ^3.13.1
         version: 3.13.1
@@ -3833,12 +3836,6 @@ packages:
 
   /@types/node@18.15.11:
     resolution: {integrity: sha512-E5Kwq2n4SbMzQOn6wnmBjuK9ouqlURrcZDVfbo9ftDDTFt3nk7ZKK4GMOzoYgnpQJKcxwQw+lGaBvvlMo0qN/Q==}
-
-  /@types/node@20.8.6:
-    resolution: {integrity: sha512-eWO4K2Ji70QzKUqRy6oyJWUeB7+g2cRagT3T/nxYibYcT4y2BDL8lqolRXjTHmkZCdJfIPaY73KbJAZmcryxTQ==}
-    dependencies:
-      undici-types: 5.25.3
-    dev: true
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -12313,10 +12310,6 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
 
-  /undici-types@5.25.3:
-    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
-    dev: true
-
   /undici@5.26.4:
     resolution: {integrity: sha512-OG+QOf0fTLtazL9P9X7yqWxQ+Z0395Wk6DSkyTxtaq3wQEjIroVe7Y4asCX/vcCxYpNGMnwz8F0qbRYUoaQVMw==}
     engines: {node: '>=14.0'}
@@ -12649,42 +12642,6 @@ packages:
     dependencies:
       '@types/node': 18.15.11
       esbuild: 0.17.19
-      postcss: 8.4.23
-      rollup: 3.22.0
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
-  /vite@4.4.11(@types/node@20.8.6):
-    resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      '@types/node': 20.8.6
-      esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.29.4
     optionalDependencies:

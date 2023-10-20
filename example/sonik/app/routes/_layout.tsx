@@ -1,4 +1,9 @@
+import { Box } from "@kuma-ui/core";
 import type { LayoutHandler } from "@sonikjs/react";
+
+declare global {
+  var __KUMA_CSS__: string; // inserted by vite plugin
+}
 
 const handler: LayoutHandler = ({ children, head }) => {
   return (
@@ -17,6 +22,7 @@ const handler: LayoutHandler = ({ children, head }) => {
           </>
         )}
         {head.createTags()}
+        <style dangerouslySetInnerHTML={{ __html: globalThis.__KUMA_CSS__ }} />
       </head>
       <body>
         <div className="wrapper">
@@ -26,6 +32,9 @@ const handler: LayoutHandler = ({ children, head }) => {
             </h1>
           </header>
           {children}
+          <Box color="red" fontWeight="bold" fontSize="24px" pt="16px">
+            This is colored by Kuma UI
+          </Box>
           <footer style={{ marginTop: "2rem" }}>
             <small>© 2023 your name</small>
           </footer>
