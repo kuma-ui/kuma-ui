@@ -23,12 +23,15 @@ export const Hero = () => {
     <Box m={["40px auto", "80px auto 0px"]}>
       <Box position="relative">
         <Box role="presentation" display={["initial"]} bg="white">
-          <Box
-            bg="radial-gradient(circle at 75% 50%, hsl(186 75% 85%), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at 60% 30%, hsl(200 75% 85%), rgba(255, 255, 255, 0) 10%)"
-            position="fixed"
-            inset={["0px", "100px"]}
-            zIndex="-1"
-          />
+        <Box
+          bg="radial-gradient(circle at calc(75% - 25px) 50%, hsl(186 75% 85%), rgba(255, 255, 255, 0) 25%), radial-gradient(circle at calc(60% - 25px) 30%, hsl(200 75% 85%), rgba(255, 255, 255, 0) 10%)"
+          position="fixed"
+          top="0px"
+          right="0px"
+          bottom="0px"
+          left="0px"
+          zIndex="-1"
+        />
         </Box>
         <Heading
           fontSize={["2.25rem", "3.25rem"]}
