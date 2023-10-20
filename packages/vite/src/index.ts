@@ -72,6 +72,7 @@ export default function kumaUI(): Plugin {
       sheet.reset();
       return (
         `import "${virtualModuleId}/${cssRelativePath}";
+        globalThis.__KUMA_CSS__ = \`${css}\`;
 ` + result.code
       );
     },
