@@ -7,6 +7,7 @@ import {
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -139,6 +140,9 @@ export const spaceMappings: Record<SpaceKeys, string> = {
   paddingY: "padding-top,padding-bottom",
   py: "padding-top,padding-bottom",
 };
+
+export const spaceConverters: Partial<Record<SpaceKeys, ValueConverter>> =
+  Object.fromEntries(Object.keys(spaceMappings).map((key) => [key, toCssUnit]));
 
 export const space = (props: SpaceProps): ResponsiveStyle => {
   let baseStyles = "";

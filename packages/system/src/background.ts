@@ -1,5 +1,11 @@
 import { BackgroundKeys } from "./keys";
-import { AddProperty, CSSProperties, CSSValue, ResponsiveStyle } from "./types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ValueConverter,
+} from "./types";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
 
@@ -86,6 +92,14 @@ export const backgroundMappings: Record<BackgroundKeys, string> = {
   backgroundBlendMode: "background-blend-mode",
   bgBlendMode: "background-blend-mode",
 } as const;
+
+export const backgroundConverters: Partial<
+  Record<BackgroundKeys, ValueConverter>
+> = {
+  bgPositionX: toCssUnit,
+  bgPositionY: toCssUnit,
+  bgSize: toCssUnit,
+};
 
 export const background = (props: BackgroundProps): ResponsiveStyle => {
   let base = "";

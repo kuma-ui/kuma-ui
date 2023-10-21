@@ -55,7 +55,7 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   userSelect: "user-select",
 } as const;
 
-const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
+export const layoutConverters: Partial<Record<LayoutKeys, ValueConverter>> = {
   width: toCssUnit,
   minWidth: toCssUnit,
   maxWidth: toCssUnit,
@@ -72,7 +72,7 @@ export const layout = (props: LayoutProps): ResponsiveStyle => {
     const cssValue = props[key as LayoutKeys];
     if (cssValue != undefined) {
       const property = layoutMappings[key as LayoutKeys];
-      const converter = converters[key as LayoutKeys];
+      const converter = layoutConverters[key as LayoutKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

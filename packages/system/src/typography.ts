@@ -5,6 +5,7 @@ import {
   CSSProperties,
   ThemeSystemType,
   AddProperty,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -44,6 +45,13 @@ export const typographyMappings: Record<TypographyKeys, string> = {
   wordSpacing: "word-spacing",
   writingMode: "writing-mode",
 } as const;
+
+export const typographyConverters: Partial<
+  Record<TypographyKeys, ValueConverter>
+> = {
+  wordSpacing: toCssUnit,
+  letterSpacing: toCssUnit,
+};
 
 export const typography = (props: TypographyProps): ResponsiveStyle => {
   let baseStyles = "";

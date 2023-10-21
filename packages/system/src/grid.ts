@@ -6,6 +6,7 @@ import {
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
@@ -36,6 +37,12 @@ export const gridMappings: Record<GridKeys, string> = {
   gridColumnGap: "grid-column-gap",
   gridRowGap: "grid-row-gap",
 } as const;
+
+export const gridConverters: Partial<Record<GridKeys, ValueConverter>> = {
+  gridGap: toCssUnit,
+  gridColumnGap: toCssUnit,
+  gridRowGap: toCssUnit,
+};
 
 export const grid = (props: GridProps): ResponsiveStyle => {
   let base = "";

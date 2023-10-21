@@ -51,7 +51,7 @@ export const flexMappings: Record<FlexKeys, string> = {
   placeContent: "place-content",
 } as const;
 
-const converters: Partial<Record<FlexKeys, ValueConverter>> = {
+export const flexConverters: Partial<Record<FlexKeys, ValueConverter>> = {
   gap: toCssUnit,
   flexBasis: toCssUnit,
 };
@@ -64,7 +64,7 @@ export const flex = (props: FlexProps): ResponsiveStyle => {
     const cssValue = props[key as FlexKeys];
     if (cssValue != undefined) {
       const property = flexMappings[key as FlexKeys];
-      const converter = converters[key as FlexKeys];
+      const converter = flexConverters[key as FlexKeys];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,

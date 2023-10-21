@@ -5,6 +5,7 @@ import {
   CSSProperties,
   AddProperty,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -56,6 +57,10 @@ export const fontMappings: Record<FontKeys, string> = {
   fontVariantPosition: "font-variant-position",
   fontVariationSettings: "font-variation-settings",
   fontWeight: "font-weight",
+};
+
+export const fontConverters: Partial<Record<FontKeys, ValueConverter>> = {
+  fontSize: toCssUnit,
 };
 
 export const font = (props: FontProps): ResponsiveStyle => {

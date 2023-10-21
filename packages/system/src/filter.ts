@@ -1,4 +1,4 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
 import { FilterKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -8,6 +8,8 @@ export const filterMappings: Record<FilterKeys, string> = {
   filter: "filter",
   backdropFilter: "backdrop-filter",
 } as const;
+
+export const filterConverters: Partial<Record<FilterKeys, ValueConverter>> = {};
 
 export const filter = (props: FilterProps): ResponsiveStyle => {
   let base = "";

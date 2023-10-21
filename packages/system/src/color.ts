@@ -5,6 +5,7 @@ import {
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
+  ValueConverter,
 } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -48,6 +49,8 @@ export const colorMappings: Record<ColorKeys, string> = {
   opacity: "opacity",
   visibility: "visibility",
 };
+
+export const colorConverters: Partial<Record<ColorKeys, ValueConverter>> = {};
 
 export const color = (props: ColorProps): ResponsiveStyle => {
   let base = "";

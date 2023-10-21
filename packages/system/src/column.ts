@@ -37,7 +37,7 @@ export const columnMappings: Record<ColumnKeys, string> = {
   columns: "columns",
 };
 
-const converters: Partial<Record<ColumnKeys, ValueConverter>> = {
+export const columnConverters: Partial<Record<ColumnKeys, ValueConverter>> = {
   columnGap: toCssUnit,
   columnRuleWidth: toCssUnit,
   columnWidth: toCssUnit,
@@ -51,7 +51,7 @@ export const column = (props: ColumnProps): ResponsiveStyle => {
     const cssValue = props[key as ColumnKeys];
     if (cssValue != undefined) {
       const property = columnMappings[key as ColumnKeys];
-      const converter = converters[key as ColumnKeys];
+      const converter = columnConverters[key as ColumnKeys];
 
       const responsiveStyles = applyResponsiveStyles(
         property,

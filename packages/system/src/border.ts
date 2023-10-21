@@ -128,7 +128,7 @@ export const borderMappings: Record<BorderKeys, string> = {
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
 };
 
-const converters: Partial<Record<BorderKeys, ValueConverter>> = {
+export const borderConverters: Partial<Record<BorderKeys, ValueConverter>> = {
   border: toCssUnit,
   borderTop: toCssUnit,
   borderRight: toCssUnit,
@@ -163,7 +163,7 @@ export const border = (props: BorderProps): ResponsiveStyle => {
     if (cssValue != undefined) {
       const properties = borderMappings[key as BorderKeys].split(",");
       for (const property of properties) {
-        const converter = converters[key as BorderKeys];
+        const converter = borderConverters[key as BorderKeys];
         const responsiveStyles = applyResponsiveStyles(
           property,
           cssValue,

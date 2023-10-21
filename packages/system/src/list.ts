@@ -1,4 +1,4 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
 import { ListKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 
@@ -14,6 +14,8 @@ export const listMappings: Record<ListKeys, string> = {
   listStylePosition: "list-style-position",
   listStyleType: "list-style-type",
 } as const;
+
+export const listConverters: Partial<Record<ListKeys, ValueConverter>> = {};
 
 export const list = (props: ListProps): ResponsiveStyle => {
   let base = "";

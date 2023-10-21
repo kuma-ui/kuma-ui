@@ -1,5 +1,5 @@
 import { AnimationKeys } from "./keys";
-import { CSSProperties, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type AnimationProps = Partial<
@@ -31,6 +31,10 @@ export const animationMappings: Record<AnimationKeys, string> = {
   animationTimeline: "animation-timeline",
   animationTimingFunction: "animation-timing-function",
 };
+
+export const animationConverters: Partial<
+  Record<AnimationKeys, ValueConverter>
+> = {};
 
 export const animation = (props: AnimationProps): ResponsiveStyle => {
   let base = "";

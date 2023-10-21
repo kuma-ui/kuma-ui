@@ -1,6 +1,6 @@
 import { PositionKeys } from "./keys";
 import { toCssUnit } from "./toCSS";
-import { CSSProperties, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
 import { applyResponsiveStyles } from "./responsive";
 
 export type PositionProps = Partial<
@@ -14,6 +14,11 @@ export const positionMappings: Record<PositionKeys, string> = {
   bottom: "bottom",
   inset: "inset",
 };
+
+export const positionConverters: Partial<Record<PositionKeys, ValueConverter>> =
+  Object.fromEntries(
+    Object.keys(positionMappings).map((key) => [key, toCssUnit]),
+  );
 
 export const position = (props: PositionProps): ResponsiveStyle => {
   let base = "";

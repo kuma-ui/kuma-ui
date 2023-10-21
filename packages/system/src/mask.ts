@@ -1,4 +1,4 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
 import { MaskKeys } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
@@ -44,6 +44,10 @@ export const maskMappings: Record<MaskKeys, string> = {
   maskSize: "mask-size",
   maskType: "mask-type",
 } as const;
+
+export const maskConverters: Partial<Record<MaskKeys, ValueConverter>> = {
+  maskSize: toCssUnit,
+};
 
 export const mask = (props: MaskProps): ResponsiveStyle => {
   let base = "";
