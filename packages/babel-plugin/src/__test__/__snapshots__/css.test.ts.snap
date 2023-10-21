@@ -5,7 +5,7 @@ exports[`css function > Snapshot tests > basic usage should match snapshot 1`] =
 .🐻-136547911{color:red;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import React from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { css } from '@kuma-ui/core';
 const style = \\"🐻-136547911\\";
 "
@@ -16,7 +16,7 @@ exports[`css function > Snapshot tests > using pseudo props should match snapsho
 .🐻-714656561:hover{color:red;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import React from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { css } from '@kuma-ui/core';
 const style = \\"🐻-714656561\\";
 "
@@ -27,7 +27,7 @@ exports[`css function > Snapshot tests > using space props should match snapshot
 .🐻-620795649{padding:2px;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import React from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { css } from '@kuma-ui/core';
 const style = \\"🐻-620795649\\";
 "
