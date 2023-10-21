@@ -2,34 +2,30 @@ import { Box, StyleRegistry, createStyleRegistry } from "@kuma-ui/core";
 import type { LayoutHandler } from "@sonikjs/react";
 import { renderToString } from "react-dom/server";
 
-declare global {
-  var __KUMA_CSS__: string; // inserted by vite plugin
-}
+declare const __KUMA_CSS__: string; // inserted by vite plugin
 
 const handler: LayoutHandler = ({ children, head }) => {
-  const registry = createStyleRegistry();
   const body = (
-    <StyleRegistry registry={registry}>
-      <body>
-        <div className="wrapper">
-          <header>
-            <h1>
-              <a href="/">Top</a>
-            </h1>
-          </header>
-          <Box color="green" fontWeight="bold" fontSize="24px" py="16px">
-            This is colored by Kuma UI
-          </Box>
-          {children}
-          <footer style={{ marginTop: "2rem" }}>
-            <small>© 2023 your name</small>
-          </footer>
-        </div>
-      </body>
-    </StyleRegistry>
+    <body>
+      <div className="wrapper">
+        <header>
+          <h1>
+            <a href="/">Top</a>
+          </h1>
+        </header>
+        <Box color="green" fontWeight="bold" fontSize="24px" py="16px">
+          This is colored by Kuma UI
+        </Box>
+        {children}
+        <footer style={{ marginTop: "2rem" }}>
+          <small>© 2023 your name</small>
+        </footer>
+      </div>
+    </body>
   );
 
-  renderToString(body); // Render here to determine the initial CSS.
+  const registry = createStyleRegistry();
+  renderToString(<StyleRegistry registry={registry}>{body}</StyleRegistry>); // Render here to determine the initial CSS.
   const runtimeCss = registry.styles();
   registry.flush();
 
@@ -49,7 +45,7 @@ const handler: LayoutHandler = ({ children, head }) => {
           </>
         )}
         {head.createTags()}
-        <style dangerouslySetInnerHTML={{ __html: globalThis.__KUMA_CSS__ }} />
+        <style dangerouslySetInnerHTML={{ __html: __KUMA_CSS__ }} />
         {runtimeCss}
       </head>
       {body}
