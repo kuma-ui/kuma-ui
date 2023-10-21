@@ -40,7 +40,7 @@
     "lint:interactive": "eslint-interactive './packages/**/*.{js,ts,jsx,tsx}'",
     "format": "prettier --check './packages/**/*.{js,ts,jsx,tsx}'",
     "format:fix": "prettier --write './packages/**/*.{js,ts,jsx,tsx}'",
-    "codesandbox:insall": "which pnpm & npm i -g pnpm@8 & which pnpm & pnpm i --no-frozen-lockfile",
+    "codesandbox:insall": "which pnpm & npm i -g pnpm@8 & bash -c \"which pnpm & pnpm i --no-frozen-lockfile\"",
     "codesandbox:build": "pnpm build --filter=@kuma-ui/*"
   },
   "devDependencies": {
