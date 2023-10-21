@@ -27,21 +27,9 @@ function App() {
   }, []);
 
   return (
-    <HStack flexDir={["row", "column"]} gap="spacings.4">
-      <Text>hello</Text>
-      <Dynamic key={1} />
-      <Dynamic key={2} />
-      {/* <Box ref={ref} color={true ? "red" : "blue"}>
-        hello
-      </Box> */}
-      <Button ref={buttonRef} color={true ? "red" : "blue"}>
-        hello
-      </Button>
-      <Box as="button" ref={buttonRef2} onClick={onClick}>
-        Click Me!
-      </Box>
-      <Styled ref={ref}>hello</Styled>
-    </HStack>
+    <Box color="GrayText" border="1px solid" borderColor="orange">
+      test
+    </Box>
   );
 }
 

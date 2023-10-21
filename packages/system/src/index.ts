@@ -25,27 +25,7 @@ export { StyledKeyType, isStyledProp } from "./keys";
 
 export * from "./types";
 
-export const all = compose(
-  animation,
-  space,
-  typography,
-  layout,
-  color,
-  flex,
-  border,
-  outline,
-  position,
-  shadow,
-  grid,
-  list,
-  column,
-  effect,
-  text,
-  font,
-  mask,
-  background,
-  filter,
-);
+export const all = compose();
 
 export { normalizePseudo, isPseudoProps };
 export type {

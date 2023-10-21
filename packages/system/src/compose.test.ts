@@ -21,25 +21,7 @@ import { filter } from "./filter";
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
-    const combinedFunction = compose(
-      animation,
-      space,
-      typography,
-      layout,
-      border,
-      outline,
-      color,
-      flex,
-      shadow,
-      list,
-      effect,
-      text,
-      font,
-      mask,
-      column,
-      background,
-      filter,
-    );
+    const combinedFunction = compose();
     const props: StyledProps = {
       m: 8,
       fontSize: 16,
@@ -110,7 +92,7 @@ describe("compose function", () => {
     const props = { invalid: true };
     // Act
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
-    const styles = compose(space)(props as any);
+    const styles = compose()(props as any);
 
     // Assert
     expect(styles.base).toBe("");

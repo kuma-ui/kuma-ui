@@ -1,26 +1,43 @@
-import { AnimationProps, animationMappings } from "./animation";
-import { SpaceProps, spaceMappings } from "./space";
-import { TypographyProps, typographyMappings } from "./typography";
-import { LayoutProps, layoutMappings } from "./layout";
-import { ColorProps, colorMappings } from "./color";
-import { FlexProps, flexMappings } from "./flex";
-import { BorderProps, borderMappings } from "./border";
-import { OutlineProps, outlineMappings } from "./outline";
-import { PositionProps, positionMappings } from "./position";
-import { ShadowProps, shadowMappings } from "./shadow";
+import {
+  AnimationProps,
+  animationConverters,
+  animationMappings,
+} from "./animation";
+import { SpaceProps, spaceConverters, spaceMappings } from "./space";
+import {
+  TypographyProps,
+  typographyConverters,
+  typographyMappings,
+} from "./typography";
+import { LayoutProps, layoutConverters, layoutMappings } from "./layout";
+import { ColorProps, colorConverters, colorMappings } from "./color";
+import { FlexProps, flexConverters, flexMappings } from "./flex";
+import { BorderProps, borderConverters, borderMappings } from "./border";
+import { OutlineProps, outlineConverters, outlineMappings } from "./outline";
+import {
+  PositionProps,
+  positionConverters,
+  positionMappings,
+} from "./position";
+import { ShadowProps, shadowConverters, shadowMappings } from "./shadow";
 import { PseudoProps } from "./pseudo";
-import { ThemeSystemType, ResponsiveStyle } from "./types";
+import { ThemeSystemType, ResponsiveStyle, ValueConverter } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
-import { GridProps, gridMappings } from "./grid";
-import { ListProps, listMappings } from "./list";
-import { EffectProps, effectMappings } from "./effect";
-import { TextProps, textMappings } from "./text";
-import { FontProps, fontMappings } from "./font";
-import { MaskProps, maskMappings } from "./mask";
-import { ColumnProps, columnMappings } from "./column";
-import { BackgroundProps, backgroundMappings } from "./background";
-import { FilterProps, filterMappings } from "./filter";
+import { GridProps, gridConverters, gridMappings } from "./grid";
+import { ListProps, listConverters, listMappings } from "./list";
+import { EffectProps, effectConverters, effectMappings } from "./effect";
+import { TextProps, textConverters, textMappings } from "./text";
+import { FontProps, fontConverters, fontMappings } from "./font";
+import { MaskProps, maskConverters, maskMappings } from "./mask";
+import { ColumnProps, columnConverters, columnMappings } from "./column";
+import {
+  BackgroundProps,
+  backgroundConverters,
+  backgroundMappings,
+} from "./background";
+import { FilterProps, filterConverters, filterMappings } from "./filter";
 import { StyledKeyType } from "./keys";
+import { applyResponsiveStyles } from "./responsive";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
   TypographyProps<T> &
@@ -70,6 +87,31 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
   backgroundMappings,
   filterMappings,
 );
+
+const styleConverters: Partial<Record<StyledKeyType, ValueConverter>> =
+  Object.assign(
+    {},
+    animationConverters,
+    spaceConverters,
+    typographyConverters,
+    layoutConverters,
+    colorConverters,
+    flexConverters,
+    borderConverters,
+    outlineConverters,
+    positionConverters,
+    shadowConverters,
+    gridConverters,
+    listConverters,
+    effectConverters,
+    textConverters,
+    fontConverters,
+    maskConverters,
+    columnConverters,
+    backgroundConverters,
+    filterConverters,
+  ) as Partial<Record<StyledKeyType, ValueConverter>>;
+
 /**
  * Composes multiple style functions into a single style function.
  * This allows for more efficient application of multiple style functions at once,
@@ -83,46 +125,43 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
  * const styles = combinedFunction({ m: 8, fontSize: 16, width: "100%", bg: "red", flexDir: "column" });
  * // The `styles` variable now contains a single style string combining all the applied style functions.
  */
-export const compose = (...styleFunctions: StyleFunction[]): StyleFunction => {
+export const compose = (): StyleFunction => {
   return (props: StyledProps): ResponsiveStyle => {
     const cacheKey = JSON.stringify(props);
-    let outputProps = { ...props };
 
     const cachedStyles = styleCache.get(cacheKey);
     if (cachedStyles) {
       return cachedStyles;
     }
 
-    const combinedStyles = styleFunctions.reduce(
-      (styles, styleFunction) => {
-        const newStyles = styleFunction(outputProps);
-        styles.base += newStyles.base;
-        for (const [breakpoint, css] of Object.entries(newStyles.media)) {
-          if (styles.media[breakpoint]) {
-            styles.media[breakpoint] += css;
+    let base = "";
+    const media: { [breakpoint: string]: string } = {};
+    for (const key in props) {
+      const cssValue = props[key as StyledKeyType];
+      if (!cssValue) continue;
+
+      const properties = styleMappings[key as StyledKeyType].split(",");
+      for (const property of properties) {
+        const converter = styleConverters[key as StyledKeyType];
+        const responsiveStyles = applyResponsiveStyles(
+          property,
+          cssValue,
+          converter,
+        );
+        base += responsiveStyles.base;
+        for (const [breakpoint, css] of Object.entries(
+          responsiveStyles.media,
+        )) {
+          if (media[breakpoint]) {
+            media[breakpoint] += css;
           } else {
-            styles.media[breakpoint] = css;
+            media[breakpoint] = css;
           }
         }
+      }
+    }
 
-        const processedProps = Object.keys(outputProps).filter((key) =>
-          newStyles.base.includes(`${styleMappings[key as StyledKeyType]}:`),
-        );
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-        outputProps = Object.keys(outputProps).reduce((remainingProps, key) => {
-          if (!processedProps.includes(key)) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- FIXME
-            remainingProps[key] = outputProps[key as keyof StyledProps];
-          }
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
-          return remainingProps;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-        }, {} as any);
-
-        return styles;
-      },
-      { base: "", media: {} } as ResponsiveStyle,
-    );
+    const combinedStyles = { base, media };
 
     styleCache.set(cacheKey, combinedStyles);
 
