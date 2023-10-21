@@ -5,7 +5,7 @@ exports[`headless component > using default props should match snapshot 1`] = `
 .🐻-1587700805 { color: green;text-decoration: line-through;font-size: 16px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { Text } from '@kuma-ui/core';
 function App() {
   return <p className={\\"🐻-1587700805\\"} />;
@@ -18,7 +18,7 @@ exports[`headless component > using default props with inline props should match
 .🐻-4138457428 { color: blue;text-decoration: line-through;font-size: 12px; }
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { Text } from '@kuma-ui/core';
 function App() {
   return <p className={\\"🐻-4138457428\\"} />;

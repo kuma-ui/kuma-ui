@@ -5,13 +5,13 @@ exports[`styled function > Snapshot tests (runtime: automatic) > 'styled' tag ex
 .🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const GreenButton = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButton = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"button\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
-const GreenButtonRedText = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButtonRedText = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
       return <GreenButton {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -26,9 +26,9 @@ exports[`styled function > Snapshot tests (runtime: automatic) > 'styled' tag fu
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -43,9 +43,9 @@ exports[`styled function > Snapshot tests (runtime: automatic) > 'styled' tag pr
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -60,9 +60,9 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using className
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"span\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -81,9 +81,9 @@ exports[`styled function > Snapshot tests (runtime: automatic) > using pseudo el
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -98,13 +98,13 @@ exports[`styled function > Snapshot tests (runtime: classic) > 'styled' tag exte
 .🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const GreenButton = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButton = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"button\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
-const GreenButtonRedText = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButtonRedText = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
       return <GreenButton {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -119,9 +119,9 @@ exports[`styled function > Snapshot tests (runtime: classic) > 'styled' tag func
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -136,9 +136,9 @@ exports[`styled function > Snapshot tests (runtime: classic) > 'styled' tag prop
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -153,9 +153,9 @@ exports[`styled function > Snapshot tests (runtime: classic) > using className p
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"span\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -174,9 +174,9 @@ exports[`styled function > Snapshot tests (runtime: classic) > using pseudo elem
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -191,13 +191,13 @@ exports[`styled function > Snapshot tests (runtime: undefined) > 'styled' tag ex
 .🐻-3239996223{background:green;}.🐻-1641059616{color:red;}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const GreenButton = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButton = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-3239996223\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"button\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
-const GreenButtonRedText = __React_Kuma_.forwardRef((props, ref) => {
+const GreenButtonRedText = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-1641059616\\"].filter(Boolean).join(\\" \\");
       return <GreenButton {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -212,9 +212,9 @@ exports[`styled function > Snapshot tests (runtime: undefined) > 'styled' tag fu
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -229,9 +229,9 @@ exports[`styled function > Snapshot tests (runtime: undefined) > 'styled' tag pr
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -246,9 +246,9 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using className
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled, css } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"span\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });
@@ -267,9 +267,9 @@ exports[`styled function > Snapshot tests (runtime: undefined) > using pseudo el
 .🐻-101236145{position:relative;width:300px;height:300px;background-color:rgba(255, 0, 0, 0.5);}.🐻-101236145:hover{background-color:rgba(0, 0, 255, 0.5);}@media (max-width: 768px){.🐻-101236145{flex-direction:column;}}
 
 import { Box as __Box } from \\"@kuma-ui/core\\";
-import __React_Kuma_ from \\"react\\";
+import __KUMA_REACT__ from \\"react\\";
 import { styled } from '@kuma-ui/core';
-const Box = __React_Kuma_.forwardRef((props, ref) => {
+const Box = __KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, \\"🐻-101236145\\"].filter(Boolean).join(\\" \\");
       return <__Box as=\\"div\\" {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     });

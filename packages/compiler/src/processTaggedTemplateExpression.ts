@@ -65,8 +65,8 @@ function replaceTaggedTemplate(
   const className = extractClassName(node.getTemplate());
   if (className) {
     // Using React.forwardRef to allow the component to receive a ref.
-    // Assuming React is available in this file as __React_Kuma_, as it's being imported in `babel-plugin/src/ensureReactImport.ts`.
-    const replacement = `__React_Kuma_.forwardRef((props, ref) => {
+    // Assuming React is available in this file as __KUMA_REACT__, as it's being imported in `babel-plugin/src/ensureReactImport.ts`.
+    const replacement = `__KUMA_REACT__.forwardRef((props, ref) => {
       const combinedClassName = [props.className, "${className}"].filter(Boolean).join(" ");
       return <${component} {...props} ref={ref} className={combinedClassName} IS_KUMA_DEFAULT />;
     })`;
