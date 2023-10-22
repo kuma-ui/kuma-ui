@@ -38,7 +38,10 @@ export default function kumaUI(): Plugin {
     }
   }
 
-  const cssLookup: { [key: string]: string } = {};
+  const cssTable: {
+    url: string,
+    css: string,
+  }[] = [];
   const virtualModuleId = "virtual:kuma-ui";
 
   const userTheme = theme.getUserTheme();
@@ -62,23 +65,21 @@ export default function kumaUI(): Plugin {
       const result = transform(code, id);
       if (!result?.code) return;
       const css = (result.metadata as unknown as { css: string }).css || "";
-      const cssFilename = path.normalize(
-        `${id.replace(/\.[jt]sx?$/, "")}-${generateHash(css)}.css`,
-      );
-      const cssRelativePath = path
-        .relative(process.cwd(), cssFilename)
-        .replace(/\\/g, path.posix.sep);
-      cssLookup[cssRelativePath] = css;
+
+      const cssTableId = `${Date.now().toString(16)}x${cssTable.length}`;
+      const url = `${virtualModuleId}/${cssTableId}.css`;
+      cssTable.push({ url, css });
+
       sheet.reset();
       return (
-        `import "${virtualModuleId}/${cssRelativePath}";
+        `import "${url}";
 ` + result.code
       );
     },
     load(url) {
       if (!url.startsWith(`\0${virtualModuleId}`)) return undefined;
-      const id = url.slice(`\0${virtualModuleId}`.length + 1);
-      return cssLookup[id];
+      const urlContent = url.slice(`\0`.length);
+      return cssTable.find(c => c.url === urlContent)?.css ?? undefined;
     },
     resolveId(importeeUrl) {
       if (!importeeUrl.startsWith(virtualModuleId)) return undefined;
@@ -86,6 +87,7 @@ export default function kumaUI(): Plugin {
     },
     handleHotUpdate({ server }) {
       sheet.reset();
+      cssTable.length = 0;
       server.ws.send({ type: "full-reload" });
     },
     configResolved(config) {
