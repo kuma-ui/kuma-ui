@@ -40,7 +40,7 @@ To install Kuma UI in your project, run one of the following commands in your te
 
 Once the `@kuma-ui/core` package is successfully installed, you can proceed to install a plugin for your specific framework (Next.js or Vite) as below.
 
-<Tabs items={["next.js", "vite"]} storageKey="selected-framework">
+<Tabs items={["Next.js", "Vite", "webpack"]} storageKey="selected-framework">
   {/* prettier-ignore */}
   <Tab>
   ```bash copy
@@ -53,6 +53,12 @@ Once the `@kuma-ui/core` package is successfully installed, you can proceed to i
   pnpm install -D @kuma-ui/vite
   ```
   </Tab>
+  {/* prettier-ignore */}
+  <Tab>
+  ```bash copy
+  pnpm install -D @kuma-ui/webpack-plugin
+  ```
+  </Tab>
 </Tabs>
 
 ## Setting Up Kuma UI
@@ -60,7 +66,7 @@ Once the `@kuma-ui/core` package is successfully installed, you can proceed to i
 Once you've installed the plugin, you need to configure it in your configuration file.
 
 <Tabs
-  items={["next.js", "vite"]}
+  items={["Next.js", "Vite", "webpack"]}
   storageKey="selected-config"
 >
   {/* prettier-ignore */}
@@ -75,8 +81,8 @@ Once you've installed the plugin, you need to configure it in your configuration
 
     module.exports = withKumaUI(nextConfig);
     ```
-
   </Tab>
+
   {/* prettier-ignore */}
   <Tab>
     ```js filename="vite.config.js"
@@ -91,7 +97,19 @@ Once you've installed the plugin, you need to configure it in your configuration
       ],
     });
     ```
+  </Tab>
 
+  {/* prettier-ignore */}
+  <Tab>
+    ```js filename="webpack.config.js"
+    const KumaUIWebpackPlugin = require("@kuma-ui/webpack-plugin").default;
+
+    module.exports = {
+      plugins: [
+        new KumaUIWebpackPlugin(),
+      ],
+    };
+    ```
   </Tab>
 </Tabs>
 
@@ -100,7 +118,7 @@ Once you've installed the plugin, you need to configure it in your configuration
 If you are using Kuma UI with Next.js, setting up Server Side Rendering (SSR) isn't mandatory. However, without this setup, you may experience a Flash Of Unstyled Content (FOUC). **We highly recommend setting up SSR** to prevent this from happening.
 
 <Tabs
-  items={["next.js app router", "next.js pages router"]}
+  items={["Next.js App Router", "Next.js Pages Router"]}
   storageKey="selected-ssr"
 >
   {/* prettier-ignore */}
@@ -178,7 +196,7 @@ If you are using Kuma UI with Next.js, setting up Server Side Rendering (SSR) is
 For those looking to integrate Kuma UI with Storybook, the process will vary depending on the [Storybook builder](https://storybook.js.org/docs/react/builders/overview) you are using. Here's how you can set it up:
 
 <Tabs
-  items={["next.js (webpack)", "vite"]}
+  items={["Next.js (webpack)", "Vite"]}
   storageKey="selected-storybook-builder"
 >
   {/* prettier-ignore */}
