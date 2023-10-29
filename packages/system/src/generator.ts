@@ -36,7 +36,8 @@ export class StyleGenerator {
     for (const [propName, propValue] of Object.entries(props)) {
       if (
         typeof propValue === "string" &&
-        /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue)
+        /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue) &&
+        !/^\w+\(.*\)$/.test(propValue)
       ) {
         const customStyle = findCustomStyle(propValue);
         if (customStyle !== undefined) {
