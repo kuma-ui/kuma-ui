@@ -14,10 +14,11 @@ export type NumberToken =
   | "letterSpacings"
   | "breakpoints";
 
-export type InputThemeTokens = Partial<
-  Record<Exclude<Tokens, NumberToken>, NestedObject<string>> &
-    Record<NumberToken, NestedObject<string | number>>
->;
+export type InputThemeTokens = {
+  [K in Tokens]?: K extends NumberToken
+    ? NestedObject<string | number>
+    : NestedObject<string>;
+};
 
 export type ResultThemeTokens<T extends InputThemeTokens> = {
   [K in keyof T]: Pretty<FlattenObject<Pick<T, K>>>;
