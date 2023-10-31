@@ -76,7 +76,6 @@ import {
   gridHandler,
   gridDefaultProps,
 } from "./Grid/handler";
-import { match } from "ts-pattern";
 import { StyledProps } from "@kuma-ui/system";
 import "react";
 
@@ -119,60 +118,105 @@ type ComponentName = keyof typeof componentList;
 
 export const isComponentProps =
   (componentName: ComponentName) => (propName: string) => {
-    return match(componentName)
-      .with("Box", () => isBoxProps(propName))
-      .with("Button", () => isButtonProps(propName))
-      .with("Flex", () => isFlexProps(propName))
-      .with("Heading", () => isHeadingProps(propName))
-      .with("Spacer", () => isSpacerProps(propName))
-      .with("Text", () => isTextProps(propName))
-      .with("Select", () => isSelectProps(propName))
-      .with("Input", () => isInputProps(propName))
-      .with("HStack", () => isHStackProps(propName))
-      .with("VStack", () => isVStackProps(propName))
-      .with("Image", () => isImageProps(propName))
-      .with("Link", () => isLinkProps(propName))
-      .with("Grid", () => isGridProps(propName))
-      .exhaustive();
+    switch (componentName) {
+      case "Box":
+        return isBoxProps(propName);
+      case "Button":
+        return isButtonProps(propName);
+      case "Flex":
+        return isFlexProps(propName);
+      case "Heading":
+        return isHeadingProps(propName);
+      case "Spacer":
+        return isSpacerProps(propName);
+      case "Text":
+        return isTextProps(propName);
+      case "Select":
+        return isSelectProps(propName);
+      case "Input":
+        return isInputProps(propName);
+      case "HStack":
+        return isHStackProps(propName);
+      case "VStack":
+        return isVStackProps(propName);
+      case "Image":
+        return isImageProps(propName);
+      case "Link":
+        return isLinkProps(propName);
+      case "Grid":
+        return isGridProps(propName);
+      default:
+        return componentName satisfies never;
+    }
   };
 
 export const componentDefaultProps = (
   componentName: ComponentName,
 ): StyledProps => {
-  return match(componentName)
-    .with("Box", () => boxDefaultProps)
-    .with("Button", () => buttonDefaultProps)
-    .with("Flex", () => flexDefaultProps)
-    .with("Heading", () => headingDefaultProps)
-    .with("Spacer", () => spacerDefaultProps)
-    .with("Text", () => textDefaultProps)
-    .with("Select", () => selectDefaultProps)
-    .with("Input", () => inputDefaultProps)
-    .with("HStack", () => hstackDefaultProps)
-    .with("VStack", () => vstackDefaultProps)
-    .with("Image", () => imageDefaultProps)
-    .with("Link", () => linkDefaultProps)
-    .with("Grid", () => gridDefaultProps)
-    .exhaustive();
+  switch (componentName) {
+    case "Box":
+      return boxDefaultProps;
+    case "Button":
+      return buttonDefaultProps;
+    case "Flex":
+      return flexDefaultProps;
+    case "Heading":
+      return headingDefaultProps;
+    case "Spacer":
+      return spacerDefaultProps;
+    case "Text":
+      return textDefaultProps;
+    case "Select":
+      return selectDefaultProps;
+    case "Input":
+      return inputDefaultProps;
+    case "HStack":
+      return hstackDefaultProps;
+    case "VStack":
+      return vstackDefaultProps;
+    case "Image":
+      return imageDefaultProps;
+    case "Link":
+      return linkDefaultProps;
+    case "Grid":
+      return gridDefaultProps;
+    default:
+      return componentName satisfies never;
+  }
 };
 
 export const componentHandler =
   (componentName: ComponentName) =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
   (props: Record<string, any>): StyledProps => {
-    return match(componentName)
-      .with("Box", () => boxHandler(props))
-      .with("Button", () => buttonHandler(props))
-      .with("Flex", () => flexHandler(props))
-      .with("Heading", () => headingHandler(props))
-      .with("Spacer", () => spacerHandler(props))
-      .with("Text", () => textHandler(props))
-      .with("Select", () => selectHandler(props))
-      .with("Input", () => inputHandler(props))
-      .with("HStack", () => hstackHandler(props))
-      .with("VStack", () => vstackHandler(props))
-      .with("Image", () => imageHandler(props))
-      .with("Link", () => linkHandler(props))
-      .with("Grid", () => gridHandler(props))
-      .exhaustive();
+    switch (componentName) {
+      case "Box":
+        return boxHandler(props);
+      case "Button":
+        return buttonHandler(props);
+      case "Flex":
+        return flexHandler(props);
+      case "Heading":
+        return headingHandler(props);
+      case "Spacer":
+        return spacerHandler(props);
+      case "Text":
+        return textHandler(props);
+      case "Select":
+        return selectHandler(props);
+      case "Input":
+        return inputHandler(props);
+      case "HStack":
+        return hstackHandler(props);
+      case "VStack":
+        return vstackHandler(props);
+      case "Image":
+        return imageHandler(props);
+      case "Link":
+        return linkHandler(props);
+      case "Grid":
+        return gridHandler(props);
+      default:
+        return componentName satisfies never;
+    }
   };

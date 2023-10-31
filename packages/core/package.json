@@ -52,8 +52,7 @@
     "@kuma-ui/sheet": "workspace:*",
     "@kuma-ui/system": "workspace:*",
     "@types/stylis": "^4.2.0",
-    "stylis": "^4.2.0",
-    "ts-pattern": "^5.0.1"
+    "stylis": "^4.2.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
