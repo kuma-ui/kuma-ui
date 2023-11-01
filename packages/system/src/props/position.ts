@@ -1,7 +1,7 @@
-import { PositionKeys } from "./keys";
-import { toCssUnit } from "./toCSS";
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { applyResponsiveStyles } from "./responsive";
+import { PositionKeys } from "../keys";
+import { toCssUnit } from "../toCSS";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type PositionProps = Partial<
   CSSProperties<"top" | "right" | "left" | "bottom" | "inset", true>

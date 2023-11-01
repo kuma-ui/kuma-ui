@@ -1,4 +1,4 @@
-import { ColorKeys } from "./keys";
+import { ColorKeys } from "../keys";
 import {
   AddProperty,
   CSSProperties,
@@ -6,8 +6,8 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<

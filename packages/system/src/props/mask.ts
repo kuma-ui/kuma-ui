@@ -1,7 +1,7 @@
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { MaskKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
-import { toCssUnit } from "./toCSS";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { MaskKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
+import { toCssUnit } from "../toCSS";
 
 export type MaskProps = Partial<
   CSSProperties<

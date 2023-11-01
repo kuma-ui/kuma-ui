@@ -1,13 +1,13 @@
-import { toCssUnit } from "./toCSS";
-import { LayoutKeys } from "./keys";
+import { toCssUnit } from "../toCSS";
+import { LayoutKeys } from "../keys";
 import {
   AddProperty,
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<

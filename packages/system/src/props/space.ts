@@ -1,6 +1,6 @@
-import { toCssUnit } from "./toCSS";
-import { SpaceKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { SpaceKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 import {
   AddProperty,
   CSSProperties,
@@ -8,7 +8,7 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
+} from "../types";
 
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<

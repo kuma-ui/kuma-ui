@@ -1,7 +1,7 @@
-import { OutlineKeys } from "./keys";
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { applyResponsiveStyles } from "./responsive";
-import { toCssUnit } from "./toCSS";
+import { OutlineKeys } from "../keys";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { applyResponsiveStyles } from "../responsive";
+import { toCssUnit } from "../toCSS";
 
 export type OutlineProps = Partial<
   CSSProperties<"outline"> &

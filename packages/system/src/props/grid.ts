@@ -1,13 +1,13 @@
-import { toCssUnit } from "./toCSS";
-import { GridKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { GridKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 import {
   AddProperty,
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
+} from "../types";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];

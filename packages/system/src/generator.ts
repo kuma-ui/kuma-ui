@@ -1,6 +1,6 @@
 import { Tokens, generateHash, theme } from "@kuma-ui/sheet";
 import { SystemStyle } from "./types";
-import { StyledProps } from "./compose";
+import { StyledProps } from "./consumeStyleProps";
 import { isStyledProp } from "./keys";
 import { PseudoProps, isPseudoProps, normalizePseudo } from "./pseudo";
 import { all } from ".";

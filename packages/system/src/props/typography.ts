@@ -1,12 +1,12 @@
-import { toCssUnit } from "./toCSS";
-import { TypographyKeys } from "./keys";
+import { toCssUnit } from "../toCSS";
+import { TypographyKeys } from "../keys";
 import {
   ResponsiveStyle,
   CSSProperties,
   ThemeSystemType,
   AddProperty,
   ValueConverter,
-} from "./types";
+} from "../types";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<

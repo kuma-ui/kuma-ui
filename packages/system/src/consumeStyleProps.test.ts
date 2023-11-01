@@ -1,9 +1,8 @@
-import { compose, StyledProps } from "./compose";
+import { consumeStyleProps, StyledProps } from "./consumeStyleProps";
 import { describe, expect, test } from "vitest";
-describe("compose function", () => {
+describe("consumeStyleProps function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange
-    const combinedFunction = compose();
     const props: StyledProps = {
       m: 8,
       fontSize: 16,
@@ -34,7 +33,7 @@ describe("compose function", () => {
       backdropFilter: "drop-shadow(4px 4px 10px blue)",
     };
     // Act
-    const styles = combinedFunction(props);
+    const styles = consumeStyleProps(props);
 
     // Assert
     expect(styles.base).toContain("margin: 8px");
@@ -74,7 +73,7 @@ describe("compose function", () => {
     const props = { invalid: true };
     // Act
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any -- FIXME
-    const styles = compose()(props as any);
+    const styles = consumeStyleProps(props as any);
 
     // Assert
     expect(styles.base).toBe("");

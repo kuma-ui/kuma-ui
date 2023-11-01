@@ -1,5 +1,5 @@
-import { BorderKeys } from "./keys";
-import { toCssUnit } from "./toCSS";
+import { BorderKeys } from "../keys";
+import { toCssUnit } from "../toCSS";
 import {
   AddProperty,
   CSSProperties,
@@ -7,8 +7,8 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {

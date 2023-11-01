@@ -1,6 +1,6 @@
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { ShadowKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { ShadowKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 
 export type ShadowProps = Partial<CSSProperties<"boxShadow" | "textShadow">>;
 

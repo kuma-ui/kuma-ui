@@ -4,10 +4,10 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { ColumnKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
-import { toCssUnit } from "./toCSS";
+} from "../types";
+import { ColumnKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
+import { toCssUnit } from "../toCSS";
 
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<

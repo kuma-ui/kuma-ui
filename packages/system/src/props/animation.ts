@@ -1,6 +1,6 @@
-import { AnimationKeys } from "./keys";
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { applyResponsiveStyles } from "./responsive";
+import { AnimationKeys } from "../keys";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type AnimationProps = Partial<
   CSSProperties<

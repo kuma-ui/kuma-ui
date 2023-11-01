@@ -1,11 +1,11 @@
-import { EffectKeys } from "./keys";
+import { EffectKeys } from "../keys";
 import {
   CSSProperties,
   CSSValue,
   ResponsiveStyle,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type EffectProps = Partial<
   CSSProperties<

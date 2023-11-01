@@ -1,7 +1,7 @@
-import { toCssUnit } from "./toCSS";
-import { TextKeys } from "./keys";
-import { ResponsiveStyle, CSSProperties, ValueConverter } from "./types";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { TextKeys } from "../keys";
+import { ResponsiveStyle, CSSProperties, ValueConverter } from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type TextProps = Partial<
   CSSProperties<"textAlign"> &

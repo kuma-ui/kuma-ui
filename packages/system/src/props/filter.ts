@@ -1,6 +1,6 @@
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "./types";
-import { FilterKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { FilterKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 
 export type FilterProps = Partial<CSSProperties<"filter" | "backdropFilter">>;
 
