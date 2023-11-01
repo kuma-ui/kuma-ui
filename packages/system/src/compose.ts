@@ -127,7 +127,7 @@ export const compose = (): StyleFunction => {
       const cssValue = props[key as StyledKeyType];
       if (!cssValue) continue;
 
-      const properties = styleMappings[key as StyledKeyType].split(",");
+      const properties = styleMappings[key as StyledKeyType]?.split(",") ?? [];
       for (const property of properties) {
         const converter = styleConverters[key as StyledKeyType];
         const responsiveStyles = applyResponsiveStyles(
