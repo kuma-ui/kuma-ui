@@ -57,29 +57,3 @@ export const textMappings: Record<TextKeys, string> = {
 export const textConverters: Partial<Record<TextKeys, ValueConverter>> = {
   textIndent: toCssUnit,
 };
-
-export const text = (props: TextProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in textMappings) {
-    const cssValue = props[key as TextKeys];
-    if (cssValue != undefined) {
-      const property = textMappings[key as TextKeys];
-      const converter = [textMappings.textIndent].includes(property)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
-};

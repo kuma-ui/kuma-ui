@@ -42,28 +42,3 @@ export const columnConverters: Partial<Record<ColumnKeys, ValueConverter>> = {
   columnRuleWidth: toCssUnit,
   columnWidth: toCssUnit,
 };
-
-export const column = (props: ColumnProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in columnMappings) {
-    const cssValue = props[key as ColumnKeys];
-    if (cssValue != undefined) {
-      const property = columnMappings[key as ColumnKeys];
-      const converter = columnConverters[key as ColumnKeys];
-
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
-};

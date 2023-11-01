@@ -153,37 +153,3 @@ export const borderConverters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderStartRadius: toCssUnit,
   borderEndRadius: toCssUnit,
 };
-
-export const border = (props: BorderProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: { [breakpoint: string]: string } = {};
-
-  for (const key in borderMappings) {
-    const cssValue = props[key as BorderKeys];
-    if (cssValue != undefined) {
-      const properties = borderMappings[key as BorderKeys].split(",");
-      for (const property of properties) {
-        const converter = borderConverters[key as BorderKeys];
-        const responsiveStyles = applyResponsiveStyles(
-          property,
-          cssValue,
-          converter,
-        );
-        baseStyles += responsiveStyles.base;
-        for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media,
-        )) {
-          if (mediaStyles[breakpoint]) {
-            mediaStyles[breakpoint] += css;
-          } else {
-            mediaStyles[breakpoint] = css;
-          }
-        }
-      }
-    }
-  }
-  return {
-    base: baseStyles,
-    media: mediaStyles,
-  };
-};

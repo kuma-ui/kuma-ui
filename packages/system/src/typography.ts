@@ -7,7 +7,6 @@ import {
   AddProperty,
   ValueConverter,
 } from "./types";
-import { applyResponsiveStyles } from "./responsive";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<
@@ -51,35 +50,4 @@ export const typographyConverters: Partial<
 > = {
   wordSpacing: toCssUnit,
   letterSpacing: toCssUnit,
-};
-
-export const typography = (props: TypographyProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in typographyMappings) {
-    const cssValue = props[key as TypographyKeys];
-    if (cssValue != undefined) {
-      const property = typographyMappings[key as TypographyKeys];
-
-      const converter = (value: string | number): string | number => {
-        if (property === "word-spacing" || property === "letter-spacing") {
-          return toCssUnit(value);
-        }
-        return value;
-      };
-
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
 };

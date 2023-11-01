@@ -1,23 +1,5 @@
 import { compose, StyledProps } from "./compose";
-import { animation } from "./animation";
-import { space } from "./space";
-import { typography } from "./typography";
-import { layout } from "./layout";
-import { color } from "./color";
 import { describe, expect, test } from "vitest";
-import { flex } from "./flex";
-import { shadow } from "./shadow";
-import { list } from "./list";
-import { effect } from "./effect";
-import { border } from "./border";
-import { outline } from "./outline";
-import { font } from "./font";
-import { mask } from "./mask";
-import { column } from "./column";
-import { background } from "./background";
-import { text } from "./text";
-import { filter } from "./filter";
-
 describe("compose function", () => {
   test("should combine styles from multiple style functions", () => {
     // Arrange

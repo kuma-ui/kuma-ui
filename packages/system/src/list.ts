@@ -16,23 +16,3 @@ export const listMappings: Record<ListKeys, string> = {
 } as const;
 
 export const listConverters: Partial<Record<ListKeys, ValueConverter>> = {};
-
-export const list = (props: ListProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in listMappings) {
-    const cssValue = props[key as ListKeys];
-    if (cssValue) {
-      const property = listMappings[key as ListKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
-};

@@ -143,36 +143,3 @@ export const spaceMappings: Record<SpaceKeys, string> = {
 
 export const spaceConverters: Partial<Record<SpaceKeys, ValueConverter>> =
   Object.fromEntries(Object.keys(spaceMappings).map((key) => [key, toCssUnit]));
-
-export const space = (props: SpaceProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: { [breakpoint: string]: string } = {};
-
-  for (const key in spaceMappings) {
-    const cssValue = props[key as SpaceKeys];
-    if (cssValue != undefined) {
-      const properties = spaceMappings[key as SpaceKeys].split(",");
-      for (const property of properties) {
-        const responsiveStyles = applyResponsiveStyles(
-          property,
-          cssValue,
-          toCssUnit,
-        );
-        baseStyles += responsiveStyles.base;
-        for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media,
-        )) {
-          if (mediaStyles[breakpoint]) {
-            mediaStyles[breakpoint] += css;
-          } else {
-            mediaStyles[breakpoint] = css;
-          }
-        }
-      }
-    }
-  }
-  return {
-    base: baseStyles,
-    media: mediaStyles,
-  };
-};

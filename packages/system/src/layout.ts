@@ -64,27 +64,3 @@ export const layoutConverters: Partial<Record<LayoutKeys, ValueConverter>> = {
   maxHeight: toCssUnit,
   zIndex: (t) => t,
 };
-
-export const layout = (props: LayoutProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-  for (const key in layoutMappings) {
-    const cssValue = props[key as LayoutKeys];
-    if (cssValue != undefined) {
-      const property = layoutMappings[key as LayoutKeys];
-      const converter = layoutConverters[key as LayoutKeys];
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
-};

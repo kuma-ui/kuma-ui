@@ -35,26 +35,3 @@ export const animationMappings: Record<AnimationKeys, string> = {
 export const animationConverters: Partial<
   Record<AnimationKeys, ValueConverter>
 > = {};
-
-export const animation = (props: AnimationProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in animationMappings) {
-    const cssValue = props[key as AnimationKeys];
-    if (cssValue != undefined) {
-      const property = animationMappings[key as AnimationKeys];
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        undefined,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
-};

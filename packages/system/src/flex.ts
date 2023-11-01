@@ -55,27 +55,3 @@ export const flexConverters: Partial<Record<FlexKeys, ValueConverter>> = {
   gap: toCssUnit,
   flexBasis: toCssUnit,
 };
-
-export const flex = (props: FlexProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in flexMappings) {
-    const cssValue = props[key as FlexKeys];
-    if (cssValue != undefined) {
-      const property = flexMappings[key as FlexKeys];
-      const converter = flexConverters[key as FlexKeys];
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
-};

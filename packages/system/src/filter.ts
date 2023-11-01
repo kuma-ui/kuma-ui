@@ -10,23 +10,3 @@ export const filterMappings: Record<FilterKeys, string> = {
 } as const;
 
 export const filterConverters: Partial<Record<FilterKeys, ValueConverter>> = {};
-
-export const filter = (props: FilterProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in filterMappings) {
-    const cssValue = props[key as FilterKeys];
-    if (cssValue != undefined) {
-      const property = filterMappings[key as FilterKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
-};

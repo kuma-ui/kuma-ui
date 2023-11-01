@@ -43,29 +43,3 @@ export const gridConverters: Partial<Record<GridKeys, ValueConverter>> = {
   gridColumnGap: toCssUnit,
   gridRowGap: toCssUnit,
 };
-
-export const grid = (props: GridProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in gridMappings) {
-    const cssValue = props[key as GridKeys];
-    if (cssValue != undefined) {
-      const property = gridMappings[key as GridKeys];
-      const converter = gapKeys.includes(key as GapKeys)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
-};

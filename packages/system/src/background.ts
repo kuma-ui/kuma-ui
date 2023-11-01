@@ -100,34 +100,3 @@ export const backgroundConverters: Partial<
   bgPositionY: toCssUnit,
   bgSize: toCssUnit,
 };
-
-export const background = (props: BackgroundProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in backgroundMappings) {
-    const cssValue = props[key as BackgroundKeys];
-    if (cssValue) {
-      const property = backgroundMappings[key as BackgroundKeys];
-      const converter = [
-        backgroundMappings.bgPositionX,
-        backgroundMappings.bgPositionY,
-        backgroundMappings.bgSize,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
-};

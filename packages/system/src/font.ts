@@ -62,34 +62,3 @@ export const fontMappings: Record<FontKeys, string> = {
 export const fontConverters: Partial<Record<FontKeys, ValueConverter>> = {
   fontSize: toCssUnit,
 };
-
-export const font = (props: FontProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in fontMappings) {
-    const cssValue = props[key as FontKeys];
-    if (cssValue != undefined) {
-      const property = fontMappings[key as FontKeys];
-
-      const converter = (value: string | number): string | number => {
-        if (property === "font-size") {
-          return toCssUnit(value);
-        }
-        return value;
-      };
-
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
-};

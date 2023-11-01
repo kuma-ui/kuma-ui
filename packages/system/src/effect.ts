@@ -36,22 +36,3 @@ export const effectMappings: Record<EffectKeys, string> = {
 } as const;
 
 export const effectConverters: Partial<Record<EffectKeys, ValueConverter>> = {};
-
-export const effect = (props: EffectProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in effectMappings) {
-    const cssValue = props[key as EffectKeys];
-    if (cssValue) {
-      const property = effectMappings[key as EffectKeys];
-      const responsiveStyles = applyResponsiveStyles(property, cssValue);
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
-};
