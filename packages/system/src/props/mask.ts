@@ -1,7 +1,7 @@
-import { CSSProperties, ResponsiveStyle } from "./types";
-import { MaskKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
-import { toCssUnit } from "./toCSS";
+import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { MaskKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
+import { toCssUnit } from "../toCSS";
 
 export type MaskProps = Partial<
   CSSProperties<
@@ -45,29 +45,6 @@ export const maskMappings: Record<MaskKeys, string> = {
   maskType: "mask-type",
 } as const;
 
-export const mask = (props: MaskProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in maskMappings) {
-    const cssValue = props[key as MaskKeys];
-    if (cssValue != undefined) {
-      const property = maskMappings[key as MaskKeys];
-      const converter = [maskMappings.maskSize].includes(property)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
+export const maskConverters: Partial<Record<MaskKeys, ValueConverter>> = {
+  maskSize: toCssUnit,
 };

@@ -1,12 +1,12 @@
-import { toCssUnit } from "./toCSS";
-import { TypographyKeys } from "./keys";
+import { toCssUnit } from "../toCSS";
+import { TypographyKeys } from "../keys";
 import {
   ResponsiveStyle,
   CSSProperties,
   ThemeSystemType,
   AddProperty,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+  ValueConverter,
+} from "../types";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<
@@ -45,33 +45,9 @@ export const typographyMappings: Record<TypographyKeys, string> = {
   writingMode: "writing-mode",
 } as const;
 
-export const typography = (props: TypographyProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in typographyMappings) {
-    const cssValue = props[key as TypographyKeys];
-    if (cssValue != undefined) {
-      const property = typographyMappings[key as TypographyKeys];
-
-      const converter = (value: string | number): string | number => {
-        if (property === "word-spacing" || property === "letter-spacing") {
-          return toCssUnit(value);
-        }
-        return value;
-      };
-
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
+export const typographyConverters: Partial<
+  Record<TypographyKeys, ValueConverter>
+> = {
+  wordSpacing: toCssUnit,
+  letterSpacing: toCssUnit,
 };

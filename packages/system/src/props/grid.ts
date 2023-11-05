@@ -1,12 +1,13 @@
-import { toCssUnit } from "./toCSS";
-import { GridKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { GridKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 import {
   AddProperty,
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
-} from "./types";
+  ValueConverter,
+} from "../types";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];
@@ -37,28 +38,8 @@ export const gridMappings: Record<GridKeys, string> = {
   gridRowGap: "grid-row-gap",
 } as const;
 
-export const grid = (props: GridProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in gridMappings) {
-    const cssValue = props[key as GridKeys];
-    if (cssValue != undefined) {
-      const property = gridMappings[key as GridKeys];
-      const converter = gapKeys.includes(key as GapKeys)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-  return { base, media };
+export const gridConverters: Partial<Record<GridKeys, ValueConverter>> = {
+  gridGap: toCssUnit,
+  gridColumnGap: toCssUnit,
+  gridRowGap: toCssUnit,
 };

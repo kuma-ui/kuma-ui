@@ -1,13 +1,14 @@
-import { toCssUnit } from "./toCSS";
-import { SpaceKeys } from "./keys";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { SpaceKeys } from "../keys";
+import { applyResponsiveStyles } from "../responsive";
 import {
   AddProperty,
   CSSProperties,
   CSSValue,
   ResponsiveStyle,
   ThemeSystemType,
-} from "./types";
+  ValueConverter,
+} from "../types";
 
 export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -140,35 +141,5 @@ export const spaceMappings: Record<SpaceKeys, string> = {
   py: "padding-top,padding-bottom",
 };
 
-export const space = (props: SpaceProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: { [breakpoint: string]: string } = {};
-
-  for (const key in spaceMappings) {
-    const cssValue = props[key as SpaceKeys];
-    if (cssValue != undefined) {
-      const properties = spaceMappings[key as SpaceKeys].split(",");
-      for (const property of properties) {
-        const responsiveStyles = applyResponsiveStyles(
-          property,
-          cssValue,
-          toCssUnit,
-        );
-        baseStyles += responsiveStyles.base;
-        for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media,
-        )) {
-          if (mediaStyles[breakpoint]) {
-            mediaStyles[breakpoint] += css;
-          } else {
-            mediaStyles[breakpoint] = css;
-          }
-        }
-      }
-    }
-  }
-  return {
-    base: baseStyles,
-    media: mediaStyles,
-  };
-};
+export const spaceConverters: Partial<Record<SpaceKeys, ValueConverter>> =
+  Object.fromEntries(Object.keys(spaceMappings).map((key) => [key, toCssUnit]));

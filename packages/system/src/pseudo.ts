@@ -1,4 +1,4 @@
-import { StyledProps } from "./compose";
+import { StyledProps } from "./consumeStyleProps";
 import { ThemeSystemType, ExcludeHyphen, RemoveColon } from "./types";
 import { Pseudos } from "csstype";
 

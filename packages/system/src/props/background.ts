@@ -1,7 +1,13 @@
-import { BackgroundKeys } from "./keys";
-import { AddProperty, CSSProperties, CSSValue, ResponsiveStyle } from "./types";
-import { applyResponsiveStyles } from "./responsive";
-import { toCssUnit } from "./toCSS";
+import { BackgroundKeys } from "../keys";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ResponsiveStyle,
+  ValueConverter,
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
+import { toCssUnit } from "../toCSS";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
@@ -87,33 +93,10 @@ export const backgroundMappings: Record<BackgroundKeys, string> = {
   bgBlendMode: "background-blend-mode",
 } as const;
 
-export const background = (props: BackgroundProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-
-  for (const key in backgroundMappings) {
-    const cssValue = props[key as BackgroundKeys];
-    if (cssValue) {
-      const property = backgroundMappings[key as BackgroundKeys];
-      const converter = [
-        backgroundMappings.bgPositionX,
-        backgroundMappings.bgPositionY,
-        backgroundMappings.bgSize,
-      ].includes(property)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
+export const backgroundConverters: Partial<
+  Record<BackgroundKeys, ValueConverter>
+> = {
+  bgPositionX: toCssUnit,
+  bgPositionY: toCssUnit,
+  bgSize: toCssUnit,
 };

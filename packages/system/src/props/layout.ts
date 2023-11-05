@@ -1,13 +1,13 @@
-import { toCssUnit } from "./toCSS";
-import { LayoutKeys } from "./keys";
+import { toCssUnit } from "../toCSS";
+import { LayoutKeys } from "../keys";
 import {
   AddProperty,
   CSSProperties,
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -55,7 +55,7 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   userSelect: "user-select",
 } as const;
 
-const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
+export const layoutConverters: Partial<Record<LayoutKeys, ValueConverter>> = {
   width: toCssUnit,
   minWidth: toCssUnit,
   maxWidth: toCssUnit,
@@ -63,28 +63,4 @@ const converters: Partial<Record<LayoutKeys, ValueConverter>> = {
   minHeight: toCssUnit,
   maxHeight: toCssUnit,
   zIndex: (t) => t,
-};
-
-export const layout = (props: LayoutProps): ResponsiveStyle => {
-  let base = "";
-  const media: ResponsiveStyle["media"] = {};
-  for (const key in layoutMappings) {
-    const cssValue = props[key as LayoutKeys];
-    if (cssValue != undefined) {
-      const property = layoutMappings[key as LayoutKeys];
-      const converter = converters[key as LayoutKeys];
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      base += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (media[breakpoint]) media[breakpoint] += css;
-        else media[breakpoint] = css;
-      }
-    }
-  }
-
-  return { base, media };
 };

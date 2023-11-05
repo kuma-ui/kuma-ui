@@ -1,5 +1,5 @@
-import { BorderKeys } from "./keys";
-import { toCssUnit } from "./toCSS";
+import { BorderKeys } from "../keys";
+import { toCssUnit } from "../toCSS";
 import {
   AddProperty,
   CSSProperties,
@@ -7,8 +7,8 @@ import {
   ResponsiveStyle,
   ThemeSystemType,
   ValueConverter,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
@@ -128,7 +128,7 @@ export const borderMappings: Record<BorderKeys, string> = {
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
 };
 
-const converters: Partial<Record<BorderKeys, ValueConverter>> = {
+export const borderConverters: Partial<Record<BorderKeys, ValueConverter>> = {
   border: toCssUnit,
   borderTop: toCssUnit,
   borderRight: toCssUnit,
@@ -152,38 +152,4 @@ const converters: Partial<Record<BorderKeys, ValueConverter>> = {
   borderEndWidth: toCssUnit,
   borderStartRadius: toCssUnit,
   borderEndRadius: toCssUnit,
-};
-
-export const border = (props: BorderProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: { [breakpoint: string]: string } = {};
-
-  for (const key in borderMappings) {
-    const cssValue = props[key as BorderKeys];
-    if (cssValue != undefined) {
-      const properties = borderMappings[key as BorderKeys].split(",");
-      for (const property of properties) {
-        const converter = converters[key as BorderKeys];
-        const responsiveStyles = applyResponsiveStyles(
-          property,
-          cssValue,
-          converter,
-        );
-        baseStyles += responsiveStyles.base;
-        for (const [breakpoint, css] of Object.entries(
-          responsiveStyles.media,
-        )) {
-          if (mediaStyles[breakpoint]) {
-            mediaStyles[breakpoint] += css;
-          } else {
-            mediaStyles[breakpoint] = css;
-          }
-        }
-      }
-    }
-  }
-  return {
-    base: baseStyles,
-    media: mediaStyles,
-  };
 };

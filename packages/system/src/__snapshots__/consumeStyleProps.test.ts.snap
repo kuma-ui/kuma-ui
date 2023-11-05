@@ -1,0 +1,180 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`consumeStyleProps function > should consume animation props 1`] = `
+{
+  "base": "animation: 3s ease-in 1s infinite reverse both running slidein;animation-composition: add;animation-delay: 1s;animation-direction: reverse;animation-duration: 1s;animation-fill-mode: both;animation-iteration-count: 10;animation-name: slidein;animation-play-state: running;animation-timeline: test1;animation-timing-function: ease-in;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume background props 1`] = `
+{
+  "base": "background-image: url('img_tree.png');background-position: center;background-position-x: 10;background-position-y: 20;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-clip: border-box;background-origin: content-box;background-blend-mode: hue;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume border props 1`] = `
+{
+  "base": "border-left: 1px;border-right: 1px;border-top: 2px;border-bottom: 2px;border: 1px solid red;border-top: 1px;border-left: 2px;border-right: 3px;border-bottom: 4px;border-radius: 1px;border-style: solid;border-width: 10px;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume color props 1`] = `
+{
+  "base": "background: red;background-color: red;color: yellow;border-color: black;outline-color: pink;accent-color: springgreen;caret-color: salmon;opacity: 0.5;visibility: hidden;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume column props 1`] = `
+{
+  "base": "column-count: 1;column-fill: auto;column-gap: 1px;column-rule: 1px solid red;column-rule-color: yellow;column-rule-style: dotted;column-rule-width: 1px;column-span: all;column-width: 1px;columns: auto 2;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume effect props 1`] = `
+{
+  "base": "transition: 0.5s ease;transition-duration: 0.5s;transition-property: all;transition-timing-function: ease-in-out;transform: scale(1.2);transform-box: border-box;transform-origin: center;transform-style: preserve-3d;clip-path: ellipse(130px 140px at 10% 20%);",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume filter props 1`] = `
+{
+  "base": "filter: invert(100%);backdrop-filter: blur(2px);",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume flex props 1`] = `
+{
+  "base": "flex-direction: column;justify-items: flex-start;justify-content: center;justify-self: flex-start;justify-content: cener;align-content: center;align-items: center;align-self: baseline;flex: 1 1 100px;flex-basis: 1px;flex-flow: row;flex-grow: 1;flex-shrink: 1;flex-wrap: wrap;gap: 10px 20px;place-items: center;place-content: end center;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume font props 1`] = `
+{
+  "base": "font-size: 24px;font-family: Arial;font-weight: 500;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume grid props 1`] = `
+{
+  "base": "grid-gap: 8px;grid-column: 2/3;grid-column-start: 2;grid-column-end: 3;grid-template-rows: auto 1fr;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume layout props 1`] = `
+{
+  "base": "width: 8px;min-width: 12px;height: 2em;max-height: 1rem;display: flex;z-index: 2;overflow: hidden;overflow-x: auto;overflow-y: visible;aspect-ratio: 16/9;box-sizing: border-box;float: right;clear: both;object-fit: contain;object-position: 250px 125px;resize: horizontal;vertical-align: sub;user-select: none;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume list props 1`] = `
+{
+  "base": "list-style: outside;list-style-image: url('hoge.png');list-style-position: inside;list-style-type: disc;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume mask props 1`] = `
+{
+  "base": "mask: url(#c1) luminance;mask-border: url(\\"border-mask.png\\") 25;mask-border-mode: alpha;mask-border-outset: 1.5;mask-border-repeat: stretch round;mask-border-slice: 10;mask-border-source: url('hogesrc.png');mask-border-width: 10;mask-clip: border-box;mask-composite: add;mask-image: url('hogeimg.png');mask-mode: luminance;mask-origin: border-box;mask-position: center;mask-repeat: repeat;mask-size: 10% 20%;mask-type: alpha;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume outline props 1`] = `
+{
+  "base": "outline: 1px solid red;outline-offset: 1px;outline-style: dotted;outline-width: 1px;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume position props 1`] = `
+{
+  "base": "top: 1px;right: 2px;left: 3rem;bottom: 4px;inset: 10;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume responsible styles 1`] = `
+{
+  "base": "font-size: 24px;",
+  "media": {
+    "576px": "font-size: 32px;",
+  },
+}
+`;
+
+exports[`consumeStyleProps function > should consume shortened background props 1`] = `
+{
+  "base": "background-image: url('img_tree.png');background-position: center;background-position-x: 10px;background-position-y: 20px;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-clip: border-box;background-origin: content-box;background-blend-mode: hue;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume styles with zero value 1`] = `
+{
+  "base": "font-size: 0px;width: 0px;",
+  "media": {
+    "576px": "font-size: 24px;",
+  },
+}
+`;
+
+exports[`consumeStyleProps function > should convert units 1`] = `
+{
+  "base": "width: 1px;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should convert units 2`] = `
+{
+  "base": "width: 2px;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should convert units 3`] = `
+{
+  "base": "width: 3;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should convert units 4`] = `
+{
+  "base": "width: 4rem;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should not include invalid keys in the resulting CSS 1`] = `
+{
+  "base": "",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should respect props order 1`] = `
+{
+  "base": "border: 1px solid;border-color: red;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should respect props order 2`] = `
+{
+  "base": "border-color: red;border: 1px solid;",
+  "media": {},
+}
+`;

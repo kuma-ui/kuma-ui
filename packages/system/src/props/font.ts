@@ -1,12 +1,13 @@
-import { toCssUnit } from "./toCSS";
-import { FontKeys } from "./keys";
+import { toCssUnit } from "../toCSS";
+import { FontKeys } from "../keys";
 import {
   ResponsiveStyle,
   CSSProperties,
   AddProperty,
   ThemeSystemType,
-} from "./types";
-import { applyResponsiveStyles } from "./responsive";
+  ValueConverter,
+} from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<"font"> &
@@ -58,33 +59,6 @@ export const fontMappings: Record<FontKeys, string> = {
   fontWeight: "font-weight",
 };
 
-export const font = (props: FontProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in fontMappings) {
-    const cssValue = props[key as FontKeys];
-    if (cssValue != undefined) {
-      const property = fontMappings[key as FontKeys];
-
-      const converter = (value: string | number): string | number => {
-        if (property === "font-size") {
-          return toCssUnit(value);
-        }
-        return value;
-      };
-
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
+export const fontConverters: Partial<Record<FontKeys, ValueConverter>> = {
+  fontSize: toCssUnit,
 };

@@ -1,7 +1,7 @@
-import { toCssUnit } from "./toCSS";
-import { TextKeys } from "./keys";
-import { ResponsiveStyle, CSSProperties } from "./types";
-import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "../toCSS";
+import { TextKeys } from "../keys";
+import { ResponsiveStyle, CSSProperties, ValueConverter } from "../types";
+import { applyResponsiveStyles } from "../responsive";
 
 export type TextProps = Partial<
   CSSProperties<"textAlign"> &
@@ -54,28 +54,6 @@ export const textMappings: Record<TextKeys, string> = {
   textUnderlinePosition: "text-underline-position",
 };
 
-export const text = (props: TextProps): ResponsiveStyle => {
-  let baseStyles = "";
-  const mediaStyles: ResponsiveStyle["media"] = {};
-
-  for (const key in textMappings) {
-    const cssValue = props[key as TextKeys];
-    if (cssValue != undefined) {
-      const property = textMappings[key as TextKeys];
-      const converter = [textMappings.textIndent].includes(property)
-        ? toCssUnit
-        : undefined;
-      const responsiveStyles = applyResponsiveStyles(
-        property,
-        cssValue,
-        converter,
-      );
-      baseStyles += responsiveStyles.base;
-      for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {
-        if (mediaStyles[breakpoint]) mediaStyles[breakpoint] += css;
-        else mediaStyles[breakpoint] = css;
-      }
-    }
-  }
-  return { base: baseStyles, media: mediaStyles };
+export const textConverters: Partial<Record<TextKeys, ValueConverter>> = {
+  textIndent: toCssUnit,
 };
