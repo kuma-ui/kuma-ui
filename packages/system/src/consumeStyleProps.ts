@@ -128,11 +128,11 @@ export const consumeStyleProps = (props: StyledProps): ResponsiveStyle => {
   const media: { [breakpoint: string]: string } = {};
   for (const key in props) {
     const cssValue = props[key as StyledKeyType];
-    if (!cssValue) continue;
+    if (cssValue == null) continue;
 
+    const converter = styleConverters[key as StyledKeyType];
     const properties = styleMappings[key as StyledKeyType]?.split(",") ?? [];
     for (const property of properties) {
-      const converter = styleConverters[key as StyledKeyType];
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
