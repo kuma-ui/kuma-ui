@@ -1,6 +1,5 @@
 import { NodePath, PluginPass, PluginObj, types as t } from "@babel/core";
 import { componentList } from "@kuma-ui/core/components/componentList";
-import { match } from "ts-pattern";
 import {
   handleBox,
   handleFlex,
@@ -25,13 +24,20 @@ export const processComponents = (
             importedStyleFunctions[name] as keyof typeof componentList
           ];
         if (componentType) {
-          match(componentType)
-            .with("Box", () => handleBox(path))
-            .with("Flex", () => handleFlex(path))
-            .with("Spacer", () => handleSpacer(path))
-            .with("Text", () => handleText(path))
-            .with("Button", () => handleButton(path))
-            .with("Heading", () => handleHeading(path));
+          switch (componentType) {
+            case "Box":
+              return handleBox(path);
+            case "Flex":
+              return handleFlex(path);
+            case "Spacer":
+              return handleSpacer(path);
+            case "Text":
+              return handleText(path);
+            case "Button":
+              return handleButton(path);
+            case "Heading":
+              return handleHeading(path);
+          }
         }
       }
     },

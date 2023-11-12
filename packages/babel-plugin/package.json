@@ -40,8 +40,7 @@
     "@kuma-ui/compiler": "workspace:^",
     "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
-    "@kuma-ui/system": "workspace:^",
-    "ts-pattern": "^5.0.1"
+    "@kuma-ui/system": "workspace:^"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",

@@ -6,7 +6,6 @@ import {
   JsxSelfClosingElement,
   JsxAttribute,
 } from "ts-morph";
-import { match } from "ts-pattern";
 import { decode } from "./decode";
 import { handleJsxExpression } from "./expression";
 import { extractPseudoAttribute } from "./pseudo";
@@ -37,27 +36,22 @@ export const collectPropsFromJsx = (
 
 const extractAttribute = (jsxAttribute: JsxAttribute) => {
   const initializer = jsxAttribute.getInitializer();
+  // fontSize='24px'
+  if (Node.isStringLiteral(initializer)) {
+    const value = initializer.getLiteralText();
+    return value;
+  }
+  // fontSize={...}
+  if (Node.isJsxExpression(initializer)) {
+    const expression = initializer.getExpression();
+    if (!expression) return;
 
-  return (
-    match(initializer)
-      // fontSize='24px'
-      .when(Node.isStringLiteral, (initializer) => {
-        const value = initializer.getLiteralText();
-        return value;
-      })
-      // fontSize={...}
-      .when(Node.isJsxExpression, (initializer) => {
-        const expression = initializer.getExpression();
-        if (!expression) return;
-
-        const decodedNode = decode(expression);
-        return handleJsxExpression(decodedNode);
-      })
-      // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
-      .when(
-        () => initializer === undefined,
-        () => true,
-      )
-      .otherwise(() => undefined)
-  );
+    const decodedNode = decode(expression);
+    return handleJsxExpression(decodedNode);
+  }
+  // If no initializer is present (e.g., <Spacer horizontal />), treat the prop as true
+  if (initializer === undefined) {
+    return true;
+  }
+  return undefined;
 };
