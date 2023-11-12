@@ -1,5 +1,13 @@
 # @kuma-ui/webpack-plugin
 
+## 1.2.5
+
+### Patch Changes
+
+- Updated dependencies [[`25dd0b4`](https://github.com/kuma-ui/kuma-ui/commit/25dd0b41c8856504761234638709bcf99db5c6a1), [`d439b72`](https://github.com/kuma-ui/kuma-ui/commit/d439b72e9dd651ccd65a889c1dce5b3fc4e54a11), [`3840e83`](https://github.com/kuma-ui/kuma-ui/commit/3840e835ed3c3c6bb707a565ecec91f2e737eb18), [`aa23d92`](https://github.com/kuma-ui/kuma-ui/commit/aa23d92f93b0373b91c7b0d431a5745aa06380b9)]:
+  - @kuma-ui/babel-plugin@1.1.12
+  - @kuma-ui/system@1.7.0
+
 ## 1.2.4
 
 ### Patch Changes
