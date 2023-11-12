@@ -1,5 +1,15 @@
 # @kuma-ui/system
 
+## 1.7.0
+
+### Minor Changes
+
+- [#367](https://github.com/kuma-ui/kuma-ui/pull/367) [`aa23d92`](https://github.com/kuma-ui/kuma-ui/commit/aa23d92f93b0373b91c7b0d431a5745aa06380b9) Thanks [@yukukotani](https://github.com/yukukotani)! - Respect props order on generating CSS
+
+### Patch Changes
+
+- [#371](https://github.com/kuma-ui/kuma-ui/pull/371) [`d439b72`](https://github.com/kuma-ui/kuma-ui/commit/d439b72e9dd651ccd65a889c1dce5b3fc4e54a11) Thanks [@Asuka109](https://github.com/Asuka109)! - fix: background-image property unable to use url
+
 ## 1.6.0
 
 ### Minor Changes
