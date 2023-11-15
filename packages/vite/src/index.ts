@@ -65,9 +65,8 @@ export default function kumaUI(): Plugin {
       const result = transform(code, id);
       if (!result?.code) return;
       const css = (result.metadata as unknown as { css: string }).css || "";
-
-      const cssTableId = `${Date.now().toString(16)}x${cssTable.length}`;
-      const url = `${virtualModuleId}/${cssTableId}.css`;
+      const cssPath = path.normalize(id.replace(/\.[jt]sx?$/, ""));
+      const url = `${virtualModuleId}/${generateHash(path.dirname(cssPath))}/${path.basename(cssPath)}-${generateHash(css)}.css`;
       cssTable.push({ url, css });
 
       sheet.reset();
@@ -85,10 +84,8 @@ export default function kumaUI(): Plugin {
       if (!importeeUrl.startsWith(virtualModuleId)) return undefined;
       return `\0${importeeUrl}`;
     },
-    handleHotUpdate({ server }) {
-      sheet.reset();
+    handleHotUpdate() {
       cssTable.length = 0;
-      server.ws.send({ type: "full-reload" });
     },
     configResolved(config) {
       if (config.define && Object.keys(config.define).length > 0) {
