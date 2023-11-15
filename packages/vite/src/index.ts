@@ -39,8 +39,8 @@ export default function kumaUI(): Plugin {
   }
 
   const cssTable: {
-    url: string,
-    css: string,
+    url: string;
+    css: string;
   }[] = [];
   const virtualModuleId = "virtual:kuma-ui";
 
@@ -66,7 +66,9 @@ export default function kumaUI(): Plugin {
       if (!result?.code) return;
       const css = (result.metadata as unknown as { css: string }).css || "";
       const cssPath = path.normalize(id.replace(/\.[jt]sx?$/, ""));
-      const url = `${virtualModuleId}/${generateHash(path.dirname(cssPath))}/${path.basename(cssPath)}-${generateHash(css)}.css`;
+      const url = `${virtualModuleId}/${generateHash(
+        path.dirname(cssPath),
+      )}/${path.basename(cssPath)}-${generateHash(css)}.css`;
       cssTable.push({ url, css });
 
       sheet.reset();
@@ -78,7 +80,7 @@ export default function kumaUI(): Plugin {
     load(url) {
       if (!url.startsWith(`\0${virtualModuleId}`)) return undefined;
       const urlContent = url.slice(`\0`.length);
-      return cssTable.find(c => c.url === urlContent)?.css ?? undefined;
+      return cssTable.find((c) => c.url === urlContent)?.css ?? undefined;
     },
     resolveId(importeeUrl) {
       if (!importeeUrl.startsWith(virtualModuleId)) return undefined;
