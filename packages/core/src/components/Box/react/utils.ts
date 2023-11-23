@@ -11,7 +11,7 @@ function isDynamicProp(key: string) {
 
 export function hasDynamicProps(props: BoxProps) {
   return Object.keys(props).some((key) => {
-    if (isDynamicProp(key)) {
+    if (isDynamicProp(key) && props[key as keyof BoxProps] != null) {
       return true;
     }
     return false;
