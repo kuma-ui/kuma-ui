@@ -35,6 +35,9 @@ export const DynamicBox: BoxComponent = forwardRef(
       ...props,
     });
 
+    console.log("dyn", dynamicProps);
+    console.log("rest", restProps);
+
     const { className, css } = getCachedStyle(dynamicProps);
 
     const box = React.createElement(
@@ -55,6 +58,8 @@ export const DynamicBox: BoxComponent = forwardRef(
     useInsertionEffect(() => {
       registry.add(className, css);
       return () => {
+        console.log("css", css);
+        console.log("pr", props);
         registry.remove(className);
       };
     }, [className, css]);

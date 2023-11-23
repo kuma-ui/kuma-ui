@@ -12,6 +12,7 @@ import { forwardRef } from "../../forwardRef";
  * @see — http://kuma-ui.com/docs/Components/Box
  */
 const Box: BoxComponent = forwardRef(({ children, ...props }, ref) => {
+  console.log("origprops", props);
   if (hasDynamicProps(props)) {
     return React.createElement(DynamicBox, { ref, ...props }, children);
   }
