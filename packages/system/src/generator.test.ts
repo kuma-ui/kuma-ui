@@ -91,4 +91,33 @@ describe("StyleGenerator class", () => {
       ),
     );
   });
+
+  test("should interpolate theme tokens with breakpoints in styledProps", () => {
+    // Arrange
+    theme.setUserTheme({
+      colors: {
+        primary: "blue",
+        secondary: "green",
+      },
+      breakpoints: {
+        sm: "576px",
+        md: "768px",
+      },
+    });
+
+    const props = {
+      color: ["colors.primary", "colors.secondary"],
+    };
+
+    // Act
+    const { className, css } = new StyleGenerator(props).getStyle();
+
+    // Assert
+    expect(css.replace(/\s/g, "")).toContain(
+      `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } }`.replace(
+        /\s/g,
+        "",
+      ),
+    );
+  });
 });
