@@ -1,7 +1,9 @@
 import { StyleGenerator } from "./generator";
-import { describe, expect, test } from "vitest";
+import { theme } from "@kuma-ui/sheet";
+import { describe, expect, test, afterEach } from "vitest";
 
 describe("StyleGenerator class", () => {
+  afterEach(() => theme.reset());
   test("should correctly generate className and CSS from given styledProps", () => {
     // Arrange
     const props = {
@@ -63,5 +65,30 @@ describe("StyleGenerator class", () => {
 
     expect(className).toBe("");
     expect(css).toBe("");
+  });
+
+  test("should correctly generate className and CSS from given styledProps with theme", () => {
+    // Arrange
+    theme.setUserTheme({
+      colors: {
+        "colors.primary": "red",
+      },
+    });
+    const props = {
+      color: "colors.primary",
+      _hover: { color: "colors.primary" },
+    };
+
+    // Act
+    const { className, css } = new StyleGenerator(props).getStyle();
+
+    // Assert
+    expect(className.startsWith("🐻-")).toBeTruthy();
+    expect(css.replace(/\s/g, "")).toContain(
+      `.${className} { color: red; } .${className}:hover { color: red; }`.replace(
+        /\s/g,
+        "",
+      ),
+    );
   });
 });

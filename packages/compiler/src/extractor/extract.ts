@@ -8,25 +8,28 @@ import {
 } from "@kuma-ui/core/components/componentList";
 import { theme } from "@kuma-ui/sheet";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
+type PropValue = any;
+
+/**
+ * Extracts props from a component and returns the generated className and css.
+ */
 export const extractProps = (
   componentName: (typeof componentList)[keyof typeof componentList],
   jsx: JsxOpeningElement | JsxSelfClosingElement,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  propsMap: Record<string, any>,
+  propsMap: Record<string, PropValue>,
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const styledProps: { [key: string]: any } = {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const pseudoProps: { [key: string]: any } = {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const componentProps: { [key: string]: any } = {};
+  const styledProps: { [key: string]: PropValue } = {};
+  const pseudoProps: { [key: string]: PropValue } = {};
+  // props that are unique to the component (i.e., horizontal in <Spacer horizontal />)
+  const componentProps: { [key: string]: PropValue } = {};
 
   const variant = theme.getVariants(componentName);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  const baseStyleProps: { [key: string]: any } = {
+  const baseStyleProps: { [key: string]: PropValue } = {
     ...(variant?.baseStyle as Record<string, string>),
   };
 
+  // pre-defined props to be passed to the component (i.e., display="flex" is pre-defined in )
   const systemDefaultProps = componentDefaultProps(componentName);
   const userDefaultProps = variant?.defaultProps;
 
