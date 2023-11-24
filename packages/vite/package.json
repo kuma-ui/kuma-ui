@@ -42,6 +42,9 @@
   "devDependencies": {
     "vite": "^4.2.1"
   },
+  "peerDependencies": {
+    "vite": "^4 || ^5"
+  },
   "publishConfig": {
     "access": "public"
   }
