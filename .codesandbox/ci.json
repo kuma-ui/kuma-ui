@@ -3,5 +3,5 @@
   "buildCommand": "codesandbox:build",
   "packages": ["packages/*"],
   "sandboxes": ["/example/vite"],
-  "node": "16"
+  "node": "18"
 }
