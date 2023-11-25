@@ -20,7 +20,12 @@ export class StyleGenerator {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
     const pseudoProps: { [key: string]: any } = {};
 
-    const findCustomStyle = (value: string) => {
+    /**
+     * Find the theme style from the user theme defined in the `kuma.config.ts` file.
+     * @example
+     * findThemeStyle("colors.primary") // returns "#000"
+     */
+    const findThemeStyle = (value: string) => {
       const userTheme = theme.getUserTheme();
       const propKey = value.split(".")[0] as Tokens;
       if (userTheme[propKey] === undefined) return undefined;
@@ -34,12 +39,17 @@ export class StyleGenerator {
     };
 
     for (const [propName, propValue] of Object.entries(props)) {
-      if (
+      // color={['colors.primary', 'colors.secondary']}
+      if (Array.isArray(propValue)) {
+        return;
+      }
+      // color="colors.primary"
+      else if (
         typeof propValue === "string" &&
         /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue) &&
         !/^\w+\(.*\)$/.test(propValue)
       ) {
-        const customStyle = findCustomStyle(propValue);
+        const customStyle = findThemeStyle(propValue);
         if (customStyle !== undefined) {
           styledProps[propName] = customStyle;
         }
@@ -52,7 +62,7 @@ export class StyleGenerator {
             typeof value === "string" &&
             /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(value)
           ) {
-            const customStyle = findCustomStyle(value);
+            const customStyle = findThemeStyle(value);
             if (customStyle !== undefined) {
               pseudoProps[propName] = {
                 [name]: customStyle,
