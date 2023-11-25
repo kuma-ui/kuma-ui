@@ -1,5 +1,21 @@
 # @kuma-ui/vite
 
+## 1.2.0
+
+### Minor Changes
+
+- [#368](https://github.com/kuma-ui/kuma-ui/pull/368) [`4b23472`](https://github.com/kuma-ui/kuma-ui/commit/4b2347275aa17f392e77adc85ab5889b95c40fbe) Thanks [@AsPulse](https://github.com/AsPulse)! - Hot Reload no longer cause unnecessary full reloads.
+
+### Patch Changes
+
+- [#383](https://github.com/kuma-ui/kuma-ui/pull/383) [`b331bfc`](https://github.com/kuma-ui/kuma-ui/commit/b331bfc5b3cd22a76a8fa1fcb91e9070297bff33) Thanks [@AsPulse](https://github.com/AsPulse)! - Either Vite 4 or Vite 5 is now required as a peerDependency.
+
+- [#368](https://github.com/kuma-ui/kuma-ui/pull/368) [`4b23472`](https://github.com/kuma-ui/kuma-ui/commit/4b2347275aa17f392e77adc85ab5889b95c40fbe) Thanks [@AsPulse](https://github.com/AsPulse)! - Fixed a problem where KumaUI could not resolve CSS paths when importing files not in the package.
+
+- Updated dependencies [[`afd4d57`](https://github.com/kuma-ui/kuma-ui/commit/afd4d579af008fcd9fd8f602956ff665590ffca5)]:
+  - @kuma-ui/system@1.7.1
+  - @kuma-ui/babel-plugin@1.1.13
+
 ## 1.1.5
 
 ### Patch Changes
