@@ -17,7 +17,6 @@ describe("StyleGenerator class", () => {
 
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
-    console.log(css);
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { font-size: 24px;color: red; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
         /\s/g,
@@ -96,8 +95,8 @@ describe("StyleGenerator class", () => {
     // Arrange
     theme.setUserTheme({
       colors: {
-        primary: "blue",
-        secondary: "green",
+        "colors.primary": "blue",
+        "colors.secondary": "green",
       },
       breakpoints: {
         sm: "576px",
@@ -111,6 +110,8 @@ describe("StyleGenerator class", () => {
 
     // Act
     const { className, css } = new StyleGenerator(props).getStyle();
+
+    console.log(css);
 
     // Assert
     expect(css.replace(/\s/g, "")).toContain(

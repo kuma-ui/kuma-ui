@@ -38,17 +38,34 @@ export class StyleGenerator {
       return undefined;
     };
 
+    /**
+     * @example
+     * isThemeStyle("colors.primary") // returns true
+     * isThemeStyle("primary") // returns false
+     */
+    const isThemeStyle = (propValue: unknown): propValue is string => {
+      return (
+        typeof propValue === "string" &&
+        /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue) &&
+        !/^\w+\(.*\)$/.test(propValue) // exclude CSS functions
+      );
+    };
+
     for (const [propName, propValue] of Object.entries(props)) {
       // color={['colors.primary', 'colors.secondary']}
       if (Array.isArray(propValue)) {
-        return;
+        styledProps[propName] = propValue.map((value) => {
+          if (isThemeStyle(value)) {
+            const customStyle = findThemeStyle(value);
+            if (customStyle !== undefined) {
+              return customStyle;
+            }
+          }
+          return value;
+        });
       }
       // color="colors.primary"
-      else if (
-        typeof propValue === "string" &&
-        /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(propValue) &&
-        !/^\w+\(.*\)$/.test(propValue)
-      ) {
+      else if (isThemeStyle(propValue)) {
         const customStyle = findThemeStyle(propValue);
         if (customStyle !== undefined) {
           styledProps[propName] = customStyle;
@@ -58,10 +75,7 @@ export class StyleGenerator {
       } else if (isPseudoProps(propName)) {
         pseudoProps[propName] = propValue;
         for (const [name, value] of Object.entries(propValue)) {
-          if (
-            typeof value === "string" &&
-            /[a-zA-Z]+\.[a-zA-Z0-9]+/.test(value)
-          ) {
+          if (isThemeStyle(value)) {
             const customStyle = findThemeStyle(value);
             if (customStyle !== undefined) {
               pseudoProps[propName] = {
