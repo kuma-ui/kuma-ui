@@ -111,8 +111,6 @@ describe("StyleGenerator class", () => {
     // Act
     const { className, css } = new StyleGenerator(props).getStyle();
 
-    console.log(css);
-
     // Assert
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } }`.replace(
