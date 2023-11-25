@@ -1,7 +1,9 @@
 import { StyleGenerator } from "./generator";
-import { describe, expect, test } from "vitest";
+import { theme } from "@kuma-ui/sheet";
+import { describe, expect, test, afterEach } from "vitest";
 
 describe("StyleGenerator class", () => {
+  afterEach(() => theme.reset());
   test("should correctly generate className and CSS from given styledProps", () => {
     // Arrange
     const props = {
@@ -15,7 +17,6 @@ describe("StyleGenerator class", () => {
 
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
-    console.log(css);
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { font-size: 24px;color: red; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
         /\s/g,
@@ -63,5 +64,59 @@ describe("StyleGenerator class", () => {
 
     expect(className).toBe("");
     expect(css).toBe("");
+  });
+
+  test("should correctly generate className and CSS from given styledProps with theme", () => {
+    // Arrange
+    theme.setUserTheme({
+      colors: {
+        "colors.primary": "red",
+      },
+    });
+    const props = {
+      color: "colors.primary",
+      _hover: { color: "colors.primary" },
+    };
+
+    // Act
+    const { className, css } = new StyleGenerator(props).getStyle();
+
+    // Assert
+    expect(className.startsWith("🐻-")).toBeTruthy();
+    expect(css.replace(/\s/g, "")).toContain(
+      `.${className} { color: red; } .${className}:hover { color: red; }`.replace(
+        /\s/g,
+        "",
+      ),
+    );
+  });
+
+  test("should interpolate theme tokens with breakpoints in styledProps", () => {
+    // Arrange
+    theme.setUserTheme({
+      colors: {
+        "colors.primary": "blue",
+        "colors.secondary": "green",
+      },
+      breakpoints: {
+        sm: "576px",
+        md: "768px",
+      },
+    });
+
+    const props = {
+      color: ["colors.primary", "colors.secondary"],
+    };
+
+    // Act
+    const { className, css } = new StyleGenerator(props).getStyle();
+
+    // Assert
+    expect(css.replace(/\s/g, "")).toContain(
+      `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } }`.replace(
+        /\s/g,
+        "",
+      ),
+    );
   });
 });
