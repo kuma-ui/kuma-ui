@@ -1,24 +1,12 @@
-import {
-  AnimationProps,
-  animationMappings,
-} from "./props/animation";
+import { AnimationProps, animationMappings } from "./props/animation";
 import { SpaceProps, spaceMappings } from "./props/space";
-import {
-  TypographyProps,
-  typographyMappings,
-} from "./props/typography";
+import { TypographyProps, typographyMappings } from "./props/typography";
 import { LayoutProps, layoutMappings } from "./props/layout";
 import { ColorProps, colorMappings } from "./props/color";
 import { FlexProps, flexMappings } from "./props/flex";
 import { BorderProps, borderMappings } from "./props/border";
-import {
-  OutlineProps,
-  outlineMappings,
-} from "./props/outline";
-import {
-  PositionProps,
-  positionMappings,
-} from "./props/position";
+import { OutlineProps, outlineMappings } from "./props/outline";
+import { PositionProps, positionMappings } from "./props/position";
 import { ShadowProps, shadowMappings } from "./props/shadow";
 import { ThemeSystemType, ResponsiveStyle } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
@@ -29,10 +17,7 @@ import { TextProps, textMappings } from "./props/text";
 import { FontProps, fontMappings } from "./props/font";
 import { MaskProps, maskMappings } from "./props/mask";
 import { ColumnProps, columnMappings } from "./props/column";
-import {
-  BackgroundProps,
-  backgroundMappings,
-} from "./props/background";
+import { BackgroundProps, backgroundMappings } from "./props/background";
 import { FilterProps, filterMappings } from "./props/filter";
 import { StyledKeyType } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
@@ -106,7 +91,7 @@ export const consumeStyleProps = (props: StyledProps): ResponsiveStyle => {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        (value) => toCssUnit(key, value)
+        (value) => toCssUnit(key, value),
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

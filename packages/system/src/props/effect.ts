@@ -1,7 +1,5 @@
 import { EffectKeys } from "../keys";
-import {
-  CSSProperties,
-} from "../types";
+import { CSSProperties } from "../types";
 
 export type EffectProps = Partial<
   CSSProperties<

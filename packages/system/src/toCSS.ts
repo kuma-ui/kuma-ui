@@ -50,13 +50,10 @@ const unitless = {
   strokeDashoffset: 1,
   strokeMiterlimit: 1,
   strokeOpacity: 1,
-  strokeWidth: 1
-}
+  strokeWidth: 1,
+};
 
-export function toCssUnit(
-  propertyName: string,
-  value: string | number,
-) {
+export function toCssUnit(propertyName: string, value: string | number) {
   if (typeof value === "number") {
     return `${value}${!(propertyName in unitless) ? "px" : ""}`;
   }

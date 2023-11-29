@@ -1,9 +1,5 @@
 import { GridKeys } from "../keys";
-import {
-  AddProperty,
-  CSSProperties,
-  ThemeSystemType,
-} from "../types";
+import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];

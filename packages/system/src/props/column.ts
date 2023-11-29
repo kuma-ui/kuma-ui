@@ -1,8 +1,4 @@
-import {
-  AddProperty,
-  CSSProperties,
-  ThemeSystemType,
-} from "../types";
+import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
 import { ColumnKeys } from "../keys";
 
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<

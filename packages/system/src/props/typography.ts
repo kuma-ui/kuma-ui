@@ -1,9 +1,5 @@
 import { TypographyKeys } from "../keys";
-import {
-  CSSProperties,
-  ThemeSystemType,
-  AddProperty,
-} from "../types";
+import { CSSProperties, ThemeSystemType, AddProperty } from "../types";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<

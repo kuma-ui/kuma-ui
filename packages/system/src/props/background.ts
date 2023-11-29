@@ -1,9 +1,5 @@
 import { BackgroundKeys } from "../keys";
-import {
-  AddProperty,
-  CSSProperties,
-  CSSValue,
-} from "../types";
+import { AddProperty, CSSProperties, CSSValue } from "../types";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<

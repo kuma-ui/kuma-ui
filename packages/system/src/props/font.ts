@@ -1,9 +1,5 @@
 import { FontKeys } from "../keys";
-import {
-  CSSProperties,
-  AddProperty,
-  ThemeSystemType,
-} from "../types";
+import { CSSProperties, AddProperty, ThemeSystemType } from "../types";
 
 export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<"font"> &
