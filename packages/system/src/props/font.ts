@@ -1,13 +1,9 @@
-import { toCssUnit } from "../toCSS";
 import { FontKeys } from "../keys";
 import {
-  ResponsiveStyle,
   CSSProperties,
   AddProperty,
   ThemeSystemType,
-  ValueConverter,
 } from "../types";
-import { applyResponsiveStyles } from "../responsive";
 
 export type FontProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<"font"> &
@@ -57,8 +53,4 @@ export const fontMappings: Record<FontKeys, string> = {
   fontVariantPosition: "font-variant-position",
   fontVariationSettings: "font-variation-settings",
   fontWeight: "font-weight",
-};
-
-export const fontConverters: Partial<Record<FontKeys, ValueConverter>> = {
-  fontSize: toCssUnit,
 };

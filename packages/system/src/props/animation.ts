@@ -1,6 +1,5 @@
 import { AnimationKeys } from "../keys";
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
-import { applyResponsiveStyles } from "../responsive";
+import { CSSProperties } from "../types";
 
 export type AnimationProps = Partial<
   CSSProperties<
@@ -31,7 +30,3 @@ export const animationMappings: Record<AnimationKeys, string> = {
   animationTimeline: "animation-timeline",
   animationTimingFunction: "animation-timing-function",
 };
-
-export const animationConverters: Partial<
-  Record<AnimationKeys, ValueConverter>
-> = {};

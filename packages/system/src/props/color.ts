@@ -3,11 +3,8 @@ import {
   AddProperty,
   CSSProperties,
   CSSValue,
-  ResponsiveStyle,
   ThemeSystemType,
-  ValueConverter,
 } from "../types";
-import { applyResponsiveStyles } from "../responsive";
 
 export type ColorProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -49,5 +46,3 @@ export const colorMappings: Record<ColorKeys, string> = {
   opacity: "opacity",
   visibility: "visibility",
 };
-
-export const colorConverters: Partial<Record<ColorKeys, ValueConverter>> = {};

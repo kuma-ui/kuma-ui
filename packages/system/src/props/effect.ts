@@ -1,11 +1,7 @@
 import { EffectKeys } from "../keys";
 import {
   CSSProperties,
-  CSSValue,
-  ResponsiveStyle,
-  ValueConverter,
 } from "../types";
-import { applyResponsiveStyles } from "../responsive";
 
 export type EffectProps = Partial<
   CSSProperties<
@@ -34,5 +30,3 @@ export const effectMappings: Record<EffectKeys, string> = {
   transformStyle: "transform-style",
   clipPath: "clip-path",
 } as const;
-
-export const effectConverters: Partial<Record<EffectKeys, ValueConverter>> = {};

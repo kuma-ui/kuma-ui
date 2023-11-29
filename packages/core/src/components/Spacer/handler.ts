@@ -25,12 +25,7 @@ export const spacerDefaultProps: StyledProps = {};
 export const spacerHandler = (props: SpacerSpecificProps): StyledProps => {
   if (!props.horizontal && !props.size) return {};
   const px =
-    typeof props.size === "number"
-      ? toCssUnit(props.size)
-      : // eslint-disable-next-line no-extra-boolean-cast -- FIXME
-      !!props.size
-      ? props.size
-      : "0px";
+    typeof props.size === "undefined" ? "0px" : toCssUnit("width", props.size);
 
   return props.horizontal
     ? {

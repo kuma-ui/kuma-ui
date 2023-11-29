@@ -3,11 +3,7 @@ import {
   AddProperty,
   CSSProperties,
   CSSValue,
-  ResponsiveStyle,
-  ValueConverter,
 } from "../types";
-import { applyResponsiveStyles } from "../responsive";
-import { toCssUnit } from "../toCSS";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type BackgroundProps<AutoPrefix extends string = string & {}> = Partial<
@@ -92,11 +88,3 @@ export const backgroundMappings: Record<BackgroundKeys, string> = {
   backgroundBlendMode: "background-blend-mode",
   bgBlendMode: "background-blend-mode",
 } as const;
-
-export const backgroundConverters: Partial<
-  Record<BackgroundKeys, ValueConverter>
-> = {
-  bgPositionX: toCssUnit,
-  bgPositionY: toCssUnit,
-  bgSize: toCssUnit,
-};

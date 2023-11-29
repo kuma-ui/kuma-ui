@@ -1,14 +1,10 @@
 import { BorderKeys } from "../keys";
-import { toCssUnit } from "../toCSS";
 import {
   AddProperty,
   CSSProperties,
   CSSValue,
-  ResponsiveStyle,
   ThemeSystemType,
-  ValueConverter,
 } from "../types";
-import { applyResponsiveStyles } from "../responsive";
 
 export type BorderProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   {
@@ -126,30 +122,4 @@ export const borderMappings: Record<BorderKeys, string> = {
   borderEndStyle: "border-inline-end-style",
   borderStartRadius: "border-top-left-radius,border-bottom-left-radius",
   borderEndRadius: "border-top-right-radius,border-bottom-right-radius",
-};
-
-export const borderConverters: Partial<Record<BorderKeys, ValueConverter>> = {
-  border: toCssUnit,
-  borderTop: toCssUnit,
-  borderRight: toCssUnit,
-  borderLeft: toCssUnit,
-  borderBottom: toCssUnit,
-  borderX: toCssUnit,
-  borderY: toCssUnit,
-  borderRadius: toCssUnit,
-  borderTopLeftRadius: toCssUnit,
-  borderTopRightRadius: toCssUnit,
-  borderBottomLeftRadius: toCssUnit,
-  borderBottomRightRadius: toCssUnit,
-  borderWidth: toCssUnit,
-  borderTopWidth: toCssUnit,
-  borderBottomWidth: toCssUnit,
-  borderLeftWidth: toCssUnit,
-  borderRightWidth: toCssUnit,
-  borderStart: toCssUnit,
-  borderEnd: toCssUnit,
-  borderStartWidth: toCssUnit,
-  borderEndWidth: toCssUnit,
-  borderStartRadius: toCssUnit,
-  borderEndRadius: toCssUnit,
 };
