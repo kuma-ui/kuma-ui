@@ -29,7 +29,7 @@ Our project is organized into several packages within the `packages` directory:
 
 We welcome and encourage community members to write articles or tutorials about Kuma UI. If you are interested, we are more than happy to support you. Please contact us on [Twitter](https://twitter.com/kuma__ui) or Discord(https://discord.gg/QrsQ4EPp7G).
 
-## Adding a chagenset
+## Adding a changeset
 
 Versioning uses [changesets](https://github.com/changesets/changesets).  
 Don't forget to generate a changeset if you make changes to packages.
