@@ -1,13 +1,9 @@
-import { toCssUnit } from "../toCSS";
 import { FlexKeys } from "../keys";
-import { applyResponsiveStyles } from "../responsive";
 import {
   AddProperty,
   CSSProperties,
   CSSValue,
-  ResponsiveStyle,
   ThemeSystemType,
-  ValueConverter,
 } from "../types";
 
 export type FlexProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
@@ -50,8 +46,3 @@ export const flexMappings: Record<FlexKeys, string> = {
   placeItems: "place-items",
   placeContent: "place-content",
 } as const;
-
-export const flexConverters: Partial<Record<FlexKeys, ValueConverter>> = {
-  gap: toCssUnit,
-  flexBasis: toCssUnit,
-};

@@ -1,6 +1,5 @@
-import { CSSProperties, ResponsiveStyle, ValueConverter } from "../types";
+import { CSSProperties } from "../types";
 import { ListKeys } from "../keys";
-import { applyResponsiveStyles } from "../responsive";
 
 export type ListProps = Partial<
   CSSProperties<
@@ -14,5 +13,3 @@ export const listMappings: Record<ListKeys, string> = {
   listStylePosition: "list-style-position",
   listStyleType: "list-style-type",
 } as const;
-
-export const listConverters: Partial<Record<ListKeys, ValueConverter>> = {};

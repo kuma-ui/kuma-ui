@@ -59,5 +59,3 @@ export type SystemStyle = {
 export type AddProperty<T, T2> = {
   [Key in keyof T]: T[Key] | T2;
 };
-
-export type ValueConverter = (value: string | number) => string | number;

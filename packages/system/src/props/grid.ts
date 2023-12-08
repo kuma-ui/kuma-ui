@@ -1,13 +1,5 @@
-import { toCssUnit } from "../toCSS";
 import { GridKeys } from "../keys";
-import { applyResponsiveStyles } from "../responsive";
-import {
-  AddProperty,
-  CSSProperties,
-  ResponsiveStyle,
-  ThemeSystemType,
-  ValueConverter,
-} from "../types";
+import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
 
 const gapKeys = ["gridGap", "gridColumnGap", "gridRowGap"] as const;
 type GapKeys = (typeof gapKeys)[number];
@@ -37,9 +29,3 @@ export const gridMappings: Record<GridKeys, string> = {
   gridColumnGap: "grid-column-gap",
   gridRowGap: "grid-row-gap",
 } as const;
-
-export const gridConverters: Partial<Record<GridKeys, ValueConverter>> = {
-  gridGap: toCssUnit,
-  gridColumnGap: toCssUnit,
-  gridRowGap: toCssUnit,
-};

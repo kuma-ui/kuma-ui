@@ -1,13 +1,5 @@
-import { toCssUnit } from "../toCSS";
 import { LayoutKeys } from "../keys";
-import {
-  AddProperty,
-  CSSProperties,
-  ResponsiveStyle,
-  ThemeSystemType,
-  ValueConverter,
-} from "../types";
-import { applyResponsiveStyles } from "../responsive";
+import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -54,13 +46,3 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   verticalAlign: "vertical-align",
   userSelect: "user-select",
 } as const;
-
-export const layoutConverters: Partial<Record<LayoutKeys, ValueConverter>> = {
-  width: toCssUnit,
-  minWidth: toCssUnit,
-  maxWidth: toCssUnit,
-  height: toCssUnit,
-  minHeight: toCssUnit,
-  maxHeight: toCssUnit,
-  zIndex: (t) => t,
-};

@@ -1,13 +1,5 @@
-import {
-  AddProperty,
-  CSSProperties,
-  ResponsiveStyle,
-  ThemeSystemType,
-  ValueConverter,
-} from "../types";
+import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
 import { ColumnKeys } from "../keys";
-import { applyResponsiveStyles } from "../responsive";
-import { toCssUnit } from "../toCSS";
 
 export type ColumnProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   CSSProperties<
@@ -35,10 +27,4 @@ export const columnMappings: Record<ColumnKeys, string> = {
   columnSpan: "column-span",
   columnWidth: "column-width",
   columns: "columns",
-};
-
-export const columnConverters: Partial<Record<ColumnKeys, ValueConverter>> = {
-  columnGap: toCssUnit,
-  columnRuleWidth: toCssUnit,
-  columnWidth: toCssUnit,
 };

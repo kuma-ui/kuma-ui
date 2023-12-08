@@ -1,12 +1,5 @@
-import { toCssUnit } from "../toCSS";
 import { TypographyKeys } from "../keys";
-import {
-  ResponsiveStyle,
-  CSSProperties,
-  ThemeSystemType,
-  AddProperty,
-  ValueConverter,
-} from "../types";
+import { CSSProperties, ThemeSystemType, AddProperty } from "../types";
 
 export type TypographyProps<T extends ThemeSystemType = ThemeSystemType> =
   Partial<
@@ -44,10 +37,3 @@ export const typographyMappings: Record<TypographyKeys, string> = {
   wordSpacing: "word-spacing",
   writingMode: "writing-mode",
 } as const;
-
-export const typographyConverters: Partial<
-  Record<TypographyKeys, ValueConverter>
-> = {
-  wordSpacing: toCssUnit,
-  letterSpacing: toCssUnit,
-};

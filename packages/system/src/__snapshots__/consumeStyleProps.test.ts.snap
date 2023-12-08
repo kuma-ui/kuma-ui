@@ -9,7 +9,7 @@ exports[`consumeStyleProps function > should consume animation props 1`] = `
 
 exports[`consumeStyleProps function > should consume background props 1`] = `
 {
-  "base": "background-image: url('img_tree.png');background-position: center;background-position-x: 10;background-position-y: 20;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-clip: border-box;background-origin: content-box;background-blend-mode: hue;",
+  "base": "background-image: url('img_tree.png');background-position: center;background-position-x: 10px;background-position-y: 20px;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-clip: border-box;background-origin: content-box;background-blend-mode: hue;",
   "media": {},
 }
 `;
@@ -86,7 +86,7 @@ exports[`consumeStyleProps function > should consume list props 1`] = `
 
 exports[`consumeStyleProps function > should consume mask props 1`] = `
 {
-  "base": "mask: url(#c1) luminance;mask-border: url(\\"border-mask.png\\") 25;mask-border-mode: alpha;mask-border-outset: 1.5;mask-border-repeat: stretch round;mask-border-slice: 10;mask-border-source: url('hogesrc.png');mask-border-width: 10;mask-clip: border-box;mask-composite: add;mask-image: url('hogeimg.png');mask-mode: luminance;mask-origin: border-box;mask-position: center;mask-repeat: repeat;mask-size: 10% 20%;mask-type: alpha;",
+  "base": "mask: url(#c1) luminance;mask-border: url(\\"border-mask.png\\") 25;mask-border-mode: alpha;mask-border-outset: 1.5px;mask-border-repeat: stretch round;mask-border-slice: 10px;mask-border-source: url('hogesrc.png');mask-border-width: 10px;mask-clip: border-box;mask-composite: add;mask-image: url('hogeimg.png');mask-mode: luminance;mask-origin: border-box;mask-position: center;mask-repeat: repeat;mask-size: 10% 20%;mask-type: alpha;",
   "media": {},
 }
 `;

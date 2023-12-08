@@ -1,47 +1,27 @@
-import {
-  AnimationProps,
-  animationConverters,
-  animationMappings,
-} from "./props/animation";
-import { SpaceProps, spaceConverters, spaceMappings } from "./props/space";
-import {
-  TypographyProps,
-  typographyConverters,
-  typographyMappings,
-} from "./props/typography";
-import { LayoutProps, layoutConverters, layoutMappings } from "./props/layout";
-import { ColorProps, colorConverters, colorMappings } from "./props/color";
-import { FlexProps, flexConverters, flexMappings } from "./props/flex";
-import { BorderProps, borderConverters, borderMappings } from "./props/border";
-import {
-  OutlineProps,
-  outlineConverters,
-  outlineMappings,
-} from "./props/outline";
-import {
-  PositionProps,
-  positionConverters,
-  positionMappings,
-} from "./props/position";
-import { ShadowProps, shadowConverters, shadowMappings } from "./props/shadow";
-import { PseudoProps } from "./pseudo";
-import { ThemeSystemType, ResponsiveStyle, ValueConverter } from "./types";
+import { AnimationProps, animationMappings } from "./props/animation";
+import { SpaceProps, spaceMappings } from "./props/space";
+import { TypographyProps, typographyMappings } from "./props/typography";
+import { LayoutProps, layoutMappings } from "./props/layout";
+import { ColorProps, colorMappings } from "./props/color";
+import { FlexProps, flexMappings } from "./props/flex";
+import { BorderProps, borderMappings } from "./props/border";
+import { OutlineProps, outlineMappings } from "./props/outline";
+import { PositionProps, positionMappings } from "./props/position";
+import { ShadowProps, shadowMappings } from "./props/shadow";
+import { ThemeSystemType, ResponsiveStyle } from "./types";
 import { styleCache } from "@kuma-ui/sheet";
-import { GridProps, gridConverters, gridMappings } from "./props/grid";
-import { ListProps, listConverters, listMappings } from "./props/list";
-import { EffectProps, effectConverters, effectMappings } from "./props/effect";
-import { TextProps, textConverters, textMappings } from "./props/text";
-import { FontProps, fontConverters, fontMappings } from "./props/font";
-import { MaskProps, maskConverters, maskMappings } from "./props/mask";
-import { ColumnProps, columnConverters, columnMappings } from "./props/column";
-import {
-  BackgroundProps,
-  backgroundConverters,
-  backgroundMappings,
-} from "./props/background";
-import { FilterProps, filterConverters, filterMappings } from "./props/filter";
+import { GridProps, gridMappings } from "./props/grid";
+import { ListProps, listMappings } from "./props/list";
+import { EffectProps, effectMappings } from "./props/effect";
+import { TextProps, textMappings } from "./props/text";
+import { FontProps, fontMappings } from "./props/font";
+import { MaskProps, maskMappings } from "./props/mask";
+import { ColumnProps, columnMappings } from "./props/column";
+import { BackgroundProps, backgroundMappings } from "./props/background";
+import { FilterProps, filterMappings } from "./props/filter";
 import { StyledKeyType } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
+import { toCssUnit } from "./toCSS";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
   TypographyProps<T> &
@@ -92,30 +72,6 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
   filterMappings,
 );
 
-const styleConverters: Partial<Record<StyledKeyType, ValueConverter>> =
-  Object.assign(
-    {},
-    animationConverters,
-    spaceConverters,
-    typographyConverters,
-    layoutConverters,
-    colorConverters,
-    flexConverters,
-    borderConverters,
-    outlineConverters,
-    positionConverters,
-    shadowConverters,
-    gridConverters,
-    listConverters,
-    effectConverters,
-    textConverters,
-    fontConverters,
-    maskConverters,
-    columnConverters,
-    backgroundConverters,
-    filterConverters,
-  ) as Partial<Record<StyledKeyType, ValueConverter>>;
-
 export const consumeStyleProps = (props: StyledProps): ResponsiveStyle => {
   const cacheKey = JSON.stringify(props);
 
@@ -130,13 +86,12 @@ export const consumeStyleProps = (props: StyledProps): ResponsiveStyle => {
     const cssValue = props[key as StyledKeyType];
     if (cssValue == null) continue;
 
-    const converter = styleConverters[key as StyledKeyType];
     const properties = styleMappings[key as StyledKeyType]?.split(",") ?? [];
     for (const property of properties) {
       const responsiveStyles = applyResponsiveStyles(
         property,
         cssValue,
-        converter,
+        (value) => toCssUnit(key, value),
       );
       base += responsiveStyles.base;
       for (const [breakpoint, css] of Object.entries(responsiveStyles.media)) {

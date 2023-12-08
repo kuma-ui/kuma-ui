@@ -1,7 +1,5 @@
-import { toCssUnit } from "../toCSS";
 import { TextKeys } from "../keys";
-import { ResponsiveStyle, CSSProperties, ValueConverter } from "../types";
-import { applyResponsiveStyles } from "../responsive";
+import { CSSProperties } from "../types";
 
 export type TextProps = Partial<
   CSSProperties<"textAlign"> &
@@ -52,8 +50,4 @@ export const textMappings: Record<TextKeys, string> = {
   textTransform: "text-transform",
   textUnderlineOffset: "text-underline-offset",
   textUnderlinePosition: "text-underline-position",
-};
-
-export const textConverters: Partial<Record<TextKeys, ValueConverter>> = {
-  textIndent: toCssUnit,
 };
