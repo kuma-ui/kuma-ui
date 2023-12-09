@@ -1,15 +1,15 @@
 import type { NextConfig } from "next";
-import { loadConfig } from "browserslist";
+import browserslist from "browserslist";
 import { type Configuration, type RuleSetRule } from "webpack";
 import KumaUIWebpackPlugin from "@kuma-ui/webpack-plugin";
-import { lazyPostCSS } from "next/dist/build/webpack/config/blocks/css";
-import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/loaders";
-import { findPagesDir } from "next/dist/lib/find-pages-dir";
-import type { ConfigurationContext } from "next/dist/build/webpack/config/utils";
+import { lazyPostCSS } from "next/dist/build/webpack/config/blocks/css/index.js";
+import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/loaders/index.js";
+import { findPagesDir } from "next/dist/lib/find-pages-dir.js";
+import type { ConfigurationContext } from "next/dist/build/webpack/config/utils.js";
 
 const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   try {
-    return loadConfig({
+    return browserslist.loadConfig({
       path: dir,
       env: isDevelopment ? "development" : "production",
     });

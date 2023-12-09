@@ -3,22 +3,20 @@ import { theme } from "@kuma-ui/sheet";
 import path from "path";
 import { readdirSync } from "fs";
 import { getUserTheme } from "./getUserTheme";
+import { createRequire } from "module";
 
-// type WebpackPluginOption = {};
+declare const require: NodeRequire;
+declare const __ESM__: boolean;
+const _require = __ESM__ ? createRequire(import.meta.url) : require;
 
-export const CSS_PATH = require.resolve("../assets/kuma.css");
-export const cssLoader = require.resolve("./cssLoader");
+export const CSS_PATH = _require.resolve(
+  "@kuma-ui/webpack-plugin/assets/kuma.css",
+);
 
 class KumaUIWebpackPlugin {
-  // private options: WebpackPluginOption;
   private config: string | undefined;
 
-  static loader = require.resolve("./loader");
-
   constructor() {
-    // options: WebpackPluginOption = {}
-    // this.options = options;
-
     const dir = readdirSync(".");
     dir.forEach((filePath) => {
       if (filePath.startsWith("kuma.config.")) {
@@ -60,7 +58,7 @@ class KumaUIWebpackPlugin {
         exclude: /node_modules/,
         use: [
           {
-            loader: KumaUIWebpackPlugin.loader,
+            loader: _require.resolve("@kuma-ui/webpack-plugin/loader"),
             options: {
               config,
             },
@@ -71,7 +69,7 @@ class KumaUIWebpackPlugin {
         test: CSS_PATH,
         use: [
           {
-            loader: cssLoader,
+            loader: _require.resolve("@kuma-ui/webpack-plugin/cssLoader"),
           },
         ],
       },

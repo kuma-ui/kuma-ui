@@ -1,4 +1,4 @@
-import eval from "eval";
+import _eval from "eval";
 import { buildSync } from "esbuild";
 import fs from "fs";
 import type { UserTheme } from "packages/sheet";
@@ -27,7 +27,7 @@ export const getUserTheme = (configPath: string) => {
     logLevel: "silent",
   });
 
-  const { default: userTheme } = eval(
+  const { default: userTheme } = _eval(
     result.outputFiles[0].text,
     configPath,
   ) as {

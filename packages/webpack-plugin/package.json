@@ -19,9 +19,29 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
-    "types": "./dist/index.d.ts",
-    "import": "./dist/index.mjs",
-    "require": "./dist/index.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./loader": {
+      "types": "./dist/loader.d.ts",
+      "require": "./dist/loader.js",
+      "import": "./dist/loader.mjs"
+    },
+    "./cssLoader": {
+      "types": "./dist/cssLoader.d.ts",
+      "require": "./dist/cssLoader.js",
+      "import": "./dist/cssLoader.mjs"
+    },
+    "./assets/kuma.css": "./assets/kuma.css"
+  },
+  "typesVersions": {
+    "*": {
+      "registry": [
+        "./dist/registry.d.ts"
+      ]
+    }
   },
   "files": [
     "dist",

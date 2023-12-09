@@ -11,7 +11,6 @@ export const CSS_PARAM_NAME = "css";
 
 type Options = {
   config?: string;
-  virtualLoader: boolean;
   cssOutputDir: string;
 };
 
