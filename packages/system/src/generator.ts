@@ -50,40 +50,46 @@ export class StyleGenerator {
         !/^\w+\(.*\)$/.test(propValue) // exclude CSS functions
       );
     };
-
-    for (const [propName, propValue] of Object.entries(props)) {
+    /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return -- FIXME */
+    const convertStyle = (name: string, value: any) => {
       // color={['colors.primary', 'colors.secondary']}
-      if (Array.isArray(propValue)) {
-        styledProps[propName] = propValue.map((value) => {
-          if (isThemeStyle(value)) {
-            const customStyle = findThemeStyle(value);
+      if (Array.isArray(value)) {
+        return value.map((v) => {
+          if (isThemeStyle(v)) {
+            const customStyle = findThemeStyle(v);
             if (customStyle !== undefined) {
               return customStyle;
             }
           }
-          return value;
+          return v;
         });
-      }
-      // color="colors.primary"
-      else if (isThemeStyle(propValue)) {
-        const customStyle = findThemeStyle(propValue);
+        // color="colors.primary"
+      } else if (isThemeStyle(value)) {
+        const customStyle = findThemeStyle(value);
         if (customStyle !== undefined) {
-          styledProps[propName] = customStyle;
+          return customStyle;
         }
-      } else if (isStyledProp(propName)) {
-        styledProps[propName] = propValue;
-      } else if (isPseudoProps(propName)) {
+      } else if (isStyledProp(name)) {
+        return value;
+      }
+      return value;
+    };
+    // eslint-enable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return -- FIXME
+
+    for (const [propName, propValue] of Object.entries(props)) {
+      if (isPseudoProps(propName)) {
         pseudoProps[propName] = propValue;
         for (const [name, value] of Object.entries(propValue)) {
-          if (isThemeStyle(value)) {
-            const customStyle = findThemeStyle(value);
-            if (customStyle !== undefined) {
-              pseudoProps[propName] = {
-                [name]: customStyle,
-              };
-            }
-          }
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+          pseudoProps[propName] = {
+            ...pseudoProps[propName],
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+            [name]: convertStyle(name, value),
+          };
         }
+      } else {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
+        styledProps[propName] = convertStyle(propName, propValue);
       }
     }
 
@@ -127,7 +133,7 @@ export class StyleGenerator {
 
     let css = `.${this.className} { ${this.style.base} }`;
     for (const [breakpoint, cssValue] of Object.entries(
-      this.style.responsive,
+      this.style.responsive
     )) {
       css += `@media (min-width: ${breakpoint}) { .${this.className} { ${cssValue} } }`;
     }

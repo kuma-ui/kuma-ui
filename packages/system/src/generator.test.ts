@@ -20,8 +20,8 @@ describe("StyleGenerator class", () => {
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { font-size: 24px;color: red; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
         /\s/g,
-        "",
-      ),
+        ""
+      )
     );
     expect(css).toContain(`.${className}:hover { color: black; }`);
   });
@@ -75,7 +75,7 @@ describe("StyleGenerator class", () => {
     });
     const props = {
       color: "colors.primary",
-      _hover: { color: "colors.primary" },
+      _hover: { color: "colors.primary", fontSize: 24 },
     };
 
     // Act
@@ -84,10 +84,10 @@ describe("StyleGenerator class", () => {
     // Assert
     expect(className.startsWith("🐻-")).toBeTruthy();
     expect(css.replace(/\s/g, "")).toContain(
-      `.${className} { color: red; } .${className}:hover { color: red; }`.replace(
+      `.${className} { color: red; } .${className}:hover { color: red;font-size: 24px; }`.replace(
         /\s/g,
-        "",
-      ),
+        ""
+      )
     );
   });
 
@@ -106,6 +106,7 @@ describe("StyleGenerator class", () => {
 
     const props = {
       color: ["colors.primary", "colors.secondary"],
+      _hover: { color: ["colors.secondary", "colors.primary"] },
     };
 
     // Act
@@ -113,10 +114,10 @@ describe("StyleGenerator class", () => {
 
     // Assert
     expect(css.replace(/\s/g, "")).toContain(
-      `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } }`.replace(
+      `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } } .${className}:hover { color: green; } @media (min-width: 576px) { .${className}:hover { color: blue; } }`.replace(
         /\s/g,
-        "",
-      ),
+        ""
+      )
     );
   });
 });
