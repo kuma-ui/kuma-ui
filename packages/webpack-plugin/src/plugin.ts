@@ -9,9 +9,7 @@ declare const require: NodeRequire;
 declare const __ESM__: boolean;
 const _require = __ESM__ ? createRequire(import.meta.url) : require;
 
-export const CSS_PATH = _require.resolve(
-  "@kuma-ui/webpack-plugin/assets/kuma.css",
-);
+export const CSS_PATH = _require.resolve("../assets/kuma.css");
 
 class KumaUIWebpackPlugin {
   private config: string | undefined;
@@ -58,7 +56,7 @@ class KumaUIWebpackPlugin {
         exclude: /node_modules/,
         use: [
           {
-            loader: _require.resolve("@kuma-ui/webpack-plugin/loader"),
+            loader: _require.resolve("./loader.js"),
             options: {
               config,
             },
@@ -69,7 +67,7 @@ class KumaUIWebpackPlugin {
         test: CSS_PATH,
         use: [
           {
-            loader: _require.resolve("@kuma-ui/webpack-plugin/cssLoader"),
+            loader: _require.resolve("./cssLoader.js"),
           },
         ],
       },
