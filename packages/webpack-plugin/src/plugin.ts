@@ -5,8 +5,9 @@ import { readdirSync } from "fs";
 import { getUserTheme } from "./getUserTheme";
 import { createRequire } from "module";
 
-declare const require: NodeRequire;
+// tsup replaces this with `true` for esm build and `false` for cjs build.
 declare const __ESM__: boolean;
+
 const _require = __ESM__ ? createRequire(import.meta.url) : require;
 
 export const CSS_PATH = _require.resolve("../assets/kuma.css");
