@@ -5,7 +5,7 @@ import { readdirSync } from "fs";
 import { getUserTheme } from "./getUserTheme";
 import { createRequire } from "module";
 
-// tsup replaces this with `true` for esm build and `false` for cjs build.
+// tsup will replace __ESM__ with true during ESM build and false during CJS build when bundling.
 declare const __ESM__: boolean;
 
 const _require = __ESM__ ? createRequire(import.meta.url) : require;
