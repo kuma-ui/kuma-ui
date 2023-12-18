@@ -50,6 +50,15 @@ export class StyleGenerator {
         !/^\w+\(.*\)$/.test(propValue) // exclude CSS functions
       );
     };
+
+    /**
+     * If the argument value is a user theme defined in the `kuma.config.ts` file, it is converted,
+     * otherwise the value of value is returned as is.
+     * @example
+     * convertStyle("color", "colors.primary") // returns "#000000"
+     * convertStyle("color", ['colors.primary', 'colors.secondary']) // returns ["#000000", "#ffffff"]
+     * convertStyle("color", "#ffffff") // returns "#ffffff"
+     */
     /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return -- FIXME */
     const convertStyle = (name: string, value: any) => {
       // color={['colors.primary', 'colors.secondary']}
@@ -69,6 +78,7 @@ export class StyleGenerator {
         if (customStyle !== undefined) {
           return customStyle;
         }
+        // color="#ffffff"
       } else if (isStyledProp(name)) {
         return value;
       }
