@@ -1,5 +1,15 @@
 # @kuma-ui/next-plugin
 
+## 1.1.15
+
+### Patch Changes
+
+- [#389](https://github.com/kuma-ui/kuma-ui/pull/389) [`51e773e`](https://github.com/kuma-ui/kuma-ui/commit/51e773e37644325dadd9c747f84241809c1f83af) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - fix: support esm with next.config.js
+
+- Updated dependencies [[`407a55e`](https://github.com/kuma-ui/kuma-ui/commit/407a55e4b2e4f814fd4a3ea3539044bb2d5d0937), [`51e773e`](https://github.com/kuma-ui/kuma-ui/commit/51e773e37644325dadd9c747f84241809c1f83af)]:
+  - @kuma-ui/core@1.5.5
+  - @kuma-ui/webpack-plugin@1.2.7
+
 ## 1.1.14
 
 ### Patch Changes

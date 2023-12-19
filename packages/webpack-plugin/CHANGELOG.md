@@ -1,5 +1,15 @@
 # @kuma-ui/webpack-plugin
 
+## 1.2.7
+
+### Patch Changes
+
+- [#389](https://github.com/kuma-ui/kuma-ui/pull/389) [`51e773e`](https://github.com/kuma-ui/kuma-ui/commit/51e773e37644325dadd9c747f84241809c1f83af) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - fix: support esm with next.config.js
+
+- Updated dependencies [[`407a55e`](https://github.com/kuma-ui/kuma-ui/commit/407a55e4b2e4f814fd4a3ea3539044bb2d5d0937), [`2bb1f6d`](https://github.com/kuma-ui/kuma-ui/commit/2bb1f6d449f87d5fab6a1fd23cd1a2f925478c7d)]:
+  - @kuma-ui/system@1.7.2
+  - @kuma-ui/babel-plugin@1.1.14
+
 ## 1.2.6
 
 ### Patch Changes

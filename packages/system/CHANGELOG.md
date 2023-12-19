@@ -1,5 +1,13 @@
 # @kuma-ui/system
 
+## 1.7.2
+
+### Patch Changes
+
+- [#385](https://github.com/kuma-ui/kuma-ui/pull/385) [`407a55e`](https://github.com/kuma-ui/kuma-ui/commit/407a55e4b2e4f814fd4a3ea3539044bb2d5d0937) Thanks [@kotarella1110](https://github.com/kotarella1110)! - refactor: improve toCssUnit logic to reduce bundle size
+
+- [#390](https://github.com/kuma-ui/kuma-ui/pull/390) [`2bb1f6d`](https://github.com/kuma-ui/kuma-ui/commit/2bb1f6d449f87d5fab6a1fd23cd1a2f925478c7d) Thanks [@nojiritakeshi](https://github.com/nojiritakeshi)! - bug fix: Allow theme tokens to be set for pseudo-classes as well
+
 ## 1.7.1
 
 ### Patch Changes
