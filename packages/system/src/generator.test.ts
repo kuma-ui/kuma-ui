@@ -20,8 +20,8 @@ describe("StyleGenerator class", () => {
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { font-size: 24px;color: red; }@media (min-width: 576px) { .${className} { color: blue; } }.${className}:hover { color: black; }`.replace(
         /\s/g,
-        ""
-      )
+        "",
+      ),
     );
     expect(css).toContain(`.${className}:hover { color: black; }`);
   });
@@ -86,8 +86,8 @@ describe("StyleGenerator class", () => {
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { color: red; } .${className}:hover { color: red;font-size: 24px; }`.replace(
         /\s/g,
-        ""
-      )
+        "",
+      ),
     );
   });
 
@@ -116,8 +116,8 @@ describe("StyleGenerator class", () => {
     expect(css.replace(/\s/g, "")).toContain(
       `.${className} { color: blue; } @media (min-width: 576px) { .${className} { color: green; } } .${className}:hover { color: green; } @media (min-width: 576px) { .${className}:hover { color: blue; } }`.replace(
         /\s/g,
-        ""
-      )
+        "",
+      ),
     );
   });
 });
