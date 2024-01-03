@@ -213,7 +213,7 @@ For those looking to integrate Kuma UI with Storybook, the process will vary dep
     const config: StorybookConfig = {
       // ...
       webpackFinal: (config) => {
-        config.plugins = [...(config.plugins ?? []), new KumaUIWebpackPlugin({})];
+        config.plugins = [...(config.plugins ?? []), new KumaUIWebpackPlugin()];
 
         return config;
       },
