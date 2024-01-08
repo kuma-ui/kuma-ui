@@ -109,6 +109,7 @@ export const styleKeys = {
     "textUnderlinePosition",
   ] as const,
   layout: [
+    "w",
     "width",
     "minWidth",
     "maxWidth",
