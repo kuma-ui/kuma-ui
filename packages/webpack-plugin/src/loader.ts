@@ -58,7 +58,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
       `${this.utils.contextify(this.context, CSS_PATH)}?${params.toString()}`,
     )};`;
 
-    if(plugin.watchMode) {
+    if (plugin.watchMode) {
       fs.writeFileSync(CSS_PATH, `/* ${Date.now()} */`);
     }
 
