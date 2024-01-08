@@ -1,5 +1,10 @@
 import { LayoutKeys } from "../keys";
-import { AddProperty, CSSProperties, CSSValue, ThemeSystemType } from "../types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ThemeSystemType,
+} from "../types";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
