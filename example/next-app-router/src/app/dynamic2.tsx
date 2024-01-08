@@ -1,3 +1,5 @@
+"use client";
+
 import { Box } from "@kuma-ui/core";
 
 export function Dynamic2() {
