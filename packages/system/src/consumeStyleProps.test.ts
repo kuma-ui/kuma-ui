@@ -170,6 +170,9 @@ describe("consumeStyleProps function", () => {
       verticalAlign: "sub",
       userSelect: "none",
     });
+    consumeAndTest({
+      w: 8,
+    });
   });
   test("should consume list props", () => {
     consumeAndTest({

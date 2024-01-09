@@ -1,5 +1,10 @@
 import { LayoutKeys } from "../keys";
-import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ThemeSystemType,
+} from "../types";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -19,10 +24,16 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"float" | "clear"> &
     CSSProperties<"objectFit" | "objectPosition"> &
     CSSProperties<"resize"> &
-    CSSProperties<"verticalAlign">
+    CSSProperties<"verticalAlign"> & {
+      /**
+       * @see width
+       */
+      w: CSSValue<"width", true>;
+    }
 >;
 
 export const layoutMappings: Record<LayoutKeys, string> = {
+  w: "width",
   width: "width",
   minWidth: "min-width",
   maxWidth: "max-width",
