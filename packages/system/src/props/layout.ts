@@ -26,7 +26,7 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"resize"> &
     CSSProperties<"verticalAlign"> & {
       /**
-       * @see margin
+       * @see width
        */
       w: CSSValue<"width", true>;
     }
