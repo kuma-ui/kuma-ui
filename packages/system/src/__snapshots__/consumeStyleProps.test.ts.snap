@@ -79,7 +79,7 @@ exports[`consumeStyleProps function > should consume layout props 1`] = `
 
 exports[`consumeStyleProps function > should consume layout props 2`] = `
 {
-  "base": "width: 8px;",
+  "base": "width: 8px;min-width: 12px;max-width: 2em;height: 2em;min-height: 12px;max-height: 2rem;",
   "media": {},
 }
 `;

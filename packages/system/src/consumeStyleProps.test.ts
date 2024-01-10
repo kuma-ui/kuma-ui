@@ -172,6 +172,11 @@ describe("consumeStyleProps function", () => {
     });
     consumeAndTest({
       w: 8,
+      minW: "12px",
+      maxW: "2em",
+      h: "2em",
+      minH: "12px",
+      maxH: "2rem",
     });
   });
   test("should consume list props", () => {
