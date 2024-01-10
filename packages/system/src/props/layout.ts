@@ -29,6 +29,10 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
        * @see width
        */
       w: CSSValue<"width", true>;
+      /**
+       * @see height
+       */
+      h: CSSValue<"height", true>;
     }
 >;
 
@@ -37,6 +41,7 @@ export const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
   minWidth: "min-width",
   maxWidth: "max-width",
+  h: "height",
   height: "height",
   minHeight: "min-height",
   maxHeight: "max-height",

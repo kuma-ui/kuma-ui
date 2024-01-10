@@ -172,6 +172,7 @@ describe("consumeStyleProps function", () => {
     });
     consumeAndTest({
       w: 8,
+      h: "2em",
     });
   });
   test("should consume list props", () => {

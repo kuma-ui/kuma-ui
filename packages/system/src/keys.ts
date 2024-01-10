@@ -113,6 +113,7 @@ export const styleKeys = {
     "width",
     "minWidth",
     "maxWidth",
+    "h",
     "height",
     "minHeight",
     "maxHeight",
