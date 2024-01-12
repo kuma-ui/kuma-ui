@@ -63,6 +63,10 @@ export class ServerStyleSheet implements StyleSheet {
   }
 
   public deleteRule(index: number): void {
+    if (index < 0) {
+      return;
+    }
+
     const sheet = this.getSheet();
     sheet.deleteRule(index);
     sheet.insertRule(this.deletedRulePlaceholder, index);
