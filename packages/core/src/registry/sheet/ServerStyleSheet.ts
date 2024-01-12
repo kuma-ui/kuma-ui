@@ -63,7 +63,7 @@ export class ServerStyleSheet implements StyleSheet {
   }
 
   public deleteRule(index: number): void {
-    if (index === -1) {
+    if (index < 0) {
       return;
     }
 
