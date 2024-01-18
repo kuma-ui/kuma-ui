@@ -1,5 +1,13 @@
 # @kuma-ui/system
 
+## 1.7.3
+
+### Patch Changes
+
+- [#394](https://github.com/kuma-ui/kuma-ui/pull/394) [`b3490c1`](https://github.com/kuma-ui/kuma-ui/commit/b3490c10c30c9fa65167bb51554903397f4a90a5) Thanks [@yodakaEngineer](https://github.com/yodakaEngineer)! - Add "w" shorthand for width property
+
+- [#396](https://github.com/kuma-ui/kuma-ui/pull/396) [`a0dc9cd`](https://github.com/kuma-ui/kuma-ui/commit/a0dc9cda8ecfad419be8053c1237d4d6551ef77b) Thanks [@yodakaEngineer](https://github.com/yodakaEngineer)! - Add shorthands for layout properties
+
 ## 1.7.2
 
 ### Patch Changes

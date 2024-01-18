@@ -1,5 +1,17 @@
 # @kuma-ui/webpack-plugin
 
+## 1.3.0
+
+### Minor Changes
+
+- [#397](https://github.com/kuma-ui/kuma-ui/pull/397) [`d146a12`](https://github.com/kuma-ui/kuma-ui/commit/d146a1241afc2be8298c93e48e1dffa0d713694b) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - Fix the issue with HMR not working when styles are changed in Next.js v13.5 and later
+
+### Patch Changes
+
+- Updated dependencies [[`b3490c1`](https://github.com/kuma-ui/kuma-ui/commit/b3490c10c30c9fa65167bb51554903397f4a90a5), [`a0dc9cd`](https://github.com/kuma-ui/kuma-ui/commit/a0dc9cda8ecfad419be8053c1237d4d6551ef77b)]:
+  - @kuma-ui/system@1.7.3
+  - @kuma-ui/babel-plugin@1.1.15
+
 ## 1.2.7
 
 ### Patch Changes
