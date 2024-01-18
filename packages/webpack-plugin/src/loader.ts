@@ -5,13 +5,13 @@ import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
 import { createHash } from "crypto";
 import { theme } from "@kuma-ui/sheet";
 import { getUserTheme } from "./getUserTheme";
-import { CSS_PATH } from "./plugin";
+import KumaUIWebpackPlugin, { CSS_PATH } from "./plugin";
 
 export const CSS_PARAM_NAME = "css";
 
 type Options = {
   config?: string;
-  cssOutputDir: string;
+  plugin: KumaUIWebpackPlugin;
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
@@ -20,13 +20,13 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
-  const { config } = this.getOptions();
+  const { plugin } = this.getOptions();
 
-  if (config) {
+  if (plugin.config) {
     // enable automatic rebuild for static theme props
     // <Box color={"colors.red.100"} />
-    this.addDependency(config);
-    const userTheme = getUserTheme(config);
+    this.addDependency(plugin.config);
+    const userTheme = getUserTheme(plugin.config);
     if (userTheme) {
       theme.setUserTheme(userTheme);
     }
@@ -57,6 +57,14 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
     const importCSS = `import ${JSON.stringify(
       `${this.utils.contextify(this.context, CSS_PATH)}?${params.toString()}`,
     )};`;
+
+    if (plugin.watchMode) {
+      /**
+       * n Next.js version 13.5 and later, changes made in virtual files are no longer recognized by Next.js. Therefore, we need to emit random changes in the entry CSS file to ensure they are taken into account.
+       * @see {@link|https://github.com/vercel/next.js/discussions/59212}
+       */
+      fs.writeFileSync(CSS_PATH, `/* ${Date.now()} */`);
+    }
 
     callback(null, `${result.code}\n${importCSS};`);
     return;

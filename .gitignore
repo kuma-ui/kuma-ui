@@ -10,3 +10,4 @@ node_modules/
 .vscode
 .env
 .idea/
+packages/webpack-plugin/assets/kuma.css
