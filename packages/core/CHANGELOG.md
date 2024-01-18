@@ -1,5 +1,14 @@
 # @kuma-ui/core
 
+## 1.5.6
+
+### Patch Changes
+
+- [#398](https://github.com/kuma-ui/kuma-ui/pull/398) [`08632b1`](https://github.com/kuma-ui/kuma-ui/commit/08632b17471b62da3d2e3c0d6fec0097ee1cd514) Thanks [@yukukotani](https://github.com/yukukotani)! - Fix `DOMException: Failed to execute 'deleteRule' on 'CSSStyleSheet': The index provided (4294967295) is larger than the maximum index (0).`
+
+- Updated dependencies [[`b3490c1`](https://github.com/kuma-ui/kuma-ui/commit/b3490c10c30c9fa65167bb51554903397f4a90a5), [`a0dc9cd`](https://github.com/kuma-ui/kuma-ui/commit/a0dc9cda8ecfad419be8053c1237d4d6551ef77b)]:
+  - @kuma-ui/system@1.7.3
+
 ## 1.5.5
 
 ### Patch Changes
