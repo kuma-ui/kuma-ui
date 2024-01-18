@@ -1,6 +1,6 @@
 ---
-"@kuma-ui/webpack-plugin": patch
-"@kuma-ui/next-plugin": patch
+"@kuma-ui/webpack-plugin": minor
+"@kuma-ui/next-plugin": minor
 ---
 
-Fix next hmr
+Fix the issue with HMR not working when styles are changed in Next.js v13.5 and later
