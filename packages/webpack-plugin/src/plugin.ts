@@ -20,13 +20,22 @@ export const CSS_PATH = (() => {
   return cssPath;
 })();
 
+type KumaWebpackOptions = {
+  /** The destination to emit an actual CSS file. This is a temporary workaround to enable HMR in Client Component @see loader.ts */
+  outputDir?: string;
+};
+
 class KumaUIWebpackPlugin {
   /* @internal */
   config: string | undefined;
   /* @internal */
   watchMode = false;
 
-  constructor() {
+  private outputDir: string | undefined;
+
+  constructor(options: KumaWebpackOptions = {}) {
+    this.outputDir = options.outputDir;
+
     const dir = readdirSync(".");
     dir.forEach((filePath) => {
       if (filePath.startsWith("kuma.config.")) {
@@ -73,7 +82,7 @@ class KumaUIWebpackPlugin {
         use: [
           {
             loader: _require.resolve("./loader.js"),
-            options: { plugin: this },
+            options: { plugin: this, outputDir: this.outputDir },
           },
         ],
       },

@@ -6,6 +6,13 @@ import { lazyPostCSS } from "next/dist/build/webpack/config/blocks/css/index.js"
 import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/loaders/index.js";
 import type { ConfigurationContext } from "next/dist/build/webpack/config/utils.js";
 
+/** 
+This config sets destination directory for generated CSS files which is a temporary workaround to enable HMR in Next.js client components.
+Do not document this option as it will be removed once the issue is fixed.
+NOTE: Any emitted CSS files under ./next directory will be ignored by Next.js. Thus, we need to emit CSS files under some other directory.
+*/
+type KumaConfig = ConstructorParameters<typeof KumaUIWebpackPlugin>[0];
+
 const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   try {
     return browserslist.loadConfig({
@@ -17,7 +24,10 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   return undefined;
 };
 
-const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
+const kumaUiConfig = (
+  nextConfig: NextConfig,
+  kumaUiConfig: KumaConfig = {},
+): NextConfig => {
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
@@ -54,7 +64,11 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
         ),
       });
 
-      config.plugins?.push(new KumaUIWebpackPlugin());
+      config.plugins?.push(
+        new KumaUIWebpackPlugin({
+          outputDir: kumaUiConfig?.outputDir,
+        }),
+      );
       if (typeof nextConfig.webpack === "function") {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
         return nextConfig.webpack(config, options);
@@ -64,6 +78,9 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
   };
 };
 
-export const withKumaUI = (nextConfig: NextConfig) => {
-  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig));
+export const withKumaUI = (
+  nextConfig: NextConfig,
+  kumaConfig: KumaConfig = {},
+) => {
+  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig, kumaConfig));
 };
