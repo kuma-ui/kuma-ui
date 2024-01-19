@@ -64,7 +64,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
      * Currently, Client Component doesn't account for virtual files, so we need to emit an actual CSS file.
      * TODO: Address and fix this issue.
      */
-    if (outputDir) {
+    if (outputDir && process.env.NODE_ENV !== "production") {
       const codePrefix = fileLoader(css, {
         context: this,
         outputDir: outputDir,

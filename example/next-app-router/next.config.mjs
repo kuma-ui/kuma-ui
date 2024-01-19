@@ -5,4 +5,4 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default withKumaUI(nextConfig, {outputDir: "./.kuma"});
+export default withKumaUI(nextConfig);
