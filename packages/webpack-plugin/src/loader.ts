@@ -82,11 +82,13 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
       )}?${params.toString()}`,
     )};`;
 
-    /**
-     * n Next.js version 13.5 and later, changes made in virtual files are no longer recognized by Next.js. Therefore, we need to emit random changes in the entry CSS file to ensure they are taken into account.
-     * @see {@link|https://github.com/vercel/next.js/discussions/59212}
-     */
-    fs.writeFileSync(emptyCssExtractionFile, `/* ${Date.now()} */`);
+    if (plugin.watchMode) {
+      /**
+       * n Next.js version 13.5 and later, changes made in virtual files are no longer recognized by Next.js. Therefore, we need to emit random changes in the entry CSS file to ensure they are taken into account.
+       * @see {@link|https://github.com/vercel/next.js/discussions/59212}
+       */
+      fs.writeFileSync(CSS_PATH, `/* ${Date.now()} */`);
+    }
 
     callback(null, `${result.code}\n${importCSS};`);
     return;
