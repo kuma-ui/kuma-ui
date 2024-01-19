@@ -2,7 +2,6 @@
 import { k, Box, css, styled } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 import { Dynamic2 } from "./dynamic2";
-import { B } from "million/dist/block-6b711a9d";
 
 export default function Home() {
   return (
