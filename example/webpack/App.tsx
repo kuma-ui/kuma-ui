@@ -3,9 +3,10 @@ import { k, Box, Button } from "@kuma-ui/core";
 
 function Dynamic() {
   const [checked, toggle] = useReducer((state) => !state, false);
+  const color = checked ? "blue" : "green";
 
   return (
-    <Box p={12} bg={checked ? "blue" : "green"}>
+    <Box p={12} bg={color}>
       dynamic
       <Button onClick={() => toggle()}>Change Background Color</Button>
     </Box>

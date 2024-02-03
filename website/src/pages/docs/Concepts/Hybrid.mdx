@@ -35,11 +35,11 @@ Consider the following code snippet:
 
 ```tsx
 function App() {
-  const [checked, toggle] = React.useReducer((state) => !state, false);
+  const [color, setColor] = React.useState("blue");
 
   return (
-    <Box p={12} color={checked ? "blue" : "green"}>
-      <Button onClick={() => toggle()}>Change Color</Button>
+    <Box p={12} bg={color}>
+      <Button onClick={() => setColor("green")}>Change Color</Button>
     </Box>
   );
 }
