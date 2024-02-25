@@ -1,5 +1,11 @@
 # @kuma-ui/webpack-plugin
 
+## 1.3.1
+
+### Patch Changes
+
+- [#399](https://github.com/kuma-ui/kuma-ui/pull/399) [`b93fba3`](https://github.com/kuma-ui/kuma-ui/commit/b93fba38c8fba03803324d6ec892cb71f714ee09) Thanks [@poteboy](https://github.com/poteboy)! - Temporary Workaround for HMR in Next.js Client Components with Real CSS Output
+
 ## 1.3.0
 
 ### Minor Changes
