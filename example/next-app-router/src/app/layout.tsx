@@ -17,9 +17,7 @@ const Layout: FC<Props> = ({ children }) => {
       </head>
       <body>
         <KumaRegistry>
-          <k.div bg={"red"} className={inter.className}>
-            {children}
-          </k.div>
+          <k.div className={inter.className}>{children}</k.div>
         </KumaRegistry>
       </body>
     </html>
