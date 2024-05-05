@@ -28,7 +28,7 @@ pub fn transform_sync(source_text: String) -> String {
     let allocator = Allocator::default();
 
     let program = js_to_program(&allocator, &source_text);
-    let program = Transform::new(&allocator).transform(program);
+    let (program, imports) = Transform::new(&allocator).transform(program);
 
     Codegen::<true>::new("", &source_text, CodegenOptions::default())
         .build(program)
