@@ -1,0 +1,19 @@
+{
+  "name": "@kuma-ui/wasm",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./pkg/esm/index.js",
+      "require": "./pkg/node/index.js",
+      "types": "./pkg/esm/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "wasm-pack build --target web --out-dir ./pkg/esm --out-name index && wasm-pack build --target nodejs --out-dir ./pkg/node --out-name index"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
