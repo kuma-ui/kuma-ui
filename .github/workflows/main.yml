@@ -45,7 +45,7 @@ jobs:
         with:
           node_version: 18
 
-      - uses: ./.github/actions/setup-rust
+      # - uses: ./.github/actions/setup-rust
 
       - name: Build packages
         run: pnpm build
