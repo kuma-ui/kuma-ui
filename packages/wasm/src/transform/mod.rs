@@ -6,6 +6,11 @@ use oxc_ast::AstBuilder;
 use oxc_codegen::Codegen;
 use oxc_span::{Atom, Span, SPAN};
 
+mod helpers;
+use helpers::{
+    matches_closing_element, matches_opening_element, transform_opening_element_with_box,
+};
+
 use crate::js_to_program;
 
 pub struct Transform<'a> {
@@ -150,6 +155,33 @@ impl<'a> Transform<'a> {
             let import_statement = Statement::ModuleDeclaration(self.ast.alloc(module_declaration));
 
             program.body.insert(0, import_statement);
+        }
+
+        program
+    }
+
+    /**
+     * Processes the JSXElement nodes in the AST and replaces the `k` syntax from `@kuma-ui/core`
+     * with corresponding `Box` component. This allows usage of the `k` syntax as a shorthand for creating
+     * styled components, e.g. `<k.div>` is transformed to `<Box as="div">`.
+     */
+    pub fn replace_k_with_box(&mut self, program: &'a mut Program<'a>) -> &'a mut Program<'a> {
+        let k_alias = self.imports.get("k").cloned().unwrap_or("k".to_string());
+
+        for node in &mut program.body.iter_mut() {
+            if let Statement::ReturnStatement(return_statement) = node {
+                if let Some(argument) = &return_statement.argument {
+                    if let Expression::JSXElement(jsx_element) = &argument {
+                        if matches_opening_element(&jsx_element.opening_element.name, &k_alias) {
+                            // transform_opening_element_with_box(
+                            //     &mut jsx_element.opening_element,
+                            //     &self.imports,
+                            //     &self.ast,
+                            // );
+                        }
+                    }
+                }
+            }
         }
 
         program
