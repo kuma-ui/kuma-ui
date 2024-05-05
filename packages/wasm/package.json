@@ -2,7 +2,6 @@
   "name": "@kuma-ui/wasm",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "exports": {
     ".": {
       "import": "./pkg/esm/index.js",
@@ -11,6 +10,7 @@
     }
   },
   "scripts": {
+    "build": "run-p build:*",
     "build:wasm": "wasm-pack build --target web --out-dir ./pkg/esm --out-name index && wasm-pack build --target nodejs --out-dir ./pkg/node --out-name index"
   },
   "keywords": [],

@@ -39,6 +39,7 @@
     "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
     "@kuma-ui/system": "workspace:^",
+    "@kuma-ui/wasm": "workspace:^",
     "ts-morph": "^19.0.0"
   },
   "publishConfig": {
