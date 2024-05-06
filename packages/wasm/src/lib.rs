@@ -48,7 +48,8 @@ pub fn transform_sync(source_text: String, extension: String) -> JsValue {
     let program = js_to_program(&allocator, &source_text, &extension);
     let (program, imports) = Transform::new(&allocator).transform(program);
 
-    let mut imports = imports.clone();
+
+    let mut imports = Transform::new(&allocator).transform(program);
 
     let source = Codegen::<true>::new("", &source_text, CodegenOptions::default())
         .build(program)
@@ -57,4 +58,6 @@ pub fn transform_sync(source_text: String, extension: String) -> JsValue {
     imports.insert("source_code".to_string(), source);
 
     JsValue::from_serde(&imports).unwrap()
+
+
 }
