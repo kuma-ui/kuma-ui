@@ -1,4 +1,3 @@
-import { transform } from "@kuma-ui/babel-plugin";
 import path from "path";
 import fs from "fs";
 import type { LoaderContext, RawLoaderDefinitionFunction } from "webpack";
@@ -7,6 +6,7 @@ import { theme } from "@kuma-ui/sheet";
 import { getUserTheme } from "./getUserTheme";
 import KumaUIWebpackPlugin, { CSS_PATH } from "./plugin";
 import { createRequire } from "module";
+import { compileSync } from "@kuma-ui/compiler";
 
 export const CSS_PARAM_NAME = "css";
 
@@ -19,6 +19,7 @@ type Options = {
   config?: string;
   plugin: KumaUIWebpackPlugin;
   outputDir?: string;
+  wasm?: boolean;
 };
 
 const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
@@ -27,7 +28,7 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
   // tell Webpack this loader is async
   const callback = this.async();
   const id = this.resourcePath;
-  const { plugin, outputDir } = this.getOptions();
+  const { plugin, outputDir, wasm } = this.getOptions();
 
   if (plugin.config) {
     // enable automatic rebuild for static theme props
@@ -50,13 +51,13 @@ const kumaUiLoader: RawLoaderDefinitionFunction<Options> = function (
 
   const outputPath = this._compiler?.options.output.path;
   if (!outputPath) throw Error("output path is not correctly set");
-  const result = transform(source.toString(), id);
+  const result = compileSync({ code: source.toString(), id, wasm });
   if (!result || !result.code) {
     callback(null, source);
     return;
   }
 
-  const css = (result.metadata as unknown as { css: string }).css || "";
+  const css = result.css || "";
 
   if (css) {
     /**

@@ -5,4 +5,6 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default withKumaUI(nextConfig);
+export default withKumaUI(nextConfig, {
+  wasm: true
+});

@@ -466,9 +466,9 @@ importers:
 
   packages/webpack-plugin:
     dependencies:
-      '@kuma-ui/babel-plugin':
+      '@kuma-ui/compiler':
         specifier: workspace:^
-        version: link:../babel-plugin
+        version: link:../compiler
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet

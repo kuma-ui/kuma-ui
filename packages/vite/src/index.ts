@@ -6,7 +6,12 @@ import _eval from "eval";
 import { theme, sheet, generateHash, UserTheme } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
 
-export default function kumaUI(): Plugin {
+type PluginOptions = {
+  /** Use Rust based WASM compiler instead of Babel */
+  wasm?: boolean;
+};
+
+export default function kumaUI({ wasm }: PluginOptions): Plugin {
   let mode: "build" | "serve";
 
   const dir = readdirSync(".");
@@ -62,7 +67,7 @@ export default function kumaUI(): Plugin {
       if (/node_modules/.test(id)) return;
       if (!code.includes("@kuma-ui/core")) return;
 
-      const result = compileSync({ code, id, wasm: true });
+      const result = compileSync({ code, id, wasm });
       if (!result?.code) return;
       const css = result.css;
       const cssPath = path.normalize(id.replace(/\.[jt]sx?$/, ""));

@@ -15,5 +15,8 @@ module.exports = withKumaUI(
         },
       ],
     },
-  })
+  }),
+  {
+    wasm: true,
+  }
 );
