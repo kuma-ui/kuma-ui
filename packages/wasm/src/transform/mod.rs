@@ -192,7 +192,8 @@ impl<'a> Transform<'a> {
 fn test_ensure_react_import() {
     let allocator = Allocator::default();
     let souce_text = "".to_string();
-    let program = js_to_program(&allocator, &souce_text);
+    let ext = "tsx".to_string();
+    let program = js_to_program(&allocator, &souce_text, &ext);
     let program = Transform::new(&allocator).ensure_react_import(program);
 
     let source = Codegen::<true>::new("", &souce_text, Default::default())
@@ -207,7 +208,8 @@ fn test_collect_import_bindings() {
     let source_text =
         "import { Button,  Box as KumaBox } from '@kuma-ui/core'; import { css } from '@kuma-ui/core'"
             .to_string();
-    let program = js_to_program(&allocator, &source_text);
+    let ext = "tsx".to_string();
+    let program = js_to_program(&allocator, &source_text, &ext);
     let (_, imports) = Transform::new(&allocator).transform(program);
 
     assert_eq!(imports.get("Button"), Some(&"Button".to_string()));
@@ -219,7 +221,8 @@ fn test_collect_import_bindings() {
 fn test_import_box() {
     let allocator = Allocator::default();
     let source_text = "".to_string();
-    let program = js_to_program(&allocator, &source_text);
+    let ext = "tsx".to_string();
+    let program = js_to_program(&allocator, &source_text, &ext);
     let program = Transform::new(&allocator).import_box(program);
 
     let source = Codegen::<true>::new("", &source_text, Default::default())

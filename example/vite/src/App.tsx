@@ -29,6 +29,8 @@ function App() {
   return (
     <Box color="GrayText" border="1px solid" borderColor="orange">
       test
+      <Styled>Styled</Styled>
+      <Dynamic />
     </Box>
   );
 }

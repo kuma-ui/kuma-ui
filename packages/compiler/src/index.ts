@@ -22,7 +22,27 @@ export const compileSync = ({ code, id, wasm }: CompileArg) => {
   };
 
   if (wasm) {
-    const { source_code, ...rest } = transformSync(code) as WasmResult;
+    const extension = (() => {
+      console.log("id", id);
+      const ext = id.split(".").pop();
+      if (!ext) return "tsx";
+      switch (ext) {
+        case "ts":
+          return "ts";
+        case "tsx":
+          return "tsx";
+        case "js":
+          return "js";
+        case "jsx":
+          return "jsx";
+        default:
+          return "tsx";
+      }
+    })();
+    const { source_code, ...rest } = transformSync(
+      code,
+      extension,
+    ) as WasmResult;
     if (!source_code || !source_code) return;
     result.code = source_code || "";
     result.bindings = rest;
