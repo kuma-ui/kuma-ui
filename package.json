@@ -61,7 +61,8 @@
     "tsup": "^6.7.0",
     "turbo": "^1.9.3",
     "typescript": "^5.0.4",
-    "vitest": "^0.31.4"
+    "vitest": "^0.31.4",
+    "wasm-pack": "^0.12.1"
   },
   "engines": {
     "pnpm": ">=8"

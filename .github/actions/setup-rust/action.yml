@@ -14,7 +14,3 @@ runs:
     - name: Install cargo tools
       run: cargo install cargo-udeps --locked
       shell: bash
-
-    - name: install wasm-pack
-      run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-      shell: bash
