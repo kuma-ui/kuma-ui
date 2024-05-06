@@ -11,7 +11,8 @@ type PluginOptions = {
   wasm?: boolean;
 };
 
-export default function kumaUI({ wasm }: PluginOptions): Plugin {
+export default function kumaUI(options?: PluginOptions): Plugin {
+  const wasm = options?.wasm ?? false;
   let mode: "build" | "serve";
 
   const dir = readdirSync(".");

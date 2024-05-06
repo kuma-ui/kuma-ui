@@ -1,3 +1,4 @@
+use std::borrow::Borrow;
 use std::collections::HashMap;
 use std::rc::Rc;
 
@@ -6,6 +7,7 @@ use oxc_ast::ast::*;
 use oxc_ast::AstBuilder;
 use oxc_ast::VisitMut;
 use oxc_span::{Atom, SPAN};
+use web_sys::console;
 
 mod helpers;
 
@@ -32,8 +34,8 @@ impl<'a> Transform<'a> {
         let program = self.collect_import_bindings(program);
         let program = self.import_box(program);
 
-        ReplaceKWithBox::new(self.imports.clone(), AstBuilder::new(self.allocator))
-            .visit_program(program);
+        let mut replace_k_with_box = ReplaceKWithBox::new(self.imports.clone(), self.allocator);
+        replace_k_with_box.visit_program(program);
 
         (program, self.imports.clone())
     }
@@ -156,6 +158,8 @@ impl<'a> Transform<'a> {
 
             let import_statement = Statement::ModuleDeclaration(self.ast.alloc(module_declaration));
 
+            self.imports.insert("Box".to_string(), "__Box".to_string());
+
             program.body.insert(0, import_statement);
         }
 
@@ -169,8 +173,58 @@ pub struct ReplaceKWithBox<'a> {
 }
 
 impl<'a> ReplaceKWithBox<'a> {
-    pub fn new(imports: HashMap<String, String>, ast: AstBuilder<'a>) -> Self {
-        Self { imports, ast }
+    pub fn new(imports: HashMap<String, String>, allocator: &'a Allocator) -> Self {
+        Self {
+            imports,
+            ast: AstBuilder::new(allocator),
+        }
+    }
+
+    pub fn process_element(
+        &mut self,
+        elem: &mut JSXElement<'a>,
+        k_alias: &str,
+        box_local_name: &str,
+    ) {
+        if let JSXElementName::MemberExpression(member_expr) = &elem.opening_element.name {
+            if let JSXMemberExpressionObject::Identifier(ident) = &member_expr.object {
+                let html_tag = member_expr.property.name.as_str();
+                let html_tag: &'a str = unsafe { std::mem::transmute(html_tag) }; // FIXME: Remove unsafe transmute
+                if ident.name == k_alias {
+                    self.transform_element(elem, box_local_name, &html_tag);
+                }
+            }
+        }
+    }
+
+    pub fn transform_element(
+        &mut self,
+        elem: &mut JSXElement<'a>,
+        box_local_name: &str,
+        html_tag: &'a str,
+    ) {
+        let as_attribute = helpers::create_as_attribute(&self.ast, html_tag);
+        let kuma_attribute = helpers::create_kuma_default_attr(&self.ast);
+        elem.opening_element.attributes.insert(0, kuma_attribute);
+        elem.opening_element.attributes.insert(0, as_attribute);
+
+        let box_name = if box_local_name == "Box" {
+            "Box"
+        } else {
+            "__Box"
+        };
+
+        elem.opening_element.name = JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
+            span: SPAN,
+            name: Atom::from(box_name),
+        }));
+
+        if let Some(closing_element) = &mut elem.closing_element {
+            closing_element.name = JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
+                span: SPAN,
+                name: Atom::from(box_name),
+            }));
+        }
     }
 }
 
@@ -181,76 +235,10 @@ impl<'a> VisitMut<'a> for ReplaceKWithBox<'a> {
      * styled components, e.g. `<k.div>` is transformed to `<Box as="div">`.
      */
     fn visit_jsx_element(&mut self, elem: &mut JSXElement<'a>) {
-        let box_local_name = self.imports.get("Box");
-        let k_alias = self.imports.get("k");
-
-        if let (Some(box_local_name), Some(k_alias)) = (box_local_name, k_alias) {
-            let element_name =
-                if let JSXElementName::MemberExpression(name) = &elem.opening_element.name {
-                    if let JSXMemberExpressionObject::Identifier(k) = &name.object {
-                        if k.name == k_alias {
-                            Some(name.property.name.clone())
-                        } else {
-                            None
-                        }
-                    } else {
-                        None
-                    }
-                } else {
-                    None
-                };
-
-            if let Some(element_name) = element_name {
-                let jsx_identifier = JSXIdentifier {
-                    span: SPAN,
-                    name: Atom::from(box_local_name.as_str()),
-                };
-
-                elem.opening_element.name =
-                    JSXElementName::Identifier(self.ast.alloc(jsx_identifier));
-
-                let as_attr = JSXAttributeItem::Attribute(self.ast.alloc(JSXAttribute {
-                    span: SPAN,
-                    name: JSXAttributeName::Identifier(self.ast.alloc(JSXIdentifier {
-                        span: SPAN,
-                        name: Atom::from("as"),
-                    })),
-                    value: Some(JSXAttributeValue::StringLiteral(self.ast.alloc(
-                        StringLiteral {
-                            span: SPAN,
-                            value: element_name,
-                        },
-                    ))),
-                }));
-
-                let is_kuma_default_attr =
-                    JSXAttributeItem::Attribute(self.ast.alloc(JSXAttribute {
-                        span: SPAN,
-                        name: JSXAttributeName::Identifier(self.ast.alloc(JSXIdentifier {
-                            span: SPAN,
-                            name: Atom::from("as"),
-                        })),
-                        value: Some(JSXAttributeValue::ExpressionContainer(self.ast.alloc(
-                            JSXExpressionContainer {
-                                span: SPAN,
-                                expression: JSXExpression::Expression(Expression::BooleanLiteral(
-                                    self.ast.alloc(BooleanLiteral::new(SPAN, true)),
-                                )),
-                            },
-                        ))),
-                    }));
-
-                if let Some(close_elem) = &mut elem.closing_element {
-                    let jsx_identifier = JSXIdentifier {
-                        span: SPAN,
-                        name: Atom::from(box_local_name.as_str()),
-                    };
-
-                    close_elem.name = JSXElementName::Identifier(self.ast.alloc(jsx_identifier));
-                }
-
-                elem.opening_element.attributes.push(as_attr);
-                elem.opening_element.attributes.push(is_kuma_default_attr);
+        if let Some(k_alias) = self.imports.get("k").cloned() {
+            if let Some(box_local_name) = self.imports.get("Box") {
+                let k_alias = k_alias.clone();
+                self.process_element(elem, &k_alias, &box_local_name.clone());
             }
         }
     }
@@ -324,5 +312,25 @@ mod tests {
             .build(program)
             .source_text;
         assert_eq!(source, "import {Box as __Box} from '@kuma-ui/core';");
+    }
+
+    #[test]
+    fn test_replace_k_with_box_in_jsx() {
+        let allocator = Allocator::default();
+        let source_text = "
+            import {k} from '@kuma-ui/core';
+            export const App = () => {
+                return <k.div>hello</k.div>;
+            }
+        "
+        .to_string();
+        let extension = "tsx".to_string();
+        let program = js_to_program(&allocator, &source_text, &extension);
+        let (program, _) = Transform::new(&allocator).transform(program);
+
+        let source = Codegen::<true>::new("", &source_text, Default::default())
+            .build(program)
+            .source_text;
+        assert_eq!(source, "import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';export const App=()=>{return <__Box as='div' IS_KUMA_DEFAULT={true}>hello</__Box>};");
     }
 }

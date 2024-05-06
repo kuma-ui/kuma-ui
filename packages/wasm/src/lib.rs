@@ -35,12 +35,6 @@ pub fn js_to_program<'a>(
     allocator.alloc(ret.program)
 }
 
-#[wasm_bindgen]
-pub struct TransformResult {
-    code: String,
-    imports: String,
-}
-
 #[wasm_bindgen(js_name = transformSync)]
 pub fn transform_sync(source_text: String, extension: String) -> JsValue {
     let allocator = Allocator::default();

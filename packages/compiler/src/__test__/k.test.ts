@@ -4,7 +4,7 @@ import { getExpectSnapshotSync } from "./testUtils";
 import { theme, sheet } from "@kuma-ui/sheet";
 
 describe("k", () => {
-  describe.each([{ wasm: false }, { wasm: false }])(
+  describe.each([{ wasm: false }, { wasm: true }])(
     "Snapshot tests with wasm: %p",
     ({ wasm }) => {
       test("basic usage should match snapshot", () => {
