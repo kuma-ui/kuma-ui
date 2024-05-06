@@ -287,11 +287,12 @@ mod tests {
     #[test]
     fn test_ensure_react_import() {
         let allocator = Allocator::default();
-        let souce_text = "".to_string();
-        let program = js_to_program(&allocator, &souce_text);
+        let source_text = "".to_string();
+        let extension = "tsx".to_string();
+        let program = js_to_program(&allocator, &source_text, &extension);
         let program = Transform::new(&allocator).ensure_react_import(program);
 
-        let source = Codegen::<true>::new("", &souce_text, Default::default())
+        let source = Codegen::<true>::new("", &source_text, Default::default())
             .build(program)
             .source_text;
         assert_eq!(source, "import __KUMA_REACT__ from 'react';")
@@ -303,7 +304,8 @@ mod tests {
         let source_text =
             "import { Button,  Box as KumaBox } from '@kuma-ui/core'; import { css } from '@kuma-ui/core'"
                 .to_string();
-        let program = js_to_program(&allocator, &source_text);
+        let extension = "tsx".to_string();
+        let program = js_to_program(&allocator, &source_text, &extension);
         let imports = Transform::new(&allocator).transform(program);
 
         assert_eq!(imports.get("Button"), Some(&"Button".to_string()));
@@ -315,7 +317,8 @@ mod tests {
     fn test_import_box() {
         let allocator = Allocator::default();
         let source_text = "".to_string();
-        let program = js_to_program(&allocator, &source_text);
+        let extension = "tsx".to_string();
+        let program = js_to_program(&allocator, &source_text, &extension);
         let program = Transform::new(&allocator).import_box(program);
 
         let source = Codegen::<true>::new("", &source_text, Default::default())
@@ -334,7 +337,8 @@ mod tests {
             }
         "
         .to_string();
-        let program = js_to_program(&allocator, &source_text);
+        let extension = "tsx".to_string();
+        let program = js_to_program(&allocator, &source_text, &extension);
         let program = Transform::new(&allocator).import_box(program);
 
         let source = Codegen::<true>::new("", &source_text, Default::default())
