@@ -10,26 +10,32 @@ use oxc_span::{Atom, SPAN};
 mod helpers;
 
 pub struct Transform<'a> {
-    pub ast: Rc<AstBuilder<'a>>,
-    pub imports: Rc<HashMap<String, String>>,
+    pub allocator: &'a Allocator,
+    pub ast: AstBuilder<'a>,
+    pub imports: HashMap<String, String>,
 }
 
 impl<'a> Transform<'a> {
     pub fn new(allocator: &'a Allocator) -> Self {
         Self {
-            ast: Rc::new(AstBuilder::new(allocator)),
-            imports: Rc::new(std::collections::HashMap::new()),
+            allocator,
+            ast: AstBuilder::new(allocator),
+            imports: std::collections::HashMap::new(),
         }
     }
 
-    pub fn transform(&mut self, program: &'a mut Program<'a>) -> HashMap<String, String> {
-        self.ensure_react_import(program);
-        self.collect_import_bindings(program);
-        self.import_box(program);
+    pub fn transform(
+        &mut self,
+        program: &'a mut Program<'a>,
+    ) -> (&'a mut Program<'a>, HashMap<String, String>) {
+        let program = self.ensure_react_import(program);
+        let program = self.collect_import_bindings(program);
+        let program = self.import_box(program);
 
-        ReplaceKWithBox::new(Rc::clone(&self.imports), Rc::clone(&self.ast)).visit_program(program);
+        ReplaceKWithBox::new(self.imports.clone(), AstBuilder::new(self.allocator))
+            .visit_program(program);
 
-        (*self.imports).clone()
+        (program, self.imports.clone())
     }
 
     /**
@@ -155,52 +161,25 @@ impl<'a> Transform<'a> {
 
         program
     }
-
-    // /**
-    //  * Processes the JSXElement nodes in the AST and replaces the `k` syntax from `@kuma-ui/core`
-    //  * with corresponding `Box` component. This allows usage of the `k` syntax as a shorthand for creating
-    //  * styled components, e.g. `<k.div>` is transformed to `<Box as="div">`.
-    //  */
-    // pub fn replace_k_with_box(&mut self, program: &'a mut Program<'a>) -> &'a mut Program<'a> {
-    //     let k_alias = self.imports.get("k").cloned().unwrap_or("k".to_string());
-
-    //     for node in &mut program.body.iter_mut() {
-    //         if let Statement::ReturnStatement(return_statement) = node {
-    //             if let Some(argument) = &return_statement.argument {
-    //                 if let Expression::JSXElement(jsx_element) = &argument {
-    //                     if matches_opening_element(&jsx_element.opening_element.name, &k_alias) {
-    //                         // transform_opening_element_with_box(
-    //                         //     &mut jsx_element.opening_element,
-    //                         //     &self.imports,
-    //                         //     &self.ast,
-    //                         // );
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-
-    //     program
-    // }
 }
 
 pub struct ReplaceKWithBox<'a> {
-    imports: Rc<HashMap<String, String>>,
-    ast: Rc<AstBuilder<'a>>,
+    imports: HashMap<String, String>,
+    ast: AstBuilder<'a>,
 }
 
 impl<'a> ReplaceKWithBox<'a> {
-    pub fn new(imports: Rc<HashMap<String, String>>, ast: Rc<AstBuilder<'a>>) -> Self {
+    pub fn new(imports: HashMap<String, String>, ast: AstBuilder<'a>) -> Self {
         Self { imports, ast }
     }
 }
 
-/**
- * Processes the JSXElement nodes in the AST and replaces the `k` syntax from `@kuma-ui/core`
- * with corresponding `Box` component. This allows usage of the `k` syntax as a shorthand for creating
- * styled components, e.g. `<k.div>` is transformed to `<Box as="div">`.
- */
 impl<'a> VisitMut<'a> for ReplaceKWithBox<'a> {
+    /**
+     * Processes the JSXElement nodes in the AST and replaces the `k` syntax from `@kuma-ui/core`
+     * with corresponding `Box` component. This allows usage of the `k` syntax as a shorthand for creating
+     * styled components, e.g. `<k.div>` is transformed to `<Box as="div">`.
+     */
     fn visit_jsx_element(&mut self, elem: &mut JSXElement<'a>) {
         let box_local_name = self.imports.get("Box");
         let k_alias = self.imports.get("k");
@@ -306,7 +285,7 @@ mod tests {
                 .to_string();
         let extension = "tsx".to_string();
         let program = js_to_program(&allocator, &source_text, &extension);
-        let imports = Transform::new(&allocator).transform(program);
+        let (program, imports) = Transform::new(&allocator).transform(program);
 
         assert_eq!(imports.get("Button"), Some(&"Button".to_string()));
         assert_eq!(imports.get("Box"), Some(&"KumaBox".to_string()));
