@@ -37,7 +37,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.4",
-    "@kuma-ui/compiler": "workspace:^",
     "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
     "@kuma-ui/system": "workspace:^"

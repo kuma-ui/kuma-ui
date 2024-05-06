@@ -241,9 +241,6 @@ importers:
       '@babel/core':
         specifier: ^7.21.4
         version: 7.21.4
-      '@kuma-ui/compiler':
-        specifier: workspace:^
-        version: link:../compiler
       '@kuma-ui/core':
         specifier: workspace:^
         version: link:../core
@@ -284,6 +281,12 @@ importers:
 
   packages/compiler:
     dependencies:
+      '@babel/core':
+        specifier: ^7.21.4
+        version: 7.21.4
+      '@kuma-ui/babel-plugin':
+        specifier: workspace:^
+        version: link:../babel-plugin
       '@kuma-ui/core':
         specifier: workspace:^
         version: link:../core
@@ -300,6 +303,9 @@ importers:
         specifier: ^19.0.0
         version: 19.0.0
     devDependencies:
+      '@types/babel__core':
+        specifier: ^7.20.0
+        version: 7.20.0
       '@types/react':
         specifier: ^18.2.15
         version: 18.2.15
@@ -433,9 +439,9 @@ importers:
 
   packages/vite:
     dependencies:
-      '@kuma-ui/babel-plugin':
+      '@kuma-ui/compiler':
         specifier: workspace:^
-        version: link:../babel-plugin
+        version: link:../compiler
       '@kuma-ui/sheet':
         specifier: workspace:^
         version: link:../sheet
@@ -7259,7 +7265,7 @@ snapshots:
       '@babel/parser': 7.21.8
       '@babel/template': 7.20.7
       '@babel/traverse': 7.21.5
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
       convert-source-map: 1.9.0
       debug: 4.3.4
       gensync: 1.0.0-beta.2
@@ -8815,12 +8821,12 @@ snapshots:
 
   '@types/babel__generator@7.6.4':
     dependencies:
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
 
   '@types/babel__template@7.4.1':
     dependencies:
       '@babel/parser': 7.21.8
-      '@babel/types': 7.21.4
+      '@babel/types': 7.21.5
 
   '@types/babel__traverse@7.18.5':
     dependencies:

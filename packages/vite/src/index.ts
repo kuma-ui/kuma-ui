@@ -1,4 +1,4 @@
-import { transform } from "@kuma-ui/babel-plugin";
+import { compileSync } from "@kuma-ui/compiler";
 import { Plugin } from "vite";
 import path from "path";
 import { buildSync } from "esbuild";
@@ -62,9 +62,9 @@ export default function kumaUI(): Plugin {
       if (/node_modules/.test(id)) return;
       if (!code.includes("@kuma-ui/core")) return;
 
-      const result = transform(code, id);
+      const result = compileSync({ code, id, wasm: true });
       if (!result?.code) return;
-      const css = (result.metadata as unknown as { css: string }).css || "";
+      const css = result.css;
       const cssPath = path.normalize(id.replace(/\.[jt]sx?$/, ""));
       const url = `${virtualModuleId}/${generateHash(
         path.dirname(cssPath),

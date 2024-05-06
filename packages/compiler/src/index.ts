@@ -1,18 +1,52 @@
-export { compile } from "./compile";
+import { transformSync as babelTransformSync } from "@babel/core";
+import plugin from "@kuma-ui/babel-plugin";
+import { compile } from "./compile";
+import { sheet } from "@kuma-ui/sheet";
 import { transformSync } from "@kuma-ui/wasm";
 
-const code = `
-import { styled, Button as B } from "@kuma-ui/core";
-`;
-
-type Result = {
+type WasmResult = {
   source_code: string;
   [key: string]: string;
 };
 
-const result: Result = transformSync(code);
+type CompileArg = {
+  code: string;
+  id: string;
+  wasm?: boolean;
+};
 
-const { source_code, ...rest } = result;
+export const compileSync = ({ code, id, wasm }: CompileArg) => {
+  const result: { code: string; bindings: Record<string, string> } = {
+    code: "",
+    bindings: {},
+  };
 
-console.log(source_code);
-console.log(rest);
+  if (wasm) {
+    const { source_code, ...rest } = transformSync(code) as WasmResult;
+    if (!source_code || !source_code) return;
+    result.code = source_code || "";
+    result.bindings = rest;
+  } else {
+    const transformed = babelTransformSync(code, {
+      filename: id,
+      sourceMaps: true,
+      plugins: [plugin],
+    });
+    if (!transformed || !transformed.code) return;
+    const bindings = (
+      transformed.metadata as unknown as { bindings: Record<string, string> }
+    ).bindings;
+    result.code = transformed.code || "";
+    result.bindings = bindings;
+  }
+
+  const compiled = compile(result.code, id, result.bindings);
+
+  const compiledResult = {
+    code: compiled.code,
+    css: sheet.getCSS() + compiled.css,
+  };
+
+  sheet.reset();
+  return compiledResult;
+};

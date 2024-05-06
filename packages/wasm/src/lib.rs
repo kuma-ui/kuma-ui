@@ -17,7 +17,8 @@ extern crate serde_json;
 pub fn js_to_program<'a>(allocator: &'a Allocator, source_text: &'a String) -> &'a mut Program<'a> {
     let source_type = SourceType::default()
         .with_module(true)
-        .with_typescript(true);
+        .with_typescript(true)
+        .with_jsx(true);
 
     let ret = Parser::new(allocator, source_text, source_type).parse();
     if !ret.errors.is_empty() {
@@ -42,9 +43,6 @@ pub fn transform_sync(source_text: String) -> JsValue {
 
     let mut imports = imports.clone();
 
-    // let imports = serde_json::to_string(&imports).unwrap();
-    // let imports = wasm_bindgen::JsValue::from_serde(&imports).unwrap();
-
     let source = Codegen::<true>::new("", &source_text, CodegenOptions::default())
         .build(program)
         .source_text;
@@ -52,9 +50,4 @@ pub fn transform_sync(source_text: String) -> JsValue {
     imports.insert("source_code".to_string(), source);
 
     JsValue::from_serde(&imports).unwrap()
-
-    // TransformResult {
-    //     code: source.clone(),
-    //     imports: imports.clone(),
-    // }
 }
