@@ -23,7 +23,6 @@ export const compileSync = ({ code, id, wasm }: CompileArg) => {
 
   if (wasm) {
     const extension = (() => {
-      console.log("id", id);
       const ext = id.split(".").pop();
       if (!ext) return "tsx";
       switch (ext) {
