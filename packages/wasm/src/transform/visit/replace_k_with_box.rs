@@ -87,22 +87,24 @@ impl<'a, 'b> VisitMut<'a> for ReplaceKWithBox<'a, 'b> {
                     }
                 }
 
-                for attr in attrs {
-                    elem.opening_element.attributes.push(attr);
-                }
+                if !attrs.is_empty() {
+                    for attr in attrs {
+                        elem.opening_element.attributes.push(attr);
+                    }
 
-                elem.opening_element.name =
-                    JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
-                        span: SPAN,
-                        name: self.ast.new_atom(box_local_name),
-                    }));
-
-                if let Some(closing_element) = &mut elem.closing_element {
-                    closing_element.name =
+                    elem.opening_element.name =
                         JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
                             span: SPAN,
                             name: self.ast.new_atom(box_local_name),
                         }));
+
+                    if let Some(closing_element) = &mut elem.closing_element {
+                        closing_element.name =
+                            JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
+                                span: SPAN,
+                                name: self.ast.new_atom(box_local_name),
+                            }));
+                    }
                 }
             }
         }

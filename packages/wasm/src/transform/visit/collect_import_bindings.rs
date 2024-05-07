@@ -23,7 +23,7 @@ impl<'a, 'b> CollectImportBindings<'a, 'b> {
 
 impl<'a> Visit<'a> for CollectImportBindings<'a, '_> {
     fn visit_import_declaration(&mut self, decl: &ImportDeclaration<'a>) {
-        if decl.source.value == *"@kuma-ui/core" {
+        if decl.source.value == "@kuma-ui/core" {
             if let Some(specifiers) = &decl.specifiers {
                 for specifier in specifiers.iter() {
                     if let ImportDeclarationSpecifier::ImportSpecifier(specifier) = specifier {
