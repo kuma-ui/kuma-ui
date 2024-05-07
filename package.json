@@ -41,7 +41,8 @@
     "format": "prettier --check './packages/**/*.{js,ts,jsx,tsx}'",
     "format:fix": "prettier --write './packages/**/*.{js,ts,jsx,tsx}'",
     "codesandbox:insall": "npm i -g pnpm@8.5.1 && pnpm i --no-frozen-lockfile --force",
-    "codesandbox:build": "pnpm build --filter=@kuma-ui/*"
+    "codesandbox:build": "pnpm build --filter=@kuma-ui/*",
+    "setup-rust": "sh ./setup-rust.sh"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
