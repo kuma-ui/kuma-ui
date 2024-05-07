@@ -1,55 +1,54 @@
+// #[macro_use]
+// extern crate serde_json;
+
 use oxc_allocator::Allocator;
 use oxc_codegen::{Codegen, CodegenOptions};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use tsify::JsValueSerdeExt;
 use wasm_bindgen::prelude::*;
 
-use oxc_ast::ast::Program;
-use oxc_parser::Parser;
-use oxc_span::SourceType;
-use web_sys::console;
-
+mod js_source;
 mod transform;
+
+use js_source::JsSource;
 use transform::Transform;
 
-#[macro_use]
-extern crate serde_json;
-
-pub fn js_to_program<'a>(
-    allocator: &'a Allocator,
-    source_text: &'a String,
-    extension: &'a String,
-) -> &'a mut Program<'a> {
-    let with_typescript = extension == "tsx" || extension == "ts";
-    let with_jsx = extension == "tsx" || extension == "jsx";
-
-    let source_type = SourceType::default()
-        .with_module(true)
-        .with_typescript(with_typescript)
-        .with_jsx(with_jsx);
-
-    let ret = Parser::new(allocator, source_text, source_type).parse();
-    if !ret.errors.is_empty() {
-        console::error_1(&format!("Parsing errors: {:?}", ret.errors).into());
-    }
-
-    allocator.alloc(ret.program)
+#[wasm_bindgen(typescript_custom_section)]
+const TYPES: &'static str = r#"
+export type Result = {
+    code: string;
+    imports: Record<string, string>;
 }
 
-#[wasm_bindgen(js_name = transformSync)]
-pub fn transform_sync(source_text: String, extension: String) -> JsValue {
+export function transformSync(code: string, extension: string): Result;
+"#;
+
+#[derive(Deserialize, Serialize)]
+pub struct Output {
+    pub code: String,
+    pub imports: HashMap<String, String>,
+}
+
+#[wasm_bindgen(js_name = transformSync, skip_typescript)]
+pub fn transform_sync(source_text: String, extension: String) -> Result<JsValue, JsValue> {
     let allocator = Allocator::default();
 
-    let program = js_to_program(&allocator, &source_text, &extension);
+    let program = JsSource::new(&source_text, extension).to_program(&allocator);
+    let mut transform = Transform::new(&allocator);
 
-    let (program, imports) = Transform::new(&allocator).transform(program);
+    transform.transform(program);
 
-    let mut imports = imports.clone();
+    let imports = transform.get_imports();
 
-    let source = Codegen::<true>::new("", &source_text, CodegenOptions::default())
+    let source_text = Codegen::<true>::new("", &source_text, CodegenOptions::default())
         .build(program)
         .source_text;
 
-    imports.insert("source_code".to_string(), source);
+    let output = Output {
+        code: source_text,
+        imports: imports.clone(),
+    };
 
-    JsValue::from_serde(&imports).unwrap()
+    JsValue::from_serde(&output).map_err(|err| JsValue::from_str(&format!("{}", err)))
 }

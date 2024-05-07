@@ -103,9 +103,9 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > basic usage should ma
 
 exports[`k > Snapshot tests with wasm: %p { wasm: true } > should match snapshot when k is used more than once 1`] = `
 "
-  .🐻-4229161508 { font-size: 24px; }
+  .🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-4229161508\\"}><k.div fontSize={24}></k.div></div>}
+  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>}
   "
 `;
 

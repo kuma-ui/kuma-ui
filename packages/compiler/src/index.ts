@@ -1,8 +1,8 @@
 import { transformSync as babelTransformSync } from "@babel/core";
 import plugin from "@kuma-ui/babel-plugin";
-import { compile } from "./compile";
 import { sheet } from "@kuma-ui/sheet";
 import { transformSync } from "@kuma-ui/wasm";
+import { compile } from "./compile";
 
 type WasmResult = {
   source_code: string;
@@ -38,13 +38,11 @@ export const compileSync = ({ code, id, wasm }: CompileArg) => {
           return "tsx";
       }
     })();
-    const { source_code, ...rest } = transformSync(
-      code,
-      extension,
-    ) as WasmResult;
-    if (!source_code || !source_code) return;
+
+    const { code: source_code, imports } = transformSync(code, extension);
+
     result.code = source_code || "";
-    result.bindings = rest;
+    result.bindings = imports;
   } else {
     const transformed = babelTransformSync(code, {
       filename: id,
