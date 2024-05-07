@@ -39,9 +39,7 @@
     "lint:fix": "eslint --fix './packages/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0",
     "lint:interactive": "eslint-interactive './packages/**/*.{js,ts,jsx,tsx}'",
     "format": "prettier --check './packages/**/*.{js,ts,jsx,tsx}'",
-    "format:fix": "prettier --write './packages/**/*.{js,ts,jsx,tsx}'",
-    "codesandbox:insall": "npm i -g pnpm@8.5.1 --force && pnpm i --no-frozen-lockfile",
-    "codesandbox:build": "bash setup-codesandbox.sh && pnpm build --filter=@kuma-ui/*"
+    "format:fix": "prettier --write './packages/**/*.{js,ts,jsx,tsx}'"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
