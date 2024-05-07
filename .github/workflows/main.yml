@@ -43,8 +43,6 @@ jobs:
         with:
           node_version: 18
 
-      # - uses: ./.github/actions/setup-rust
-
       - name: Build packages
         run: pnpm build
 
@@ -66,5 +64,4 @@ jobs:
           node_version: 18
 
       - name: Run changeset status
-        if: github.ref == 'refs/heads/main'
         run: pnpm changeset status --since origin/main
