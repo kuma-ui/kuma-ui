@@ -82,3 +82,30 @@ impl<'a> VisitMut<'a> for ImportBox<'a, '_> {
         walk_program_mut(self, program)
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::js_source::JsSource;
+    use oxc_allocator::Allocator;
+    use oxc_codegen::Codegen;
+
+    #[test]
+    fn test_ensure_react_import() {
+        let allocator = Allocator::default();
+        let mut imports = HashMap::new();
+        let mut import_box = ImportBox::new(&allocator, &mut imports);
+
+        let source_text = "".to_string();
+        let extension = "tsx".to_string();
+
+        let program = JsSource::new(&source_text, extension).to_program(&allocator);
+
+        import_box.visit_program(program);
+
+        let source = Codegen::<true>::new("", &source_text, Default::default())
+            .build(program)
+            .source_text;
+        assert_eq!(source, "import {Box as __Box} from '@kuma-ui/core';")
+    }
+}

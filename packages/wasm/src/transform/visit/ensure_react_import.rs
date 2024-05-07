@@ -63,3 +63,29 @@ impl<'a> VisitMut<'a> for EnsureReactImport<'a> {
         walk_program_mut(self, program);
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::js_source::JsSource;
+    use oxc_allocator::Allocator;
+    use oxc_codegen::Codegen;
+
+    #[test]
+    fn test_ensure_react_import() {
+        let allocator = Allocator::default();
+        let mut ensure_react_import = EnsureReactImport::new(&allocator);
+
+        let source_text = "".to_string();
+        let extension = "tsx".to_string();
+
+        let program = JsSource::new(&source_text, extension).to_program(&allocator);
+
+        ensure_react_import.visit_program(program);
+
+        let source = Codegen::<true>::new("", &source_text, Default::default())
+            .build(program)
+            .source_text;
+        assert_eq!(source, "import __KUMA_REACT__ from 'react';")
+    }
+}

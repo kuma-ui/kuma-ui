@@ -41,3 +41,30 @@ impl<'a> Visit<'a> for CollectImportBindings<'a, '_> {
         walk_import_declaration(self, decl);
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::js_source::JsSource;
+    use oxc_allocator::Allocator;
+
+    #[test]
+    fn test_ensure_react_import() {
+        let allocator = Allocator::default();
+        let mut imports = HashMap::new();
+        let mut collect_import_bindings = CollectImportBindings::new(&allocator, &mut imports);
+
+        let source_text =
+            "import { Button,  Box as KumaBox } from '@kuma-ui/core'; import { css } from '@kuma-ui/core'"
+                .to_string();
+        let extension = "tsx".to_string();
+
+        let program = JsSource::new(&source_text, extension).to_program(&allocator);
+
+        collect_import_bindings.visit_program(program);
+
+        assert_eq!(imports.get("Button"), Some(&"Button".to_string()));
+        assert_eq!(imports.get("Box"), Some(&"KumaBox".to_string()));
+        assert_eq!(imports.get("css"), Some(&"css".to_string()));
+    }
+}

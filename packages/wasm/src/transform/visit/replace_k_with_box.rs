@@ -112,3 +112,37 @@ impl<'a, 'b> VisitMut<'a> for ReplaceKWithBox<'a, 'b> {
         walk_jsx_element_mut(self, elem);
     }
 }
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    use crate::js_source::JsSource;
+    use oxc_allocator::Allocator;
+    use oxc_codegen::Codegen;
+
+    #[test]
+    fn test_ensure_react_import() {
+        let allocator = Allocator::default();
+        let mut imports = HashMap::new();
+        imports.insert("k".to_string(), "k".to_string());
+        imports.insert("Box".to_string(), "Box".to_string());
+        let mut replace_k_with_box = ReplaceKWithBox::new(&allocator, &imports);
+
+        let source_text = "
+            import {k, Box} from '@kuma-ui/core';
+            export const App = () => {
+                return <k.div><k.span>hello</k.span></k.div>;
+            }
+        ";
+        let extension = "tsx".to_string();
+
+        let program = JsSource::new(source_text, extension).to_program(&allocator);
+
+        replace_k_with_box.visit_program(program);
+
+        let source = Codegen::<true>::new("", source_text, Default::default())
+            .build(program)
+            .source_text;
+        assert_eq!(source, "import {k,Box} from '@kuma-ui/core';export const App=()=>{return <Box as='div' IS_KUMA_DEFAULT={true}><Box as='span' IS_KUMA_DEFAULT={true}>hello</Box></Box>};")
+    }
+}

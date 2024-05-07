@@ -4,7 +4,6 @@ import { sheet } from "@kuma-ui/sheet";
 import { transformSync } from "@kuma-ui/wasm";
 import { compile } from "./compile";
 
-
 type CompileArg = {
   code: string;
   id: string;
