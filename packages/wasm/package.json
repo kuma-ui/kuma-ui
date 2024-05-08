@@ -1,20 +1,33 @@
 {
   "name": "@kuma-ui/wasm",
   "version": "1.0.1",
-  "description": "",
+  "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuma-ui/kuma-ui.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "css-in-js",
+    "zero-runtime",
+    "front-end",
+    "design-system",
+    "styled-components"
+  ],
+  "files": [
+    "pkg"
+  ],
   "type": "module",
   "exports": {
     ".": {
       "import": "./pkg/node/index.js",
       "require": "./pkg/node/index.js",
-      "types": "./pkg/esm/index.d.ts"
+      "types": "./pkg/node/index.d.ts"
     }
   },
   "scripts": {
     "build": "run-p build:*",
     "build:wasm": "wasm-pack build --target web --out-dir ./pkg/esm --out-name index && wasm-pack build --target nodejs --out-dir ./pkg/node --out-name index && node script.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT"
+  }
 }
