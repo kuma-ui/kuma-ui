@@ -10,6 +10,9 @@ async function main() {
     "./pkg/node/package.json",
     JSON.stringify({ type: "commonjs" }),
   );
+
+  await fs.rm("./pkg/node/.gitignore", { force: true });
+  await fs.rm("./pkg/esm/.gitignore", { force: true });
 }
 
 await main();

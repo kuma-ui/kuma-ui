@@ -6,6 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/kuma-ui/kuma-ui.git"
   },
+  "license": "MIT",
   "keywords": [
     "react",
     "css-in-js",

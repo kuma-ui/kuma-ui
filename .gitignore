@@ -12,3 +12,4 @@ node_modules/
 .idea/
 packages/webpack-plugin/assets/kuma.css
 target
+pkg
