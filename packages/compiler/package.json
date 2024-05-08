@@ -1,6 +1,6 @@
 {
   "name": "@kuma-ui/compiler",
-  "version": "1.2.6",
+  "version": "1.3.0",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
