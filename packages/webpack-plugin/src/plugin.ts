@@ -23,6 +23,8 @@ export const CSS_PATH = (() => {
 type KumaWebpackOptions = {
   /** The destination to emit an actual CSS file. This is a temporary workaround to enable HMR in Client Component @see loader.ts */
   outputDir?: string;
+  /** Use Rust based WASM compiler instead of Babel */
+  wasm?: boolean;
 };
 
 class KumaUIWebpackPlugin {
@@ -32,9 +34,15 @@ class KumaUIWebpackPlugin {
   watchMode = false;
 
   private outputDir: string | undefined;
+  private wasm: boolean | undefined;
 
-  constructor(options: KumaWebpackOptions = {}) {
+  constructor(
+    options: KumaWebpackOptions = {
+      wasm: false,
+    },
+  ) {
     this.outputDir = options.outputDir;
+    this.wasm = options.wasm;
 
     const dir = readdirSync(".");
     dir.forEach((filePath) => {
@@ -82,7 +90,11 @@ class KumaUIWebpackPlugin {
         use: [
           {
             loader: _require.resolve("./loader.js"),
-            options: { plugin: this, outputDir: this.outputDir },
+            options: {
+              plugin: this,
+              outputDir: this.outputDir,
+              wasm: this.wasm,
+            },
           },
         ],
       },

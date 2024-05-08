@@ -67,6 +67,7 @@ const kumaUiConfig = (
       config.plugins?.push(
         new KumaUIWebpackPlugin({
           outputDir: kumaUiConfig?.outputDir,
+          wasm: kumaUiConfig?.wasm,
         }),
       );
       if (typeof nextConfig.webpack === "function") {

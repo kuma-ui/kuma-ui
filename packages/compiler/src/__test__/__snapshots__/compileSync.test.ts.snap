@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`compileSync > babel > using default props should match snapshot 1`] = `
+"
+  .🐻-399577506 { text-decoration: line-through;color: green;font-size: 16px; }
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { Text } from '@kuma-ui/core';
+function App() {
+  return <p className={\\"🐻-399577506\\"} />;
+}
+  "
+`;
+
+exports[`compileSync > babel > using default props with inline props should match snapshot 1`] = `
+"
+  .🐻-2811265315 { text-decoration: line-through;color: blue;font-size: 12px; }
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { Text } from '@kuma-ui/core';
+function App() {
+  return <p className={\\"🐻-2811265315\\"} />;
+}
+  "
+`;
+
+exports[`compileSync > wasm > using default props should match snapshot 1`] = `
+"
+  .🐻-399577506 { text-decoration: line-through;color: green;font-size: 16px; }
+  
+  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {Text} from '@kuma-ui/core';function App(){return <p className={\\"🐻-399577506\\"}/>}
+  "
+`;
+
+exports[`compileSync > wasm > using default props with inline props should match snapshot 1`] = `
+"
+  .🐻-2811265315 { text-decoration: line-through;color: blue;font-size: 12px; }
+  
+  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {Text} from '@kuma-ui/core';function App(){return <p className={\\"🐻-2811265315\\"}/>}
+  "
+`;

@@ -1,0 +1,16 @@
+name: Setup Rust
+description: "This is a composite GitHub Action that sets up Rust."
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Rust
+      uses: moonrepo/setup-rust@v1
+      with:
+        channel: "1.65.0"
+
+    - name: Install cargo tools
+      run: cargo install cargo-udeps --locked
+      shell: bash

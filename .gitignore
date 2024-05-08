@@ -11,3 +11,4 @@ node_modules/
 .env
 .idea/
 packages/webpack-plugin/assets/kuma.css
+target

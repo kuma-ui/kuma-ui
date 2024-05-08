@@ -6,7 +6,9 @@ import { Dynamic2 } from "./dynamic2";
 export default function Home() {
   return (
     <Box>
-      <Box color="yellow">hello</Box>
+      <Box color="red" fontSize={24}>
+        hello
+      </Box>
       <StyledFn />
       <StyledProperty />
       <StyledExtended />

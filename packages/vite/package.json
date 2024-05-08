@@ -33,9 +33,9 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@kuma-ui/babel-plugin": "workspace:^",
     "@kuma-ui/system": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
+    "@kuma-ui/compiler": "workspace:^",
     "esbuild": "^0.18.0",
     "eval": "^0.1.8"
   },
