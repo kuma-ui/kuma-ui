@@ -1,5 +1,16 @@
 # @kuma-ui/babel-plugin
 
+## 1.2.1
+
+### Patch Changes
+
+- [#412](https://github.com/kuma-ui/kuma-ui/pull/412) [`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - fix wasm package
+
+- Updated dependencies [[`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8)]:
+  - @kuma-ui/system@1.7.4
+  - @kuma-ui/sheet@1.3.1
+  - @kuma-ui/core@1.5.7
+
 ## 1.2.0
 
 ### Minor Changes
