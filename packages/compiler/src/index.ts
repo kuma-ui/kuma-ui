@@ -1,7 +1,7 @@
 import { transformSync as babelTransformSync } from "@babel/core";
 import plugin from "@kuma-ui/babel-plugin";
 import { sheet } from "@kuma-ui/sheet";
-import { transformSync } from "@kuma-ui/wasm";
+import { transformSync, compileSync as wasmCompileSync } from "@kuma-ui/wasm";
 import { compile } from "./compile";
 
 type CompileArg = {
@@ -52,6 +52,10 @@ export const compileSync = ({ code, id, wasm }: CompileArg) => {
     result.bindings = bindings;
   }
 
+  // const compiled = wasm
+  //   ? wasmCompileSync(result.code, id, result.bindings)
+  //   : compile(result.code, id, result.bindings);
+
   const compiled = compile(result.code, id, result.bindings);
 
   const compiledResult = {
@@ -62,3 +66,10 @@ export const compileSync = ({ code, id, wasm }: CompileArg) => {
   sheet.reset();
   return compiledResult;
 };
+
+console.log(
+  wasmCompileSync(``, "index.tsx", {
+    Box: "Box",
+    css: "css",
+  }),
+);

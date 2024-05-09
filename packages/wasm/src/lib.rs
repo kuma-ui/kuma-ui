@@ -7,10 +7,13 @@ use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use tsify::JsValueSerdeExt;
 use wasm_bindgen::prelude::*;
+use web_sys::console;
 
+mod compile;
 mod js_source;
 mod transform;
 
+use compile::Compile;
 use js_source::JsSource;
 use transform::Transform;
 
@@ -48,6 +51,40 @@ pub fn transform_sync(source_text: String, extension: String) -> Result<JsValue,
     let output = Output {
         code: source_text,
         imports: imports.clone(),
+    };
+
+    JsValue::from_serde(&output).map_err(|err| JsValue::from_str(&format!("{}", err)))
+}
+
+#[wasm_bindgen(typescript_custom_section)]
+const TYPES: &'static str = r#"
+export type ComipleResult = {
+    code: string;
+    css: string;
+}
+
+export function compileSync(code: string, id: string, bindings: Record<string, string>): ComipleResult;
+"#;
+
+#[derive(Deserialize, Serialize)]
+pub struct CompileOutput {
+    pub code: String,
+    pub css: String,
+}
+
+#[wasm_bindgen(js_name = compileSync, skip_typescript)]
+pub fn compile_sync(code: String, id: String, bindings: JsValue) -> Result<JsValue, JsValue> {
+    let bindings = bindings.into_serde::<HashMap<String, String>>().unwrap();
+
+    let allocator = Allocator::default();
+
+    let program = JsSource::new(&code, "tsx".to_string()).to_program(&allocator);
+    let mut compile = Compile::new(&allocator);
+    compile.compile(program);
+
+    let output = CompileOutput {
+        code,
+        css: "".to_string(),
     };
 
     JsValue::from_serde(&output).map_err(|err| JsValue::from_str(&format!("{}", err)))
