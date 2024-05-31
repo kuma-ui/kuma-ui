@@ -11,6 +11,7 @@ use web_sys::console;
 
 mod compile;
 mod js_source;
+mod sheet;
 mod transform;
 
 use compile::Compile;
