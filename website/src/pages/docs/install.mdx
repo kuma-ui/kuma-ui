@@ -100,8 +100,6 @@ Once you've installed the plugin, you need to configure it in your configuration
       plugins: [
         react(),
         KumaUI({
-          // The destination to emit an actual CSS file. If not provided, the CSS will be injected via virtual modules.
-          outputDir: "./.kuma" // Optional
           // Enable WebAssembly support for Kuma UI. Default is false and will use Babel to transpile the code.
           wasm: true // Optional
         }),
