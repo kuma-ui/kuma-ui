@@ -22,6 +22,7 @@ import { FilterProps, filterMappings } from "./props/filter";
 import { StyledKeyType } from "./keys";
 import { applyResponsiveStyles } from "./responsive";
 import { toCssUnit } from "./toCSS";
+import { ContainProps, containMappings } from "./props/contain";
 
 export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
   TypographyProps<T> &
@@ -41,6 +42,7 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
     EffectProps &
     MaskProps &
     ColumnProps<T> &
+    ContainProps &
     BackgroundProps &
     FilterProps;
 
@@ -55,6 +57,7 @@ const styleMappings: Record<StyledKeyType, string> = Object.assign(
   layoutMappings,
   colorMappings,
   flexMappings,
+  containMappings,
   borderMappings,
   outlineMappings,
   positionMappings,
