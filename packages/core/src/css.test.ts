@@ -11,8 +11,15 @@ describe("css", () => {
 
 describe("cx", () => {
   test("should merge multiple class names", () => {
-    expect(cx("one", "two", true && "three", false && "four")).toEqual(
-      "one two three",
-    );
+    expect(
+      cx(
+        "one",
+        "two",
+        true && "three",
+        false && "four",
+        null && "five",
+        undefined && "six",
+      ),
+    ).toEqual("one two three");
   });
 });
