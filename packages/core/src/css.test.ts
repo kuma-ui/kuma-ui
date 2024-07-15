@@ -11,7 +11,7 @@ describe("css", () => {
 
 describe("cx", () => {
   test("should merge multiple class names", () => {
-    expect(() => cx("one", "two", true && "three", false && "four")).toEqual(
+    expect(cx("one", "two", true && "three", false && "four")).toEqual(
       "one two three",
     );
   });
