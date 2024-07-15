@@ -1,5 +1,12 @@
 # @kuma-ui/vite
 
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @kuma-ui/compiler@1.3.2
+
 ## 1.3.1
 
 ### Patch Changes
