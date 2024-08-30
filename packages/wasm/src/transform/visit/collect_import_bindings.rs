@@ -27,7 +27,7 @@ impl<'a> Visit<'a> for CollectImportBindings<'a, '_> {
             if let Some(specifiers) = &decl.specifiers {
                 for specifier in specifiers.iter() {
                     if let ImportDeclarationSpecifier::ImportSpecifier(specifier) = specifier {
-                        if let ModuleExportName::Identifier(imported) = &specifier.imported {
+                        if let ModuleExportName::IdentifierName(imported) = &specifier.imported {
                             let name = imported.name.to_string();
                             let local_name = specifier.local.name.to_string();
 

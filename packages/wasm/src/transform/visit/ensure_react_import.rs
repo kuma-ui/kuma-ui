@@ -4,7 +4,7 @@ use oxc_ast::{
         BindingIdentifier, ImportDeclaration, ImportDeclarationSpecifier, ImportDefaultSpecifier,
         ImportOrExportKind, ModuleDeclaration, Program, Statement, StringLiteral,
     },
-    visit::walk_mut::walk_program_mut,
+    visit::walk_mut::walk_program,
     AstBuilder, VisitMut,
 };
 use oxc_span::{Atom, SPAN};
@@ -44,7 +44,7 @@ impl<'a> VisitMut<'a> for EnsureReactImport<'a> {
             self.ast.alloc(ImportDefaultSpecifier { span: SPAN, local }),
         );
 
-        let specifiers = self.ast.new_vec_single(specifier);
+        let specifiers = self.ast.vec1(specifier);
 
         let import_declaration = ImportDeclaration {
             span: SPAN,
@@ -54,13 +54,11 @@ impl<'a> VisitMut<'a> for EnsureReactImport<'a> {
             import_kind: ImportOrExportKind::Value,
         };
 
-        let import_statement = Statement::ModuleDeclaration(self.ast.alloc(
-            ModuleDeclaration::ImportDeclaration(self.ast.alloc(import_declaration)),
-        ));
+        let import_statement = Statement::ImportDeclaration(self.ast.alloc(import_declaration));
 
         program.body.insert(0, import_statement);
 
-        walk_program_mut(self, program);
+        walk_program(self, program);
     }
 }
 
@@ -83,7 +81,8 @@ mod test {
 
         ensure_react_import.visit_program(program);
 
-        let source = Codegen::<true>::new("", &source_text, Default::default())
+        let source = Codegen::new()
+            .with_options(Default::default())
             .build(program)
             .source_text;
         assert_eq!(source, "import __KUMA_REACT__ from 'react';")
