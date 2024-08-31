@@ -1,14 +1,15 @@
 import { CSSProperties } from "../types";
 
 export type ContainProps = Partial<
-  CSSProperties<
-    | "contain"
-    | "containIntrinsicBlockSize"
-    | "containIntrinsicHeight"
-    | "containIntrinsicInlineSize"
-    | "containIntrinsicSize"
-    | "containIntrinsicWidth"
-  >
+  CSSProperties<"contain"> &
+    CSSProperties<
+      | "containIntrinsicBlockSize"
+      | "containIntrinsicHeight"
+      | "containIntrinsicInlineSize"
+      | "containIntrinsicSize"
+      | "containIntrinsicWidth",
+      true
+    >
 >;
 
 export const containMappings: Record<keyof ContainProps, string> = {
