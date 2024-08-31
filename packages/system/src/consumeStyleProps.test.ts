@@ -104,6 +104,8 @@ describe("consumeStyleProps function", () => {
       transformOrigin: "center",
       transformStyle: "preserve-3d",
       clipPath: "ellipse(130px 140px at 10% 20%)",
+      content: "hoge",
+      contentVisibility: "visible",
     });
   });
   test("should consume filter props", () => {

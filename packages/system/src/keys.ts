@@ -268,6 +268,8 @@ export const styleKeys = {
     "transformOrigin",
     "transformStyle",
     "clipPath",
+    "content",
+    "contentVisibility",
   ] as const,
   mask: [
     "mask",

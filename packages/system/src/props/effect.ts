@@ -13,6 +13,8 @@ export type EffectProps = Partial<
     | "transformOrigin"
     | "transformStyle"
     | "clipPath"
+    | "content"
+    | "contentVisibility"
   >
 >;
 
@@ -27,4 +29,6 @@ export const effectMappings: Record<EffectKeys, string> = {
   transformOrigin: "transform-origin",
   transformStyle: "transform-style",
   clipPath: "clip-path",
+  content: "content",
+  contentVisibility: "content-visibility",
 } as const;
