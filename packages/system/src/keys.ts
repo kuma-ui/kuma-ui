@@ -256,7 +256,7 @@ export const styleKeys = {
     "containIntrinsicInlineSize",
     "containIntrinsicSize",
     "containIntrinsicWidth",
-  ] as const,  
+  ] as const,
   effect: [
     "transition",
     "transitionDuration",
@@ -354,7 +354,7 @@ export type StyledKeyType =
   | ColumnKeys
   | EffectKeys
   | FilterKeys
-  | ContainKeys; 
+  | ContainKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
