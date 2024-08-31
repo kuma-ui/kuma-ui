@@ -70,12 +70,9 @@ impl<'a> VisitMut<'a> for VisitTaggedTemplateExpression<'a, '_> {
                                 let class_name =
                                     self.extract_class_name(&tagged_template_expr.quasi);
                                 if let Some(c) = class_name {
-                                    expr.expression = Expression::StringLiteral(self.ast.alloc(
-                                        oxc_ast::ast::StringLiteral {
-                                            span: SPAN,
-                                            value: Atom::from("TODO"), // FIXME: shoud be class_name but class_name does not live long enough
-                                        },
-                                    ))
+                                    expr.expression = Expression::StringLiteral(
+                                        self.ast.alloc_string_literal(SPAN, c),
+                                    )
                                 }
                             }
                         }
