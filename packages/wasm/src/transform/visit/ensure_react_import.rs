@@ -85,6 +85,6 @@ mod test {
             .with_options(Default::default())
             .build(program)
             .source_text;
-        assert_eq!(source, "import __KUMA_REACT__ from 'react';")
+        assert_eq!(source, "import __KUMA_REACT__ from \"react\";\n")
     }
 }

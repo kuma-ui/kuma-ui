@@ -105,9 +105,7 @@ mod test {
         let source = Codegen::new()
             .with_options(Default::default())
             .build(program)
-            .source_text
-            .replace("\"", "'")
-            .replace("\n", "");
-        assert_eq!(source, "import {Box as __Box} from '@kuma-ui/core';")
+            .source_text;
+        assert_eq!(source, "import { Box as __Box } from \"@kuma-ui/core\";\n")
     }
 }

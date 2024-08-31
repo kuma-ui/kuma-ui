@@ -142,6 +142,6 @@ mod test {
             .with_options(Default::default())
             .build(program)
             .source_text;
-        assert_eq!(source, "import {k,Box} from '@kuma-ui/core';export const App=()=>{return <Box as='div' IS_KUMA_DEFAULT={true}><Box as='span' IS_KUMA_DEFAULT={true}>hello</Box></Box>};")
+        assert_eq!(source, "import { k, Box } from \"@kuma-ui/core\";\nexport const App = () => {\n\treturn <Box as=\"div\" IS_KUMA_DEFAULT={true}><Box as=\"span\" IS_KUMA_DEFAULT={true}>hello</Box></Box>;\n};\n")
     }
 }

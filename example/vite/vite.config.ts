@@ -8,7 +8,9 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [
     react(),
-    kumaUI(),
+    kumaUI({
+      wasm: true,
+    }),
     Inspect({
       build: true,
       outputDir: ".inspect",

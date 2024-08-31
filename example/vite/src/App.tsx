@@ -30,6 +30,7 @@ function App() {
     <Box color="GrayText" border="1px solid" borderColor="orange">
       test
       <Styled>Styled</Styled>
+      <Text>日本語</Text>
       <Dynamic />
     </Box>
   );
