@@ -5,7 +5,10 @@ use std::{
 
 use oxc_allocator::Allocator;
 use oxc_ast::{
-    ast::{Expression, Statement, TaggedTemplateExpression, TemplateElement, TemplateLiteral},
+    ast::{
+        Expression, Statement, TaggedTemplateExpression, TemplateElement, TemplateLiteral,
+        VariableDeclaration, VariableDeclarator,
+    },
     visit::walk_mut::walk_program,
     AstBuilder, VisitMut,
 };
@@ -60,7 +63,35 @@ impl<'a> VisitMut<'a> for VisitTaggedTemplateExpression<'a, '_> {
                 if let Expression::TaggedTemplateExpression(tagged_template_expr) =
                     &mut expr.expression
                 {
-                    if tagged_template_expr.tag.is_identifier_reference() {
+                    if tagged_template_expr.tag.is_identifier_reference()
+                        && self
+                            .imports
+                            .get("css")
+                            .map(|css| {
+                                &tagged_template_expr
+                                    .tag
+                                    .get_identifier_reference()
+                                    .unwrap()
+                                    .name
+                                    .to_string()
+                                    == css
+                            })
+                            .unwrap_or(false)
+                    {
+                        let class_name = self.extract_class_name(&tagged_template_expr.quasi);
+                        if let Some(c) = class_name {
+                            expr.expression =
+                                Expression::StringLiteral(self.ast.alloc_string_literal(SPAN, c))
+                        }
+                    }
+                }
+            }
+            // e.g. const className = css`color: red;` or const className1 = css`color: red;`, className2 = css`color: blue;`
+            if let Statement::VariableDeclaration(decl) = node {
+                decl.declarations.iter_mut().for_each(|dec| {
+                    if let Some(Expression::TaggedTemplateExpression(tagged_template_expr)) =
+                        &dec.init
+                    {
                         let tag = tagged_template_expr.tag.get_identifier_reference().unwrap();
                         let tag_name = tag.name.to_string();
                         let css = self.imports.get("css");
@@ -70,14 +101,14 @@ impl<'a> VisitMut<'a> for VisitTaggedTemplateExpression<'a, '_> {
                                 let class_name =
                                     self.extract_class_name(&tagged_template_expr.quasi);
                                 if let Some(c) = class_name {
-                                    expr.expression = Expression::StringLiteral(
+                                    dec.init = Some(Expression::StringLiteral(
                                         self.ast.alloc_string_literal(SPAN, c),
-                                    )
+                                    ));
                                 }
                             }
                         }
                     }
-                }
+                });
             }
         });
     }
