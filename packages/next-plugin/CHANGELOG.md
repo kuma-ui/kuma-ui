@@ -1,5 +1,47 @@
 # @kuma-ui/next-plugin
 
+## 1.3.1
+
+### Patch Changes
+
+- [#412](https://github.com/kuma-ui/kuma-ui/pull/412) [`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - fix wasm package
+
+- Updated dependencies [[`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8)]:
+  - @kuma-ui/webpack-plugin@1.4.1
+  - @kuma-ui/core@1.5.7
+
+## 1.3.0
+
+### Minor Changes
+
+- [#410](https://github.com/kuma-ui/kuma-ui/pull/410) [`46bb83b`](https://github.com/kuma-ui/kuma-ui/commit/46bb83bc2c861b21504574495259985adc361fa9) Thanks [@poteboy](https://github.com/poteboy)! - Introduce a Rust Based Compiler
+
+### Patch Changes
+
+- Updated dependencies [[`46bb83b`](https://github.com/kuma-ui/kuma-ui/commit/46bb83bc2c861b21504574495259985adc361fa9)]:
+  - @kuma-ui/webpack-plugin@1.4.0
+
+## 1.2.1
+
+### Patch Changes
+
+- [#399](https://github.com/kuma-ui/kuma-ui/pull/399) [`b93fba3`](https://github.com/kuma-ui/kuma-ui/commit/b93fba38c8fba03803324d6ec892cb71f714ee09) Thanks [@poteboy](https://github.com/poteboy)! - Temporary Workaround for HMR in Next.js Client Components with Real CSS Output
+
+- Updated dependencies [[`b93fba3`](https://github.com/kuma-ui/kuma-ui/commit/b93fba38c8fba03803324d6ec892cb71f714ee09)]:
+  - @kuma-ui/webpack-plugin@1.3.1
+
+## 1.2.0
+
+### Minor Changes
+
+- [#397](https://github.com/kuma-ui/kuma-ui/pull/397) [`d146a12`](https://github.com/kuma-ui/kuma-ui/commit/d146a1241afc2be8298c93e48e1dffa0d713694b) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - Fix the issue with HMR not working when styles are changed in Next.js v13.5 and later
+
+### Patch Changes
+
+- Updated dependencies [[`08632b1`](https://github.com/kuma-ui/kuma-ui/commit/08632b17471b62da3d2e3c0d6fec0097ee1cd514), [`d146a12`](https://github.com/kuma-ui/kuma-ui/commit/d146a1241afc2be8298c93e48e1dffa0d713694b)]:
+  - @kuma-ui/core@1.5.6
+  - @kuma-ui/webpack-plugin@1.3.0
+
 ## 1.1.15
 
 ### Patch Changes

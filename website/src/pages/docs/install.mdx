@@ -79,11 +79,17 @@ Once you've installed the plugin, you need to configure it in your configuration
       reactStrictMode: true,
     };
 
-    module.exports = withKumaUI(nextConfig);
+    module.exports = withKumaUI(nextConfig, {
+      // The destination to emit an actual CSS file. If not provided, the CSS will be injected via virtual modules.
+       outputDir: "./.kuma" // Optional
+       // Enable WebAssembly support for Kuma UI. Default is false and will use Babel to transpile the code.
+       wasm: true // Optional
+    });
     ```
+
   </Tab>
 
-  {/* prettier-ignore */}
+{/* prettier-ignore */}
   <Tab>
     ```js filename="vite.config.js"
     import { defineConfig } from "vite";
@@ -93,23 +99,33 @@ Once you've installed the plugin, you need to configure it in your configuration
     export default defineConfig({
       plugins: [
         react(),
-        KumaUI(),
+        KumaUI({
+          // Enable WebAssembly support for Kuma UI. Default is false and will use Babel to transpile the code.
+          wasm: true // Optional
+        }),
       ],
     });
     ```
+
   </Tab>
 
-  {/* prettier-ignore */}
+{/* prettier-ignore */}
   <Tab>
     ```js filename="webpack.config.js"
     const KumaUIWebpackPlugin = require("@kuma-ui/webpack-plugin").default;
 
     module.exports = {
       plugins: [
-        new KumaUIWebpackPlugin(),
+        new KumaUIWebpackPlugin({
+          // The destination to emit an actual CSS file. If not provided, the CSS will be injected via virtual modules.
+          outputDir: "./.kuma" // Optional
+          // Enable WebAssembly support for Kuma UI. Default is false and will use Babel to transpile the code.
+          wasm: true // Optional
+        }),
       ],
     };
     ```
+
   </Tab>
 </Tabs>
 

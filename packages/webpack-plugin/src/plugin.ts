@@ -1,21 +1,49 @@
 import { Compiler } from "webpack";
 import { theme } from "@kuma-ui/sheet";
 import path from "path";
-import { readdirSync } from "fs";
+import { readdirSync, writeFileSync, existsSync } from "fs";
 import { getUserTheme } from "./getUserTheme";
 import { createRequire } from "module";
+import { fileURLToPath } from "node:url";
 
 // tsup will replace __ESM__ with true during ESM build and false during CJS build when bundling.
 declare const __ESM__: boolean;
 
 const _require = __ESM__ ? createRequire(import.meta.url) : require;
 
-export const CSS_PATH = _require.resolve("../assets/kuma.css");
+const _filename = __ESM__ ? fileURLToPath(import.meta.url) : __filename;
+const _dirname = __ESM__ ? path.dirname(_filename) : __dirname;
+
+export const CSS_PATH = (() => {
+  const cssPath = path.join(_dirname, "..", "assets", "kuma.css");
+  if (!existsSync(cssPath)) writeFileSync(cssPath, "");
+  return cssPath;
+})();
+
+type KumaWebpackOptions = {
+  /** The destination to emit an actual CSS file. This is a temporary workaround to enable HMR in Client Component @see loader.ts */
+  outputDir?: string;
+  /** Use Rust based WASM compiler instead of Babel */
+  wasm?: boolean;
+};
 
 class KumaUIWebpackPlugin {
-  private config: string | undefined;
+  /* @internal */
+  config: string | undefined;
+  /* @internal */
+  watchMode = false;
 
-  constructor() {
+  private outputDir: string | undefined;
+  private wasm: boolean | undefined;
+
+  constructor(
+    options: KumaWebpackOptions = {
+      wasm: false,
+    },
+  ) {
+    this.outputDir = options.outputDir;
+    this.wasm = options.wasm;
+
     const dir = readdirSync(".");
     dir.forEach((filePath) => {
       if (filePath.startsWith("kuma.config.")) {
@@ -51,6 +79,10 @@ class KumaUIWebpackPlugin {
       }),
     );
 
+    compiler.hooks.watchRun.tap("@kuma-ui/webpack-plugin:watchRun", () => {
+      this.watchMode = true;
+    });
+
     compiler.options.module?.rules?.push(
       {
         test: /\.(tsx|ts|js|mjs|jsx)$/,
@@ -59,7 +91,9 @@ class KumaUIWebpackPlugin {
           {
             loader: _require.resolve("./loader.js"),
             options: {
-              config,
+              plugin: this,
+              outputDir: this.outputDir,
+              wasm: this.wasm,
             },
           },
         ],
@@ -69,6 +103,7 @@ class KumaUIWebpackPlugin {
         use: [
           {
             loader: _require.resolve("./cssLoader.js"),
+            options: { plugin: this },
           },
         ],
       },

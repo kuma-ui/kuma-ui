@@ -1,11 +1,12 @@
 {
   "name": "@kuma-ui/webpack-plugin",
-  "version": "1.2.7",
+  "version": "1.4.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kuma-ui/kuma-ui.git"
   },
+  "license": "MIT",
   "keywords": [
     "react",
     "css-in-js",
@@ -34,7 +35,7 @@
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
-    "@kuma-ui/babel-plugin": "workspace:^",
+    "@kuma-ui/compiler": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
     "@kuma-ui/system": "workspace:^",
     "esbuild": "^0.18.0",

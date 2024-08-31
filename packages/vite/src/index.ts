@@ -1,4 +1,4 @@
-import { transform } from "@kuma-ui/babel-plugin";
+import { compileSync } from "@kuma-ui/compiler";
 import { Plugin } from "vite";
 import path from "path";
 import { buildSync } from "esbuild";
@@ -6,7 +6,13 @@ import _eval from "eval";
 import { theme, sheet, generateHash, UserTheme } from "@kuma-ui/sheet";
 import { readdirSync } from "fs";
 
-export default function kumaUI(): Plugin {
+type PluginOptions = {
+  /** Use Rust based WASM compiler instead of Babel */
+  wasm?: boolean;
+};
+
+export default function kumaUI(options?: PluginOptions): Plugin {
+  const wasm = options?.wasm ?? false;
   let mode: "build" | "serve";
 
   const dir = readdirSync(".");
@@ -62,9 +68,9 @@ export default function kumaUI(): Plugin {
       if (/node_modules/.test(id)) return;
       if (!code.includes("@kuma-ui/core")) return;
 
-      const result = transform(code, id);
+      const result = compileSync({ code, id, wasm });
       if (!result?.code) return;
-      const css = (result.metadata as unknown as { css: string }).css || "";
+      const css = result.css;
       const cssPath = path.normalize(id.replace(/\.[jt]sx?$/, ""));
       const url = `${virtualModuleId}/${generateHash(
         path.dirname(cssPath),

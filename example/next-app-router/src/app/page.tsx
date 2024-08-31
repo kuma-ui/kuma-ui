@@ -1,60 +1,25 @@
-import { k, Box, css, styled } from "@kuma-ui/core";
+import { k, Box, css, styled, Text } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 import { Dynamic2 } from "./dynamic2";
 
 export default function Home() {
   return (
-    <div>
-      <k.header
-        height={56}
-        fontSize={"fontSizes.y.z"}
-        fontWeight={"fontWeights.super_bold"}
-        fontFamily={"fonts.a"}
-        letterSpacing={(() => "letterSpacings.space_300" as const)()}
-        lineHeight={"lineHeights.sx"}
-      >
-        <k.div
-          maxWidth={1200}
-          fontSize={32}
-          fontWeight="600"
-          fontFamily="quicksand"
-          mx="auto"
-          color="green"
-        >
-          Kuma UI
-        </k.div>
-      </k.header>
-      <Dynamic key={1} />
-      <Dynamic key={2} />
-      <Dynamic2 />
-      <Box color={(() => "colors.blue")()}>dynamic</Box>
-      <Box variant={(() => "action" as const)()}>dynamic</Box>
-      <Box p={[8, 16]} color="colors.green">
-        static
+    <Box>
+      <Box color="red" fontSize={24}>
+        hello
       </Box>
-      <div
-        className={css`
-          background-color: gray;
-        `}
-      >
-        css
-      </div>
-      <StyledFn>styled fn</StyledFn>
-      <StyledProperty>styled property</StyledProperty>
-      <StyledExtended>styled extended</StyledExtended>
-      <k.button _hover={{
-        bgColor: "colors.blue"
-      }}
-      _active={{
-        bgColor: "colors.red.100"
-      }}
-      >psuedo button</k.button>
-    </div>
+      <StyledFn />
+      <StyledProperty />
+      <StyledExtended />
+      <Text color="blue">Hello こんにちわ 你好 สวัสดี</Text>
+    </Box>
   );
 }
 
 const StyledFn = styled("div")`
   background-color: lightblue;
+  height: 100px;
+  width: 100px;
 `;
 
 const StyledProperty = styled.button`
@@ -63,4 +28,4 @@ const StyledProperty = styled.button`
 
 const StyledExtended = styled(StyledProperty)`
   color: orange;
-`
+`;

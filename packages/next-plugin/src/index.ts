@@ -4,8 +4,14 @@ import { type Configuration, type RuleSetRule } from "webpack";
 import KumaUIWebpackPlugin from "@kuma-ui/webpack-plugin";
 import { lazyPostCSS } from "next/dist/build/webpack/config/blocks/css/index.js";
 import { getGlobalCssLoader } from "next/dist/build/webpack/config/blocks/css/loaders/index.js";
-import { findPagesDir } from "next/dist/lib/find-pages-dir.js";
 import type { ConfigurationContext } from "next/dist/build/webpack/config/utils.js";
+
+/** 
+This config sets destination directory for generated CSS files which is a temporary workaround to enable HMR in Next.js client components.
+Do not document this option as it will be removed once the issue is fixed.
+NOTE: Any emitted CSS files under ./next directory will be ignored by Next.js. Thus, we need to emit CSS files under some other directory.
+*/
+type KumaConfig = ConstructorParameters<typeof KumaUIWebpackPlugin>[0];
 
 const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   try {
@@ -18,14 +24,13 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   return undefined;
 };
 
-const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
+const kumaUiConfig = (
+  nextConfig: NextConfig,
+  kumaUiConfig: KumaConfig = {},
+): NextConfig => {
   return {
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
-      const { appDir } = findPagesDir(
-        dir,
-        !!options.config.experimental.appDir,
-      );
 
       const cssRules = (
         config.module?.rules?.find(
@@ -41,13 +46,6 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
         ) as RuleSetRule
       )?.oneOf;
 
-      const appDirOptions = appDir
-        ? {
-            hasAppDir: true,
-            experimental: { appDir: true },
-          }
-        : {};
-
       cssRules?.push({
         test: /.css$/i,
         sideEffects: true,
@@ -60,28 +58,18 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
             experimental: {},
             // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
             future: nextConfig.future || {},
-            ...appDirOptions,
           } as ConfigurationContext,
           () => lazyPostCSS(dir, getSupportedBrowsers(dir, dev), undefined),
           [],
         ),
       });
 
-      // config.module?.rules?.push({
-      //   test: /\.(tsx|ts|js|mjs|jsx)$/,
-      //   exclude: /node_modules/,
-      //   use: [
-      //     {
-      //       loader: KumaUIWebpackPlugin.loader,
-      //       options: {
-      //         virtualLoader: !appDir,
-      //         cssOutputDir: "./.next/cache/kuma",
-      //       },
-      //     },
-      //   ],
-      // });
-
-      config.plugins?.push(new KumaUIWebpackPlugin());
+      config.plugins?.push(
+        new KumaUIWebpackPlugin({
+          outputDir: kumaUiConfig?.outputDir,
+          wasm: kumaUiConfig?.wasm,
+        }),
+      );
       if (typeof nextConfig.webpack === "function") {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
         return nextConfig.webpack(config, options);
@@ -91,6 +79,9 @@ const kumaUiConfig = (nextConfig: NextConfig): NextConfig => {
   };
 };
 
-export const withKumaUI = (nextConfig: NextConfig) => {
-  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig));
+export const withKumaUI = (
+  nextConfig: NextConfig,
+  kumaConfig: KumaConfig = {},
+) => {
+  return Object.assign({}, nextConfig, kumaUiConfig(nextConfig, kumaConfig));
 };

@@ -44,8 +44,6 @@ export type StyledProps<T extends ThemeSystemType = ThemeSystemType> =
     ColumnProps<T> &
     ContainProps &
     BackgroundProps &
-    // eslint-disable-next-line @typescript-eslint/no-duplicate-type-constituents -- FIXME
-    EffectProps &
     FilterProps;
 
 export type StyleFunction = (props: StyledProps) => ResponsiveStyle;

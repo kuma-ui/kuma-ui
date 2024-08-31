@@ -1,0 +1,109 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`css > Snapshot tests with wasm: %p { wasm: false } > Non-English characters should not be escaped 1`] = `
+"
+  .🐻-136547911{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from '@kuma-ui/core';
+const App = () => {
+  return <>
+                  <div className={\\"🐻-136547911\\"}>你好</div>
+                  <div className={\\"🐻-136547911\\"}>こんにちは</div>
+                  <div className={\\"🐻-136547911\\"}>안녕하세요</div>
+                  <div className={\\"🐻-136547911\\"}>สวัสดี</div>
+                  <div className={\\"🐻-136547911\\"}>Xin chào</div>
+                </>;
+};
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: false } > basic usage should match snapshot 1`] = `
+"
+  .🐻-136547911{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from '@kuma-ui/core';
+const style = \\"🐻-136547911\\";
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: false } > using pseudo props should match snapshot 1`] = `
+"
+  .🐻-2051565201:hover{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from '@kuma-ui/core';
+const style = \\"🐻-2051565201\\";
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: false } > using space props should match snapshot 1`] = `
+"
+  .🐻-620795649{padding:2px;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from '@kuma-ui/core';
+const style = \\"🐻-620795649\\";
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: true } > Non-English characters should not be escaped 1`] = `
+"
+  .🐻-136547911{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from \\"@kuma-ui/core\\";
+const App = () => {
+	return <>
+                  <div className={\\"🐻-136547911\\"}>你好</div>
+                  <div className={\\"🐻-136547911\\"}>こんにちは</div>
+                  <div className={\\"🐻-136547911\\"}>안녕하세요</div>
+                  <div className={\\"🐻-136547911\\"}>สวัสดี</div>
+                  <div className={\\"🐻-136547911\\"}>Xin chào</div>
+                </>;
+};
+
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: true } > basic usage should match snapshot 1`] = `
+"
+  .🐻-136547911{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from \\"@kuma-ui/core\\";
+const style = \\"🐻-136547911\\";
+
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: true } > using pseudo props should match snapshot 1`] = `
+"
+  .🐻-2051565201:hover{color:red;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from \\"@kuma-ui/core\\";
+const style = \\"🐻-2051565201\\";
+
+  "
+`;
+
+exports[`css > Snapshot tests with wasm: %p { wasm: true } > using space props should match snapshot 1`] = `
+"
+  .🐻-620795649{padding:2px;}
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { css } from \\"@kuma-ui/core\\";
+const style = \\"🐻-620795649\\";
+
+  "
+`;

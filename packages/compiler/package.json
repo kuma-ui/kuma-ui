@@ -1,11 +1,12 @@
 {
   "name": "@kuma-ui/compiler",
-  "version": "1.2.5",
+  "version": "1.3.1",
   "description": "🐻 Kuma UI is a utility-first, zero-runtime CSS-in-JS library that offers an outstanding developer experience and optimized performance.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kuma-ui/kuma-ui.git"
   },
+  "license": "MIT",
   "keywords": [
     "react",
     "css-in-js",
@@ -31,14 +32,17 @@
   "scripts": {
     "build": "tsup --config ../../tsup.config.ts",
     "typecheck": "tsc --noEmit --composite false",
-    "test": "vitest --config ./vitest.config.ts",
+    "test": "vitest run --config ./vitest.config.ts",
     "lint": "eslint './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint --fix './src/**/*.{js,ts,jsx,tsx}' --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
+    "@babel/core": "^7.21.4",
+    "@kuma-ui/babel-plugin": "workspace:^",
     "@kuma-ui/core": "workspace:^",
     "@kuma-ui/sheet": "workspace:^",
     "@kuma-ui/system": "workspace:^",
+    "@kuma-ui/wasm": "workspace:^",
     "ts-morph": "^19.0.0"
   },
   "publishConfig": {
@@ -47,6 +51,7 @@
   "devDependencies": {
     "@types/react": "^18.2.15",
     "@vitest/coverage-c8": "0.31.4",
+    "@types/babel__core": "^7.20.0",
     "react": "^18.2.0",
     "vitest": "0.31.4"
   }

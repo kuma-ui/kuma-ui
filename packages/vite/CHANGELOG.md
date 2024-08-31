@@ -1,5 +1,35 @@
 # @kuma-ui/vite
 
+## 1.3.1
+
+### Patch Changes
+
+- [#412](https://github.com/kuma-ui/kuma-ui/pull/412) [`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8) Thanks [@taishinaritomi](https://github.com/taishinaritomi)! - fix wasm package
+
+- Updated dependencies [[`708638a`](https://github.com/kuma-ui/kuma-ui/commit/708638a245406b520768bee4a994a87a3e4aa8b8)]:
+  - @kuma-ui/compiler@1.3.1
+  - @kuma-ui/system@1.7.4
+  - @kuma-ui/sheet@1.3.1
+
+## 1.3.0
+
+### Minor Changes
+
+- [#410](https://github.com/kuma-ui/kuma-ui/pull/410) [`46bb83b`](https://github.com/kuma-ui/kuma-ui/commit/46bb83bc2c861b21504574495259985adc361fa9) Thanks [@poteboy](https://github.com/poteboy)! - Introduce a Rust Based Compiler
+
+### Patch Changes
+
+- Updated dependencies [[`46bb83b`](https://github.com/kuma-ui/kuma-ui/commit/46bb83bc2c861b21504574495259985adc361fa9)]:
+  - @kuma-ui/compiler@1.3.0
+
+## 1.2.2
+
+### Patch Changes
+
+- Updated dependencies [[`b3490c1`](https://github.com/kuma-ui/kuma-ui/commit/b3490c10c30c9fa65167bb51554903397f4a90a5), [`a0dc9cd`](https://github.com/kuma-ui/kuma-ui/commit/a0dc9cda8ecfad419be8053c1237d4d6551ef77b)]:
+  - @kuma-ui/system@1.7.3
+  - @kuma-ui/babel-plugin@1.1.15
+
 ## 1.2.1
 
 ### Patch Changes

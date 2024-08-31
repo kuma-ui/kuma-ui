@@ -1,7 +1,0 @@
-{
-  "installCommand": "codesandbox:insall",
-  "buildCommand": "codesandbox:build",
-  "packages": ["packages/*"],
-  "sandboxes": ["/example/vite"],
-  "node": "18"
-}

@@ -1,5 +1,10 @@
 import { LayoutKeys } from "../keys";
-import { AddProperty, CSSProperties, ThemeSystemType } from "../types";
+import {
+  AddProperty,
+  CSSProperties,
+  CSSValue,
+  ThemeSystemType,
+} from "../types";
 
 export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
   AddProperty<
@@ -19,16 +24,47 @@ export type LayoutProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
     CSSProperties<"float" | "clear"> &
     CSSProperties<"objectFit" | "objectPosition"> &
     CSSProperties<"resize"> &
-    CSSProperties<"verticalAlign">
+    CSSProperties<"verticalAlign"> & {
+      /**
+       * @see width
+       */
+      w: CSSValue<"width", true>;
+      /**
+       * @see minWidth
+       */
+      minW: CSSValue<"minWidth", true>;
+      /**
+       * @see maxWidth
+       */
+      maxW: CSSValue<"maxWidth", true>;
+      /**
+       * @see height
+       */
+      h: CSSValue<"height", true>;
+      /**
+       * @see minHeight
+       */
+      minH: CSSValue<"minHeight", true>;
+      /**
+       * @see maxHeight
+       */
+      maxH: CSSValue<"maxHeight", true>;
+    }
 >;
 
 export const layoutMappings: Record<LayoutKeys, string> = {
   width: "width",
+  w: "width",
   minWidth: "min-width",
+  minW: "min-width",
   maxWidth: "max-width",
+  maxW: "max-width",
   height: "height",
+  h: "height",
   minHeight: "min-height",
+  minH: "min-height",
   maxHeight: "max-height",
+  maxH: "max-height",
   display: "display",
   overflow: "overflow",
   overflowX: "overflow-x",

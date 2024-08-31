@@ -77,6 +77,13 @@ exports[`consumeStyleProps function > should consume layout props 1`] = `
 }
 `;
 
+exports[`consumeStyleProps function > should consume layout props 2`] = `
+{
+  "base": "width: 8px;min-width: 12px;max-width: 2em;height: 2em;min-height: 12px;max-height: 2rem;",
+  "media": {},
+}
+`;
+
 exports[`consumeStyleProps function > should consume list props 1`] = `
 {
   "base": "list-style: outside;list-style-image: url('hoge.png');list-style-position: inside;list-style-type: disc;",
