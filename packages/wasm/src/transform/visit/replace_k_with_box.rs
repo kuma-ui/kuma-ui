@@ -7,7 +7,7 @@ use oxc_ast::{
         JSXAttributeValue, JSXElement, JSXElementName, JSXExpression, JSXExpressionContainer,
         JSXIdentifier, JSXMemberExpressionObject, StringLiteral,
     },
-    visit::walk_mut::walk_jsx_element_mut,
+    visit::walk_mut::walk_jsx_element,
     AstBuilder, VisitMut,
 };
 use oxc_span::{Atom, SPAN};
@@ -69,13 +69,11 @@ impl<'a, 'b> VisitMut<'a> for ReplaceKWithBox<'a, 'b> {
                                     value: Some(JSXAttributeValue::ExpressionContainer(
                                         self.ast.alloc(JSXExpressionContainer {
                                             span: SPAN,
-                                            expression: JSXExpression::Expression(
-                                                Expression::BooleanLiteral(self.ast.alloc(
-                                                    BooleanLiteral {
-                                                        span: SPAN,
-                                                        value: true,
-                                                    },
-                                                )),
+                                            expression: JSXExpression::BooleanLiteral(
+                                                self.ast.alloc(BooleanLiteral {
+                                                    span: SPAN,
+                                                    value: true,
+                                                }),
                                             ),
                                         }),
                                     )),
@@ -95,21 +93,21 @@ impl<'a, 'b> VisitMut<'a> for ReplaceKWithBox<'a, 'b> {
                     elem.opening_element.name =
                         JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
                             span: SPAN,
-                            name: self.ast.new_atom(box_local_name),
+                            name: self.ast.atom(box_local_name),
                         }));
 
                     if let Some(closing_element) = &mut elem.closing_element {
                         closing_element.name =
                             JSXElementName::Identifier(self.ast.alloc(JSXIdentifier {
                                 span: SPAN,
-                                name: self.ast.new_atom(box_local_name),
+                                name: self.ast.atom(box_local_name),
                             }));
                     }
                 }
             }
         }
 
-        walk_jsx_element_mut(self, elem);
+        walk_jsx_element(self, elem);
     }
 }
 
@@ -140,9 +138,10 @@ mod test {
 
         replace_k_with_box.visit_program(program);
 
-        let source = Codegen::<true>::new("", source_text, Default::default())
+        let source = Codegen::new()
+            .with_options(Default::default())
             .build(program)
             .source_text;
-        assert_eq!(source, "import {k,Box} from '@kuma-ui/core';export const App=()=>{return <Box as='div' IS_KUMA_DEFAULT={true}><Box as='span' IS_KUMA_DEFAULT={true}>hello</Box></Box>};")
+        assert_eq!(source, "import { k, Box } from \"@kuma-ui/core\";\nexport const App = () => {\n\treturn <Box as=\"div\" IS_KUMA_DEFAULT={true}><Box as=\"span\" IS_KUMA_DEFAULT={true}>hello</Box></Box>;\n};\n")
     }
 }

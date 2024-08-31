@@ -1,5 +1,4 @@
-"use client";
-import { k, Box, css, styled } from "@kuma-ui/core";
+import { k, Box, css, styled, Text } from "@kuma-ui/core";
 import { Dynamic } from "./dynamic";
 import { Dynamic2 } from "./dynamic2";
 
@@ -12,6 +11,7 @@ export default function Home() {
       <StyledFn />
       <StyledProperty />
       <StyledExtended />
+      <Text color="blue">Hello こんにちわ 你好 สวัสดี</Text>
     </Box>
   );
 }

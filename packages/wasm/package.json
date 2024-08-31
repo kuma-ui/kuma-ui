@@ -28,6 +28,7 @@
   },
   "scripts": {
     "build": "run-p build:*",
-    "build:wasm": "wasm-pack build --target web --out-dir ./pkg/esm --out-name index && wasm-pack build --target nodejs --out-dir ./pkg/node --out-name index && node script.js"
+    "build:wasm": "wasm-pack build --target web --out-dir ./pkg/esm --out-name index && wasm-pack build --target nodejs --out-dir ./pkg/node --out-name index && node script.js",
+    "test": "cargo test"
   }
 }

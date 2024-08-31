@@ -26,6 +26,23 @@ function App() {
   "
 `;
 
+exports[`k > Snapshot tests with wasm: %p { wasm: false } > should match snapshot when k is used with non-English unicode characters 1`] = `
+"
+     
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from '@kuma-ui/core';
+function App() {
+  return <div>
+                  <div>你好</div>
+                  <div>こんにちは</div>
+                  <div>안녕하세요</div>
+                </div>;
+}
+  "
+`;
+
 exports[`k > Snapshot tests with wasm: %p { wasm: false } > using className prop should match snapshot 1`] = `
 "
   .🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
@@ -97,7 +114,13 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > basic usage should ma
 "
   .🐻-4229161508 { font-size: 24px; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-4229161508\\"}></div>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <div className={\\"🐻-4229161508\\"}></div>;
+}
+
   "
 `;
 
@@ -105,7 +128,31 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > should match snapshot
 "
   .🐻-4229161508 { font-size: 24px; } .🐻-4229161508 { font-size: 24px; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <div className={\\"🐻-4229161508\\"}><div className={\\"🐻-4229161508\\"}></div></div>;
+}
+
+  "
+`;
+
+exports[`k > Snapshot tests with wasm: %p { wasm: true } > should match snapshot when k is used with non-English unicode characters 1`] = `
+"
+     
+  
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <div>
+                  <div>你好</div>
+                  <div>こんにちは</div>
+                  <div>안녕하세요</div>
+                </div>;
+}
+
   "
 `;
 
@@ -113,7 +160,13 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > using className prop 
 "
   .🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k,css} from '@kuma-ui/core';function App(){return <div className={\`🐻-2131929892 \${css({boxShadow:'0 1px 2px 0 rgba(0, 0, 0, 0.05)'})}\`}/>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k, css } from \\"@kuma-ui/core\\";
+function App() {
+	return <div className={\`🐻-2131929892 \${css({ boxShadow: \\"0 1px 2px 0 rgba(0, 0, 0, 0.05)\\" })}\`} />;
+}
+
   "
 `;
 
@@ -121,7 +174,13 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > using pseudo elements
 "
   .🐻-2631981251 { padding: 2px; }.🐻-2631981251:after { color: blue; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-2631981251\\"}/>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <div className={\\"🐻-2631981251\\"} />;
+}
+
   "
 `;
 
@@ -129,7 +188,13 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > using pseudo props sh
 "
   .🐻-2131929892 { padding: 2px; }.🐻-2131929892:hover { color: red; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <span className={\\"🐻-2131929892\\"}/>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <span className={\\"🐻-2131929892\\"} />;
+}
+
   "
 `;
 
@@ -137,7 +202,13 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > using responsive prop
 "
   .🐻-401969115 { font-size: 16px; }@media (min-width: 576px) { .🐻-401969115 { font-size: 24px; } }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <a className={\\"🐻-401969115\\"}/>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <a className={\\"🐻-401969115\\"} />;
+}
+
   "
 `;
 
@@ -145,6 +216,12 @@ exports[`k > Snapshot tests with wasm: %p { wasm: true } > using space props sho
 "
   .🐻-3206633536 { padding: 2px; }
   
-  import {Box as __Box} from '@kuma-ui/core';import __KUMA_REACT__ from 'react';import {k} from '@kuma-ui/core';function App(){return <div className={\\"🐻-3206633536\\"}/>}
+  import { Box as __Box } from \\"@kuma-ui/core\\";
+import __KUMA_REACT__ from \\"react\\";
+import { k } from \\"@kuma-ui/core\\";
+function App() {
+	return <div className={\\"🐻-3206633536\\"} />;
+}
+
   "
 `;
