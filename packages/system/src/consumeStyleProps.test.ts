@@ -226,6 +226,15 @@ describe("consumeStyleProps function", () => {
     });
   });
 
+  test("should consume contain props", () => {
+    consumeAndTest({
+      contain: "size",
+      containIntrinsicWidth: "100px",
+      containIntrinsicHeight: "100px",
+      containIntrinsicBlockSize: 100,
+    });
+  });
+
   test("should consume responsible styles", () => {
     consumeAndTest({
       fontSize: [24, 32],
