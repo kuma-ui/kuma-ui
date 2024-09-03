@@ -44,7 +44,7 @@ exports[`consumeStyleProps function > should consume contain props 1`] = `
 
 exports[`consumeStyleProps function > should consume effect props 1`] = `
 {
-  "base": "transition: 0.5s ease;transition-duration: 0.5s;transition-property: all;transition-timing-function: ease-in-out;transform: scale(1.2);transform-box: border-box;transform-origin: center;transform-style: preserve-3d;clip-path: ellipse(130px 140px at 10% 20%);",
+  "base": "transition: 0.5s ease;transition-duration: 0.5s;transition-property: all;transition-timing-function: ease-in-out;transform: scale(1.2);transform-box: border-box;transform-origin: center;transform-style: preserve-3d;clip-path: ellipse(130px 140px at 10% 20%);content: hoge;content-visibility: visible;",
   "media": {},
 }
 `;
