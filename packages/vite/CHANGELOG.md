@@ -1,5 +1,13 @@
 # @kuma-ui/vite
 
+## 1.3.2
+
+### Patch Changes
+
+- Updated dependencies [[`fdba9cc`](https://github.com/kuma-ui/kuma-ui/commit/fdba9cc7c760a6652d2bb345867adfb5288946a3), [`2b1b7ce`](https://github.com/kuma-ui/kuma-ui/commit/2b1b7ce98c64a9fc7b59c99f381f8046cd306b3a), [`5b17f23`](https://github.com/kuma-ui/kuma-ui/commit/5b17f2397499f5f9e0eeacc4632201ac59b10f3b)]:
+  - @kuma-ui/system@1.7.5
+  - @kuma-ui/compiler@1.3.2
+
 ## 1.3.1
 
 ### Patch Changes

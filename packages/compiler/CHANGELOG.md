@@ -1,5 +1,17 @@
 # @kuma-ui/compiler
 
+## 1.3.2
+
+### Patch Changes
+
+- [#420](https://github.com/kuma-ui/kuma-ui/pull/420) [`2b1b7ce`](https://github.com/kuma-ui/kuma-ui/commit/2b1b7ce98c64a9fc7b59c99f381f8046cd306b3a) Thanks [@poteboy](https://github.com/poteboy)! - Update oxc From v0.12.5 to v0.25.0
+
+- Updated dependencies [[`67c9006`](https://github.com/kuma-ui/kuma-ui/commit/67c9006b1b196e94c6e05eab45ac315caf557742), [`fdba9cc`](https://github.com/kuma-ui/kuma-ui/commit/fdba9cc7c760a6652d2bb345867adfb5288946a3), [`2b1b7ce`](https://github.com/kuma-ui/kuma-ui/commit/2b1b7ce98c64a9fc7b59c99f381f8046cd306b3a), [`5b17f23`](https://github.com/kuma-ui/kuma-ui/commit/5b17f2397499f5f9e0eeacc4632201ac59b10f3b), [`6055686`](https://github.com/kuma-ui/kuma-ui/commit/60556869e5c3ceecd8fa2ef9c52dd90dd4be4ad1)]:
+  - @kuma-ui/core@1.5.8
+  - @kuma-ui/system@1.7.5
+  - @kuma-ui/wasm@1.0.3
+  - @kuma-ui/babel-plugin@1.2.2
+
 ## 1.3.1
 
 ### Patch Changes
