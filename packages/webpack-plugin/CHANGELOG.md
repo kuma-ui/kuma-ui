@@ -1,5 +1,12 @@
 # @kuma-ui/webpack-plugin
 
+## 1.4.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @kuma-ui/compiler@1.3.3
+
 ## 1.4.2
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @kuma-ui/compiler
 
+## 1.3.3
+
+### Patch Changes
+
+- Updated dependencies [[`ba2e216`](https://github.com/kuma-ui/kuma-ui/commit/ba2e216832663f7a303ff1e4445389b1122825a1)]:
+  - @kuma-ui/core@1.5.9
+  - @kuma-ui/babel-plugin@1.2.3
+
 ## 1.3.2
 
 ### Patch Changes
