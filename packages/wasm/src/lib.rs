@@ -8,6 +8,7 @@ use std::collections::HashMap;
 use tsify::JsValueSerdeExt;
 use wasm_bindgen::prelude::*;
 
+mod compile;
 mod js_source;
 mod transform;
 mod util;
@@ -76,8 +77,6 @@ mod tests {
         let mut transform = Transform::new(&allocator);
 
         transform.transform(program);
-
-        let imports = transform.get_imports();
 
         let source_text = Codegen::new()
             .with_options(CodegenOptions::default())
