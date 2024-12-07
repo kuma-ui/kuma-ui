@@ -44,7 +44,7 @@
     "vite": "^4.2.1"
   },
   "peerDependencies": {
-    "vite": "^4 || ^5"
+    "vite": "^4 || ^5 || ^6"
   },
   "publishConfig": {
     "access": "public"
