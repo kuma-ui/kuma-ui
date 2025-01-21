@@ -14,11 +14,23 @@ export type SpaceProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
       | "marginRight"
       | "marginBottom"
       | "marginLeft"
+      | "marginInlineStart"
+      | "marginInlineEnd"
+      | "marginBlockStart"
+      | "marginBlockEnd"
+      | "marginInline"
+      | "marginBlock"
       | "padding"
       | "paddingTop"
       | "paddingRight"
       | "paddingBottom"
-      | "paddingLeft",
+      | "paddingLeft"
+      | "paddingInlineStart"
+      | "paddingInlineEnd"
+      | "paddingBlockStart"
+      | "paddingBlockEnd"
+      | "paddingInline"
+      | "paddingBlock",
       true
     > & {
       /**
@@ -121,6 +133,12 @@ export const spaceMappings: Record<SpaceKeys, string> = {
   mx: "margin-left,margin-right",
   marginY: "margin-top,margin-bottom",
   my: "margin-top,margin-bottom",
+  marginInlineStart: "margin-inline-start",
+  marginInlineEnd: "margin-inline-end",
+  marginBlockStart: "margin-block-start",
+  marginBlockEnd: "margin-block-end",
+  marginInline: "margin-inline",
+  marginBlock: "margin-block",
   padding: "padding",
   p: "padding",
   paddingTop: "padding-top",
@@ -135,4 +153,10 @@ export const spaceMappings: Record<SpaceKeys, string> = {
   px: "padding-left,padding-right",
   paddingY: "padding-top,padding-bottom",
   py: "padding-top,padding-bottom",
+  paddingInlineStart: "padding-inline-start",
+  paddingInlineEnd: "padding-inline-end",
+  paddingBlockStart: "padding-block-start",
+  paddingBlockEnd: "padding-block-end",
+  paddingInline: "padding-inline",
+  paddingBlock: "padding-block",
 };
