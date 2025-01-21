@@ -1,5 +1,14 @@
 # @kuma-ui/core
 
+## 1.5.9
+
+### Patch Changes
+
+- [#424](https://github.com/kuma-ui/kuma-ui/pull/424) [`ba2e216`](https://github.com/kuma-ui/kuma-ui/commit/ba2e216832663f7a303ff1e4445389b1122825a1) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Export `cx` from `@kuma-ui/core`
+
+- Updated dependencies [[`fa14ed8`](https://github.com/kuma-ui/kuma-ui/commit/fa14ed8039cd966d8cb7841c21bac45a6d5e16ed)]:
+  - @kuma-ui/system@1.7.6
+
 ## 1.5.8
 
 ### Patch Changes

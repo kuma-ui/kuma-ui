@@ -1,5 +1,11 @@
 # @kuma-ui/system
 
+## 1.7.6
+
+### Patch Changes
+
+- [#429](https://github.com/kuma-ui/kuma-ui/pull/429) [`fa14ed8`](https://github.com/kuma-ui/kuma-ui/commit/fa14ed8039cd966d8cb7841c21bac45a6d5e16ed) Thanks [@petamoriken](https://github.com/petamoriken)! - Add Logical Space Props
+
 ## 1.7.5
 
 ### Patch Changes

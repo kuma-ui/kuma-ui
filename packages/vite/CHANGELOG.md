@@ -1,5 +1,17 @@
 # @kuma-ui/vite
 
+## 1.4.0
+
+### Minor Changes
+
+- [#427](https://github.com/kuma-ui/kuma-ui/pull/427) [`42ab3c3`](https://github.com/kuma-ui/kuma-ui/commit/42ab3c31106ba6d3db3e4e3061d4a3902e68f510) Thanks [@yossydev](https://github.com/yossydev)! - vite v6 support
+
+### Patch Changes
+
+- Updated dependencies [[`fa14ed8`](https://github.com/kuma-ui/kuma-ui/commit/fa14ed8039cd966d8cb7841c21bac45a6d5e16ed)]:
+  - @kuma-ui/system@1.7.6
+  - @kuma-ui/compiler@1.3.3
+
 ## 1.3.2
 
 ### Patch Changes
