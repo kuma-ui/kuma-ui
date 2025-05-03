@@ -100,7 +100,7 @@ export class Sheet {
       this._processCSS(pseudo.base)
     );
     const pseudoCss = removeSpacesExceptInProperties(
-      `.${className}${pseudo.key} { ${css} }`
+      `.${className}${pseudo.key} { ${css} }`,
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {
