@@ -94,7 +94,7 @@ export class Sheet {
 
   private _addPseudoRule(
     className: string,
-    pseudo: SystemStyle["pseudo"][number]
+    pseudo: SystemStyle["pseudo"][number],
   ) {
     const css = removeSpacesAroundCssPropertyValues(
       this._processCSS(pseudo.base)
