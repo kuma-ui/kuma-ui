@@ -107,7 +107,7 @@ export class Sheet {
       this._addMediaRule(
         `${className}${pseudo.key}`,
         this._processCSS(_css),
-        this._processCSS(breakpoint)
+        this._processCSS(breakpoint),
       );
     }
   }
