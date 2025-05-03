@@ -97,7 +97,7 @@ export class Sheet {
     pseudo: SystemStyle["pseudo"][number],
   ) {
     const css = removeSpacesAroundCssPropertyValues(
-      this._processCSS(pseudo.base)
+      this._processCSS(pseudo.base),
     );
     const pseudoCss = removeSpacesExceptInProperties(
       `.${className}${pseudo.key} { ${css} }`,
