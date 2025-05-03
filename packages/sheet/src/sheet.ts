@@ -66,7 +66,7 @@ export class Sheet {
       this._addMediaRule(
         className,
         this._processCSS(css),
-        this._processCSS(breakpoint)
+        this._processCSS(breakpoint),
       );
     }
     for (const [_, pseudo] of Object.entries(style.pseudo)) {
