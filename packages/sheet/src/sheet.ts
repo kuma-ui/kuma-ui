@@ -87,7 +87,7 @@ export class Sheet {
   ): void {
     const minifiedCss = removeSpacesAroundCssPropertyValues(css);
     const mediaCss = removeSpacesExceptInProperties(
-      `@media (min-width: ${breakpoint}) { .${className} { ${minifiedCss} } }`
+      `@media (min-width: ${breakpoint}) { .${className} { ${minifiedCss} } }`,
     );
     this.responsive.push(mediaCss);
   }
