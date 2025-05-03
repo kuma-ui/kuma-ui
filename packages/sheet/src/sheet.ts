@@ -50,8 +50,11 @@ export class Sheet {
   }
 
   private static getClassNamePrefix(isDynamic = false) {
-    const isProduction = process.env.NODE_ENV === "production";
-    if (isProduction) return "kuma-";
+    if (process.env.NODE_ENV === "production") {
+      const userPrefix = process.env.KUMA_CLASS_NAME_PREFIX;
+      return userPrefix ? `${userPrefix}-` : "kuma-";
+    }
+
     return isDynamic ? "🦄-" : "🐻-";
   }
 
@@ -63,7 +66,7 @@ export class Sheet {
       this._addMediaRule(
         className,
         this._processCSS(css),
-        this._processCSS(breakpoint),
+        this._processCSS(breakpoint)
       );
     }
     for (const [_, pseudo] of Object.entries(style.pseudo)) {
@@ -80,31 +83,31 @@ export class Sheet {
   private _addMediaRule(
     className: string,
     css: string,
-    breakpoint: string,
+    breakpoint: string
   ): void {
     const minifiedCss = removeSpacesAroundCssPropertyValues(css);
     const mediaCss = removeSpacesExceptInProperties(
-      `@media (min-width: ${breakpoint}) { .${className} { ${minifiedCss} } }`,
+      `@media (min-width: ${breakpoint}) { .${className} { ${minifiedCss} } }`
     );
     this.responsive.push(mediaCss);
   }
 
   private _addPseudoRule(
     className: string,
-    pseudo: SystemStyle["pseudo"][number],
+    pseudo: SystemStyle["pseudo"][number]
   ) {
     const css = removeSpacesAroundCssPropertyValues(
-      this._processCSS(pseudo.base),
+      this._processCSS(pseudo.base)
     );
     const pseudoCss = removeSpacesExceptInProperties(
-      `.${className}${pseudo.key} { ${css} }`,
+      `.${className}${pseudo.key} { ${css} }`
     );
     this.pseudo.push(pseudoCss);
     for (const [breakpoint, _css] of Object.entries(pseudo.responsive)) {
       this._addMediaRule(
         `${className}${pseudo.key}`,
         this._processCSS(_css),
-        this._processCSS(breakpoint),
+        this._processCSS(breakpoint)
       );
     }
   }

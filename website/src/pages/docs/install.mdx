@@ -298,3 +298,13 @@ For those looking to integrate Kuma UI with Storybook, the process will vary dep
 
   </Tab>
 </Tabs>
+
+## Customizing the production class name
+
+By default, the output class name in production is prefixed by `kuma`. To change it, you can set the following environment variable:
+
+```js
+process.env.KUMA_CLASS_NAME_PREFIX = 'custom';
+```
+
+Note that during development, `🦄` will be used as a prefix when the class is dynamic–otherwise `🐻` will be used.
