@@ -83,7 +83,7 @@ export class Sheet {
   private _addMediaRule(
     className: string,
     css: string,
-    breakpoint: string
+    breakpoint: string,
   ): void {
     const minifiedCss = removeSpacesAroundCssPropertyValues(css);
     const mediaCss = removeSpacesExceptInProperties(
