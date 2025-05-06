@@ -50,8 +50,11 @@ export class Sheet {
   }
 
   private static getClassNamePrefix(isDynamic = false) {
-    const isProduction = process.env.NODE_ENV === "production";
-    if (isProduction) return "kuma-";
+    if (process.env.NODE_ENV === "production") {
+      const userPrefix = process.env.KUMA_CLASS_NAME_PREFIX;
+      return userPrefix ? `${userPrefix}-` : "kuma-";
+    }
+
     return isDynamic ? "🦄-" : "🐻-";
   }
 
