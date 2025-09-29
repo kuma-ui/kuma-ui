@@ -104,6 +104,8 @@ describe("consumeStyleProps function", () => {
       transformOrigin: "center",
       transformStyle: "preserve-3d",
       clipPath: "ellipse(130px 140px at 10% 20%)",
+      content: "hoge",
+      contentVisibility: "visible",
     });
   });
   test("should consume filter props", () => {
@@ -223,6 +225,45 @@ describe("consumeStyleProps function", () => {
       left: "3rem",
       bottom: 4,
       inset: "10",
+    });
+  });
+  test("should consume space props", () => {
+    consumeAndTest({
+      marginX: 1,
+      marginY: 2,
+      margin: "1px 2px 3px 4px",
+      marginTop: 1,
+      marginLeft: "2px",
+      marginRight: 3,
+      marginBottom: 4,
+      marginInlineStart: 1,
+      marginInlineEnd: 2,
+      marginBlockStart: 3,
+      marginBlockEnd: 4,
+      marginInline: 1,
+      marginBlock: "2px",
+      paddingX: 1,
+      paddingY: 2,
+      padding: "1px 2px 3px 4px",
+      paddingTop: 1,
+      paddingLeft: "2px",
+      paddingRight: 3,
+      paddingBottom: 4,
+      paddingInlineStart: 1,
+      paddingInlineEnd: 2,
+      paddingBlockStart: 3,
+      paddingBlockEnd: 4,
+      paddingInline: 1,
+      paddingBlock: "2px",
+    });
+  });
+
+  test("should consume contain props", () => {
+    consumeAndTest({
+      contain: "size",
+      containIntrinsicWidth: "100px",
+      containIntrinsicHeight: "100px",
+      containIntrinsicBlockSize: 100,
     });
   });
 

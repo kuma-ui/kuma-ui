@@ -110,6 +110,26 @@ describe("k", () => {
         // Assert
         expect(getExpectSnapshotSync(result)).toMatchSnapshot();
       });
+
+      test("should match snapshot when k is used with non-English unicode characters", () => {
+        // Arrange
+        const inputCode = `
+            import { k } from '@kuma-ui/core'
+            function App() {
+              return (
+                <k.div>
+                  <k.div>你好</k.div>
+                  <k.div>こんにちは</k.div>
+                  <k.div>안녕하세요</k.div>
+                </k.div>
+              )
+            }
+          `;
+        // Act
+        const result = compileSync({ code: inputCode, id: "test.tsx", wasm });
+        // Assert
+        expect(getExpectSnapshotSync(result)).toMatchSnapshot();
+      });
     },
   );
 });

@@ -78,6 +78,27 @@ describe("css", () => {
           getExpectSnapshotSync(originalResult),
         );
       });
+
+      test("Non-English characters should not be escaped", () => {
+        // Arrange
+        const inputCode = `
+              import { css } from '@kuma-ui/core'
+              
+              const App = () => {
+                return <>
+                  <div className={css\`color: red;\`}>你好</div>
+                  <div className={css\`color: red;\`}>こんにちは</div>
+                  <div className={css\`color: red;\`}>안녕하세요</div>
+                  <div className={css\`color: red;\`}>สวัสดี</div>
+                  <div className={css\`color: red;\`}>Xin chào</div>
+                </>
+              }
+            `;
+        // Act
+        const result = compileSync({ code: inputCode, id: "test.tsx", wasm });
+        // Assert
+        expect(getExpectSnapshotSync(result)).toMatchSnapshot();
+      });
     },
   );
 });

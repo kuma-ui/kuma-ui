@@ -81,7 +81,7 @@ Once you've installed the plugin, you need to configure it in your configuration
 
     module.exports = withKumaUI(nextConfig, {
       // The destination to emit an actual CSS file. If not provided, the CSS will be injected via virtual modules.
-       outputDir: "./.kuma" // Optional
+       outputDir: "./.kuma", // Optional
        // Enable WebAssembly support for Kuma UI. Default is false and will use Babel to transpile the code.
        wasm: true // Optional
     });
@@ -298,3 +298,13 @@ For those looking to integrate Kuma UI with Storybook, the process will vary dep
 
   </Tab>
 </Tabs>
+
+## Customizing the production class name
+
+By default, the output class name in production is prefixed by `kuma`. To change it, you can set the following environment variable:
+
+```js
+process.env.KUMA_CLASS_NAME_PREFIX = 'custom';
+```
+
+Note that during development, `🦄` will be used as a prefix when the class is dynamic–otherwise `🐻` will be used.

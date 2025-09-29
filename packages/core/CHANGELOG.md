@@ -1,5 +1,25 @@
 # @kuma-ui/core
 
+## 1.5.9
+
+### Patch Changes
+
+- [#424](https://github.com/kuma-ui/kuma-ui/pull/424) [`ba2e216`](https://github.com/kuma-ui/kuma-ui/commit/ba2e216832663f7a303ff1e4445389b1122825a1) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Export `cx` from `@kuma-ui/core`
+
+- Updated dependencies [[`fa14ed8`](https://github.com/kuma-ui/kuma-ui/commit/fa14ed8039cd966d8cb7841c21bac45a6d5e16ed)]:
+  - @kuma-ui/system@1.7.6
+
+## 1.5.8
+
+### Patch Changes
+
+- [#348](https://github.com/kuma-ui/kuma-ui/pull/348) [`67c9006`](https://github.com/kuma-ui/kuma-ui/commit/67c9006b1b196e94c6e05eab45ac315caf557742) Thanks [@nojiritakeshi](https://github.com/nojiritakeshi)! - fixed the type checking operator.
+
+- [#417](https://github.com/kuma-ui/kuma-ui/pull/417) [`6055686`](https://github.com/kuma-ui/kuma-ui/commit/60556869e5c3ceecd8fa2ef9c52dd90dd4be4ad1) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Add `cx` function for merging multiple class names
+
+- Updated dependencies [[`fdba9cc`](https://github.com/kuma-ui/kuma-ui/commit/fdba9cc7c760a6652d2bb345867adfb5288946a3), [`5b17f23`](https://github.com/kuma-ui/kuma-ui/commit/5b17f2397499f5f9e0eeacc4632201ac59b10f3b)]:
+  - @kuma-ui/system@1.7.5
+
 ## 1.5.7
 
 ### Patch Changes

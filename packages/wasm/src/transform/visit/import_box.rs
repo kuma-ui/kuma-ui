@@ -7,7 +7,7 @@ use oxc_ast::{
         ImportOrExportKind, ImportSpecifier, ModuleDeclaration, ModuleExportName, Program,
         Statement, StringLiteral,
     },
-    visit::walk_mut::walk_program_mut,
+    visit::walk_mut::walk_program,
     AstBuilder, VisitMut,
 };
 use oxc_span::{Atom, SPAN};
@@ -51,7 +51,7 @@ impl<'a> VisitMut<'a> for ImportBox<'a, '_> {
                 name: Atom::from("Box"),
             };
 
-            let imported = ModuleExportName::Identifier(identifier_name);
+            let imported = ModuleExportName::IdentifierName(identifier_name);
 
             let specifier =
                 ImportDeclarationSpecifier::ImportSpecifier(self.ast.alloc(ImportSpecifier {
@@ -63,28 +63,27 @@ impl<'a> VisitMut<'a> for ImportBox<'a, '_> {
 
             let import_declaration = ImportDeclaration {
                 span: SPAN,
-                specifiers: Some(self.ast.new_vec_single(specifier)),
+                specifiers: Some(self.ast.vec1(specifier)),
                 source: source_literal,
                 with_clause: None,
                 import_kind: ImportOrExportKind::Value,
             };
 
-            let module_declaration =
-                ModuleDeclaration::ImportDeclaration(self.ast.alloc(import_declaration));
-
-            let import_statement = Statement::ModuleDeclaration(self.ast.alloc(module_declaration));
+            let import_statement = Statement::ImportDeclaration(self.ast.alloc(import_declaration));
 
             self.imports.insert("Box".to_string(), "__Box".to_string());
 
             program.body.insert(0, import_statement);
         }
 
-        walk_program_mut(self, program)
+        walk_program(self, program)
     }
 }
 
 #[cfg(test)]
 mod test {
+    use std::mem::replace;
+
     use super::*;
     use crate::js_source::JsSource;
     use oxc_allocator::Allocator;
@@ -103,9 +102,10 @@ mod test {
 
         import_box.visit_program(program);
 
-        let source = Codegen::<true>::new("", &source_text, Default::default())
+        let source = Codegen::new()
+            .with_options(Default::default())
             .build(program)
             .source_text;
-        assert_eq!(source, "import {Box as __Box} from '@kuma-ui/core';")
+        assert_eq!(source, "import { Box as __Box } from \"@kuma-ui/core\";\n")
     }
 }

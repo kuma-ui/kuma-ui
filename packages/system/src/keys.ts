@@ -27,6 +27,12 @@ export const styleKeys = {
     "mx",
     "marginY",
     "my",
+    "marginInlineStart",
+    "marginInlineEnd",
+    "marginBlockStart",
+    "marginBlockEnd",
+    "marginInline",
+    "marginBlock",
     "padding",
     "p",
     "paddingTop",
@@ -41,6 +47,12 @@ export const styleKeys = {
     "px",
     "paddingY",
     "py",
+    "paddingInlineStart",
+    "paddingInlineEnd",
+    "paddingBlockStart",
+    "paddingBlockEnd",
+    "paddingInline",
+    "paddingBlock",
   ] as const,
   typography: [
     "hyphenateCharacter",
@@ -249,6 +261,14 @@ export const styleKeys = {
     "columnWidth",
     "columns",
   ] as const,
+  contain: [
+    "contain",
+    "containIntrinsicBlockSize",
+    "containIntrinsicHeight",
+    "containIntrinsicInlineSize",
+    "containIntrinsicSize",
+    "containIntrinsicWidth",
+  ] as const,
   effect: [
     "transition",
     "transitionDuration",
@@ -260,6 +280,8 @@ export const styleKeys = {
     "transformOrigin",
     "transformStyle",
     "clipPath",
+    "content",
+    "contentVisibility",
   ] as const,
   mask: [
     "mask",
@@ -324,6 +346,7 @@ export type EffectKeys = (typeof styleKeys.effect)[number];
 export type MaskKeys = (typeof styleKeys.mask)[number];
 export type BackgroundKeys = (typeof styleKeys.background)[number];
 export type FilterKeys = (typeof styleKeys.filter)[number];
+export type ContainKeys = (typeof styleKeys.contain)[number];
 
 export type StyledKeyType =
   | AnimationKeys
@@ -344,7 +367,8 @@ export type StyledKeyType =
   | MaskKeys
   | ColumnKeys
   | EffectKeys
-  | FilterKeys;
+  | FilterKeys
+  | ContainKeys;
 
 function memo<T>(fn: (value: string) => T): (value: string) => T {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME

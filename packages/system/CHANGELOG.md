@@ -1,5 +1,19 @@
 # @kuma-ui/system
 
+## 1.7.6
+
+### Patch Changes
+
+- [#429](https://github.com/kuma-ui/kuma-ui/pull/429) [`fa14ed8`](https://github.com/kuma-ui/kuma-ui/commit/fa14ed8039cd966d8cb7841c21bac45a6d5e16ed) Thanks [@petamoriken](https://github.com/petamoriken)! - Add Logical Space Props
+
+## 1.7.5
+
+### Patch Changes
+
+- [#421](https://github.com/kuma-ui/kuma-ui/pull/421) [`fdba9cc`](https://github.com/kuma-ui/kuma-ui/commit/fdba9cc7c760a6652d2bb345867adfb5288946a3) Thanks [@poteboy](https://github.com/poteboy)! - Add Content & ContentVisibility Props To System
+
+- [#393](https://github.com/kuma-ui/kuma-ui/pull/393) [`5b17f23`](https://github.com/kuma-ui/kuma-ui/commit/5b17f2397499f5f9e0eeacc4632201ac59b10f3b) Thanks [@maxjtwelftree](https://github.com/maxjtwelftree)! - Implement 'contain' and other CSS property support per Issue #150
+
 ## 1.7.4
 
 ### Patch Changes

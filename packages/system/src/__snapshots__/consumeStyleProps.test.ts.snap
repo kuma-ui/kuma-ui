@@ -35,9 +35,16 @@ exports[`consumeStyleProps function > should consume column props 1`] = `
 }
 `;
 
+exports[`consumeStyleProps function > should consume contain props 1`] = `
+{
+  "base": "contain: size;contain-intrinsic-width: 100px;contain-intrinsic-height: 100px;contain-intrinsic-block-size: 100px;",
+  "media": {},
+}
+`;
+
 exports[`consumeStyleProps function > should consume effect props 1`] = `
 {
-  "base": "transition: 0.5s ease;transition-duration: 0.5s;transition-property: all;transition-timing-function: ease-in-out;transform: scale(1.2);transform-box: border-box;transform-origin: center;transform-style: preserve-3d;clip-path: ellipse(130px 140px at 10% 20%);",
+  "base": "transition: 0.5s ease;transition-duration: 0.5s;transition-property: all;transition-timing-function: ease-in-out;transform: scale(1.2);transform-box: border-box;transform-origin: center;transform-style: preserve-3d;clip-path: ellipse(130px 140px at 10% 20%);content: hoge;content-visibility: visible;",
   "media": {},
 }
 `;
@@ -124,6 +131,13 @@ exports[`consumeStyleProps function > should consume responsible styles 1`] = `
 exports[`consumeStyleProps function > should consume shortened background props 1`] = `
 {
   "base": "background-image: url('img_tree.png');background-position: center;background-position-x: 10px;background-position-y: 20px;background-size: cover;background-repeat: no-repeat;background-attachment: fixed;background-clip: border-box;background-origin: content-box;background-blend-mode: hue;",
+  "media": {},
+}
+`;
+
+exports[`consumeStyleProps function > should consume space props 1`] = `
+{
+  "base": "margin-left: 1px;margin-right: 1px;margin-top: 2px;margin-bottom: 2px;margin: 1px 2px 3px 4px;margin-top: 1px;margin-left: 2px;margin-right: 3px;margin-bottom: 4px;margin-inline-start: 1px;margin-inline-end: 2px;margin-block-start: 3px;margin-block-end: 4px;margin-inline: 1px;margin-block: 2px;padding-left: 1px;padding-right: 1px;padding-top: 2px;padding-bottom: 2px;padding: 1px 2px 3px 4px;padding-top: 1px;padding-left: 2px;padding-right: 3px;padding-bottom: 4px;padding-inline-start: 1px;padding-inline-end: 2px;padding-block-start: 3px;padding-block-end: 4px;padding-inline: 1px;padding-block: 2px;",
   "media": {},
 }
 `;

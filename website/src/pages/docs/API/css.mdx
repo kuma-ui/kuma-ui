@@ -46,6 +46,38 @@ export const ThisIsTheCSS = () => {
 
 In this example, the `css` function defines a set of styles, generating a className that we then apply to the div component.
 
+### Use `cx` to Combine Multiple Sets of Styles
+
+You can use `cx` to merge multiple style declarations. This is particularly useful for conditional `css` declarations or when importing and combining different style sets.
+
+```tsx copy
+import { css, cx } from "@kuma-ui/core";
+import { resetStyles } from "../my-theme";
+
+export const ThisIsTheCSS = () => {
+  const isLoggedIn = true;
+
+  return (
+    <div
+      className={cx(
+        resetStyles,
+        css`
+          color: white;
+          padding: 8px;
+          background: blue;
+        `,
+        isLoggedIn &&
+          css`
+            color: red;
+          `,
+      )}
+    >
+      hello world
+    </div>
+  );
+};
+```
+
 ## Using Theme Tokens
 
 You can also utilize [theme tokens](/docs/Theme/ThemeTokens) directly within your `css` function. This allows for a more cohesive and centralized way to manage your design values. Here's how you can use it:

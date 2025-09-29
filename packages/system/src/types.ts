@@ -29,6 +29,7 @@ export type CSSValue<
 
 export type CSSProperties<
   P extends keyof CSS.Properties,
+  /** If true, the CSS property value can be a number */
   Q extends boolean = false,
 > = If<
   Q,
