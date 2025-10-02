@@ -1,5 +1,5 @@
 ---
-"@kuma-ui/sheet": patch  
+"@kuma-ui/sheet": patch
 ---
 
 Allow custom production class name prefix
