@@ -25,5 +25,6 @@ export const applyResponsiveStyles = (
     return { base: `${cssProperty}: ${baseValue};`, media };
   }
 
-  return { base: `${cssProperty}: ${convertFn(cssValues)};`, media: {} };
+  const singleValue = cssValues as CSSProperty | number;
+  return { base: `${cssProperty}: ${convertFn(singleValue)};`, media: {} };
 };
