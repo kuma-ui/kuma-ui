@@ -37,8 +37,7 @@ export function forwardRef<Props extends object, Component extends As>(
     }
   >,
 ): ComponentWithAs<Component, Props> {
-  return forwardReactRef(component) as unknown as ComponentWithAs<
-    Component,
-    Props
-  >;
+  return forwardReactRef(
+    component as unknown as React.ForwardRefRenderFunction<any, any>,
+  ) as unknown as ComponentWithAs<Component, Props>;
 }

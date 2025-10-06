@@ -63,8 +63,18 @@ export type FlattenObject<
   T extends Record<infer Key, unknown>
     ? Key extends ObjectKey
       ? T[Key] extends NestedObject
-        ? FlattenObject<T[Key], RestKey extends "" ? Key : `${RestKey}.${Key}`>
-        : Record<RestKey extends "" ? Key : `${RestKey}.${Key}`, T[Key]>
-      : Record<Key, T[Key]>
+        ? FlattenObject<
+            T[Key],
+            RestKey extends ""
+              ? `${Key & string}`
+              : `${RestKey}.${Key & string}`
+          >
+        : Record<
+            RestKey extends ""
+              ? `${Key & string}`
+              : `${RestKey}.${Key & string}`,
+            T[Key]
+          >
+      : Record<Key & string, T[Key]>
     : never
 >;
