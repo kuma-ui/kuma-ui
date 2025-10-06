@@ -42,6 +42,7 @@
     "eval": "^0.1.8"
   },
   "devDependencies": {
+    "@types/node": "^18.19.0",
     "webpack": "^5.78.0"
   },
   "peerDependencies": {

@@ -290,6 +290,9 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.0
         version: 7.20.5
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@vitest/coverage-c8':
         specifier: ^0.31.4
         version: 0.31.4(vitest@0.31.4(jsdom@22.1.0)(terser@5.44.0))
@@ -327,6 +330,9 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.0
         version: 7.20.5
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@types/react':
         specifier: ^18.2.15
         version: 18.3.24
@@ -367,6 +373,9 @@ importers:
       '@testing-library/react':
         specifier: ^14.0.0
         version: 14.3.1(react-dom@18.2.0(react@18.3.1))(react@18.3.1)
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@types/react':
         specifier: ^18.0.32
         version: 18.3.24
@@ -416,6 +425,9 @@ importers:
         specifier: '>=18.2.0'
         version: 18.3.1
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@types/react':
         specifier: ^18.2.14
         version: 18.3.24
@@ -454,6 +466,9 @@ importers:
         specifier: ^3.1.2
         version: 3.1.3
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@vitest/coverage-c8':
         specifier: ^0.31.4
         version: 0.31.4(vitest@0.31.4(jsdom@22.1.0)(terser@5.44.0))
@@ -479,6 +494,9 @@ importers:
         specifier: ^0.1.8
         version: 0.1.8
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       vite:
         specifier: '>=5.4.20'
         version: 7.1.7(@types/node@18.19.127)(terser@5.44.0)
@@ -503,6 +521,9 @@ importers:
         specifier: ^0.1.8
         version: 0.1.8
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       webpack:
         specifier: ^5.78.0
         version: 5.101.3(esbuild@0.25.10)

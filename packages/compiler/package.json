@@ -49,6 +49,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@types/node": "^18.19.0",
     "@types/react": "^18.2.15",
     "@vitest/coverage-c8": "0.31.4",
     "@types/babel__core": "^7.20.0",

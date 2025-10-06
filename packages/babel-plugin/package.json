@@ -42,6 +42,7 @@
     "@kuma-ui/system": "workspace:^"
   },
   "devDependencies": {
+    "@types/node": "^18.19.0",
     "@babel/cli": "^7.21.0",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.4",

@@ -58,6 +58,7 @@
     "browserslist": "4.21.5"
   },
   "devDependencies": {
+    "@types/node": "^18.19.0",
     "@types/react": "^18.2.14",
     "next": "^13.3.4",
     "webpack": "^5.78.0"
