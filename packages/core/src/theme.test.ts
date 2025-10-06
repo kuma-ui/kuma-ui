@@ -1,6 +1,8 @@
 import { createTheme, ThemeInput } from "./theme";
 import { describe, expect, test, expectTypeOf } from "vitest";
 
+const never = undefined as never;
+
 describe("createTheme", () => {
   test("should convert color theme object to expected format", () => {
     const theme = createTheme({
@@ -58,7 +60,7 @@ describe("createTheme", () => {
         "fonts.sans.n": "fonts sans n";
       };
       components: undefined;
-    }>();
+    }>(never);
   });
 
   test("should convert space theme object to expected format", () => {
@@ -85,7 +87,7 @@ describe("createTheme", () => {
         "spacings.sm": "8px";
       };
       components: undefined;
-    }>();
+    }>(never);
   });
 
   test("should convert size theme object to expected format", () => {
@@ -112,7 +114,7 @@ describe("createTheme", () => {
         "sizes.sm": "8px";
       };
       components: undefined;
-    }>();
+    }>(never);
   });
 
   test("should convert radius theme object to expected format", () => {
@@ -139,7 +141,7 @@ describe("createTheme", () => {
         "radii.sm": "8px";
       };
       components: undefined;
-    }>();
+    }>(never);
   });
 
   test("should convert z-index theme object to expected format", () => {
@@ -176,7 +178,7 @@ describe("createTheme", () => {
 
     expectTypeOf(theme).toEqualTypeOf<{
       components: undefined;
-    }>();
+    }>(never);
   });
 
   test("should correctly generate theme for components", () => {
@@ -231,6 +233,6 @@ describe("createTheme", () => {
           };
         };
       };
-    }>();
+    }>(never);
   });
 });

@@ -35,13 +35,16 @@ const kumaUiConfig = (
       const cssRules = (
         config.module?.rules?.find(
           (rule) =>
+            rule &&
             typeof rule === "object" &&
             Array.isArray(rule.oneOf) &&
             rule.oneOf.some(
-              ({ test }) =>
-                test instanceof RegExp &&
-                typeof test.test === "function" &&
-                test.test("filename.css"),
+              (option) =>
+                option &&
+                "test" in option &&
+                option.test instanceof RegExp &&
+                typeof option.test.test === "function" &&
+                option.test.test("filename.css"),
             ),
         ) as RuleSetRule
       )?.oneOf;
