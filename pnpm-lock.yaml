@@ -432,6 +432,9 @@ importers:
         specifier: ^4.2.0
         version: 4.3.6
     devDependencies:
+      '@types/node':
+        specifier: ^18.19.0
+        version: 18.19.127
       '@types/stylis':
         specifier: ^4.2.0
         version: 4.2.7
