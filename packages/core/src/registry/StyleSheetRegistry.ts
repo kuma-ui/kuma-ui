@@ -46,9 +46,9 @@ export class StyleSheetRegistry {
       );
     }
 
-    this.instancesCountMap[id]! -= 1;
+    this.instancesCountMap[id] -= 1;
 
-    if (this.instancesCountMap[id]! !== 0) {
+    if (this.instancesCountMap[id] !== 0) {
       return;
     }
 
@@ -63,7 +63,7 @@ export class StyleSheetRegistry {
         );
       }
 
-      this.indexesMap[id]!.forEach((index) => this.sheet.deleteRule(index));
+      this.indexesMap[id].forEach((index) => this.sheet.deleteRule(index));
       delete this.indexesMap[id];
     }
 
