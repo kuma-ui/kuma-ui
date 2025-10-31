@@ -28,11 +28,12 @@ export class StyleGenerator {
     const findThemeStyle = (value: string) => {
       const userTheme = theme.getUserTheme();
       const propKey = value.split(".")[0] as Tokens;
-      if (userTheme[propKey] === undefined) return undefined;
+      const group = userTheme[propKey];
+      if (!group) return undefined;
 
-      for (const key in userTheme[propKey]) {
+      for (const key in group) {
         if (value === key) {
-          return userTheme[propKey]![key];
+          return group[key];
         }
       }
       return undefined;
