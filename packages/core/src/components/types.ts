@@ -15,12 +15,8 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
-    props: MergeWithAs<
-      React.ComponentProps<Component>,
-      React.ComponentProps<AsComponent>,
-      Props,
-      AsComponent
-    >,
+    props: Omit<React.ComponentPropsWithoutRef<AsComponent>, keyof Props | "as"> &
+      Props & { as?: AsComponent }
   ): JSX.Element;
   displayName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
@@ -31,29 +27,6 @@ export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   defaultProps?: Partial<any>;
   id?: string;
 };
-
-export type MergeWithAs<
-  ComponentProps extends object,
-  AsProps extends object,
-  AdditionalProps extends object = {},
-  AsComponent extends As = As,
-> = RightJoinProps<
-  RightJoinProps<ComponentProps, AdditionalProps>,
-  RightJoinProps<AsProps, AdditionalProps> & {
-    as?: AsComponent;
-  }
->;
-
-export type RightJoinProps<
-  SourceProps extends object = {},
-  OverrideProps extends object = {},
-> = OmitCommonProps<SourceProps, keyof OverrideProps> & OverrideProps;
-
-type OmitCommonProps<
-  Target,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME
-  OmitAdditionalProps extends keyof any = never,
-> = Omit<Target, "transition" | "as" | "color" | OmitAdditionalProps>;
 
 type Variants<
   T,
@@ -72,8 +45,8 @@ type Variant<ComponentType extends keyof typeof componentList> = If<
 >;
 
 export type ComponentProps<ComponentType extends keyof typeof componentList> =
-  StyledProps<ThemeSystem> &
-    Partial<PseudoProps<ThemeSystem>> & {
+  StyledProps &
+    Partial<Record<`_${string}`, StyledProps>> & {
       children?: ReactNode;
     } & {
       variant?: Variant<ComponentType>;

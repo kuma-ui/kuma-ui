@@ -26,16 +26,17 @@
  */
 
 import { forwardRef as forwardReactRef } from "react";
-import { PropsOf, RightJoinProps, ComponentWithAs, As } from "./types";
+import { ComponentWithAs, As } from "./types";
 
 export function forwardRef<Props extends object, Component extends As>(
   component: React.ForwardRefRenderFunction<
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any,
     React.PropsWithoutRef<
-      RightJoinProps<PropsOf<Component>, Props> & {
-        as?: As;
-      }
+      Omit<React.ComponentPropsWithoutRef<Component>, keyof Props | "as"> &
+        Props & {
+          as?: As;
+        }
     >
   >,
 ): ComponentWithAs<Component, Props> {
