@@ -290,6 +290,9 @@ importers:
       '@types/babel__core':
         specifier: ^7.20.0
         version: 7.20.5
+      '@types/node':
+        specifier: ^18.15.11
+        version: 18.19.127
       '@vitest/coverage-c8':
         specifier: ^0.31.4
         version: 0.31.4(vitest@0.31.4(jsdom@22.1.0)(terser@5.44.0))
