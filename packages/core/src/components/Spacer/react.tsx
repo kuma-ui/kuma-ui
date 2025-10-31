@@ -1,17 +1,10 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-  ComponentProps,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
-import { SpacerSpecificProps, spacerHandler } from "./handler";
-import { theme } from "@kuma-ui/sheet";
+import { SpacerSpecificProps } from "./handler";
 import { defaultSpacerTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type SpacerProps = ComponentProps<"Spacer"> & SpacerSpecificProps;
 
@@ -23,30 +16,51 @@ type SpacerComponent<T extends As = "div"> = ComponentWithAs<T, SpacerProps>;
  *
  * @see — Further documentation will be available in the future.
  */
-const Spacer: SpacerComponent = forwardRef(
+const Spacer: SpacerComponent = forwardRef<SpacerProps, "div">(
   (
     { as: Component = defaultSpacerTag, children, size, horizontal, ...props },
     ref,
   ) => {
-    props = {
-      ...spacerHandler({ size, horizontal }),
-      ...props,
+    const inlineStyle: React.CSSProperties = !horizontal && !size
+      ? {}
+      : horizontal
+        ? {
+            width:
+              typeof size === "undefined"
+                ? "0px"
+                : typeof size === "number"
+                ? `${size}px`
+                : `${size}`,
+            height: "auto",
+            display: "inline-block",
+            flexShrink: 0,
+          }
+        : {
+            width: "auto",
+            height:
+              typeof size === "undefined"
+                ? "0px"
+                : typeof size === "number"
+                ? `${size}px`
+                : `${size}`,
+            display: "block",
+            flexShrink: 0,
+          };
+
+    const mergedProps = resolveMergedBoxProps("Spacer", props);
+    const baseStyle: React.CSSProperties =
+      "style" in mergedProps && mergedProps.style
+        ? mergedProps.style
+        : {};
+    const finalStyle: React.CSSProperties = {
+      ...baseStyle,
+      ...inlineStyle,
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variant = props.variant
-      ? theme.getVariants("Spacer")?.variants?.[props.variant]
-      : {};
-
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variant}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} style={finalStyle} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

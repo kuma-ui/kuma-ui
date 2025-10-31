@@ -1,16 +1,9 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-  ComponentProps,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
-import { theme } from "@kuma-ui/sheet";
 import { defaultHeadingTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type HeadingProps = ComponentProps<"Heading">;
 
@@ -24,22 +17,14 @@ type HeadingComponent<
  *
  * @see — http://kuma-ui.com/docs/Components/Heading
  */
-const Heading: HeadingComponent = forwardRef(
+const Heading: HeadingComponent = forwardRef<HeadingProps, "h1">(
   ({ as: Component = defaultHeadingTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variant = props.variant
-      ? // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any -- FIXME
-        theme.getVariants("Heading")?.variants?.[props.variant as any]
-      : {};
+    const mergedProps = resolveMergedBoxProps("Heading", props);
+
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variant}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

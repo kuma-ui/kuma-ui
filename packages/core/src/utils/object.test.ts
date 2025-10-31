@@ -42,6 +42,6 @@ describe("flattenObject", () => {
       "colors.purple.dark": "#purple_dark";
       "colors.purple.100": "#purple_100";
       "colors.purple.200": "#purple_200";
-    }>();
+    }>(flatten);
   });
 });

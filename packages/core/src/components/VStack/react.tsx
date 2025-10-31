@@ -1,16 +1,9 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import { theme } from "@kuma-ui/sheet";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-  ComponentProps,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
 import { defaultVStackTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type VStackProps = ComponentProps<"VStack">;
 
@@ -21,21 +14,14 @@ type VStackComponent<T extends As = "div"> = ComponentWithAs<T, VStackProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/VStack
  */
-const VStack: VStackComponent = forwardRef(
+const VStack: VStackComponent = forwardRef<VStackProps, "div">(
   ({ as: Component = defaultVStackTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variant = props.variant
-      ? theme.getVariants("VStack")?.variants?.[props.variant]
-      : {};
+    const mergedProps = resolveMergedBoxProps("VStack", props);
+
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variant}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

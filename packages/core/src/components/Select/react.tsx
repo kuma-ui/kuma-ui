@@ -1,16 +1,9 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentProps,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
-import { theme } from "@kuma-ui/sheet";
 import { defaultSelectTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type SelectProps = ComponentProps<"Select">;
 
@@ -21,22 +14,14 @@ type SelectComponent<T extends As = "select"> = ComponentWithAs<T, SelectProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Select
  */
-const Select: SelectComponent = forwardRef(
+const Select: SelectComponent = forwardRef<SelectProps, "select">(
   ({ as: Component = defaultSelectTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variantStyle = props.variant
-      ? theme.getVariants("Select")?.variants?.[props.variant]
-      : {};
+    const mergedProps = resolveMergedBoxProps("Select", props);
 
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variantStyle}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

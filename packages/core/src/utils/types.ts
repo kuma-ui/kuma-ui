@@ -8,7 +8,7 @@ export type UnionToIntersection<U> = (
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type _String = string & {};
 
-export type Stringify<T> = T extends string ? T : _String;
+export type Stringify<T> = T extends string | number ? `${T}` : _String;
 
 type IsAny<T> = 0 extends 1 & T ? true : false;
 

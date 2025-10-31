@@ -21,13 +21,14 @@ export const DynamicBox: BoxComponent = forwardRef(
   ) => {
     const registry = useStyleRegistry() || defaultRegistry;
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variantStyle: object = (() => {
+    const variantStyle: Record<string, unknown> = (() => {
       if (!variant) return {};
-      // eslint-disable-next-line no-extra-boolean-cast -- FIXME
-      if (!!IS_KUMA_DEFAULT) return {};
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return -- FIXME
-      return theme.getVariants("Box")?.variants?.[variant];
+      if (IS_KUMA_DEFAULT) return {};
+      const variants = theme.getVariants("Box")?.variants as
+        | Record<string, Record<string, unknown>>
+        | undefined;
+      const variantKey = variant as string | undefined;
+      return (variants && variantKey && variants[variantKey]) || {};
     })();
 
     const { dynamicProps, restProps } = extractDynamicProps({
@@ -37,15 +38,12 @@ export const DynamicBox: BoxComponent = forwardRef(
 
     const { className, css } = getCachedStyle(dynamicProps);
 
-    const box = React.createElement(
-      Component,
-      {
-        ref,
-        ...restProps,
-        className: [restProps.className, className].filter(Boolean).join(" "),
-      },
-      children,
-    );
+    const box = React.createElement(Component as React.ElementType, {
+      ref,
+      ...restProps,
+      className: [restProps.className, className].filter(Boolean).join(" "),
+      children: children as React.ReactNode,
+    });
 
     if (!isBrowser) {
       registry.add(className, css);

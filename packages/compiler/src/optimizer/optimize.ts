@@ -26,14 +26,21 @@ import { isStyledProp, isPseudoProps } from "@kuma-ui/system";
  * @param {string|undefined} as - The HTML element to use as a replacement.
  */
 export const optimize = (
-  componentName: (typeof componentList)[keyof typeof componentList],
+  componentName: keyof typeof componentList,
   jsxElement: JsxOpeningElement | JsxSelfClosingElement,
   as?: string,
 ) => {
   const isOptimizable = jsxElement.getAttributes().every((attrLike) => {
-    if (Node.isJsxSpreadAttribute(attrLike)) return false;
+    if (Node.isJsxSpreadAttribute(attrLike)) {
+      return false;
+    }
+
     const attr = attrLike.asKindOrThrow(SyntaxKind.JsxAttribute);
-    if (hasDynamicProp(attr.getNameNode().getText().trim(), !!as)) return false;
+
+    if (hasDynamicProp(attr.getNameNode().getText().trim(), !!as)) {
+      return false;
+    }
+
     return true;
   });
 
@@ -41,13 +48,18 @@ export const optimize = (
 
   const rawHTMLTag = (() => {
     const safeAs = typeof as === "string" ? as.replace(/['"`]/g, "") : as;
-    const tag = defaultComponentTag[componentName];
+
     if (safeAs) {
       return safeAs;
-    } else {
-      if (typeof tag === "string") return tag;
-      return "div";
     }
+
+    const tag = defaultComponentTag[componentName];
+
+    if (typeof tag === "string") {
+      return tag;
+    }
+
+    return "div";
   })();
 
   safeReplaceTagName(jsxElement, rawHTMLTag);

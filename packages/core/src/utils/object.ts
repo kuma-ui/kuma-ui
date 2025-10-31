@@ -1,4 +1,4 @@
-import { UnionToIntersection } from "./types";
+import { Stringify, UnionToIntersection } from "./types";
 
 type ObjectKey = string | number;
 
@@ -61,10 +61,20 @@ export type FlattenObject<
   RestKey extends string = "",
 > = UnionToIntersection<
   T extends Record<infer Key, unknown>
-    ? Key extends ObjectKey
+    ? Key extends string | number
       ? T[Key] extends NestedObject
-        ? FlattenObject<T[Key], RestKey extends "" ? Key : `${RestKey}.${Key}`>
-        : Record<RestKey extends "" ? Key : `${RestKey}.${Key}`, T[Key]>
-      : Record<Key, T[Key]>
+        ? FlattenObject<
+            T[Key],
+            RestKey extends ""
+              ? Stringify<Key>
+              : `${RestKey}.${Stringify<Key>}`
+          >
+        : Record<
+            RestKey extends ""
+              ? Stringify<Key>
+              : `${RestKey}.${Stringify<Key>}`,
+            T[Key]
+          >
+      : never
     : never
 >;

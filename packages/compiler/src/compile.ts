@@ -42,7 +42,7 @@ const compile = (
       if (!originalComponentName) return;
 
       const componentName =
-        originalComponentName as (typeof componentList)[keyof typeof componentList];
+        originalComponentName as keyof typeof componentList;
       const extractedPropsMap = collectPropsFromJsx(openingElement);
       const result = extractProps(
         componentName,
@@ -51,10 +51,11 @@ const compile = (
       );
       if (result) css.push(result.css);
 
+      const asProp: unknown = extractedPropsMap["as"];
       optimize(
         componentName,
         openingElement,
-        extractedPropsMap["as"] as string | undefined,
+        typeof asProp === "string" ? asProp : undefined,
       );
     }
     if (Node.isTaggedTemplateExpression(node)) {

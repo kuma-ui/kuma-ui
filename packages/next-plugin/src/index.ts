@@ -24,6 +24,17 @@ const getSupportedBrowsers = (dir: string, isDevelopment: boolean) => {
   return undefined;
 };
 
+function isRuleSetRuleWithOneOf(
+  value: unknown,
+): value is RuleSetRule & { oneOf: RuleSetRule[] } {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "oneOf" in (value as Record<string, unknown>) &&
+    Array.isArray((value as { oneOf?: unknown }).oneOf)
+  );
+}
+
 const kumaUiConfig = (
   nextConfig: NextConfig,
   kumaUiConfig: KumaConfig = {},
@@ -32,19 +43,19 @@ const kumaUiConfig = (
     webpack(config: Configuration & ConfigurationContext, options) {
       const { dir, dev, isServer } = options;
 
-      const cssRules = (
-        config.module?.rules?.find(
-          (rule) =>
-            typeof rule === "object" &&
-            Array.isArray(rule.oneOf) &&
-            rule.oneOf.some(
-              ({ test }) =>
-                test instanceof RegExp &&
-                typeof test.test === "function" &&
-                test.test("filename.css"),
-            ),
-        ) as RuleSetRule
-      )?.oneOf;
+      const cssRuleWithOneOf = config.module?.rules?.find(
+        (rule): rule is RuleSetRule & { oneOf: RuleSetRule[] } => {
+          if (!isRuleSetRuleWithOneOf(rule)) return false;
+
+          return rule.oneOf.some((r) => {
+            if (typeof r !== "object" || r === null) return false;
+            if (!("test" in r)) return false;
+            return r.test instanceof RegExp && r.test.test("filename.css");
+          });
+        },
+      );
+
+      const cssRules = cssRuleWithOneOf?.oneOf;
 
       cssRules?.push({
         test: /.css$/i,
