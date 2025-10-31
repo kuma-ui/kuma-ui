@@ -2,7 +2,7 @@ use oxc_allocator::Allocator;
 use oxc_ast::{
     ast::{
         BindingIdentifier, ImportDeclaration, ImportDeclarationSpecifier, ImportDefaultSpecifier,
-        ImportOrExportKind, ModuleDeclaration, Program, Statement, StringLiteral,
+        ImportOrExportKind, Program, Statement, StringLiteral,
     },
     visit::walk_mut::walk_program,
     AstBuilder, VisitMut,

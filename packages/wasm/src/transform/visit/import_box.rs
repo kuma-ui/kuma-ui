@@ -4,7 +4,7 @@ use oxc_allocator::Allocator;
 use oxc_ast::{
     ast::{
         BindingIdentifier, IdentifierName, ImportDeclaration, ImportDeclarationSpecifier,
-        ImportOrExportKind, ImportSpecifier, ModuleDeclaration, ModuleExportName, Program,
+        ImportOrExportKind, ImportSpecifier, ModuleExportName, Program,
         Statement, StringLiteral,
     },
     visit::walk_mut::walk_program,
@@ -82,8 +82,6 @@ impl<'a> VisitMut<'a> for ImportBox<'a, '_> {
 
 #[cfg(test)]
 mod test {
-    use std::mem::replace;
-
     use super::*;
     use crate::js_source::JsSource;
     use oxc_allocator::Allocator;

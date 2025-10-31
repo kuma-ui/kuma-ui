@@ -3,9 +3,9 @@ use std::collections::HashMap;
 use oxc_allocator::Allocator;
 use oxc_ast::{
     ast::{
-        BooleanLiteral, Expression, JSXAttribute, JSXAttributeItem, JSXAttributeName,
-        JSXAttributeValue, JSXElement, JSXElementName, JSXExpression, JSXExpressionContainer,
-        JSXIdentifier, JSXMemberExpressionObject, StringLiteral,
+        BooleanLiteral, JSXAttribute, JSXAttributeItem, JSXAttributeName, JSXAttributeValue,
+        JSXElement, JSXElementName, JSXExpression, JSXExpressionContainer, JSXIdentifier,
+        JSXMemberExpressionObject, StringLiteral,
     },
     visit::walk_mut::walk_jsx_element,
     AstBuilder, VisitMut,

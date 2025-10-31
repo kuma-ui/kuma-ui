@@ -14,6 +14,7 @@ mod util;
 
 use js_source::JsSource;
 use transform::Transform;
+#[cfg(test)]
 use util::replace_quotes_and_newlines;
 
 #[wasm_bindgen(typescript_custom_section)]
@@ -77,7 +78,7 @@ mod tests {
 
         transform.transform(program);
 
-        let imports = transform.get_imports();
+        let _imports = transform.get_imports();
 
         let source_text = Codegen::new()
             .with_options(CodegenOptions::default())

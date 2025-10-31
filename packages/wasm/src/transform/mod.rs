@@ -14,7 +14,7 @@ use visit::{
 
 pub struct Transform<'a> {
     pub allocator: &'a Allocator,
-    pub ast: AstBuilder<'a>,
+    pub _ast: AstBuilder<'a>,
     pub imports: HashMap<String, String>,
 }
 
@@ -22,7 +22,7 @@ impl<'a> Transform<'a> {
     pub fn new(allocator: &'a Allocator) -> Self {
         Self {
             allocator,
-            ast: AstBuilder::new(allocator),
+            _ast: AstBuilder::new(allocator),
             imports: HashMap::new(),
         }
     }
