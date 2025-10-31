@@ -41,8 +41,7 @@ const compile = (
       );
       if (!originalComponentName) return;
 
-      const componentName =
-        originalComponentName as keyof typeof componentList;
+      const componentName = originalComponentName as keyof typeof componentList;
       const extractedPropsMap = collectPropsFromJsx(openingElement);
       const result = extractProps(
         componentName,

@@ -14,10 +14,18 @@ import { forwardRef } from "../../forwardRef";
 const Box: BoxComponent = forwardRef<BoxProps, "div">(
   ({ children, ...props }, ref) => {
     if (hasDynamicProps(props)) {
-      return <DynamicBox ref={ref} {...props}>{children}</DynamicBox>;
+      return (
+        <DynamicBox ref={ref} {...props}>
+          {children}
+        </DynamicBox>
+      );
     }
 
-    return <StaticBox ref={ref} {...props}>{children}</StaticBox>;
+    return (
+      <StaticBox ref={ref} {...props}>
+        {children}
+      </StaticBox>
+    );
   },
 );
 

@@ -20,7 +20,10 @@ export function resolveMergedBoxProps<
   // Variant is already typed as string literal union or undefined from ComponentProps
   const variantKey = props.variant;
   const variantProps: Partial<BoxProps> =
-    variantKey && variants && typeof variantKey === "string" && variantKey in variants
+    variantKey &&
+    variants &&
+    typeof variantKey === "string" &&
+    variantKey in variants
       ? (variants[variantKey] as Partial<BoxProps>)
       : {};
 

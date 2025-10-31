@@ -21,37 +21,36 @@ const Spacer: SpacerComponent = forwardRef<SpacerProps, "div">(
     { as: Component = defaultSpacerTag, children, size, horizontal, ...props },
     ref,
   ) => {
-    const inlineStyle: React.CSSProperties = !horizontal && !size
-      ? {}
-      : horizontal
-        ? {
-            width:
-              typeof size === "undefined"
-                ? "0px"
-                : typeof size === "number"
-                ? `${size}px`
-                : `${size}`,
-            height: "auto",
-            display: "inline-block",
-            flexShrink: 0,
-          }
-        : {
-            width: "auto",
-            height:
-              typeof size === "undefined"
-                ? "0px"
-                : typeof size === "number"
-                ? `${size}px`
-                : `${size}`,
-            display: "block",
-            flexShrink: 0,
-          };
+    const inlineStyle: React.CSSProperties =
+      !horizontal && !size
+        ? {}
+        : horizontal
+          ? {
+              width:
+                typeof size === "undefined"
+                  ? "0px"
+                  : typeof size === "number"
+                    ? `${size}px`
+                    : `${size}`,
+              height: "auto",
+              display: "inline-block",
+              flexShrink: 0,
+            }
+          : {
+              width: "auto",
+              height:
+                typeof size === "undefined"
+                  ? "0px"
+                  : typeof size === "number"
+                    ? `${size}px`
+                    : `${size}`,
+              display: "block",
+              flexShrink: 0,
+            };
 
     const mergedProps = resolveMergedBoxProps("Spacer", props);
     const baseStyle: React.CSSProperties =
-      "style" in mergedProps && mergedProps.style
-        ? mergedProps.style
-        : {};
+      "style" in mergedProps && mergedProps.style ? mergedProps.style : {};
     const finalStyle: React.CSSProperties = {
       ...baseStyle,
       ...inlineStyle,

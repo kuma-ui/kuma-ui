@@ -13,12 +13,16 @@ export type PropsOf<T extends As> = React.ComponentPropsWithoutRef<T> & {
   as?: As;
 };
 
-export type PolymorphicRef<T extends As> = React.ComponentPropsWithRef<T>["ref"];
+export type PolymorphicRef<T extends As> =
+  React.ComponentPropsWithRef<T>["ref"];
 
 export type ComponentWithAs<Component extends As, Props extends object = {}> = {
   <AsComponent extends As = Component>(
-    props: Omit<React.ComponentPropsWithoutRef<AsComponent>, keyof Props | "as"> &
-      Props & { as?: AsComponent; ref?: PolymorphicRef<AsComponent> }
+    props: Omit<
+      React.ComponentPropsWithoutRef<AsComponent>,
+      keyof Props | "as"
+    > &
+      Props & { as?: AsComponent; ref?: PolymorphicRef<AsComponent> },
   ): JSX.Element;
   displayName?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- FIXME

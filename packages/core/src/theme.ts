@@ -37,14 +37,14 @@ type ThemeComponent<T> = {
   [K in keyof T]?: K extends "baseStyle"
     ? StyleProps
     : K extends "variants"
-    ? {
-        [_ in keyof T[K]]: StyleProps;
-      }
-    : K extends "defaultProps"
-    ? {
-        variant?: T extends RawThemeComponent ? keyof T["variants"] : never;
-      }
-    : never;
+      ? {
+          [_ in keyof T[K]]: StyleProps;
+        }
+      : K extends "defaultProps"
+        ? {
+            variant?: T extends RawThemeComponent ? keyof T["variants"] : never;
+          }
+        : never;
 };
 
 export type ThemeInput<T> = RawThemeInput & {
@@ -53,12 +53,12 @@ export type ThemeInput<T> = RawThemeInput & {
       ? { [K2 in keyof T[K]]?: ThemeComponent<T[K][K2]> }
       : never
     : K extends keyof InputThemeTokens
-    ? T[K] extends
-        | NestedObject<K extends NumberToken ? string | number : string>
-        | undefined
-      ? T[K]
-      : never
-    : never;
+      ? T[K] extends
+          | NestedObject<K extends NumberToken ? string | number : string>
+          | undefined
+        ? T[K]
+        : never
+      : never;
 };
 
 type ThemeResult<T> = Pretty<

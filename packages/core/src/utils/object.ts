@@ -65,9 +65,7 @@ export type FlattenObject<
       ? T[Key] extends NestedObject
         ? FlattenObject<
             T[Key],
-            RestKey extends ""
-              ? Stringify<Key>
-              : `${RestKey}.${Stringify<Key>}`
+            RestKey extends "" ? Stringify<Key> : `${RestKey}.${Stringify<Key>}`
           >
         : Record<
             RestKey extends ""
