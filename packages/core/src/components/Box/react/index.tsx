@@ -13,13 +13,11 @@ import { forwardRef } from "../../forwardRef";
  */
 const Box: BoxComponent = forwardRef<BoxProps, "div">(
   ({ children, ...props }, ref) => {
-    const mergedProps = { ref, ...props, children };
-
     if (hasDynamicProps(props)) {
-      return React.createElement(DynamicBox, mergedProps);
+      return <DynamicBox ref={ref} {...props}>{children}</DynamicBox>;
     }
 
-    return React.createElement(StaticBox, mergedProps);
+    return <StaticBox ref={ref} {...props}>{children}</StaticBox>;
   },
 );
 
