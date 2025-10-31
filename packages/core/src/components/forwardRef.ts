@@ -30,8 +30,7 @@ import { ComponentWithAs, As } from "./types";
 
 export function forwardRef<Props extends object, Component extends As>(
   component: React.ForwardRefRenderFunction<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    any,
+    React.ElementRef<Component>,
     React.PropsWithoutRef<
       Omit<React.ComponentPropsWithoutRef<Component>, keyof Props | "as"> &
         Props & {
