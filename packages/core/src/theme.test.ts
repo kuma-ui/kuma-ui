@@ -39,7 +39,6 @@ describe("createTheme", () => {
       fonts: {
         "fonts.sans.n": "fonts sans n",
       },
-      components: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
@@ -59,7 +58,7 @@ describe("createTheme", () => {
         "fonts.sans.n": "fonts sans n";
       };
       components: undefined;
-    }>(theme);
+    }>();
   });
 
   test("should convert space theme object to expected format", () => {
@@ -77,7 +76,6 @@ describe("createTheme", () => {
         "spacings.4": "1rem",
         "spacings.sm": "8px",
       },
-      components: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
@@ -87,7 +85,7 @@ describe("createTheme", () => {
         "spacings.sm": "8px";
       };
       components: undefined;
-    }>(theme);
+    }>();
   });
 
   test("should convert size theme object to expected format", () => {
@@ -105,7 +103,6 @@ describe("createTheme", () => {
         "sizes.4": "1rem",
         "sizes.sm": "8px",
       },
-      components: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
@@ -115,7 +112,7 @@ describe("createTheme", () => {
         "sizes.sm": "8px";
       };
       components: undefined;
-    }>(theme);
+    }>();
   });
 
   test("should convert radius theme object to expected format", () => {
@@ -133,7 +130,6 @@ describe("createTheme", () => {
         "radii.4": "1rem",
         "radii.sm": "8px",
       },
-      components: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
@@ -143,7 +139,7 @@ describe("createTheme", () => {
         "radii.sm": "8px";
       };
       components: undefined;
-    }>(theme);
+    }>();
   });
 
   test("should convert z-index theme object to expected format", () => {
@@ -159,7 +155,6 @@ describe("createTheme", () => {
         "zIndices.overlay": "10",
         "zIndices.modal": "100",
       },
-      components: undefined,
     });
 
     expectTypeOf(theme).toEqualTypeOf<{
@@ -168,15 +163,20 @@ describe("createTheme", () => {
         "zIndices.modal": "100";
       };
       components: undefined;
-    }>(theme);
+    }>();
   });
 
   test("should autocomplete theme components", () => {
     const theme = createTheme({});
 
-    expect(theme).toEqual({ components: undefined });
+    expect(theme).toEqual({
+      colors: undefined,
+      spacings: undefined,
+    });
 
-    expectTypeOf(theme).toEqualTypeOf<{ components: undefined }>(theme);
+    expectTypeOf(theme).toEqualTypeOf<{
+      components: undefined;
+    }>();
   });
 
   test("should correctly generate theme for components", () => {
@@ -225,7 +225,9 @@ describe("createTheme", () => {
           readonly defaultProps: { readonly variant: "red" };
           readonly variants: {
             readonly red: { readonly color: "red" };
-            readonly blue: { readonly color: "blue" };
+            readonly blue: {
+              readonly color: "blue";
+            };
           };
         };
       };
