@@ -9,8 +9,8 @@ import {
 export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements
   ? JSX.IntrinsicElements[T]
   : T extends ComponentType<infer P>
-  ? P
-  : never;
+    ? P
+    : never;
 
 export type StyledComponent<T extends keyof JSX.IntrinsicElements> = React.FC<
   React.ComponentProps<T>

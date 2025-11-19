@@ -1,7 +1,7 @@
-import { describe, it, expect, expectTypeOf } from "vitest";
+import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Box } from ".";
-import React, { ComponentProps, MouseEventHandler, createRef } from "react";
+import React, { MouseEventHandler, createRef } from "react";
 
 describe("Box component", () => {
   it("should render correctly with given static props", () => {

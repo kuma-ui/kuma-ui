@@ -1,11 +1,9 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import React, { ReactNode } from "react";
-import { As, ComponentWithAs, MergeWithAs, PropsOf } from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
-import { theme } from "@kuma-ui/sheet";
-import { ComponentProps } from "../types";
 import { defaultInputTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type InputProps = ComponentProps<"Input">;
 type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
@@ -15,21 +13,14 @@ type InputComponent<T extends As = "input"> = ComponentWithAs<T, InputProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Input
  */
-const Input: InputComponent = forwardRef(
+const Input: InputComponent = forwardRef<InputProps, "input">(
   ({ as: Component = defaultInputTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variantStyle = props.variant
-      ? theme.getVariants("Input")?.variants?.[props.variant]
-      : {};
+    const mergedProps = resolveMergedBoxProps("Input", props);
+
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variantStyle}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

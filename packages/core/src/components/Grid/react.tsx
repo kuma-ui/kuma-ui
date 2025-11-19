@@ -1,18 +1,11 @@
-import { theme } from "@kuma-ui/sheet";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-  ComponentProps,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
 import { defaultGridTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type GridProps = ComponentProps<"Grid">;
-
 type GridComponent<T extends As = "div"> = ComponentWithAs<T, GridProps>;
 
 /**
@@ -20,21 +13,14 @@ type GridComponent<T extends As = "div"> = ComponentWithAs<T, GridProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Grid
  */
-const Grid: GridComponent = forwardRef(
+const Grid: GridComponent = forwardRef<GridProps, "div">(
   ({ as: Component = defaultGridTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variant = props.variant
-      ? theme.getVariants("Grid")?.variants?.[props.variant]
-      : {};
+    const mergedProps = resolveMergedBoxProps("Grid", props);
+
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variant}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

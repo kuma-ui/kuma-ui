@@ -11,11 +11,22 @@ import { forwardRef } from "../../forwardRef";
  *
  * @see — http://kuma-ui.com/docs/Components/Box
  */
-const Box: BoxComponent = forwardRef(({ children, ...props }, ref) => {
-  if (hasDynamicProps(props)) {
-    return React.createElement(DynamicBox, { ref, ...props }, children);
-  }
+const Box: BoxComponent = forwardRef<BoxProps, "div">(
+  ({ children, ...props }, ref) => {
+    if (hasDynamicProps(props)) {
+      return (
+        <DynamicBox ref={ref} {...props}>
+          {children}
+        </DynamicBox>
+      );
+    }
 
-  return React.createElement(StaticBox, { ref, ...props }, children);
-});
+    return (
+      <StaticBox ref={ref} {...props}>
+        {children}
+      </StaticBox>
+    );
+  },
+);
+
 export { Box, type BoxComponent, BoxProps };

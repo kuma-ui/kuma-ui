@@ -1,19 +1,11 @@
-import { StyledProps, PseudoProps } from "@kuma-ui/system";
-import React, { ReactNode } from "react";
-import {
-  As,
-  ComponentWithAs,
-  MergeWithAs,
-  PropsOf,
-  ComponentProps,
-} from "../types";
+import React from "react";
+import { As, ComponentWithAs, ComponentProps } from "../types";
 import { Box } from "../Box";
-import { theme } from "@kuma-ui/sheet";
 import { defaultButtonTag } from "./handler";
 import { forwardRef } from "../forwardRef";
+import { resolveMergedBoxProps } from "../variants";
 
 type ButtonProps = ComponentProps<"Button">;
-
 type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
 
 /**
@@ -21,21 +13,14 @@ type ButtonComponent<T extends As = "button"> = ComponentWithAs<T, ButtonProps>;
  *
  * @see — http://kuma-ui.com/docs/Components/Button
  */
-const Button: ButtonComponent = forwardRef(
+const Button: ButtonComponent = forwardRef<ButtonProps, "button">(
   ({ as: Component = defaultButtonTag, children, ...props }, ref) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- FIXME
-    const variant = props.variant
-      ? theme.getVariants("Button")?.variants?.[props.variant]
-      : {};
+    const mergedProps = resolveMergedBoxProps("Button", props);
+
     return (
-      <Box
-        as={Component}
-        ref={ref}
-        {...variant}
-        {...props}
-        children={children}
-        IS_KUMA_DEFAULT
-      />
+      <Box {...mergedProps} as={Component} ref={ref}>
+        {children}
+      </Box>
     );
   },
 );

@@ -3,20 +3,21 @@ import { PseudoProps, CSSProperty } from "@kuma-ui/system";
 import { extractStylePropsFromJSX } from "./fromJSX";
 import { extractStylePropsFromObjectExpression } from "./fromObject";
 
-export type ExtractedStyleProps<T> = T extends NodePath<t.JSXOpeningElement>
-  ? {
-      filteredAttributes: t.JSXAttribute[];
-      styledProps: {
-        // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
-        [key: string]: CSSProperty | number | (CSSProperty | number)[];
+export type ExtractedStyleProps<T> =
+  T extends NodePath<t.JSXOpeningElement>
+    ? {
+        filteredAttributes: t.JSXAttribute[];
+        styledProps: {
+          // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents -- FIXME
+          [key: string]: CSSProperty | number | (CSSProperty | number)[];
+        };
+        pseudoProps: PseudoProps;
+      }
+    : {
+        filteredProperties: t.ObjectProperty[];
+        styledProps: { [key: string]: string | number | (string | number)[] };
+        pseudoProps: PseudoProps;
       };
-      pseudoProps: PseudoProps;
-    }
-  : {
-      filteredProperties: t.ObjectProperty[];
-      styledProps: { [key: string]: string | number | (string | number)[] };
-      pseudoProps: PseudoProps;
-    };
 
 /**
  * Extracts style props from a JSX opening element or an ObjectExpression in a React.createElement call
