@@ -1,5 +1,19 @@
 # @kuma-ui/sheet
 
+## 1.4.0
+
+### Minor Changes
+
+- [#436](https://github.com/kuma-ui/kuma-ui/pull/436) [`cf584edc22c09f6cf50215494e0481e391c7a899`](https://github.com/kuma-ui/kuma-ui/commit/cf584edc22c09f6cf50215494e0481e391c7a899) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Type improvements and linter fixes
+
+### Patch Changes
+
+- [#433](https://github.com/kuma-ui/kuma-ui/pull/433) [`6a146f31b00975a14e500c8251d7e6fcfafc5b82`](https://github.com/kuma-ui/kuma-ui/commit/6a146f31b00975a14e500c8251d7e6fcfafc5b82) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Run `audit --fix` and update packages
+
+- [#434](https://github.com/kuma-ui/kuma-ui/pull/434) [`4d5f124115f0b9a9d6a345c69954c52fa739af54`](https://github.com/kuma-ui/kuma-ui/commit/4d5f124115f0b9a9d6a345c69954c52fa739af54) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Update pnpm version
+
+- [#433](https://github.com/kuma-ui/kuma-ui/pull/433) [`6a146f31b00975a14e500c8251d7e6fcfafc5b82`](https://github.com/kuma-ui/kuma-ui/commit/6a146f31b00975a14e500c8251d7e6fcfafc5b82) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Allow custom production class name prefix
+
 ## 1.3.1
 
 ### Patch Changes
