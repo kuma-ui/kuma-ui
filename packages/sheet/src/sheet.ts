@@ -185,7 +185,7 @@ export class Sheet {
     breakpoints: Record<string, string>,
   ): void {
     if (Array.isArray(element.children)) {
-      (element.children as Element[]).forEach((child) =>
+      (element.children).forEach((child) =>
         this.normalizeMediaQueries(child, breakpoints),
       );
     }
@@ -210,7 +210,7 @@ export class Sheet {
     className: string,
   ): boolean {
     if (Array.isArray(element.children)) {
-      const children = element.children as Element[];
+      const children = element.children;
 
       for (let index = 0; index < children.length; ) {
         if (this.applyGlobalSelectorNormalization(children[index], className)) {
