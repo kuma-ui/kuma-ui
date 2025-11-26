@@ -154,9 +154,9 @@ describe("Sheet class", () => {
           color: blue;
         }
       `);
+
       const css = sheet.getCSS();
-      expect(css).toContain(`.${className}{color:red;}`);
-      expect(css).toContain(`.external{color:blue;}`);
+      expect(css).toEqual(`.${className}{color:red;}.external{color:blue;}`);
     });
 
     test("parseCSS() preserves :global blocks", () => {
@@ -167,11 +167,11 @@ describe("Sheet class", () => {
           }
         }
       `);
-      expect(sheet.getCSS()).toContain(`::view-transition(test){color:blue;}`);
+
+      expect(sheet.getCSS()).toEqual(`::view-transition(test){color:blue;}`);
     });
 
     test("parseCSS() normalizes mixed global selectors", () => {
-      // Arrange
       const style = `
       color: red;
       background-color: blue;
@@ -200,10 +200,12 @@ describe("Sheet class", () => {
         }
       }
       `;
-      // Act
+
       const className = sheet.parseCSS(style);
-      const expectedCSS = `.${className}{color:red;background-color:blue;}::view-transition-old(root){color:green;}::view-transition(test){background:green;}::view-transition-new(root){color:red;}.app-dark-mode .${className}{background-color:black;}.app-dark-mode .${className} strong{color:white;}`;
-      expect(sheet.getCSS()).toEqual(expectedCSS);
+
+      expect(sheet.getCSS()).toEqual(
+        `.${className}{color:red;background-color:blue;}::view-transition-old(root){color:green;}::view-transition(test){background:green;}::view-transition-new(root){color:red;}.app-dark-mode .${className}{background-color:black;}.app-dark-mode .${className} strong{color:white;}`,
+      );
     });
   });
 });
