@@ -108,29 +108,6 @@ describe("Sheet class", () => {
     expect(sheet.getCSS()).toEqual(expectedCSS);
   });
 
-  test("parseCSS() should allow :global selectors to emit global rules", () => {
-    const className = sheet.parseCSS(`
-      color: red;
-      :global(.external) {
-        color: blue;
-      }
-    `);
-    const css = sheet.getCSS();
-    expect(css).toContain(`.${className}{color:red;}`);
-    expect(css).toContain(`.external{color:blue;}`);
-  });
-
-  test("parseCSS() should handle :global blocks", () => {
-    sheet.parseCSS(`
-      :global {
-        ::view-transition(test) {
-          color: blue;
-        }
-      }
-    `);
-    expect(sheet.getCSS()).toContain(`::view-transition(test){color:blue;}`);
-  });
-
   test("getCSS() should return the CSS string with unique rules", () => {
     // Arrange
     const id = sheet.addRule(style);
@@ -170,7 +147,30 @@ describe("Sheet class", () => {
   });
 
   describe("Support of global CSS", () => {
-    test("parseCSS() emits unscoped :global rules", () => {
+    test("parseCSS() preserves :global class selectors", () => {
+      const className = sheet.parseCSS(`
+        color: red;
+        :global(.external) {
+          color: blue;
+        }
+      `);
+      const css = sheet.getCSS();
+      expect(css).toContain(`.${className}{color:red;}`);
+      expect(css).toContain(`.external{color:blue;}`);
+    });
+
+    test("parseCSS() preserves :global blocks", () => {
+      sheet.parseCSS(`
+        :global {
+          ::view-transition(test) {
+            color: blue;
+          }
+        }
+      `);
+      expect(sheet.getCSS()).toContain(`::view-transition(test){color:blue;}`);
+    });
+
+    test("parseCSS() normalizes mixed global selectors", () => {
       // Arrange
       const style = `
       color: red;
