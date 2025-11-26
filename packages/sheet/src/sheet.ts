@@ -185,7 +185,7 @@ export class Sheet {
     breakpoints: Record<string, string>,
   ): void {
     if (Array.isArray(element.children)) {
-      (element.children).forEach((child) =>
+      element.children.forEach((child) =>
         this.normalizeMediaQueries(child, breakpoints),
       );
     }
