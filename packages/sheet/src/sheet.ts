@@ -131,25 +131,11 @@ export class Sheet {
 
     compile(`.${id}{${style}}`).forEach((element) => {
       const { breakpoints } = theme.getUserTheme();
-      if (element.type === "@media") {
-        const props = Array.isArray(element.props)
-          ? element.props
-          : [element.props];
-        const newProps: string[] = [];
-        let newValue = element.value;
-        for (const key in breakpoints) {
-          newValue = newValue.replaceAll(key, breakpoints[key]);
-        }
-        props.forEach((prop) => {
-          for (const key in breakpoints) {
-            newProps.push(prop.replaceAll(key, breakpoints[key]));
-            break;
-          }
-        });
-        element.props = newProps;
-        element.value = newValue;
+      this.normalizeMediaQueries(element, breakpoints ?? {});
+
+      if (this.applyGlobalSelectorNormalization(element, id)) {
+        elements.push(element);
       }
-      elements.push(element);
     });
 
     const css = serialize(elements, stringify);
@@ -163,6 +149,156 @@ export class Sheet {
     this.responsive = [...new Set(this.responsive)];
     this.pseudo = [...new Set(this.pseudo)];
     this.css = [...new Set(this.css)];
+  }
+
+  private static escapeRegExp(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
+  private static toArray(props: Element["props"]): string[] {
+    if (Array.isArray(props)) {
+      return props;
+    }
+
+    if (typeof props === "string") {
+      return [props];
+    }
+
+    return [];
+  }
+
+  private static replaceBreakpoints(
+    value: string,
+    breakpoints: Record<string, string>,
+  ): string {
+    let next = value;
+
+    for (const key in breakpoints) {
+      next = next.replaceAll(key, breakpoints[key]);
+    }
+
+    return next;
+  }
+
+  private normalizeMediaQueries(
+    element: Element,
+    breakpoints: Record<string, string>,
+  ): void {
+    if (Array.isArray(element.children)) {
+      (element.children as Element[]).forEach((child) =>
+        this.normalizeMediaQueries(child, breakpoints),
+      );
+    }
+
+    if (element.type !== "@media") {
+      return;
+    }
+
+    const props = Sheet.toArray(element.props).map((prop) =>
+      Sheet.replaceBreakpoints(prop, breakpoints),
+    );
+
+    element.props = props;
+
+    if (typeof element.value === "string") {
+      element.value = Sheet.replaceBreakpoints(element.value, breakpoints);
+    }
+  }
+
+  private applyGlobalSelectorNormalization(
+    element: Element,
+    className: string,
+  ): boolean {
+    if (Array.isArray(element.children)) {
+      const children = element.children as Element[];
+
+      for (let index = 0; index < children.length; ) {
+        if (this.applyGlobalSelectorNormalization(children[index], className)) {
+          index += 1;
+        } else {
+          children.splice(index, 1);
+        }
+      }
+
+      element.length = children.length;
+    }
+
+    if (element.type !== "rule") {
+      return true;
+    }
+
+    const { selectors, touched } = this.normalizeSelectorList(
+      element.props,
+      className,
+    );
+
+    if (!touched) {
+      return true;
+    }
+
+    if (selectors.length === 0) {
+      return false;
+    }
+
+    element.props = selectors;
+
+    if (typeof element.value === "string") {
+      element.value = Sheet.stripGlobalTokens(element.value, selectors[0]);
+    }
+
+    return true;
+  }
+
+  private normalizeSelectorList(
+    props: Element["props"],
+    className: string,
+  ): { selectors: string[]; touched: boolean } {
+    const raw = Sheet.toArray(props);
+
+    const selectors: string[] = [];
+    let touched = false;
+
+    const classNamePattern = new RegExp(
+      `^\\.${Sheet.escapeRegExp(className)}\\s*`,
+    );
+
+    raw.forEach((entry) => {
+      entry
+        .split(",")
+        .map((selector) => selector.trim())
+        .filter(Boolean)
+        .forEach((selector) => {
+          if (!selector.includes(":global")) {
+            selectors.push(selector);
+            return;
+          }
+
+          touched = true;
+
+          const cleaned = Sheet.stripGlobalTokens(
+            selector.replace(classNamePattern, ""),
+          );
+
+          if (cleaned) {
+            selectors.push(cleaned);
+          }
+        });
+    });
+
+    return { selectors, touched };
+  }
+
+  private static stripGlobalTokens(value: string, fallback?: string): string {
+    const cleaned = value
+      .replace(/:global\(([^)]+)\)/g, "$1")
+      .replace(/:global\b/g, "")
+      .trim();
+
+    if (cleaned) {
+      return cleaned;
+    }
+
+    return fallback ?? value;
   }
 
   getCSS(): string {
