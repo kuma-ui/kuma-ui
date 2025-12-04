@@ -145,4 +145,67 @@ describe("Sheet class", () => {
       expect(sheet.getCSS()).toEqual(expectedCSS);
     });
   });
+
+  describe("Support of global CSS", () => {
+    test("parseCSS() preserves :global class selectors", () => {
+      const className = sheet.parseCSS(`
+        color: red;
+        :global(.external) {
+          color: blue;
+        }
+      `);
+
+      const css = sheet.getCSS();
+      expect(css).toEqual(`.${className}{color:red;}.external{color:blue;}`);
+    });
+
+    test("parseCSS() preserves :global blocks", () => {
+      sheet.parseCSS(`
+        :global {
+          ::view-transition(test) {
+            color: blue;
+          }
+        }
+      `);
+
+      expect(sheet.getCSS()).toEqual(`::view-transition(test){color:blue;}`);
+    });
+
+    test("parseCSS() normalizes mixed global selectors", () => {
+      const style = `
+      color: red;
+      background-color: blue;
+
+      :global(::view-transition-old(root)) {
+        color: green;
+      }
+
+      :global {
+        ::view-transition(test) {
+          background: green;
+        }
+
+        ::view-transition-new(root) {
+          color: red;
+        }
+      }
+
+      :global(.app-dark-mode) & {
+        background-color: black;
+      }
+
+      strong {
+        :global(.app-dark-mode) & {
+          color: white;
+        }
+      }
+      `;
+
+      const className = sheet.parseCSS(style);
+
+      expect(sheet.getCSS()).toEqual(
+        `.${className}{color:red;background-color:blue;}::view-transition-old(root){color:green;}::view-transition(test){background:green;}::view-transition-new(root){color:red;}.app-dark-mode .${className}{background-color:black;}.app-dark-mode .${className} strong{color:white;}`,
+      );
+    });
+  });
 });

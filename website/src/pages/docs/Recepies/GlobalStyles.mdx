@@ -1,0 +1,33 @@
+---
+title: "Global Styles"
+description: "Learn how to author global selectors and view-transition styles with Kuma UI."
+---
+
+# Global Styles
+
+Kuma UI scopes generated class names by default. You can use `:global` to reach selectors outside of the component.
+
+## Example
+
+```tsx copy
+import { css } from "@kuma-ui/core";
+
+export const globalStyles = css`
+  :global(.dark-mode) & {
+    color: #d0d7ff;
+  }
+
+  :global {
+    ::view-transition(old) {
+      opacity: 0;
+    }
+    ::view-transition(new) {
+      opacity: 1;
+    }
+  }
+`;
+```
+
+- `:global(.selector)` keeps that selector as-is in the output.
+- Wrapping a block in `:global { ... }` keeps every nested selector global.
+- Mix `:global` with media queries or pseudo states if needed—the compiler removes the modifier and leaves your selectors untouched.
