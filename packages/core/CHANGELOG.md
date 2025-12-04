@@ -1,5 +1,13 @@
 # @kuma-ui/core
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`19bd4481ae6333cc5800d890d42645ae533233ee`](https://github.com/kuma-ui/kuma-ui/commit/19bd4481ae6333cc5800d890d42645ae533233ee)]:
+  - @kuma-ui/sheet@1.5.0
+  - @kuma-ui/system@1.8.1
+
 ## 1.6.0
 
 ### Minor Changes
