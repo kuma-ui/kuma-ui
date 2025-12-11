@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 1.5.0
+
+### Minor Changes
+
+- [#438](https://github.com/kuma-ui/kuma-ui/pull/438) [`19bd4481ae6333cc5800d890d42645ae533233ee`](https://github.com/kuma-ui/kuma-ui/commit/19bd4481ae6333cc5800d890d42645ae533233ee) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Implement support for global styles using :global
+
 ## 1.4.0
 
 ### Minor Changes
