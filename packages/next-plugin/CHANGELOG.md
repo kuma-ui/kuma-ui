@@ -1,5 +1,14 @@
 # @kuma-ui/next-plugin
 
+## 1.4.1
+
+### Patch Changes
+
+- [#443](https://github.com/kuma-ui/kuma-ui/pull/443) [`a443bcaf29cb8088ee94c6d291bb7b9211d70d4b`](https://github.com/kuma-ui/kuma-ui/commit/a443bcaf29cb8088ee94c6d291bb7b9211d70d4b) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Allow @types/react >=18
+
+- Updated dependencies [[`a443bcaf29cb8088ee94c6d291bb7b9211d70d4b`](https://github.com/kuma-ui/kuma-ui/commit/a443bcaf29cb8088ee94c6d291bb7b9211d70d4b), [`fe3a2b4ce1ecba3e065a73db9c4e5661aba14a39`](https://github.com/kuma-ui/kuma-ui/commit/fe3a2b4ce1ecba3e065a73db9c4e5661aba14a39)]:
+  - @kuma-ui/core@1.6.2
+
 ## 1.4.0
 
 ### Minor Changes
