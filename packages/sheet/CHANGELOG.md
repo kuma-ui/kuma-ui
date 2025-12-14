@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 1.5.1
+
+### Patch Changes
+
+- [#442](https://github.com/kuma-ui/kuma-ui/pull/442) [`fe3a2b4ce1ecba3e065a73db9c4e5661aba14a39`](https://github.com/kuma-ui/kuma-ui/commit/fe3a2b4ce1ecba3e065a73db9c4e5661aba14a39) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Re-publish packages
+
 ## 1.5.0
 
 ### Minor Changes
