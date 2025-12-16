@@ -12,9 +12,9 @@ import {
   NumberToken,
 } from "./themeTokens";
 import { componentList } from "./components/componentList";
-import { StyledProps, PseudoProps, ThemeSystemType } from "@kuma-ui/system";
+import { StyledProps, PseudoProps } from "@kuma-ui/system";
 
-type StyleProps = StyledProps & PseudoProps;
+type StyleProps = StyledProps<ThemeSystem> & PseudoProps<ThemeSystem>;
 
 type RawThemeComponent = {
   /**
