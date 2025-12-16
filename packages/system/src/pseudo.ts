@@ -2,9 +2,10 @@ import { StyledProps } from "./consumeStyleProps";
 import { ThemeSystemType, ExcludeHyphen, RemoveColon } from "./types";
 import { Pseudos } from "csstype";
 
-export type PseudoProps<T extends ThemeSystemType = ThemeSystemType> = {
-  [key in `_${ExcludeHyphen<RemoveColon<Pseudos>>}`]?: StyledProps<T>;
-};
+export type PseudoKeys = `_${ExcludeHyphen<RemoveColon<Pseudos>>}`;
+export type PseudoProps<T extends ThemeSystemType = ThemeSystemType> = Partial<
+  Record<PseudoKeys, StyledProps<T>>
+>;
 
 export const normalizePseudo = (props: string) => {
   return props.replace("_", ":");

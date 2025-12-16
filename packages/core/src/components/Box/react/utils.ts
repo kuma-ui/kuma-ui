@@ -18,18 +18,20 @@ export function hasDynamicProps(props: BoxProps) {
   });
 }
 
-export function extractDynamicProps(props: BoxProps) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const dynamicProps: Record<string, any> = {};
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const restProps: Record<string, any> = {};
+export function extractDynamicProps(props: BoxProps): {
+  dynamicProps: Record<string, unknown>;
+  restProps: Record<string, unknown> & { className?: string };
+} {
+  const dynamicProps: Record<string, unknown> = {};
+  const restProps: Record<string, unknown> & { className?: string } = {};
 
-  Object.entries(props).forEach(([key, prop]) => {
-    if (isDynamicProp(key)) {
-      dynamicProps[key] = prop;
+  (Object.keys(props) as Array<keyof BoxProps>).forEach((key) => {
+    const prop = props[key];
+    if (isDynamicProp(key as string)) {
+      dynamicProps[key as string] = prop as unknown;
       return;
     }
-    restProps[key] = prop;
+    restProps[key as string] = prop as unknown;
   });
   return {
     dynamicProps,

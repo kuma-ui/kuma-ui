@@ -51,8 +51,8 @@ type Variant<ComponentType extends keyof typeof componentList> = If<
 >;
 
 export type ComponentProps<ComponentType extends keyof typeof componentList> =
-  StyledProps &
-    Partial<Record<`_${string}`, StyledProps>> & {
+  StyledProps<ThemeSystem> &
+    Partial<PseudoProps<ThemeSystem>> & {
       children?: ReactNode;
     } & {
       variant?: Variant<ComponentType>;
