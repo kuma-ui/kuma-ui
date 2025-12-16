@@ -1,11 +1,11 @@
 import { NestedObject, Pretty, flattenObject } from "./utils/object";
-import { If, IsNever, _String } from "./utils/types";
+import { If, IsNever } from "./utils/types";
 import {
   ResultThemeTokens,
-  SystemThemeTokens,
   InputThemeTokens,
   NumberToken,
 } from "./themeTokens";
+import { Tokens } from "@kuma-ui/sheet";
 import { componentList } from "./components/componentList";
 import { StyledProps, PseudoProps } from "@kuma-ui/system";
 
@@ -72,7 +72,7 @@ type ThemeComponents = Theme extends { components: unknown }
   : never;
 export type ThemeSystem = {
   components: If<IsNever<ThemeComponents>, unknown, ThemeComponents>;
-} & SystemThemeTokens;
+} & Record<Tokens, string>;
 
 export function createTheme<const T extends ThemeInput<T>>(
   theme: T,
