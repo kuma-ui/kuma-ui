@@ -16,8 +16,8 @@ declare module "@kuma-ui/core" {
 
 test("ComponentProps keeps ThemeSystem-based style props", () => {
   type Props = ComponentProps<"Box">;
-  type ThemedStyleProps =
-    StyledProps<ThemeSystem> & Partial<PseudoProps<ThemeSystem>>;
+  type ThemedStyleProps = StyledProps<ThemeSystem> &
+    Partial<PseudoProps<ThemeSystem>>;
 
   expectTypeOf<Props>().toMatchTypeOf<ThemedStyleProps>();
 });
