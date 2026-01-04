@@ -1,21 +1,15 @@
-import {
-  FlattenObject,
-  NestedObject,
-  Pretty,
-  flattenObject,
-} from "./utils/object";
-import { If, IsNever, Stringify, _String } from "./utils/types";
+import { NestedObject, Pretty, flattenObject } from "./utils/object";
+import { If, IsNever } from "./utils/types";
 import {
   ResultThemeTokens,
-  SystemThemeTokens,
   InputThemeTokens,
   NumberToken,
 } from "./themeTokens";
+import { Tokens } from "@kuma-ui/sheet";
 import { componentList } from "./components/componentList";
-import { StyledProps, PseudoProps, ThemeSystemType } from "@kuma-ui/system";
+import { StyledProps, PseudoProps } from "@kuma-ui/system";
 
 type StyleProps = StyledProps & PseudoProps;
-
 type RawThemeComponent = {
   /**
    * @deprecated use `defaultProps` instead
@@ -78,13 +72,14 @@ type ThemeComponents = Theme extends { components: unknown }
   : never;
 export type ThemeSystem = {
   components: If<IsNever<ThemeComponents>, unknown, ThemeComponents>;
-} & SystemThemeTokens;
+} & Record<Tokens, string>;
 
 export function createTheme<const T extends ThemeInput<T>>(
   theme: T,
 ): ThemeResult<T> {
   const rawTheme = theme as RawThemeInput;
   const resolvedTokens = {};
+
   for (const key in rawTheme) {
     if (key !== "components") {
       // @ts-expect-error type
@@ -95,7 +90,6 @@ export function createTheme<const T extends ThemeInput<T>>(
 
   return {
     ...resolvedTokens,
-
     components: rawTheme.components,
   } as unknown as ThemeResult<T>;
 }
