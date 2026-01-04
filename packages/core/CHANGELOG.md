@@ -1,5 +1,11 @@
 # @kuma-ui/core
 
+## 1.6.3
+
+### Patch Changes
+
+- [#447](https://github.com/kuma-ui/kuma-ui/pull/447) [`01efff34dee78c9e7ef9ae1aa46e605b539e9410`](https://github.com/kuma-ui/kuma-ui/commit/01efff34dee78c9e7ef9ae1aa46e605b539e9410) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Re-add ThemeProps to ComponentProps
+
 ## 1.6.2
 
 ### Patch Changes
