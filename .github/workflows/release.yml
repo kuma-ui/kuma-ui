@@ -19,7 +19,7 @@ jobs:
 
       - uses: ./.github/actions/setup-pnpm
         with:
-          node_version: 18
+          node_version: 24
 
       - name: build packages
         run: pnpm run build
