@@ -1,5 +1,11 @@
 # @kuma-ui/vite
 
+## 1.5.1
+
+### Patch Changes
+
+- [#454](https://github.com/kuma-ui/kuma-ui/pull/454) [`7fe7acc829cf5840627d93286cf67a48654422de`](https://github.com/kuma-ui/kuma-ui/commit/7fe7acc829cf5840627d93286cf67a48654422de) Thanks [@yukukotani](https://github.com/yukukotani)! - Add support for vite v7
+
 ## 1.5.0
 
 ### Minor Changes
