@@ -7,6 +7,33 @@ import {
 import { compile, serialize, stringify, Element } from "stylis";
 import { applyT } from "./placeholders";
 
+const nestedParenthesesBodyPattern =
+  "(?:[^()]|\\((?:[^()]|\\((?:[^()]|\\([^()]*\\))*\\))*\\))*";
+
+function globalCallRegex(leading = "") {
+  return new RegExp(
+    `${leading}:global\\s*\\((${nestedParenthesesBodyPattern})\\)`,
+    "g",
+  );
+}
+
+const globalSelectorCallRegex = globalCallRegex();
+const ampersandGlobalCallRegex = globalCallRegex("&\\s*");
+const blockGlobalRegex = /:global(?!\s*\()/g;
+
+const normalizeWhitespace = (value: string) =>
+  value.replace(/\s+/g, " ").trim();
+
+function unwrapGlobalSelectors(selector: string, out?: string[]) {
+  return selector
+    .replace(globalSelectorCallRegex, (_match, inner) => {
+      const text = String(inner);
+      out?.push(normalizeWhitespace(text));
+      return text;
+    })
+    .replace(blockGlobalRegex, "");
+}
+
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
 type ResponsiveStyle = {
   base: string;
@@ -125,15 +152,25 @@ export class Sheet {
   parseCSS(style: string): string {
     style = this._processCSS(style);
 
+    const localGlobalInnerSelectors = new Set(
+      Array.from(style.matchAll(ampersandGlobalCallRegex), ([, g]) =>
+        normalizeWhitespace(g),
+      ),
+    );
     const id = Sheet.getClassNamePrefix() + generateHash(style);
-
+    const breakpoints = theme.getUserTheme().breakpoints ?? {};
     const elements: Element[] = [];
 
     compile(`.${id}{${style}}`).forEach((element) => {
-      const { breakpoints } = theme.getUserTheme();
-      this.normalizeMediaQueries(element, breakpoints ?? {});
+      this.normalizeMediaQueries(element, breakpoints);
 
-      if (this.applyGlobalSelectorNormalization(element, id)) {
+      if (
+        this.applyGlobalSelectorNormalization(
+          element,
+          id,
+          localGlobalInnerSelectors,
+        )
+      ) {
         elements.push(element);
       }
     });
@@ -208,12 +245,19 @@ export class Sheet {
   private applyGlobalSelectorNormalization(
     element: Element,
     className: string,
+    localGlobalInnerSelectors: Set<string>,
   ): boolean {
     if (Array.isArray(element.children)) {
       const children = element.children;
 
       for (let index = 0; index < children.length; ) {
-        if (this.applyGlobalSelectorNormalization(children[index], className)) {
+        if (
+          this.applyGlobalSelectorNormalization(
+            children[index],
+            className,
+            localGlobalInnerSelectors,
+          )
+        ) {
           index += 1;
         } else {
           children.splice(index, 1);
@@ -230,6 +274,7 @@ export class Sheet {
     const { selectors, touched } = this.normalizeSelectorList(
       element.props,
       className,
+      localGlobalInnerSelectors,
     );
 
     if (!touched) {
@@ -243,7 +288,9 @@ export class Sheet {
     element.props = selectors;
 
     if (typeof element.value === "string") {
-      element.value = Sheet.stripGlobalTokens(element.value, selectors[0]);
+      element.value =
+        unwrapGlobalSelectors(element.value).trim() ||
+        (selectors[0] ?? element.value);
     }
 
     return true;
@@ -252,53 +299,40 @@ export class Sheet {
   private normalizeSelectorList(
     props: Element["props"],
     className: string,
+    localGlobalInnerSelectors: Set<string>,
   ): { selectors: string[]; touched: boolean } {
-    const raw = Sheet.toArray(props);
-
     const selectors: string[] = [];
+    const scopedPrefix = new RegExp(`^\\.${Sheet.escapeRegExp(className)}\\s*`);
     let touched = false;
 
-    const classNamePattern = new RegExp(
-      `^\\.${Sheet.escapeRegExp(className)}\\s*`,
-    );
+    for (const entry of Sheet.toArray(props)) {
+      for (const selector of entry.split(",").map((s) => s.trim())) {
+        if (!selector) {
+          continue;
+        }
 
-    raw.forEach((entry) => {
-      entry
-        .split(",")
-        .map((selector) => selector.trim())
-        .filter(Boolean)
-        .forEach((selector) => {
-          if (!selector.includes(":global")) {
-            selectors.push(selector);
-            return;
-          }
+        if (!selector.includes(":global")) {
+          selectors.push(selector);
+          continue;
+        }
 
-          touched = true;
+        touched = true;
 
-          const cleaned = Sheet.stripGlobalTokens(
-            selector.replace(classNamePattern, ""),
-          );
+        const inners: string[] = [];
+        const body = unwrapGlobalSelectors(selector, inners);
+        const cleaned = normalizeWhitespace(
+          inners.some((inner) => localGlobalInnerSelectors.has(inner))
+            ? body
+            : body.replace(scopedPrefix, ""),
+        );
 
-          if (cleaned) {
-            selectors.push(cleaned);
-          }
-        });
-    });
-
-    return { selectors, touched };
-  }
-
-  private static stripGlobalTokens(value: string, fallback?: string): string {
-    const cleaned = value
-      .replace(/:global\(([^)]+)\)/g, "$1")
-      .replace(/:global\b/g, "")
-      .trim();
-
-    if (cleaned) {
-      return cleaned;
+        if (cleaned) {
+          selectors.push(cleaned);
+        }
+      }
     }
 
-    return fallback ?? value;
+    return { selectors, touched };
   }
 
   getCSS(): string {
