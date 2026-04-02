@@ -7,31 +7,114 @@ import {
 import { compile, serialize, stringify, Element } from "stylis";
 import { applyT } from "./placeholders";
 
-const nestedParenthesesBodyPattern =
-  "(?:[^()]|\\((?:[^()]|\\((?:[^()]|\\([^()]*\\))*\\))*\\))*";
+const whitespaceRegex = /\s/;
+const globalKeyword = ":global";
+const blockGlobalRegex = new RegExp(`${globalKeyword}(?!\\s*\\()`, "g");
 
-function globalCallRegex(leading = "") {
-  return new RegExp(
-    `${leading}:global\\s*\\((${nestedParenthesesBodyPattern})\\)`,
-    "g",
-  );
-}
-
-const globalSelectorCallRegex = globalCallRegex();
-const ampersandGlobalCallRegex = globalCallRegex("&\\s*");
-const blockGlobalRegex = /:global(?!\s*\()/g;
+type OperatorMatch = {
+  start: number;
+  end: number;
+  value?: string;
+};
 
 const normalizeWhitespace = (value: string) =>
   value.replace(/\s+/g, " ").trim();
 
-function unwrapGlobalSelectors(selector: string, out?: string[]) {
-  return selector
-    .replace(globalSelectorCallRegex, (_match, inner) => {
-      const text = String(inner);
-      out?.push(normalizeWhitespace(text));
-      return text;
-    })
-    .replace(blockGlobalRegex, "");
+function findOperator(operator: string, selector: string, from: number) {
+  const start = selector.indexOf(operator, from);
+
+  if (start < 0) {
+    return null;
+  }
+
+  let index = start + operator.length;
+
+  while (whitespaceRegex.test(selector[index] ?? "")) {
+    index += 1;
+  }
+
+  const unmatchedOrMissingParenthesis: OperatorMatch = {
+    start,
+    end: index,
+    value: undefined,
+  };
+
+  if (selector[index] !== "(") {
+    return unmatchedOrMissingParenthesis;
+  }
+
+  let depth = 1;
+  let cursor = index + 1;
+
+  while (cursor < selector.length && depth > 0) {
+    if (selector[cursor] === "(") {
+      depth += 1;
+    } else if (selector[cursor] === ")") {
+      depth -= 1;
+    }
+
+    cursor += 1;
+  }
+
+  if (depth !== 0) {
+    return unmatchedOrMissingParenthesis;
+  }
+
+  return {
+    start,
+    end: cursor,
+    value: selector.slice(index + 1, cursor - 1),
+  };
+}
+
+function extractOperators(operator: string, style: string) {
+  const selectors: string[] = [];
+  let searchStart = 0;
+
+  while (searchStart < style.length) {
+    const match = findOperator(operator, style, searchStart);
+
+    if (!match) {
+      break;
+    }
+
+    const prefix = style.slice(searchStart, match.start);
+
+    if (match.value !== undefined && /(?:^|[^\S\r\n])&\s*$/.test(prefix)) {
+      selectors.push(normalizeWhitespace(match.value));
+    }
+
+    searchStart = Math.max(match.end, match.start + 1);
+  }
+
+  return selectors;
+}
+
+function unwrapGlobalOperator(selector: string, out?: string[]) {
+  let result = "";
+  let searchStart = 0;
+
+  while (searchStart < selector.length) {
+    const match = findOperator(globalKeyword, selector, searchStart);
+
+    if (!match) {
+      result += selector.slice(searchStart);
+      break;
+    }
+
+    result += selector.slice(searchStart, match.start);
+
+    if (match.value === undefined) {
+      result += selector.slice(match.start, match.end);
+    } else {
+      out?.push(normalizeWhitespace(match.value));
+      result += match.value;
+    }
+
+    searchStart = Math.max(match.end, match.start + 1);
+  }
+
+  return result.replace(blockGlobalRegex, "");
 }
 
 // to avoid cyclic dependency, we declare an exact same type declared in @kuma-ui/system
@@ -152,11 +235,7 @@ export class Sheet {
   parseCSS(style: string): string {
     style = this._processCSS(style);
 
-    const localGlobalInnerSelectors = new Set(
-      Array.from(style.matchAll(ampersandGlobalCallRegex), ([, g]) =>
-        normalizeWhitespace(g),
-      ),
-    );
+    const globalOperators = new Set(extractOperators(":global", style));
     const id = Sheet.getClassNamePrefix() + generateHash(style);
     const breakpoints = theme.getUserTheme().breakpoints ?? {};
     const elements: Element[] = [];
@@ -164,13 +243,7 @@ export class Sheet {
     compile(`.${id}{${style}}`).forEach((element) => {
       this.normalizeMediaQueries(element, breakpoints);
 
-      if (
-        this.applyGlobalSelectorNormalization(
-          element,
-          id,
-          localGlobalInnerSelectors,
-        )
-      ) {
+      if (this.normalizeGlobalOperatorSelectors(element, id, globalOperators)) {
         elements.push(element);
       }
     });
@@ -242,20 +315,20 @@ export class Sheet {
     }
   }
 
-  private applyGlobalSelectorNormalization(
+  private normalizeGlobalOperatorSelectors(
     element: Element,
     className: string,
-    localGlobalInnerSelectors: Set<string>,
+    globalOperators: Set<string>,
   ): boolean {
     if (Array.isArray(element.children)) {
       const children = element.children;
 
       for (let index = 0; index < children.length; ) {
         if (
-          this.applyGlobalSelectorNormalization(
+          this.normalizeGlobalOperatorSelectors(
             children[index],
             className,
-            localGlobalInnerSelectors,
+            globalOperators,
           )
         ) {
           index += 1;
@@ -274,7 +347,7 @@ export class Sheet {
     const { selectors, touched } = this.normalizeSelectorList(
       element.props,
       className,
-      localGlobalInnerSelectors,
+      globalOperators,
     );
 
     if (!touched) {
@@ -289,7 +362,7 @@ export class Sheet {
 
     if (typeof element.value === "string") {
       element.value =
-        unwrapGlobalSelectors(element.value).trim() ||
+        unwrapGlobalOperator(element.value).trim() ||
         (selectors[0] ?? element.value);
     }
 
@@ -299,7 +372,7 @@ export class Sheet {
   private normalizeSelectorList(
     props: Element["props"],
     className: string,
-    localGlobalInnerSelectors: Set<string>,
+    globalOperators: Set<string>,
   ): { selectors: string[]; touched: boolean } {
     const selectors: string[] = [];
     const scopedPrefix = new RegExp(`^\\.${Sheet.escapeRegExp(className)}\\s*`);
@@ -319,9 +392,9 @@ export class Sheet {
         touched = true;
 
         const inners: string[] = [];
-        const body = unwrapGlobalSelectors(selector, inners);
+        const body = unwrapGlobalOperator(selector, inners);
         const cleaned = normalizeWhitespace(
-          inners.some((inner) => localGlobalInnerSelectors.has(inner))
+          inners.some((inner) => globalOperators.has(inner))
             ? body
             : body.replace(scopedPrefix, ""),
         );

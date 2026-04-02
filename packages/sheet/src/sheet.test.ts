@@ -191,6 +191,22 @@ describe("Sheet class", () => {
       );
     });
 
+    test("parseCSS() accurately ignores :global selectors that are inside single quote string literals", () => {
+      const style = `
+      content: ':global(test)';
+      `;
+      const className = sheet.parseCSS(style);
+      expect(sheet.getCSS()).toEqual(`.${className}{content:':global(test)';}`);
+    });
+
+    test("parseCSS() accurately ignores :global selectors that are inside double quote string literals", () => {
+      const style = `
+      content: ":global(test)";
+      `;
+      const className = sheet.parseCSS(style);
+      expect(sheet.getCSS()).toEqual(`.${className}{content:":global(test)";}`);
+    });
+
     test("parseCSS() normalizes mixed global selectors", () => {
       const style = `
       color: red;
