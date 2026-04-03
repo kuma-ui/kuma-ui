@@ -171,6 +171,42 @@ describe("Sheet class", () => {
       expect(sheet.getCSS()).toEqual(`::view-transition(test){color:blue;}`);
     });
 
+    test("parseCSS() accurately parses and preserves selector groups within complex :global blocks", () => {
+      const style = `
+      :global(
+        .block-group
+        .block:not(:has(.toggle-wrapper))
+        :is(b:has(em:nth-child(1):last-child))
+        .block-group
+        .block-outer:not([data-prev-depth-changed]):before
+      ) {
+        color: red;
+      }
+      `;
+
+      sheet.parseCSS(style);
+
+      expect(sheet.getCSS()).toEqual(
+        `.block-group .block:not(:has(.toggle-wrapper)) :is(b:has(em:nth-child(1):last-child)) .block-group .block-outer:not([data-prev-depth-changed]):before{color:red;}`,
+      );
+    });
+
+    test("parseCSS() accurately ignores :global selectors that are inside single quote string literals", () => {
+      const style = `
+      content: ':global(test)';
+      `;
+      const className = sheet.parseCSS(style);
+      expect(sheet.getCSS()).toEqual(`.${className}{content:':global(test)';}`);
+    });
+
+    test("parseCSS() accurately ignores :global selectors that are inside double quote string literals", () => {
+      const style = `
+      content: ":global(test)";
+      `;
+      const className = sheet.parseCSS(style);
+      expect(sheet.getCSS()).toEqual(`.${className}{content:":global(test)";}`);
+    });
+
     test("parseCSS() normalizes mixed global selectors", () => {
       const style = `
       color: red;
@@ -194,6 +230,14 @@ describe("Sheet class", () => {
         background-color: black;
       }
 
+      & :global(.test) {
+        color: red;
+      }
+
+      & a :global(.test) {
+        color: blue;
+      }
+
       strong {
         :global(.app-dark-mode) & {
           color: white;
@@ -204,7 +248,7 @@ describe("Sheet class", () => {
       const className = sheet.parseCSS(style);
 
       expect(sheet.getCSS()).toEqual(
-        `.${className}{color:red;background-color:blue;}::view-transition-old(root){color:green;}::view-transition(test){background:green;}::view-transition-new(root){color:red;}.app-dark-mode .${className}{background-color:black;}.app-dark-mode .${className} strong{color:white;}`,
+        `.${className}{color:red;background-color:blue;}::view-transition-old(root){color:green;}::view-transition(test){background:green;}::view-transition-new(root){color:red;}.app-dark-mode .${className}{background-color:black;}.${className} .test{color:red;}.${className} a .test{color:blue;}.app-dark-mode .${className} strong{color:white;}`,
       );
     });
   });
