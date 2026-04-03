@@ -1,5 +1,12 @@
 # @kuma-ui/system
 
+## 1.8.3
+
+### Patch Changes
+
+- Updated dependencies [[`8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc`](https://github.com/kuma-ui/kuma-ui/commit/8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc)]:
+  - @kuma-ui/sheet@1.5.2
+
 ## 1.8.2
 
 ### Patch Changes
