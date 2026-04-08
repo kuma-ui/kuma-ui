@@ -1,5 +1,15 @@
 # @kuma-ui/core
 
+## 1.6.4
+
+### Patch Changes
+
+- [#456](https://github.com/kuma-ui/kuma-ui/pull/456) [`8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc`](https://github.com/kuma-ui/kuma-ui/commit/8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Fix global selector parsing when using selector groups
+
+- Updated dependencies [[`8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc`](https://github.com/kuma-ui/kuma-ui/commit/8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc)]:
+  - @kuma-ui/sheet@1.5.2
+  - @kuma-ui/system@1.8.3
+
 ## 1.6.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @kuma-ui/sheet
 
+## 1.5.2
+
+### Patch Changes
+
+- [#456](https://github.com/kuma-ui/kuma-ui/pull/456) [`8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc`](https://github.com/kuma-ui/kuma-ui/commit/8c6a3dbdc2a2cc33a511a8f93b34026414b6bdcc) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Fix global selector parsing when using selector groups
+
 ## 1.5.1
 
 ### Patch Changes
