@@ -1,5 +1,11 @@
 # @kuma-ui/next-plugin
 
+## 1.4.2
+
+### Patch Changes
+
+- [#458](https://github.com/kuma-ui/kuma-ui/pull/458) [`4a822027e29928221917ab474c0a75c2e6142949`](https://github.com/kuma-ui/kuma-ui/commit/4a822027e29928221917ab474c0a75c2e6142949) Thanks [@thomaslindstrom](https://github.com/thomaslindstrom)! - Update & publish `next-plugin`.
+
 ## 1.4.1
 
 ### Patch Changes
